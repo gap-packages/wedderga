@@ -8,7 +8,7 @@
 ##
 #############################################################################
 
-# read functions 
-ReadPkg( "wedderga", "gap/ssp.gi" );
-ReadPkg( "wedderga", "gap/others.gi" );
-ReadPkg( "wedderga", "gap/egkh.gi" );
+# read wedderga functions 
+ReadPackage( "wedderga/lib/ssp.gi" );
+ReadPackage( "wedderga/lib/others.gi" );
+ReadPackage( "wedderga/lib/egkh.gi" );
