@@ -5,7 +5,7 @@
 central idempotents and the simple components of the Wedderburn 
 decomposition of a rational group algebra of a finite group. 
 
-The main ideas are based in \cite{ORS} and the algorithms which implements 
+The main ideas are based in \cite{ORS} and the algorithms which implement
 the main functions are explained in \cite{OR}. 
 
 All through $G$ is a finite group and $\Q G$ is the rational group algebra of $G$. 
@@ -27,7 +27,7 @@ A {\it strongly Shoda pair} (SSP in this manual) of $G$ is a pair $(K,H)$ of
 subgroups of $G$ satisfying the following conditions: 
 \beginlist
 \item{(a)} $H$ is normal in $K$ and $K$ is normal in the normalizer $N$ of $H$ in $G$;
-\item{(b)} $K/H$ is cyclic and maximal abelian subgroup of $N/H$ and 
+\item{(b)} $K/H$ is cyclic and a maximal abelian subgroup of $N/H$ and 
 \item{(c)} for every $g\in G\setminus N$,  $\varepsilon(K,H)\varepsilon(K,H)^g=0$.
 \endlist
 
@@ -49,7 +49,7 @@ $\tau$ of $\Q(\xi_k)* N/K$ are given by
 for $a,b\in N/K$ and integers $i$ and $j$, see \cite{ORS}. In fact $N/K$ is 
 isomorphic to a subgroup of ${\rm Gal}(\Q(\xi_k)/\Q)$. Therefore $N/K$ is abelian 
 and if $x$ is a generator of $K/H$ then the crossed product $\Q(\xi)*N/K$ defined 
-above is identify by the following data \cite{OR}: A independent set 
+above is identified by the following data \cite{OR}: An independent set 
 $\{g_1,\ldots,g_m\}$ of generators of $N/K$; the list 
 $\{o_1,\ldots,o_m\}$ of orders of the $g_i$'s; two sets of numbers 
 $\{\alpha_1,\ldots,\alpha_m\}$ and $\{\beta_1,\ldots,\beta_m\}$ defined by the 
@@ -65,8 +65,8 @@ Therefore the simple algebra $\Q Ge(G,K,H)$ is determined by the following 4-tup
 A {\it Shoda pair} (SP in this manual) of $G$ is a pair $(K,H)$ of 
 subgroups of $G$ such that there is a linear character $\chi$ of $K$ with 
 kernel $H$ such that the induced character $\chi^G$ in $G$ is irreducible. 
-By \cite{S} or \cite{ORS} $(K,H)$ is a Shoda pair if and only if the 
-following conditions holds: 
+By \cite{S} or \cite{ORS}, $(K,H)$ is a Shoda pair if and only if the 
+following conditions hold: 
 \beginlist
 \item{(a)} $H$ is normal in $K$;
 \item{(b)} $K/H$ is cyclic and
@@ -74,17 +74,17 @@ following conditions holds:
 \endlist
 If $(K,H)$ is a SP then the PCI of $\Q G$ associated to the irreducible character 
 $\chi^G$ is of the form $e=\alpha e(G,K,H)$ for some $\alpha\in\Q$ \cite{ORS}. 
-In that case we say that the $e$ is the PCI  realizable by the SP $(K,H)$ of $G$.
+In that case we say that $e$ is the PCI  realizable by the SP $(K,H)$ of $G$.
 
-Every SSP is a SP and if $(K,H)$ is a SSP then the PCI realized by $(K,H)$ is $e(G,K,H)$ 
-\cite{ORS}. 
+Every SSP is a SP and if $(K,H)$ is a SSP then the PCI realized 
+by $(K,H)$ is $e(G,K,H)$, see \cite{ORS}. 
 
-A list $S$ of SSPs of $G$ is said to be complete and no redundant if the map $(K,H)\mapsto 
-e(G,K,H)$ induces a bijection from $S$ to the set of all the primitive central idempotents of 
+A list $S$ of SSPs of $G$ is said to be complete and not redundant if the map $(K,H)\mapsto 
+e(G,K,H)$ induces a bijection from $S$ to the set of all primitive central idempotents of 
 $\Q G$ realizable by SSPs. 
     
 The main functions of the program are `PCIsFromSSP', that computes the PCIs of $\Q G$ 
-realizable by SSPs of $G$; `StronglyShodaPairs' that computes a complete and no redundant list 
+realizable by SSPs of $G$; `StronglyShodaPairs' that computes a complete and not redundant list 
 of SSPs of $G$ and the function `SimpleFactorsFromListOfSSP' that provides the data describing 
 the simple algebras $\Q Ge(G,K,H)$ for $(K,H)$ running in a list of SSPs. 
 
@@ -99,8 +99,8 @@ the form $e(G,K,H)$ for some SSP $(K,H)$.
 
 The package also includes functions that computes the PCIs of $\Q G$ using other 
 methods: `PCIsFromShodaPairs' compute the PCIs of $\Q G$ realizable by SPs as so 
-does `PCIsUsingConlon'. The different between `PCIsFromShodaPairs' and 
-`PCIsUsingConlon' is that the latter use the command `IrrConlon' (see 69.12.2 of 
+does `PCIsUsingConlon'. The difference between `PCIsFromShodaPairs' and 
+`PCIsUsingConlon' is that the latter uses the command `IrrConlon' (see 69.12.2 of 
 \cite{GapManual}) which is based in an algorithm given by Conlon \cite{C} to compute 
 the characters of a supersolvable group. The output of `PCIsFromShodaPairs' and 
 `PCIsUsingConlon' is a complete list of PCIs of $\Q G$ if and only if $G$ is a 
@@ -110,9 +110,9 @@ the character table of $G$ \cite{Y}.
 In this manual we explain the use of the package {\wedderga}. In Chapter "Primitive central 
 idempotents" we show several functions to compute the PCIs of a rational group algebra of a 
 finite group. In Chapter "Strongly Shoda Pairs and Simple Algebras" we present a function to 
-compute a complete and no redundant list of SSPs of $G$ and a function to compute the data 
+compute a complete and not redundant list of SSPs of $G$ and a function to compute the data 
 describing the simple algebras of the form $\Q Ge$ for the PCIs $e$ realizable by SSPs. 
-Finally in Chapter "Other functions" we present some auxiliar functions.
+Finally in Chapter "Other functions" we present some auxiliary functions.
 \bigskip 
 
 Of course the first thing to do is loading the package.
@@ -120,4 +120,4 @@ Of course the first thing to do is loading the package.
 \beginexample
     gap> RequirePackage("wedderga");
     true
-\endexample
+\endexample

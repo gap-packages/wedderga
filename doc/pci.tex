@@ -44,7 +44,7 @@ If <RGA> is not a rational group algebra then a warning is displayed.
 \endexample
     
 
-If the list of PCIs obtained is not complete, the function returns a warning.
+If the list of PCIs obtained is not complete, the function prints a warning.
 \beginexample
     gap> A5:=AlternatingGroup(5); QA5:=GroupRing(Rationals,A5);
     Alt( [ 1 .. 5 ] )
@@ -95,8 +95,8 @@ as it is the case for `PCIsFromSSP' as is explained in Section "Simple Algebras"
         (1/2)*<identity ...>+(-1/2)*a^4 ]
 \endexample
 
-When $G$ is not monomial, the output of `PCIsFromShodaPairs' is not a complete set 
-of PCIs. 
+If $G$ is not monomial, the output of `PCIsFromShodaPairs' 
+is not a complete set of PCIs. 
 
 \beginexample
     gap> SL23:=SL(2,3);QSL23:=GroupRing(Rationals,SL23);
@@ -158,7 +158,7 @@ See the example of "PCIsFromShodaPairs" for the notation of next example.
 
 \>PCIsUsingCharacterTable(<RGA>) F
 
-The classical method to compute the PCIs of $\Q G$ consists in using the character 
+The classical method to compute the PCIs of $\Q G$ uses the character 
 table of $G$ to compute the PCIs of $\C G$ and for each PCI $e(\chi)$, associated to 
 an irreducible character $\chi$ of $G$, summing up the idempotents $e(\chi^g)$ 
 associated to the characters $g\circ \chi$ for $g$ running on ${\rm 
@@ -179,8 +179,8 @@ not discovered using the other methods.
 
 `PCIsUsingCharacterTable' and `PCIsUsingConlon' were constructed to compare its speed with 
 respect to `PCIsFromSSP' and `PCIsFromShodaPairs'. We have checked experimentally the cpu time 
-of any of this function with 1531 groups of order at most 500 \cite{OR}. The result of the 
+of any of this functions with 1532 groups of order at most 500 \cite{OR}. The result of the 
 experiment shows that if $T(f)$ denotes the average cpu time used by function $f$ to compute 
 the primitive central idempotents of a monomial group then $T($`PCIsFromSSP'$)\<T($ 
 `PCIsFromShodaPairs'$)\<T($ `PCIsUsingCharacterTable'$)\<T($ `PCIsUsingConlon'$)$ and the 
-differences increase with the order of the group.
+differences increase with the order of the group.

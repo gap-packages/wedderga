@@ -47,7 +47,7 @@ introduced in Chapter "Introduction".
 \>EpsilonCyclic( <RGA> , <Subg1> , <Subg2> ) M
 
 If the quotient group <Subg1>/<Subg2> is cyclic then the function `EpsilonCyclic' 
-obtains the same output as `Epsilon' but use a faster algorithm. 
+obtains the same output as `Epsilon' but uses a faster algorithm. 
 The functions of the package use `EpsilonCyclic' rather than `Epsilon' 
 when the quotient group is cyclic.
 
@@ -148,7 +148,7 @@ realized by ( <Subg1> , <Subg2> ).
 \endexample
 
 Note that the SP $(K,H)$ of the previous example is not a SSP and 
-$e(G,K,H)$ does not coincides with the PCI associated to the SP $(K,H)$ as 
+$e(G,K,H)$ does not coincide with the PCI associated to the SP $(K,H)$ as 
 the following computation shows. 
 
 \beginexample
@@ -168,11 +168,11 @@ the following computation shows.
 \>IsCompleteSetOfPCIs(<RGA> , <listOfPCIs>) F 
 
 The function `IsCompleteSetOfPCIs' checks if the sum of the elements of <listOfPCIs> 
-is 1. The input <listOfPCIs> is suppose to be a list of PCIs of <RGA> but the 
-function does not check this. The use of `IsCompleteSetOfPCIs' is to check if the 
-output of `PCIsFromSSP' is a complete set of PCIs. 
+is 1. The input <listOfPCIs> is supposed to be a list of PCIs of <RGA> but the 
+function does not check this. `IsCompleteSetOfPCIs' may be used to check 
+whether the output of `PCIsFromSSP' is a complete set of PCIs. 
 
-See last example of "PCIsFromSSP" for the notation of next example. 
+See last example of "PCIsFromSSP" for the notation of the next example. 
 
 \beginexample
     gap> IsCompleteSetOfPCIs(QA5,IdemQA5); 
