@@ -10,15 +10,17 @@
 
 SetPackageInfo( rec(
 
-PackageName := "Wedderga",
-Subtitle := "Wedderga",
-Version := "4.0",
-Date := "21/09/2004",
-ArchiveURL := "http://.../wedderga-4.0",
+PackageName    := "Wedderga",
+Subtitle       := Concatenation( [
+                  "Central idempotents and simple components",
+                  "of rational group algebras" ] ),
+Version        := "4.0",
+Date           := "21/09/2004",
+ArchiveURL     := "http://.../wedderga-4.0",
 ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
 
-#TextFiles := ["init.g", ......],
-#BinaryFiles := ["doc/manual.dvi", ......],
+#TextFiles     := ["init.g", ......],
+#BinaryFiles   := ["doc/manual.dvi", ......],
 
 Persons := [
      rec(
@@ -27,7 +29,6 @@ Persons := [
        IsAuthor      := true,
        IsMaintainer  := true,
        Email         := "olivieri@usb.ve",
-       WWWHome       := "",
        PostalAddress := Concatenation( [
                         "Departamento de Matematicas\n",
                         "Universidad Simon Bolivar\n",
@@ -42,7 +43,7 @@ Persons := [
        IsAuthor      := true,
        IsMaintainer  := true,
        Email         := "adelrio@um.es",
-       WWWHome       := "",
+       WWWHome       := "http://www.um.es/adelrio",
        PostalAddress := Concatenation( [
                         "Departamento de Matematicas\n",
                         "Universidad de Murcia\n", 
@@ -85,18 +86,18 @@ PackageDoc := rec(
   Autoload := false
 ),
 
-
 Dependencies := rec(
-  GAP := ">=4.4",
-  NeededOtherPackages := [],
-  SuggestedOtherPackages := [],
-  ExternalConditions := []
+  GAP                    := ">=4.4",
+  NeededOtherPackages    := [],
+  SuggestedOtherPackages := [["laguna", "3.3"]],
+  ExternalConditions     := []
 ),
 
 AvailabilityTest := ReturnTrue,
-Autoload := false,
-#TestFile := "tst/testall.g",
+Autoload         := false,
+#TestFile        := "tst/testall.g",
 
-Keywords := ["Wedderburn decomposition of rational group algebrasH"]
+Keywords := ["Wedderburn decomposition", "simple components", 
+             "central idempotents", "rational group algebras"]
 
 ));
