@@ -56,7 +56,7 @@ eG:=function(QG,K,H)
                     g:=RTNdK[i]^Embedding( G, QG );
                     eGKH1g:=eGKH1^g;
                     if eGKH1*(eGKH1g) <> Zero(QG) then    
-                        return  false;
+                        return  fail;
                     else
                         eGKH:= eGKH + eGKH1g;
                     fi;
@@ -74,7 +74,8 @@ eG:=function(QG,K,H)
 ## SearchingKForSSP(QG,H)
 ##
 ## The following function search an element K such that (K,H) is a SSP
-## and returns eG(QG,K,H) in the form [eGKH,[K,H]] 
+## and returns eG(QG,K,H) in the form [eGKH,[K,H]] or returns fail, if
+## such K doesn't exist
 ##
 SearchingKForSSP:=function(QG,H)
     local   
@@ -101,7 +102,7 @@ SearchingKForSSP:=function(QG,H)
                     K:=PreImages(Epi,Cen);
                     return eG(QG,K,H);
                 else 
-                    return false;
+                    return fail;
                 fi;
             else 
                 X:=Difference(Elements(Cen),Elements(L));
@@ -115,7 +116,7 @@ SearchingKForSSP:=function(QG,H)
                 od;
             fi;
         fi;
-    return false;                  
+    return fail;                  
     end;               
 
 
@@ -178,10 +179,10 @@ local   G,          # The group
                 Add(eGKHs,eGKH);
             fi;
         else 
-            eGKH:=SearchingKForSSP(QG,H)[1];
-            if eGKH<>false and eGKH*SeGKHs=Zero(QG) then 
-                SeGKHs:= SeGKHs + eGKH;
-                Add(eGKHs,eGKH);
+            eGKH:=SearchingKForSSP(QG,H);
+            if eGKH <> fail and eGKH[1]*SeGKHs=Zero(QG) then 
+                SeGKHs:= SeGKHs + eGKH[1];
+                Add(eGKHs,eGKH[1]);
             fi;
         fi;
         j:=j-1;
@@ -251,7 +252,7 @@ local   G,          # The group
             fi;
         else 
             eGKH:=SearchingKForSSP(QG,H);
-            if eGKH<>false and eGKH[1]*SeGKHs=Zero(QG) then 
+            if eGKH<>fail and eGKH[1]*SeGKHs=Zero(QG) then 
                 SeGKHs:= SeGKHs + eGKH[1];
                 Add(KHs,eGKH[2]);
             fi;
