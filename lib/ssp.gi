@@ -33,8 +33,7 @@ local   G,          #The group
         i, j,       #Counters
         eGKH,       #A primitive central idempotent of the form 
                     #e(G,K,H) for (K,H) a SSP
-        SearchingKForSP,#Function to search a K for a given H in the 
-                    #list LK
+        SearchingKForSSP,#Function to search a K for a given H 
         eG,         #Function to compute e(G,K,H)        
         KH;         #K/H
 
@@ -43,7 +42,7 @@ local   G,          #The group
 #The following function search an element K such that 
 #(K,H) is a SSP
 
-    SearchingKForSP:=function(H)
+    SearchingKForSSP:=function(H)
     local   
         NH,         #Normalizer of H in G
         Epi,        #NH --> NH/H        
@@ -179,7 +178,7 @@ local   G,          #The group
                 Add(eGKHs,eGKH);
             fi;
         else 
-            eGKH:=SearchingKForSP(H);
+            eGKH:=SearchingKForSSP(H);
             if eGKH<>false and eGKH*SeGKHs=zero then 
                 SeGKHs:= SeGKHs + eGKH;
                 Add(eGKHs,eGKH);
@@ -219,21 +218,18 @@ local   G,          #The group
         K,          #Subgroup of G 
         i, j,       #Counters
         eGKH,       #A primitive central idempotent of the form e(G,K,H) for (H,K) a SSP
-        SearchInCCS,#Function to search a K for a given H in the list LK
+        SearchingKForSSP,#Function to search a K for a given H
         eG,         #Function to compute e(G,K,H)        
         KH,         #K/H
         KHs;        #The list of SSP
 
 
-        
-
-
 #begin of functions    
 
-#The following function search an element K in CCS[n] such that (K,H) is a strongly 
-#SP
+# The following function search an element K 
+# such that (K,H) is a SSP
 
-    SearchInCCS:=function(H)
+    SearchingKForSSP:=function(H)
     local   
         NH,         #Normalizer of H in G
         Epi,        #NH/H        
@@ -248,7 +244,7 @@ local   G,          #The group
         NH:=Normalizer(G,H);
         Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
         NHH:=Image(Epi,NH);
-        L:=Subgroup(NHH,Union(DerivedSubgroup(NHH),Centre(NHH)));
+        L:=ClosureSubgroup( DerivedSubgroup(NHH), Centre(NHH) );
         if IsCyclic(L) then 
             Cen:=Centralizer(NHH,L);
             if IsAbelian(Cen) then
@@ -261,7 +257,7 @@ local   G,          #The group
             else 
                 X:=Difference(Elements(Cen),Elements(L));
                 while X<>[] do
-                    KH:=Subgroup(NHH,Union(L,[X[1]]));
+                    KH:=ClosureSubgroup( L, [X[1]] );
                     if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
                         K:=PreImages(Epi,KH);
                         return  eG(K,H);
@@ -363,7 +359,7 @@ local   G,          #The group
                 Add(KHs,[G,H]);
             fi;
         else 
-            eGKH:=SearchInCCS(H);
+            eGKH:=SearchingKForSSP(H);
             if eGKH<>false and eGKH[1]*SeGKHs=zero then 
                 SeGKHs:= SeGKHs + eGKH[1];
                 Add(KHs,eGKH[2]);
@@ -399,12 +395,15 @@ local   Verify, K1, H1, G, Emb, zero, NH, Eps,  NdK, eGKH1, RTNH, nRTNH, i, g, e
     if not IsSubgroup(UnderlyingMagma(QG),K) then
         Print("The group algebra does not correspond to the subgroups \n");
         return fail;
-    elif not(IsSubgroup(K,H) or IsNormal(K,H)) then
+    elif not(IsSubgroup(K,H) and IsNormal(K,H)) then
         Print("The second subgroup must be normal in the first one \n");
         return fail;
     fi;
 
 Verify:=function(K1,H1)
+# verifies if H1 is a normal subgroup of K1 and
+# K1/H1 is the maximal abelian subgroup in N1/H1,
+# where N1 is the normalizer of H1 in G
 local Epi, NHH, KH;
 
     if not(IsNormal(NH,K1)) then
