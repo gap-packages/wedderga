@@ -1,0 +1,123 @@
+\Chapter{Introduction}
+
+{\wedderga} (from {\bf Wed}derburn {\bf de}composition of a {\bf r}ational 
+{\bf g}roup {\bf a}lgebra ) is a {\GAP}4 Package to compute primitive 
+central idempotents and the simple components of the Wedderburn 
+decomposition of a rational group algebra of a finite group. 
+
+The main ideas are based in \cite{ORS} and the algorithms which implements 
+the main functions are explained in \cite{OR}. 
+
+All through $G$ is a finite group and $\Q G$ is the rational group algebra of $G$. 
+We use exponential notation $x^g$ to denote $g^{-1} x g$ for $g\in G$ and 
+$x\in \Q G$ or $x$ a subgroup of $G$.
+If $H$ is a subgroup of $G$ then $\widehat{H}$ denotes the element 
+$|H|^{-1}\sum_{x\in H} x$ of $\Q G$. If $N$ is a proper normal subgroup of $G$ then set 
+    $\varepsilon(G,N) = \prod_{L} (\widehat{N}-\widehat{L})$
+where $L$ runs on the minimal normal subgroups of $G$ containing $N$ properly. By 
+convention, $\varepsilon(G,G)=\widehat{G}$. If $H$ and $K$ are subgroups of $G$ such 
+that $H$ is normal in $K$ then $e(G,K,H)$ denotes the sum of all different 
+$G$-conjugates of $\varepsilon(K,H)$. 
+
+In this manual PCI and PCIs are abbreviations of ``primitive central idempotent'' 
+and ``primitive central idempotents''. 
+
+
+A {\it strongly Shoda pair} (SSP in this manual) of $G$ is a pair $(K,H)$ of 
+subgroups of $G$ satisfying the following conditions: 
+\beginlist
+\item{(a)} $H$ is normal in $K$ and $K$ is normal in the normalizer $N$ of $H$ in $G$;
+\item{(b)} $K/H$ is cyclic and maximal abelian subgroup of $N/H$ and 
+\item{(c)} for every $g\in G\setminus N$,  $\varepsilon(K,H)\varepsilon(K,H)^g=0$.
+\endlist
+
+By \cite{ORS} if $(K,H)$ is a SSP of $G$ then $e(G,K,H)$ is a 
+PCI of $\Q G$. A PCI $e$ of $\Q G$ is said to be realizable by a SSP if 
+$e=e(G,K,H)$ for a SSP $(K,H)$ of $G$. 
+
+If $(K,H)$ is a SSP of $G$ then the simple algebra $\Q Ge(G,K,H)$ is isomorphic to 
+$M_n(\Q(\xi_k)* N/K)$, where $k=[K:H]$, $N=N_G(H)$, $n=[G:N]$ and $\xi_k$ is a 
+primitive $k$-th root of the unity and $\Q(\xi_k)* N/K$ is a crossed product 
+\cite{P} such that if $x$ is a generator of $K/H$ and $\phi:N/K\rightarrow N/H$ is a 
+left inverse of the canonical projection $N/H\rightarrow N/K$ then the action 
+$\sigma$ and twisting 
+$\tau$ of $\Q(\xi_k)* N/K$ are given by 
+    $$\matrix{
+    \xi_k^{\sigma(a)} = \xi_k^i, & {\rm if } & x^a= x^i;\cr
+    \tau(a,b) = \xi_k^j,         & {\rm if } & \phi(ab)^{-1} \phi(a)\phi(b) H = x^j,
+    }$$
+for $a,b\in N/K$ and integers $i$ and $j$, see \cite{ORS}. In fact $N/K$ is 
+isomorphic to a subgroup of ${\rm Gal}(\Q(\xi_k)/\Q)$. Therefore $N/K$ is abelian 
+and if $x$ is a generator of $K/H$ then the crossed product $\Q(\xi)*N/K$ defined 
+above is identify by the following data \cite{OR}: A independent set 
+$\{g_1,\ldots,g_m\}$ of generators of $N/K$; the list 
+$\{o_1,\ldots,o_m\}$ of orders of the $g_i$'s; two sets of numbers 
+$\{\alpha_1,\ldots,\alpha_m\}$ and $\{\beta_1,\ldots,\beta_m\}$ defined by the 
+relations 
+    $$x^{G_i}= x^{\alpha_i}, \quad G_i^{o_i}=x^{\beta_i},$$
+where $G_i$ is an element of $N/H$ whose image in $N/K$ is $g_i$ ($i=1,\ldots,m$);
+and another list of numbers $\{\gamma_{ij}: 1\le i \< j \le m\}$ defined by the 
+relations
+    $$[G_i,G_j]=x^{\gamma_{ij}}.$$
+Therefore the simple algebra $\Q Ge(G,K,H)$ is determined by the following 4-tuple:
+    $$(n,k,(o_i,\alpha_i,\beta_i)_{i=1,\ldots,m},(\gamma_{ij})_{1\le i\<j\le m}).$$
+    
+A {\it Shoda pair} (SP in this manual) of $G$ is a pair $(K,H)$ of 
+subgroups of $G$ such that there is a linear character $\chi$ of $K$ with 
+kernel $H$ such that the induced character $\chi^G$ in $G$ is irreducible. 
+By \cite{S} or \cite{ORS} $(K,H)$ is a Shoda pair if and only if the 
+following conditions holds: 
+\beginlist
+\item{(a)} $H$ is normal in $K$;
+\item{(b)} $K/H$ is cyclic and
+\item{(c)} if $g\in G$ and $[K,g]\cap K \subseteq H$ then $g\in K$.
+\endlist
+If $(K,H)$ is a SP then the PCI of $\Q G$ associated to the irreducible character 
+$\chi^G$ is of the form $e=\alpha e(G,K,H)$ for some $\alpha\in\Q$ \cite{ORS}. 
+In that case we say that the $e$ is the PCI  realizable by the SP $(K,H)$ of $G$.
+
+Every SSP is a SP and if $(K,H)$ is a SSP then the PCI realized by $(K,H)$ is $e(G,K,H)$ 
+\cite{ORS}. 
+
+A list $S$ of SSPs of $G$ is said to be complete and no redundant if the map $(K,H)\mapsto 
+e(G,K,H)$ induces a bijection from $S$ to the set of all the primitive central idempotents of 
+$\Q G$ realizable by SSPs. 
+    
+The main functions of the program are `PCIsFromSSP', that computes the PCIs of $\Q G$ 
+realizable by SSPs of $G$; `StronglyShodaPairs' that computes a complete and no redundant list 
+of SSPs of $G$ and the function `SimpleFactorsFromListOfSSP' that provides the data describing 
+the simple algebras $\Q Ge(G,K,H)$ for $(K,H)$ running in a list of SSPs. 
+
+By \cite{ORS}, if $G$ is abelian-by-supersolvable then all the PCIs of $\Q G$ are realizable 
+by SSPs of $G$. So in this case the output of `PCIsFromSSP'($\Q G$) accounts for all the PCIs of $\Q 
+G$ and the output of `SimpleFactorsFromListOfSSP' ($\Q G$) when applied to the output of 
+`StronglyShodaPairs' accounts for all the simple components of the Wedderburn decomposition of 
+$\Q G$. In general this is not the case. In fact, if the output of `PCIsFromSSP' is a complete 
+set of PCIs of $\Q G$ then $G$ is monomial. Moreover a computer search using `PCIsFromSSP' has 
+shown that if $G$ is a monomial group of order at most 500 then all the PCIs of $\Q G$ are of 
+the form $e(G,K,H)$ for some SSP $(K,H)$. 
+
+The package also includes functions that computes the PCIs of $\Q G$ using other 
+methods: `PCIsFromShodaPairs' compute the PCIs of $\Q G$ realizable by SPs as so 
+does `PCIsUsingConlon'. The different between `PCIsFromShodaPairs' and 
+`PCIsUsingConlon' is that the latter use the command `IrrConlon' (see 69.12.2 of 
+\cite{GapManual}) which is based in an algorithm given by Conlon \cite{C} to compute 
+the characters of a supersolvable group. The output of `PCIsFromShodaPairs' and 
+`PCIsUsingConlon' is a complete list of PCIs of $\Q G$ if and only if $G$ is a 
+monomial group. Finally `PCIsUsingCharacterTable' computes the PCIs of $\Q G$ using 
+the character table of $G$ \cite{Y}. 
+
+In this manual we explain the use of the package {\wedderga}. In Chapter "Primitive central 
+idempotents" we show several functions to compute the PCIs of a rational group algebra of a 
+finite group. In Chapter "Strongly Shoda Pairs and Simple Algebras" we present a function to 
+compute a complete and no redundant list of SSPs of $G$ and a function to compute the data 
+describing the simple algebras of the form $\Q Ge$ for the PCIs $e$ realizable by SSPs. 
+Finally in Chapter "Other functions" we present some auxiliar functions.
+\bigskip 
+
+Of course the first think to do is loading the package.
+
+\beginexample
+    gap> RequirePackage("wedderga");
+    true
+\endexample

@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  gapomacro . . . . . . . . . . . . . . . .  read the GAP macro package
+%%
+\input ../../../doc/gapmacro
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  Package-name . . . . . . . . . . . . . . . . . . .  define a macro
+%%
+\Package{wedderga}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  BeginningOfBook . . . . . . . . . . . . . . . . . . .  start the book
+%%
+\BeginningOfBook{wedderga}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  UseReferences . . . . . . . . . . . . . . . . . .  specify references
+%%
+\UseReferences{../../../doc/ext}
+\UseReferences{../../../doc/ref}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  TitlePage . . . . . . . . . . . . . . . . . . . . . . nice title page
+%%
+\TitlePage{
+  \centerline{\titlefont wedderga} \vfill
+  \centerline{\titlefont ---}\vfill
+  \centerline{\subtitlefont A GAP 4 package for} \vfill
+  \centerline{\subtitlefont Computing central idempotents and simple} \bigskip
+  \centerline{\subtitlefont components of rational group algebras} \vfill
+  \centerline{\secfont by}\vfill
+  \centerline{\secfont Aurora Olivieri,}\medskip
+  \centerline{\bsf Departamento de Matem\'aticas}
+  \centerline{\bsf Universidad Sim\'on Bol\'\i var}
+     \centerline{\bsf Apartado Postal 89000}
+     \centerline{\bsf Caracas 1080-A, Venezuela}
+  \centerline{\bsf \Mailto{olivieri@usb.ve}}\medskip
+  \centerline{\bsf and}\medskip
+  \centerline{\secfont \'Angel del R\'\i o,}\medskip
+  \centerline{\bsf Departamento de Matem\'aticas}
+  \centerline{\bsf Universidad de Murcia}
+     \centerline{\bsf 30100 Murcia, Spain}
+      \centerline{\bsf \Mailto{adelrio@um.es}}
+  
+  \vfill
+}
+
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  TableOfContents . . . . . . . . . . . .  generate a table of contents
+%%
+\OneColumnTableOfContents
+%\TableOfContents
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  FrontMatter . . . . . . . . . . . . . . . . . . . . .  
+%%
+\FrontMatter
+%\immediate\write\citeout{\bs bibdata{wedderga}}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  Chapters  
+%%
+\Chapters
+\Input{intro}
+\Input{pci}
+\Input{SSP}
+\Input{eGKH}
+\EndMatter
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  Appendices  
+%%
+%\Appendices
+\Bibliography
+%\Index
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%F  EndOfBook . . . . . . . . . . . . . . . . . . . . . . . . . that's it
+%%
+\EndOfBook
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%E  manual.tex  . . . . . . . . . . . . . . . . . . . . . . . . ends here

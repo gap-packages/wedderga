@@ -1,0 +1,186 @@
+\Chapter{Primitive central idempotents}
+
+In this chapter we present several functions useful to compute the PCIs of a rational group 
+algebra of a finite group. In Section "Primitive Central Idempotents from Strongly Shoda 
+Pairs" we present a function to compute the PCIs realizable from SSPs and in Section "Other 
+functions to compute PCIs" we present other functions to compute PCIs that use alternative 
+methods. 
+
+In this chapter <RGA> stands for a rational group algebra of a finite group $G$. 
+
+ 
+\Section{Primitive Central Idempotents from Strongly Shoda Pairs}
+%\bigskip
+
+\>PCIsFromSSP( <RGA>  ) F
+
+The function `PCIsFromSSP' returns, as a list, the set of all the PCIs of 
+<RGA> realizable by SSPs of $G$. If $G$ is abelian-by-supersolvable then 
+the output is a complete set of PCIs of <RGA> \cite{ORS}. 
+This is also the case if $G$ is monomial of order at most 500. 
+
+\beginexample
+    gap> D8:=DihedralGroup(8);
+    <pc group of size 8 with 3 generators>
+    gap> QD8:=GroupRing(Rationals,D8);
+    <algebra-with-one over Rationals, with 3 generators>
+    gap> IdemQD8:=PCIsFromSSP( QD8 );
+    [ (1/8)*<identity> of ...+(1/8)*f1+(1/8)*f2+(1/8)*f3+(1/8)*f1*f2+(1/8)*f1*f3+(
+        1/8)*f2*f3+(1/8)*f1*f2*f3, (1/8)*<identity> of ...+(-1/8)*f1+(-1/8)*f2+(1/
+        8)*f3+(1/8)*f1*f2+(-1/8)*f1*f3+(-1/8)*f2*f3+(1/8)*f1*f2*f3,
+      (1/8)*<identity> of ...+(-1/8)*f1+(1/8)*f2+(1/8)*f3+(-1/8)*f1*f2+(-1/
+        8)*f1*f3+(1/8)*f2*f3+(-1/8)*f1*f2*f3, (1/8)*<identity> of ...+(1/8)*f1+(
+        -1/8)*f2+(1/8)*f3+(-1/8)*f1*f2+(1/8)*f1*f3+(-1/8)*f2*f3+(-1/8)*f1*f2*f3,
+      (1/2)*<identity> of ...+(-1/2)*f3 ]
+\endexample
+
+If <RGA> is not a rational group algebra then a warning is displayed.
+\beginexample
+    gap> ZD8:=GroupRing(Integers,D8);
+    <free left module over Integers, and ring-with-one, with 3 generators>
+    gap> IdemZD8:=PCIsFromSSP( ZD8 );
+    The input must be a rational group algebra
+    fail
+\endexample
+    
+
+If the list of PCIs obtained is not complete, the function returns a warning.
+\beginexample
+    gap> A5:=AlternatingGroup(5); QA5:=GroupRing(Rationals,A5);
+    Alt( [ 1 .. 5 ] )
+    <algebra-with-one over Rationals, with 2 generators>
+    gap> IdemQA5:=PCIsFromSSP(QA5);;
+    Caution! It is not a complete set of primitive central idempotents
+\endexample
+
+
+\Section{Other functions to compute PCIs}
+
+\>PCIsFromShodaPairs(<RGA>) F
+
+The function `PCIsFromShodaPairs' computes the PCIs of <RGA> realizable by SPs. The output of 
+`PCIsFromShodaPairs' is a complete set of PCIs of <RGA> if and only if $G$ is a monomial 
+group. For some groups `PCIsFromShodaPairs' can find more PCIs than `PCIsFromSSP'. However 
+`PCIsFromShodaPairs' is slower than `PCIsFromSSP' (see \cite{OR}) and the output of 
+`PCIsFromShodaPairs' cannot be used to provide information on the simple components of <RGA> 
+as it is the case for `PCIsFromSSP' as is explained in Section "Simple Algebras". 
+
+\beginexample
+    gap> f:=FreeGroup("a","b");
+    <free group on the generators [ a, b ]>
+    gap> a:=f.1;b:=f.2;rels:=[a^8,b^2,Comm(a,b)*a^-2];
+    a
+    b
+    [ a^8, b^2, a^-1*b^-1*a*b*a^-2 ]
+    gap> D16plus:=f/rels;
+    <fp group on the generators [ a, b ]>
+    gap> QD16plus:=GroupRing(Rationals,D16plus);
+    <algebra-with-one over Rationals, with 2 generators>
+    gap> e:=PCIsFromShodaPairs(QD16plus);
+    [ (1/16)*<identity ...>+(1/16)*b+(1/16)*a+(1/16)*a^3*b+(1/16)*a^7+(1/16)*a^
+        5*b+(1/16)*a^2+(1/16)*a^6*b+(1/16)*a*b+(1/16)*a^3+(1/16)*a^2*b+(1/16)*a^
+        6+(1/16)*a^7*b+(1/16)*a^5+(1/16)*a^4*b+(1/16)*a^4,
+      (1/16)*<identity ...>+(-1/16)*b^-1+(1/16)*a+(-1/16)*a^3*b^-1+(1/16)*a^7+(-1/
+        16)*a^5*b^-1+(1/16)*a^2+(-1/16)*a^6*b^-1+(-1/16)*a*b^-1+(1/16)*a^3+(-1/
+        16)*a^2*b^-1+(1/16)*a^6+(-1/16)*a^7*b^-1+(1/16)*a^5+(-1/16)*a^4*b^-1+(1/
+        16)*a^4, (1/16)*a^-8+(-1/16)*a^-4*b*a^-4+(-1/16)*a^-7+(1/16)*a^-4*b*a^-3+(
+        -1/16)*a^-9+(1/16)*b*a^-1+(1/16)*a^-6+(-1/16)*a^-2*b*a^-8+(1/16)*a^-2*b*a^
+        -7+(-1/16)*a^-13+(-1/16)*a^-6*b*a^-8+(1/16)*a^-10+(1/16)*b*a^-3+(-1/16)*a^
+        -11+(-1/16)*a^-6*b*a^-2+(1/16)*a^-4, (1/16)*a^-8+(1/16)*a^-4*b*a^-4+(-1/
+        16)*a^-7+(-1/16)*a^-2*b*a^-1+(-1/16)*a^-9+(-1/16)*a^-6*b*a^-7+(1/16)*a^
+        -6+(1/16)*a^-6*b*a^-4+(-1/16)*a^-4*b*a^-1+(-1/16)*a^-5+(1/16)*a^-4*b*a^
+        -6+(1/16)*a^-2+(-1/16)*a^-6*b*a^-1+(-1/16)*a^-3+(1/16)*a^-6*b*a^-2+(1/
+        16)*a^-4, (1/4)*b*a*b*a*b*a^-1*b*a^-1+(-1/4)*b*a*b*a*b*a*b*a^-1*b*a^
+        -1*b*a^-1+(-1/4)*b*a*b*a^-1*b*a^-1*b*a^-1+(1/4)*b*a^-1*b*a^-1,
+        (1/2)*<identity ...>+(-1/2)*a^4 ]
+\endexample
+
+When $G$ is not monomial, the output of `PCIsFromShodaPairs' is not a complete set 
+of PCIs. 
+
+\beginexample
+    gap> SL23:=SL(2,3);QSL23:=GroupRing(Rationals,SL23);
+    SL(2,3)
+    <algebra-with-one over Rationals, with 2 generators>
+    gap> e:=PCIsFromShodaPairs(QSL23);;Size(e);
+    Caution! It is not a complete set of primitive central idempotents
+    3
+\endexample
+ 
+
+\>PCIsUsingConlon(<RGA>) F
+
+The function `PCIsUsingConlon' computes the PCIs of <RGA> realizable by 
+SPs. The difference of `PCIsUsingConlon' with `PCIsFromShodaPairs' is that 
+`PCIsUsingConlon' uses part of the output of the function `IrrConlon' (see 
+69.12.2 of \cite{GapManual}) to compute SPs of $G$. The output of 
+`PCIsUsingConlon' is the same as the output of `PCIsFromShodaPairs', 
+possibly in a different order. `PCIsUsingConlon' is usually slower than 
+`PCIsFromShodaPairs'. 
+
+\beginexample
+    gap> G:=Group((1,4),(4,5),(1,3,4));;QG:=GroupRing(Rationals,G);
+    <algebra-with-one over Rationals, with 3 generators>
+    gap> e:=PCIsUsingConlon(QG);
+        [ (1/24)*()+(1/24)*(4,5)+(1/24)*(3,4)+(1/24)*(3,4,5)+(1/24)*(3,5,4)+(1/24)*
+        (3,5)+(1/24)*(1,3)+(1/24)*(1,3)(4,5)+(1/24)*(1,3,4)+(1/24)*(1,3,4,5)+(1/
+        24)*(1,3,5,4)+(1/24)*(1,3,5)+(1/24)*(1,4,3)+(1/24)*(1,4,5,3)+(1/24)*
+        (1,4)+(1/24)*(1,4,5)+(1/24)*(1,4)(3,5)+(1/24)*(1,4,3,5)+(1/24)*(1,5,4,3)+(
+        1/24)*(1,5,3)+(1/24)*(1,5,4)+(1/24)*(1,5)+(1/24)*(1,5,3,4)+(1/24)*(1,5)
+        (3,4), (1/24)*()+(-1/24)*(4,5)+(-1/24)*(3,4)+(1/24)*(3,4,5)+(1/24)*
+        (3,5,4)+(-1/24)*(3,5)+(-1/24)*(1,3)+(1/24)*(1,3)(4,5)+(1/24)*(1,3,4)+(-1/
+        24)*(1,3,4,5)+(-1/24)*(1,3,5,4)+(1/24)*(1,3,5)+(1/24)*(1,4,3)+(-1/24)*
+        (1,4,5,3)+(-1/24)*(1,4)+(1/24)*(1,4,5)+(1/24)*(1,4)(3,5)+(-1/24)*
+        (1,4,3,5)+(-1/24)*(1,5,4,3)+(1/24)*(1,5,3)+(1/24)*(1,5,4)+(-1/24)*(1,5)+(
+        -1/24)*(1,5,3,4)+(1/24)*(1,5)(3,4), (1/6)*()+(-1/12)*(3,4,5)+(-1/12)*
+        (3,5,4)+(1/6)*(1,3)(4,5)+(-1/12)*(1,3,4)+(-1/12)*(1,3,5)+(-1/12)*(1,4,3)+(
+        -1/12)*(1,4,5)+(1/6)*(1,4)(3,5)+(-1/12)*(1,5,3)+(-1/12)*(1,5,4)+(1/6)*
+        (1,5)(3,4), (3/8)*()+(1/8)*(4,5)+(1/8)*(3,4)+(1/8)*(3,5)+(1/8)*(1,3)+(-1/
+        8)*(1,3)(4,5)+(-1/8)*(1,3,4,5)+(-1/8)*(1,3,5,4)+(-1/8)*(1,4,5,3)+(1/8)*
+        (1,4)+(-1/8)*(1,4)(3,5)+(-1/8)*(1,4,3,5)+(-1/8)*(1,5,4,3)+(1/8)*(1,5)+(-1/
+        8)*(1,5,3,4)+(-1/8)*(1,5)(3,4), (3/8)*()+(-1/8)*(4,5)+(-1/8)*(3,4)+(-1/8)*
+        (3,5)+(-1/8)*(1,3)+(-1/8)*(1,3)(4,5)+(1/8)*(1,3,4,5)+(1/8)*(1,3,5,4)+(1/
+        8)*(1,4,5,3)+(-1/8)*(1,4)+(-1/8)*(1,4)(3,5)+(1/8)*(1,4,3,5)+(1/8)*
+        (1,5,4,3)+(-1/8)*(1,5)+(1/8)*(1,5,3,4)+(-1/8)*(1,5)(3,4) ]
+\endexample
+
+When $G$ is not monomial, `IrrConlon' does not return a complete set of complex irreducible 
+characters and as a consequence `PCIsUsingConlon' does not return a complete set of PCIs of < 
+RGA >. 
+
+See the example of "PCIsFromShodaPairs" for the notation of next example. 
+
+\beginexample
+    gap> e1:=PCIsUsingConlon(QSL23);;Size(e1);
+    Caution! It is not a complete set of primitive central idempotents
+    3
+\endexample
+
+\>PCIsUsingCharacterTable(<RGA>) F
+
+The classical method to compute the PCIs of $\Q G$ consists in using the character 
+table of $G$ to compute the PCIs of $\C G$ and for each PCI $e(\chi)$, associated to 
+an irreducible character $\chi$ of $G$, summing up the idempotents $e(\chi^g)$ 
+associated to the characters $g\circ \chi$ for $g$ running on ${\rm 
+Gal}(\Q(\chi)/\Q)$, where $\Q(\chi)$ is the character field of $\chi$ (see 
+\cite{Y}). The function `PCIsUsingCharacterTable' computes the primitive central 
+idempotents of $\Q G$ using this method. 
+
+See the last example of "PCIsFromShodaPairs" for the notation in next example. 
+
+\beginexample
+    gap> e2:=PCIsUsingCharacterTable(QSL23);;Size(e2);
+    5
+\endexample
+
+The smallest non monomial group is SL(2,3). The previous example shows that 
+`PCIsUsingCharacterTable' finds the two PCIs of the rational group algebra that were 
+not discovered using the other methods. 
+
+`PCIsUsingCharacterTable' and `PCIsUsingConlon' were constructed to compare its speed with 
+respect to `PCIsFromSSP' and `PCIsFromShodaPairs'. We have checked experimentally the cpu time 
+of any of this function with 1531 groups of order at most 500 \cite{OR}. The result of the 
+experiment shows that if $T(f)$ denotes the average cpu time used by function $f$ to compute 
+the primitive central idempotents of a monomial group then $T($`PCIsFromSSP'$)\<T($ 
+`PCIsFromShodaPairs'$)\<T($ `PCIsUsingCharacterTable'$)\<T($ `PCIsUsingConlon'$)$ and the 
+differences increase with the order of the group.
