@@ -13,7 +13,7 @@ SetPackageInfo( rec(
 PackageName := "Wedderga",
 Subtitle := "Wedderga",
 Version := "4.0",
-Date := "04/04/2004",
+Date := "21/09/2004",
 ArchiveURL := "http://.../wedderga-4.0",
 ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
 
@@ -22,32 +22,47 @@ ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
 
 Persons := [
      rec(
-     LastName := "Olivieri",
-     FirstNames := "Aurora",
-     IsAuthor := true,
-     IsMaintainer := true,
-     Email := "",
-     WWWHome := "",
-     PostalAddress := "",
-     Institution := ""
+       LastName      := "Olivieri",
+       FirstNames    := "Aurora",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "olivieri@usb.ve",
+       WWWHome       := "",
+       PostalAddress := Concatenation( [
+                        "Departamento de Matematicas\n",
+                        "Universidad Simon Bolivar\n",
+                        "Apartado Postal 89000\n", 
+                        "Caracas 1080-A, Venezuela" ] ),
+       Place         := "Caracas",
+       Institution   := "Universidad Simon Bolivar"
      ),     
      rec(
-     LastName := "del Rio",
-     FirstNames := "Angel",
-     IsAuthor := true,
-     IsMaintainer := true,
-     Email := "",
-     PostalAddress := "",
+       LastName      := "del Rio",
+       FirstNames    := "Angel",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "adelrio@um.es",
+       WWWHome       := "",
+       PostalAddress := Concatenation( [
+                        "Departamento de Matematicas\n",
+                        "Universidad de Murcia\n", 
+                        "30100 Murcia, Spain" ] ),
+       Place         := "Murcia",
+       Institution   := "Universidad de Murcia"
      ),
      rec(
-     LastName := "Konovalov",
-     FirstNames := "Alexander",
-     IsAuthor := true,
-     IsMaintainer := true,
-     Email := "konovalov@member.ams.org",
-     WWWHome := "http://ukrgap.exponenta.ru/konoval.htm",
-     PostalAddress := "P.O.Box 1317, Central Post Office, Zaporozhye, 69000 Ukraine",
-     Institution := "Department of Mathematics, Zaporozhye State University"
+       LastName      := "Konovalov",
+       FirstNames    := "Alexander",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "konovalov@member.ams.org",
+       WWWHome       := "http://ukrgap.exponenta.ru/konoval.htm",
+       PostalAddress := Concatenation( [
+                        "P.O.Box 1317\n",
+                        "Central Post Office\n", 
+                        "Zaporozhye, 69000 Ukraine" ] ),
+       Place         := "Zaporozhye",
+       Institution   := "Zaporozhye State University"
      )
 ],
 
@@ -73,7 +88,7 @@ PackageDoc := rec(
 
 Dependencies := rec(
   GAP := ">=4.4",
-  NeededOtherPackages := [["GAPDoc", ">= 0.999"]],
+  NeededOtherPackages := [],
   SuggestedOtherPackages := [],
   ExternalConditions := []
 ),
@@ -82,6 +97,6 @@ AvailabilityTest := ReturnTrue,
 Autoload := false,
 #TestFile := "tst/testall.g",
 
-Keywords := ["Wedderburn decomposition"]
+Keywords := ["Wedderburn decomposition of rational group algebrasH"]
 
 ));
