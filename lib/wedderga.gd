@@ -18,26 +18,72 @@
 ##  To change Info level to k, use command SetInfoLevel(InfoPCI, k)
 DeclareInfoClass("InfoPCI");
 
+DeclareProperty( "IsSemisimpleRationalGroupAlgebra", IsGroupRing );
+DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
 
-DeclareProperty("IsRationalGroupAlgebra", IsGroupRing);
+#################### main.gi #####################
 
-DeclareGlobalFunction( "PCIsFromSSP" );
+DeclareAttribute( "WedderburnDecomposition", IsSemisimpleFiniteGroupAlgebra );
+DeclareAttribute( "WedderburnDecompositionInfo", IsGroupRing  );
+
+DeclareOperation( "SimpleAlgebra", [ IsSemisimpleFiniteGroupAlgebra, 
+                                       IsGroup, IsGroup, IsList ] );
+DeclareOperation( "SimpleAlgebraNC", [ IsSemisimpleFiniteGroupAlgebra,
+                                       IsGroup, IsGroup, IsList ] ); 
+
+DeclareOperation( "SimpleAlgebraInfo", [ IsSemisimpleRationalGroupAlgebra, 
+                                               IsGroup, IsGroup ] );
+DeclareOperation( "SimpleAlgebraInfoNC", [ IsSemisimpleRationalGroupAlgebra, 
+                                            IsGroup, IsGroup ] );
+
+
+DeclareOperation( "SimpleAlgebraInfo", [ IsSemisimpleFiniteGroupAlgebra, 
+                                            IsGroup, IsGroup, IsList ] );
+DeclareOperation( "SimpleAlgebraInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
+                                            IsGroup, IsGroup, IsList ] );
+
+
+DeclareAttribute( "StronglyShodaPairs", IsGroup and IsFinite );
+
+DeclareAttribute( "StronglyShodaPairsAndIdempotents", IsSemisimpleRationalGroupAlgebra );
+DeclareAttribute( "StronglyShodaPairsAndIdempotents", IsSemisimpleFiniteGroupAlgebra );
+
+DeclareGlobalFunction( "SearchingKForSSP" );
+DeclareGlobalFunction( "eG" );
+
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsFromSSP" );
+
+#################### idempot.gi #####################
+
+DeclareOperation( "eGKH",  [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+DeclareOperation( "eGKHc", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] ); 
+DeclareOperation( "eGKHc", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ] );
+
+DeclareOperation( "Epsilon", [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+DeclareOperation( "Epsilon", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
+DeclareOperation( "Epsilon", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ] );
+
+DeclareOperation( "Hat", [ IsGroupRing, IsObject ] );
+
+#################### auxiliar.gi #####################
+
 DeclareOperation("IsCompleteSetOfPCIs",[IsFreeMagmaRing,IsList]);
 
-DeclareGlobalFunction( "StronglyShodaPairs" );
-DeclareGlobalFunction( "eGKHsFromKHs" );
+DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 
-DeclareGlobalFunction( "SimpleAlgebraFromSSP" );
-DeclareGlobalFunction( "SimpleFactorsFromListOfSSP" );
+DeclareOperation( "CentralizerG", [ IsFreeMagmaRing, IsElementOfFreeMagmaRing ] );
+DeclareOperation( "Conjugate", [ IsFreeMagmaRing, IsElementOfFreeMagmaRing, IsObject ] ); 
+
+DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
+DeclareOperation( "BigPrimitiveRoot", [ IsPosInt ] );
+DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] ); 
+
+#################### others.gi #####################
+
+DeclareGlobalFunction( "PCIsFromShodaPairs" );
+DeclareOperation( "PCIFromSP", [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+
+DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 
 DeclareGlobalFunction( "PCIsUsingConlon" );
-DeclareGlobalFunction( "PCIsFromShodaPairs" );
-DeclareGlobalFunction( "PCIsUsingCharacterTable" );
-
-DeclareOperation( "Epsilon", [IsFreeMagmaRing,IsGroup, IsGroup ] );
-#DeclareOperation( "CentralizerG", [IsFreeMagmaRing,IsElementOfFreeMagmaRing ] );
-DeclareOperation( "eGKH", [IsFreeMagmaRing,IsGroup, IsGroup ] );
-DeclareGlobalFunction( "eGKHFromSSP" );
-#DeclareOperation( "VerifyShoda", [IsGroup, IsGroup, IsGroup ] );
-DeclareOperation( "PCIFromSP", [IsFreeMagmaRing,IsGroup, IsGroup ] );
-
+DeclareGlobalFunction( "PCIsUsingCharacterTable" );
