@@ -21,6 +21,52 @@ InstallMethod( IsRationalGroupAlgebra,
     R -> IsRationals(LeftActingDomain(R)) 
 ); 
 
+
+#############################################################################
+##
+##
+## The following function search an element K such that 
+## (K,H) is a SP
+##   
+SearchingKForSP:=function( QG, H, SEs )
+    local   
+        NH,         # Normalizer of H in G
+        Epi,        # NH --> NH/H        
+        NHH,        # NH/H
+        L,          # Centre of NHH
+        K,          # The subgroup searched
+        e,          # a.e(G,K,H) for some of the searched K
+                    # and a rational
+        KH,         # K/H
+        X;          # a subset of NHH
+
+        NH:=Normalizer( UnderlyingGroup(QG), H );
+        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
+        NHH:=Image(Epi,NH);
+        if IsAbelian(NHH) then 
+            e:=PCIFromSP( QG, NH, H );
+            if e<>false and SEs*e=Zero(QG) then
+                return e;
+            fi;
+        else 
+            L:=Centre(NHH);
+            if IsCyclic(L) then #This guarantee (S1) and (S2)
+                X:=Difference(Elements(NHH),Elements(L));
+                while X<>[] do
+                    KH:=Subgroup(NHH,Union(L,[X[1]]));
+                    K:=PreImages(Epi,KH);
+                    e:=PCIFromSP( QG, K, H ); 
+                    if e<>false and SEs*e=Zero(QG) then
+                        return e;
+                    fi;
+                    X:=Difference(X,KH);
+                od;
+            fi;
+        fi;
+    return false;                  
+    end;     
+
+
 #############################################################################
 ##
 ##  The function PCIsFromShodaPairs computes the primitive central
@@ -35,64 +81,13 @@ function(QG)
 local   G,          # The group
         CCS,        # The conjugacy classes of subgroups
         LCCS,       # The lenght of CCS
-        zero,       # 0 of QG
-        one,        # 1 of QG
         Es,         # The list of primitive central idempotents  
         SEs,        # The sum of the elements of Es
         e,          # Idempotent
         H,          # Subgroup of G
-        i,          # Counter
-        SearchingKForSP; # Function to search a K for a given H  
-
-#begin of functions 
-
-#The following function search an element K such that 
-#(K,H) is a SP
-   
-    SearchingKForSP:=function(H)
-    local   
-        NH,         # Normalizer of H in G
-        Epi,        # NH --> NH/H        
-        NHH,        # NH/H
-        L,          # Centre of NHH
-        K,          # The subgroup searched
-        e,          # a.e(G,K,H) for some of the searched K
-                    # and a rational
-        KH,         # K/H
-        X;          # a subset of NHH
-
-        NH:=Normalizer(G,H);
-        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
-        NHH:=Image(Epi,NH);
-        if IsAbelian(NHH) then 
-            e:=PCIFromSP( QG, NH, H );
-            if e<>false and SEs*e=zero then
-                return e;
-            fi;
-        else 
-            L:=Centre(NHH);
-            if IsCyclic(L) then #This guaranties (S1) and (S2)
-                X:=Difference(Elements(NHH),Elements(L));
-                while X<>[] do
-                    KH:=Subgroup(NHH,Union(L,[X[1]]));
-                    K:=PreImages(Epi,KH);
-                    e:=PCIFromSP( QG, K, H ); 
-                    if e<>false and SEs*e=zero then
-                        return e;
-                    fi;
-                    X:=Difference(X,KH);
-                od;
-            fi;
-        fi;
-    return false;                  
-    end;     
-
-#end of functions
-
-#PROGRAM
+        i;          # Counter
     
-#We start checking if QG is a rational group algebra of a 
-#finite group
+#We start checking if QG is a rational group algebra of a finite group
     if not IsRationalGroupAlgebra(QG) then
         Error("The argument must be a rational group algebra !!!");
     fi;
@@ -102,28 +97,28 @@ local   G,          # The group
     G:=UnderlyingMagma(QG);
     CCS:=ConjugacyClassesSubgroups(G);
     LCCS:=Length(CCS);
-    zero:=Zero(QG);
-    one:=One(QG);
     Es:=[ ];
-    SEs:=zero;
-    i:=LCCS;   
+    SEs:=Zero(QG);
 
 #Main loop
     if Size(G)=1 then
         return [One(QG)];
     fi;
-    while SEs<>one and i>=1 do 
+    
+    for i in [ LCCS, LCCS-1 .. 1 ] do
         H:=Representative(CCS[i]); 
-        e:=SearchingKForSP(H); 
+        e:=SearchingKForSP( QG, H, SEs ); 
         if e<>false then
             SEs:= SEs + e;
             Add(Es,e);
+            if SEs=One(QG) then
+              break;
+            fi;  
         fi;
-        i:=i-1;
     od;
     
 #Output
-    if SEs<>one then 
+    if SEs<>One(QG) then 
         Print("Caution! It is not a complete set of primitive central idempotents \n");
     fi;
     return Es;
