@@ -1,5 +1,17 @@
 #############################################################################
 ##
+#W  idempot.gi            The Wedderga package            Osnel Broche Cristo
+#W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
+##
+#H  $Id$
+##
+#############################################################################
+
+
+#############################################################################
+##
 ##  The function eGKH computes e(G,K,H) for H and K subgroups of G such that H 
 ##  is normal in K
 ##
