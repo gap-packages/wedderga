@@ -34,7 +34,7 @@ eG:=function(QG,K,H)
         RTNdK,  # Right transversal of G/NdK
         nRTNdK; # Cardinal of RTNdK
 
-        Eps:=EpsilonCyclic(QG,K,H);
+        Eps:=Epsilon(QG,K,H);
         G:=UnderlyingMagma(QG);
         NH:=Normalizer(G,H);
         if NH<>G then
@@ -319,7 +319,7 @@ Emb:= Embedding( G, QG );
 zero:=Zero(QG); 
 NH:=Normalizer(G,H);
 if Verify(K,H)=true then        
-    Eps:=EpsilonCyclic(QG,K,H);
+    Eps:=Epsilon(QG,K,H);
     if NH<>G and Eps in QG then
         NdK:=Normalizer(G,K);
         eGKH1:=Eps;

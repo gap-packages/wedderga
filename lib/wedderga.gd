@@ -38,7 +38,6 @@ DeclareGlobalFunction( "PCIsUsingCharacterTable" );
 DeclareOperation( "Epsilon", [IsFreeMagmaRing,IsGroup, IsGroup ] );
 #DeclareOperation( "CentralizerG", [IsFreeMagmaRing,IsElementOfFreeMagmaRing ] );
 DeclareOperation( "eGKH", [IsFreeMagmaRing,IsGroup, IsGroup ] );
-DeclareOperation( "EpsilonCyclic", [IsFreeMagmaRing,IsGroup, IsGroup ] );
 DeclareGlobalFunction( "eGKHFromSSP" );
 #DeclareOperation( "VerifyShoda", [IsGroup, IsGroup, IsGroup ] );
 DeclareOperation( "PCIFromSP", [IsFreeMagmaRing,IsGroup, IsGroup ] );
