@@ -40,13 +40,15 @@ local   Hat,     # Function(H)=|H|^-1 sum_{h\in H}h
         hatH, SNKH, LSNKH;
 
 #begin of functions 
-#Hat computes the idempotent of $QG$ defined by a subgroup
-    Hat:=function(L)
-    local LnA, SumL; 
-        LnA:=Image(Emb,L);
-        SumL:=Sum(LnA);
-        return 1/(Size(L))*SumL;
-    end;
+#Hat computes the idempotent of QG defined by a subgroup L
+    Hat:=function( QG, L )
+    local q, i;
+    q:=1/Size(L);
+    return ElementOfMagmaRing( FamilyObj(Zero(QG)),
+                               Zero(QG),
+                               List([1..Size(L)], i -> q),
+                               AsList(L));
+    end;                            
 #end of functions
 
 #PROGRAM
@@ -67,7 +69,7 @@ G   := UnderlyingMagma( QG );
 Emb := Embedding( G, QG );
 Epi := NaturalHomomorphismByNormalSubgroup( K, H ) ;
 KH  := Image( Epi, K ); 
-Epsilon := Hat(H);
+Epsilon := Hat( QG, H );
 
 if IsCyclic(KH) then
 
@@ -78,7 +80,7 @@ if IsCyclic(KH) then
         p:= Set(FactorsInt(n));
         Lp:=Length(p);
         for i in [1..Lp] do
-            Epsilon:=Epsilon*( One(QG) - Hat(Group(x^(n/p[i]))) );
+            Epsilon:=Epsilon*( One(QG) - Hat( QG, Group(x^(n/p[i])) ) );
         od;
     fi;
 
@@ -91,7 +93,7 @@ else
         for i in [1..LSNKH] do
             if IsPrime(Size(SNKH[i])) then
                 L:=PreImage(Epi,SNKH[i]);
-                Epsilon:=Epsilon*(hatH-Hat(L));
+                Epsilon:=Epsilon*(hatH-Hat(QG,L));
             fi;
         od;
     fi;
