@@ -188,6 +188,7 @@ Eps := Epsilon(FqG, K, H, c);
 return Sum( List( GN1, g -> Conjugate( FqG, Eps, g ) ) );
 end);
 
+
 #############################################################################
 ##
 ##  The function Epsilon compute epsilon(G,K,H) for H and K subgroups of G
@@ -216,7 +217,6 @@ local   L,       # Subgroup of G
         coeff,   # Coefficients of the elements of Trans in Epsilon
         Epi,     # K --> K/H
         KH,      # K/H
-        SKH,     # Socle of K/H
         n,       # Order of KH
         y,       # Generator of KH 
         x,       # Representative of preimage of y
@@ -242,21 +242,19 @@ Emb := Embedding( G, QG );
 Epi := NaturalHomomorphismByNormalSubgroup( K, H ) ;
 KH  := Image( Epi, K ); 
 
-
 if IsCyclic(KH) then
-
 
     ElemH:=Elements(H);
     OrderH:=Size(H);
     if K=H then
         for i in [1..OrderH] do
-            Epsilon :=List([1..OrderH],h->1/OrderH);  ##If H=K then Epsilon = Hat( QG, H )
+            Epsilon :=List([1..OrderH],h->1/OrderH);  
+            # If H=K then Epsilon = Hat( QG, H )
             Supp := ElemH;
         od;
     else
-        SKH:=Socle(KH);
-        n:=Size(SKH);
-        y:=Product(IndependentGeneratorsOfAbelianGroup(SKH));
+        n:=Size(KH);
+        y:=Product(IndependentGeneratorsOfAbelianGroup(KH));
         x:=PreImagesRepresentative(Epi,y);
         p:= Set(FactorsInt(n));
         Lp:=Length(p);
@@ -268,9 +266,6 @@ if IsCyclic(KH) then
         Epsilon:=List(Cartesian(coeff,[1..OrderH]),i->i[1]/OrderH);   
     fi;
     return ElementOfMagmaRing(FamilyObj(Zero(QG)),0,Epsilon,Supp);
-
-
-
 else
     Epsilon := Hat( QG, H );
     hatH:=Epsilon;
@@ -284,6 +279,7 @@ fi;
 #Output
 return Epsilon; 
 end);
+
 
 #############################################################################
 ##
