@@ -8,6 +8,22 @@
 ##
 #############################################################################
 
+#############################################################################
+##
+## Hat(QG,H)
+##
+## Hat computes the idempotent of QG defined by a subgroup H,
+## i.e. (1/|H|) * sum_{h\in H} h
+##
+Hat:=function( QG, H )
+local q, i;
+q:=1/Size(H);
+return ElementOfMagmaRing( FamilyObj(Zero(QG)),
+                               Zero(QG),
+                               List([1..Size(H)], i -> q),
+                               AsList(H));
+end;                            
+
 
 #############################################################################
 ##
@@ -23,8 +39,7 @@ InstallMethod( Epsilon,
    [ IsFreeMagmaRing, IsGroup, IsGroup ], 
    0,
 function( QG, K, H )
-local   Hat,     # Function(H)=|H|^-1 sum_{h\in H}h
-        L,       # Subgroup of G
+local   L,       # Subgroup of G
         G,       # Group
         Emb,     # Embedding of G in QG
         zero,    # 0 of QG
@@ -38,20 +53,6 @@ local   Hat,     # Function(H)=|H|^-1 sum_{h\in H}h
         Lp,      # Length of p
         i,j,     # Counters
         hatH, SNKH, LSNKH, q, powersx;
-
-#begin of functions 
-#Hat computes the idempotent of QG defined by a subgroup L
-    Hat:=function( QG, L )
-    local q, i;
-    q:=1/Size(L);
-    return ElementOfMagmaRing( FamilyObj(Zero(QG)),
-                               Zero(QG),
-                               List([1..Size(L)], i -> q),
-                               AsList(L));
-    end;                            
-#end of functions
-
-#PROGRAM
 
 #First we check that QG is a rational group algebra of a finite group
 #Then we check if K is subgroup of G, H is a normal subgroup of K
@@ -80,17 +81,24 @@ if IsCyclic(KH) then
         p:= Set(FactorsInt(n));
         Lp:=Length(p);
         for i in [1..Lp] do
-            q:=1/p[i];
-            powersx := [ One(G) ];
-            for j in [ 2 .. p[i] ] do
-              powersx[j]:=powersx[j-1]*x;
-            od;  
-            Epsilon := 
-                Epsilon*( One(QG) - ElementOfMagmaRing( 
-                                        FamilyObj(Zero(QG)),
-                                        Zero(QG),
-                                        List([ 1 .. p[i] ], j -> q),
-                                        powersx ));
+          Epsilon:=Epsilon*(One(QG) - Hat( QG, Group(x^(n/p[i]))));
+# The code below was commented on 10-Oct-2004 by AK. It was designed 
+# instead of the line above as it was suggested in TB report (see 
+# possible error 1.2), but leads to an error - the set of PCI is not 
+# complete (their sum is not 1). I temporarily restored the line
+#     Epsilon:=Epsilon*(One(QG) - Hat( QG, Group(x^(n/p[i]))));
+# as it was used before. This requires further investigation. 
+#            q:=1/p[i];
+#            powersx := [ One(G) ];
+#            for j in [ 2 .. p[i] ] do
+#              powersx[j]:=powersx[j-1]*x;
+#            od;  
+#            Epsilon := 
+#                Epsilon*( One(QG) - ElementOfMagmaRing( 
+#                                        FamilyObj(Zero(QG)),
+#                                        Zero(QG),
+#                                        List([ 1 .. p[i] ], j -> q),
+#                                        powersx ));
         od;
     fi;
 
@@ -193,7 +201,7 @@ local   CentralizerG, alpha, G, Emb, zero, Eps, Cen, eGKH, RTCen, nRTCen, i, g;
                 Add(gen,ElemG[i]);
             fi;
         od;
-    return Subgroup(G,gen);
+    return SubgroupNC(G,gen);
     end;
 
     G:=UnderlyingMagma(QG);
@@ -321,7 +329,7 @@ local   eG,             #Function for eGKH
                     Add(gen,ElemG[i]);
                 fi;
             od;
-        return Subgroup(G,gen);
+        return SubgroupNC(G,gen);
         end;
 
         
@@ -349,22 +357,19 @@ local   eG,             #Function for eGKH
         ElemK:=Elements(K1);
         OrderK:=Size(K1);
         KH:=Difference(K1,H1);
-        i:=1;
-        while i<=LDGK do        
+        for i in [ 1 .. LDGK ] do
             g:=DGK[i];
             NoReady:=true;
-            j:=1;
-            while j<=OrderK and NoReady do
+            for j in [ 1 .. OrderK ] do
             k:=ElemK[j];
                 if Comm(k,g) in KH then
                     NoReady:=false;
+                    break;
                 fi;
-            j:=j+1;
             od;
-            if j=(OrderK+1) and NoReady then
+            if NoReady then
                 return false;
             fi;
-        i:=i+1;
         od;
     return true;
     end;
@@ -399,7 +404,7 @@ local   eG,             #Function for eGKH
     G:=UnderlyingMagma(QG);
     Emb:= Embedding( G, QG );    
     
-    if VerifyShoda(K,H)=true then
+    if VerifyShoda(K,H) then
         e1:=eG(K,H);
         e2:=e1^2;
         if e2=e1 then
