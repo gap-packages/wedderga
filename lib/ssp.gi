@@ -148,8 +148,7 @@ local   G,          # The group
 #Actually finiteness was not checked in the old code - ask Angel !!!
 
     if not IsRationalGroupAlgebra(QG) then
-      Print("The input must be a rational group algebra \n");
-      return fail;
+      Error("The input must be a rational group algebra !!!");
     fi;
 
 #Initialization
@@ -224,8 +223,7 @@ local   G,          # The group
 #We start checking if QG is a rational group algebra of a finite group
 
     if not IsRationalGroupAlgebra(QG) then
-        Print("The input must be a rational group algebra \n");
-        return fail;
+        Error("The input must be a rational group algebra !!!");
     fi;
 
 #Initialization
@@ -281,16 +279,13 @@ function(QG,K,H)
 local   Verify, K1, H1, G, Emb, zero, NH, Eps,  NdK, eGKH1, RTNH, nRTNH, i, g, eGKH, RTNdK, nRTNdK, eGKH1g;
 
     if not IsRationalGroupAlgebra(QG) then
-        Print("The first input must be a rational group algebra \n");
-        return fail;    
+        Error("The first input must be a rational group algebra !!!");
     fi;
     
     if not IsSubgroup(UnderlyingMagma(QG),K) then
-        Print("The group algebra does not correspond to the subgroups \n");
-        return fail;
+        Error("The group algebra does not correspond to the subgroups !!!");
     elif not(IsSubgroup(K,H) and IsNormal(K,H)) then
-        Print("The second subgroup must be normal in the first one \n");
-        return fail;
+        Error("The second subgroup must be normal in the first one !!!");
     fi;
 
 Verify:=function(K1,H1)
@@ -372,21 +367,20 @@ InstallGlobalFunction(eGKHsFromKHs,
 function(QG,list)
 local   G, i;
     if not IsRationalGroupAlgebra(QG) then
-        Print("The first input must be a rational group algebra \n");
-        return fail;
-    elif not(IsList(list)) then
-        Print("The second input must be a list of pairs of subgroups \n");
-        return fail;
+        Error("The first input must be a rational group algebra !!!");
+    elif not IsList(list) then
+        Error("The second input must be a list (of pairs of subgroups)!!!");
     fi;
     G:=UnderlyingMagma(QG);
     for i in [1..Length(list)] do
-        if not(IsSubgroup(G,list[i][1])) or not(IsSubgroup(G,list[i][2]))   then
-    
-            Print("The ",i,"-th element of the list is not a pair of subgroups of ",G,"\n");
-            return fail;
-        elif not(IsNormal(list[i][1],list[i][2]))or not(IsSubset(list[i][1],list[i][2])) then
-            Print("The second entry of the ",i,"-th element of the list is not\n a normal subgroups of the first one\n");
-            return fail;
+        if not(IsSubgroup(G,list[i][1])) or not(IsSubgroup(G,list[i][2])) then
+            Error("The ", Ordinal(i), 
+            " element of the list is not a pair of subgroups of ", G, "!!!");
+        elif ( not IsNormal( list[i][1], list[i][2]) ) or 
+             ( not IsSubset( list[i][1], list[i][2]) ) then
+            Error("The second entry of the ", Ordinal(i),
+            " element of the list is not \n a normal subgroup of the ",
+            " first entry of this element !!!");
         fi;
     od;    
 
@@ -448,8 +442,8 @@ local   N,          # Normalizer of H in G
         NdK:=Image(Epi2,NH); 
         PrimGen:=IndependentGeneratorsOfAbelianGroup(NdK);
 
-#Using PrimGen one computes an independent set Gen of
-#generators of an invariant decomposition of N/K
+# Using PrimGen one computes an independent set Gen of
+# generators of an invariant decomposition of N/K
         
         l := Length(PrimGen);
         o := List( [ 1 .. l ], i -> Order(PrimGen[i]) );
@@ -475,7 +469,7 @@ local   N,          # Normalizer of H in G
             plus:=plus+1;
         od; 
 
-#Output
+# Output
         gen:=List([1..Length(Gen)],
                     i->PreImagesRepresentative(Epi2,Gen[i]));
         fi;
@@ -502,14 +496,14 @@ function(G,list)
 local   i;
 
     for i in [1..Length(list)] do
-        if not(IsSubgroup(G,list[i][1])) or not(IsSubgroup(G,list[i][2]))   then
-    
-            Print("The ",i,"-th element of the list is not a pair of subgroups of ",G,"\n");
-            return fail;
-        elif not(IsNormal(list[i][1],list[i][2]))or not(IsSubset(list[i][1],list[i][2])) then
-            
-            Print("The first entry of the ",i,"-th element of the list is not\n a normal subgroups of the second one\n");
-            return fail;
+        if not(IsSubgroup(G,list[i][1])) or not(IsSubgroup(G,list[i][2])) then
+            Error("The ", Ordinal(i), 
+              " element of the list is not a pair of subgroups of ",G,"!!!");
+        elif ( not IsNormal( list[i][1], list[i][2] ) ) or 
+             ( not IsSubset( list[i][1], list[i][2] ) ) then
+            Error("The first entry of the ", Ordinal(i), 
+              " element of the list is not \n a normal subgroup ",
+              " of the second entry of this element !!!");
         fi;
     od; 
 return List([1..Length(list)], i->SimpleAlgebraFromSSP(G,list[i][1],list[i][2]));

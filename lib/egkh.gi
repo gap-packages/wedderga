@@ -420,34 +420,21 @@ end);
 
 #############################################################################
 ##
+#M  IsCompleteSetOfPCIs( QG, ListPCIs )
+##
+##
 ##  The function IsCompleteSetOfPCIs checks if the sum of the elements of QG is 1
 ##  It is suppose to be used to check if a list of PCIs of QG is complete.
 ##
-#M IsCompleteSetOfPCIs( QG, ListPCIs )
-##
-
 InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", true, 
 [IsFreeMagmaRing,IsList ], 0,
 function( QG, ListPCIs )
-    local i;
+    local x;
     if not IsRationalGroupAlgebra(QG) then
-        Print("The first input must be a rational group algebra \n");
-        return fail;
-    elif not(IsList(ListPCIs)) then
-        Print("The second input must be a list of PCIs \n");
-        return fail;
-    fi;
-    for i in [1..Length(ListPCIs)] do
-        if not(ListPCIs[i] in QG) then
-    
-            Print("The ",i,"-th element of the second input should belong to the first input\n");
-            return fail;    
-        fi;
-    od;    
-
-    if Sum(ListPCIs)=One(QG) then
-        return true;
+        Error("The first argument must be a rational group algebra!!!");
+    elif not ForAll(ListPCIs, x -> x in QG) then
+        Error("An element of the list of PCIs do not belong to the 1st argument!!!");
     else
-        return false;
+        return Sum(ListPCIs)=One(QG);
     fi;
-end);
+end);

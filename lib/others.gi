@@ -51,15 +51,15 @@ local   G,          # The group
    
     SearchingKForSP:=function(H)
     local   
-        NH,         #Normalizer of H in G
-        Epi,        #NH --> NH/H        
-        NHH,        #NH/H
-        L,          #Centre of NHH
-        K,          #The subgroup searched
-        e,          #a.e(G,K,H) for some of the searched K
+        NH,         # Normalizer of H in G
+        Epi,        # NH --> NH/H        
+        NHH,        # NH/H
+        L,          # Centre of NHH
+        K,          # The subgroup searched
+        e,          # a.e(G,K,H) for some of the searched K
                     # and a rational
-        KH,         #K/H
-        X;          #a subset of NHH
+        KH,         # K/H
+        X;          # a subset of NHH
 
         NH:=Normalizer(G,H);
         Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
@@ -94,8 +94,7 @@ local   G,          # The group
 #We start checking if QG is a rational group algebra of a 
 #finite group
     if not IsRationalGroupAlgebra(QG) then
-        Print("The input must be a rational group algebra \n");
-        return fail;
+        Error("The argument must be a rational group algebra !!!");
     fi;
 
 #Initialization
@@ -213,10 +212,8 @@ function(QG)
 local   G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H; 
 
     if not IsRationalGroupAlgebra(QG) then
-        Print("The input must be a rational group algebra \n");
-        return fail;
+        Error("The argument must be a rational group algebra !!!");
     fi;
-
     
     G:=UnderlyingMagma(QG);
     zero:=Zero(QG);
