@@ -11,81 +11,15 @@
 
 #############################################################################
 ## 
-## The function PCIsFromSSP computes the primitive central idempotents of 
-## the form e(G,K,H) for the SSPs (H,K) of a finite group G
+## eG:=function(QG,K,H)
 ##
-#F PCIsFromSSP( QG )
+## The following function computes e(G,K,H)    
+## Note that actually the 1st argument is QG, not G
+## It returns a list of the form [eGKH,[K,H]]
 ##
-InstallGlobalFunction( PCIsFromSSP, function(QG)
-local   G,          #The group
-        DG,         #Derived subgroup of G
-        CCS,        #The conjugacy classes of subgroups
-        LCCS,       #The lenght of CCS 
-        Emb,        #Embedding of G in QG
-        zero,       #0 of QG
-        one,        #1 of QG
-        eGKHs,      #The list of primitive central idempotents 
-        SeGKHs,     #The sum of the elements of eGKHs
-        H,          #Subgroup of G
-        NH,         #Normalizer of H in G
-        NHH,        #NH/H
-        K,          #Subgroup of G 
-        i, j,       #Counters
-        eGKH,       #A primitive central idempotent of the form 
-                    #e(G,K,H) for (K,H) a SSP
-        SearchingKForSSP,#Function to search a K for a given H 
-        eG,         #Function to compute e(G,K,H)        
-        KH;         #K/H
-
-#begin of functions    
-
-#The following function search an element K such that 
-#(K,H) is a SSP
-
-    SearchingKForSSP:=function(H)
+eG:=function(QG,K,H)
     local   
-        NH,         #Normalizer of H in G
-        Epi,        #NH --> NH/H        
-        NHH,        #NH/H
-        L,          #<NHH',Z(NHH)>
-        Cen,        #Centralizer of L in NHH
-        K,          #The subgroup searched
-        e,          #e(G,K,H) for some of the searched K
-        KH,         #K/H
-        X;          #a subset of Cen
-
-        NH:=Normalizer(G,H);
-        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
-        NHH:=Image(Epi,NH);
-        L:=ClosureSubgroup( DerivedSubgroup(NHH), Centre(NHH) );
-        if IsCyclic(L) then 
-            Cen:=Centralizer(NHH,L);
-            if IsAbelian(Cen) then
-                if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
-                    K:=PreImages(Epi,Cen);
-                    return eG(K,H);
-                else 
-                    return false;
-                fi;
-            else 
-                X:=Difference(Elements(Cen),Elements(L));
-                while X<>[] do
-                    KH:=ClosureSubgroup( L, [X[1]] );
-                    if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
-                        K:=PreImages(Epi,KH);
-                        return  eG(K,H);
-                    fi;
-                    X:=Difference(X,KH);
-                od;
-            fi;
-        fi;
-    return false;                  
-    end;               
-        
-#The following function computes e(G,K,H)    
-
-    eG:=function(K,H)
-    local   
+        G,      # underlying group of QG
         Eps,    # \varepsilon(K,H), 
         eGKH,   # is the final return that takes partial values 
                 # with partial sums of conjugates of Eps  
@@ -100,7 +34,8 @@ local   G,          #The group
         RTNdK,  # Right transversal of G/NdK
         nRTNdK; # Cardinal of RTNdK
 
-        Eps:=EpsilonCyclic(QG,K,H); #ver C.2.1
+        Eps:=EpsilonCyclic(QG,K,H);
+        G:=UnderlyingMagma(QG);
         NH:=Normalizer(G,H);
         if NH<>G then
             NdK:=Normalizer(G,K);
@@ -109,38 +44,105 @@ local   G,          #The group
                 RTNH:=RightTransversal(NdK,NH); 
                 nRTNH:=Length(RTNH);  
                 for i in [2..nRTNH] do
-                    g:=RTNH[i]^Emb;
-                    eGKH1:=eGKH1+ Eps^g;    
+                    g:=RTNH[i]^Embedding( G, QG );
+                    eGKH1 := eGKH1 + Eps^g;    
                 od;
             fi;
             eGKH:=eGKH1;        
             if NdK<>G then
                 RTNdK:=RightTransversal(G,NdK); 
                 nRTNdK:=Length(RTNdK);  
-                i:=2;
-                while i<=nRTNdK do
-                    g:=RTNdK[i]^Emb;
+                for i in [ 2 .. nRTNdK ] do
+                    g:=RTNdK[i]^Embedding( G, QG );
                     eGKH1g:=eGKH1^g;
-                    if eGKH1*(eGKH1g)<>zero then    
+                    if eGKH1*(eGKH1g) <> Zero(QG) then    
                         return  false;
                     else
                         eGKH:= eGKH + eGKH1g;
                     fi;
-                i:=i+1;
                 od;    
             fi; 
         else 
-            return Eps;
+            return [Eps,[K,H]];
         fi;       
-    return eGKH;
+    return [eGKH,[K,H]];
     end;
 
-#end of functions
 
-#PROGRAM
+#############################################################################
+## 
+## SearchingKForSSP(QG,H)
+##
+## The following function search an element K such that (K,H) is a SSP
+## and returns eG(QG,K,H) in the form [eGKH,[K,H]] 
+##
+SearchingKForSSP:=function(QG,H)
+    local   
+        G,          # underlying group of QG
+        NH,         # Normalizer of H in G
+        Epi,        # NH --> NH/H        
+        NHH,        # NH/H
+        L,          # <NHH',Z(NHH)>
+        Cen,        # Centralizer of L in NHH
+        K,          # The subgroup searched
+        e,          # e(G,K,H) for some of the searched K
+        KH,         # K/H
+        X;          # a subset of Cen
 
-#We start checking if QG is a rational group algebra of a 
-#finite group
+        G:=UnderlyingMagma(QG);
+        NH:=Normalizer(G,H);
+        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
+        NHH:=Image(Epi,NH);
+        L:=ClosureSubgroup( DerivedSubgroup(NHH), Centre(NHH) );
+        if IsCyclic(L) then 
+            Cen:=Centralizer(NHH,L);
+            if IsAbelian(Cen) then
+                if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
+                    K:=PreImages(Epi,Cen);
+                    return eG(QG,K,H);
+                else 
+                    return false;
+                fi;
+            else 
+                X:=Difference(Elements(Cen),Elements(L));
+                while X<>[] do
+                    KH:=ClosureSubgroup( L, [X[1]] );
+                    if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
+                        K:=PreImages(Epi,KH);
+                        return eG(QG,K,H);
+                    fi;
+                    X:=Difference(X,KH);
+                od;
+            fi;
+        fi;
+    return false;                  
+    end;               
+
+
+#############################################################################
+## 
+## The function PCIsFromSSP computes the primitive central idempotents of 
+## the form e(G,K,H) for the SSPs(H,K) of a finite group G
+##
+#F PCIsFromSSP( QG )
+##
+InstallGlobalFunction( PCIsFromSSP, function(QG)
+local   G,          # The group
+        DG,         # Derived subgroup of G
+        CCS,        # The conjugacy classes of subgroups
+        LCCS,       # The lenght of CCS 
+        eGKHs,      # The list of primitive central idempotents 
+        SeGKHs,     # The sum of the elements of eGKHs
+        H,          # Subgroup of G
+        NH,         # Normalizer of H in G
+        NHH,        # NH/H
+        K,          # Subgroup of G 
+        i, j,       # Counters
+        eGKH,       # A primitive central idempotent of the form 
+                    # e(G,K,H) for (K,H) a SSP
+        KH;         # K/H
+
+#We start checking if QG is a rational group algebra of a finite group
 
 #Actually finiteness was not checked in the old code - ask Angel !!!
 
@@ -151,179 +153,72 @@ local   G,          #The group
 
 #Initialization
 
-    G:=UnderlyingMagma(QG);
-    Emb:= Embedding( G, QG );
-    zero:=Zero(QG);
-    one:=One(QG);    
-    
+    G := UnderlyingMagma(QG);
     CCS:=ConjugacyClassesSubgroups(G);
     LCCS:=Length(CCS);
     DG:=DerivedSubgroup(G); 
     eGKHs:=[];
-    SeGKHs:=zero;
+    SeGKHs:=Zero(QG);
 
 #Main loop
+
     if Size(G)=1 then
         return [One(QG)];
     fi;
     
     j:=LCCS;    
-    while SeGKHs<>one and j>=1 do 
+
+    while SeGKHs<>One(QG) and j>=1 do 
     
         H:=Representative(CCS[j]);        
         if IsSubset(H,DG) then
             if IsCyclic(FactorGroup(G,H)) then 
-                eGKH:=eG(G,H); 
+                eGKH:=eG(QG,G,H)[1]; 
                 SeGKHs:= SeGKHs + eGKH;
                 Add(eGKHs,eGKH);
             fi;
         else 
-            eGKH:=SearchingKForSSP(H);
-            if eGKH<>false and eGKH*SeGKHs=zero then 
+            eGKH:=SearchingKForSSP(QG,H)[1];
+            if eGKH<>false and eGKH*SeGKHs=Zero(QG) then 
                 SeGKHs:= SeGKHs + eGKH;
                 Add(eGKHs,eGKH);
             fi;
         fi;
-    j:=j-1;
+        j:=j-1;
     od;
 
 #Output
 
-    if SeGKHs<>one then 
+    if SeGKHs <> One(QG) then 
         Print("Caution! It is not a complete set of primitive central idempotents \n");
     fi;
     return eGKHs;
 
 end);
 
+
 #############################################################################
-##  The function StronglyShodaPairs computes a set of SSPs (H,K) 
-##  that covers the primitive central idempotents obtained from SSPs
 ##
 #F StronglyShodaPairs( QG )
 ##
+## The function StronglyShodaPairs computes a set of SSPs (H,K) 
+## that covers the primitive central idempotents obtained from SSPs
+##
 InstallGlobalFunction( StronglyShodaPairs, function(QG)
-local   G,          #The group
-        DG,         #Derived subgroup of G
-        CCS,        #The conjugacy classes of subgroups
-        LCCS,       #The lenght of CCS 
-        Emb,        #Embedding of G in QG
-        zero,       #0 of QG
-        one,        #1 of QG
-        eGKHs,      #The list of primitive central idempotents 
-        SeGKHs,     #The sum of the elements of eGKHs
-        H,          #Subgroup of G
-        NH,         #Normalizer of H in G
-        NHH,        #NH/H
-        K,          #Subgroup of G 
-        i, j,       #Counters
-        eGKH,       #A primitive central idempotent of the form e(G,K,H) for (H,K) a SSP
-        SearchingKForSSP,#Function to search a K for a given H
-        eG,         #Function to compute e(G,K,H)        
-        KH,         #K/H
-        KHs;        #The list of SSP
-
-
-#begin of functions    
-
-# The following function search an element K 
-# such that (K,H) is a SSP
-
-    SearchingKForSSP:=function(H)
-    local   
-        NH,         #Normalizer of H in G
-        Epi,        #NH/H        
-        NHH,        #NH/H
-        L,          #<NHH',Z(NHH)>
-        Cen,        #Centralizer of L in NHH
-        K,          #The subgroup searched
-        e,          #e(G,K,H) for some of the searched K
-        KH,         #K/H
-        X;          #a subset of Cen
-
-        NH:=Normalizer(G,H);
-        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
-        NHH:=Image(Epi,NH);
-        L:=ClosureSubgroup( DerivedSubgroup(NHH), Centre(NHH) );
-        if IsCyclic(L) then 
-            Cen:=Centralizer(NHH,L);
-            if IsAbelian(Cen) then
-                if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
-                    K:=PreImages(Epi,Cen);
-                    return eG(K,H);
-                else 
-                    return false;
-                fi;
-            else 
-                X:=Difference(Elements(Cen),Elements(L));
-                while X<>[] do
-                    KH:=ClosureSubgroup( L, [X[1]] );
-                    if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
-                        K:=PreImages(Epi,KH);
-                        return  eG(K,H);
-                    fi;
-                    X:=Difference(X,KH);
-                od;
-            fi;
-        fi;
-    return false;                  
-    end;               
-    
-        
-    
-#The following function computes e(G,K,H)    
-    eG:=function(K,H)
-    local   
-        Eps,    # \varepsilon(K,H), 
-        eGKH,   # is the final return that takes partial values with partial sums of conjugates of Eps  
-        NH,     # Normalizer of H in G
-        NdK,    # Normalizer of K in G
-        RTNH,   # Right transveral of NH in NdK
-        nRTNH,  # Cardinal de RTNH
-        eGKH1,  # e(NdK,K,H)
-        eGKH1g, # eGKH1^g
-        i,      # counter 
-        g,      # element of G
-        RTNdK,  # Right transversal of G/NdK
-        nRTNdK; # Cardinal of RTNdK
-
-        Eps:=EpsilonCyclic(QG,K,H);
-        NH:=Normalizer(G,H);
-        if NH<>G then
-            NdK:=Normalizer(G,K);
-            eGKH1:=Eps;
-            if NH<>NdK then
-                RTNH:=RightTransversal(NdK,NH); 
-                nRTNH:=Length(RTNH);  
-                for i in [2..nRTNH] do
-                    g:=RTNH[i]^Emb;
-                    eGKH1:=eGKH1+ Eps^g;    
-                od;
-            fi;
-            eGKH:=eGKH1;        
-            if NdK<>G then
-                RTNdK:=RightTransversal(G,NdK); 
-                nRTNdK:=Length(RTNdK);  
-                i:=2;
-                while i<=nRTNdK do
-                    g:=RTNdK[i]^Emb;
-                    eGKH1g:=eGKH1^g;
-                    if eGKH1*(eGKH1g)<>zero then    
-                        return  false;
-                    else
-                        eGKH:= eGKH + eGKH1g;
-                    fi;
-                i:=i+1;
-                od;    
-            fi; 
-        else 
-            return [Eps,[K,H]];
-        fi;       
-    return [eGKH,[K,H]];
-    end;
-#end of functions
-
-#PROGRAM
+local   G,          # The group
+        DG,         # Derived subgroup of G
+        CCS,        # The conjugacy classes of subgroups
+        LCCS,       # The length of CCS 
+        eGKHs,      # The list of primitive central idempotents 
+        SeGKHs,     # The sum of the elements of eGKHs
+        H,          # Subgroup of G
+        NH,         # Normalizer of H in G
+        NHH,        # NH/H
+        K,          # Subgroup of G 
+        i, j,       # Counters
+        eGKH,       # A primitive central idempotent of the form e(G,K,H) for (H,K) a SSP
+        KH,         # K/H
+        KHs;        # The list of SSP
 
 #We start checking if QG is a rational group algebra of a finite group
 
@@ -335,32 +230,28 @@ local   G,          #The group
 #Initialization
 
     G:=UnderlyingMagma(QG);
-    Emb:= Embedding( G, QG );
-    zero:=Zero(QG);
-    one:=One(QG);    
-    
     CCS:=ConjugacyClassesSubgroups(G);
     LCCS:=Length(CCS);
     DG:=DerivedSubgroup(G); 
     KHs:=[];
-    SeGKHs:=zero;
+    SeGKHs:=Zero(QG);
     
     if Size(G)=1 then
         return [[G,G]];
     fi;
 
     j:=LCCS;    
-    while SeGKHs<>one and j>=1 do 
+    while SeGKHs<>One(QG) and j>=1 do 
         H:=Representative(CCS[j]);        
         if IsSubset(H,DG) then
             if IsCyclic(FactorGroup(G,H)) then 
-                eGKH:=eG(G,H)[1]; 
+                eGKH:=eG(QG,G,H)[1]; 
                 SeGKHs:= SeGKHs + eGKH;
                 Add(KHs,[G,H]);
             fi;
         else 
-            eGKH:=SearchingKForSSP(H);
-            if eGKH<>false and eGKH[1]*SeGKHs=zero then 
+            eGKH:=SearchingKForSSP(QG,H);
+            if eGKH<>false and eGKH[1]*SeGKHs=Zero(QG) then 
                 SeGKHs:= SeGKHs + eGKH[1];
                 Add(KHs,eGKH[2]);
             fi;
@@ -370,11 +261,12 @@ local   G,          #The group
 
 #Here finish the main loop
 
-    if SeGKHs<>one then 
+    if SeGKHs<>One(QG) then 
         Print("Caution! Some primitive central idempotents are not realizable by strongly Shoda pairs \n");
     fi;
     return KHs;
 end);
+
 
 #############################################################################
 ##
@@ -499,6 +391,7 @@ local   G, i;
 
 return List([1..Length(list)], i->eGKH(QG,list[i][1],list[i][2]));
 end);
+
 
 #############################################################################
 ##
