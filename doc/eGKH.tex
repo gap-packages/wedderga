@@ -1,0 +1,188 @@
+\Chapter{Other functions}
+
+In this chapter we describe some functions for particular calculation 
+related with the computation of PCIs. Some of these functions are used by 
+`PCIsFromSSP', `StronglyShodaPairs', `PCIsFromShodaPairs', `PCIsUsingConlon' and `eGKHFromSSP'. 
+
+All through <RGA> stands for the rational group algebra of a finite group $G$, (<Subg1,Subg2>) 
+denotes a pair of subgroups of a $G$ such that <Subg2> is a normal subgroup of <Subg1> 
+and <ListOfPCIs> denotes a list of elements of <RGA>. 
+
+
+\Section{Epsilon(K,H)} 
+
+In this section we introduce functions to compute $\varepsilon(K,H)$ for a pair of subgroups 
+$(K,H)$ of $G$ such that $H$ is normal in $K$. 
+
+\>Epsilon( <RGA> , <Subg1> , <Subg2> ) M
+
+The function `Epsilon' computes the idempotent $\varepsilon$(<Subg1> , <Subg2> ) of <RGA> 
+introduced in Chapter "Introduction". 
+
+
+\beginexample
+    gap> S3:=SymmetricGroup(3);QS3:=GroupRing(Rationals,S3);
+    Sym( [ 1 .. 3 ] )
+    <algebra-with-one over Rationals, with 2 generators>
+    gap> KS3:=Subgroup(S3,[(1,2,3)]); HS3:=Subgroup(S3,[One(S3)]);
+    Group([ (1,2,3) ])
+    Group(())
+    gap> Epsilon(QS3,S3,KS3);Epsilon(QS3,S3,HS3);Epsilon(QS3,KS3,HS3);
+    (1/6)*()+(-1/6)*(2,3)+(-1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(-1/6)*(1,3)
+    (2/3)*()+(-1/3)*(1,2,3)+(-1/3)*(1,3,2)
+    (2/3)*()+(-1/3)*(1,2,3)+(-1/3)*(1,3,2)
+    gap> Epsilon(QS3,HS3,KS3);
+    The second subgroup must be contained in the first one
+    fail
+    gap> H:=Subgroup(S3,[(1,2)]);Epsilon(QS3,S3,H);
+    Group([ (1,2) ])
+    The second subgroup must be normal in the first one
+    fail
+    gap> Epsilon(QS3,SymmetricGroup(4),KS3);
+    The group algebra does not correspond to the subgroups
+    fail
+\endexample
+
+
+\>EpsilonCyclic( <RGA> , <Subg1> , <Subg2> ) M
+
+If the quotient group <Subg1>/<Subg2> is cyclic then the function `EpsilonCyclic' 
+obtains the same output as `Epsilon' but use a faster algorithm. 
+The functions of the package use `EpsilonCyclic' rather than `Epsilon' 
+when the quotient group is cyclic.
+
+\beginexample
+    gap> Eps1:=EpsilonCyclic(QS3,S3,KS3);
+    (1/6)*()+(-1/6)*(2,3)+(-1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(-1/6)*(1,3)
+    gap> Eps2:=EpsilonCyclic(QS3,S3,HS3); 
+    The factor group (second input over third one) is not a cyclic group
+    fail
+\endexample
+
+\Section{e(G,K,H)}
+
+In this section we introduce functions to compute $e(G,K,H)$ for a pair of 
+subgroups $(K,H)$ of $G$ such that $H$ is normal in $K$.
+
+\>eGKH( <RGA> , <Subg1> , <Subg2> ) M
+
+`eGKH' computes $e(G, <Subg1> , <Subg2>)$, that is the sum of all the different 
+$G$-conjugates of $\varepsilon$(<Subg1> , <Subg2> ). The output of `eGKH' is a 
+central element of <RGA>. If the $G$-conjugates of $\varepsilon$(<Subg1> , <Subg2> ) 
+are orthogonal then the output of `eGKH' is a central idempotent of $\Q G$. If 
+(<Subg1> , <Subg2> ) is a SSP of $G$ then the output of `eGKH' is a PCI of $\Q G$. 
+
+\beginexample
+    gap> A4:=AlternatingGroup(4);QA4:=GroupRing(Rationals,A4);
+    Alt( [ 1 .. 4 ] )
+    <algebra-with-one over Rationals, with 2 generators>
+    gap> HA4:=Subgroup(A4,[(1,2)(3,4)]); KA4:=Subgroup(A4,[(1,2)(3,4),(1,3)(2,4)]);
+    Group([ (1,2)(3,4) ])
+    Group([ (1,2)(3,4), (1,3)(2,4) ])
+    gap> e:=eGKH(QA4,KA4,HA4);e=e^2;
+    (3/4)*()+(-1/4)*(1,2)(3,4)+(-1/4)*(1,3)(2,4)+(-1/4)*(1,4)(2,3)
+    true
+    gap> T:=Subgroup(S3,[(1,2)]);e:=eGKH(QS3,T,T);e=e^2;
+    Group([ (1,2) ])
+    (3/2)*()+(1/2)*(2,3)+(1/2)*(1,2)+(1/2)*(1,3)
+    false
+\endexample
+
+\>eGKHFromSSP( <RGA> , <Subg1> , <Subg2> ) F
+
+`eGKHFromSSP' checks whether ( <Subg1> , <Subg2> ) is a SSP of the underlying group of <RGA> 
+and in such a case returns $e(G, <Subg1> , <Subg2>)$, which is a PCI of <RGA>. 
+
+See the examples in "Epsilon" and "eGKH" for some notation in the following example.
+
+\beginexample
+    gap> eGKHFromSSP(QS3,KS3,HS3);
+    (2/3)*()+(-1/3)*(1,2,3)+(-1/3)*(1,3,2)
+    gap> S4:=SymmetricGroup(4);QS4:=GroupRing(Rationals,S4);
+    Sym( [ 1 .. 4 ] )
+    <algebra-with-one over Rationals, with 2 generators>
+    gap> KS4:=Subgroup(S4,[(1,2)(3,4),(1,3)(2,4)]);HS4:=Subgroup(S4,[(1,2)(3,4)]);
+    Group([ (1,2)(3,4), (1,3)(2,4) ])
+    Group([ (1,2)(3,4) ])
+    gap> eGKHFromSSP(QS4,KS4,HS4);
+    The factor group (second input over third one) is not maximal abelian on the n\
+    ormalizer
+    fail
+    gap> eGKHFromSSP(QS4,KS4,Subgroup(S4,[One(S4)])); 
+    The factor group (second input over third one) is not a cyclic group 
+    fail
+    gap> eGKHFromSSP(QS4,A4,KA4);
+    (1/6)*()+(-1/12)*(2,3,4)+(-1/12)*(2,4,3)+(1/6)*(1,2)(3,4)+(-1/12)*(1,2,3)+(-1/
+    12)*(1,2,4)+(-1/12)*(1,3,2)+(-1/12)*(1,3,4)+(1/6)*(1,3)(2,4)+(-1/12)*(1,4,2)+(
+    -1/12)*(1,4,3)+(1/6)*(1,4)(2,3)
+\endexample
+
+
+\>PCIFromSP( <RGA> , <Subg1> , <Subg2> ) M
+
+
+`PCIFromSP' checks if (<Subg1> , <Subg2>) is a SP of the group underlying 
+group of <RGA> and computes the primitive central idempotent of <RGA> 
+realized by ( <Subg1> , <Subg2> ). 
+
+\beginexample
+    gap> G:=SmallGroup( 48, 16 );QG:=GroupRing(Rationals,G);
+    <pc group of size 48 with 5 generators>
+    <algebra-with-one over Rationals, with 5 generators>
+    gap> K:= Subgroup(G,[G.2, G.4, G.5]);H:=Subgroup(G,[]);
+    Group([ f2, f4, f5 ])
+    Group([  ])
+    gap> PCIFromSP(QG,G,K);
+    false
+    gap> PCIFromSP(QG,K,H);
+    false
+    gap> H:=Subgroup(G,[G.4,G.5]);PCIFromSP(QG,K,H);
+    Group([ f4, f5 ])
+    false
+    gap> H:=Subgroup(G,[G.2]);e:=PCIFromSP(QG,K,H);
+    Group([ f2 ])
+    (1/3)*<identity> of ...+(-1/3)*f4+(-1/6)*f5+(1/6)*f4*f5+(-1/6)*f5^2+(1/
+    6)*f4*f5^2
+    gap> IsIdempotent(e);
+    true
+\endexample
+
+Note that the SP $(K,H)$ of the previous example is not a SSP and 
+$e(G,K,H)$ does not coincides with the PCI associated to the SP $(K,H)$ as 
+the following computation shows. 
+
+\beginexample
+    gap> eGKHFromSSP(QG,K,H);
+    The conjugates of epsilon are not orthogonal
+    fail
+    gap> eGKH2:=eGKH(QG,K,H); 
+    (2/3)*<identity> of ...+(-2/3)*f4+(-1/3)*f5+(1/3)*f4*f5+(-1/3)*f5^2+(1/
+    3)*f4*f5^2
+    gap> eGKH2=e;IsIdempotent(eGKH2);
+    false
+    false
+\endexample
+
+\Section{Checking completeness}
+
+\>IsCompleteSetOfPCIs(<RGA> , <listOfPCIs>) F 
+
+The function `IsCompleteSetOfPCIs' checks if the sum of the elements of <listOfPCIs> 
+is 1. The input <listOfPCIs> is suppose to be a list of PCIs of <RGA> but the 
+function does not check this. The use of `IsCompleteSetOfPCIs' is to check if the 
+output of `PCIsFromSSP' is a complete set of PCIs. 
+
+See last example of "PCIsFromSSP" for the notation of next example. 
+
+\beginexample
+    gap> IsCompleteSetOfPCIs(QA5,IdemQA5); 
+    false
+    gap> G:=SmallGroup(128,5);
+    <pc group of size 128 with 7 generators>
+    gap> QG:=GroupRing(Rationals,G);
+    <algebra-with-one over Rationals, with 7 generators>
+    gap> e:=PCIsFromSSP(QG);;Length(e);
+    32
+    gap> IsCompleteSetOfPCIs(QG,e);
+    true
+\endexample
