@@ -8,6 +8,7 @@
 ##
 #############################################################################
 
+DeclareProperty("IsRationalGroupAlgebra", IsGroupRing);
 
 DeclareGlobalFunction( "PCIsFromSSP" );
 DeclareOperation("IsCompleteSetOfPCIs",[IsFreeMagmaRing,IsList]);
