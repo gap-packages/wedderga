@@ -1,8 +1,9 @@
 #############################################################################
 ##
-#W  PackageInfo.g         The Wedderga package                Aurora Olivieri
-#W                                                              Angel del Rio
+#W  PackageInfo.g         The Wedderga package            Osnel Broche Cristo
 #W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
 ##
 #H  $Id$
 ##
@@ -15,41 +16,28 @@ Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
                   "of rational group algebras" ] ),
 Version        := "4.0",
-Date           := "21/09/2004",
+Date           := "09/01/2005",
 ArchiveURL     := "http://.../wedderga-4.0",
 ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
 
 #TextFiles     := ["init.g", ......],
 #BinaryFiles   := ["doc/manual.dvi", ......],
 
-Persons := [
+Persons :=
+ [
      rec(
-       LastName      := "Olivieri",
-       FirstNames    := "Aurora",
+       LastName      := "Broche Cristo",
+       FirstNames    := "Osnel",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "olivieri@usb.ve",
+       Email         := "osnelier@ime.usp.br",
        PostalAddress := Concatenation( [
-                        "Departamento de Matematicas\n",
-                        "Universidad Simon Bolivar\n",
-                        "Apartado Postal 89000\n", 
-                        "Caracas 1080-A, Venezuela" ] ),
-       Place         := "Caracas",
-       Institution   := "Universidad Simon Bolivar"
-     ),     
-     rec(
-       LastName      := "del Rio",
-       FirstNames    := "Angel",
-       IsAuthor      := true,
-       IsMaintainer  := true,
-       Email         := "adelrio@um.es",
-       WWWHome       := "http://www.um.es/adelrio",
-       PostalAddress := Concatenation( [
-                        "Departamento de Matematicas\n",
-                        "Universidad de Murcia\n", 
-                        "30100 Murcia, Spain" ] ),
-       Place         := "Murcia",
-       Institution   := "Universidad de Murcia"
+                        "Instituto de Matemática\n",
+                        "Universidade de Sao Paulo\n",
+                        "Caixa Postal 66281, Sao Paulo\n", 
+                        "CEP 05315-970, Brazil" ] ),
+       Place         := "Sao Paulo",
+       Institution   := "Universidade de Sao Paulo"
      ),
      rec(
        LastName      := "Konovalov",
@@ -64,6 +52,34 @@ Persons := [
                         "Zaporozhye, 69000 Ukraine" ] ),
        Place         := "Zaporozhye",
        Institution   := "Zaporozhye State University"
+     ),
+     rec(
+       LastName      := "Olivieri",
+       FirstNames    := "Aurora",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "olivieri@usb.ve",
+       PostalAddress := Concatenation( [
+                        "Departamento de Matemáticas\n",
+                        "Universidad Simón Bolívar\n",
+                        "Apartado Postal 89000\n", 
+                        "Caracas 1080-A, Venezuela" ] ),
+       Place         := "Caracas",
+       Institution   := "Universidad Simón Bolívar"
+     ),     
+     rec(
+       LastName      := "del Río",
+       FirstNames    := "Ángel",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "adelrio@um.es",
+       WWWHome       := "http://www.um.es/adelrio",
+       PostalAddress := Concatenation( [
+                        "Departamento de Matemáticas\n",
+                        "Universidad de Murcia\n", 
+                        "30100 Murcia, Spain" ] ),
+       Place         := "Murcia",
+       Institution   := "Universidad de Murcia"
      )
 ],
 
