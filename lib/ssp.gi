@@ -166,10 +166,7 @@ local   G,          # The group
         return [One(QG)];
     fi;
     
-    j:=LCCS;    
-
-    while SeGKHs<>One(QG) and j>=1 do 
-    
+    for j in [ LCCS, LCCS-1 .. 1 ] do    
         H:=Representative(CCS[j]);        
         if IsSubset(H,DG) then
             if IsCyclic(FactorGroup(G,H)) then 
@@ -184,7 +181,9 @@ local   G,          # The group
                 Add(eGKHs,eGKH[1]);
             fi;
         fi;
-        j:=j-1;
+        if SeGKHs=One(QG) then
+          break;
+        fi;
     od;
 
 #Output
@@ -239,8 +238,7 @@ local   G,          # The group
         return [[G,G]];
     fi;
 
-    j:=LCCS;    
-    while SeGKHs<>One(QG) and j>=1 do 
+    for j in [ LCCS, LCCS-1 .. 1 ] do
         H:=Representative(CCS[j]);        
         if IsSubset(H,DG) then
             if IsCyclic(FactorGroup(G,H)) then 
@@ -255,7 +253,9 @@ local   G,          # The group
                 Add(KHs,eGKH[2]);
             fi;
         fi;
-    j:=j-1;
+        if SeGKHs=One(QG) then
+          break;
+        fi;
     od;
 
 #Here finish the main loop
@@ -331,8 +331,8 @@ if Verify(K,H)=true then
         if NdK<>G then
             RTNdK:=RightTransversal(G,NdK); 
             nRTNdK:=Length(RTNdK);  
-            i:=2;
-            while i<=nRTNdK do
+
+            for i in [ 2 .. nRTNdK ] do
                 g:=RTNdK[i]^Emb;
                 eGKH1g:=eGKH1^g;
                 if eGKH1*(eGKH1g)<>zero then    
@@ -341,7 +341,6 @@ if Verify(K,H)=true then
                 else
                     eGKH:= eGKH + eGKH1g;
                 fi;
-            i:=i+1;
             od;    
         fi; 
     else 
