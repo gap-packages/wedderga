@@ -36,8 +36,8 @@ local   Hat,     # Function(H)=|H|^-1 sum_{h\in H}h
         x,       # Representative of preimage of y
         p,       # Set of divisors of n
         Lp,      # Length of p
-        i,       # Counter
-        hatH, SNKH, LSNKH;
+        i,j,     # Counters
+        hatH, SNKH, LSNKH, q, powersx;
 
 #begin of functions 
 #Hat computes the idempotent of QG defined by a subgroup L
@@ -80,7 +80,17 @@ if IsCyclic(KH) then
         p:= Set(FactorsInt(n));
         Lp:=Length(p);
         for i in [1..Lp] do
-            Epsilon:=Epsilon*( One(QG) - Hat( QG, Group(x^(n/p[i])) ) );
+            q:=1/p[i];
+            powersx := [ One(G) ];
+            for j in [ 2 .. p[i] ] do
+              powersx[j]:=powersx[j-1]*x;
+            od;  
+            Epsilon := 
+                Epsilon*( One(QG) - ElementOfMagmaRing( 
+                                        FamilyObj(Zero(QG)),
+                                        Zero(QG),
+                                        List([ 1 .. p[i] ], j -> q),
+                                        powersx ));
         od;
     fi;
 
