@@ -53,15 +53,14 @@ local   Hat,    #Function(H)=|H|^-1 sum_{h\in H}h
 #We start checking if QG is a rational group algebra of a 
 #finite group
 
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) 
-        or not(QG!.LeftActingDomain!.Name="Rationals") then
-
+    if not IsRationalGroupAlgebra(QG) then
         Print("The first input must be a rational group algebra \n");
         return fail;    
     fi;
+
 #Then we check if K is subgroup of G, H is a normal
 #subgroup of K and K/H is cyclic
-    if not(IsSubgroup(QG!.UnderlyingMagma,K)) then
+    if not IsSubgroup(UnderlyingMagma(QG),K) then
         Print("The group algebra does not correspond to the subgroups \n");
         return fail;
     elif not(IsSubgroup(K,H) or IsNormal(K,H)) then
@@ -74,7 +73,7 @@ local   Hat,    #Function(H)=|H|^-1 sum_{h\in H}h
 
 #Initialization
 #Core of the program  
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     Emb:= Embedding( G, QG );
     Epsilon:=Hat(H);
     one:=One(QG);
@@ -106,13 +105,11 @@ InstallMethod( Epsilon,"for pairs of subgroups", true,
 function(QG,K,H)
 local   Hat, L, G, Emb, hatH, Epsilon, Epi, KH, SNKH, LSNKH, i;
 
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or 
-        not(QG!.LeftActingDomain!.Name="Rationals") then
-
+    if not IsRationalGroupAlgebra(QG) then
         Print("The first input must be a rational group algebra \n");
         return fail;    
     fi;
-    if not(IsSubgroup(QG!.UnderlyingMagma,K)) then
+    if not(IsSubgroup(UnderlyingMagma(QG),K)) then
         Print("The group algebra does not correspond to the subgroups \n");
         return fail;
     elif not(IsSubgroup(K,H))  then
@@ -131,7 +128,7 @@ local   Hat, L, G, Emb, hatH, Epsilon, Epi, KH, SNKH, LSNKH, i;
         return 1/(Size(L))*SumL;
     end;
     
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     Emb:= Embedding( G, QG );
     hatH:=Hat(H);
     Epsilon:=hatH;
@@ -162,9 +159,7 @@ end);
 #function(QG,alpha)
 #local G, Emb, ElemG, OrderG, gen, i, g, g1;
 #
-#    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or 
-#        not(QG!.LeftActingDomain!.Name="Rationals") then
-#
+#    if not IsRationalGroupAlgebra(QG) then
 #        Print("The first input must be a rational group algebra \n");
 #        return fail;    
 #    fi;
@@ -174,7 +169,7 @@ end);
 #        return fail;    
 #    fi;
 #    
-#    G:=QG!.UnderlyingMagma;
+#    G:=UnderlyingMagma(QG);
 #    Emb:= Embedding( G, QG );    
 #    #G1:=Image(Emb,G);
 #    ElemG:=Elements(G);
@@ -202,14 +197,12 @@ InstallMethod( eGKH,"for pairs of subgroups", true,
 function(QG,K,H)
 local   CentralizerG, alpha, G, Emb, zero, Eps, Cen, eGKH, RTCen, nRTCen, i, g;
 
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or 
-        not(QG!.LeftActingDomain!.Name="Rationals") then
-
+    if not IsRationalGroupAlgebra(QG) then
         Print("The first input must be a rational group algebra \n");
         return fail;    
     fi;
     
-    if not(IsSubgroup(QG!.UnderlyingMagma,K)) then
+    if not(IsSubgroup(UnderlyingMagma(QG),K)) then
         Print("The group algebra does not correspond to the subgroups \n");
         return fail;
     elif not(IsSubgroup(K,H) or IsNormal(K,H)) then
@@ -236,7 +229,7 @@ local   CentralizerG, alpha, G, Emb, zero, Eps, Cen, eGKH, RTCen, nRTCen, i, g;
     return Subgroup(G,gen);
     end;
 
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     Emb:= Embedding( G, QG );
     Eps:=Epsilon(QG,K,H);
     if Eps in QG then
@@ -415,15 +408,12 @@ local   eG,             #Function for eGKH
     
 #We start checking if QG is a rational group algebra of a 
 #finite group
-
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) 
-        or not(QG!.LeftActingDomain!.Name="Rationals") then
-
+    if not IsRationalGroupAlgebra(QG) then
         Print("The first input must be a rational group algebra \n");
         return fail;    
     fi;
 #Checking (S1) and (S2)
-    if not(IsSubgroup(QG!.UnderlyingMagma,K)) then
+    if not IsSubgroup( UnderlyingMagma(QG), K ) then
         Print("The group algebra does not correspond to the subgroups \n");
         return fail;
     elif not(IsSubgroup(K,H)) then
@@ -439,7 +429,7 @@ local   eG,             #Function for eGKH
 #Checking (S3) and computing the idempotent
 
 
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     Emb:= Embedding( G, QG );    
     
     if VerifyShoda(K,H)=true then
@@ -473,8 +463,7 @@ InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", 
 [IsFreeMagmaRing,IsList ], 0,
 function( QG, ListPCIs )
     local i;
-    if not(IsFreeMagmaRing(QG)) or not(QG!.LeftActingDomain!.Name="Rationals") then
-
+    if not IsRationalGroupAlgebra(QG) then
         Print("The first input must be a rational group algebra \n");
         return fail;
     elif not(IsList(ListPCIs)) then

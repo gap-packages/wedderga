@@ -8,6 +8,18 @@
 ##
 #############################################################################
 
+#############################################################################
+##
+#P  IsRationalGroupAlgebra( <R> )
+##  
+##  The function checks whether a group ring is a rational group algebra
+InstallMethod( IsRationalGroupAlgebra,
+    "for a group ring", 
+    true,
+    [IsGroupRing], 
+    0,
+    R -> IsRationals(LeftActingDomain(R)) 
+); 
 
 #############################################################################
 ##
@@ -81,17 +93,14 @@ local   G,          #The group
     
 #We start checking if QG is a rational group algebra of a 
 #finite group
-
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) 
-        or not(QG!.LeftActingDomain!.Name="Rationals") then
-    
+    if not IsRationalGroupAlgebra(QG) then
         Print("The input must be a rational group algebra \n");
         return fail;
     fi;
 
 #Initialization
 
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     CCS:=ConjugacyClassesSubgroups(G);
     LCCS:=Length(CCS);
     zero:=Zero(QG);
@@ -155,16 +164,14 @@ local   G,      #The group
 
 #First one check if QG is a rational group algebra of a finite group
 
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or 
-        not(QG!.LeftActingDomain!.Name="Rationals") then
-    
+    if not IsRationalGroupAlgebra(QG) then
         Print("The input must be a rational group algebra \n");
         return fail;
     fi;
 
 #Initialization
 
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     ElemG:=Elements(G);
     OrderG:=Size(G);
     
@@ -233,15 +240,13 @@ InstallGlobalFunction(PCIsUsingConlon,
 function(QG)
 local   G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H; 
 
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or 
-        not(QG!.LeftActingDomain!.Name="Rationals") then
-    
+    if not IsRationalGroupAlgebra(QG) then
         Print("The input must be a rational group algebra \n");
         return fail;
     fi;
 
     
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     zero:=Zero(QG);
     one:=One(QG);
     

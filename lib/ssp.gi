@@ -143,11 +143,11 @@ local   G,          #The group
 #We start checking if QG is a rational group algebra of a 
 #finite group
 
-    if  not(IsFreeMagmaRing(QG)) or 
-        not(IsGroup(UnderlyingMagma(QG))) or 
-        not(Name(LeftActingDomain(QG))="Rationals") then
-            Print("The input must be a rational group algebra \n");
-            return fail;
+#Actually finiteness was not checked in the old code - ask Angel !!!
+
+    if not IsRationalGroupAlgebra(QG) then
+      Print("The input must be a rational group algebra \n");
+      return fail;
     fi;
 
 #Initialization
@@ -331,9 +331,7 @@ local   G,          #The group
 
 #We start checking if QG is a rational group algebra of a finite group
 
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or 
-        not(QG!.LeftActingDomain!.Name="Rationals") then
-    
+    if not IsRationalGroupAlgebra(QG) then
         Print("The input must be a rational group algebra \n");
         return fail;
     fi;
@@ -393,14 +391,12 @@ InstallGlobalFunction(eGKHFromSSP,
 function(QG,K,H)
 local   Verify, K1, H1, G, Emb, zero, NH, Eps,  NdK, eGKH1, RTNH, nRTNH, i, g, eGKH, RTNdK, nRTNdK, eGKH1g;
 
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or 
-        not(QG!.LeftActingDomain!.Name="Rationals") then
-
+    if not IsRationalGroupAlgebra(QG) then
         Print("The first input must be a rational group algebra \n");
         return fail;    
     fi;
     
-    if not(IsSubgroup(QG!.UnderlyingMagma,K)) then
+    if not IsSubgroup(UnderlyingMagma(QG),K) then
         Print("The group algebra does not correspond to the subgroups \n");
         return fail;
     elif not(IsSubgroup(K,H) or IsNormal(K,H)) then
@@ -483,16 +479,14 @@ end);
 InstallGlobalFunction(eGKHsFromKHs, 
 function(QG,list)
 local   G, i;
-    if not(IsFreeMagmaRing(QG)) or not(IsGroup(QG!.UnderlyingMagma)) or
-         not(QG!.LeftActingDomain!.Name="Rationals") then
-    
-    Print("The first input must be a rational group algebra \n");
+    if not IsRationalGroupAlgebra(QG) then
+        Print("The first input must be a rational group algebra \n");
         return fail;
     elif not(IsList(list)) then
         Print("The second input must be a list of pairs of subgroups \n");
         return fail;
     fi;
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     for i in [1..Length(list)] do
         if not(IsSubgroup(G,list[i][1])) or not(IsSubgroup(G,list[i][2]))   then
     
