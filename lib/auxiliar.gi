@@ -1,5 +1,16 @@
 #############################################################################
 ##
+#W  auxiliar.gi           The Wedderga package            Osnel Broche Cristo
+#W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
+##
+#H  $Id$
+##
+#############################################################################
+
+#############################################################################
+##
 #P  IsSemisimpleRationalGroupAlgebra( FG )
 ##  
 ##  The function checks whether a group ring is a rational group algebra
