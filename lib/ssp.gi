@@ -403,43 +403,44 @@ end);
 ##
 InstallGlobalFunction( SimpleAlgebraFromSSP, 
 function(G,K,H)
-local   N,          #Normalizer of H in G
-        NH,         #NH/H
-        KH,         #K/H
-        NdK,        #N/K
-        k,          #Generator of K/H
-        ok,         #Order of k
-        Potk,       #List of powers of k
-        Epi,        #N--->N/H
-        Epi2,       #NH--->NH/KH
-        PrimGen,    #Primary set of independent of generators of N/K
-        l,          #Length of PrimGen
-        Gen,        #Elementary set of independent of generators of 
-                    #N/K
-        o,          #Orders of the elemnets of PrimGen
-        p,          #Prime divisors of the elements of o
-        primes,     #The different elements of p
-        lp,         #Length of primes,
-        first,      #First Positions of the elements of primes in p,
-        next,       #Next Positions of the elements of primes in p,
-        g,          #An element of PrimGen
-        plus,       #Counter
-        newpos,     #A component of next
-        gen,        #Preimage of Gen in N/H
-        x,i,j,ll;   #Controlers
+local   N,          # Normalizer of H in G
+        NH,         # NH/H
+        KH,         # K/H
+        NdK,        # N/K
+        k,          # Generator of K/H
+        ok,         # Order of k
+        Potk,       # List of powers of k
+        Epi,        # N--->N/H
+        Epi2,       # NH--->NH/KH
+        PrimGen,    # Primary set of independent of generators of N/K
+        l,          # Length of PrimGen
+        Gen,        # Elementary set of independent of generators of 
+                    # N/K
+        o,          # Orders of the elemnets of PrimGen
+        p,          # Prime divisors of the elements of o
+        primes,     # The different elements of p
+        lp,         # Length of primes,
+        first,      # First Positions of the elements of primes in p,
+        next,       # Next Positions of the elements of primes in p,
+        g,          # An element of PrimGen
+        plus,       # Counter
+        newpos,     # A component of next
+        gen,        # Preimage of Gen in N/H
+        x,i,j,ll;   # Controlers
         
     if G=H then 
         return [1,1,[],[]];
     else
+    
 #First one computes an idependent set PrimGen of generators of a Primary 
 #decomposition of N/K
-    N:=Normalizer(G,H);
-    Epi:=NaturalHomomorphismByNormalSubgroup( N, H ) ;
-    NH:=Image(Epi,N); 
-    KH:=Image(Epi,K);
-    k:=Product(IndependentGeneratorsOfAbelianGroup(KH));
-    ok:=Order(k);
-    Potk:=List([1..ok],x->k^x);
+    N   := Normalizer(G,H);
+    Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
+    NH  := Image(Epi,N); 
+    KH  := Image(Epi,K);
+    k   := Product(IndependentGeneratorsOfAbelianGroup(KH));
+    ok  := Order(k);
+    Potk:= List([1..ok],x->k^x);
         if N=K then 
             return [Size(G)/Size(N),ok,[ ],[ ]];
         else
@@ -450,13 +451,13 @@ local   N,          #Normalizer of H in G
 #Using PrimGen one computes an independent set Gen of
 #generators of an invariant decomposition of N/K
         
-        l:=Length(PrimGen);
-        o:=List([1..l],i->Order(PrimGen[i]));
-        p:=List([1..l],i->FactorsInt(o[i])[1]);
+        l := Length(PrimGen);
+        o := List( [ 1 .. l ], i -> Order(PrimGen[i]) );
+        p := List( [ 1 .. l ], i -> FactorsInt(o[i])[1] );
         primes:=Unique(p);
-        lp:=Length(primes);
-        first:=List([1..lp],i->Position(p,primes[i]));
-        g:=Product(List(first,i->PrimGen[i]));
+        lp:= Length(primes);
+        first:=List( [ 1 .. lp ], i -> Position(p,primes[i]) );
+        g := Product(List(first,i->PrimGen[i]));
         Gen:=[g];
         ll:=lp;
         plus:=0;
@@ -513,5 +514,3 @@ local   i;
     od; 
 return List([1..Length(list)], i->SimpleAlgebraFromSSP(G,list[i][1],list[i][2]));
 end);
-
-        

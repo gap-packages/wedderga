@@ -32,17 +32,17 @@ InstallMethod( IsRationalGroupAlgebra,
 ## 
 InstallGlobalFunction(PCIsFromShodaPairs, 
 function(QG) 
-local   G,          #The group
-        CCS,        #The conjugacy classes of subgroups
-        LCCS,       #The lenght of CCS
-        zero,       #0 of QG
-        one,        #1 of QG
-        Es,         #The list of primitive central idempotents  
-        SEs,        #The sum of the elements of Es
-        e,          #Idempotent
-        H,          #Subgroup of G
-        i,          #Counter
-        SearchingKForSP;#Function to search a K for a given H  
+local   G,          # The group
+        CCS,        # The conjugacy classes of subgroups
+        LCCS,       # The lenght of CCS
+        zero,       # 0 of QG
+        one,        # 1 of QG
+        Es,         # The list of primitive central idempotents  
+        SEs,        # The sum of the elements of Es
+        e,          # Idempotent
+        H,          # Subgroup of G
+        i,          # Counter
+        SearchingKForSP; # Function to search a K for a given H  
 
 #begin of functions 
 
@@ -247,5 +247,4 @@ local   G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H;
         Print("Caution! It is not a complete set of primitive central idempotents \n");
         return eGKHs;
     fi;
-end);
-  
+end);

@@ -24,12 +24,12 @@ InstallMethod( Epsilon,
    0,
 function( QG, K, H )
 local   Hat,     # Function(H)=|H|^-1 sum_{h\in H}h
-        L,       # subgrup of G
+        L,       # Subgroup of G
         G,       # Group
         Emb,     # Embedding of G in QG
         zero,    # 0 of QG
-        Epsilon, # central idempotent 
-        Epi,     # K--->K/H
+        Epsilon, # Central idempotent 
+        Epi,     # K --> K/H
         KH,      # K/H
         n,       # Order of KH
         y,       # Generator of KH 
