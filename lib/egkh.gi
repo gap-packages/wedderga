@@ -11,37 +11,38 @@
 
 #############################################################################
 ##
-##  The function EpsilonCyclic compute epsilon(G,K,H) for H and K subgroups of G
-##  such that H is normal in K and K/H is cyclic.
-##  This function is faster than Epsilon
+##  The function Epsilon compute epsilon(G,K,H) for H and K subgroups of G
+##  such that H is normal in K. If the additional condition that K/H is 
+##  cyclic holds, than the faster algorithm is used.
 ##
-#M EpsilonCyclic( QG, K, H )
+#M Epsilon( QG, K, H )
 ##
-InstallMethod( EpsilonCyclic,"for pairs of subgroups", true, 
-[IsFreeMagmaRing,IsGroup, IsGroup ], 0,
-function(QG,K,H)
-local   Hat,    #Function(H)=|H|^-1 sum_{h\in H}h
-        L,      #subgrup of G
-        G,      #Group
-        Emb,    #Embedding of G in QG
-        zero,   #0 of QG
-        one,    #1 of QG
-        Epsilon,#central idempotent 
-        Epi,    #K--->K/H
-        KH,     #K/H
-        n,      #Order of KH
-        y,      #Generator of KH 
-        x,      #Representative of preimage of y
-        p,      #Set of divisors of n
-        Lp,     #Length od p
-        i;      #Counter
+InstallMethod( Epsilon,
+   "for pairs of subgroups", 
+   true, 
+   [ IsFreeMagmaRing, IsGroup, IsGroup ], 
+   0,
+function( QG, K, H )
+local   Hat,     # Function(H)=|H|^-1 sum_{h\in H}h
+        L,       # subgrup of G
+        G,       # Group
+        Emb,     # Embedding of G in QG
+        zero,    # 0 of QG
+        Epsilon, # central idempotent 
+        Epi,     # K--->K/H
+        KH,      # K/H
+        n,       # Order of KH
+        y,       # Generator of KH 
+        x,       # Representative of preimage of y
+        p,       # Set of divisors of n
+        Lp,      # Length of p
+        i,       # Counter
+        hatH, SNKH, LSNKH;
 
 #begin of functions 
-#Hat computes the idempotent of $\Q G$ defined 
-#by a subgroup
+#Hat computes the idempotent of $QG$ defined by a subgroup
     Hat:=function(L)
     local LnA, SumL; 
-        
         LnA:=Image(Emb,L);
         SumL:=Sum(LnA);
         return 1/(Size(L))*SumL;
@@ -50,91 +51,41 @@ local   Hat,    #Function(H)=|H|^-1 sum_{h\in H}h
 
 #PROGRAM
 
-#We start checking if QG is a rational group algebra of a 
-#finite group
+#First we check that QG is a rational group algebra of a finite group
+#Then we check if K is subgroup of G, H is a normal subgroup of K
 
-    if not IsRationalGroupAlgebra(QG) then
-        Print("The first input must be a rational group algebra \n");
-        return fail;    
-    fi;
+if not IsRationalGroupAlgebra( QG ) then
+    Error("The first input must be a rational group algebra!!!");
+elif not IsSubgroup( UnderlyingMagma( QG ),K ) then
+    Error("The group algebra does not correspond to the subgroups!!!");
+elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
+    Error("The second subgroup must be normal in the first one!!!");
+fi;
 
-#Then we check if K is subgroup of G, H is a normal
-#subgroup of K and K/H is cyclic
-    if not IsSubgroup(UnderlyingMagma(QG),K) then
-        Print("The group algebra does not correspond to the subgroups \n");
-        return fail;
-    elif not(IsSubgroup(K,H) or IsNormal(K,H)) then
-        Print("The second subgroup must be a normal subgroup in the first one \n");
-        return fail;
-    elif not(IsCyclic(FactorGroup(K,H))) then
-        Print("The factor group (second input over third one) is not a cyclic group \n");
-        return fail;
-    fi;
+# Initialization
+G   := UnderlyingMagma( QG );
+Emb := Embedding( G, QG );
+Epi := NaturalHomomorphismByNormalSubgroup( K, H ) ;
+KH  := Image( Epi, K ); 
+Epsilon := Hat(H);
 
-#Initialization
-#Core of the program  
-    G:=UnderlyingMagma(QG);
-    Emb:= Embedding( G, QG );
-    Epsilon:=Hat(H);
-    one:=One(QG);
+if IsCyclic(KH) then
+
     if K<>H then
-        Epi:=NaturalHomomorphismByNormalSubgroup( K, H ) ;
-        KH:=Image(Epi,K); 
         n:=Size(KH);
         y:=Product(IndependentGeneratorsOfAbelianGroup(KH)); 
         x:=PreImagesRepresentative(Epi,y); 
         p:= Set(FactorsInt(n));
         Lp:=Length(p);
         for i in [1..Lp] do
-            Epsilon:=Epsilon*(one-Hat(Group(x^(n/p[i]))));
+            Epsilon:=Epsilon*( One(QG) - Hat(Group(x^(n/p[i]))) );
         od;
     fi;
 
-#Output
-return Epsilon; 
-end);
+else
 
-#############################################################################
-##
-##  The function Epsilon computes epsilon(K,H) for H a normal subgroup of K
-## 
-#M Epsilon( QG, K, H )
-##
-InstallMethod( Epsilon,"for pairs of subgroups", true, 
-[IsFreeMagmaRing,IsGroup, IsGroup ], 0,
-function(QG,K,H)
-local   Hat, L, G, Emb, hatH, Epsilon, Epi, KH, SNKH, LSNKH, i;
-
-    if not IsRationalGroupAlgebra(QG) then
-        Print("The first input must be a rational group algebra \n");
-        return fail;    
-    fi;
-    if not(IsSubgroup(UnderlyingMagma(QG),K)) then
-        Print("The group algebra does not correspond to the subgroups \n");
-        return fail;
-    elif not(IsSubgroup(K,H))  then
-        Print("The second subgroup must be contained in the first one \n");
-        return fail;
-    elif not(IsNormal(K,H)) then
-        Print("The second subgroup must be normal in the first one \n");
-        return fail;
-    fi;
-
-    Hat:=function(L)
-    local LnA, SumL; 
-        
-        LnA:=Image(Emb,L);
-        SumL:=Sum(LnA);
-        return 1/(Size(L))*SumL;
-    end;
-    
-    G:=UnderlyingMagma(QG);
-    Emb:= Embedding( G, QG );
-    hatH:=Hat(H);
-    Epsilon:=hatH;
+    hatH:=Epsilon;
     if K<>H then
-        Epi:=NaturalHomomorphismByNormalSubgroup( K, H ) ;
-        KH:=Image(Epi,K);
         SNKH:=NormalSubgroups(KH);
         LSNKH:=Length(SNKH); 
         for i in [1..LSNKH] do
@@ -145,8 +96,12 @@ local   Hat, L, G, Emb, hatH, Epsilon, Epi, KH, SNKH, LSNKH, i;
         od;
     fi;
 
+fi;
+
+#Output
 return Epsilon; 
 end);
+
 
 #############################################################################
 ##  The function CentralizerG computes the centralizer in G of an element of QG.
@@ -358,7 +313,7 @@ local   eG,             #Function for eGKH
         end;
 
         
-        Eps:=EpsilonCyclic(QG,K1,H1); #ver C.2.1
+        Eps:=Epsilon(QG,K1,H1);
         Cen:=CentralizerG( Eps );
         RTCen:=RightTransversal(G,Cen);
     return Sum(List(RTCen,g->Eps^(g^Emb)));
