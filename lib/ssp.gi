@@ -58,7 +58,7 @@ local   G,          #The group
         NH:=Normalizer(G,H);
         Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
         NHH:=Image(Epi,NH);
-        L:=Subgroup(NHH,Union(DerivedSubgroup(NHH),Centre(NHH)));
+        L:=ClosureSubgroup( DerivedSubgroup(NHH), Centre(NHH) );
         if IsCyclic(L) then 
             Cen:=Centralizer(NHH,L);
             if IsAbelian(Cen) then
@@ -71,7 +71,7 @@ local   G,          #The group
             else 
                 X:=Difference(Elements(Cen),Elements(L));
                 while X<>[] do
-                    KH:=Subgroup(NHH,Union(L,[X[1]]));
+                    KH:=ClosureSubgroup( L, [X[1]] );
                     if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
                         K:=PreImages(Epi,KH);
                         return  eG(K,H);
@@ -144,16 +144,15 @@ local   G,          #The group
 #finite group
 
     if  not(IsFreeMagmaRing(QG)) or 
-        not(IsGroup(QG!.UnderlyingMagma)) or 
-        not(QG!.LeftActingDomain!.Name="Rationals") then
-    
-        Print("The input must be a rational group algebra \n");
-        return fail;
+        not(IsGroup(UnderlyingMagma(QG))) or 
+        not(Name(LeftActingDomain(QG))="Rationals") then
+            Print("The input must be a rational group algebra \n");
+            return fail;
     fi;
 
 #Initialization
 
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     Emb:= Embedding( G, QG );
     zero:=Zero(QG);
     one:=One(QG);    
@@ -341,7 +340,7 @@ local   G,          #The group
 
 #Initialization
 
-    G:=QG!.UnderlyingMagma;
+    G:=UnderlyingMagma(QG);
     Emb:= Embedding( G, QG );
     zero:=Zero(QG);
     one:=One(QG);    
@@ -428,7 +427,7 @@ local Epi, NHH, KH;
 return true;
 end;
 
-G:=QG!.UnderlyingMagma;
+G:=UnderlyingMagma(QG);
 Emb:= Embedding( G, QG );
 zero:=Zero(QG); 
 NH:=Normalizer(G,H);
