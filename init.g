@@ -8,13 +8,5 @@
 ##
 #############################################################################
 
-# announce the package version 
-DeclarePackage( "wedderga","4.0", ReturnTrue );
-
-# install the documentation
-#DeclarePackageAutoDocumentation( "aclib", "doc" );
-
-# require other packages???????
-
-# read .gd files
-ReadPkg( "wedderga", "gap/wedderga.gd" );
+# read wedderga declaration files
+ReadPackage( "wedderga/lib/wedderga.gd" );
