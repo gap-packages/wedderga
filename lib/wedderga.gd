@@ -8,6 +8,17 @@
 ##
 #############################################################################
 
+
+#############################################################################
+##
+##  InfoPCI
+##  
+##  We declare new Info class for Wedderga algorithms. 
+##  It has 3 levels - 0, 1 (default) and 2
+##  To change Info level to k, use command SetInfoLevel(InfoPCI, k)
+DeclareInfoClass("InfoPCI");
+
+
 DeclareProperty("IsRationalGroupAlgebra", IsGroupRing);
 
 DeclareGlobalFunction( "PCIsFromSSP" );
