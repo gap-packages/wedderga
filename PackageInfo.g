@@ -16,7 +16,7 @@ Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
                   "of rational group algebras" ] ),
 Version        := "4.0",
-Date           := "09/01/2005",
+Date           := "08/06/2005",
 ArchiveURL     := "http://.../wedderga-4.0",
 ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
 
