@@ -59,9 +59,7 @@ DeclareOperation( "eGKH",  [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup 
 DeclareOperation( "eGKHc", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] ); 
 DeclareOperation( "eGKHc", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ] );
 
-DeclareOperation( "Epsilon", [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
 DeclareOperation( "Epsilon", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
-DeclareOperation( "Epsilon", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ] );
 
 DeclareOperation( "Hat", [ IsGroupRing, IsObject ] );
 
