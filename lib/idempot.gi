@@ -17,7 +17,7 @@
 ##
 #M eGKH( QG, K, H )
 ##
-InstallMethod(  eGKH,
+InstallOtherMethod(  eGKH,
                 "for pairs of subgroups", 
                 true, 
                 [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
@@ -58,14 +58,14 @@ end);
 
 
 #############################################################################
-##  The function eGKHc computes e(G, K, H, C) for H and K subgroups of G
+##  The function eGKH computes e(G, K, H, C) for H and K subgroups of G
 ##  such that H is normal in K and K/H is cyclic group, and C is a cyclotomic class
 ##  of q=|Fq| module n=[K:H] containing generators of K/H.
 ##  The list ltrace contains information about the trace of a n-th roots of 1.  
 ##
-## eGKHc( FqG, K, H, c, ltrace )
+## eGKH( FqG, K, H, c, ltrace )
 ##
-InstallMethod( eGKHc,
+InstallMethod( eGKH,
                 "for pairs of subgroups and one cyclotomic class", 
                 true, 
                 [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ],
@@ -102,13 +102,13 @@ end);
 
 #############################################################################
 ##
-##  The function eGKHc computes e( G, K, H, c) for H and K subgroups of G such that H 
+##  The function eGKH computes e( G, K, H, c) for H and K subgroups of G such that H 
 ##  is normal in K and K/H is cyclic group, and C is a cyclotomic class
 ##  of q=|Fq| module n=[K:H] containing generators of K/H.
 ##
-## eGKHc( FqG, K, H, c )
+## eGKH( FqG, K, H, c )
 ##
-InstallMethod( eGKHc,
+InstallOtherMethod( eGKH,
    "for pairs of subgroups and one cyclotomic class", 
    true, 
    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ],

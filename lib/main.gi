@@ -698,7 +698,7 @@ for p in [2..Size(SSPsG)] do
     templist := [];
     for i in cc do
         if Gcd(i[1],n)=1 then
-            idemp := eGKHc(FqG, K, H, i, ltrace);
+            idemp := eGKH(FqG, K, H, i, ltrace);
             if not(idemp in etemp) then
                 Add(etemp, idemp);
                 Add( templist, i );

@@ -55,9 +55,7 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsFromSSP" );
 
 #################### idempot.gi #####################
 
-DeclareOperation( "eGKH",  [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
-DeclareOperation( "eGKHc", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] ); 
-DeclareOperation( "eGKHc", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ] );
+DeclareOperation( "eGKH", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] ); 
 
 DeclareOperation( "Epsilon", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
 
@@ -84,4 +82,4 @@ DeclareOperation( "PCIFromSP", [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGro
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 
 DeclareGlobalFunction( "PCIsUsingConlon" );
-DeclareGlobalFunction( "PCIsUsingCharacterTable" );
+DeclareGlobalFunction( "PCIsUsingCharacterTable" );
