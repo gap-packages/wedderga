@@ -197,7 +197,7 @@ end);
 ##
 #M Epsilon( QG, K, H )
 ##
-InstallMethod( Epsilon,
+InstallOtherMethod( Epsilon,
    "for pairs of subgroups", 
    true, 
    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
@@ -347,7 +347,7 @@ end);
 ##
 ## Epsilon( FqG, K, H, c )
 ##
-InstallMethod( Epsilon,
+InstallOtherMethod( Epsilon,
    "for pairs of subgroups and one cyclotomic class", 
    true, 
    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
