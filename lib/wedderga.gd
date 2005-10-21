@@ -1,8 +1,9 @@
 #############################################################################
 ##
-#W  wedderga.gd           The Wedderga package                Aurora Olivieri
-#W                                                              Angel del Rio
+#W  wedderga.gd           The Wedderga package            Osnel Broche Cristo
 #W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
 ##
 #H  $Id$
 ##
@@ -36,12 +37,10 @@ DeclareOperation( "SimpleAlgebraInfo", [ IsSemisimpleRationalGroupAlgebra,
 DeclareOperation( "SimpleAlgebraInfoNC", [ IsSemisimpleRationalGroupAlgebra, 
                                             IsGroup, IsGroup ] );
 
-
 DeclareOperation( "SimpleAlgebraInfo", [ IsSemisimpleFiniteGroupAlgebra, 
                                             IsGroup, IsGroup, IsList ] );
 DeclareOperation( "SimpleAlgebraInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
                                             IsGroup, IsGroup, IsList ] );
-
 
 DeclareAttribute( "StronglyShodaPairs", IsGroup and IsFinite );
 

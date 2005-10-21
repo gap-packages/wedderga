@@ -1,9 +1,9 @@
 #############################################################################
 ##
-#W  others.gi             The Wedderga package                Aurora Olivieri
-#W                                                              Angel del Rio
+#W  others.gi              The Wedderga package           Osnel Broche Cristo
 #W                                                        Alexander Konovalov
-##
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
 #H  $Id$
 ##
 #############################################################################
@@ -351,7 +351,6 @@ local   G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H;
         Print("The input must be a rational group algebra \n");
         return fail;
     fi;
-
     
     G:=UnderlyingMagma(QG);
     zero:=Zero(QG);
@@ -364,8 +363,8 @@ local   G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H;
     SeGKHs:=eGKHs[1];
     i:=2;
     while i<=LIrrG do
-        K:=TestMonomial(IrrG[i])!.subgroup;
-        H:=TestMonomial(IrrG[i])!.kernel;
+        K:=TestMonomial(IrrG[i]).inducedFrom.subgroup;
+        H:=TestMonomial(IrrG[i]).inducedFrom.kernel;
         eGKH:=PCIFromSP(QG,K,H);    
         if eGKH*SeGKHs=zero then 
             SeGKHs:= SeGKHs + eGKH;
