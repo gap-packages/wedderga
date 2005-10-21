@@ -9,22 +9,26 @@
 ##
 #############################################################################
 
+
 #############################################################################
 ##
-#P  IsSemisimpleRationalGroupAlgebra( FG )
+#P IsSemisimpleRationalGroupAlgebra( FG )
 ##  
-##  The function checks whether a group ring is a rational group algebra
+## The function checks whether a group ring is a rational group algebra
+##
 InstallImmediateMethod( IsSemisimpleRationalGroupAlgebra,
                         IsGroupRing, 
                         0,
     R -> IsRationals(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))
 ); 
 
+
 #############################################################################
 ##
-#P  IsSemisimpleFiniteGroupAlgebra( FG )
+#P IsSemisimpleFiniteGroupAlgebra( FG )
 ##  
-##  The function checks whether a group ring is a semisimple finite group algebra
+## The function checks whether a group ring is a semisimple finite group algebra
+##
 InstallImmediateMethod( IsSemisimpleFiniteGroupAlgebra,
                         IsGroupRing, 
                         0,
@@ -39,13 +43,14 @@ G := UnderlyingMagma( FG );
 return IsField( F ) and IsFinite( F ) and IsFinite( G ) and Gcd( Size( F ), Size( G ) ) =1;
 end); 
 
+
 #############################################################################
 ##
-#M  IsCompleteSetOfPCIs( QG, ListPCIs )
+#M IsCompleteSetOfPCIs( QG, ListPCIs )
 ##
 ##
-##  The function IsCompleteSetOfPCIs checks if the sum of the elements of QG is 1
-##  It is suppose to be used to check if a list of PCIs of QG is complete.
+## The function IsCompleteSetOfPCIs checks if the sum of the elements of QG is 1
+## It is supposed to be used to check if a list of PCIs of QG is complete.
 ##
 InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", true, 
 [IsFreeMagmaRing,IsList ], 0,
@@ -230,11 +235,12 @@ lsupp := Size(coeffsupp)/2;
 supp := List([1..lsupp],i->coeffsupp[2*i-1]^g);
 coeff := List([1..lsupp],i->coeffsupp[2*i]);
 
-return ElementOfMagmaRing( FamilyObj(Zero(FG)),
-                               Zero(FG),
+return ElementOfMagmaRing( FamilyObj( a ) ,
+                               Zero( a ),
                                coeff,
                                supp);
 end);
+
 
 #############################################################################
 ##
@@ -277,6 +283,7 @@ od;
 return cc;
 end);
 
+
 #############################################################################
 ##
 ## The function BigPrimitiveRoot computes a primitive root of the finite field
@@ -310,13 +317,18 @@ else
     factors := FactorsInt(q);
     p:=factors[1];
     o:=Size(factors);
-    cp := ConwayPolynomial(p,o);
-# If q^o is too big then gap never finish to compute the ConwayPolynomial
+    if IsCheapConwayPolynomial(p,o) then
+      cp := ConwayPolynomial(p,o);
+    # If q^o is too big then gap never finish to compute the ConwayPolynomial
+    else
+      cp := RandomPrimitivePolynomial(p,o);  
+    fi;  
     Fq := GF(p, cp);
     pr := RootOfDefiningPolynomial(Fq);
 fi;
 return pr;
 end);
+
 
 #############################################################################
 ##

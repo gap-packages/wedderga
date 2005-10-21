@@ -12,10 +12,10 @@
 
 #############################################################################
 ##
-##  The function eGKH computes e(G,K,H) for H and K subgroups of G such that H 
-##  is normal in K
-##
 #M eGKH( QG, K, H )
+##
+##  The function eGKH computes e(G,K,H) for H and K subgroups of G 
+##  such that H is normal in K
 ##
 InstallOtherMethod(  eGKH,
                 "for pairs of subgroups", 
@@ -33,7 +33,6 @@ local   alpha,
         i, 
         g, 
         NH;
-
     
     if not(IsSubgroup(UnderlyingMagma(QG),K)) then
         Print("The group algebra does not correspond to the subgroups \n");
@@ -58,12 +57,13 @@ end);
 
 
 #############################################################################
-##  The function eGKH computes e(G, K, H, C) for H and K subgroups of G
-##  such that H is normal in K and K/H is cyclic group, and C is a cyclotomic class
-##  of q=|Fq| module n=[K:H] containing generators of K/H.
-##  The list ltrace contains information about the trace of a n-th roots of 1.  
+##  
+##  eGKH( FqG, K, H, c, ltrace )
 ##
-## eGKH( FqG, K, H, c, ltrace )
+##  The function eGKH computes e(G, K, H, C) for H and K subgroups of G
+##  such that H is normal in K and K/H is cyclic group, and C is a cyclotomic 
+##  class of q=|Fq| module n=[K:H] containing generators of K/H.
+##  The list ltrace contains information about the trace of a n-th roots of 1.  
 ##
 InstallMethod( eGKH,
                 "for pairs of subgroups and one cyclotomic class", 
@@ -83,8 +83,6 @@ local   G,      # Group
         GN1,    # Right transversal of N1 in G
         Eps;    # Epsilon function
 
-# Program
-
 G := UnderlyingMagma(FqG);
 N := Normalizer(G,H);
 epi := NaturalHomomorphismByNormalSubgroup(N,H);
@@ -100,13 +98,14 @@ Eps := Epsilon(FqG, K, H, c,ltrace);
 return Sum( List( GN1, g -> Conjugate( FqG, Eps, g ) ) );
 end);
 
+
 #############################################################################
 ##
-##  The function eGKH computes e( G, K, H, c) for H and K subgroups of G such that H 
-##  is normal in K and K/H is cyclic group, and C is a cyclotomic class
-##  of q=|Fq| module n=[K:H] containing generators of K/H.
+##  eGKH( FqG, K, H, c )
 ##
-## eGKH( FqG, K, H, c )
+##  The function eGKH computes e( G, K, H, c) for H and K subgroups of G such
+##  that H is normal in K and K/H is cyclic group, and C is a cyclotomic class
+##  of q=|Fq| module n=[K:H] containing generators of K/H.
 ##
 InstallOtherMethod( eGKH,
    "for pairs of subgroups and one cyclotomic class", 
@@ -139,13 +138,7 @@ q := Size( Fq );
 # First we check that FqG is a finite group algebra over finite field 
 # Then we check if K is subgroup of G, H is a normal subgroup of K
 
-if not( IsGroup( G ) and IsFinite( G ) ) then
-    Error("The first input must be a group ring of the finite group!!!");
-elif not( IsField( Fq ) and IsFinite( Fq ) ) then
-    Error("The ring of coefficients of first input must be a finite field!!!");
-elif Gcd( q, Size( G ) ) <> 1 then
-    Error("The group algebra is not semisimple!!!");
-elif not IsSubgroup( G, K ) then
+if not IsSubgroup( G, K ) then
     Error("The group algebra does not correspond to the subgroups!!!");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
     Error("The second subgroup must be normal in the first one!!!");
@@ -167,7 +160,6 @@ if not c in cc then
 elif Gcd( c[1], n ) <> 1 then
     Error("The input class is not aproprierty!!!");
 fi; 
-
 
 # Program
 
@@ -191,11 +183,11 @@ end);
 
 #############################################################################
 ##
-##  The function Epsilon compute epsilon(G,K,H) for H and K subgroups of G
+#M  Epsilon( QG, K, H )
+##
+##  The function Epsilon compute epsilon(QG,K,H) for H and K subgroups of G
 ##  such that H is normal in K. If the additional condition that K/H is 
 ##  cyclic holds, than the faster algorithm is used.
-##
-#M Epsilon( QG, K, H )
 ##
 InstallOtherMethod( Epsilon,
    "for pairs of subgroups", 
@@ -283,15 +275,15 @@ end);
 
 #############################################################################
 ##
+#M  Epsilon( FqG, K, H, C, ltrace )
+##
 ##  The function Epsilon computes epsilon( K, H, C), for H and K subgroups of G 
 ##  such that H is normal in K and K/H is cyclic group, and C is a cyclotomic class
 ##  of q=|Fq| module n=[K:H] containing generators of K/H.
 ##  The list ltrace contains information about the traces of the n-th roots of 1.   
 ##
-#M Epsilon( FqG, K, H, C, ltrace )
-##
 InstallMethod( Epsilon,
-   "for pairs of subgroups and one cyclotomic class", 
+   "for pairs of subgroups, one cyclotomic class and traces", 
    true, 
    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ], 
    0,
@@ -309,8 +301,7 @@ local   G,      # Group
         tr,     # Element of ltrace
         coeff,  # Coefficients of the output
         supp;   # Coefficients of the output
-        
-
+    
 # In this case the conditions are not necesary because this function
 # is used as local function of PCIs
 
@@ -338,14 +329,13 @@ return ElementOfMagmaRing(FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp);
 end);
 
 
-
 #############################################################################
+##
+##  Epsilon( FqG, K, H, c )
 ##
 ##  The function Epsilon computes epsilon( K, H, c ) for H and K subgroups of G
 ##  such that H is normal in K and K/H is cyclic group, and c is a cyclotomic class
 ##  of q=|Fq| module n=[K:H] containing generators of K/H.
-##
-## Epsilon( FqG, K, H, c )
 ##
 InstallOtherMethod( Epsilon,
    "for pairs of subgroups and one cyclotomic class", 
@@ -378,13 +368,7 @@ q := Size(Fq);
 # First we check that FqG is a finite group algebra over field finite
 # Then we check if K is subgroup of G, H is a normal subgroup of K
 
-if not( IsGroup( G ) and IsFinite( G ) ) then
-    Error("The first input must be a group ring of the finite group!!!");
-elif not( IsField( Fq ) and IsFinite( Fq ) ) then
-    Error("The ring of coefficients of first input must be a finite field!!!");
-elif Gcd( q, Size( G ) ) <> 1 then
-    Error("The group algebra is not semisimple!!!");
-elif not IsSubgroup( G, K ) then
+if not IsSubgroup( G, K ) then
     Error("The group algebra does not correspond to the subgroups!!!");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
     Error("The second subgroup must be normal in the first one!!!");
@@ -429,13 +413,14 @@ coeff:=Inverse(Size(K)*One(Fq))*coeff;
 return ElementOfMagmaRing(FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp);
 end);
 
+
 #############################################################################
+##
+## Hat( FG, X )
 ##
 ## The function Hat computes the element of FG defined by 
 ## ( 1/|X| )* sum_{x\in X} x 
 ##
-## Hat( FG, X )
-##                      
 InstallMethod( Hat,
    "for subset", 
    true, 
@@ -449,18 +434,18 @@ local   G,      # Group
         quo;    # n^-1 in F
 
 # Initialization        
-if not IsFinite( X )  then
-    Error("The second input must be finite set!!!"); 
+if not IsFinite( X ) then
+  Error("The second input must be finite set!!!"); 
 fi;
 G := UnderlyingMagma( FG );
 if not IsSubset( G, X ) then
-    Error("The group algebra does not correspond to the subset!!!"); 
+  Error("The group algebra does not correspond to the subset!!!"); 
 fi;
 F := LeftActingDomain( FG );
 one := One( F );
 n := Size( X );
 if not IsUnit( F, n*one ) then
-    Error("The order of second input must be a unit of the ring of coefficients!!!"); 
+  Error("The order of second input must be a unit of the ring of coefficients!!!"); 
 fi;
 
 # Program

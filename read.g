@@ -1,8 +1,9 @@
 #############################################################################
 ##
-#W  read.g                The Wedderga package                Aurora Olivieri
-#W                                                              Angel del Rio
+#W  read.g                 The Wedderga package           Osnel Broche Cristo
 #W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
 ##
 #H  $Id$
 ##
