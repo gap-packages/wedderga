@@ -40,14 +40,13 @@ local   F,      # Field
 F := LeftActingDomain( FG );
 G := UnderlyingMagma( FG );
        
-return IsField( F ) and IsFinite( F ) and IsFinite( G ) and Gcd( Size( F ), Size( G ) ) =1;
+return IsField( F ) and IsFinite( F ) and IsFinite( G ) and Gcd( Size( F ), Size( G ) )=1;
 end); 
 
 
 #############################################################################
 ##
 #M IsCompleteSetOfPCIs( QG, ListPCIs )
-##
 ##
 ## The function IsCompleteSetOfPCIs checks if the sum of the elements of QG is 1
 ## It is supposed to be used to check if a list of PCIs of QG is complete.
@@ -57,28 +56,28 @@ InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", 
 function( QG, ListPCIs )
     local x;
     if not IsSemisimpleRationalGroupAlgebra( QG ) then
-        Error("The first argument must be a rational group algebra!!!");
-    elif not ForAll(ListPCIs, x -> x in QG) then
-        Error("An element of the list of PCIs do not belong to the 1st argument!!!");
+        Error("Wedderga: The first argument must be a rational group algebra!!!\n");
+    elif not ForAll( ListPCIs, x -> x in QG ) then
+        Error("Wedderga: An element of the list of PCIs do not belong to the 1st argument!!!\n");
     else
         return Sum(ListPCIs)=One(QG);
     fi;
 end);
 
+
 #############################################################################
-##
-##  The function IsStronglyShodaPair verifies if (H,K) is a SSP 
 ##
 #F IsStronglyShodaPair( G, K, H )
 ##
+## The function IsStronglyShodaPair verifies if (H,K) is a SSP 
+##
 InstallMethod( IsStronglyShodaPair,
-                "for a group and two subgroups", 
-                true,
-                [ IsGroup, IsGroup, IsGroup ], 
-                0,
+    "for a group and two subgroups", 
+    true,
+    [ IsGroup, IsGroup, IsGroup ], 
+    0,
 function( G, K, H )
 local   QG,
-        zero,
         NH,
         Eps,
         NdK,
@@ -94,8 +93,8 @@ local   QG,
 
 # First verifies if H, K are subgroups of G and K is a normal subgroup of K
 if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("Each input should contain the next one and the last one should be normal ",
-            "in the second!!!\n");
+    Error("Wedderga: Each input should contain the next one and the last one \n",
+          "should be normal in the second!!!\n");
 fi;
 
 # Now, if K/H is the maximal abelian subgroup in N/H,
@@ -104,8 +103,8 @@ fi;
 NH:=Normalizer(G,H);
 
 if not(IsNormal( NH, K ) ) then
-    Print("The second input must be a normal subgroup in the normalizer of third one ",
-            "in the first\n");
+    Print("Wedderga: The second input must be a normal subgroup in the normalizer \n",
+          "of third one in the first\n");
     return false;
 fi;
 
@@ -126,19 +125,17 @@ fi;
 
 #Now (SSS3)
 QG := GroupRing( Rationals, G );
-zero := Zero( QG );
-Eps := Epsilon( QG, K, H );
+Eps := IdempotentBySubgroups( QG, K, H );
 NdK := Normalizer( G, K );
 
 if NdK<>G then
     RTNH := RightTransversal( NdK, NH );
-    eGKH1 := Sum(List(RTNH,g->Conjugate(QG,Eps,g)));
-#    eGKH := eGKH1;
+    eGKH1 := Sum( List( RTNH, g -> Conjugate( QG, Eps, g ) ) );
     RTNdK := RightTransversal( G, NdK );
     nRTNdK:=Length(RTNdK);
     for i in [ 2 .. nRTNdK ] do
         g:=RTNdK[i];
-        if eGKH1*Conjugate(QG,eGKH1,g) <> zero then
+        if not IsZero( eGKH1*Conjugate(QG,eGKH1,g) ) then
             Print("The conjugates of epsilon are not orthogonal \n");
             return  false;
         fi;
@@ -149,19 +146,20 @@ return true;
 
 end);
 
+
 #############################################################################
 ##
-#M  CentralizerG( FG, a )
+#M CentralizerInUnderlyingGroup( FG, a )
 ##
 ##
-##  The function CentralizerG computes the centralizer of an element of a group ring in the 
-##  defining underlying group
+## The function CentralizerInUnderlyingGroup computes the centralizer of an
+## element of a group ring in the underlying group
 ##
-InstallMethod(  CentralizerG,
-                "for an group ring element",
-                true, 
-                [ IsFreeMagmaRing, IsElementOfFreeMagmaRing ], 
-                0,
+InstallMethod(  CentralizerInUnderlyingGroup,
+    "for an group ring element",
+    true, 
+    [ IsGroupRing, IsElementOfFreeMagmaRing ], 
+    0,
 function( FG, a ) 
 local   G,
         C,
@@ -170,13 +168,11 @@ local   G,
         one,
         ElemG,
         g;
-
-    if not IsGroupRing( FG ) then
-        Error("The first argument must be a group ring !!!\n");
-    fi;
-    
+ 
+# ??? CAN THIS BE HIDDEN IN METHOD DECLARATION ???
+ 
     if not a in FG then
-        Error("The second argument must be an element of the first one !!!\n");
+        Error("Wedderga: The second argument must be an element of the first one !!!\n");
     fi;
 
 G := UnderlyingMagma( FG );
@@ -198,30 +194,27 @@ return C;
 end);
 
 
-
 #############################################################################
 ##
-#M  Conjugate( FG, a, g )
+#M Conjugate( FG, a, g )
 ##
-##
-##  The function Conjugate computes the conjugate a^g where a is an element of the group ring
-##  FG and g an element of G.
+## The function Conjugate computes the conjugate a^g where a is an element 
+## of the group ring FG and g an element of G.
 ##
 InstallMethod(  Conjugate,
-                "for a group ring element and a group element",
-                true, 
-                [ IsFreeMagmaRing, IsElementOfFreeMagmaRing, IsObject ], 
-                0,
+    "for a group ring element and a group element",
+    true, 
+    [ IsGroupRing, IsElementOfFreeMagmaRing, IsObject ], 
+    0,
 function( FG, a, g )
 local   coeffsupp,
         coeff,
         supp,
         lsupp;
 
-    if not IsGroupRing(FG) then
-        Error("The first argument must be a group ring !!!\n");
-    fi;
-    
+#
+# CAN WE ELIMINATE THIS TESTS HIDDING THEM IN THE METHOD DEFINITION ? 
+#
     if not a in FG then
         Error("The second argument must be an element of the first one !!!\n");
     fi;
@@ -232,8 +225,8 @@ local   coeffsupp,
 
 coeffsupp := CoefficientsAndMagmaElements(a);
 lsupp := Size(coeffsupp)/2;
-supp := List([1..lsupp],i->coeffsupp[2*i-1]^g);
-coeff := List([1..lsupp],i->coeffsupp[2*i]);
+supp := List( [ 1 .. lsupp ], i -> coeffsupp [ 2*i-1 ]^g );
+coeff := List([ 1 .. lsupp ], i -> coeffsupp[2*i] );
 
 return ElementOfMagmaRing( FamilyObj( a ) ,
                                Zero( a ),
@@ -244,16 +237,16 @@ end);
 
 #############################################################################
 ##
+## CyclotomicClasses( q, n )
+##
 ## The function CyclotomicClasses computes the set of the Cyclotomic Classes
 ## of q module n 
 ##
-## CyclotomicClasses( q, n )
-##
 InstallMethod( CyclotomicClasses,
-   "for pairs of positive integers", 
-   true, 
-   [ IsPosInt, IsPosInt ], 
-   0,
+    "for pairs of positive integers", 
+    true, 
+    [ IsPosInt, IsPosInt ], 
+    0,
 function(q, n)
 local   cc,     # List of cyclotomic classes
         ccc,    # Cyclotomic Class
@@ -286,16 +279,16 @@ end);
 
 #############################################################################
 ##
+## BigPrimitiveRoot( q )
+##
 ## The function BigPrimitiveRoot computes a primitive root of the finite field
 ## of order q.
 ##
-## BigPrimitiveRoot( q )
-##
 InstallMethod( BigPrimitiveRoot,
-   "for a prime power", 
-   true, 
-   [ IsPosInt ], 
-   0,
+    "for a prime power", 
+    true, 
+    [ IsPosInt ], 
+    0,
 function(q)
 local   Fq,      # The finite field of order q
         factors, # prime factors of q
@@ -306,7 +299,7 @@ local   Fq,      # The finite field of order q
 
 # Initialization     
 if not IsPrimePowerInt( q ) then
-    Error("The input must be a prime power!!!"); 
+    Error("Wedderga: The input must be a prime power!!!"); 
 fi;
 
 #Program
@@ -332,15 +325,16 @@ end);
 
 #############################################################################
 ##
-## The function BigTrace returns the trace of the element a in the field extension Fq^o/Fq.
+## BigTrace( o, Fq, a )
 ##
-## BigTrace( o, Fq, a)
+## The function BigTrace returns the trace of the element a in the field 
+## extension Fq^o/Fq.
 ##
 InstallMethod( BigTrace,
-   "for elements of finite fields", 
-   true, 
-   [ IsPosInt, IsField, IsObject ], 
-   0,
+    "for elements of finite fields", 
+    true, 
+    [ IsPosInt, IsField, IsObject ], 
+    0,
 function(o, Fq, a)
 local   q,      # The order of the field Fq
         t, y,   # Elements of finite field
@@ -359,3 +353,9 @@ if not(IsFFE(t)) then
 fi;
   return t;
 end);
+
+
+#############################################################################
+##
+#E
+##

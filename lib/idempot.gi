@@ -12,16 +12,16 @@
 
 #############################################################################
 ##
-#M eGKH( QG, K, H )
+#M CentralElementBySubgroups( QG, K, H )
 ##
-##  The function eGKH computes e(G,K,H) for H and K subgroups of G 
-##  such that H is normal in K
+## The function CentralElementBySubgroups computes e(G,K,H) for H and K, 
+## where H and K are subgroups of G such that H is normal in K
 ##
-InstallOtherMethod(  eGKH,
-                "for pairs of subgroups", 
-                true, 
-                [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
-                0,
+InstallOtherMethod( CentralElementBySubgroups,
+    "for pairs of subgroups", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
 function( QG, K, H )
 local   alpha, 
         G, 
@@ -35,41 +35,39 @@ local   alpha,
         NH;
     
     if not(IsSubgroup(UnderlyingMagma(QG),K)) then
-        Print("The group algebra does not correspond to the subgroups \n");
-        return fail;
-    elif not(IsSubgroup(K,H) or IsNormal(K,H)) then
-        Print("The second subgroup must be normal in the first one \n");
-        return fail;
+        Error("Wedderga: The group algebra does not correspond to the subgroups !!!\n");
+    elif not( IsSubgroup(K,H) and IsNormal(K,H) ) then
+        Error("Wedderga: The second subgroup must be normal in the first one !!!\n");
     fi;
 
-    G:=UnderlyingMagma(QG);
-    NH:=Normalizer(G,H);
-    Eps:=Epsilon(QG,K,H);
-    if (IsCyclic(FactorGroup(K,H)) and IsNormal(NH,K)) then 
-        Cen:=NH;
+    G := UnderlyingMagma( QG );
+    NH := Normalizer( G, H );
+    Eps := IdempotentBySubgroups( QG, K, H );
+    if ( IsCyclic(FactorGroup(K,H)) and IsNormal(NH,K) ) then 
+        Cen := NH;
     else 
         Cen := Centralizer( QG, Eps );
     fi;
-    RTCen:=RightTransversal(G,Cen); 
+    RTCen := RightTransversal( G, Cen ); 
  
-return Sum(List(RTCen,g->Conjugate(QG,Eps,g)));
+return Sum( List( RTCen, g -> Conjugate( QG, Eps, g ) ) );
 end);
 
 
 #############################################################################
 ##  
-##  eGKH( FqG, K, H, c, ltrace )
+## CentralElementBySubgroups( FqG, K, H, c, ltrace )
 ##
-##  The function eGKH computes e(G, K, H, C) for H and K subgroups of G
-##  such that H is normal in K and K/H is cyclic group, and C is a cyclotomic 
-##  class of q=|Fq| module n=[K:H] containing generators of K/H.
-##  The list ltrace contains information about the trace of a n-th roots of 1.  
+## The function CentralElementBySubgroups computes e(G, K, H, C) for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
+## The list ltrace contains information about the trace of a n-th roots of 1.  
 ##
-InstallMethod( eGKH,
-                "for pairs of subgroups and one cyclotomic class", 
-                true, 
-                [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ],
-                0,
+InstallMethod( CentralElementBySubgroups,
+    "for pairs of subgroups, one cyclotomic class and trace info", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ],
+    0,
 function( FqG, K, H, c, ltrace )
 local   G,      # Group
         N,      # Normalizer of H in G
@@ -81,19 +79,24 @@ local   G,      # Group
         St,     # Stabilizer of C in K/H
         N1,     # Set of representatives of St by epi
         GN1,    # Right transversal of N1 in G
-        Eps;    # Epsilon function
+        Eps;    # the result of the IdempotentBySubgroups function
 
-G := UnderlyingMagma(FqG);
-N := Normalizer(G,H);
-epi := NaturalHomomorphismByNormalSubgroup(N,H);
-QNH := Image(epi,N);
-QKH := Image(epi,K);
-gq := MinimalGeneratingSet(QKH)[1];
-C1 := Set(List(c,ii->gq^ii));
-St := Stabilizer(QNH,C1,OnSets);
-N1 := PreImage(epi,St);
-GN1 := RightTransversal(G,N1);
-Eps := Epsilon(FqG, K, H, c,ltrace);
+G := UnderlyingMagma( FqG );
+N := Normalizer( G, H );
+epi := NaturalHomomorphismByNormalSubgroup( N, H );
+QNH := Image( epi, N );
+QKH := Image( epi, K );
+#
+# ??? Why we need the 1st generator from the minimal set ???
+#     Will it be enough to take arbitrary generator 
+#     or the first one with the required property ?
+#
+gq := MinimalGeneratingSet( QKH )[1];
+C1 := Set( List( c, ii -> gq^ii ) );
+St := Stabilizer( QNH, C1, OnSets );
+N1 := PreImage( epi, St );
+GN1 := RightTransversal( G, N1 );
+Eps := IdempotentBySubgroups( FqG, K, H, c, ltrace );
 
 return Sum( List( GN1, g -> Conjugate( FqG, Eps, g ) ) );
 end);
@@ -101,17 +104,17 @@ end);
 
 #############################################################################
 ##
-##  eGKH( FqG, K, H, c )
+## CentralElementBySubgroups( FqG, K, H, c )
 ##
-##  The function eGKH computes e( G, K, H, c) for H and K subgroups of G such
-##  that H is normal in K and K/H is cyclic group, and C is a cyclotomic class
-##  of q=|Fq| module n=[K:H] containing generators of K/H.
+## The function CentralElementBySubgroups computes e( G, K, H, c) for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
 ##
-InstallOtherMethod( eGKH,
-   "for pairs of subgroups and one cyclotomic class", 
-   true, 
-   [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ],
-   0,
+InstallOtherMethod( CentralElementBySubgroups,
+    "for pairs of subgroups and one cyclotomic class", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ],
+    0,
 function( FqG, K, H, c )
 local   G,          # Group
         Fq,         # Field
@@ -139,9 +142,9 @@ q := Size( Fq );
 # Then we check if K is subgroup of G, H is a normal subgroup of K
 
 if not IsSubgroup( G, K ) then
-    Error("The group algebra does not correspond to the subgroups!!!");
+    Error("Wedderga: The group algebra does not correspond to the subgroups!!!\n");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("The second subgroup must be normal in the first one!!!");
+    Error("Wedderga: The second subgroup must be normal in the first one!!!\n");
 fi;
 
 # Now we check that K/H is a cyclic group 
@@ -149,33 +152,38 @@ fi;
 # and this class in K/H contain generators of K/H
 
 if not IsCyclic( FactorGroup( K, H ) )then
-    Error("The factor group of input subgroups must be cyclic!!!");
+    Error("Wedderga: The factor group of input subgroups must be cyclic!!!\n");
 fi; 
   
 n := Index( K, H );
 cc := CyclotomicClasses( q, n );
 
 if not c in cc then
-    Error("The input class does not correspond to the subgroups!!!");
+    Error("Wedderga: The input class does not correspond to the subgroups!!!");
 elif Gcd( c[1], n ) <> 1 then
-    Error("The input class is not aproprierty!!!");
+    Error("Wedderga: The input class is not apropriate!!!");
 fi; 
 
 # Program
 
 if K=H then
-    return Hat( FqG, H );
+    return AverageSum( FqG, H );
 fi;
-N := Normalizer(G,H);
-epi := NaturalHomomorphismByNormalSubgroup(N,H);
-QNH := Image(epi,N);
-QKH := Image(epi,K);
-gq := MinimalGeneratingSet(QKH)[1];
-C1 := Set(List(c,ii->gq^ii));
-St := Stabilizer(QNH,C1,OnSets);
-N1 := PreImage(epi,St);
-GN1 := RightTransversal(G,N1);
-Eps := Epsilon(FqG, K, H, c);
+N := Normalizer( G, H );
+epi := NaturalHomomorphismByNormalSubgroup( N, H );
+QNH := Image( epi, N );
+QKH := Image( epi, K );
+#
+# ??? Why we need the 1st generator from the minimal set ???
+#     Will it be enough to take arbitrary generator 
+#     or the first one with the required property ?
+#
+gq := MinimalGeneratingSet( QKH )[1];
+C1 := Set( List( c, ii -> gq^ii ) );
+St := Stabilizer( QNH, C1, OnSets );
+N1 := PreImage( epi, St );
+GN1 := RightTransversal( G, N1);
+Eps := IdempotentBySubgroups( FqG, K, H, c );
 
 return Sum( List( GN1, g -> Conjugate( FqG, Eps, g ) ) );
 end);
@@ -183,19 +191,18 @@ end);
 
 #############################################################################
 ##
-#M  Epsilon( QG, K, H )
+#M IdempotentBySubgroups( QG, K, H )
 ##
-##  The function Epsilon compute epsilon(QG,K,H) for H and K subgroups of G
-##  such that H is normal in K. If the additional condition that K/H is 
-##  cyclic holds, than the faster algorithm is used.
+## The function IdempotentBySubgroups compute epsilon(QG,K,H) for H and K 
+## subgroups of G such that H is normal in K. If the additional condition 
+## holds that K/H is cyclic, than the faster algorithm is used.
 ##
-InstallOtherMethod( Epsilon,
-   "for pairs of subgroups", 
-   true, 
-   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
-   0,
+InstallOtherMethod( IdempotentBySubgroups,
+    "for pairs of subgroups", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
 function( QG, K, H )
-
 local   L,       # Subgroup of G
         G,       # Group
         Emb,     # Embedding of G in QG
@@ -223,9 +230,9 @@ local   L,       # Subgroup of G
 #First we check if K is subgroup of G, H is a normal subgroup of K
 
 if not IsSubgroup( UnderlyingMagma( QG ),K ) then
-    Error("The group algebra does not correspond to the subgroups!!!");
+    Error("Wedderga: The group algebra does not correspond to the subgroups!!!\n");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("The second subgroup must be normal in the first one!!!");
+    Error("Wedderga: The second subgroup must be normal in the first one!!!\n");
 fi;
 
 # Initialization
@@ -239,32 +246,34 @@ if IsCyclic(KH) then
     ElemH:=Elements(H);
     OrderH:=Size(H);
     if K=H then
-        for i in [1..OrderH] do
-            Epsilon :=List([1..OrderH],h->1/OrderH);  
-            # If H=K then Epsilon = Hat( QG, H )
+        for i in [ 1 .. OrderH ] do
+            Epsilon := List( [1 .. OrderH ], h -> 1/OrderH );  
+            # If H=K then Epsilon = AverageSum( QG, H )
             Supp := ElemH;
         od;
     else
-        n:=Size(KH);
-        y:=Product(IndependentGeneratorsOfAbelianGroup(KH));
-        x:=PreImagesRepresentative(Epi,y);
-        p:= Set(FactorsInt(n));
-        Lp:=Length(p);
-        Comb:=Cartesian(List([1..Lp],i->List([1..p[i]])){[1..Lp]});
-        exp:=List(Comb,i->Sum(List([1..Lp],j->n/p[j]*i[j])));
-        coeff:=List(Comb,
-            i->Product(List([1..Lp],j->-1/p[j]+Int(i[j]/p[j]))));
-        Supp:=List(Cartesian(exp,ElemH),i->(x^i[1])*i[2]);
-        Epsilon:=List(Cartesian(coeff,[1..OrderH]),i->i[1]/OrderH);   
+        n := Size( KH );
+        y := Product( IndependentGeneratorsOfAbelianGroup( KH ) );
+        x := PreImagesRepresentative( Epi, y );
+        p := Set( FactorsInt( n ) );
+        Lp := Length( p );
+        #
+        # !!! Cartesian can be expensive - check if this might be optimized !!!
+        #
+        Comb := Cartesian( List( [1..Lp], i -> List( [ 1 .. p[i] ] ) ){[1..Lp]} );
+        exp := List( Comb, i -> Sum( List( [1..Lp], j -> n/p[j]*i[j] ) ) );
+        coeff := List(Comb, i -> Product( List( [1..Lp], j -> -1/p[j]+Int(i[j]/p[j] ) ) ) );
+        Supp := List( Cartesian( exp, ElemH ), i -> (x^i[1])*i[2] );
+        Epsilon := List( Cartesian( coeff, [1..OrderH] ), i -> i[1]/OrderH );   
     fi;
-    return ElementOfMagmaRing(FamilyObj(Zero(QG)),0,Epsilon,Supp);
+    return ElementOfMagmaRing( FamilyObj(Zero(QG)), 0, Epsilon, Supp );
 else
-    Epsilon := Hat( QG, H );
-    hatH:=Epsilon;
-    MNSKH:=MinimalNormalSubgroups(KH);
+    Epsilon := AverageSum( QG, H );
+    hatH := Epsilon;
+    MNSKH := MinimalNormalSubgroups( KH );
     for i in MNSKH do
-        L:=PreImage(Epi,i);
-        Epsilon:=Epsilon*(hatH-Hat(QG,L));
+        L := PreImage( Epi, i );
+        Epsilon := Epsilon * ( hatH - AverageSum( QG, L ) );
     od;
 fi;
 
@@ -275,24 +284,24 @@ end);
 
 #############################################################################
 ##
-#M  Epsilon( FqG, K, H, C, ltrace )
+#M IdempotentBySubgroups( FqG, K, H, C, ltrace )
 ##
-##  The function Epsilon computes epsilon( K, H, C), for H and K subgroups of G 
-##  such that H is normal in K and K/H is cyclic group, and C is a cyclotomic class
-##  of q=|Fq| module n=[K:H] containing generators of K/H.
-##  The list ltrace contains information about the traces of the n-th roots of 1.   
+## The function IdempotentBySubgroups computes epsilon( K, H, C), for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
+## The list ltrace contains information about the traces of the n-th roots of 1.   
 ##
-InstallMethod( Epsilon,
-   "for pairs of subgroups, one cyclotomic class and traces", 
-   true, 
-   [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ], 
-   0,
+InstallMethod( IdempotentBySubgroups,
+    "for pairs of subgroups, one cyclotomic class and traces", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ], 
+    0,
 function(FqG, K, H, c, ltrace)
 local   G,      # Group
         Fq,     # Field
         q,      # Order of field Fq
         N,      # Normalizer of H in G
-        epi,    # N -->N/H
+        epi,    # N --> N/H
         QKH,    # K/H
         n,      # Order of K/H
         gq,     # Generator of K/H
@@ -306,42 +315,45 @@ local   G,      # Group
 # is used as local function of PCIs
 
 # Program
-G := UnderlyingMagma(FqG);
-Fq := LeftActingDomain(FqG);
-q := Size(Fq);
-n := Index(K,H);
-cc := CyclotomicClasses(q,n);
-N := Normalizer(G,H);
-epi := NaturalHomomorphismByNormalSubgroup(N,H);
-QKH := Image(epi,K);
+G := UnderlyingMagma( FqG );
+Fq := LeftActingDomain( FqG );
+q := Size( Fq );
+n := Index( K, H );
+cc := CyclotomicClasses( q, n );
+N := Normalizer( G, H );
+epi := NaturalHomomorphismByNormalSubgroup( N, H );
+QKH := Image( epi, K );
+#
+# ??? THE SAME QUESTION ABOUT MINIMAL GENERATING SET ???
+#
 gq := MinimalGeneratingSet(QKH)[1];
 supp := [];
 coeff := [];
 for d in cc do
-    tr := ltrace[1+(-c[1]*d[1] mod n)];
+    tr := ltrace[ 1+(-c[1]*d[1] mod n) ];
     Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
     Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
 od;
 coeff:=Inverse(Size(K)*One(Fq))*coeff;
 
 # Output
-return ElementOfMagmaRing(FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp);
+return ElementOfMagmaRing( FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp );
 end);
 
 
 #############################################################################
 ##
-##  Epsilon( FqG, K, H, c )
+## IdempotentBySubgroups( FqG, K, H, c )
 ##
-##  The function Epsilon computes epsilon( K, H, c ) for H and K subgroups of G
-##  such that H is normal in K and K/H is cyclic group, and c is a cyclotomic class
-##  of q=|Fq| module n=[K:H] containing generators of K/H.
+## The function IdempotentBySubgroups computes epsilon( K, H, c ) for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and c 
+## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
 ##
-InstallOtherMethod( Epsilon,
-   "for pairs of subgroups and one cyclotomic class", 
-   true, 
-   [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
-   0,
+InstallOtherMethod( IdempotentBySubgroups,
+    "for pairs of subgroups and one cyclotomic class", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
+    0,
 function( FqG, K, H, c )
 local   G,      # Group
         Fq,     # Field
@@ -369,9 +381,9 @@ q := Size(Fq);
 # Then we check if K is subgroup of G, H is a normal subgroup of K
 
 if not IsSubgroup( G, K ) then
-    Error("The group algebra does not correspond to the subgroups!!!");
+    Error("Wedderga: The group algebra does not correspond to the subgroups!!!\n");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("The second subgroup must be normal in the first one!!!");
+    Error("Wedderga: The second subgroup must be normal in the first one!!!\n");
 fi;
 
 # Now we check that K/H is a cyclic group 
@@ -379,31 +391,34 @@ fi;
 # and this class in K/H contain generators of K/H
 
 if not IsCyclic( FactorGroup( K, H ) )then
-    Error("The factor group of input subgroups must be cyclic!!!");
+    Error("Wedderga: The factor group of input subgroups must be cyclic!!!\n");
 fi; 
 n := Index(K,H);
 cc := CyclotomicClasses(q,n);
 if not c in cc then
-    Error("The input class does not correspond to the subgroups!!!");
+    Error("Wedderga: The input class does not correspond to the subgroups!!!\n");
 elif Gcd( c[1], n ) <> 1 then
-    Error("The cyclotomic class does not contain a generator of the quotient group!!!");
+    Error("Wedderga: The cyclotomic class does not contain a generator of the quotient group!!!\n");
 fi; 
 
 # Program
 
 if K=H then
-    return Hat( FqG, H );
+    return AverageSum( FqG, H );
 fi;
-N := Normalizer(G,H);
-epi := NaturalHomomorphismByNormalSubgroup(N,H);
-QKH := Image(epi,K);
-gq := MinimalGeneratingSet(QKH)[1];
-o  := Size(cc[2]);
+N := Normalizer( G, H );
+epi := NaturalHomomorphismByNormalSubgroup( N, H );
+QKH := Image( epi, K );
+#
+# ??? THE SAME ???
+#
+gq := MinimalGeneratingSet( QKH )[1];
+o  := Size( cc[2] );
 a := BigPrimitiveRoot(q^o)^((q^o-1)/n);
 supp := [];
 coeff := []; 
 for d in cc do
-    tr := BigTrace(o, Fq, a^(-c[1]*d[1]));
+    tr := BigTrace(o, Fq, a^(-c[1]*d[1]) );
     Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
     Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
 od;
@@ -416,16 +431,16 @@ end);
 
 #############################################################################
 ##
-## Hat( FG, X )
+## AverageSum( FG, X )
 ##
-## The function Hat computes the element of FG defined by 
+## The function AverageSum computes the element of FG defined by 
 ## ( 1/|X| )* sum_{x\in X} x 
 ##
-InstallMethod( Hat,
-   "for subset", 
-   true, 
-   [ IsGroupRing, IsObject ], 
-   0,
+InstallMethod( AverageSum,
+    "for subset", 
+    true, 
+    [ IsGroupRing, IsObject ], 
+    0,
 function(FG,X)
 local   G,      # Group
         n,      # Size of the set X
@@ -435,26 +450,33 @@ local   G,      # Group
 
 # Initialization        
 if not IsFinite( X ) then
-  Error("The second input must be finite set!!!"); 
+  Error("Wedderga: The second input must be finite set!!!\n"); 
 fi;
 G := UnderlyingMagma( FG );
 if not IsSubset( G, X ) then
-  Error("The group algebra does not correspond to the subset!!!"); 
+  Error("The group algebra does not correspond to the subset!!!\n"); 
 fi;
 F := LeftActingDomain( FG );
 one := One( F );
 n := Size( X );
 if not IsUnit( F, n*one ) then
-  Error("The order of second input must be a unit of the ring of coefficients!!!"); 
+  Error("The order of second input must be a unit of the ring of coefficients!!!\n"); 
 fi;
-
+#
+# First we check if it is a unit and then compute inverse. Computing Inverse, we do not
+# specify, where. Can we just compute inverse, and if it will be not a unit, then check
+# if fail was returned and return an error message in this case
+#
 # Program
 quo := Inverse( n * one );
-if not IsList( X ) then 
-    X := AsList( X );
-fi;
 return ElementOfMagmaRing( FamilyObj( Zero( FG ) ),
                            Zero( F ),
                            List( [1..n] , i -> quo),
-                           X );
+                           AsList(X) );
 end);
+
+
+#############################################################################
+##
+#E
+##
