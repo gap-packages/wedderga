@@ -4,24 +4,24 @@
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                              Ángel del Río
+##
 #H  $Id$
 ##
 #############################################################################
 
 #############################################################################
 ##
-##  The function PCIsFromShodaPairs computes the primitive central
-##  idempotents of the form a e (G,K,H) where a is a rational number
-##  and (H,K) is a SP. The sum of the PCIs obtained is 1 if and only
-##  if G is monomial
+#F ListOfPrimitiveCentralIdempotentsBySP( QG )
 ##
-#F PCIsFromShodaPairs( QG ) 
+## The function ListOfPrimitiveCentralIdempotentsBySP computes the primitive central
+## idempotents of the form a e (G,K,H) where a is a rational number and (H,K)
+## is a SP. The sum of the PCIs obtained is 1 if and only if G is monomial
 ## 
-InstallGlobalFunction(PCIsFromShodaPairs, 
+InstallGlobalFunction(ListOfPrimitiveCentralIdempotentsBySP, 
 function(QG) 
 local   G,          #The group
         CCS,        #The conjugacy classes of subgroups
-        LCCS,       #The lenght of CCS
+        LCCS,       #The length of CCS
         zero,       #0 of QG
         one,        #1 of QG
         Es,         #The list of primitive central idempotents  
@@ -36,7 +36,7 @@ local   G,          #The group
 #The following function search an element K such that 
 #(K,H) is a SP
    
-    SearchingKForSP:=function(H)
+    SearchingKForSP:=function( H )
     local   
         NH,         #Normalizer of H in G
         Epi,        #NH --> NH/H        
@@ -48,42 +48,37 @@ local   G,          #The group
         KH,         #K/H
         X;          #a subset of NHH
 
-        NH:=Normalizer(G,H);
-        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
-        NHH:=Image(Epi,NH);
-        if IsAbelian(NHH) then 
-            e:=PCIFromSP( QG, NH, H );
-            if e<>false and SEs*e=zero then
-                return e;
-            fi;
-        else 
-            L:=Centre(NHH);
-            if IsCyclic(L) then #This guaranties (S1) and (S2)
-                X:=Difference(Elements(NHH),Elements(L));
-                while X<>[] do
-                    KH:=Subgroup(NHH,Union(L,[X[1]]));
-                    K:=PreImages(Epi,KH);
-                    e:=PCIFromSP( QG, K, H ); 
-                    if e<>false and SEs*e=zero then
-                        return e;
-                    fi;
-                    X:=Difference(X,KH);
-                od;
-            fi;
+    NH:=Normalizer(G,H);
+    Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
+    NHH:=Image(Epi,NH);
+    if IsAbelian(NHH) then 
+        return PrimitiveCentralIdempotentBySP( QG, NH, H );
+    else 
+        L:=Centre(NHH);
+        if IsCyclic(L) then #This guaranties (S1) and (S2)
+            X:=Difference(Elements(NHH),Elements(L));
+            while X<>[] do
+                KH:=Subgroup(NHH,Union(L,[X[1]]));
+                K:=PreImages(Epi,KH);
+                e:=PrimitiveCentralIdempotentBySP( QG, K, H ); 
+                if e<>fail then
+                    return e;
+                fi;
+                X:=Difference(X,KH);
+            od;
         fi;
-    return false;                  
+        return fail;                  
+    fi;
     end;     
 
 #end of functions
 
 #PROGRAM
     
-#We start checking if QG is a rational group algebra of a 
-#finite group
+#We start checking if QG is a rational group algebra of a finite group
 
     if not IsSemisimpleRationalGroupAlgebra(QG) then
-        Print("The input must be a rational group algebra!!!\n");
-        return fail;
+        Error("Wedderga: The input must be a rational group algebra!!!\n");
     fi;
 
 #Initialization
@@ -99,64 +94,63 @@ local   G,          #The group
 
 #Main loop
     if Size(G)=1 then
-        return [One(QG)];
+        return [ One(QG) ];
     fi;
     while SEs<>one and i>=1 do 
         H:=Representative(CCS[i]); 
-        e:=SearchingKForSP(H); 
-        if e<>false then
-            SEs:= SEs + e;
-            Add(Es,e);
+        e:=SearchingKForSP( H ); 
+        if e<>fail then
+            if IsZero( SEs*e ) then
+                SEs:= SEs + e;
+                Add(Es,e);
+            fi;    
         fi;
         i:=i-1;
     od;
     
 #Output
     if SEs<>one then 
-        Print("Caution! It is not a complete set of primitive central idempotents \n");
+        Print("Warning! This is not a complete set of primitive central idempotents!!!\n");
     fi;
     return Es;
 end);
 
+
 #############################################################################
 ##
-##  The function PCIFromSP checks if (H,K) is a SP of G and in that
-##  case compute the primitive central idempotent of the form a e(G,K,H) where 
-##  a is a rational number.
+#M PrimitiveCentralIdempotentBySP( QG, K, H )
 ##
-#M PCIFromSP( QG, K, H )
+## The function PrimitiveCentralIdempotentBySP checks if (H,K) is a SP of G 
+## and in that case compute the primitive central idempotent of the form 
+## alpha*e(G,K,H), where alpha is a rational number.
 ##
-InstallMethod( PCIFromSP,
-                "for pairs of subgroups", 
-                true, 
-                [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ],
-                0,
+InstallMethod( PrimitiveCentralIdempotentBySP,
+   "for pairs of subgroups", 
+   true, 
+   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ],
+   0,
 function(QG,K,H)
-local   eG,             #Function for eGKH
-        K1, H1,         #Subgroups of G
-        G,              #The group
-        e1,             #eGKH
-        e2,             #eGKH^2
-        B,              #basis
-        ce1,            #Coeficients of e1
-        ce2,            #Coeficients of e1
-        alpha;          #ce1[1]/ce2[1]
+local   eG,         # Function for eGKH
+        K1, H1,     # Subgroups of G
+        G,          # The group
+        e1,         # eGKH
+        e2,         # eGKH^2
+        alpha;      # coeff e1 / coeff ce2
 
 #begin of functions    
 
 #The following function computes e(G,K,H)    
 
     eG:=function(K1,H1)
-    local   alpha,          #Element of QG   
+    local   alpha,  # Element of QG   
             Eps,    # \varepsilon(K1,H1), 
-            Cen,     # Centralizer of Eps in G
-            RTCen,   # Right transversal of Cen in G
+            Cen,    # Centralizer of Eps in G
+            RTCen,  # Right transversal of Cen in G
             g;      # element of G
-
         
-        Eps:=Epsilon(QG,K1,H1);
-        Cen:=CentralizerG( QG,Eps );
-        RTCen:=RightTransversal(G,Cen);
+    Eps := IdempotentBySubgroups( QG, K1, H1 );
+    Cen := CentralizerInUnderlyingGroup( QG,Eps );
+    RTCen := RightTransversal( G, Cen );
 
     return Sum( List( RTCen, g -> Conjugate( QG, Eps, g ) ) ) ;
     end;
@@ -170,33 +164,30 @@ local   eG,             #Function for eGKH
     if IsShodaPair( G, K, H ) then
         e1:=eG(K,H);
         e2:=e1^2;
-        if e2=e1 then
-            return  e1;
-        else
-            B:=Basis(QG);
-            ce1:=Coefficients(B,e1);
-            ce2:=Coefficients(B,e2);
-            alpha:=ce1[1]/ce2[1];
-        fi;
-    else 
-        return false;
-    fi;
-#Here finish the main loop
+        alpha := CoefficientsAndMagmaElements(e1)[2] / 
+                 CoefficientsAndMagmaElements(e2)[2];        
+        if IsOne( alpha ) then
+            return e1;
+        else    
+            return alpha*e1;      
+        fi;    
+    else
+        return fail;
+    fi;            
+end);        
 
-return alpha*e1;
-end);
 
 #############################################################################
 ##
-##  The function IsShodaPair verifies if (H,K) is a SP 
-##
 #M IsShodaPair( G, K, H )
 ##
+## The function IsShodaPair verifies if (H,K) is a SP 
+##
 InstallMethod( IsShodaPair,
-                "for pairs of subgroups", 
-                true, 
-                [ IsGroup, IsGroup, IsGroup ],
-                0,
+    "for pairs of subgroups", 
+    true, 
+    [ IsGroup, IsGroup, IsGroup ],
+    0,
 function( G, K, H )
 local       DGK,        # G\K
             ElemK,      # Elements of K
@@ -205,12 +196,11 @@ local       DGK,        # G\K
             g,          # Elements of DGK
             NoReady;    # Boolean
 
-#PROGRAM
-#Checking (S1) and (S2)
+# Checking (S1) and (S2)
 # First verifies if H, K are subgroups of G and K is a normal subgroup of K
 if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("Each input should contain the next one and the last one should be normal ",
-            "in the second!!!\n");
+    Error("Wedderga: Each input should contain the next one and the last one \n",
+          "should be normal in the second!!!\n");
 elif not( IsCyclic( FactorGroup( K, H ) ) ) then
     Print("The second input over the third one should be cyclic\n");
     return false;
@@ -237,15 +227,18 @@ od;
 return true;
 end);
 
+
 #############################################################################
 ##
-##  The function PCIsUsingCharacterTable uses the character table of G to compute the 
-##  primitive central idempotents of QG with the classical method.
+#F PrimitiveCentralIdempotentsByCharacterTable( QG )
 ##
-#F PCIsUsingCharacterTable( QG ) 
-## 
-
-InstallGlobalFunction( PCIsUsingCharacterTable, 
+## The function PrimitiveCentralIdempotentsByCharacterTable 
+## uses the character table of G to compute the primitive 
+## central idempotents of QG with the classical method.
+##
+## !!! THIS IS STILL NOT THOMAS BREUER IMPLEMENTATION !!!
+##
+InstallGlobalFunction( PrimitiveCentralIdempotentsByCharacterTable, 
 function(QG) 
 local   G,      #The group
         ElemG,  #The elements of G
@@ -272,8 +265,7 @@ local   G,      #The group
 #First one check if QG is a rational group algebra of a finite group
 
     if not IsSemisimpleRationalGroupAlgebra(QG) then
-        Print("The input must be a rational group algebra \n");
-        return fail;
+        Error("Wedderga: The input must be a rational group algebra \n");
     fi;
 
 #Initialization
@@ -337,35 +329,37 @@ end);
 
 #############################################################################
 ##
-##  The function PCIsUsingConlon uses the function IrrConlon to compute the 
+#F PrimitiveCentralIdempotentsUsingConlon( QG )
+##
+##  The function PrimitiveCentralIdempotentsUsingConlon uses the function IrrConlon to compute the 
 ##  primitive central idempotents of QG associated to monomial representations
-##  The result is the same as the function PCIsFromShodaPairs but it is slower
+##  The result is the same as the function ListOfPrimitiveCentralIdempotentsBySP but it is slower
 ##
-#F PCIsUsingConlon( QG )
-##
-InstallGlobalFunction(PCIsUsingConlon,
+InstallGlobalFunction(PrimitiveCentralIdempotentsUsingConlon,
 function(QG)
-local   G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H; 
+local G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H; 
 
     if not IsSemisimpleRationalGroupAlgebra(QG) then
-        Print("The input must be a rational group algebra \n");
-        return fail;
+        Error("Wedderga: The input must be a rational group algebra \n");
     fi;
     
-    G:=UnderlyingMagma(QG);
-    zero:=Zero(QG);
-    one:=One(QG);
+    G := UnderlyingMagma( QG );
+    zero := Zero( QG );
+    one := One( QG );
     
-    IrrG:=IrrConlon( G );
-    LIrrG:=Length(IrrG);
+    IrrG := IrrConlon( G );
+    LIrrG := Length(IrrG);
     
-    eGKHs:=[Epsilon(QG,G,G)];
+    eGKHs:=[ IdempotentBySubgroups(QG,G,G) ];
     SeGKHs:=eGKHs[1];
     i:=2;
     while i<=LIrrG do
-        K:=TestMonomial(IrrG[i]).inducedFrom.subgroup;
-        H:=TestMonomial(IrrG[i]).inducedFrom.kernel;
-        eGKH:=PCIFromSP(QG,K,H);    
+        #
+        # ??? Why sometimes here the component inducedFrom appears ???
+        #
+        K:=TestMonomial(IrrG[i]).subgroup;
+        H:=TestMonomial(IrrG[i]).kernel;
+        eGKH:=PrimitiveCentralIdempotentBySP( QG, K, H );    
         if eGKH*SeGKHs=zero then 
             SeGKHs:= SeGKHs + eGKH;
             Add(eGKHs,eGKH);
@@ -378,8 +372,13 @@ local   G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H;
     if SeGKHs=one then
         return eGKHs;
     else 
-        Print("Caution! It is not a complete set of primitive central idempotents \n");
+        Print("Warning!!! This is not a complete set of primitive central idempotents !!!\n");
         return eGKHs;
     fi;
 end);
   
+  
+#############################################################################
+##
+#E
+##

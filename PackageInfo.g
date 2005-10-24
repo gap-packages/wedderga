@@ -14,7 +14,7 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
-                  "of rational group algebras" ] ),
+                  "of group algebras" ] ),
 Version        := "4.0",
 Date           := "08/06/2005",
 ArchiveURL     := "http://.../wedderga-4.0",
@@ -51,7 +51,7 @@ Persons :=
                         "Central Post Office\n", 
                         "Zaporozhye, 69000 Ukraine" ] ),
        Place         := "Zaporozhye",
-       Institution   := "Zaporozhye State University"
+       Institution   := "Zaporozhye National University"
      ),
      rec(
        LastName      := "Olivieri",
@@ -114,6 +114,6 @@ Autoload         := false,
 #TestFile        := "tst/testall.g",
 
 Keywords := ["Wedderburn decomposition", "simple components", 
-             "central idempotents", "rational group algebras"]
+             "central idempotents", "group algebras"]
 
 ));

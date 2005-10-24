@@ -9,7 +9,7 @@
 ##
 #############################################################################
 
-# read wedderga declaration files
+# read Wedderga declarations
 ReadPackage( "wedderga/lib/wedderga.gd" );
 
 # set the default InfoLevel

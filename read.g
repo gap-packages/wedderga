@@ -9,7 +9,7 @@
 ##
 #############################################################################
 
-# read wedderga functions 
+# read the actual Wedderga code
 
 ReadPackage( "wedderga/lib/main.gi" );
 

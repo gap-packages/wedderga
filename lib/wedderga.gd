@@ -44,21 +44,21 @@ DeclareOperation( "SimpleAlgebraInfoNC", [ IsSemisimpleFiniteGroupAlgebra,
 
 DeclareAttribute( "StronglyShodaPairs", IsGroup and IsFinite );
 
-DeclareAttribute( "StronglyShodaPairsAndIdempotents", IsSemisimpleRationalGroupAlgebra );
-DeclareAttribute( "StronglyShodaPairsAndIdempotents", IsSemisimpleFiniteGroupAlgebra );
+DeclareOperation( "eG",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
+
+DeclareAttribute( "StronglyShodaPairsAndIdempotents", IsGroupRing );
 
 DeclareGlobalFunction( "SearchingKForSSP" );
-DeclareGlobalFunction( "eG" );
 
-DeclareGlobalFunction( "PrimitiveCentralIdempotentsFromSSP" );
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStronglySP" );
 
 #################### idempot.gi #####################
 
-DeclareOperation( "eGKH", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] ); 
+DeclareOperation( "CentralElementBySubgroups",   [ IsGroupRing, IsGroup, IsGroup, IsList, IsList ] ); 
 
-DeclareOperation( "Epsilon", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
+DeclareOperation( "IdempotentBySubgroups", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
 
-DeclareOperation( "Hat", [ IsGroupRing, IsObject ] );
+DeclareOperation( "AverageSum", [ IsGroupRing, IsObject ] );
 
 #################### auxiliar.gi #####################
 
@@ -66,7 +66,7 @@ DeclareOperation("IsCompleteSetOfPCIs",[IsFreeMagmaRing,IsList]);
 
 DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 
-DeclareOperation( "CentralizerG", [ IsFreeMagmaRing, IsElementOfFreeMagmaRing ] );
+DeclareOperation( "CentralizerInUnderlyingGroup", [ IsFreeMagmaRing, IsElementOfFreeMagmaRing ] );
 DeclareOperation( "Conjugate", [ IsFreeMagmaRing, IsElementOfFreeMagmaRing, IsObject ] ); 
 
 DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
@@ -75,10 +75,16 @@ DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] );
 
 #################### others.gi #####################
 
-DeclareGlobalFunction( "PCIsFromShodaPairs" );
-DeclareOperation( "PCIFromSP", [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+DeclareGlobalFunction( "ListOfPrimitiveCentralIdempotentsBySP" );
+DeclareOperation( "PrimitiveCentralIdempotentBySP", [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
 
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 
-DeclareGlobalFunction( "PCIsUsingConlon" );
-DeclareGlobalFunction( "PCIsUsingCharacterTable" );
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
+
+
+#############################################################################
+##
+#E
+##

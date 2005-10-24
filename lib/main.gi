@@ -12,16 +12,16 @@
 
 #############################################################################
 ##
-#A  WedderburnDecomposition( FqG )
+#A WedderburnDecomposition( FqG )
 ##
-##  The function WedderburnDecomposition computes the Wedderburn 
-##  Decomposition of the finite group algebra FqG
+## The function WedderburnDecomposition computes the Wedderburn 
+## Decomposition of the finite group algebra FqG
 ##
 InstallMethod( WedderburnDecomposition, 
-                "for semisimple finite group algebras", 
-                true, 
-                [ IsSemisimpleFiniteGroupAlgebra ], 
-                0,
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra ], 
+    0,
 function( FqG )
 local   A,      # Simple algebra
         i,      # Counter
@@ -40,18 +40,18 @@ end);
 
 #############################################################################
 ##
-#A  WedderburnDecompositionInfo( FG ) 
+#A WedderburnDecompositionInfo( FG ) 
 ##
-##  The function WedderburnDecompositionInfo compute the data describing 
-##  Wedderburn Decomposition of the group algebra FG
+## The function WedderburnDecompositionInfo compute the data describing 
+## Wedderburn Decomposition of the group algebra FG
 ##
 InstallMethod( WedderburnDecompositionInfo , 
-                "for semisimple rational or finite group algebra", 
-                true, 
-                [ IsGroupRing ], 
-                0,
+    "for semisimple rational or finite group algebra", 
+    true, 
+    [ IsGroupRing ], 
+    0,
 function( FG )
-local   G,      #Group
+local   G,      # Group
         pairs,  # Strongly Shoda pairs of G
         A,      # Simple algebra
         i,      # Counter
@@ -83,60 +83,64 @@ elif IsSemisimpleFiniteGroupAlgebra( FG ) then
 
     return output;
     
-fi;
+else
 
-Error("The input must be a semisimple algebra over rationals or over finite field!!!\n");
+    Error("Wedderga: The input must be a semisimple algebra over rationals or over finite field!!!\n");
+
+fi;
 
 end); 
 
 
 #############################################################################
 ##
-#O  SimpleAlgebra( FqG, K, H, c ) 
+#O SimpleAlgebra( FqG, K, H, c ) 
 ##
-##  The function SimpleAlgebra verifies if ( H, K ) is a SSP of G and
-##  c is a cyclotomic class of q=|Fq| module n=[K:H] containing generators
-##  of K/H, and in that case computes the simple algebra  FqG*e( G, K, H, c)
+## The function SimpleAlgebra verifies if ( H, K ) is a SSP of G and
+## c is a cyclotomic class of q=|Fq| module n=[K:H] containing generators
+## of K/H, and in that case computes the simple algebra  FqG*e( G, K, H, c)
 ##
 InstallMethod( SimpleAlgebra, 
-                "for semisimple finite group algebras", 
-                true, 
-                [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
-                0,
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
+    0,
 function( FqG, K, H, c )
 local   G,      # Group
         Fq,     # Field
         n;      # Index of H in K
-        
 
 G := UnderlyingMagma( FqG );
 Fq := LeftActingDomain( FqG );
 n := Index( K, H );
 
-if  Gcd( c[ 1 ], n ) = 1 and  c in CyclotomicClasses( Size( Fq ), n ) and 
-                                    IsStronglyShodaPair(G, K, H ) then
+if Gcd( c[ 1 ], n ) = 1 and c in CyclotomicClasses( Size( Fq ), n ) and 
+                            IsStronglyShodaPair(G, K, H ) then
     return SimpleAlgebraNC( FqG, K, H, c );
-fi;
+    
+else
 
-Error("The input is not appropriate!!!\n");
+   Error("Wedderga: The input is not appropriate!!!\n");
+
+fi;
 
 end);
 
 
 #############################################################################
 ##
-#O  SimpleAlgebraNC( FqG, K, H, c )
+#O SimpleAlgebraNC( FqG, K, H, c )
 ##
-##  The function SimpleAlgebraNC computes simple algebras 
-##  FqG*e( G, K, H, c), for ( H, K ) a SSP of G and c a cyclotomic class 
-##  of q=|Fq| module n=[K:H] containing generators of K/H.
-##  This version  does not check the input
+## The function SimpleAlgebraNC computes simple algebras 
+## FqG*e( G, K, H, c), for ( H, K ) a SSP of G and c a cyclotomic class 
+## of q=|Fq| module n=[K:H] containing generators of K/H.
+## This version does not check the input
 ##
 InstallMethod( SimpleAlgebraNC, 
-                "for semisimple finite group algebras", 
-                true, 
-                [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
-                0,
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
+    0,
 function( FqG, K, H, c )
 local   G,          # Group
         N,          # Normalizer of H in G
@@ -194,36 +198,31 @@ end);
 ## QG*e( G, K, H ), for ( H, K ) a SSP of G, but first verify the inputs 
 ##
 InstallMethod( SimpleAlgebraInfo, 
-                "for semisimple rational group algebras", 
-                true, 
-                [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
-                0,
+    "for semisimple rational group algebras", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
 function( QG, K, H )
-local   G;      # Group
-
-G := UnderlyingMagma( QG );
-
-if  IsStronglyShodaPair(G, K, H ) then
+if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
     return SimpleAlgebraInfoNC( QG, K, H );
+else
+    Error("Wedderga: The input is not a strongly Shoda pair !!!\n");
 fi;
-
-Error("The input is not a strongly Shoda pair !!!\n");
-
 end);
 
 
 #############################################################################
 ##
-#O  SimpleAlgebrasInfoNC( QG, K, H ) 
+#O SimpleAlgebrasInfoNC( QG, K, H ) 
 ##
-##  The function SimpleAlgebraInfoNC compute the data describing simple 
-##  algebras QG*e( G, K, H ), for ( H, K ) a SSP of G 
+## The function SimpleAlgebraInfoNC compute the data describing simple 
+## algebras QG*e( G, K, H ), for ( H, K ) a SSP of G 
 ##
 InstallMethod( SimpleAlgebraInfoNC, 
-                "for semisimple rational group algebras", 
-                true, 
-                [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
-                0,
+    "for semisimple rational group algebras", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
 function( QG, K, H )
 local   G,          # Group
         N,          # Normalizer of H in G
@@ -233,8 +232,8 @@ local   G,          # Group
         k,          # Generator of K/H
         ok,         # Order of k
         Potk,       # List of powers of k
-        Epi,        # N--->N/H
-        Epi2,       # NH--->NH/KH
+        Epi,        # N --> N/H
+        Epi2,       # NH --> NH/KH
         PrimGen,    # Primary set of independent of generators of N/K
         l,          # Length of PrimGen
         Gen,        # Elementary set of independent of generators of
@@ -248,79 +247,84 @@ local   G,          # Group
         plus,       # Counter
         newpos,     # A component of next
         gen,        # Preimage of Gen in N/H
-        i,ll;     # Controlers
+        i,ll;       # Controlers
         
     G := UnderlyingMagma( QG );
     if G = H then
-        return [1,1,[],[]];
+        return [ 1, 1, [], [] ];
     fi;
     
-    #First one computes an idependent set PrimGen of generators of a Primary
-    #decomposition of N/K
+    # First one computes an idependent set PrimGen of generators 
+    # of a Primary decomposition of N/K
     N   := Normalizer(G,H);
-    Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
-    NH  := Image(Epi,N);
-    KH  := Image(Epi,K);
-    k   := Product(IndependentGeneratorsOfAbelianGroup(KH));
-    ok  := Order(k);
-    Potk:= List([1..ok],x->k^x);
     if N=K then
-        return [Size(G)/Size(N),ok,[ ],[ ]];
+        return [ Size(G)/Size(N), ok, [ ], [ ] ];
     else
+        Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
+        NH  := Image(Epi,N);
+        KH  := Image(Epi,K);
+        k   := Product(IndependentGeneratorsOfAbelianGroup(KH));
+        ok  := Order(k);
+        Potk:= [ k ];
+        for i in [ 2 .. ok ] do
+            Potk[i] := Potk[i-1]*k; 
+        od;
         Epi2:=NaturalHomomorphismByNormalSubgroup( NH, KH ) ;
         NdK:=Image(Epi2,NH);
         PrimGen:=IndependentGeneratorsOfAbelianGroup(NdK);
         # Using PrimGen one computes an independent set Gen of
         # generators of an invariant decomposition of N/K
-        l := Length(PrimGen);
-        o := List( [ 1 .. l ], i -> Order(PrimGen[i]) );
-        p := List( [ 1 .. l ], i -> FactorsInt(o[i])[1] );
-        primes:=Unique(p);
-        lp:= Length(primes);
-        first:=List( [ 1 .. lp ], i -> Position(p,primes[i]) );
-        g := Product(List(first,i->PrimGen[i]));
-        Gen:=[g];
+        l := Length( PrimGen );
+        o := List( [ 1 .. l ], i -> Order( PrimGen[i] ) );
+        p := List( [ 1 .. l ], i -> FactorsInt( o[i] )[1] );
+        primes := DuplicateFreeList( p );
+        lp:= Length( primes );
+        first:=List( [ 1 .. lp ], i -> Position( p, primes[i] ) );
+        g := Product( List( first, i -> PrimGen[i] ) );
+        Gen:=[ g ];
         ll:=lp;
         plus:=0;
         while ll<l do
             next:=[];
-            for i in [1..lp] do
-                newpos:=Position(p,primes[i],first[i]+plus);
+            for i in [ 1 .. lp ] do
+                newpos := Position( p, primes[i], first[i]+plus );
                 if newpos <> fail then
-                    Add(next,newpos);
+                    Add( next, newpos );
                 fi;
             od;
-            g:=Product(List(next,i->PrimGen[i]));
-            Add(Gen,g);
+            g:=Product( List( next, i -> PrimGen[i] ) );
+            Add( Gen, g );
             ll:=ll+Length(next);
             plus:=plus+1;
         od;
-        gen:=List([1..Length(Gen)], i->PreImagesRepresentative(Epi2,Gen[i]));
-        return [Size(G)/Size(N),ok, List([1..Length(Gen)],
-                i->[Order(Gen[i]),
-                RemInt(Position(Potk,k^gen[i]),ok),
-                RemInt(Position(Potk,gen[i]^Order(Gen[i])),ok)]),
-                List([1..Length(Gen)-1],i->List([i+1..Length(Gen)],
-                j->RemInt(Position(Potk,Comm(gen[j],gen[i])),ok)))];
+        gen:=List( [ 1 .. Length(Gen) ], i -> PreImagesRepresentative(Epi2,Gen[i]) );
+        return [ Size(G)/Size(N), 
+                 ok, 
+                 List( [1..Length(Gen)],
+                   i->[ Order(Gen[i]),
+                        RemInt(Position(Potk,k^gen[i]),ok),
+                        RemInt(Position(Potk,gen[i]^Order(Gen[i])),ok) ]),
+                 List( [1..Length(Gen)-1], i -> 
+                   List( [i+1..Length(Gen)], j -> 
+                     RemInt(Position(Potk,Comm(gen[j],gen[i])),ok))) ];
     fi;
-
 end);
 
 
 #############################################################################
 ##
-#O  SimpleAlgebraInfo( FqG, K, H, c )
+#O SimpleAlgebraInfo( FqG, K, H, c )
 ##
-##  The function SimpleAlgebraInfo compute the data describing simple algebra 
-##  FqG*e( G, K, H, c) for ( H, K ) a SSP of G and c a cyclotomic class 
-##  of q=|Fq| module n=[K:H], containing generators of K/H, 
-##  but first verify the inputs 
+## The function SimpleAlgebraInfo compute the data describing simple algebra 
+## FqG*e( G, K, H, c) for ( H, K ) a SSP of G and c a cyclotomic class 
+## of q=|Fq| module n=[K:H], containing generators of K/H, 
+## but first verify the inputs 
 ##
 InstallMethod( SimpleAlgebraInfo, 
-                "for semisimple finite group algebras", 
-                true, 
-                [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
-                0,
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
+    0,
 function( FqG, K, H, c )  
 local   G,      # Group
         Fq,     # Field
@@ -330,29 +334,28 @@ G := UnderlyingMagma( FqG );
 Fq := LeftActingDomain( FqG );
 n := Index( K, H );
 
-if  Gcd( c[ 1 ], n ) = 1 and  c in CyclotomicClasses( Size( Fq ), n ) and 
-                                    IsStronglyShodaPair(G, K, H ) then
+if  Gcd( c[ 1 ], n ) = 1 and c in CyclotomicClasses( Size( Fq ), n ) and 
+                             IsStronglyShodaPair(G, K, H ) then
     return SimpleAlgebraInfoNC( FqG, K, H, c );
+else
+    Error("Wedderga: The input is not appropriate!!!\n");
 fi;
-
-Error("The input is not appropriate!!!\n");
-
 end);
 
 
 #############################################################################
 ##
-#O  SimpleAlgebraInfoNC( FqG, K, H, c )
+#O SimpleAlgebraInfoNC( FqG, K, H, c )
 ##
-##  The function SimpleAlgebraInfoNC compute the data describing simple 
-##  algebra FqG*e( G, K, H, c) for ( H, K ) a SSP of G and c a cyclotomic 
-##  class of q=|Fq| module n=[K:H], containing generators of K/H.
+## The function SimpleAlgebraInfoNC compute the data describing simple 
+## algebra FqG*e( G, K, H, c) for ( H, K ) a SSP of G and c a cyclotomic 
+## class of q=|Fq| module n=[K:H], containing generators of K/H.
 ##
 InstallMethod( SimpleAlgebraInfoNC, 
-                "for semisimple finite group algebras", 
-                true, 
-                [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
-                0,
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
+    0,
 function( FqG, K, H, c )  
 local   G,          # Group
         Fq,         # Finite field
@@ -372,13 +375,16 @@ Fq := LeftActingDomain( FqG );
 q := Size( Fq );
 
 if G = H then
-return [ 1, q ];
+  return [ 1, q ];
 fi;
 
 N := Normalizer( G, H );
 epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QNH := Image( epi, N );
 QKH := Image( epi, K );
+#
+# ??? WHY FIRST GENERATOR FROM MINIMAL SET ???
+#
 gq := MinimalGeneratingSet( QKH )[ 1 ];
 C1 := Set( List( c, ii -> gq^ii ) );
 St := Stabilizer( QNH, C1, OnSets );
@@ -392,18 +398,18 @@ end);
 
 #############################################################################
 ##
-#A  StronglyShodaPairs( G )
+#A StronglyShodaPairs( G )
 ##
-##  The function StronglyShodaPairs computes a list of strongly Shoda pairs 
-##  of the group G that covers the complete set of primitive central 
-##  idempotents of the rational group algebra QG realizable by strongly 
-##  Shoda pairs
+## The function StronglyShodaPairs computes a list of strongly Shoda pairs 
+## of the group G that covers the complete set of primitive central 
+## idempotents of the rational group algebra QG realizable by strongly 
+## Shoda pairs
 ##
 InstallMethod( StronglyShodaPairs, 
-                "for finite group ", 
-                true, 
-                [IsGroup and IsFinite], 
-                0,
+    "for finite group ", 
+    true, 
+    [IsGroup and IsFinite], 
+    0,
 function( G )
 local   QG;     # Rational Group Algebra
        
@@ -416,18 +422,18 @@ end);
 
 #############################################################################
 ##
-#A  StronglyShodaPairsAndIdempotents( QG )
+#A StronglyShodaPairsAndIdempotents( QG )
 ##
-##  The attribute StronglyShodaPairsAndIdempotents retgurns a record with
-##  components StronglyShodaPairs and PrimitiveCentralIdempotents,
-##  where SSPs is a list of SSP that covers the complete set of primitive 
-##  central idempotents, PCIs, of the rational group algebra QG 
+## The attribute StronglyShodaPairsAndIdempotents returns a record with
+## components StronglyShodaPairs and PrimitiveCentralIdempotents,
+## where SSPs is a list of SSP that covers the complete set of primitive 
+## central idempotents, PCIs, of the rational group algebra QG 
 ##
 InstallMethod( StronglyShodaPairsAndIdempotents, 
-                "for rational group algebra", 
-                true, 
-                [ IsSemisimpleRationalGroupAlgebra ], 
-                0,
+    "for rational group algebra", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra ], 
+    0,
 function( QG )
 local   G,          # Group
         DG,         # Derived subgroup of G
@@ -450,7 +456,7 @@ if HasStronglyShodaPairs( G ) then
   return rec( 
     StronglyShodaPairs := StronglyShodaPairs( G ), 
     PrimitiveCentralIdempotents := List( StronglyShodaPairs( G ), i -> 
-                                     eGKH( QG, i[1], i[2] ) )); 
+                                     CentralElementBySubgroups( QG, i[1], i[2] ) )); 
 else
 
   CCS:=ConjugacyClassesSubgroups(G);
@@ -460,7 +466,9 @@ else
   eGKHs:=[];
   SeGKHs:=Zero(QG);
   if Size(G)=1 then
-    return [[G,G], [One(QG)]];
+    return rec( 
+      StronglyShodaPairs := [ [ G, G ] ], 
+      PrimitiveCentralIdempotents := [ One(QG)] );
   fi;
   for j in [ LCCS, LCCS-1 .. 1 ] do
     H:=Representative(CCS[j]);        
@@ -487,7 +495,7 @@ else
   #Here finish the main loop
 
   if SeGKHs<>One(QG) then 
-    Print(  "Caution! Some primitive central idempotents are not realizable ", 
+    Print(  "Warning!!! Some primitive central idempotents are not realizable ", 
             "by strongly Shoda pairs!!!\n");
   fi;
 
@@ -554,13 +562,18 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
 
 
 #############################################################################
-## 
-#F eG( QG, K, H )
+##
+#M eG( QG, K, H )
 ##
 ## The following function computes e(G,K,H)    
 ## Note that actually it returns a list of the form [ [K,H], eGKH ]
 ##
-InstallGlobalFunction(eG, function(QG,K,H)
+InstallMethod( eG,
+    "for pairs of subgroups", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
+function(QG,K,H)
     local   
         G,      # underlying group of QG
         Eps,    # \varepsilon(K,H), 
@@ -576,7 +589,7 @@ InstallGlobalFunction(eG, function(QG,K,H)
         RTNdK,  # Right transversal of G/NdK
         nRTNdK; # Cardinal of RTNdK
 
-        Eps:=Epsilon(QG,K,H);
+        Eps:=IdempotentBySubgroups(QG,K,H);
         G:=UnderlyingMagma(QG);
         NH:=Normalizer(G,H);
         if NH=G then
@@ -592,7 +605,7 @@ InstallGlobalFunction(eG, function(QG,K,H)
                 for i in [ 2 .. nRTNdK ] do
                     g:=RTNdK[i];
                     eGKH1g:=Conjugate(QG,eGKH1,g);
-                    if eGKH1*eGKH1g <> Zero(QG) then    
+                    if not IsZero( eGKH1*eGKH1g ) then    
                         return  fail;
                     else
                         eGKH:= eGKH + eGKH1g;
@@ -614,10 +627,10 @@ InstallGlobalFunction(eG, function(QG,K,H)
 ## of the finite group algebra FqG
 ##
 InstallMethod( StronglyShodaPairsAndIdempotents, 
-                "for semisimple finite group algebra", 
-                true, 
-                [ IsSemisimpleFiniteGroupAlgebra ], 
-                0,
+    "for semisimple finite group algebra", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra ], 
+    0,
 function( FqG )                
 local   G,          # Group
         SSPsG,      # List of strongly Shoda pairs of G
@@ -655,7 +668,7 @@ F := FamilyObj(Zero(FqG));
 elmsG := Elements(G);
 q := Size( Fq );
 zero := Zero(Fq);
-e := [Hat(FqG,G)];
+e := [AverageSum(FqG,G)];
 SSPsG := StronglyShodaPairs(G);
 list := [ [ SSPsG[ 1 ][1], SSPsG[ 1 ][2], [ [ 0 ] ] ] ];
 setind := [];
@@ -663,7 +676,7 @@ lltrace := [];
 lcc := [];
 lorders := [];
 lprimitives := [];
-for p in [2..Size(SSPsG)] do
+for p in [ 2 .. Size(SSPsG) ] do
     H :=SSPsG[p][2];
     K := SSPsG[p][1];
     n := Index(K,H);
@@ -710,7 +723,7 @@ for p in [2..Size(SSPsG)] do
     templist := [];
     for i in cc do
         if Gcd(i[1],n)=1 then
-            idemp := eGKH(FqG, K, H, i, ltrace);
+            idemp := CentralElementBySubgroups(FqG, K, H, i, ltrace);
             if not(idemp in etemp) then
                 Add(etemp, idemp);
                 Add( templist, i );
@@ -724,16 +737,21 @@ return rec( StronglyShodaPairs := list, PrimitiveCentralIdempotents := e );
 end);
 
 
-
 #############################################################################
 ##
-#O  PrimitiveCentralIdempotentsFromSSP( FG )
+#O PrimitiveCentralIdempotentsByStronglySP( FG )
 ##
-##  The function PrimitiveCentralIdempotentsFromSSP computes the set of primitive central 
-##  idempotents of the group algebra FG, realizable by strongly Shoda pairs, where
-##  FG is either a rational group algebra or finite group algebra
+## The function PrimitiveCentralIdempotentsByStronglySP computes the set of 
+## primitive central idempotents of the group algebra FG, realizable by 
+## strongly Shoda pairs, where FG is either a rational or finite group algebra
 ##
-InstallGlobalFunction( PrimitiveCentralIdempotentsFromSSP, 
+InstallGlobalFunction( PrimitiveCentralIdempotentsByStronglySP, 
 function( FG )
 return StronglyShodaPairsAndIdempotents( FG ).PrimitiveCentralIdempotents; 
 end);
+
+
+#############################################################################
+##
+#E
+##
