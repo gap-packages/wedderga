@@ -92,9 +92,13 @@ local   QG,
         KH;
 
 # First verifies if H, K are subgroups of G and K is a normal subgroup of K
-if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("Wedderga: Each input should contain the next one and the last one \n",
-          "should be normal in the second!!!\n");
+if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) ) then
+    Error("Wedderga: Each argument should contain the next one!!!\n");
+fi;
+
+if not IsNormal( K, H ) then
+    Info(InfoPCI, 2, "Wedderga: The 3rd subgroup is not normal in the 2nd");
+    return false;
 fi;
 
 # Now, if K/H is the maximal abelian subgroup in N/H,
@@ -103,8 +107,7 @@ fi;
 NH:=Normalizer(G,H);
 
 if not(IsNormal( NH, K ) ) then
-    Print("Wedderga: The second input must be a normal subgroup in the normalizer \n",
-          "of third one in the first\n");
+    Info(InfoPCI, 2, "Wedderga: The 2nd is not normal in the normalizer of 3rd one in the 1st");
     return false;
 fi;
 
@@ -113,13 +116,14 @@ NHH:=Image( Epi, NH ); #It is isomorphic to the factor group NH/H.
 KH:=Image( Epi, K ); #It is isomorphic to the factor group K/H.
 
 if not(IsCyclic(KH)) then
-    Print("The second input over the third one should be cyclic\n");
+    Info(InfoPCI, 2, "Wedderga: The 2nd subgroup over the 3rd one is not cyclic");
     return false;
 fi;
 
 if Centralizer( NHH, KH ) <> KH then
-    Print("The factor group (second input over third one) is not maximal abelian ",
-            "on the normalizer of the third one in the first\n");
+    Info(InfoPCI, 2, "Wedderga: The 2nd subgroup over the 3rd one is not cyclic");
+    Info(InfoPCI, 2, "Wedderga: The factor group (2nd over 3rd) is not maximal ",
+                     "abelian in the normalizer of the 3rd in the 1st");
     return false;
 fi;
 
@@ -136,7 +140,7 @@ if NdK<>G then
     for i in [ 2 .. nRTNdK ] do
         g:=RTNdK[i];
         if not IsZero( eGKH1*Conjugate(QG,eGKH1,g) ) then
-            Print("The conjugates of epsilon are not orthogonal \n");
+            Info(InfoPCI, 2, "Wedderga: The conjugates of epsilon are not orthogonal");
             return  false;
         fi;
     od;
