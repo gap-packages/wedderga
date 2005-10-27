@@ -258,7 +258,8 @@ local   G,          # Group
     # of a Primary decomposition of N/K
     N   := Normalizer(G,H);
     if N=K then
-        return [ Size(G)/Size(N), ok, [ ], [ ] ];
+        ok := Index( K, H );
+        return [ Index(G,N), ok, [ ], [ ] ];
     else
         Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
         NH  := Image(Epi,N);
@@ -298,10 +299,13 @@ local   G,          # Group
             plus:=plus+1;
         od;
         gen:=List( [ 1 .. Length(Gen) ], i -> PreImagesRepresentative(Epi2,Gen[i]) );
-        return [ Size(G)/Size(N), 
+        return [ Index(G,N), 
                  ok, 
                  List( [1..Length(Gen)],
                    i->[ Order(Gen[i]),
+                        # we have a list Potk of powers of k and find the 
+                        # position of k^gen[i] in it. Is there better way
+                        # to determine j such that k^gen[i] = k^j ?
                         RemInt(Position(Potk,k^gen[i]),ok),
                         RemInt(Position(Potk,gen[i]^Order(Gen[i])),ok) ]),
                  List( [1..Length(Gen)-1], i -> 
