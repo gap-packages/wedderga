@@ -607,14 +607,14 @@ function(QG,K,H)
         else
             NdK:=Normalizer(G,K);
             RTNH:=RightTransversal(NdK,NH);
-            eGKH1:=Sum(List(RTNH,g->Conjugate(QG,Eps,g)));
+            eGKH1:=Sum( List( RTNH,g->Eps^g ) );
             eGKH:=eGKH1;
             if NdK<>G then
                 RTNdK:=RightTransversal(G,NdK); 
                 nRTNdK:=Length(RTNdK);  
                 for i in [ 2 .. nRTNdK ] do
                     g:=RTNdK[i];
-                    eGKH1g:=Conjugate(QG,eGKH1,g);
+                    eGKH1g:=eGKH1^g;
                     if not IsZero( eGKH1*eGKH1g ) then    
                         return  fail;
                     else

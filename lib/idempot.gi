@@ -46,11 +46,11 @@ local   alpha,
     if ( IsCyclic(FactorGroup(K,H)) and IsNormal(NH,K) ) then 
         Cen := NH;
     else 
-        Cen := Centralizer( QG, Eps );
+        Cen := Centralizer( G, Eps );
     fi;
     RTCen := RightTransversal( G, Cen ); 
  
-return Sum( List( RTCen, g -> Conjugate( QG, Eps, g ) ) );
+return Sum( List( RTCen, g -> Eps^g ) );
 end);
 
 
@@ -98,7 +98,7 @@ N1 := PreImage( epi, St );
 GN1 := RightTransversal( G, N1 );
 Eps := IdempotentBySubgroups( FqG, K, H, c, ltrace );
 
-return Sum( List( GN1, g -> Conjugate( FqG, Eps, g ) ) );
+return Sum( List( GN1, g -> Eps^g ) );
 end);
 
 
@@ -185,7 +185,7 @@ N1 := PreImage( epi, St );
 GN1 := RightTransversal( G, N1);
 Eps := IdempotentBySubgroups( FqG, K, H, c );
 
-return Sum( List( GN1, g -> Conjugate( FqG, Eps, g ) ) );
+return Sum( List( GN1, g -> Eps^g ) );
 end);
 
 

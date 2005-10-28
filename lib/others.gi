@@ -149,10 +149,10 @@ local   eG,         # Function for eGKH
             g;      # element of G
         
     Eps := IdempotentBySubgroups( QG, K1, H1 );
-    Cen := CentralizerInUnderlyingGroup( QG,Eps );
+    Cen := Centralizer( G, Eps );
     RTCen := RightTransversal( G, Cen );
 
-    return Sum( List( RTCen, g -> Conjugate( QG, Eps, g ) ) ) ;
+    return Sum( List( RTCen, g -> Eps^g ) ) ;
     end;
    
 #end of functions       

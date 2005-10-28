@@ -134,12 +134,12 @@ NdK := Normalizer( G, K );
 
 if NdK<>G then
     RTNH := RightTransversal( NdK, NH );
-    eGKH1 := Sum( List( RTNH, g -> Conjugate( QG, Eps, g ) ) );
+    eGKH1 := Sum( List( RTNH, g -> Eps^g ) ); 
     RTNdK := RightTransversal( G, NdK );
     nRTNdK:=Length(RTNdK);
     for i in [ 2 .. nRTNdK ] do
         g:=RTNdK[i];
-        if not IsZero( eGKH1*Conjugate(QG,eGKH1,g) ) then
+        if not IsZero( eGKH1*eGKH1^g ) then
             Info(InfoPCI, 2, "Wedderga: The conjugates of epsilon are not orthogonal");
             return  false;
         fi;
@@ -153,40 +153,39 @@ end);
 
 #############################################################################
 ##
-#M CentralizerInUnderlyingGroup( FG, a )
+#M Centralizer( G, a )
 ##
 ##
-## The function CentralizerInUnderlyingGroup computes the centralizer of an
-## element of a group ring in the underlying group
+## The function Centralizer computes the centralizer of an
+## element of a group ring in a subgroup of the underlying group
 ##
-InstallMethod(  CentralizerInUnderlyingGroup,
-    "for a group ring and a group ring element",
-    IsCollsElms, 
-    [ IsGroupRing, IsElementOfFreeMagmaRing ], 
+InstallMethod( Centralizer,
+    "for a subgroup of an underlying group and a group ring element",
+    function( F1, F2 )    
+      return IsBound( F2!.familyMagma ) and
+             IsIdenticalObj( F1, F2!.familyMagma);
+    end,  
+    [ IsGroup, IsElementOfFreeMagmaRing ], 
     0,
-function( FG, a ) 
-local   G,
-        C,
-        Leftover,
-        Classes,
-        one,
-        ElemG,
-        g;
+function( G, a ) 
+local   C,
+        leftover,
+        cosrep,
+        g, 
+        h;
 
-G := UnderlyingMagma( FG );
-one := Identity( G );
-C := Subgroup( G, [one] );
-Classes := [ one ];
-ElemG := Elements(G);
-Leftover := Difference(G,C);
-while Leftover <> [] do
-    g := Leftover[1];
-    if Conjugate( FG, a, g ) = a then 
-        C := Subgroup( G, Union( C, [g] ) );
+C := TrivialSubgroup( G );
+cosrep := [ One(G) ];
+leftover := Difference( G, C );
+while leftover <> [] do
+    g := leftover[1];
+    if a^g = a then 
+        C := Subgroup( G, Union( GeneratorsOfGroup( C ), [ g ] ) );
     else 
-        Add( Classes, g );
+        Add( cosrep, g );
     fi;
-    Leftover := Difference( G, Union( List( Classes, i -> RightCoset( C, i ) ) ) );
+    leftover := Difference( leftover, 
+    Flat( List ( Set( List( cosrep, h -> RightCoset( C, h ) ) ), AsList ) ) );
 od;
 return C;
 end);
@@ -194,31 +193,25 @@ end);
 
 #############################################################################
 ##
-#M Conjugate( FG, a, g )
+#M OnPoints( a, g )
 ##
-## The function Conjugate computes the conjugate a^g where a is an element 
-## of the group ring FG and g an element of G.
+## The function OnPoints(a,g) computes the conjugate a^g where a is an element 
+## of the group ring FG and g an element of G. You can use a^g notation to
+## compute it as well.
 ##
-InstallMethod(  Conjugate,
-    "for a group ring, group ring element and a group element",
-    true, 
-    [ IsGroupRing, IsElementOfFreeMagmaRing, IsObject ], 
+InstallMethod( \^,
+    "for a group ring element and a group element",
+    function( F1, F2 )
+      return IsBound( F1!.familyMagma ) and 
+             IsIdenticalObj( ElementsFamily( F1!.familyMagma ), F2 );
+    end,
+    [ IsElementOfFreeMagmaRing, IsMultiplicativeElementWithInverse ], 
     0,
-function( FG, a, g )
+function( a, g )
 local   coeffsupp,
         coeff,
         supp,
         lsupp;
-
-# may be these conditions can be checked in the filter, but there is another
-# option to install two-argument version for a^g via OnPoints later
-    if not a in FG then
-        Error("The second argument must be an element of the first one !!!\n");
-    fi;
-
-    if not g in UnderlyingMagma( FG ) then
-        Error("The last argument should belong to the group basis !!!\n");
-    fi;
 
 coeffsupp := CoefficientsAndMagmaElements(a);
 lsupp := Size(coeffsupp)/2;
@@ -226,9 +219,9 @@ supp := List( [ 1 .. lsupp ], i -> coeffsupp [ 2*i-1 ]^g );
 coeff := List([ 1 .. lsupp ], i -> coeffsupp[2*i] );
 
 return ElementOfMagmaRing( FamilyObj( a ) ,
-                               Zero( a ),
-                               coeff,
-                               supp);
+                                Zero( a ),
+                                coeff,
+                                supp);
 end);
 
 
