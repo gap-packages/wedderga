@@ -66,9 +66,6 @@ DeclareOperation("IsCompleteSetOfPCIs",[IsFreeMagmaRing,IsList]);
 
 DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 
-DeclareOperation( "CentralizerInUnderlyingGroup", [ IsFreeMagmaRing, IsElementOfFreeMagmaRing ] );
-DeclareOperation( "Conjugate", [ IsFreeMagmaRing, IsElementOfFreeMagmaRing, IsObject ] ); 
-
 DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
 DeclareOperation( "BigPrimitiveRoot", [ IsPosInt ] );
 DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] ); 
