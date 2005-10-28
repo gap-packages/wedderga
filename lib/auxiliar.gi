@@ -160,7 +160,7 @@ end);
 ## element of a group ring in a subgroup of the underlying group
 ##
 InstallMethod( Centralizer,
-    "for a subgroup of an underlying group and a group ring element",
+    "Wedderga: for a subgroup of an underlying group and a group ring element",
     function( F1, F2 )    
       return IsBound( F2!.familyMagma ) and
              IsIdenticalObj( F1, F2!.familyMagma);
@@ -200,7 +200,7 @@ end);
 ## compute it as well.
 ##
 InstallMethod( \^,
-    "for a group ring element and a group element",
+    "Wedderga: for a group ring element and a group element",
     function( F1, F2 )
       return IsBound( F1!.familyMagma ) and 
              IsIdenticalObj( ElementsFamily( F1!.familyMagma ), F2 );
