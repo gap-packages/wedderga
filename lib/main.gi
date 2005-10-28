@@ -144,6 +144,7 @@ InstallMethod( SimpleAlgebraNC,
 function( FqG, K, H, c )
 local   G,          # Group
         N,          # Normalizer of H in G
+        ind,        # index of K in G
         epi,        # N -->N/H
         QNH,        # N/H
         QKH,        # K/H
@@ -163,7 +164,7 @@ Fq := LeftActingDomain( FqG );
 q := Size( Fq );
 
 if G = H then
-    return FullMatrixAlgebra( Fq, 1 );
+    return Fq;
 fi;
 
 N := Normalizer( G, H );
@@ -185,7 +186,12 @@ else
     # If q^o is too big then gap never finish to compute the ConwayPolynomial
 fi;
 
-return FullMatrixAlgebra( F, Index( G, K ) );
+ind := Index( G, K );
+if ind=1 then
+    return F;
+else
+    return FullMatrixAlgebra( F, ind );
+fi;  
 
 end);
 
