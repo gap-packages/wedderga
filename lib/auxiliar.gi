@@ -160,8 +160,8 @@ end);
 ## element of a group ring in the underlying group
 ##
 InstallMethod(  CentralizerInUnderlyingGroup,
-    "for an group ring element",
-    true, 
+    "for a group ring and a group ring element",
+    IsCollsElms, 
     [ IsGroupRing, IsElementOfFreeMagmaRing ], 
     0,
 function( FG, a ) 
@@ -172,12 +172,6 @@ local   G,
         one,
         ElemG,
         g;
- 
-# ??? CAN THIS BE HIDDEN IN METHOD DECLARATION ???
- 
-    if not a in FG then
-        Error("Wedderga: The second argument must be an element of the first one !!!\n");
-    fi;
 
 G := UnderlyingMagma( FG );
 one := Identity( G );
@@ -206,7 +200,7 @@ end);
 ## of the group ring FG and g an element of G.
 ##
 InstallMethod(  Conjugate,
-    "for a group ring element and a group element",
+    "for a group ring, group ring element and a group element",
     true, 
     [ IsGroupRing, IsElementOfFreeMagmaRing, IsObject ], 
     0,
@@ -216,9 +210,8 @@ local   coeffsupp,
         supp,
         lsupp;
 
-#
-# CAN WE ELIMINATE THIS TESTS HIDDING THEM IN THE METHOD DEFINITION ? 
-#
+# may be these conditions can be checked in the filter, but there is another
+# option to install two-argument version for a^g via OnPoints later
     if not a in FG then
         Error("The second argument must be an element of the first one !!!\n");
     fi;
