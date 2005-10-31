@@ -1,0 +1,53 @@
+<!-- $Id$ -->
+<Chapter Label="Funct">
+<Heading>&Wedderga; functions</Heading>
+
+<Section Label="SectionLabelName">
+<Heading>SectionName</Heading>
+
+
+<ManSection>
+   <Attr Name="WedderburnDecomposition" 
+         Arg="KG"  
+         Comm="" />
+   <Returns>
+         a list of simple algebras as GAP objects
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
+<algebra-with-one over GF(5), with 2 generators>
+gap> WedderburnDecomposition(FG);
+[ GF(5), GF(5), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 2, 2 ] ) ]     
+]]>
+</Example>
+
+
+<ManSection>
+   <Attr Name="WedderburnDecompositionInfo" 
+         Arg="KG"  
+         Comm="" />
+   <Returns>
+         a list of descriptions of simple algebras (not as GAP objects)
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+</Section>
+
+</Chapter>

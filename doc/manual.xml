@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- $Id$ -->
+
+<!DOCTYPE Book SYSTEM "gapdoc.dtd"
+[<!ENTITY Clanguage "<Package>C</Package>">] 
+[<!ENTITY LAG "<Package>LAG</Package>">] 
+[<!ENTITY LAGUNA "<Package>LAGUNA</Package>">]
+[<!ENTITY SISYPHOS "<Package>SISYPHOS</Package>">] 
+[<!ENTITY Wedderga "<Package>Wedderga</Package>">] >
+
+<Book Name="Wedderga">
+
+<TitlePage>
+  <Title>&Wedderga;</Title>
+  <Subtitle>Wedderburn Decomposition of Group Algebras</Subtitle>
+  <Version>Version 4.0</Version>
+
+  <Author>Osnel Broche Cristo 
+          <Email>osnelier@ime.usp.br</Email>
+          <Address>
+           Instituto de Matemática<Br/>
+           Universidade de Sao Paulo<Br/>
+           Caixa Postal 66281, Sao Paulo<Br/>
+           CEP 05315-970, Brazil</Address>
+  </Author>
+
+  <Author>Alexander Konovalov
+          <Email>konovalov@member.ams.org</Email>
+	  <Homepage>http://ukrgap.exponenta.ru/konoval.htm</Homepage>
+          <Address>
+            Department of Mathematics<Br/>
+    	      Zaporozhye National University<Br/>
+            P.O.Box 1317, Central Post Office<Br/>
+            Zaporozhye, 69000 Ukraine
+          </Address> 
+  </Author>
+
+  <Author>Ángel del Río
+          <Email>adelrio@um.es</Email>
+	  <Homepage>http://www.um.es/adelrio</Homepage>
+          <Address>
+            Departamento de Matemáticas<Br/>
+            Universidad de Murcia<Br/>
+            30100 Murcia, Spain
+          </Address> 
+  </Author>
+
+  <Author>Aurora Olivieri
+          <Email>olivieri@usb.ve</Email>
+          <Address>
+            Departamento de Matemáticas<Br/>
+            Universidad Simón Bolívar<Br/>
+            Apartado Postal 89000<Br/>
+            Caracas 1080-A, Venezuela
+          </Address> 
+  </Author>
+  
+  <Date>October 2005</Date>
+
+<Abstract>
+
+<Index Key="Wedderga package">&Wedderga; package</Index> 
+The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of a 
+<B>g</B>roup <B>a</B>lgebras. This is a &GAP; package to compute primitive
+central idempotents and simple components of the Wedderburn decomposition of
+group algebras of finite groups over the field of rationals and over finite
+fields.
+<P/>
+
+</Abstract>
+
+<Copyright>
+  &copyright; 2005 by Osnel Broche Cristo, Alexander Konovalov, 
+  Ángel del Río and Aurora Olivieri<P/>
+
+  We adopt the copyright regulations of &GAP; from the
+  copyright notice in the &GAP; manual.<P/>
+
+  If you obtained &Wedderga;, we would be grateful for a short notification
+  sent to one of the authors.<P/>
+
+  If you publish a result which was partially obtained with the usage of
+  &Wedderga;, please cite it in the following form:<P/>
+
+  O. B. Cristo, A. Konovalov, Á. del Río and A. Olivieri. 
+  <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
+  Version 4.0;</E> 2005 (<URL>http://ukrgap.exponenta.ru/wedderga.htm</URL>).
+</Copyright>
+  
+<Acknowledgements>
+
+We  are all very grateful to Steve Linton for communicating the package and to
+the referee for careful testing &Wedderga; and useful suggestions. Also we 
+acknowledge very much the members of the &GAP; team: Thomas Breuer, 
+Alexander Hulpke, Frank L&#252;beck and many other colleagues 
+for helpful comments and advise. 
+<P/> 
+
+</Acknowledgements>
+
+</TitlePage>
+
+<TableOfContents/>
+
+<Body>
+
+<#Include SYSTEM "intro.xml">
+<#Include SYSTEM "theory.xml"> 
+<#Include SYSTEM "funct.xml">
+
+</Body>
+
+<Bibliography Databases="manual"/>
+
+<TheIndex/>
+
+</Book>
