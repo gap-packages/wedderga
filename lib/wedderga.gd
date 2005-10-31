@@ -24,7 +24,7 @@ DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
 
 #################### main.gi #####################
 
-DeclareAttribute( "WedderburnDecomposition", IsSemisimpleFiniteGroupAlgebra );
+DeclareAttribute( "WedderburnDecomposition", IsGroupRing );
 DeclareAttribute( "WedderburnDecompositionInfo", IsGroupRing  );
 
 DeclareOperation( "SimpleAlgebra", [ IsSemisimpleFiniteGroupAlgebra, 
