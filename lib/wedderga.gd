@@ -27,19 +27,19 @@ DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
 DeclareAttribute( "WedderburnDecomposition", IsGroupRing );
 DeclareAttribute( "WedderburnDecompositionInfo", IsGroupRing  );
 
-DeclareOperation( "SimpleAlgebra", [ IsSemisimpleFiniteGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleFiniteGroupAlgebra, 
                                        IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraNC", [ IsSemisimpleFiniteGroupAlgebra,
+DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsSemisimpleFiniteGroupAlgebra,
                                        IsGroup, IsGroup, IsList ] ); 
 
-DeclareOperation( "SimpleAlgebraInfo", [ IsSemisimpleRationalGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleRationalGroupAlgebra, 
                                                IsGroup, IsGroup ] );
-DeclareOperation( "SimpleAlgebraInfoNC", [ IsSemisimpleRationalGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleRationalGroupAlgebra, 
                                             IsGroup, IsGroup ] );
 
-DeclareOperation( "SimpleAlgebraInfo", [ IsSemisimpleFiniteGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleFiniteGroupAlgebra, 
                                             IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
                                             IsGroup, IsGroup, IsList ] );
 
 DeclareAttribute( "StronglyShodaPairs", IsGroup and IsFinite );

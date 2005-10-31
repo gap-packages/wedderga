@@ -30,7 +30,7 @@ local   A,      # Simple algebra
 output := [];
 if IsSemisimpleFiniteGroupAlgebra( FG ) then
   for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-    A := SimpleAlgebraNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
+    A := SimpleAlgebraByStronglySPNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
     Append(output, List(i[3], j -> A ) );
   od;
   return output;
@@ -77,7 +77,7 @@ if IsSemisimpleRationalGroupAlgebra( FG ) then
     fi;
       
     for i in pairs do
-        Add(output, SimpleAlgebraInfoNC( FG, i[ 1 ], i[ 2 ] ) );
+        Add(output, SimpleAlgebraByStronglySPInfoNC( FG, i[ 1 ], i[ 2 ] ) );
     od;
     
     return output;
@@ -85,7 +85,7 @@ if IsSemisimpleRationalGroupAlgebra( FG ) then
 elif IsSemisimpleFiniteGroupAlgebra( FG ) then
 
     for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-        A := SimpleAlgebraInfoNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
+        A := SimpleAlgebraByStronglySPInfoNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
         Append(output, List(i[3], j -> A ) );
     od;
 
@@ -102,13 +102,13 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebra( FqG, K, H, c ) 
+#O SimpleAlgebraByStronglySP( FqG, K, H, c ) 
 ##
-## The function SimpleAlgebra verifies if ( H, K ) is a SSP of G and
+## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
 ## c is a cyclotomic class of q=|Fq| module n=[K:H] containing generators
 ## of K/H, and in that case computes the simple algebra  FqG*e( G, K, H, c)
 ##
-InstallMethod( SimpleAlgebra, 
+InstallMethod( SimpleAlgebraByStronglySP, 
     "for semisimple finite group algebras", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
@@ -124,7 +124,7 @@ n := Index( K, H );
 
 if Gcd( c[ 1 ], n ) = 1 and c in CyclotomicClasses( Size( Fq ), n ) and 
                             IsStronglyShodaPair(G, K, H ) then
-    return SimpleAlgebraNC( FqG, K, H, c );
+    return SimpleAlgebraByStronglySPNC( FqG, K, H, c );
     
 else
 
@@ -137,14 +137,14 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebraNC( FqG, K, H, c )
+#O SimpleAlgebraByStronglySPNC( FqG, K, H, c )
 ##
-## The function SimpleAlgebraNC computes simple algebras 
+## The function SimpleAlgebraByStronglySPNC computes simple algebras 
 ## FqG*e( G, K, H, c), for ( H, K ) a SSP of G and c a cyclotomic class 
 ## of q=|Fq| module n=[K:H] containing generators of K/H.
 ## This version does not check the input
 ##
-InstallMethod( SimpleAlgebraNC, 
+InstallMethod( SimpleAlgebraByStronglySPNC, 
     "for semisimple finite group algebras", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
@@ -209,19 +209,19 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebraInfo( QG, K, H ) 
+#O SimpleAlgebraByStronglySPInfo( QG, K, H ) 
 ##
-## The function SimpleAlgebraInfo compute the data describing simple algebras
+## The function SimpleAlgebraByStronglySPInfo compute the data describing simple algebras
 ## QG*e( G, K, H ), for ( H, K ) a SSP of G, but first verify the inputs 
 ##
-InstallMethod( SimpleAlgebraInfo, 
+InstallMethod( SimpleAlgebraByStronglySPInfo, 
     "for semisimple rational group algebras", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
     0,
 function( QG, K, H )
 if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
-    return SimpleAlgebraInfoNC( QG, K, H );
+    return SimpleAlgebraByStronglySPInfoNC( QG, K, H );
 else
     Error("Wedderga: The input is not a strongly Shoda pair !!!\n");
 fi;
@@ -230,12 +230,12 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebrasInfoNC( QG, K, H ) 
+#O SimpleAlgebraByStronglySPInfoNC( QG, K, H ) 
 ##
-## The function SimpleAlgebraInfoNC compute the data describing simple 
+## The function SimpleAlgebraByStronglySPInfoNC compute the data describing simple 
 ## algebras QG*e( G, K, H ), for ( H, K ) a SSP of G 
 ##
-InstallMethod( SimpleAlgebraInfoNC, 
+InstallMethod( SimpleAlgebraByStronglySPInfoNC, 
     "for semisimple rational group algebras", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
@@ -334,14 +334,14 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebraInfo( FqG, K, H, c )
+#O SimpleAlgebraByStronglySPInfo( FqG, K, H, c )
 ##
-## The function SimpleAlgebraInfo compute the data describing simple algebra 
+## The function SimpleAlgebraByStronglySPInfo compute the data describing simple algebra 
 ## FqG*e( G, K, H, c) for ( H, K ) a SSP of G and c a cyclotomic class 
 ## of q=|Fq| module n=[K:H], containing generators of K/H, 
 ## but first verify the inputs 
 ##
-InstallMethod( SimpleAlgebraInfo, 
+InstallMethod( SimpleAlgebraByStronglySPInfo, 
     "for semisimple finite group algebras", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
@@ -357,7 +357,7 @@ n := Index( K, H );
 
 if  Gcd( c[ 1 ], n ) = 1 and c in CyclotomicClasses( Size( Fq ), n ) and 
                              IsStronglyShodaPair(G, K, H ) then
-    return SimpleAlgebraInfoNC( FqG, K, H, c );
+    return SimpleAlgebraByStronglySPInfoNC( FqG, K, H, c );
 else
     Error("Wedderga: The input is not appropriate!!!\n");
 fi;
@@ -366,13 +366,13 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebraInfoNC( FqG, K, H, c )
+#O SimpleAlgebraByStronglySPInfoNC( FqG, K, H, c )
 ##
-## The function SimpleAlgebraInfoNC compute the data describing simple 
+## The function SimpleAlgebraByStronglySPInfoNC compute the data describing simple 
 ## algebra FqG*e( G, K, H, c) for ( H, K ) a SSP of G and c a cyclotomic 
 ## class of q=|Fq| module n=[K:H], containing generators of K/H.
 ##
-InstallMethod( SimpleAlgebraInfoNC, 
+InstallMethod( SimpleAlgebraByStronglySPInfoNC, 
     "for semisimple finite group algebras", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
