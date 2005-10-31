@@ -72,7 +72,7 @@ DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] );
 
 #################### others.gi #####################
 
-DeclareGlobalFunction( "ListOfPrimitiveCentralIdempotentsBySP" );
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsBySP" );
 DeclareOperation( "PrimitiveCentralIdempotentBySP", [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
 
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);

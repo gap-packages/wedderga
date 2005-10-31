@@ -11,13 +11,13 @@
 
 #############################################################################
 ##
-#F ListOfPrimitiveCentralIdempotentsBySP( QG )
+#F PrimitiveCentralIdempotentsBySP( QG )
 ##
-## The function ListOfPrimitiveCentralIdempotentsBySP computes the primitive central
+## The function PrimitiveCentralIdempotentsBySP computes the primitive central
 ## idempotents of the form a e (G,K,H) where a is a rational number and (H,K)
 ## is a SP. The sum of the PCIs obtained is 1 if and only if G is monomial
 ## 
-InstallGlobalFunction(ListOfPrimitiveCentralIdempotentsBySP, 
+InstallGlobalFunction(PrimitiveCentralIdempotentsBySP, 
 function(QG) 
 local   G,          #The group
         CCS,        #The conjugacy classes of subgroups
@@ -333,7 +333,7 @@ end);
 ##
 ##  The function PrimitiveCentralIdempotentsUsingConlon uses the function IrrConlon to compute the 
 ##  primitive central idempotents of QG associated to monomial representations
-##  The result is the same as the function ListOfPrimitiveCentralIdempotentsBySP but it is slower
+##  The result is the same as the function PrimitiveCentralIdempotentsBySP but it is slower
 ##
 InstallGlobalFunction(PrimitiveCentralIdempotentsUsingConlon,
 function(QG)
