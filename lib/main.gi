@@ -183,7 +183,8 @@ else
     p:=factors[1];
     o:=Size(factors);
     F := GF( p, ConwayPolynomial( p, o*ord ) );
-    # If q^o is too big then gap never finish to compute the ConwayPolynomial
+    # If q^o is too big then gap never finish to compute the Polynomial
+    # Can we avoid this ???
 fi;
 
 ind := Index( G, K );
@@ -392,10 +393,10 @@ N := Normalizer( G, H );
 epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QNH := Image( epi, N );
 QKH := Image( epi, K );
-#
-# ??? WHY FIRST GENERATOR FROM MINIMAL SET ???
-#
-gq := MinimalGeneratingSet( QKH )[ 1 ];
+# We guarantee that QKH is cyclic so we can randomly obtain its generator
+repeat
+  gq := Random(QKH);
+until Order(gq) = Size(QKH);
 C1 := Set( List( c, ii -> gq^ii ) );
 St := Stabilizer( QNH, C1, OnSets );
 E := PreImage( epi, St );
@@ -702,8 +703,8 @@ for p in [ 2 .. Size(SSPsG) ] do
         cc := CyclotomicClasses(q,n);
         o:=Size(cc[2]);
         # If q^o is too big then gap never finish to compute the ConwayPolynomial
-        # Is there a method to avoid this calculation if this is the case?
-        #if o > 67 then ###### !!! for q=2 ( for q=3 is 37 and for q=5 is 31 ...)
+        # Is there a method to avoid this calculation if this is the case???
+        # if o > 67 then ###### !!! for q=2 ( for q=3 is 37 and for q=5 is 31 ...)
         #    Print("fallo","\n");
         #    return fail;
         #else

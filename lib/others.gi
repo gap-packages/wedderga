@@ -43,7 +43,7 @@ local   G,          #The group
         NHH,        #NH/H
         L,          #Centre of NHH
         K,          #The subgroup searched
-        e,          #a.e(G,K,H) for some of the searched K
+        e,          #a*e(G,K,H) for some of the searched K
                     # and a rational
         KH,         #K/H
         X;          #a subset of NHH
@@ -130,7 +130,7 @@ InstallMethod( PrimitiveCentralIdempotentBySP,
    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ],
    0,
 function(QG,K,H)
-local   eG,         # Function for eGKH
+local   eGKH,       # Function for eGKH
         K1, H1,     # Subgroups of G
         G,          # The group
         e1,         # eGKH
@@ -141,7 +141,7 @@ local   eG,         # Function for eGKH
 
 #The following function computes e(G,K,H)    
 
-    eG:=function(K1,H1)
+    eGKH:=function(K1,H1)
     local   alpha,  # Element of QG   
             Eps,    # \varepsilon(K1,H1), 
             Cen,    # Centralizer of Eps in G
@@ -162,7 +162,7 @@ local   eG,         # Function for eGKH
     G:=UnderlyingMagma(QG);
   
     if IsShodaPair( G, K, H ) then
-        e1:=eG(K,H);
+        e1:=eGKH(K,H);
         e2:=e1^2;
         alpha := CoefficientsAndMagmaElements(e1)[2] / 
                  CoefficientsAndMagmaElements(e2)[2];        
@@ -236,7 +236,7 @@ end);
 ## uses the character table of G to compute the primitive 
 ## central idempotents of QG with the classical method.
 ##
-## !!! THIS IS STILL NOT THOMAS BREUER IMPLEMENTATION !!!
+## ??? THIS IS STILL NOT THOMAS BREUER IMPLEMENTATION ???
 ##
 InstallGlobalFunction( PrimitiveCentralIdempotentsByCharacterTable, 
 function(QG) 

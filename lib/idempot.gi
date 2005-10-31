@@ -86,12 +86,10 @@ N := Normalizer( G, H );
 epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QNH := Image( epi, N );
 QKH := Image( epi, K );
-#
-# ??? Why we need the 1st generator from the minimal set ???
-#     Will it be enough to take arbitrary generator 
-#     or the first one with the required property ?
-#
-gq := MinimalGeneratingSet( QKH )[1];
+# We guarantee that QKH is cyclic so we can randomly obtain its generator
+repeat
+  gq := Random(QKH);
+until Order(gq) = Size(QKH);
 C1 := Set( List( c, ii -> gq^ii ) );
 St := Stabilizer( QNH, C1, OnSets );
 N1 := PreImage( epi, St );
@@ -173,12 +171,10 @@ N := Normalizer( G, H );
 epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QNH := Image( epi, N );
 QKH := Image( epi, K );
-#
-# ??? Why we need the 1st generator from the minimal set ???
-#     Will it be enough to take arbitrary generator 
-#     or the first one with the required property ?
-#
-gq := MinimalGeneratingSet( QKH )[1];
+# We guarantee that QKH is cyclic so we can randomly obtain its generator
+repeat
+  gq := Random(QKH);
+until Order(gq) = Size(QKH);
 C1 := Set( List( c, ii -> gq^ii ) );
 St := Stabilizer( QNH, C1, OnSets );
 N1 := PreImage( epi, St );
@@ -258,7 +254,7 @@ if IsCyclic(KH) then
         p := Set( FactorsInt( n ) );
         Lp := Length( p );
         #
-        # !!! Cartesian can be expensive - check if this might be optimized !!!
+        # ??? Cartesian can be expensive - check if this might be optimized ???
         #
         Comb := Cartesian( List( [1..Lp], i -> List( [ 1 .. p[i] ] ) ){[1..Lp]} );
         exp := List( Comb, i -> Sum( List( [1..Lp], j -> n/p[j]*i[j] ) ) );
@@ -323,10 +319,10 @@ cc := CyclotomicClasses( q, n );
 N := Normalizer( G, H );
 epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QKH := Image( epi, K );
-#
-# ??? THE SAME QUESTION ABOUT MINIMAL GENERATING SET ???
-#
-gq := MinimalGeneratingSet(QKH)[1];
+# We guarantee that QKH is cyclic so we can randomly obtain its generator
+repeat
+  gq := Random(QKH);
+until Order(gq) = Size(QKH);
 supp := [];
 coeff := [];
 for d in cc do
@@ -409,11 +405,11 @@ fi;
 N := Normalizer( G, H );
 epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QKH := Image( epi, K );
-#
-# ??? THE SAME ???
-#
-gq := MinimalGeneratingSet( QKH )[1];
-o  := Size( cc[2] );
+# We guarantee that QKH is cyclic so we can randomly obtain its generator
+repeat
+  gq := Random(QKH);
+until Order(gq) = Size(QKH);
+o := Size( cc[2] );
 a := BigPrimitiveRoot(q^o)^((q^o-1)/n);
 supp := [];
 coeff := []; 
@@ -463,9 +459,10 @@ if not IsUnit( F, n*one ) then
   Error("The order of second input must be a unit of the ring of coefficients!!!\n"); 
 fi;
 #
-# First we check if it is a unit and then compute inverse. Computing Inverse, we do not
-# specify, where. Can we just compute inverse, and if it will be not a unit, then check
-# if fail was returned and return an error message in this case
+# ??? First we check if it is a unit and then compute inverse. 
+# Computing Inverse, we do not specify, where - so the inverse is computed in
+# the default ring. Can we just compute inverse, and if it will be not a unit, 
+# then check if fail was returned and return an error message in this case???
 #
 # Program
 quo := Inverse( n * one );

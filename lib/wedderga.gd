@@ -80,7 +80,6 @@ DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 
-
 #############################################################################
 ##
 #E
