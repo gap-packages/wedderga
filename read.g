@@ -18,3 +18,5 @@ ReadPackage( "wedderga/lib/idempot.gi" );
 ReadPackage( "wedderga/lib/auxiliar.gi" );
 
 ReadPackage( "wedderga/lib/others.gi" );
+
+ReadPackage( "wedderga/lib/crossed.gi" );
