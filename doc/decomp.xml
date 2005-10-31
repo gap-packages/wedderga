@@ -1,0 +1,109 @@
+<!-- $Id$ -->
+<Chapter Label="Decomp">
+<Heading>Wedderburn decomposition</Heading>
+
+<Section Label="DecompDecomp">
+<Heading>Wedderburn decomposition</Heading>
+
+<ManSection>
+   <Attr Name="WedderburnDecomposition" 
+         Arg="KG"  
+         Comm="" />
+   <Returns>
+         a list of simple algebras as GAP objects
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
+<algebra-with-one over GF(5), with 2 generators>
+gap> WedderburnDecomposition(FG);
+[ GF(5), GF(5), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 2, 2 ] ) ]     
+]]>
+</Example>
+
+
+<ManSection>
+   <Attr Name="WedderburnDecompositionInfo" 
+         Arg="KG"  
+         Comm="" />
+   <Returns>
+         a list of descriptions of simple algebras (not as GAP objects)
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+</Section>
+
+
+<Section Label="DecompSimple">
+<Heading>Simple quotient</Heading>
+
+<ManSection>
+   <Oper Name="SimpleAlgebraByStronglySP" 
+         Arg="QG K H"  
+         Comm="" />
+   <!-- LATER NC VERSION OF THE 1st OPERATION CAN APPEAR -->         
+   <Oper Name="SimpleAlgebraByStronglySP" 
+         Arg="FG K H c"  
+         Comm="" />
+   <Oper Name="SimpleAlgebraByStronglySPNC" 
+         Arg="FG K H c"  
+         Comm="" />         
+   <Returns>
+         ???
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
+]]>
+</Example>
+
+
+<ManSection>
+   <Oper Name="SimpleAlgebraByStronglySPInfo" 
+         Arg="QG K H"  
+         Comm="" />
+   <!-- LATER NC VERSION OF THE 1st OPERATION CAN APPEAR -->         
+   <Oper Name="SimpleAlgebraByStronglySPInfo" 
+         Arg="FG K H c"  
+         Comm="" />
+   <Oper Name="SimpleAlgebraByStronglySPInfoNC" 
+         Arg="FG K H c"  
+         Comm="" />         
+   <Returns>
+         ???
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
+]]>
+</Example>
+
+
+</Section>
+
+</Chapter>

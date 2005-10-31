@@ -2,8 +2,8 @@
 <Chapter Label="Intro">
 <Heading>Introduction</Heading>    
 
-<Section Label="IntroFirst">
-<Heading>General aims</Heading>
+<Section Label="IntroAims">
+<Heading>General aims of &Wedderga; package</Heading>
 
 The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of 
 <B>g</B>roup <B>a</B>lgebras. This is a &GAP; package to compute the simple 
@@ -16,7 +16,7 @@ algebras.
 
 <!-- ********************************************************* -->
 
-<Section Label="IntroSecond">
+<Section Label="IntroMain">
 <Heading>Main functions of &Wedderga; package</Heading>
 
 The main functions of &Wedderga; are 
@@ -60,17 +60,7 @@ Warnings:
 
 <!-- ********************************************************* -->
 
-<Section Label="IntroThird">
-<Heading>Wedderburn decomposition of group algebras</Heading>
-
-When you know idempotents, the question is to obtain a useful description of
-simple components, corresponding to them
-
-</Section>
-
-<!-- ********************************************************* -->
-
-<Section Label="IntroFourth">
+<Section Label="IntroInstall">
 <Heading>Installation and system requirements</Heading>
 
 &Wedderga; does not use external binaries and, therefore, works without

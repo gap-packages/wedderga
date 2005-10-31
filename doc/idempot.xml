@@ -1,0 +1,184 @@
+<!-- $Id$ -->
+<Chapter Label="Idempot">
+<Heading>Idempotents</Heading>
+
+<Section Label="IdempotShoda">
+<Heading>Idempotents from Shoda pairs</Heading>
+
+<ManSection>
+   <Oper Name="IsCompleteSetOfPCIs" 
+         Arg="R l"  
+         Comm="" />
+   <Description>
+         R can be a ring with identity
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Attr Name="PrimitiveCentralIdempotentsByStronglySP( FG )" 
+         Arg="FG"  
+         Comm="" />
+   <Returns>
+         a list of group algebra elements 
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Func Name="PrimitiveCentralIdempotentsBySP( FG )" 
+         Arg="QG"  
+         Comm="" />
+   <Returns>
+         a list of group algebra elements 
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Oper Name="IsShodaPair" 
+         Arg="G K H"  
+         Comm="" />
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Oper Name="PrimitiveCentralIdempotentBySP" 
+         Arg="QG K H"  
+         Comm="" />
+   <Returns>
+         an element of a group algebra
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="IdempotSubgroups">
+<Heading>Idempotents determined by subgroups</Heading>
+
+
+<ManSection>
+   <Oper Name="IdempotentBySubgroups" 
+         Arg="QG K H"  
+         Comm="" />
+   <Oper Name="IdempotentBySubgroups" 
+         Arg="FG K H c"  
+         Comm="" />
+   <Returns>
+         idempotent of a group algebra
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Oper Name="CentralElementBySubgroups" 
+         Arg="QG K H"  
+         Comm="" />
+   <Oper Name="CentralElementBySubgroups" 
+         Arg="FG K H c"  
+         Comm="" />
+   <Returns>
+         central element of a group algebra
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="IdempotIrr">
+<Heading>Computing idempotents from character table</Heading>
+
+
+<ManSection>
+   <Oper Name="PrimitiveCentralIdempotentsByCharacterTable" 
+         Arg="QG"  
+         Comm="" />
+   <Returns>
+         a list of group algebra elements
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+</Section>
+
+</Chapter>

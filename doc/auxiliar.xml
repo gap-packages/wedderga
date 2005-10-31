@@ -1,0 +1,136 @@
+<!-- $Id$ -->
+<Chapter Label="Auxiliar">
+<Heading>Useful properties and functions</Heading>
+
+<Section Label="AuxiliarProperties">
+<Heading>Semisimple group algebras</Heading>
+
+
+<ManSection>
+   <Prop Name="IsSemisimpleRationalGroupAlgebra" 
+         Arg="KG"  
+         Comm="" />
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Prop Name="IsSemisimpleFiniteGroupAlgebra" 
+         Arg="KG"  
+         Comm="" />
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+</Section>
+
+
+<Section Label="AuxiliarOperations">
+<Heading>Operations over group rings elements</Heading>
+
+
+<ManSection>
+   <Oper Name="Centralizer" 
+         Arg="G a"  
+         Comm="" />
+   <Returns>
+         a subgroup of a group G
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Oper Name="\^" 
+         Arg="x g"  
+         Comm="" />
+   <Returns>
+         an element of a group ring
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Oper Name="AverageSum" 
+         Arg="FG X"  
+         Comm="" />
+   <Returns>
+         an element of a group ring
+   </Returns>         
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+</Section>
+
+
+<Section Label="AuxiliarProperties">
+<Heading>Cyclotomic classes</Heading>
+
+<ManSection>
+   <Oper Name="CyclotomicClasses" 
+         Arg="q n"  
+         Comm="" />
+   <Returns>
+         a list of lists of integers from [ 0 .. n ]
+   </Returns>          
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+</Section>
+
+</Chapter>

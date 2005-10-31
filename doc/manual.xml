@@ -106,8 +106,12 @@ for helpful comments and advise.
 <Body>
 
 <#Include SYSTEM "intro.xml">
+<#Include SYSTEM "decomp.xml">
+<#Include SYSTEM "SSP.xml">
+<#Include SYSTEM "idempot.xml">
+<#Include SYSTEM "crossed.xml">
+<#Include SYSTEM "auxiliar.xml">
 <#Include SYSTEM "theory.xml"> 
-<#Include SYSTEM "funct.xml">
 
 </Body>
 
