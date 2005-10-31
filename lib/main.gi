@@ -15,26 +15,34 @@
 #A WedderburnDecomposition( FqG )
 ##
 ## The function WedderburnDecomposition computes the Wedderburn 
-## Decomposition of the finite group algebra FqG
+## decomposition of the group algebra FG over the finite field 
+## or the field of rationals
 ##
 InstallMethod( WedderburnDecomposition, 
-    "for semisimple finite group algebras", 
+    "for semisimple rational or finite group algebra", 
     true, 
-    [ IsSemisimpleFiniteGroupAlgebra ], 
+    [ IsGroupRing ], 
     0,
-function( FqG )
+function( FG )
 local   A,      # Simple algebra
         i,      # Counter
         output;
-        
 output := [];
-for i in StronglyShodaPairsAndIdempotents( FqG ).StronglyShodaPairs do
-    A := SimpleAlgebraNC( FqG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
+if IsSemisimpleFiniteGroupAlgebra( FG ) then
+  for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
+    A := SimpleAlgebraNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
     Append(output, List(i[3], j -> A ) );
-od;
-
-return output;
-
+  od;
+  return output;
+elif IsSemisimpleRationalGroupAlgebra( FG ) then
+  for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
+    A := CrossedProductBySSP( UnderlyingGroup( FG ), i[ 1 ], i[ 2 ] );
+    Add(output, A );
+  od;
+  return output;
+else
+  Error("Wedderga: <FG> must be a semisimple algebra over rationals or over finite field!!!");
+fi;  
 end);
 
 
@@ -85,7 +93,7 @@ elif IsSemisimpleFiniteGroupAlgebra( FG ) then
     
 else
 
-    Error("Wedderga: The input must be a semisimple algebra over rationals or over finite field!!!\n");
+    Error("Wedderga: <FG> must be a semisimple algebra over rationals or over finite field!!!");
 
 fi;
 
