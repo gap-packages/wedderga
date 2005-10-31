@@ -52,7 +52,7 @@ end);
 ## It is supposed to be used to check if a list of PCIs of QG is complete.
 ##
 InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", true, 
-[IsFreeMagmaRing,IsList ], 0,
+[ IsFreeMagmaRing,IsList ], 0,
 function( QG, ListPCIs )
     local x;
     if not IsSemisimpleRationalGroupAlgebra( QG ) then
@@ -60,7 +60,7 @@ function( QG, ListPCIs )
     elif not ForAll( ListPCIs, x -> x in QG ) then
         Error("Wedderga: An element of the list of PCIs do not belong to the 1st argument!!!\n");
     else
-        return Sum(ListPCIs)=One(QG);
+        return Sum( ListPCIs ) = One( QG );
     fi;
 end);
 
@@ -155,7 +155,6 @@ end);
 ##
 #M Centralizer( G, a )
 ##
-##
 ## The function Centralizer computes the centralizer of an
 ## element of a group ring in a subgroup of the underlying group
 ##
@@ -245,23 +244,23 @@ local   cc,     # List of cyclotomic classes
         j;      # Integer
         
 # Initialization     
-if Gcd( q, n ) <>1 then
+if Gcd( q, n ) <> 1 then
     Error("The inputs should be coprime!!!"); 
 fi;
 
 #Program
-cc := [[0]];
-leftover:=[1..n-1];
+cc := [ [0] ];
+leftover:=[ 1 .. n-1 ];
 while leftover <> [] do
-    i := leftover[1];
-    ccc := [i];
+    i := leftover[ 1 ];
+    ccc := [ i ];
     j:=q*i mod n;
     while j <> i do
-        Add(ccc,j);
+        Add( ccc, j );
         j:=j*q mod n;
     od;
-    Add(cc,ccc);
-    leftover:=Difference(leftover,ccc);
+    Add( cc, ccc );
+    leftover := Difference( leftover, ccc );
 od;
 return cc;
 end);
@@ -300,9 +299,10 @@ else
     factors := FactorsInt(q);
     p:=factors[1];
     o:=Size(factors);
+    # If q^o is too big then gap never finish to compute the ConwayPolynomial.
+    # If there is not cheap ConwayPolynomial, random primitive will be enough
     if IsCheapConwayPolynomial(p,o) then
       cp := ConwayPolynomial(p,o);
-    # If q^o is too big then gap never finish to compute the ConwayPolynomial
     else
       cp := RandomPrimitivePolynomial(p,o);  
     fi;  
@@ -325,7 +325,7 @@ InstallMethod( BigTrace,
     true, 
     [ IsPosInt, IsField, IsObject ], 
     0,
-function(o, Fq, a)
+function( o, Fq, a )
 local   q,      # The order of the field Fq
         t, y,   # Elements of finite field
         i;      # Integer
@@ -334,7 +334,7 @@ local   q,      # The order of the field Fq
 q := Size(Fq);
 t := a;
 y := a;
-for i in [1..o-1] do
+for i in [ 1 .. o-1 ] do
     y := y^q;
     t := t + y;
 od;
