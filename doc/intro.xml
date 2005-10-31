@@ -1,0 +1,103 @@
+<!-- $Id$ -->
+<Chapter Label="Intro">
+<Heading>Introduction</Heading>    
+
+<Section Label="IntroFirst">
+<Heading>General aims</Heading>
+
+The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of 
+<B>g</B>roup <B>a</B>lgebras. This is a &GAP; package to compute the simple 
+components of the Wedderburn decomposition of group algebras of finite 
+groups over the field of rationals and over finite fields. It also contains
+functions that produce the primitive central idempotents of these group 
+algebras.
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="IntroSecond">
+<Heading>Main functions of &Wedderga; package</Heading>
+
+The main functions of &Wedderga; are 
+<Ref Attr="WedderburnDecomposition" /> and
+<Ref Attr="WedderburnDecompositionInfo" />.
+<P/>
+
+<Ref Attr="WedderburnDecomposition" /> 
+computes a list of simple algebras whose direct product is isomorphic to
+the group ring <M>KG</M> given as an input, where <M>G</M> should be a finite
+group, and <M>K</M> is either a field <M>Q</M> of rationals or a finite field of
+characterisitc coprime with the order of <M>G</M>. If <M>K=Q</M> then these 
+simple algebras are given as matrix algebras over some crossed product over 
+some ciclotomic extension of the field <M>Q</M>. If <M>K</M> is finite then 
+they are given as matrix algebras over finite extensions of <M>K</M>.
+<P/>
+
+<Example>
+<![CDATA[
+gap> QG:=GroupRing(Rationals,SymmetricGroup(4));;
+<algebra-with-one over Rationals, with 2 generators>
+gap> WedderburnDecomposition(QG);
+[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),
+  <crossed product over CF(3), with 2 generators> ]
+gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
+<algebra-with-one over GF(5), with 2 generators>
+gap> WedderburnDecomposition(FG);
+[ GF(5), GF(5), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 2, 2 ] ) ]
+]]>
+</Example>
+
+Instead of WedderburnDecomposition, that returns a list of GAP objects, 
+WedderburnDecompositionInfo returnes the description of these objects.
+See next chapter for theoretical background and examples of its usage.
+
+Warnings:
+- when WedderburnDecompositionInfo usage is cheaper then WedderburnDecomposition
+- when you want to find out which namely crossed product do you have?
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="IntroThird">
+<Heading>Wedderburn decomposition of group algebras</Heading>
+
+When you know idempotents, the question is to obtain a useful description of
+simple components, corresponding to them
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="IntroFourth">
+<Heading>Installation and system requirements</Heading>
+
+&Wedderga; does not use external binaries and, therefore, works without
+restrictions on the type of the operation system. It is designed for &GAP;4.4  
+and no compatibility with previous releases of &GAP;4 is guaranteed. 
+<P/>
+
+To use the &Wedderga; online help it is necessary to install the &GAP;4 package 
+&GAPDoc; by Frank L\"ubeck and Max Neunh\"offer, which is available from the 
+&GAP; site or from 
+<URL>http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/</URL>.
+<P/> 
+
+&Wedderga; is distributed in standard formats
+(<File>zoo</File>, <File>tar.gz</File>, <File>tar.bz2</File>, 
+<File>-win.zip</File>) and can be obtained from 
+<URL>http://ukrgap.exponenta.ru/wedderga.htm</URL>.
+To unpack the archive <File>wedderga-4.0.zoo</File> you need the program 
+<File>unzoo</File>, which can be obtained from the &GAP; homepage 
+<URL>http://www.gap-system.org/</URL> (see section `Distribution').
+To install &Wedderga;, copy this archive into the <File>pkg</File> subdirectory of your 
+&GAP;4.4 installation. The subdirectory <File>wedderga</File> will be created in 
+the <File>pkg</File> directory after the following command:
+<P/>
+  <C>unzoo -x wedderga-4.0.zoo</C>
+<P/>
+
+</Section>
+
+</Chapter>

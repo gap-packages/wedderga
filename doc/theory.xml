@@ -1,0 +1,35 @@
+<!-- $Id$ -->
+<Chapter Label="Theory">
+<Heading>The basic theory behind &Wedderga;</Heading>    
+
+In this chapter we describe the theory that is behind the algorithms used by
+&Wedderga;. 
+
+<Section Label="TheoryFirst">
+<Heading>Notation and definitions</Heading>
+
+<Index>group algebra</Index>
+Let <M>G</M> be a group and <M>F</M> a field. Then the <E>group algebra</E> 
+<M>FG</M> consists of the set of formal linear combinations of the form 
+<Display> 
+\sum_{g \in G}\alpha_g g,\qquad \alpha_g \in F
+</Display>
+where all but finitely many of the <M>\alpha_g</M> are zero. The group algebra
+<M>FG</M> is an <M>F</M>-algebra with the obvious operations. 
+Clearly, <M>\dim FG=|G|</M>.<P/>
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="TheorySecond">
+<Heading>Modular group algebras</Heading>
+
+<Index Key="Modular group algebra">Modular group algebra</Index>
+A group algebra <M>FG</M> is said to be <E>modular</E> if <M>F</M> is the
+field of characteristic <M>p</M>, and <M>G</M> contains an element of order
+<M>p</M>.
+
+</Section>
+
+</Chapter>
