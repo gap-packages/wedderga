@@ -455,21 +455,16 @@ fi;
 F := LeftActingDomain( FG );
 one := One( F );
 n := Size( X );
-if not IsUnit( F, n*one ) then
-  Error("The order of second input must be a unit of the ring of coefficients!!!\n"); 
-fi;
-#
-# ??? First we check if it is a unit and then compute inverse. 
-# Computing Inverse, we do not specify, where - so the inverse is computed in
-# the default ring. Can we just compute inverse, and if it will be not a unit, 
-# then check if fail was returned and return an error message in this case???
-#
 # Program
 quo := Inverse( n * one );
-return ElementOfMagmaRing( FamilyObj( Zero( FG ) ),
-                           Zero( F ),
-                           List( [1..n] , i -> quo),
-                           AsList(X) );
+if quo=fail then
+  Error("The order of second input must be a unit of the ring of coefficients!!!\n"); 
+else
+  return ElementOfMagmaRing( FamilyObj( Zero( FG ) ),
+                             Zero( F ),
+                             List( [1..n] , i -> quo),
+                             AsList(X) );
+fi;                             
 end);
 
 
