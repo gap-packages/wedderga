@@ -183,16 +183,18 @@ gq := MinimalGeneratingSet( QKH )[ 1 ];
 C1 := Set( List( c, i -> gq^i ) );
 St := Stabilizer( QNH, C1, OnSets );
 E := PreImage( epi, St );
-ord := q^( Size( c )/Index( E, K ) );
-if ord <= 2^16 then
-    F := GF(ord);
+ord := Size( c )/Index( E, K ) ;
+if q^ord <= 2^16 then
+    F := GF(q^ord);
 else
     factors := FactorsInt(q);
     p:=factors[1];
     o:=Size(factors);
-    F := GF( p, ConwayPolynomial( p, o*ord ) );
-    # If q^o is too big then gap never finish to compute the Polynomial
-    # Can we avoid this ???
+    if IsCheapConwayPolynomial(p,o*ord) then
+      F := GF( p, ConwayPolynomial(p,o*ord) );
+    else
+      F := GF( p, RandomPrimitivePolynomial(p,o*ord) );  
+    fi;  
 fi;
 
 ind := Index( G, K );
@@ -710,33 +712,26 @@ for p in [ 2 .. Size(SSPsG) ] do
     # in lltrace and lcc
         cc := CyclotomicClasses(q,n);
         o:=Size(cc[2]);
-        # If q^o is too big then gap never finish to compute the ConwayPolynomial
-        # Is there a method to avoid this calculation if this is the case???
-        # if o > 67 then ###### !!! for q=2 ( for q=3 is 37 and for q=5 is 31 ...)
-        #    Print("fallo","\n");
-        #    return fail;
-        #else
-            if o in lorders then
-            # If o is in lorders then a primitive root of 1 is stored in lprimitives
-                pr := lprimitives[Position(lorders,o)];
-            else
-            # Otherwise we compute the primitive root and store it in lprimitives
-                pr := BigPrimitiveRoot(q^o);
-                Add(lorders,o);
-                Add(lprimitives,pr);
-            fi;
-            a:=pr^((q^o-1)/n);
-            ltrace := [];
-            for i in cc do
-                ltrace[i[1]+1] := BigTrace(o,Fq, a^i[1]);
-                for j in i do
-                    ltrace[j+1] := ltrace[i[1]+1];
-                od;
+        if o in lorders then
+        # If o is in lorders then a primitive root of 1 is stored in lprimitives
+            pr := lprimitives[Position(lorders,o)];
+        else
+        # Otherwise we compute the primitive root and store it in lprimitives
+            pr := BigPrimitiveRoot(q^o);
+            Add(lorders,o);
+            Add(lprimitives,pr);
+        fi;
+        a:=pr^((q^o-1)/n);
+        ltrace := [];
+        for i in cc do
+            ltrace[i[1]+1] := BigTrace(o,Fq, a^i[1]);
+            for j in i do
+                ltrace[j+1] := ltrace[i[1]+1];
             od;
-            Add(lltrace,ltrace);
-            Add(lcc,cc);
-            Add(setind,n);
-        #fi;
+        od;
+        Add(lltrace,ltrace);
+        Add(lcc,cc);
+        Add(setind,n);
     fi;
     etemp := [];
     templist := [];
