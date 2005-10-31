@@ -1,0 +1,47 @@
+<!-- $Id$ -->
+<Chapter Label="SSP">
+<Heading>Strongly Shoda pairs</Heading>
+
+<Section Label="SSPSSP">
+<Heading>Computing strongly Shoda pairs</Heading>
+
+<ManSection>
+   <Attr Name="StronglyShodaPairs" 
+         Arg="KG"  
+         Comm="" />
+   <Returns>
+         ???
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+<ManSection>
+   <Oper Name="IsStronglyShodaPair" 
+         Arg="G K H"  
+         Comm="" />
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+
+</Section>
+
+</Chapter>

@@ -1,0 +1,30 @@
+<!-- $Id$ -->
+<Chapter Label="Crossed">
+<Heading>Crossed products</Heading>
+
+<Section Label="CrossedCrossed">
+<Heading>Crossed products</Heading>
+
+
+<ManSection>
+   <Attr Name="CrossedProduct" 
+         Arg="K G action twisting"  
+         Comm="" />
+   <Returns>
+         ???
+   </Returns>
+   <Description>
+         Description
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> GAP command;
+GAP output      
+]]>
+</Example>
+
+</Section>
+
+</Chapter>
