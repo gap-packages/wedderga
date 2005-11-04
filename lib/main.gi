@@ -608,10 +608,12 @@ function(QG,K,H)
         i,      # counter 
         g,      # element of G
         RTNdK,  # Right transversal of G/NdK
-        nRTNdK; # Cardinal of RTNdK
+        nRTNdK, # Cardinal of RTNdK
+        zero;   # zero of QG
 
         Eps:=IdempotentBySubgroups(QG,K,H);
         G:=UnderlyingMagma(QG);
+	zero := Zero( QG );
         NH:=Normalizer(G,H);
         if NH=G then
             return [ [ K, H ], Eps ];
@@ -626,7 +628,7 @@ function(QG,K,H)
                 for i in [ 2 .. nRTNdK ] do
                     g:=RTNdK[i];
                     eGKH1g:=eGKH1^g;
-                    if not IsZero( eGKH1*eGKH1g ) then    
+                    if eGKH1*eGKH1g <> zero then 
                         return  fail;
                     else
                         eGKH:= eGKH + eGKH1g;

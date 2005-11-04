@@ -100,7 +100,7 @@ local   G,          #The group
         H:=Representative(CCS[i]); 
         e:=SearchingKForSP( H ); 
         if e<>fail then
-            if IsZero( SEs*e ) then
+            if SEs*e <> zero then
                 SEs:= SEs + e;
                 Add(Es,e);
             fi;    
