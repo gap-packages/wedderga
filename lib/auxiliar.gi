@@ -89,7 +89,8 @@ local   QG,
         nRTNdK,
         Epi,
         NHH,
-        KH;
+        KH,
+	zero;
 
 # First verifies if H, K are subgroups of G and K is a normal subgroup of K
 if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) ) then
@@ -129,6 +130,7 @@ fi;
 
 #Now (SSS3)
 QG := GroupRing( Rationals, G );
+zero := Zero( QG );
 Eps := IdempotentBySubgroups( QG, K, H );
 NdK := Normalizer( G, K );
 
@@ -139,7 +141,7 @@ if NdK<>G then
     nRTNdK:=Length(RTNdK);
     for i in [ 2 .. nRTNdK ] do
         g:=RTNdK[i];
-        if not IsZero( eGKH1*eGKH1^g ) then
+        if eGKH1*eGKH1^g <> zero then
             Info(InfoPCI, 2, "Wedderga: The conjugates of epsilon are not orthogonal");
             return  false;
         fi;
