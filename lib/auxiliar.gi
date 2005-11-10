@@ -46,21 +46,19 @@ end);
 
 #############################################################################
 ##
-#M IsCompleteSetOfPCIs( QG, ListPCIs )
+#M IsCompleteSetOfPCIs( A, ListPCIs )
 ##
-## The function IsCompleteSetOfPCIs checks if the sum of the elements of QG is 1
-## It is supposed to be used to check if a list of PCIs of QG is complete.
+## The function IsCompleteSetOfPCIs checks if the sum of the elements of A is 1
+## It is supposed to be used to check if a list of PCIs of A is complete.
 ##
 InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", true, 
 [ IsFreeMagmaRing,IsList ], 0,
-function( QG, ListPCIs )
+function( A, ListPCIs )
     local x;
-    if not IsSemisimpleRationalGroupAlgebra( QG ) then
-        Error("Wedderga: The first argument must be a rational group algebra!!!\n");
-    elif not ForAll( ListPCIs, x -> x in QG ) then
-        Error("Wedderga: An element of the list of PCIs do not belong to the 1st argument!!!\n");
+    if not ForAll( ListPCIs, x -> x in A ) then
+        Error("Wedderga: An element of <ListPCIs> does not belong to <A>!!!\n");
     else
-        return Sum( ListPCIs ) = One( QG );
+        return Sum( ListPCIs ) = One( A );
     fi;
 end);
 
