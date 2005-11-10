@@ -28,20 +28,29 @@ local   A,      # Simple algebra
         i,      # Counter
         output;
 output := [];
+
 if IsSemisimpleFiniteGroupAlgebra( FG ) then
+  if not(StronglyShodaPairsAndIdempotents(FG).StronglyMonomial) then 
+    Print("Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+  fi;
   for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
     A := SimpleAlgebraByStronglySPNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
     Append(output, List(i[3], j -> A ) );
   od;
   return output;
+  
 elif IsSemisimpleRationalGroupAlgebra( FG ) then
+  if not(StronglyShodaPairsAndIdempotents(FG).StronglyMonomial) then 
+    Print("Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+  fi;
   for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
     A := CrossedProductBySSP( UnderlyingGroup( FG ), i[ 1 ], i[ 2 ] );
     Add(output, A );
   od;
   return output;
+  
 else
-  Error("Wedderga: <FG> must be a semisimple algebra over rationals or over finite field!!!");
+  Error("Wedderga: <FG> must be a semisimple group algebra over rationals or over finite field!!!");
 fi;  
 end);
 
@@ -65,30 +74,35 @@ local   G,      # Group
         i,      # Counter
         output;
         
-G:=UnderlyingMagma(FG);
+G := UnderlyingGroup(FG);
 output := [];
 
 if IsSemisimpleRationalGroupAlgebra( FG ) then
+
+  if not(StronglyShodaPairsAndIdempotents(FG).StronglyMonomial) then 
+    Print("Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+  fi;
     
-    if HasStronglyShodaPairs( G ) then
-        pairs := StronglyShodaPairs( G );
-    else
-        pairs := StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs;
-    fi;
+#    if HasStronglyShodaPairs( G ) then
+#        pairs := StronglyShodaPairs( G );
+#    else
+#        pairs := StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs;
+#    fi;
       
-    for i in pairs do
+    for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
         Add(output, SimpleAlgebraByStronglySPInfoNC( FG, i[ 1 ], i[ 2 ] ) );
     od;
-    
     return output;
     
 elif IsSemisimpleFiniteGroupAlgebra( FG ) then
 
+  if not(StronglyShodaPairsAndIdempotents(FG).StronglyMonomial) then 
+    Print("Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+  fi;
     for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
         A := SimpleAlgebraByStronglySPInfoNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
         Append(output, List(i[3], j -> A ) );
     od;
-
     return output;
     
 else
@@ -98,6 +112,111 @@ else
 fi;
 
 end); 
+
+
+#############################################################################
+##
+#O SimpleAlgebraByStronglySP( QG, K, H )
+##
+## The function SimpleAlgebraByStronglySP computes the simple algebras 
+## QG*e( G, K, H) if ( K, H ) is a SSP of G 
+## This version does not check the input
+##
+InstallMethod( SimpleAlgebraByStronglySP, 
+    "for semisimple rational group algebras", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
+function( QG, K, H)
+if  IsStronglyShodaPair( UnderlyingGroup( QG ), K, H ) then
+    return SimpleAlgebraByStronglySPNC( QG, K, H );
+else
+    return fail;
+fi;
+end);
+
+
+
+
+#############################################################################
+##
+#O SimpleAlgebraByStronglySPNC( QG, K, H )
+##
+## The function SimpleAlgebraByStronglySPNC computes simple algebras 
+## QG*e( G, K, H), for ( K, H ) a SSP of G 
+## This version does not check the input
+##
+InstallMethod( SimpleAlgebraByStronglySPNC, 
+    "for semisimple rational group algebras", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
+function( QG, K, H)
+local   G,          # Underlying group
+        N,          # Normalizer of H in G
+        ind,        # Index of N in G
+        NH,         # NH/H
+        KH,         # K/H
+        NdK,        # N/K
+        k,          # Generator of K/H
+        ok,         # Order of k
+        Potk,       # List of powers of k
+        Epi,        # N --> N/H
+        Epi2,       # NH --> NH/KH
+        i,          # Loop controller
+        act,        # Action for the crossed product
+        coc;        # Twisting for the crossed product
+        
+G := UnderlyingGroup( QG );
+N   := Normalizer(G,H);
+ind := Index(G,N);
+if N=K then
+    ok := Index( K, H );
+    if ind=1 then # G=N
+        Info( InfoPCI, 2, "N_G(H) = K = G, returning CF(", ok, ")");
+        return CF(ok);
+    else
+        Info( InfoPCI, 2, "N_G(H) = K <> G, returning M_", 
+              ind, "( CF(", ok, ") )");
+        return FullMatrixAlgebra( CF(ok), ind );
+    fi;                          
+else # if N_G(H) <> K
+    Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
+    NH  := Image(Epi,N);
+    KH  := Image(Epi,K);
+    repeat
+        k  := Random(KH);
+        ok := Order(k);
+    until ok = Size(KH);
+    Potk:= [ k ];
+    for i in [ 2 .. ok ] do
+        Potk[i] := Potk[i-1]*k; 
+    od;
+    Epi2:=NaturalHomomorphismByNormalSubgroup( NH, KH ) ;
+    NdK:=Image(Epi2,NH);
+        
+      act := function(a) 
+             return MappingByFunction( CF(ok), CF(ok), x -> 
+               GaloisCyc(x, Position(Potk,k^PreImagesRepresentative(Epi2,a))));
+             end;
+               
+      coc := function(a,b)
+             return E(ok)^Position( Potk,
+                                    PreImagesRepresentative(Epi2,a*b)^-1 *
+                                    PreImagesRepresentative(Epi2,a) *
+                                    PreImagesRepresentative(Epi2,b) );
+             end;        
+    if ind=1 then
+      Info( InfoPCI, 2, "N_G(H) <> K, returning crossed product");
+      return CrossedProduct(CF(ok), NdK, act, coc);
+    else
+      Info( InfoPCI, 2, 
+        "N_G(H) <> K, returning matrix algebra over crossed product");
+      return FullMatrixAlgebra( CrossedProduct(CF(ok), NdK, act, coc), ind );
+    fi;  
+fi;      
+end);
+
 
 
 #############################################################################
@@ -118,7 +237,7 @@ local   G,      # Group
         Fq,     # Field
         n;      # Index of H in K
 
-G := UnderlyingMagma( FqG );
+G := UnderlyingGroup( FqG );
 Fq := LeftActingDomain( FqG );
 n := Index( K, H );
 
@@ -167,7 +286,7 @@ local   G,          # Group
         o,          # q = p^o
         E;          # Stabilizer of C1 in G
 
-G := UnderlyingMagma( FqG );
+G := UnderlyingGroup( FqG );
 Fq := LeftActingDomain( FqG );
 q := Size( Fq );
 
@@ -207,6 +326,7 @@ fi;
 end);
 
 
+
 #############################################################################
 ##
 #O SimpleAlgebraByStronglySPInfo( QG, K, H ) 
@@ -220,10 +340,10 @@ InstallMethod( SimpleAlgebraByStronglySPInfo,
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
     0,
 function( QG, K, H )
-if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
+if  IsStronglyShodaPair( UnderlyingGroup( QG ), K, H ) then
     return SimpleAlgebraByStronglySPInfoNC( QG, K, H );
 else
-    Error("Wedderga: The input is not a strongly Shoda pair !!!\n");
+    return fail;
 fi;
 end);
 
@@ -266,7 +386,7 @@ local   G,          # Group
         gen,        # Preimage of Gen in N/H
         i,ll;       # Controlers
         
-    G := UnderlyingMagma( QG );
+    G := UnderlyingGroup( QG );
     if G = H then
         return [ 1, 1, [], [] ];
     fi;
@@ -351,7 +471,7 @@ local   G,      # Group
         Fq,     # Field
         n;      # Index of H in K
 
-G := UnderlyingMagma( FqG );
+G := UnderlyingGroup( FqG );
 Fq := LeftActingDomain( FqG );
 n := Index( K, H );
 
@@ -391,7 +511,7 @@ local   G,          # Group
         ord,        # Integer
         E;          # Stabilizer of C1 in G
 
-G := UnderlyingMagma( FqG );
+G := UnderlyingGroup( FqG );
 Fq := LeftActingDomain( FqG );
 q := Size( Fq );
 
@@ -445,10 +565,13 @@ end);
 ##
 #A StronglyShodaPairsAndIdempotents( QG )
 ##
-## The attribute StronglyShodaPairsAndIdempotents returns a record with
-## components StronglyShodaPairs and PrimitiveCentralIdempotents,
-## where SSPs is a list of SSP that covers the complete set of primitive 
-## central idempotents, PCIs, of the rational group algebra QG 
+## The attribute StronglyShodaPairsAndIdempotents of the rational group algebra QG 
+## returns a record with components StronglyShodaPairs, PrimitiveCentralIdempotents and 
+## StronglyMonomial where 
+## StronglyShodaPairs = list of SSP that covers the complete set of primitive 
+##       central idempotents of QG realizable by SSPs, 
+## PrimitiveCentralIdempotents = list of PCIs of QG realizable by SSPs,
+## StronglyMonomial := Yes if PrimitiveCentralIdempotents is a complete set of PCIs of QG, No otherwise 
 ##
 InstallMethod( StronglyShodaPairsAndIdempotents, 
     "for rational group algebra", 
@@ -471,13 +594,16 @@ local   G,          # Group
         KH,         # K/H
         KHs;        # The list of SSP
 
-G := UnderlyingMagma(QG);
+G := UnderlyingGroup(QG);
 
 if HasStronglyShodaPairs( G ) then
-  return rec( 
+    eGKHs := List( StronglyShodaPairs( G ), i -> 
+                                     CentralElementBySubgroups( QG, i[1], i[2] ) );
+    return rec( 
     StronglyShodaPairs := StronglyShodaPairs( G ), 
-    PrimitiveCentralIdempotents := List( StronglyShodaPairs( G ), i -> 
-                                     CentralElementBySubgroups( QG, i[1], i[2] ) )); 
+    PrimitiveCentralIdempotents := eGKHs,
+    StronglyMonomial := IsCompleteSetOfPCIs( QG , eGKHs ) ); 
+
 else
 
   CCS:=ConjugacyClassesSubgroups(G);
@@ -515,135 +641,35 @@ else
 
   #Here finish the main loop
 
-  if SeGKHs<>One(QG) then 
-    Print(  "Warning!!! Some primitive central idempotents are not realizable ", 
-            "by strongly Shoda pairs!!!\n");
-  fi;
+#  if SeGKHs<>One(QG) then 
+#    Print(  "Warning!!! Some primitive central idempotents are not realizable ", 
+#            "by strongly Shoda pairs!!!\n");
+#  fi;
 
   SetStronglyShodaPairs( G , KHs ); 
 
   return rec( 
     StronglyShodaPairs := KHs, 
-    PrimitiveCentralIdempotents := eGKHs );
+    PrimitiveCentralIdempotents := eGKHs,
+    StronglyMonomial := SeGKHs=One(QG) );
 
 fi;
 
 end);
 
-
-#############################################################################
-## 
-#F SearchingKForSSP(QG,H)
-##
-## The following function search an element K such that (K,H) is a SSP
-## and returns [ [ K, H ], e( G, K, H ) ] or returns fail, if
-## such K doesn't exist
-##
-InstallGlobalFunction( SearchingKForSSP, function(QG,H)
-    local   
-        G,          # underlying group of QG
-        NH,         # Normalizer of H in G
-        Epi,        # NH --> NH/H        
-        NHH,        # NH/H
-        L,          # <NHH',Z(NHH)>
-        Cen,        # Centralizer of L in NHH
-        K,          # The subgroup searched
-        e,          # e(G,K,H) for some of the searched K
-        KH,         # K/H
-        X;          # a subset of Cen
-
-        G:=UnderlyingMagma(QG);
-        NH:=Normalizer(G,H);
-        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
-        NHH:=Image(Epi,NH);
-        L:=ClosureSubgroup( DerivedSubgroup(NHH), Centre(NHH) );
-        if IsCyclic(L) then 
-            Cen:=Centralizer(NHH,L);
-            if IsAbelian(Cen) then
-                if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
-                    K:=PreImages(Epi,Cen);
-                    return eG(QG,K,H);
-                else 
-                    return fail;
-                fi;
-            else 
-                X:=Difference(Elements(Cen),Elements(L));
-                while X<>[] do
-                    KH:=ClosureSubgroup( L, [X[1]] );
-                    if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
-                        K:=PreImages(Epi,KH);
-                        return eG(QG,K,H);
-                    fi;
-                    X:=Difference(X,KH);
-                od;
-            fi;
-        fi;
-    return fail;                  
-    end);     
-
-
-#############################################################################
-##
-#M eG( QG, K, H )
-##
-## The following function computes e(G,K,H)    
-## Note that actually it returns a list of the form [ [K,H], eGKH ]
-##
-InstallMethod( eG,
-    "for pairs of subgroups", 
-    true, 
-    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
-    0,
-function(QG,K,H)
-    local   
-        G,      # underlying group of QG
-        Eps,    # \varepsilon(K,H), 
-        eGKH,   # is the final return that takes partial values 
-        NH,     # Normalizer of H in G
-        NdK,    # Normalizer of K in G
-        RTNH,   # Right transveral of NH in NdK
-        nRTNH,  # Cardinal de RTNH
-        eGKH1,  # e(NdK,K,H)
-        eGKH1g, # eGKH1^g
-        i,      # counter 
-        g,      # element of G
-        RTNdK,  # Right transversal of G/NdK
-        nRTNdK, # Cardinal of RTNdK
-        zero;   # zero of QG
-
-        Eps:=IdempotentBySubgroups(QG,K,H);
-        G:=UnderlyingMagma(QG);
-	zero := Zero( QG );
-        NH:=Normalizer(G,H);
-        if NH=G then
-            return [ [ K, H ], Eps ];
-        else
-            NdK:=Normalizer(G,K);
-            RTNH:=RightTransversal(NdK,NH);
-            eGKH1:=Sum( List( RTNH,g->Eps^g ) );
-            eGKH:=eGKH1;
-            if NdK<>G then
-                RTNdK:=RightTransversal(G,NdK); 
-                nRTNdK:=Length(RTNdK);  
-                for i in [ 2 .. nRTNdK ] do
-                    g:=RTNdK[i];
-                    eGKH1g:=eGKH1^g;
-                    if eGKH1*eGKH1g <> zero then 
-                        return  fail;
-                    else
-                        eGKH:= eGKH + eGKH1g;
-                    fi;
-                od;                    
-            fi;
-            return [ [ K, H ], eGKH ];
-        fi;       
-    end);
-
-
 #############################################################################
 ##
 #A StronglyShodaPairsAndIdempotents( FqG )
 ##
+## The attribute StronglyShodaPairsAndIdempotents of the semisimple finite group algebra FqG 
+## returns a record with components StronglyShodaPairs, PrimitiveCentralIdempotents and 
+## StronglyMonomial where 
+## StronglyShodaPairs = list of SSP and cyclotomic classes that covers the set of PCIs of FqG 
+##        realizable by SSPs, 
+## PrimitiveCentralIdempotents = list of PCIs of FqG realizable by SSPs and cyclotomic classes,
+## StronglyMonomial := Yes if PrimitiveCentralIdempotents is a complete set of PCIs of FqG, No otherwise 
+##
+
 ## The function StronglyShodaPairsAndIdempotents computes the record [SSPs, PCIs], 
 ## where SSPs is a list of the SSP and cyclotomic classes that covers 
 ## the complete set of primitive central idempotents,PCIs, 
@@ -685,7 +711,7 @@ local   G,          # Group
         zero;       # Zero of Fq
 
 # Program
-G := UnderlyingMagma( FqG  );
+G := UnderlyingGroup( FqG  );
 Fq := LeftActingDomain( FqG );
 F := FamilyObj(Zero(FqG));
 elmsG := Elements(G);
@@ -749,8 +775,122 @@ for p in [ 2 .. Size(SSPsG) ] do
     Append( e, etemp );
     Add( list, [ K, H, templist ] );
 od;
-return rec( StronglyShodaPairs := list, PrimitiveCentralIdempotents := e );
+return rec( StronglyShodaPairs := list, 
+            PrimitiveCentralIdempotents := e, 
+            StronglyMonomial := IsCompleteSetOfPCIs ( FqG, e ));
 end);
+
+
+
+#############################################################################
+## 
+#F SearchingKForSSP(QG,H)
+##
+## The following function search an element K such that (K,H) is a SSP
+## and returns [ [ K, H ], e( G, K, H ) ] or returns fail, if
+## such K doesn't exist
+##
+InstallGlobalFunction( SearchingKForSSP, function(QG,H)
+    local   
+        G,          # underlying group of QG
+        NH,         # Normalizer of H in G
+        Epi,        # NH --> NH/H        
+        NHH,        # NH/H
+        L,          # <NHH',Z(NHH)>
+        Cen,        # Centralizer of L in NHH
+        K,          # The subgroup searched
+        e,          # e(G,K,H) for some of the searched K
+        KH,         # K/H
+        X;          # a subset of Cen
+
+        G:=UnderlyingGroup(QG);
+        NH:=Normalizer(G,H);
+        Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
+        NHH:=Image(Epi,NH);
+        L:=ClosureSubgroup( DerivedSubgroup(NHH), Centre(NHH) );
+        if IsCyclic(L) then 
+            Cen:=Centralizer(NHH,L);
+            if IsAbelian(Cen) then
+                if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
+                    K:=PreImages(Epi,Cen);
+                    return eG(QG,K,H);
+                else 
+                    return fail;
+                fi;
+            else 
+                X:=Difference(Elements(Cen),Elements(L));
+                while X<>[] do
+                    KH:=ClosureSubgroup( L, [X[1]] );
+                    if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
+                        K:=PreImages(Epi,KH);
+                        return eG(QG,K,H);
+                    fi;
+                    X:=Difference(X,KH);
+                od;
+            fi;
+        fi;
+    return fail;                  
+    end);     
+
+
+#############################################################################
+##
+#M eG( QG, K, H )
+##
+## The following function computes e(G,K,H)    
+## Note that actually it returns a list of the form [ [K,H], eGKH ]
+##
+InstallMethod( eG,
+    "for pairs of subgroups", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
+    0,
+function(QG,K,H)
+    local   
+        G,      # underlying group of QG
+        Eps,    # \varepsilon(K,H), 
+        eGKH,   # is the final return that takes partial values 
+        NH,     # Normalizer of H in G
+        NdK,    # Normalizer of K in G
+        RTNH,   # Right transveral of NH in NdK
+        nRTNH,  # Cardinal de RTNH
+        eGKH1,  # e(NdK,K,H)
+        eGKH1g, # eGKH1^g
+        i,      # counter 
+        g,      # element of G
+        RTNdK,  # Right transversal of G/NdK
+        nRTNdK, # Cardinal of RTNdK
+        zero;   # zero of QG
+
+        Eps:=IdempotentBySubgroups(QG,K,H);
+        G:=UnderlyingGroup(QG);
+	zero := Zero( QG );
+        NH:=Normalizer(G,H);
+        if NH=G then
+            return [ [ K, H ], Eps ];
+        else
+            NdK:=Normalizer(G,K);
+            RTNH:=RightTransversal(NdK,NH);
+            eGKH1:=Sum( List( RTNH,g->Eps^g ) );
+            eGKH:=eGKH1;
+            if NdK<>G then
+                RTNdK:=RightTransversal(G,NdK); 
+                nRTNdK:=Length(RTNdK);  
+                for i in [ 2 .. nRTNdK ] do
+                    g:=RTNdK[i];
+                    eGKH1g:=eGKH1^g;
+                    if eGKH1*eGKH1g <> zero then 
+                        return  fail;
+                    else
+                        eGKH:= eGKH + eGKH1g;
+                    fi;
+                od;                    
+            fi;
+            return [ [ K, H ], eGKH ];
+        fi;       
+    end);
+
+
 
 
 #############################################################################
@@ -763,6 +903,11 @@ end);
 ##
 InstallGlobalFunction( PrimitiveCentralIdempotentsByStronglySP, 
 function( FG )
+
+if not(StronglyShodaPairsAndIdempotents(FG).StronglyMonomial) then 
+   Print("Warning!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
+fi;
+
 return StronglyShodaPairsAndIdempotents( FG ).PrimitiveCentralIdempotents; 
 end);
 
