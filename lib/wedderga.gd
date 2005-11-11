@@ -30,7 +30,15 @@ DeclareAttribute( "WedderburnDecompositionInfo", IsGroupRing  );
 DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleFiniteGroupAlgebra, 
                                        IsGroup, IsGroup, IsList ] );
 DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsSemisimpleFiniteGroupAlgebra,
-                                       IsGroup, IsGroup, IsList ] ); 
+                                       IsGroup, IsGroup, IsList ] );
+DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleFiniteGroupAlgebra, 
+                                       IsGroup, IsGroup, IsPosInt ] );
+DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsSemisimpleFiniteGroupAlgebra,
+                                       IsGroup, IsGroup, IsPosInt ] );
+DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleRationalGroupAlgebra, 
+                                       IsGroup, IsGroup] );
+DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsSemisimpleRationalGroupAlgebra,
+                                       IsGroup, IsGroup ] ); 
 
 DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleRationalGroupAlgebra, 
                                                IsGroup, IsGroup ] );
@@ -62,7 +70,7 @@ DeclareOperation( "AverageSum", [ IsGroupRing, IsObject ] );
 
 #################### auxiliar.gi #####################
 
-DeclareOperation("IsCompleteSetOfPCIs",[IsFreeMagmaRing,IsList]);
+DeclareOperation("IsCompleteSetOfPCIs",[IsRing,IsList]);
 
 DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 
