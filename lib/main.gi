@@ -48,7 +48,7 @@ if IsSemisimpleFiniteGroupAlgebra( FG ) then
   
 elif IsSemisimpleRationalGroupAlgebra( FG ) then
   for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-    A := CrossedProductBySSP( UnderlyingGroup( FG ), i[ 1 ], i[ 2 ] );
+    A := CrossedProductBySSP( UnderlyingMagma( FG ), i[ 1 ], i[ 2 ] );
     Add(output, A );
   od;
   return output;
@@ -106,7 +106,7 @@ local   G,      # Group
         i,      # Counter
         output;
         
-G := UnderlyingGroup(FG);
+G := Magma(FG);
 output := [];
 
 if IsSemisimpleRationalGroupAlgebra( FG ) then
@@ -187,7 +187,7 @@ InstallMethod( SimpleAlgebraByStronglySP,
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
     0,
 function( QG, K, H)
-if  IsStronglyShodaPair( UnderlyingGroup( QG ), K, H ) then
+if  IsStronglyShodaPair( Magma( QG ), K, H ) then
     return SimpleAlgebraByStronglySPNC( QG, K, H );
 else
     return fail;
@@ -226,7 +226,7 @@ local   G,          # Underlying group
         act,        # Action for the crossed product
         coc;        # Twisting for the crossed product
         
-G := UnderlyingGroup( QG );
+G := UnderlyingMagma( QG );
 N   := Normalizer(G,H);
 ind := Index(G,N);
 if N=K then
@@ -298,7 +298,7 @@ local   G,      # Group
         q,      # Size of Fq
         C1;     # Cyclotomic Class
 
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 q := Size( LeftActingDomain( FqG ) );
 
 
@@ -345,7 +345,7 @@ function( FqG, K, H, c )
 local   G,      # Group
         n;      # Index of H in K        
         
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 n := Index( K, H );
 
 if  IsStronglyShodaPair(G, K, H ) then
@@ -395,7 +395,7 @@ local   G,          # Group
         
 
 
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 Fq := LeftActingDomain( FqG );
 q := Size( Fq );
 
@@ -456,7 +456,7 @@ local   G,      # Group
         j,      # integer module n
         C;      # q-cyclotomic class module [K,H] containing c
 
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 n := Index( K, H );
 q:=Size( LeftActingDomain( FqG ) );
 C := [ c ];
@@ -484,7 +484,7 @@ InstallMethod( SimpleAlgebraByStronglySPInfo,
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
     0,
 function( QG, K, H )
-if  IsStronglyShodaPair( UnderlyingGroup( QG ), K, H ) then
+if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
     return SimpleAlgebraByStronglySPInfoNC( QG, K, H );
 else
     return fail;
@@ -530,7 +530,7 @@ local   G,          # Group
         gen,        # Preimage of Gen in N/H
         i,ll;       # Controlers
         
-    G := UnderlyingGroup( QG );
+    G := UnderlyingMagma( QG );
     if G = H then
         return [ 1, 1, [], [] ];
     fi;
@@ -619,7 +619,7 @@ local   G,      # Group
         q,      # Size of Fq
         n;      # Index of H in K
 
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 q := Size( LeftActingDomain( FqG ) );
 n := Index( K, H );
 
@@ -666,7 +666,7 @@ function( FqG, K, H, c )
 local   G,      # Group
         n;      # Index of H in K
 
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 
 if IsStronglyShodaPair(G, K, H ) then
   n := Index( K, H );
@@ -707,7 +707,7 @@ local   G,          # Group
         ord,        # Integer
         E;          # Stabilizer of C1 in G
 
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 Fq := LeftActingDomain( FqG );
 q := Size( Fq );
 
@@ -757,7 +757,7 @@ local   G,      # Group
 q := Size( LeftActingDomain( FqG ) );
 
 
-G := UnderlyingGroup( FqG );
+G := UnderlyingMagma( FqG );
 n := Index( K, H );
 q:=Size( LeftActingDomain( FqG ) );
 C := [ c ];
@@ -833,7 +833,7 @@ local   G,          # Group
         KH,         # K/H
         KHs;        # The list of SSP
 
-G := UnderlyingGroup(QG);
+G := UnderlyingMagma(QG);
 
 if HasStronglyShodaPairs( G ) then
     eGKHs := List( StronglyShodaPairs( G ), i -> 
@@ -943,7 +943,7 @@ local   G,          # Group
         zero;       # Zero of Fq
 
 # Program
-G := UnderlyingGroup( FqG  );
+G := UnderlyingMagma( FqG  );
 Fq := LeftActingDomain( FqG );
 F := FamilyObj(Zero(FqG));
 elmsG := Elements(G);
@@ -1034,7 +1034,7 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
         KH,         # K/H
         X;          # a subset of Cen
 
-        G:=UnderlyingGroup(QG);
+        G:=UnderlyingMagma(QG);
         NH:=Normalizer(G,H);
         Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
         NHH:=Image(Epi,NH);
@@ -1094,7 +1094,7 @@ function(QG,K,H)
         zero;   # zero of QG
 
 Eps:=IdempotentBySubgroups(QG,K,H);
-G:=UnderlyingGroup(QG);
+G:=UnderlyingMagma(QG);
 zero := Zero( QG );
 NH:=Normalizer(G,H);
 if NH=G then
