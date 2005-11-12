@@ -52,13 +52,13 @@ end);
 ## It is supposed to be used to check if a list of PCIs of A is complete.
 ##
 InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", true, 
-[ IsFreeMagmaRing,IsList ], 0,
+[ IsRing,IsList ], 0,
 function( A, ListPCIs )
     local x;
     if not ForAll( ListPCIs, x -> x in A ) then
         Error("Wedderga: An element of <ListPCIs> does not belong to <A>!!!\n");
     else
-        return Sum( ListPCIs ) = One( A );
+        return Sum( ListPCIs ) = One( A ) and ForAll(ListPCIs,x->x=x^2) ;
     fi;
 end);
 
@@ -245,7 +245,7 @@ local   cc,     # List of cyclotomic classes
         
 # Initialization     
 if Gcd( q, n ) <> 1 then
-    Error("The inputs should be coprime!!!"); 
+    Error("Wedderga: The inputs should be coprime!!!"); 
 fi;
 
 #Program
@@ -345,7 +345,65 @@ fi;
 end);
 
 
+
+#############################################################################
+##
+#P IsStronglyMonomial( G )
+##  
+## The function checks whether a group is strongly monomial
+##
+InstallMethod( IsStronglyMonomial,"for finite groups", true, 
+[ IsGroup ], 0,
+function( G )
+
+local QG ;
+    
+if IsFinite(G) then 
+    if IsSupersolvable(G) or IsAbelian(DerivedSubgroup(G)) then 
+        return true;
+    elif IsMonomial(G) then 
+        QG := GroupRing( Rationals, G);
+        return IsCompleteSetOfPCIs( QG , 
+        StronglyShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
+    else
+    return false;
+    fi;
+else
+    Error("Wedderga: The input should be a finite group\n");
+fi;
+end);
+
+
+#############################################################################
+##
+#O Prueba(K,H,c)
+##  
+## 
+##
+InstallMethod( IsStronglyMonomial,"for finite groups", true, 
+[ IsGroup ], 0,
+function( G )
+
+local n,QG ;
+    
+if IsFinite(G) then 
+    if IsSupersolvable(G) or IsAbelian(DerivedSubgroup(G)) then 
+        return true;
+    elif IsMonomial(G) then 
+        QG := GroupRing( Rationals, G);
+        return IsCompleteSetOfPCIs( QG , 
+        StronglyShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
+    else
+    return false;
+    fi;
+else
+    Error("Wedderga: The input should be a finite group\n");
+fi;
+end);
+
 #############################################################################
 ##
 #E
 ##
+
+
