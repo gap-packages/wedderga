@@ -24,8 +24,11 @@ DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
 
 #################### main.gi #####################
 
-DeclareAttribute( "WedderburnDecomposition", IsGroupRing );
-DeclareAttribute( "WedderburnDecompositionInfo", IsGroupRing  );
+DeclareAttribute( "WeddDecomp", IsGroupRing );
+DeclareOperation( "WedderburnDecomposition", [IsGroupRing] );
+
+DeclareAttribute( "WeddDecompInfo", IsGroupRing );
+DeclareOperation( "WedderburnDecompositionInfo", [ IsGroupRing ]  );
 
 DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleFiniteGroupAlgebra, 
                                        IsGroup, IsGroup, IsList ] );
@@ -47,16 +50,18 @@ DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleRationalGroup
 
 DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleFiniteGroupAlgebra, 
                                             IsGroup, IsGroup, IsList ] );
+DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleFiniteGroupAlgebra, 
+                                            IsGroup, IsGroup, IsPosInt ] );
 DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
                                             IsGroup, IsGroup, IsList ] );
+DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
+                                            IsGroup, IsGroup, IsPosInt ] );
 
 DeclareAttribute( "StronglyShodaPairs", IsGroup and IsFinite );
 
-DeclareOperation( "eG",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
-
 DeclareAttribute( "StronglyShodaPairsAndIdempotents", IsGroupRing );
-
 DeclareGlobalFunction( "SearchingKForSSP" );
+DeclareOperation( "eG",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
 
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStronglySP" );
 
@@ -77,6 +82,8 @@ DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
 DeclareOperation( "BigPrimitiveRoot", [ IsPosInt ] );
 DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] ); 
+
+DeclareProperty( "IsStronglyMonomial", IsGroup );
 
 #################### others.gi #####################
 
