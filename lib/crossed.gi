@@ -35,7 +35,7 @@ InstallMethod( ElementOfCrossedProduct,
       return Objectify( Fam!.defaultType, [ zerocoeff, [] ] );
     elif not IsIdenticalObj( FamilyObj( coeff ), Fam!.familyRing ) then
       Error( "<coeff> are not all in the correct domain" );
-    elif not IsIdenticalObj( FamilyObj( words ), Fam!.familyGroup ) then
+    elif not IsIdenticalObj( FamilyObj( words ), Fam!.familyMagma ) then
       Error( "<words> are not all in the correct domain" );
     elif Length( coeff ) <> Length( words ) then
       Error( "<coeff> and <words> must have same length" );
@@ -292,6 +292,221 @@ InstallMethod( ZeroOp,
 
 #############################################################################
 ##
+#M  \*( x, r )  . . . . . . . . . for crossed product element and coefficient
+#M  \*( x, r )  . . . . . . . . . .  for crossed product element and rational
+##
+##  We multiply an element of crossed product on the ring element from
+##  the right, so action is not involved in this multiplication. Note that
+##  multiplication with zero or zero divisors may cause zero coefficients
+##  in the result, so we use FMRRemoveZero( <coeffs_and_words>, <zero> )
+##  from lib/mgmring.gi. It removes all pairs from <coeffs_and_words> in
+##  which the coefficient is <zero>, where <coeffs_and_words> is assumed
+##  to be sorted.
+##
+CrossedElmTimesRingElm := function( x, y )
+    local F, i, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    x:= ShallowCopy( CoefficientsAndMagmaElements( x ) );
+    for i in [ 2, 4 .. Length(x) ] do
+      x[i]:= x[i] * y;
+    od;
+    return Objectify( F!.defaultType, [ z, FMRRemoveZero( x, z ) ] );
+end;
+
+InstallMethod( \*,
+    "for crossed product element, and ring element",
+    function( FamRM, FamR )
+      return IsBound( FamRM!.familyRing )
+        and IsIdenticalObj( ElementsFamily( FamRM!.familyRing ), FamR );
+    end,
+    [ IsElementOfCrossedProduct, IsRingElement ],
+    CrossedElmTimesRingElm );
+
+InstallMethod( \*,
+    "for crossed product element, and rational",
+    [ IsElementOfCrossedProduct, IsRat ],
+    CrossedElmTimesRingElm );
+
+
+#############################################################################
+##
+#M  \*( <r>, <x> )  . .  . . . .  for coefficient and crossed product element
+#M  \*( <r>, <x> )  . . . . . . . .  for rational and crossed product element
+##
+RingElmTimesCrossedElm := function( x, y )
+    local F, i, z;
+    F:= FamilyObj( y );
+    z:= ZeroCoefficient( y );
+    y:= ShallowCopy( CoefficientsAndMagmaElements( y ) );
+    # if x is rational, it will be fixed by action
+    if IsRat( x ) then
+      for i in [ 2, 4 .. Length(y) ] do
+        y[i]:= x * y[i];
+      od;
+    else
+      for i in [ 2, 4 .. Length(y) ] do
+        y[i]:= x^F!.action(y[i-1]) * y[i];
+      od;
+    fi;
+    return Objectify( F!.defaultType, [ z, FMRRemoveZero( y, z ) ] );
+end;
+
+InstallMethod( \*,
+    "for ring element, and crossed product element",
+    function( FamR, FamRM )
+      return IsBound( FamRM!.familyRing )
+        and IsIdenticalObj( ElementsFamily( FamRM!.familyRing ), FamR );
+    end,
+    [ IsRingElement, IsElementOfCrossedProduct ],
+    RingElmTimesCrossedElm );
+
+InstallMethod( \*,
+    "for rational, and crossed product element",
+    [ IsRat, IsElementOfCrossedProduct ],
+    RingElmTimesCrossedElm );
+
+
+#############################################################################
+##
+#M  \*( <m>, <x> )  . . . . . . for group element and crossed product element
+#M  \*( <x>, <m> )  . . . . . . for crossed product element and group element
+##
+InstallMethod( \*,
+    "for group element and crossed product element",
+    function( FamM, FamRM )
+      return IsBound( FamRM!.familyMagma ) and
+        IsIdenticalObj( ElementsFamily( FamRM!.familyMagma ), FamM );
+    end,
+    [ IsMultiplicativeElement, IsElementOfCrossedProduct ],
+    function( m, x )
+    local F, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    return Objectify( F!.defaultType, [ z, [ m, One(z) ] ] ) * x;
+    end );
+
+InstallMethod( \*,
+    "for magma ring element and magma element",
+    function( FamRM, FamM )
+      return IsBound( FamRM!.familyMagma ) and
+        IsIdenticalObj( ElementsFamily( FamRM!.familyMagma ), FamM );
+    end,
+    [ IsElementOfCrossedProduct, IsMultiplicativeElement ],
+    function( x, m )
+    local F, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    return x * Objectify( F!.defaultType, [ z, [ m, One(z) ] ] );
+    end );
+
+
+#############################################################################
+##
+#M  \+( <m>, <x> )  . . . . . . for group element and crossed product element
+#M  \+( <x>, <m> )  . . . . . . for crossed product element and group element
+##
+InstallOtherMethod( \+,
+    "for group element and crossed product element",
+    function( FamM, FamRM )
+      return IsBound( FamRM!.familyMagma ) and
+        IsIdenticalObj( ElementsFamily( FamRM!.familyMagma ), FamM );
+    end,
+    [ IsMultiplicativeElement, IsElementOfCrossedProduct ],
+    function( m, x )
+    local F, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    x:= ZippedSum( [ m, One( z ) ],
+                   CoefficientsAndMagmaElements( x ),
+                   z, [ \<, \+ ] );
+    return Objectify( F!.defaultType, [ z, x ] );
+    end );
+
+InstallOtherMethod( \+,
+    "for crossed product element and group element",
+    function( FamRM, FamM )
+      return IsBound( FamRM!.familyMagma ) and
+        IsIdenticalObj( ElementsFamily( FamRM!.familyMagma ), FamM );
+    end,
+    [ IsElementOfCrossedProduct, IsMultiplicativeElement ],
+    function( x, m )
+    local F, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    x:= ZippedSum( CoefficientsAndMagmaElements( x ),
+                   [ m, One( z ) ],
+                   z, [ \<, \+ ] );
+    return Objectify( F!.defaultType, [ z, x ] );
+    end );
+
+
+#############################################################################
+##
+#M  \-( <x>, <m> )  . . . . . . for crossed product element and group element
+#M  \-( <m>, <x> )  . . . . . . for group element and crossed product element
+##
+InstallOtherMethod( \-,
+    "for crossed product element and group element",
+    function( FamRM, FamM )
+      return IsBound( FamRM!.familyMagma ) and
+        IsIdenticalObj( ElementsFamily( FamRM!.familyMagma ), FamM );
+    end,
+    [ IsElementOfCrossedProduct, IsMultiplicativeElement ],
+    function( x, m )
+    local F, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    return x - ElementOfCrossedProduct( F, z, [ One( z ) ], [ m ] );
+    end );
+
+InstallOtherMethod( \-,
+    "for group element and crossed product element",
+    function( FamM, FamRM )
+      return IsBound( FamRM!.familyMagma ) and
+        IsIdenticalObj( ElementsFamily( FamRM!.familyMagma ), FamM );
+    end,
+    [ IsMultiplicativeElement, IsElementOfCrossedProduct ],
+    function( m, x )
+    local F, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    return ElementOfCrossedProduct( F, z, [ One( z ) ], [ m ] ) - x;
+    end );
+
+
+#############################################################################
+##
+#M  \/( x, r )  . . . . . . . . . for crossed product element and coefficient
+##
+CrossedElmDivRingElm := function( x, y )
+    local F, i, z;
+    F:= FamilyObj( x );
+    z:= ZeroCoefficient( x );
+    x:= ShallowCopy( CoefficientsAndMagmaElements( x ) );
+    for i in [ 2, 4 .. Length(x) ] do
+      x[i]:= x[i] / y;
+    od;
+    return Objectify( F!.defaultType, [ z, x ] );
+end;
+
+InstallOtherMethod( \/,
+    "for crossed product element, and ring element",
+    function( FamRM, FamR )
+      return IsBound( FamRM!.familyRing )
+        and IsIdenticalObj( ElementsFamily( FamRM!.familyRing ), FamR );
+    end,
+    [ IsElementOfCrossedProduct, IsRingElement ],
+    CrossedElmDivRingElm );
+
+InstallMethod( \/,
+    "for crossed product element, and integer",
+    [ IsElementOfCrossedProduct, IsInt ],
+    CrossedElmDivRingElm );
+    
+    
+#############################################################################
+##
 #F  CrossedProduct( <R>, <G>, act, twist )
 ##
 ## An example of trivial action and twisting:
@@ -341,7 +556,7 @@ function( R, G, act, twist )
 
     F!.defaultType := NewType( F, IsCrossedProductObjDefaultRep );
     F!.familyRing  := FamilyObj( R );
-    F!.familyGroup := FamilyObj( G );
+    F!.familyMagma := FamilyObj( G );
     F!.zeroRing    := zero;
     F!.oneGroup    := One( G );
     F!.action      := act;
@@ -358,7 +573,7 @@ function( R, G, act, twist )
 
     # Set the necessary attributes.
     SetLeftActingDomain( RG, R );
-    SetUnderlyingGroup(  RG, G );
+    SetUnderlyingMagma(  RG, G );
     SetIsAssociative( RG, true );
        
     # Deduce other useful information.
@@ -403,7 +618,7 @@ InstallMethod( ViewObj,
     10,
     function( RG )
     Print( "<crossed product over ", LeftActingDomain( RG ), ", with ", 
-           Length(GeneratorsOfGroup(UnderlyingGroup(RG))), " generators>" );
+           Length(GeneratorsOfGroup(UnderlyingMagma(RG))), " generators>" );
     end );
 
 
@@ -417,7 +632,7 @@ InstallMethod( PrintObj,
     10,
     function( RG )
     Print( "CrossedProduct( ", LeftActingDomain( RG ), ", ",
-                               UnderlyingGroup(  RG ), " )" );
+                               UnderlyingMagma(  RG ), " )" );
     end );
 
 
@@ -447,7 +662,7 @@ InstallMethod( Coefficients,
 
     data:= CoefficientsAndMagmaElements( v );
     coeffs:= ShallowCopy( B!.zerovector );
-    elms:= EnumeratorSorted( UnderlyingGroup( UnderlyingLeftModule( B ) ) );
+    elms:= EnumeratorSorted( UnderlyingMagma( UnderlyingLeftModule( B ) ) );
     for i in [ 1, 3 .. Length( data )-1 ] do
       coeffs[ Position( elms, data[i] ) ]:= data[i+1];
     od;
@@ -492,7 +707,7 @@ InstallMethod( CanonicalBasis,
     SetUnderlyingLeftModule( B, RG );
     if IsFiniteDimensional( RG ) then
       SetBasisVectors( B,
-          List( EnumeratorSorted( UnderlyingGroup( RG ) ),
+          List( EnumeratorSorted( UnderlyingMagma( RG ) ),
                 x -> ElementOfCrossedProduct( F, zero, [ one ], [ x ] ) ) );
       B!.zerovector:= List( BasisVectors( B ), x -> zero );
     fi;
@@ -509,7 +724,7 @@ InstallMethod( IsFinite,
     "for a crossed product",
     [ IsCrossedProduct ],
     RG -> IsFinite( LeftActingDomain( RG ) ) and 
-          IsFinite( UnderlyingGroup( RG ) ) );
+          IsFinite( UnderlyingMagma( RG ) ) );
 
 
 #############################################################################
@@ -528,7 +743,7 @@ InstallMethod( Representative,
 ##
 #M  IsFiniteDimensional( <RG> ) . . . . . . . . . . . . for a crossed product
 ##
-# InstallMethod( IsFiniteDimensional,
-#     "for a crossed product",
-#     [ IsCrossedProduct ],
-#     RG -> IsFinite( UnderlyingGroup( RG ) ) );
+InstallMethod( IsFiniteDimensional,
+    "for a crossed product",
+    [ IsCrossedProduct ],
+    RG -> IsFinite( UnderlyingMagma( RG ) ) );

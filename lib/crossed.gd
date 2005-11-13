@@ -56,9 +56,9 @@ DeclareCategory( "IsCrossedProduct", IsFLMLORWithOne );
 
 #############################################################################
 ##
-#A  UnderlyingGroup( <RM> )
+#A  UnderlyingMagma( <RM> )
 ##
-DeclareAttribute( "UnderlyingGroup", IsCrossedProduct );
+DeclareAttribute( "UnderlyingMagma", IsCrossedProduct );
 
 
 #############################################################################
