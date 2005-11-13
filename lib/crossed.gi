@@ -1,5 +1,17 @@
 #############################################################################
 ##
+#W  crossed.gi             The Wedderga package           Osnel Broche Cristo
+#W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
+##
+#H  $Id$
+##
+#############################################################################
+
+
+#############################################################################
+##
 #R  IsCrossedProductObjDefaultRep( <obj> )
 ##
 ##  The default representation of an element object is a list of length 2,

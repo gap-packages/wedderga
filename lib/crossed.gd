@@ -1,5 +1,17 @@
 #############################################################################
 ##
+#W  crossed.gd             The Wedderga package           Osnel Broche Cristo
+#W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                              Ángel del Río
+##
+#H  $Id$
+##
+#############################################################################
+
+
+#############################################################################
+##
 #C  IsElementOfCrossedProduct( <obj> )
 #C  IsElementOfCrossedProductCollection( <obj> )
 ##
