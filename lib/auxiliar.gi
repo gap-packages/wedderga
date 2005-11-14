@@ -245,7 +245,7 @@ local   cc,     # List of cyclotomic classes
         
 # Initialization     
 if Gcd( q, n ) <> 1 then
-    Error("Wedderga: The inputs should be coprime!!!"); 
+    Error("Wedderga: <q> and <n> should be relatively prime"); 
 fi;
 
 #Program
@@ -376,34 +376,41 @@ end);
 
 #############################################################################
 ##
-#O Prueba(K,H,c)
-##  
-## 
+#M IsCyclotomicClass( q, n, C )
 ##
-InstallMethod( IsStronglyMonomial,"for finite groups", true, 
-[ IsGroup ], 0,
-function( G )
+## The function IsCyclotomicClass checks if C is a q-cyclotomic class module n
+##
+InstallMethod( IsCyclotomicClass,
+"for two coprime positive integers and a list of integers", 
+true, 
+[ IsPosInt, IsPosInt, IsList ], 0,
+function( q, n, C )
+    local c,C1,j;
 
-local n,QG ;
-    
-if IsFinite(G) then 
-    if IsSupersolvable(G) or IsAbelian(DerivedSubgroup(G)) then 
-        return true;
-    elif IsMonomial(G) then 
-        QG := GroupRing( Rationals, G);
-        return IsCompleteSetOfPCIs( QG , 
-        StronglyShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
-    else
+c:=C[1];
+
+if n=1 then 
+    return C=[0];
+elif Gcd(q,n)<> 1 then
+    Error("Wedderga: <q> and <n> should be coprime");
+elif c >= n then
     return false;
-    fi;
-else
-    Error("Wedderga: The input should be a finite group\n");
+else 
+    C1:=[c];
+    j:=q*c mod n;
+    while j <> c do
+      Add( C1, j );
+      j:=j*q mod n;
+    od;  
+    return Set(C)=Set(C1);
 fi;
+
 end);
 
 #############################################################################
 ##
 #E
 ##
+
 
 
