@@ -30,32 +30,14 @@ DeclareOperation( "WedderburnDecomposition", [IsGroupRing] );
 DeclareAttribute( "WeddDecompInfo", IsGroupRing );
 DeclareOperation( "WedderburnDecompositionInfo", [ IsGroupRing ]  );
 
-DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleFiniteGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySP", [ IsGroupRing, 
                                        IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsSemisimpleFiniteGroupAlgebra,
+DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsGroupRing,
                                        IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleFiniteGroupAlgebra, 
-                                       IsGroup, IsGroup, IsPosInt ] );
-DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsSemisimpleFiniteGroupAlgebra,
-                                       IsGroup, IsGroup, IsPosInt ] );
-DeclareOperation( "SimpleAlgebraByStronglySP", [ IsSemisimpleRationalGroupAlgebra, 
-                                       IsGroup, IsGroup] );
-DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsSemisimpleRationalGroupAlgebra,
-                                       IsGroup, IsGroup ] ); 
-
-DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleRationalGroupAlgebra, 
-                                               IsGroup, IsGroup ] );
-DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleRationalGroupAlgebra, 
-                                            IsGroup, IsGroup ] );
-
-DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleFiniteGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsGroupRing, 
                                             IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsSemisimpleFiniteGroupAlgebra, 
-                                            IsGroup, IsGroup, IsPosInt ] );
-DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
+DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsGroupRing, 
                                             IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsSemisimpleFiniteGroupAlgebra, 
-                                            IsGroup, IsGroup, IsPosInt ] );
 
 DeclareAttribute( "StronglyShodaPairs", IsGroup and IsFinite );
 
@@ -67,9 +49,16 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStronglySP" );
 
 #################### idempot.gi #####################
 
-DeclareOperation( "CentralElementBySubgroups",   [ IsGroupRing, IsGroup, IsGroup, IsList, IsList ] ); 
+DeclareOperation( "CentralElementBySubgroups",   
+        [ IsGroupRing , IsGroup, IsGroup, IsList, IsList ] ); 
+        
+DeclareOperation( "IdempotentBySubgroups", 
+        [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
+DeclareOperation( "IdempotentBySubgroups", 
+            [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ] );
+DeclareOperation( "IdempotentBySubgroups", 
+            [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ] );
 
-DeclareOperation( "IdempotentBySubgroups", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
 
 DeclareOperation( "AverageSum", [ IsGroupRing, IsObject ] );
 
@@ -82,15 +71,22 @@ DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
 DeclareOperation( "BigPrimitiveRoot", [ IsPosInt ] );
 DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] ); 
-
 DeclareProperty( "IsStronglyMonomial", IsGroup );
+
+DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
 
 #################### others.gi #####################
 
+DeclareAttribute( "ShodaPairsAndIdempotents", IsSemisimpleRationalGroupAlgebra );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsBySP" );
-DeclareOperation( "PrimitiveCentralIdempotentBySP", [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+DeclareOperation( "PrimitiveCentralIdempotentBySP", 
+                        [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+DeclareOperation( "PCIBySP", 
+                        [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
 
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
+DeclareOperation( "IsSP", [ IsGroup, IsGroup, IsGroup ]);
+
 
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
