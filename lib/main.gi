@@ -181,20 +181,85 @@ end);
 ## QG*e( G, K, H) if ( K, H ) is a SSP of G 
 ## This version does not check the input
 ##
-InstallMethod( SimpleAlgebraByStronglySP, 
+InstallOtherMethod( SimpleAlgebraByStronglySP, 
     "for semisimple rational group algebras", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
     0,
 function( QG, K, H)
-if  IsStronglyShodaPair( Magma( QG ), K, H ) then
+if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
     return SimpleAlgebraByStronglySPNC( QG, K, H );
 else
-    return fail;
+    Error("Wedderga: <(K,H)> should be a strongly Shoda pair of the underlying group of <QG>\n");
 fi;
 end);
 
 
+#############################################################################
+##
+#O SimpleAlgebraByStronglySP( FqG, K, H, C ) 
+##
+## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
+## C is a cyclotomic class of q=|Fq| module n=[K:H] containing generators
+## of K/H, and in that case computes the simple algebra  FqG*e( G, K, H, C)
+##
+InstallMethod( SimpleAlgebraByStronglySP, 
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
+    0,
+function( FqG, K, H, C )
+local   G,      # Group
+        n,      # Index of H in K
+        j,      # Integer
+        q,      # Size of Fq
+        C1;     # Cyclotomic Class
+
+G := UnderlyingMagma( FqG );
+q := Size( LeftActingDomain( FqG ) );
+n := Index( K, H );
+
+
+if not(IsStronglyShodaPair(G, K, H )) then
+    Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
+elif IsCyclotomicClass( q, n, C) and Gcd(n,C[1]) =1 then
+    return SimpleAlgebraByStronglySPNC( FqG, K, H, C );
+else Error("Wedderga: <C> should be a generating cyclotomic class module the index of <H> in <K>\n");
+fi;
+
+end);
+
+#############################################################################
+##
+#O SimpleAlgebraByStronglySP( FqG, K, H, c ) 
+##
+## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
+## c is an integer coprime with n=[K:H]. 
+## If the answer is positive then returns SimpleAlgebraByStronglySP(FqG, K, H, C) where
+## C is the cyclotomic class of q=|Fq| module n=[K:H] containing c.
+##
+InstallOtherMethod( SimpleAlgebraByStronglySP, 
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ], 
+    0,
+function( FqG, K, H, c )
+local   G,      # Group
+        n;      # Index of H in K        
+        
+G := UnderlyingMagma( FqG );
+n := Index( K, H );
+
+if  IsStronglyShodaPair(G, K, H ) then
+  if Gcd( c, n ) = 1 then
+    return SimpleAlgebraByStronglySPNC( FqG, K, H, c  mod n);
+  else
+    Error("Wedderga: <c> should be coprime with the index of <H> in <K>");   
+  fi;
+else
+   Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
+fi;
+end);
 
 
 #############################################################################
@@ -205,7 +270,7 @@ end);
 ## QG*e( G, K, H), for ( K, H ) a SSP of G 
 ## This version does not check the input
 ##
-InstallMethod( SimpleAlgebraByStronglySPNC, 
+InstallOtherMethod( SimpleAlgebraByStronglySPNC, 
     "for semisimple rational group algebras", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
@@ -278,86 +343,8 @@ end);
 
 
 
-#############################################################################
-##
-#O SimpleAlgebraByStronglySP( FqG, K, H, C ) 
-##
-## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
-## C is a cyclotomic class of q=|Fq| module n=[K:H] containing generators
-## of K/H, and in that case computes the simple algebra  FqG*e( G, K, H, C)
-##
-InstallMethod( SimpleAlgebraByStronglySP, 
-    "for semisimple finite group algebras", 
-    true, 
-    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
-    0,
-function( FqG, K, H, C )
-local   G,      # Group
-        n,      # Index of H in K
-        j,      # Integer
-        q,      # Size of Fq
-        C1;     # Cyclotomic Class
-
-G := UnderlyingMagma( FqG );
-q := Size( LeftActingDomain( FqG ) );
 
 
-
-if IsStronglyShodaPair(G, K, H ) then
-    n := Index( K, H );
-    if Gcd( C[ 1 ], n ) = 1 then 
-        C1 := [ C[1] ];
-        j:=q*C[1] mod n;
-        while j <> C[1] do
-            Add( C1, j );
-            j:=j*q mod n;
-        od;  
-        if Set(C) = Set(C1) then
-            return SimpleAlgebraByStronglySPNC( FqG, K, H, C );
-        else 
-            Error("Wedderga: <C> should be a either\na generating cyclotomic class module n or an integer coprime with n\nwhere n is the index of <H> in <K>\n");
-        fi;
-    else 
-        Error("Wedderga: <C> should be a either\na generating cyclotomic class module n or an integer coprime with n\nwhere n is the index of <H> in <K>\n");
-    fi;  
-else
-   Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
-fi;
-
-end);
-
-
-#############################################################################
-##
-#O SimpleAlgebraByStronglySP( FqG, K, H, c ) 
-##
-## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
-## c is an integer coprime with n=[K:H]. 
-## If the answer is positive then returns SimpleAlgebraByStronglySP(FqG, K, H, C) where
-## C is the cyclotomic class of q=|Fq| module n=[K:H] containing c.
-##
-InstallMethod( SimpleAlgebraByStronglySP, 
-    "for semisimple finite group algebras", 
-    true, 
-    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ], 
-    0,
-function( FqG, K, H, c )
-local   G,      # Group
-        n;      # Index of H in K        
-        
-G := UnderlyingMagma( FqG );
-n := Index( K, H );
-
-if  IsStronglyShodaPair(G, K, H ) then
-  if c<n and Gcd( c, n ) = 1 then
-    return SimpleAlgebraByStronglySPNC( FqG, K, H, c );
-  else
-    Error("Wedderga: <c> should be coprime with the index of <H> in <K>");   
-  fi;
-else
-   Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
-fi;
-end);
 
 
 
@@ -444,7 +431,7 @@ end);
 ## In the answer is positive then return SimpleAlgebraByStronglySP(FqG, K, H, C) where
 ## C is the cyclotomic class of q=|Fq| module n=[K:H] containing c.
 ##
-InstallMethod( SimpleAlgebraByStronglySPNC, 
+InstallOtherMethod( SimpleAlgebraByStronglySPNC, 
     "for semisimple finite group algebras", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ], 
@@ -459,9 +446,9 @@ local   G,      # Group
 G := UnderlyingMagma( FqG );
 n := Index( K, H );
 q:=Size( LeftActingDomain( FqG ) );
-C := [ c ];
+C := [ c mod n];
 j:=q*c mod n;
-while j <> c do
+while j <> C[1] do
   Add( C, j );
   j:=j*q mod n;
 od;  
@@ -478,7 +465,7 @@ end);
 ## The function SimpleAlgebraByStronglySPInfo compute the data describing simple algebras
 ## QG*e( G, K, H ), for ( H, K ) a SSP of G, but first verify the inputs 
 ##
-InstallMethod( SimpleAlgebraByStronglySPInfo, 
+InstallOtherMethod( SimpleAlgebraByStronglySPInfo, 
     "for semisimple rational group algebras", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
@@ -487,8 +474,80 @@ function( QG, K, H )
 if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
     return SimpleAlgebraByStronglySPInfoNC( QG, K, H );
 else
-    return fail;
+    Error("Wedderga: <(K,H)> should be a strongly Shoda pair of the underlying group of <QG>\n");
 fi;
+end);
+
+#############################################################################
+##
+#O SimpleAlgebraByStronglySPInfo( FqG, K, H, C )
+##
+## The function SimpleAlgebraByStronglySPInfo cheks that (K,H) is a strongly 
+## Shoda pair of G, the underlying group of the semisimple finite group algebra
+## FqG with coefficients in the field of order q and if C is a generating 
+## q-cyclotomic class module n=[K:H]. In that case computes the data describing 
+## the simple algebra FqG*e( G, K, H, C)
+##
+
+InstallMethod( SimpleAlgebraByStronglySPInfo, 
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
+    0,
+function( FqG, K, H, C )  
+local   G,      # Group
+        C1,     # Cyclotomic class,
+        j,      # integer
+        q,      # Size of Fq
+        n;      # Index of H in K
+
+G := UnderlyingMagma( FqG );
+q := Size( LeftActingDomain( FqG ) );
+n := Index( K, H );
+
+if not(IsStronglyShodaPair(G, K, H )) then
+    Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
+elif IsCyclotomicClass( q, n, C) and Gcd(n,C[1]) =1 then
+    return SimpleAlgebraByStronglySPInfoNC( FqG, K, H, C );
+else Error("Wedderga: <C> should be a generating cyclotomic class module the index of <H> in <K>\n");
+fi;
+
+end);
+
+#############################################################################
+##
+#O SimpleAlgebraByStronglySPInfo( FqG, K, H, c )
+##
+## The function SimpleAlgebraByStronglySPInfo cheks that (K,H) is a strongly 
+## Shoda pair of G, the underlying group of the semisimple finite group algebra
+## FqG with coefficients in the field of order q and in that c is a positive
+## integer coprime with n=[K:H]. In that case computes the data describing the 
+## simple algebra FqG*e( G, K, H, C) for C the q-cyclotomic class module n
+## containing c
+##
+InstallOtherMethod( SimpleAlgebraByStronglySPInfo, 
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ], 
+    0,
+function( FqG, K, H, c )  
+local   G,      # Group
+        n;      # Index of H in K
+
+G := UnderlyingMagma( FqG );
+
+if IsStronglyShodaPair(G, K, H ) then
+  n := Index( K, H );
+  if c<n and Gcd( c, n ) = 1 then
+    Print("pasé");
+    return SimpleAlgebraByStronglySPInfoNC( FqG, K, H, c );
+  else 
+    Error("Wedderga: <c> should be coprime with the index of <H> in <K>\n");
+  fi;  
+else
+   Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
+fi;
+
 end);
 
 
@@ -499,7 +558,7 @@ end);
 ## The function SimpleAlgebraByStronglySPInfoNC compute the data describing simple 
 ## algebras QG*e( G, K, H ), for ( H, K ) a SSP of G 
 ##
-InstallMethod( SimpleAlgebraByStronglySPInfoNC, 
+InstallOtherMethod( SimpleAlgebraByStronglySPInfoNC, 
     "for semisimple rational group algebras", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
@@ -596,90 +655,7 @@ local   G,          # Group
 end);
 
 
-#############################################################################
-##
-#O SimpleAlgebraByStronglySPInfo( FqG, K, H, C )
-##
-## The function SimpleAlgebraByStronglySPInfo cheks that (K,H) is a strongly 
-## Shoda pair of G, the underlying group of the semisimple finite group algebra
-## FqG with coefficients in the field of order q and if C is a generating 
-## q-cyclotomic class module n=[K:H]. In that case computes the data describing 
-## the simple algebra FqG*e( G, K, H, C)
-##
 
-InstallMethod( SimpleAlgebraByStronglySPInfo, 
-    "for semisimple finite group algebras", 
-    true, 
-    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
-    0,
-function( FqG, K, H, C )  
-local   G,      # Group
-        C1,     # Cyclotomic class,
-        j,      # integer
-        q,      # Size of Fq
-        n;      # Index of H in K
-
-G := UnderlyingMagma( FqG );
-q := Size( LeftActingDomain( FqG ) );
-n := Index( K, H );
-
-if IsStronglyShodaPair(G, K, H ) then
-    n := Index( K, H );
-    if Gcd( C[ 1 ], n ) = 1 then 
-        C1 := [ C[1] ];
-        j:=q*C[1] mod n;
-        while j <> C[1] do
-            Add( C1, j );
-            j:=j*q mod n;
-        od;  
-        if Set(C) = Set(C1) then
-            return SimpleAlgebraByStronglySPInfoNC( FqG, K, H, C );
-        else 
-            Error("Wedderga: <C> should be a either\na generating cyclotomic class module n or an integer coprime with n\nwhere n is the index of <H> in <K>\n");
-        fi;
-    else 
-        Error("Wedderga: <C> should be a either\na generating cyclotomic class module n or an integer coprime with n\nwhere n is the index of <H> in <K>\n");
-    fi;  
-else
-   Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
-fi;
-
-end);
-
-#############################################################################
-##
-#O SimpleAlgebraByStronglySPInfo( FqG, K, H, c )
-##
-## The function SimpleAlgebraByStronglySPInfo cheks that (K,H) is a strongly 
-## Shoda pair of G, the underlying group of the semisimple finite group algebra
-## FqG with coefficients in the field of order q and in that c is a positive
-## integer coprime with n=[K:H]. In that case computes the data describing the 
-## simple algebra FqG*e( G, K, H, C) for C the q-cyclotomic class module n
-## containing c
-##
-InstallMethod( SimpleAlgebraByStronglySPInfo, 
-    "for semisimple finite group algebras", 
-    true, 
-    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ], 
-    0,
-function( FqG, K, H, c )  
-local   G,      # Group
-        n;      # Index of H in K
-
-G := UnderlyingMagma( FqG );
-
-if IsStronglyShodaPair(G, K, H ) then
-  n := Index( K, H );
-  if c<n and Gcd( c, n ) = 1 then
-    return SimpleAlgebraByStronglySPInfoNC( FqG, K, H, c );
-  else 
-    Error("Wedderga: <c> should be a either\na generating cyclotomic class module n or an integer coprime with n\nwhere n is the index of <H> in <K>\n");
-  fi;  
-else
-   Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
-fi;
-
-end);
 
 #############################################################################
 ##
@@ -741,7 +717,7 @@ end);
 ## the algebra FqG*e( G, K, H, C), where C is the q=|Fq|-cyclotomic class module
 ## [K:H] containing c, without checking conditions on the input
 ##
-InstallMethod( SimpleAlgebraByStronglySPInfoNC, 
+InstallOtherMethod( SimpleAlgebraByStronglySPInfoNC, 
     "for semisimple finite group algebras", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ], 
@@ -806,8 +782,7 @@ end);
 #A StronglyShodaPairsAndIdempotents( QG )
 ##
 ## The attribute StronglyShodaPairsAndIdempotents of the rational group algebra QG 
-## returns a record with components StronglyShodaPairs, PrimitiveCentralIdempotents and 
-## StronglyMonomial where 
+## returns a record with components StronglyShodaPairs and PrimitiveCentralIdempotents where 
 ## StronglyShodaPairs = list of SSP that covers the complete set of primitive 
 ##       central idempotents of QG realizable by SSPs, 
 ## PrimitiveCentralIdempotents = list of PCIs of QG realizable by SSPs.
@@ -840,8 +815,7 @@ if HasStronglyShodaPairs( G ) then
                                      CentralElementBySubgroups( QG, i[1], i[2] ) );
     return rec( 
     StronglyShodaPairs := StronglyShodaPairs( G ), 
-    PrimitiveCentralIdempotents := eGKHs,
-    StronglyMonomial := IsCompleteSetOfPCIs( QG , eGKHs ) ); 
+    PrimitiveCentralIdempotents := eGKHs); 
 
 else
 
