@@ -9,27 +9,35 @@
 ##
 #############################################################################
 
+
 #############################################################################
 ##
-#F PrimitiveCentralIdempotentsBySP( QG )
+#A ShodaPairsAndIdempotents( QG )
 ##
-## The function PrimitiveCentralIdempotentsBySP computes the primitive central
-## idempotents of the form a e (G,K,H) where a is a rational number and (H,K)
-## is a SP. The sum of the PCIs obtained is 1 if and only if G is monomial
+## The attribute ShodaPairsAndIdempotents of the rational group algebra QG 
+## returns a record with components ShodaPairs and PCIsBySP
+## ShodaPairs = list of SP that covers the complete set of primitive 
+##       central idempotents of QG realizable by SPs, 
+## PCIsBySP = list of PCIs of QG realizable by SPs.
 ## 
-InstallGlobalFunction(PrimitiveCentralIdempotentsBySP, 
+InstallMethod( ShodaPairsAndIdempotents, 
+    "for rational group algebra", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra ], 
+    0,
 function(QG) 
+
 local   G,          #The group
         CCS,        #The conjugacy classes of subgroups
         LCCS,       #The length of CCS
-        zero,       #0 of QG
         one,        #1 of QG
         Es,         #The list of primitive central idempotents  
         SEs,        #The sum of the elements of Es
         e,          #Idempotent
         H,          #Subgroup of G
         i,          #Counter
-        SearchingKForSP;#Function to search a K for a given H  
+        SearchingKForSP,#Function to search a K for a given H  
+        SPs;
 
 #begin of functions 
 
@@ -51,8 +59,13 @@ local   G,          #The group
     NH:=Normalizer(G,H);
     Epi:=NaturalHomomorphismByNormalSubgroup( NH, H ) ;
     NHH:=Image(Epi,NH);
-    if IsAbelian(NHH) then 
-        return PrimitiveCentralIdempotentBySP( QG, NH, H );
+    if IsAbelian(NHH) then
+        e := PrimitiveCentralIdempotentBySP( QG, NH, H );
+        if e=fail then
+            return fail; 
+        else 
+            return [[NH,H],e];
+        fi;
     else 
         L:=Centre(NHH);
         if IsCyclic(L) then #This guaranties (S1) and (S2)
@@ -62,7 +75,7 @@ local   G,          #The group
                 K:=PreImages(Epi,KH);
                 e:=PrimitiveCentralIdempotentBySP( QG, K, H ); 
                 if e<>fail then
-                    return e;
+                    return [[K,H],e];
                 fi;
                 X:=Difference(X,KH);
             od;
@@ -86,33 +99,58 @@ local   G,          #The group
     G:=UnderlyingMagma(QG);
     CCS:=ConjugacyClassesSubgroups(G);
     LCCS:=Length(CCS);
-    zero:=Zero(QG);
     one:=One(QG);
     Es:=[ ];
-    SEs:=zero;
+    SPs:=[];
+    SEs:=Zero(QG);
     i:=LCCS;   
 
 #Main loop
     if Size(G)=1 then
-        return [ One(QG) ];
+        return [[ [G,G] , One(QG)] ];
     fi;
     while SEs<>one and i>=1 do 
         H:=Representative(CCS[i]); 
         e:=SearchingKForSP( H ); 
         if e<>fail then
-            if SEs*e <> zero then
-                SEs:= SEs + e;
-                Add(Es,e);
+                if IsZero( SEs*e[2] ) then # if SEs*e <> zero then
+                SEs:= SEs + e[2];
+                Add(Es,e[2]);
+                Add(SPs,e[1] );
             fi;    
         fi;
         i:=i-1;
     od;
     
 #Output
-    if SEs<>one then 
-        Print("Warning! This is not a complete set of primitive central idempotents!!!\n");
-    fi;
-    return Es;
+
+  return rec( 
+    ShodaPairs := SPs, 
+    PCIsBySP := Es);
+
+end);
+
+
+
+
+#############################################################################
+##
+#F PrimitiveCentralIdempotentsBySP( QG )
+##
+## The function PrimitiveCentralIdempotentsBySP computes the primitive central
+## idempotents of the form a e (G,K,H) where a is a rational number and (H,K)
+## is a SP. The sum of the PCIs obtained is 1 if and only if G is monomial
+## 
+InstallGlobalFunction(PrimitiveCentralIdempotentsBySP, 
+function(QG) 
+local G;
+
+G := UnderlyingMagma( QG );
+if not(IsMonomial(G)) then 
+   Print("Wedderga: Warning!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
+fi;
+
+return ShodaPairsAndIdempotents( QG ).PCIsBySP; 
 end);
 
 
@@ -177,6 +215,9 @@ local   eGKH,       # Function for eGKH
 end);        
 
 
+
+
+
 #############################################################################
 ##
 #M IsShodaPair( G, K, H )
@@ -202,11 +243,9 @@ if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) and IsNormal( K, H ) ) then
     Error("Wedderga: Each input should contain the next one and the last one \n",
           "should be normal in the second!!!\n");
 elif not( IsCyclic( FactorGroup( K, H ) ) ) then
-    Print("The second input over the third one should be cyclic\n");
     return false;
 fi;
 
-#Initialization
 #Now, checking (S3)
 DGK := Difference( G, K );
 ElemK := Elements( K );
@@ -226,6 +265,8 @@ od;
 
 return true;
 end);
+
+
 
 
 #############################################################################
