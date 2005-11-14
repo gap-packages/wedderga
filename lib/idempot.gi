@@ -33,14 +33,15 @@ local   alpha,
         i, 
         g, 
         NH;
-    
-    if not(IsSubgroup(UnderlyingMagma(QG),K)) then
-        Error("Wedderga: The group algebra does not correspond to the subgroups !!!\n");
-    elif not( IsSubgroup(K,H) and IsNormal(K,H) ) then
-        Error("Wedderga: The second subgroup must be normal in the first one !!!\n");
-    fi;
+   
+G := UnderlyingMagma( QG );
 
-    G := UnderlyingMagma( QG );
+if not IsSubgroup( G, K ) then
+    Error("Wedderga: <K> should be a subgroup of the underlying subgroup of <FG>\n");
+elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
+    Error("Wedderga: <H> should be a normal subgroup of <K>\n");
+fi; 
+    
     NH := Normalizer( G, H );
     Eps := IdempotentBySubgroups( QG, K, H );
     if ( IsCyclic(FactorGroup(K,H)) and IsNormal(NH,K) ) then 
@@ -99,12 +100,11 @@ Eps := IdempotentBySubgroups( FqG, K, H, c, ltrace );
 return Sum( List( GN1, g -> Eps^g ) );
 end);
 
-
 #############################################################################
 ##
-## CentralElementBySubgroups( FqG, K, H, c )
+## CentralElementBySubgroups( FqG, K, H, C )
 ##
-## The function CentralElementBySubgroups computes e( G, K, H, c) for H and K
+## The function CentralElementBySubgroups computes e( G, K, H, C) for H and K
 ## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
 ## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
 ##
@@ -113,12 +113,11 @@ InstallOtherMethod( CentralElementBySubgroups,
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ],
     0,
-function( FqG, K, H, c )
+function( FqG, K, H, C )
 local   G,          # Group
         Fq,         # Field
         q,          # Order of field Fq
         n,          # Order of K/H
-        cc,         # Set of cyclotomic classes of q module n
         N,          # Normalizer of H in G
         epi,        # N -->N/H
         QNH,        # N/H
@@ -135,31 +134,20 @@ local   G,          # Group
 G := UnderlyingMagma(FqG);
 Fq := LeftActingDomain(FqG);
 q := Size( Fq );
+n := Index( K, H );
+
 
 # First we check that FqG is a finite group algebra over finite field 
 # Then we check if K is subgroup of G, H is a normal subgroup of K
 
 if not IsSubgroup( G, K ) then
-    Error("Wedderga: The group algebra does not correspond to the subgroups!!!\n");
+    Error("Wedderga: <K> should be a subgroup of the underlying subgroup of <FG>\n");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("Wedderga: The second subgroup must be normal in the first one!!!\n");
-fi;
-
-# Now we check that K/H is a cyclic group 
-# Then we check that c is a cyclotomic class of |K/H| module |K/H| and
-# and this class in K/H contain generators of K/H
-
-if not IsCyclic( FactorGroup( K, H ) )then
-    Error("Wedderga: The factor group of input subgroups must be cyclic!!!\n");
-fi; 
-  
-n := Index( K, H );
-cc := CyclotomicClasses( q, n );
-
-if not c in cc then
-    Error("Wedderga: The input class does not correspond to the subgroups!!!");
-elif Gcd( c[1], n ) <> 1 then
-    Error("Wedderga: The input class is not apropriate!!!");
+    Error("Wedderga: <H> should be a normal subgroup of <K>\n");
+elif not IsCyclic( FactorGroup( K, H ) )then
+    Error("Wedderga: <K> over <H> should be be cyclic \n");
+elif not IsCyclotomicClass(q,n,C) then
+    Error("Wedderga: \n<C> should be a cyclotomic class module the index of <H> on <K>\n");
 fi; 
 
 # Program
@@ -167,6 +155,7 @@ fi;
 if K=H then
     return AverageSum( FqG, H );
 fi;
+
 N := Normalizer( G, H );
 epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QNH := Image( epi, N );
@@ -175,14 +164,100 @@ QKH := Image( epi, K );
 repeat
   gq := Random(QKH);
 until Order(gq) = Size(QKH);
-C1 := Set( List( c, ii -> gq^ii ) );
+C1 := Set( List( C, ii -> gq^ii ) );
 St := Stabilizer( QNH, C1, OnSets );
 N1 := PreImage( epi, St );
 GN1 := RightTransversal( G, N1);
+
+Eps := IdempotentBySubgroups( FqG, K, H, C );
+
+return Sum( List( GN1, g -> Eps^g ) );
+end);
+
+
+#############################################################################
+##
+## CentralElementBySubgroups( FqG, K, H, c )
+##
+## The function CentralElementBySubgroups computes e( G, K, H, C) for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## the q=|Fq|-cyclotomic class modulo n=[K:H] containing c which should be coprime with [K:H]
+##
+InstallOtherMethod( CentralElementBySubgroups,
+    "for pairs of subgroups and one cyclotomic class", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ],
+    0,
+function( FqG, K, H, c )
+local   G,          # Group
+        Fq,         # Field
+        q,          # Order of field Fq
+        n,          # Order of K/H
+        C,          # The cyclotomic class containing c
+        j,          # integer
+        N,          # Normalizer of H in G
+        epi,        # N -->N/H
+        QNH,        # N/H
+        QKH,        # K/H
+        gq,         # Generator of K/H
+        C1,         # Cyclotomic class of q module n in K/H
+        St,         # Stabilizer of C in K/H
+        N1,         # Set of representatives of St by epi
+        GN1,        # Right transversal of N1 in G
+        Eps;        # epsilon( G, K, H ) 
+        
+# Initialization
+
+G := UnderlyingMagma(FqG);
+Fq := LeftActingDomain(FqG);
+q := Size( Fq );
+n := Index( K, H );
+
+
+# First we check that FqG is a finite group algebra over finite field 
+# Then we check if K is subgroup of G, H is a normal subgroup of K
+
+if not IsSubgroup( G, K ) then
+    Error("Wedderga: <K> should be a subgroup of the underlying subgroup of <FG>\n");
+elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
+    Error("Wedderga: <H> should be a normal subgroup of <K>\n");
+elif not IsCyclic( FactorGroup( K, H ) )then
+    Error("Wedderga: <K> over <H> should be be cyclic \n");
+fi; 
+
+# Program
+
+if K=H then
+    return AverageSum( FqG, H );
+fi;
+
+# Here we compute the cyclotomic class containin c
+
+C := [ c mod n];
+j:=q*c mod n;
+while j <> C[1] do
+  Add( C, j );
+  j:=j*q mod n;
+od;  
+
+N := Normalizer( G, H );
+epi := NaturalHomomorphismByNormalSubgroup( N, H );
+QNH := Image( epi, N );
+QKH := Image( epi, K );
+# We guarantee that QKH is cyclic so we can randomly obtain its generator
+repeat
+  gq := Random(QKH);
+until Order(gq) = Size(QKH);
+C1 := Set( List( C, ii -> gq^ii ) );
+St := Stabilizer( QNH, C1, OnSets );
+N1 := PreImage( epi, St );
+GN1 := RightTransversal( G, N1);
+
 Eps := IdempotentBySubgroups( FqG, K, H, c );
 
 return Sum( List( GN1, g -> Eps^g ) );
 end);
+
 
 
 #############################################################################
@@ -226,9 +301,9 @@ local   L,       # Subgroup of G
 #First we check if K is subgroup of G, H is a normal subgroup of K
 
 if not IsSubgroup( UnderlyingMagma( QG ),K ) then
-    Error("Wedderga: The group algebra does not correspond to the subgroups!!!\n");
+    Error("Wedderga: <K> should be a subgroup of the underlying group of <QG>\n");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("Wedderga: The second subgroup must be normal in the first one!!!\n");
+    Error("Wedderga: <H> should be a normal subgroup of <K>\n");
 fi;
 
 # Initialization
@@ -339,18 +414,18 @@ end);
 
 #############################################################################
 ##
-## IdempotentBySubgroups( FqG, K, H, c )
+#M IdempotentBySubgroups( FqG, K, H, C )
 ##
-## The function IdempotentBySubgroups computes epsilon( K, H, c ) for H and K
-## subgroups of G such that H is normal in K and K/H is cyclic group, and c 
-## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
+## The function IdempotentBySubgroups computes epsilon( K, H, C ) for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## is the q=|Fq|-cyclotomic class modulo n=[K:H] containing c
 ##
 InstallOtherMethod( IdempotentBySubgroups,
     "for pairs of subgroups and one cyclotomic class", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ], 
     0,
-function( FqG, K, H, c )
+function( FqG, K, H, C )
 local   G,      # Group
         Fq,     # Field
         q,      # Order of field Fq
@@ -372,30 +447,23 @@ local   G,      # Group
 G := UnderlyingMagma(FqG);
 Fq := LeftActingDomain(FqG);
 q := Size(Fq);
+n := Index(K,H);
 
 # First we check that FqG is a finite group algebra over field finite
 # Then we check if K is subgroup of G, H is a normal subgroup of K
 
 if not IsSubgroup( G, K ) then
-    Error("Wedderga: The group algebra does not correspond to the subgroups!!!\n");
+    Error("Wedderga: <K> should be a subgroup of the underlying group of <FG>\n");
 elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
-    Error("Wedderga: The second subgroup must be normal in the first one!!!\n");
-fi;
-
-# Now we check that K/H is a cyclic group 
-# Then we check that c is a cyclotomic class of |Fq| module |K/H| and
-# and this class in K/H contain generators of K/H
-
-if not IsCyclic( FactorGroup( K, H ) )then
-    Error("Wedderga: The factor group of input subgroups must be cyclic!!!\n");
+    Error("Wedderga: <H> should be a normal subgroup of <K>\n");
+elif not IsCyclic( FactorGroup( K, H ) )then
+    Error("Wedderga: <K> over <H> should be be cyclic \n");
+elif not IsCyclotomicClass(q,n,C) then
+    Error("Wedderga: \n <C> should be a cyclotomic class module the index of <H> on <K>\n");
 fi; 
-n := Index(K,H);
+
+
 cc := CyclotomicClasses(q,n);
-if not c in cc then
-    Error("Wedderga: The input class does not correspond to the subgroups!!!\n");
-elif Gcd( c[1], n ) <> 1 then
-    Error("Wedderga: The cyclotomic class does not contain a generator of the quotient group!!!\n");
-fi; 
 
 # Program
 
@@ -414,7 +482,7 @@ a := BigPrimitiveRoot(q^o)^((q^o-1)/n);
 supp := [];
 coeff := []; 
 for d in cc do
-    tr := BigTrace(o, Fq, a^(-c[1]*d[1]) );
+    tr := BigTrace(o, Fq, a^(-C[1]*d[1]) );
     Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
     Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
 od;
@@ -423,6 +491,41 @@ coeff:=Inverse(Size(K)*One(Fq))*coeff;
 # Output
 return ElementOfMagmaRing(FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp);
 end);
+
+
+#############################################################################
+##
+#M IdempotentBySubgroups( FqG, K, H, c ) 
+##
+## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
+## c is an integer coprime with n=[K:H]. 
+## If the answer is positive then returns SimpleAlgebraByStronglySP(FqG, K, H, C) where
+## C is the cyclotomic class of q=|Fq| module n=[K:H] containing c.
+##
+InstallOtherMethod( IdempotentBySubgroups, 
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ], 
+    0,
+function( FqG, K, H, c )
+local   G,      # Group
+        n,      # Index of H in K
+        q,      # Size of Fq
+        j,      # integer module n
+        C;      # q-cyclotomic class module [K,H] containing c
+
+G := UnderlyingMagma( FqG );
+n := Index( K, H );
+q:=Size( LeftActingDomain( FqG ) );
+C := [ c mod n];
+j:=q*c mod n;
+while j <> C[1] do
+  Add( C, j );
+  j:=j*q mod n;
+od;  
+    return IdempotentBySubgroups( FqG, K, H, C );
+end);
+
 
 
 #############################################################################
@@ -450,7 +553,7 @@ if not IsFinite( X ) then
 fi;
 G := UnderlyingMagma( FG );
 if not IsSubset( G, X ) then
-  Error("The group algebra does not correspond to the subset!!!\n"); 
+  Error("Wedderga: The group algebra does not correspond to the subset!!!\n"); 
 fi;
 F := LeftActingDomain( FG );
 one := One( F );
@@ -458,7 +561,7 @@ n := Size( X );
 # Program
 quo := Inverse( n * one );
 if quo=fail then
-  Error("The order of second input must be a unit of the ring of coefficients!!!\n"); 
+  Error("Wedderga: The order of second input must be a unit of the ring of coefficients!!!\n"); 
 else
   return ElementOfMagmaRing( FamilyObj( Zero( FG ) ),
                              Zero( F ),
