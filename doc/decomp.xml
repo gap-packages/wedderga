@@ -7,47 +7,111 @@
 
 <ManSection>
    <Attr Name="WedderburnDecomposition" 
-         Arg="KG"  
-         Comm="" />
+         Arg="FG"  
+         Comm="The Wedderburn decomposition of a group algebras given as a list of gap objects" />
    <Returns>
          a list of simple algebras as GAP objects
    </Returns>
    <Description>
-         Description
+         Computes the list of Wedderburn components <Ref Sect="WedDec" /> of a group algebra <M>FG</M> 
+         realizable by strongly Shoda pairs <Ref Sect="SSPDef" /> of <M>G</M>.
+         The input <M>FG</M> should be a group ring over a finite group <M>G</M> with 
+         coefficients in <M>F</M>, where <M>F</M> is either the field <M>Q</M> of rationals or a 
+         finite field whose characteristic is coprime with the order of <M>G</M>. 
+         In many cases every Wedderburn component of <M>FG</M> is realizable by a strongly Shoda pair of 
+         the direct product of the entries of the output is isomorphic to <M>FG</M>. 
+         For example these is the case if <M>G</M> is abelian-by-supersolvable <Cite Key="ORS" />. 
    </Description>
 </ManSection>
 
+
 <Example>
 <![CDATA[
-gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
-<algebra-with-one over GF(5), with 2 generators>
-gap> WedderburnDecomposition(FG);
-[ GF(5), GF(5), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 2, 2 ] ) ]     
+gap> FD16:=GroupRing(GF(5),DihedralGroup(16));
+<algebra-with-one over GF(5), with 4 generators>
+gap> WedderburnDecomposition(FD16);
+[ GF(5), GF(5), GF(5), GF(5), ( GF(5)^[ 2, 2 ] ), ( GF(5^2)^[ 2, 2 ] ) ]
+]]>
+</Example>
+
+The previous example shows that the Wedderburn decomposition of the group algebra <M>GF(5)D_{16}</M> of the dihedral
+group of order <M>16</M> over the field of order <M>5</M> is <M>4GF(5)\oplus M_2(GF(5)) \oplus M_2(GF(25))</M>. 
+Next example shows the Wedderburn decomposition of the rational group algebra of the symmetric group on <M>4</M> 
+letters.
+
+<Example>
+<![CDATA[
+gap> QS4:=GroupRing(Rationals,SymmetricGroup(4));
+<algebra-with-one over Rationals, with 2 generators>
+gap> WedderburnDecomposition(QS4);
+[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),
+  <crossed product over CF(3), with 2 generators> ]
+]]>
+</Example>
+
+If not all the Wedderburn components of input are realizable by strongly Shoda pairs then a warning message is
+displayed together with the output.
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(24,3);QG:=GroupRing(Rationals,G);
+<pc group of size 24 with 4 generators>
+<algebra-with-one over Rationals, with 4 generators>
+gap> WedderburnDecomposition(QG);
+Warning!!! Some primitive central idempotents are not realizable by strongly Shoda pairs!!!
+[ Rationals, CF(3), ( Rationals^[ 3, 3 ] ) ]
 ]]>
 </Example>
 
 
+<!-- ************************ -->
+
 <ManSection>
    <Attr Name="WedderburnDecompositionInfo" 
-         Arg="KG"  
-         Comm="" />
+         Arg="FG"  
+         Comm="The Wedderburn decomposition of a group algebras given as a list of lists of numerical data 
+         describing each Wedderburn component" />
    <Returns>
          a list of descriptions of simple algebras (not as GAP objects)
    </Returns>
    <Description>
-         Description
+         Computes some numerical data that describes the Wedderburn components <Ref Sect="WedDec" /> of a group 
+         algebra <M>FG</M> realizable by strongly Shoda pairs <Ref Sect="SSPDef" /> of <M>G</M>.
+         The interprestion of the information displayed by the output is explained in <Ref Sect="SSPDef" />.
+         The input <M>FG</M> should be as in <Ref Attr="WedderburnDecomposition" /> and the output represent
+         the information describing the simple algebras given as output by <Ref Attr="WedderburnDecomposition" />.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> F:=FreeGroup("a","b");;a:=F.1;;b:=F.2;;rel:=[a^8,a^4*b^2,b^-1*a*b*a];;G:=F/rel;
+<fp group on the generators [ a, b ]>
+gap> QG:=GroupRing(Rationals,G);WedderburnDecomposition(QG);
+<algebra-with-one over Rationals, with 2 generators>
+[ Rationals, Rationals, Rationals, Rationals, ( Rationals^[ 2, 2 ] ),
+  <crossed product over CF(8), with 2 generators> ]
+gap> WedderburnDecompositionInfo(QG);
+[ [ 1, 1, [  ], [  ] ], [ 1, 2, [  ], [  ] ], [ 1, 2, [  ], [  ] ], [ 1, 2, [  ], [  ] ],
+  [ 2, 2, [  ], [  ] ], [ 1, 8, [ [ 2, 7, 4 ] ], [  ] ] ]
 ]]>
 </Example>
 
+In the previous example one has computed the Wedderburn decomposition of the rational group algebra <M>QG</M> of 
+the quaternion group of order <M>16</M> by using <Ref Attr="WedderburnDecomposition" /> and 
+<Ref Attr="WedderburnDecompositionInfo" />. The first 4 Wedderburn components are isomorphic to the field <M>Q</M> of 
+rationals numbers and the fourth one is isomorphic to <M>M_2(Q)</M>. 
+The last one is a crossed product with coefficients in <M>Q(\xi)</M>, where <M>\xi</M> is a complex 8-th root of the 
+unity. While the output of <Ref Attr="WedderburnDecomposition" /> does not give precise information on the data
+describing this crossed product the output of <Ref Attr="WedderburnDecompositionInfo" /> shows that this algebra is 
+given by the following presentation (see <Ref Sect="SSPDef" />):
+  <Display>
+  Q(\xi)[g | \xi^g = \xi^{-1}, g^2 = \xi^4 = -1]
+  </Display>
+
 </Section>
 
+<!-- ********************************************************* -->
 
 <Section Label="DecompSimple">
 <Heading>Simple quotient</Heading>
@@ -55,11 +119,13 @@ GAP output
 <ManSection>
    <Oper Name="SimpleAlgebraByStronglySP" 
          Arg="QG K H"  
-         Comm="" />
+         Comm="The Wedderburn component of the rational group algebra QG given realized by (K,H), a strongly Shoda 
+         pair of G" />
    <!-- LATER NC VERSION OF THE 1st OPERATION CAN APPEAR -->         
    <Oper Name="SimpleAlgebraByStronglySP" 
          Arg="FG K H c"  
-         Comm="" />
+         Comm="The Wedderburn component of the semisimple finite group algebra FG given realized by (K,H), a strongly Shoda 
+         pair of G, and a q-cyclotomic class C of " />
    <Oper Name="SimpleAlgebraByStronglySPNC" 
          Arg="FG K H c"  
          Comm="" />         
@@ -67,7 +133,13 @@ GAP output
          ???
    </Returns>
    <Description>
-         Description
+         The versions with three input data computes the Wedderburn component of the rational group algebra 
+         <M>QG</M> of a finite group <M>G</M> realized by a strongly Shoda pair <M>(K,H)</M> of <M>G</M> (see Section
+         <Ref Sect="SSPDef"/>). <P/>
+         
+         The versions with four input data computes the Wedderburn component of the semisimple finite group 
+         algebra <M>FG</M> realized by a strongly Shoda pair <M>(K,H)</M> of <M>G</M> and a <M>q-</M>cyclotom class
+         <M>C</M> (see Section <Ref Sect="CyclotomicClass"/>). <P/>
    </Description>
 </ManSection>
 
@@ -77,6 +149,7 @@ gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
 ]]>
 </Example>
 
+<!-- ************************ -->
 
 <ManSection>
    <Oper Name="SimpleAlgebraByStronglySPInfo" 
