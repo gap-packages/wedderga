@@ -25,13 +25,18 @@ The main functions of &Wedderga; are
 <P/>
 
 <Ref Attr="WedderburnDecomposition" /> 
-computes a list of simple algebras whose direct product is isomorphic to
-the group ring <M>KG</M> given as an input, where <M>G</M> should be a finite
-group, and <M>K</M> is either a field <M>Q</M> of rationals or a finite field of
-characterisitc coprime with the order of <M>G</M>. If <M>K=Q</M> then these 
-simple algebras are given as matrix algebras over some crossed product over 
-some ciclotomic extension of the field <M>Q</M>. If <M>K</M> is finite then 
-they are given as matrix algebras over finite extensions of <M>K</M>.
+computes a list of simple algebras whose direct product is isomorphic to the group ring <M>FG</M> 
+given as an input if some conditions are satisfied (see Chapter <Ref Chap="Theory" />), 
+where <M>G</M> should be a finite group, and <M>F</M> is either a field <M>Q</M> of rationals or a 
+finite field of characterisitc coprime with the order of <M>G</M>. <P/>
+
+If <M>F=Q</M> then the simple algebras are given as matrix algebras over some crossed products over 
+some cyclotomic extensions of the field <M>Q</M>. 
+These crossed products are in fact cyclotomic algebras <Ref Sect="Cyclotomic" /> and thus the entries of the 
+output of <Ref Attr="WedderburnDecomposition" /> are realizations of the Wedderburn components 
+of <M>QG</M> as algebras similar to cyclotomic algebras, as the Brauer-Witt Theorem ensures <Cite Key="BR" />. <P/>
+
+If <M>F</M> is finite then the factors are given as matrix algebras over finite extensions of <M>F</M>.
 <P/>
 
 <Example>
@@ -48,13 +53,10 @@ gap> WedderburnDecomposition(FG);
 ]]>
 </Example>
 
-Instead of WedderburnDecomposition, that returns a list of GAP objects, 
-WedderburnDecompositionInfo returnes the description of these objects.
-See next chapter for theoretical background and examples of its usage.
+Instead of <Ref Attr="WedderburnDecompositionInfo" />, that returns a list of GAP objects, 
+<Ref Attr="WedderburnDecompositionInfo" /> returnes the description of these objects.
+See Chapter <Ref Chap="Theory" /> for theoretical background.
 
-Warnings:
-- when WedderburnDecompositionInfo usage is cheaper then WedderburnDecomposition
-- when you want to find out which namely crossed product do you have?
 
 </Section>
 
