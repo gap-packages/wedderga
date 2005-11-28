@@ -277,94 +277,64 @@ end);
 ## uses the character table of G to compute the primitive 
 ## central idempotents of QG with the classical method.
 ##
-## ??? THIS IS STILL NOT THOMAS BREUER IMPLEMENTATION ???
-##
 InstallGlobalFunction( PrimitiveCentralIdempotentsByCharacterTable, 
 function(QG) 
-local   G,      #The group
-        ElemG,  #The elements of G
-        OrderG, #Order of G
-        zero,   #Zero of QG
-        oneG,   #One of QG
-        Emb,    #Embedding of G in QG
-        I,      #The irreducible characters of G
-        L,      #Length of I
-        orbt,   #G-orbits of I 
-        Lorbt,  #Length of orbt
-        Nueva,  #Temporary value of (I minus the union of orbt)
-        idem,   #Primitive Central Idempotent of QG
-        eC,     #Primitive Central Idempotent of CG
-        g,      #An element of G
-        g1,     #g considered in QG
-        Id,     #The list of primitive central idempotents of QG computed
-        Qchi,   #Character Field
-        GG,     #Gal(Qchi,Q)
-        O,      #G-Orbit of a character of G
-        char,   #The value of a character in a group element
-        i, j, l;#Counters  
+local G,      # The group
+      OrderG, # Order of G
+      zero,   # Zero of QG
+      I,      # The irreducible characters of G
+      rat,    # rational irreducible characters (Galois orbit sums)
+      norms,  # norms of the orbit sums
+      Id,     # The list of primitive central idempotents of QG computed
+      nccl,
+      i,
+      chi,    # one entry in `rat'
+      eC,     # one primitive central idempotent of QG
+      j,      # loop over class positions
+      F, c, elms, val, k, tbl, fusions, deg;
 
-#First one check if QG is a rational group algebra of a finite group
-
-    if not IsSemisimpleRationalGroupAlgebra(QG) then
-        Error("Wedderga: The input must be a rational group algebra \n");
+    # First check if `QG' is a rational group algebra of a finite group.
+    if not ( IsFreeMagmaRing( QG ) and IsGroup( UnderlyingMagma( QG ) )
+             and IsRationals( LeftActingDomain( QG ) ) ) then
+      Error( "The input must be a rational group algebra" );
     fi;
 
-#Initialization
+    # Initialization
+    G:= UnderlyingMagma( QG );
+    elms:= Elements( G );
+    OrderG:= Size( G );
+    zero:= Zero( QG );
+		       
+    # Compute the irreducible characters.
+    IsSupersolvable( G );
+    tbl:= CharacterTable( G );
+    I:= List( Irr( G ), ValuesOfClassFunction );
 
-    G:=UnderlyingMagma(QG);
-    ElemG:=Elements(G);
-    OrderG:=Size(G);
-    
-    zero:=Zero(QG);
-    oneG:=One(G);
-    Emb:=Embedding(G,QG);
+    # Compute the Galois orbit sums.
+    rat:= RationalizedMat( I );
+    norms:= List( rat, x -> ScalarProduct( tbl, x, x ) );
 
-#Computing the irreducible characters
-    
-    I:=Irr(G);
-    L:=Length(I);    
-    
-#Computing the orbits
-    
-orbt:=[];
-    
-    Nueva:=I;
-    while Nueva<>[] do
-        Qchi:=CyclotomicField( Nueva[1]!.ValuesOfClassFunction);
-        GG:=GaloisGroup( Qchi );
-        O:=Orbit(GG , Nueva[1] ) ;
-        AddSet( orbt, O);
-        Nueva:=Difference(Nueva,O);
-    od;
-    Lorbt:=Length(orbt);
-    
-#Computing the PCIs of QG
-    
-    Id:=[];
-    for i in [1..Lorbt] do
-        O:=orbt[i];
-        idem:=zero;
-        for j in [1..Length(O)] do
-            char:=O[j];
-            
-            #Computing PCI of CG
-            
-            eC:=zero;
-            for l in [1..OrderG] do
-                g:=ElemG[l];
-                g1:=g^Emb;
-                eC:=eC+ComplexConjugate(g^char)*g1;
-            od;
-            eC:=(oneG^char)*(OrderG^-1)*eC;
-            
-            #End of computation of PCI of CG
-            
-            idem:=idem+eC;
+    # Compute the PCIs of QG.
+    F:= FamilyObj( zero );
+    fusions:= List( ConjugacyClasses( tbl ),
+                    c -> List( Elements( c ),
+                               x -> PositionSorted( elms, x ) ) );
+    Id:= [];
+    nccl:= Length( I );    
+    for i in [ 1 .. Length( rat ) ] do
+      chi:= rat[i];
+      deg:= chi[1] / norms[i];
+      eC:= 0 * [ 1 .. OrderG ] + 1;
+      for j in [ 1 .. nccl ] do
+        val:= chi[j] * deg / OrderG;
+        for k in fusions[j] do
+          eC[k]:= val;
         od;
-        AddSet(Id,idem);
+      od;
+      Add( Id, ElementOfMagmaRing( F, 0, eC, elms ) );
     od;
 
-return Id;
+    return Id;
 end);
  
 
