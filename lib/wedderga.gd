@@ -91,6 +91,22 @@ DeclareOperation( "IsSP", [ IsGroup, IsGroup, IsGroup ]);
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 
+
+
+
+#################### bw.gi #####################
+
+
+DeclareOperation( "LCSP", [ IsGroup, IsGroup ] );
+DeclareOperation( "BW", [IsGroup and IsFinite] );
+DeclareOperation( "BWNoStMon", [IsGroup and IsFinite] );
+DeclareOperation( "red", [IsPosInt, IsPosInt] );
+DeclareOperation( "GalToInt", [IsGroup] );
+DeclareGlobalFunction( "cocycle" );
+DeclareOperation( "SimpleAlgebraByStronglySTInfo", 
+                            [IsPosInt , IsPosInt , IsField , IsGroup , IsList] );
+
+
 #############################################################################
 ##
 #E

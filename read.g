@@ -20,3 +20,5 @@ ReadPackage( "wedderga/lib/auxiliar.gi" );
 ReadPackage( "wedderga/lib/others.gi" );
 
 ReadPackage( "wedderga/lib/crossed.gi" );
+
+ReadPackage( "wedderga/lib/BW.gi" );
