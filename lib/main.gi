@@ -155,13 +155,45 @@ InstallMethod( WedderburnDecompositionInfo ,
     [ IsGroupRing ], 
     0,
 function( FG )
-local   G;      # Underlying group
+local   G, x, output, exp, br, sst, chi, cf;      # Underlying group
 
 G := UnderlyingMagma( FG );
-if not(IsStronglyMonomial(G)) then 
+
+if IsSemisimpleFiniteGroupAlgebra( FG ) then 
+
+  if not(IsStronglyMonomial(G)) then 
     Print("Wedderga: Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+  fi;
+  return WeddDecompInfo( FG );
+
+elif IsAbelian(G) then 
+
+  return List(RationalClasses(G),x->[1,Order(Representative(x))]);
+
+elif not IsStronglyMonomial(G) then 
+
+  output := ShallowCopy(WeddDecompInfo( FG ));
+  exp := Exponent(G);
+  br:=BWNoStMon(G);
+    
+  for sst in br do
+    chi:=sst[1];
+    cf:=sst[2];
+    if Length(sst)=2 then 
+      Add(output,[chi[1],Conductor(cf)]);
+    else
+      Add(output,SimpleAlgebraByStronglySTInfo(exp,chi[1],cf,sst[4],sst[3]));
+    fi;
+  od;
+    
+  return output;
+  
+else
+  
+  Error("Wedderga: <FG> must be a semisimple group algebra over rationals or over finite field!!!");
+
 fi;
-return WeddDecompInfo( FG );
+
 end);
 
 #############################################################################
