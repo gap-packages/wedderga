@@ -104,23 +104,49 @@ local   G,      # Group
         pairs,  # Strongly Shoda pairs of G
         A,      # Simple algebra
         i,      # Counter
+        exp,    # Exponent of G
+        br,     # List of lists of strongly Shoda triples
+        sst,    # an element of sst
+        chi,    # an irreducible character
+        cf,     # character field of chi
         output;
         
-G := Magma(FG);
+G := UnderlyingMagma(FG);
 output := [];
+
 
 if IsSemisimpleRationalGroupAlgebra( FG ) then
 
-    if HasStronglyShodaPairs( G ) then
-        pairs := StronglyShodaPairs( G );
+    if IsAbelian(G) then 
+      return List(RationalClasses(G),x->[1,Order(Representative(x))]);
     else
-        pairs := StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs;
-    fi;
+      if HasStronglyShodaPairs( G ) then
+          pairs := StronglyShodaPairs( G );
+      else
+          pairs := StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs;
+      fi;
       
-    for i in pairs do
+      for i in pairs do
         Add(output, SimpleAlgebraByStronglySPInfoNC( FG, i[ 1 ], i[ 2 ] ) );
-    od;
-    return output;
+      od;
+  
+      if not IsStronglyMonomial(G) then 
+        exp := Exponent(G);
+        br:=BWNoStMon(G);
+      
+        for sst in br do
+          chi:=sst[1];
+          cf:=sst[2];
+          if Length(sst)=2 then 
+            Add(output,[chi[1],Conductor(cf)]);
+          else
+            Add(output,SimpleAlgebraByStronglySTInfo(exp,chi[1],cf,sst[4],sst[3]));
+          fi;
+        od;
+      fi;
+    fi;
+  
+  return output;
     
 elif IsSemisimpleFiniteGroupAlgebra( FG ) then
 
@@ -155,44 +181,16 @@ InstallMethod( WedderburnDecompositionInfo ,
     [ IsGroupRing ], 
     0,
 function( FG )
-local   G, x, output, exp, br, sst, chi, cf;      # Underlying group
+local   G;      # Underlying group
 
 G := UnderlyingMagma( FG );
 
-if IsSemisimpleFiniteGroupAlgebra( FG ) then 
-
-  if not(IsStronglyMonomial(G)) then 
+if IsSemisimpleFiniteGroupAlgebra( FG ) and not(IsStronglyMonomial(G)) then 
     Print("Wedderga: Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
-  fi;
-  return WeddDecompInfo( FG );
-
-elif IsAbelian(G) then 
-
-  return List(RationalClasses(G),x->[1,Order(Representative(x))]);
-
-elif not IsStronglyMonomial(G) then 
-
-  output := ShallowCopy(WeddDecompInfo( FG ));
-  exp := Exponent(G);
-  br:=BWNoStMon(G);
-    
-  for sst in br do
-    chi:=sst[1];
-    cf:=sst[2];
-    if Length(sst)=2 then 
-      Add(output,[chi[1],Conductor(cf)]);
-    else
-      Add(output,SimpleAlgebraByStronglySTInfo(exp,chi[1],cf,sst[4],sst[3]));
-    fi;
-  od;
-    
-  return output;
-  
-else
-  
-  Error("Wedderga: <FG> must be a semisimple group algebra over rationals or over finite field!!!");
-
 fi;
+
+return WeddDecompInfo( FG );
+
 
 end);
 
