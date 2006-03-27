@@ -759,3 +759,23 @@ InstallMethod( IsFiniteDimensional,
     "for a crossed product",
     [ IsCrossedProduct ],
     RG -> IsFinite( UnderlyingMagma( RG ) ) );
+
+
+#############################################################################
+##
+#M  ActionForCrossedProduct( <RG> ) . . . . . . . . . . for a crossed product
+##
+InstallMethod( ActionForCrossedProduct,
+    "for a crossed product",
+    [ IsCrossedProduct ],
+    RG -> ElementsFamily(FamilyObj(RG))!.action );
+
+
+#############################################################################
+##
+#M  TwistingForCrossedProduct( <RG> ) . . . . . . . . . . for a crossed product
+##
+InstallMethod( TwistingForCrossedProduct,
+    "for a crossed product",
+    [ IsCrossedProduct ],
+    RG -> ElementsFamily(FamilyObj(RG))!.action );

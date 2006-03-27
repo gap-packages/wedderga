@@ -75,6 +75,20 @@ DeclareAttribute( "UnderlyingMagma", IsCrossedProduct );
 
 #############################################################################
 ##
+#A  ActionForCrossedProduct( <RM> )
+##
+DeclareAttribute( "ActionForCrossedProduct", IsCrossedProduct );
+
+
+#############################################################################
+##
+#A  TwistingForCrossedProduct( <RM> )
+##
+DeclareAttribute( "TwistingForCrossedProduct", IsCrossedProduct );
+
+
+#############################################################################
+##
 #O  ElementOfCrossedProduct( <Fam>, <zerocoeff>, <coeffs>, <mgmelms> )
 ##
 ##  `ElementOfCrossedProduct' returns the element $\sum_{i=1}^n c_i m_i^{\prime}$,
