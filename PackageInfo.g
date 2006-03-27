@@ -53,6 +53,19 @@ Persons :=
        Place         := "Zaporozhye",
        Institution   := "Zaporozhye National University"
      ),
+    rec(
+       LastName      := "Olteanu",
+       FirstNames    := "Gabriela",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "golteanu@um.es",
+       PostalAddress := Concatenation( [
+                        "Departamento de Matemáticas\n",
+                        "Universidad de Murcia\n", 
+                        "30100 Murcia, Spain" ] ),
+       Place         := "Murcia",
+       Institution   := "Universidad de Murcia"
+     ),
      rec(
        LastName      := "Olivieri",
        FirstNames    := "Aurora",
