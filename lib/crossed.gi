@@ -132,7 +132,7 @@ InstallMethod( PrintObj,
     if i = 0 then
       Print( "<zero> of ..." );
     else
-      Print( "(", coeffs_and_words[i-1], ")*", coeffs_and_words[i] );
+      Print( "(", coeffs_and_words[i-1], ")*(", coeffs_and_words[i], ")" );
     fi;
     end );
 
@@ -778,4 +778,4 @@ InstallMethod( ActionForCrossedProduct,
 InstallMethod( TwistingForCrossedProduct,
     "for a crossed product",
     [ IsCrossedProduct ],
-    RG -> ElementsFamily(FamilyObj(RG))!.action );
+    RG -> ElementsFamily(FamilyObj(RG))!.twisting );
