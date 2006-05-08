@@ -111,9 +111,9 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 DeclareOperation( "LinCharByStronglySP", [ IsGroup, IsGroup ] );
 DeclareOperation( "BW", [IsGroup and IsFinite] );
 DeclareOperation( "BWNoStMon", [IsGroup and IsFinite] );
-DeclareOperation( "red", [IsPosInt, IsPosInt] );
+DeclareOperation( "ReductionModnZ", [IsPosInt, IsPosInt] );
 DeclareOperation( "GalToInt", [IsGroup] );
-DeclareGlobalFunction( "cocycle" );
+DeclareGlobalFunction( "CocycleByData" );
 DeclareOperation( "SimpleAlgebraByStronglySTInfo", 
                             [IsPosInt , IsPosInt , IsField , IsGroup , IsList] );
 
