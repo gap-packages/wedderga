@@ -108,7 +108,7 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 #################### bw.gi #####################
 
 
-DeclareOperation( "LCSP", [ IsGroup, IsGroup ] );
+DeclareOperation( "LinCharByStronglySP", [ IsGroup, IsGroup ] );
 DeclareOperation( "BW", [IsGroup and IsFinite] );
 DeclareOperation( "BWNoStMon", [IsGroup and IsFinite] );
 DeclareOperation( "red", [IsPosInt, IsPosInt] );
