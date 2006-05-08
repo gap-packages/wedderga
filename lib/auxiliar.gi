@@ -25,6 +25,20 @@ InstallImmediateMethod( IsSemisimpleRationalGroupAlgebra,
 
 #############################################################################
 ##
+#P IsZeroCharacteristicGroupAlgebra( FG )
+##  
+## The function checks whether a group ring is a group algebra of a finite
+## group over the field of characteristic zero
+##
+InstallImmediateMethod( IsZeroCharacteristicGroupAlgebra,
+                        IsGroupRing, 
+                        0,
+    R -> Characteristic(LeftActingDomain(R))=0 and IsFinite(UnderlyingMagma(R))
+); 
+
+
+#############################################################################
+##
 #P IsSemisimpleFiniteGroupAlgebra( FG )
 ##  
 ## The function checks whether a group ring is a semisimple finite group algebra
