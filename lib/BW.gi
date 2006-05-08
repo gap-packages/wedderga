@@ -82,7 +82,7 @@ local
     	    	      # to SST is the p-part of one Wedderburn component of QG
     control,    	# A list of integers controlling the position in classirr
                 	# still not covered by sspsub
-    GalList,        	# the list of Galois Groups Gal(L/character fields) 
+    GalList,      # the list of Galois Groups Gal(L/character fields) 
     sylow,      	# the list of Sylow subgroups of the elements in GalList
     primes,     	# a list of lists of primes controlling the p-parts still not covered 
     i,          	# counter
@@ -217,11 +217,11 @@ end);
 
 #############################################################################
 ##
-#O red( n, m )
+#O ReductionModnZ( n, m )
 ##
 ## Projection Zn^* ----> Zm^* for m|n
 #
-InstallMethod( red ,
+InstallMethod( ReductionModnZ ,
     "for positive integers ", 
     true, 
     [ IsPosInt , IsPosInt ], 
@@ -280,13 +280,13 @@ end);
 
 ###############################################################################
 ##
-#O cocycle( exp, Gal, cf, M, K, H, div)
+#O CocycleByData( exp, Gal, cf, M, K, H, div)
 ##
 ## Returns a pair formed by a positive integer cond and 
 ## the (additive) twisting for a crossed product algebra over 
 ## Gal=Galcf(Q(cond)/cf) associated to the triple (M,K,H) to the div power
 #
-InstallGlobalFunction(cocycle,function( exp, Gal, cf, M, K, H, div)
+InstallGlobalFunction(CocycleByData,function( exp, Gal, cf, M, K, H, div)
 
 local   
 
@@ -379,7 +379,7 @@ coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
 
     
     Ucond := Units(ZmodnZ(cond));
-    redu := red(cond,ok);
+    redu := ReductionModnZ(cond,ok);
     
     GalSSPcond := Subgroup(Ucond,PreImage(redu,GalSSP));
     
@@ -392,7 +392,7 @@ coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
     # The cocycle in Z^2(Galcf,<E(cond)>)
     
     SF:=AsField(cf,CF(cond)); 
-    Galcf:=Subgroup(Ucond,Image(red(exp,cond),Gal));
+    Galcf:=Subgroup(Ucond,Image(ReductionModnZ(exp,cond),Gal));
     
     if IsSubset(GalSSPcond,Galcf) then
       return cocSSPcond(a,b);
@@ -471,7 +471,7 @@ local
   Galnum := Image(GalToInt(Gal));
   
   if Gcd(exp,4)=2 then
-    Galnum := Subgroup(Units(ZmodnZ(exp)),PreImage(red(exp,exp/2),Galnum));
+    Galnum := Subgroup(Units(ZmodnZ(exp)),PreImage(ReductionModnZ(exp,exp/2),Galnum));
   fi;
   
   pp := PrimePowersInt(n);
@@ -480,16 +480,16 @@ local
   for x in LSST do
     primes := x[4];
     a:= Product(primes,p->p^pp[Position(pp,p)+1]);
-    Add(LC,cocycle(exp,Galnum,cf,x[1],x[2],x[3],a));
+    Add(LC,CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a));
   od;
   
   Cond := Lcm(List(LC,x->x[1]));
-  GalCond := Subgroup(Units(ZmodnZ(Cond)),Image(red(exp,Cond),Galnum));
+  GalCond := Subgroup(Units(ZmodnZ(Cond)),Image(ReductionModnZ(exp,Cond),Galnum));
   coc := function(a,b)
     local out,x,redu;  
       out := Zero(ZmodnZ(Cond));
       for x in LC do
-        redu := red(Cond,x[1]);
+        redu := ReductionModnZ(Cond,x[1]);
         out := out + (Cond/x[1])*ZmodnZObj(Int(x[2](a^redu,b^redu)),Cond);
       od;
       return out;
