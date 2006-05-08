@@ -21,6 +21,7 @@ DeclareInfoClass("InfoPCI");
 
 DeclareProperty( "IsSemisimpleRationalGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
+DeclareProperty( "IsZeroCharacteristicGroupAlgebra", IsGroupRing );
 
 #################### main.gi #####################
 
@@ -46,6 +47,16 @@ DeclareGlobalFunction( "SearchingKForSSP" );
 DeclareOperation( "eG",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
 
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStronglySP" );
+
+DeclareOperation( "AddCrossedProductBySSP", [ IsGroup, IsGroup, IsGroup]);
+DeclareOperation( "AddCrossedProductBySST", 
+                  [ IsInt, IsInt, IsCyclotomicField, IsGroup, IsList ] );
+DeclareAttribute( "WeddDecompData", IsGroup );
+DeclareOperation( "GenWeddDecomp", [ IsGroupAlgebra ] );
+DeclareOperation( "SimpleAlgebraByData", [ IsList ] );
+DeclareOperation( "WDecomp", [ IsGroupAlgebra ] );
+DeclareOperation( "SimpleAlgebraInfoByData", [ IsList ] );
+DeclareOperation( "WDecompInfo", [ IsGroupAlgebra ] );
 
 #################### idempot.gi #####################
 
