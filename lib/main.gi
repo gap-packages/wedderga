@@ -48,7 +48,7 @@ if IsSemisimpleFiniteGroupAlgebra( FG ) then
   
 elif IsSemisimpleRationalGroupAlgebra( FG ) then
   for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-    A := CrossedProductBySSP( UnderlyingMagma( FG ), i[ 1 ], i[ 2 ] );
+    A := SimpleAlgebraByStronglySPNC( FG, i[ 1 ], i[ 2 ] );
     Add(output, A );
   od;
   return output;
