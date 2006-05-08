@@ -18,11 +18,11 @@
 
 #############################################################################
 ##
-#O LCSP( K, H )
+#O LinCharByStronglySP( K, H )
 ##
 ## Returns the linear character given by a strongly Shoda pair (K,H)
 ##
-InstallMethod( LCSP,
+InstallMethod( LinCharByStronglySP,
     "for subgroups", 
     true, 
     [ IsGroup , IsGroup ], 
@@ -117,7 +117,7 @@ local
 
   irr := Filtered(Irr(G),chi->chi[1]>1);
   ratirr := Difference(RationalizedMat(irr),
-              RationalizedMat(List(StronglyShodaPairs(G),x->LCSP(x[1],x[2])^G)));
+              RationalizedMat(List(StronglyShodaPairs(G),x->LinCharByStronglySP(x[1],x[2])^G)));
   classirr := List(ratirr,x->[]);
   for chi in irr do
       ratchi := RationalizedMat([chi])[1];
@@ -164,7 +164,7 @@ while Sum(List(primes,Length)) > 0 do
     while sspcounter <= m and Sum(List(primes,Length))> 0 do
         K := ssp[sspcounter][1]; 
         H := ssp[sspcounter][2];
-        psi := LCSP(K,H)^M;
+        psi := LinCharByStronglySP(K,H)^M;
         cfpsi := Field(psi);
         gencfpsi := GeneratorsOfField(cfpsi);
         dropcontrol := [];
