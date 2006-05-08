@@ -54,7 +54,7 @@ DeclareOperation( "AddCrossedProductBySST",
 DeclareAttribute( "WeddDecompData", IsGroup );
 DeclareOperation( "GenWeddDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraByData", [ IsList ] );
-DeclareOperation( "WDecomp", [ IsGroupAlgebra ] );
+# DeclareOperation( "WDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraInfoByData", [ IsList ] );
 DeclareOperation( "WDecompInfo", [ IsGroupAlgebra ] );
 

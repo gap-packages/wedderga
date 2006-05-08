@@ -29,7 +29,7 @@
 ## This is an auxiliar function not to be documented.
 ##
 InstallMethod( WeddDecomp, 
-    "for semisimple rational or finite group algebra", 
+    "for semisimple zero characteristic or finite group algebra", 
     true, 
     [ IsGroupRing ], 
     0,
@@ -46,9 +46,9 @@ if IsSemisimpleFiniteGroupAlgebra( FG ) then
   od;
   return output;
   
-elif IsSemisimpleRationalGroupAlgebra( FG ) then
-  for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-    A := SimpleAlgebraByStronglySPNC( FG, i[ 1 ], i[ 2 ] );
+elif IsZeroCharacteristicGroupAlgebra( FG ) then
+  for i in GenWeddDecomp( FG ) do
+    A := SimpleAlgebraByData(i);
     Add(output, A );
   od;
   return output;
@@ -56,6 +56,7 @@ elif IsSemisimpleRationalGroupAlgebra( FG ) then
 else
   Error("Wedderga: <FG> must be a semisimple group algebra over rationals or over finite field!!!");
 fi;  
+
 end);
 
 
@@ -67,22 +68,25 @@ end);
 ## strongly Shoda pairs of the underlying group, of the semisimple group algebra 
 ## FG over the finite field or the field of rationals as matrix algebras over 
 ## cyclotomic algebras and stores the result as an attribute of FG. 
-## It uses the attribute WeddDecomp and IsStronglyMonomial to display a warning
+## It uses the attribute WeddDecomp and IsStronglyMonomial to display a warning.
+## The reason for such combination of operation 'WedderburnDecomposition' and
+## attribute 'WeddDecomp' was in the necessity of displaying the warning each
+## time when we refer to this information
 ##
 InstallMethod( WedderburnDecomposition, 
-    "for semisimple rational or finite group algebra", 
+    "for semisimple zero characteristic or finite group algebra", 
     true, 
     [ IsGroupRing ], 
     0,
 function( FG )
-local   G;      # Underlying group
-
+local G;   # Underlying group
 G := UnderlyingMagma( FG );
-if not(IsStronglyMonomial(G)) then 
-    Print("Wedderga: Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+if not IsStronglyMonomial( G ) and IsSemisimpleFiniteGroupAlgebra( FG ) then 
+    Print("Wedderga: Warning!!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
 fi;
 return WeddDecomp( FG );
 end);
+
 
 #############################################################################
 ##
@@ -114,11 +118,10 @@ local   G,      # Group
 G := UnderlyingMagma(FG);
 output := [];
 
-
 if IsSemisimpleRationalGroupAlgebra( FG ) then
 
     if IsAbelian(G) then 
-      return List(RationalClasses(G),x->[1,Order(Representative(x))]);
+      return List( RationalClasses(G), x -> [ 1, Order(Representative(x)) ] );
     else
       if HasStronglyShodaPairs( G ) then
           pairs := StronglyShodaPairs( G );
@@ -185,22 +188,21 @@ local   G;      # Underlying group
 
 G := UnderlyingMagma( FG );
 
-if IsSemisimpleFiniteGroupAlgebra( FG ) and not(IsStronglyMonomial(G)) then 
-    Print("Wedderga: Warning!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+if IsSemisimpleFiniteGroupAlgebra( FG ) and not IsStronglyMonomial(G) then 
+    Print("Wedderga: Warning!!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
 fi;
 
 return WeddDecompInfo( FG );
 
-
 end);
+
+
 
 #############################################################################
 ##                                                                         ##
 ##                       SIMPLE ALGEBRA                                    ##
 ##                                                                         ##
 #############################################################################
-
-
 
 
 #############################################################################
@@ -217,7 +219,7 @@ InstallOtherMethod( SimpleAlgebraByStronglySP,
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
     0,
 function( QG, K, H)
-if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
+if IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
     return SimpleAlgebraByStronglySPNC( QG, K, H );
 else
     Error("Wedderga: <(K,H)> should be a strongly Shoda pair of the underlying group of <QG>\n");
@@ -248,7 +250,6 @@ local   G,      # Group
 G := UnderlyingMagma( FqG );
 q := Size( LeftActingDomain( FqG ) );
 n := Index( K, H );
-
 
 if not(IsStronglyShodaPair(G, K, H )) then
     Error("Wedderga: (<K>,<H>) should be a strongly Shoda pair of the underlying group of <FqG>\n");
@@ -350,6 +351,7 @@ else # if N_G(H) <> K
     NdK:=Image(Epi2,NH);
         
       act := function(a) 
+             local x;
              return MappingByFunction( CF(ok), CF(ok), x -> 
                GaloisCyc(x, Position(Potk,k^PreImagesRepresentative(Epi2,a))));
              end;
@@ -370,12 +372,6 @@ else # if N_G(H) <> K
     fi;  
 fi;      
 end);
-
-
-
-
-
-
 
 
 #############################################################################
@@ -410,8 +406,6 @@ local   G,          # Group
         o,          # q = p^o
         ind;        # index of K in G        
         
-
-
 G := UnderlyingMagma( FqG );
 Fq := LeftActingDomain( FqG );
 q := Size( Fq );
@@ -452,6 +446,7 @@ fi;
 
 end);
 
+
 #############################################################################
 ##
 #O SimpleAlgebraByStronglySPNC( FqG, K, H, c ) 
@@ -487,7 +482,6 @@ od;
 end);
 
 
-
 #############################################################################
 ##
 #O SimpleAlgebraByStronglySPInfo( QG, K, H ) 
@@ -507,6 +501,7 @@ else
     Error("Wedderga: <(K,H)> should be a strongly Shoda pair of the underlying group of <QG>\n");
 fi;
 end);
+
 
 #############################################################################
 ##
@@ -543,6 +538,7 @@ else Error("Wedderga: <C> should be a generating cyclotomic class module the ind
 fi;
 
 end);
+
 
 #############################################################################
 ##
@@ -685,8 +681,6 @@ local   G,          # Group
 end);
 
 
-
-
 #############################################################################
 ##
 #O SimpleAlgebraByStronglySPInfoNC( FqG, K, H, C )
@@ -762,7 +756,6 @@ local   G,      # Group
 
 q := Size( LeftActingDomain( FqG ) );
 
-
 G := UnderlyingMagma( FqG );
 n := Index( K, H );
 q:=Size( LeftActingDomain( FqG ) );
@@ -775,6 +768,7 @@ od;
     return SimpleAlgebraByStronglySPInfoNC( FqG, K, H, C );
 
 end);
+
 
 #############################################################################
 ##                                                                         ##
@@ -795,12 +789,12 @@ end);
 InstallMethod( StronglyShodaPairs, 
     "for finite group ", 
     true, 
-    [IsGroup and IsFinite], 
+    [ IsGroup and IsFinite ], 
     0,
 function( G )
 local   QG;     # Rational Group Algebra
        
-QG:=GroupRing( Rationals, G ); 
+QG := GroupRing( Rationals, G ); 
         
 return StronglyShodaPairsAndIdempotents(QG).StronglyShodaPairs;
 
@@ -862,12 +856,12 @@ else
   fi;
   for j in [ LCCS, LCCS-1 .. 1 ] do
     H:=Representative(CCS[j]);        
-    if IsSubset(H,DG) then
-      if IsCyclic(FactorGroup(G,H)) then 
+    if IsSubset( H, DG ) then
+      if IsCyclic( FactorGroup( G, H ) ) then 
         idempeGKH:=eG(QG,G,H)[2]; 
         SeGKHs:= SeGKHs + idempeGKH;
-        Add(KHs,[G,H]);
-        Add(eGKHs,idempeGKH);
+        Add( KHs, [ G, H ] );
+        Add( eGKHs, idempeGKH );
       fi;
     else 
       idempeGKH:=SearchingKForSSP(QG,H);
@@ -893,6 +887,7 @@ fi;
 
 end);
 
+
 #############################################################################
 ##
 #A StronglyShodaPairsAndIdempotents( FqG )
@@ -905,7 +900,6 @@ end);
 ## PrimitiveCentralIdempotents = list of PCIs of FqG realizable by SSPs and cyclotomic classes,
 ## StronglyMonomial := Yes if PrimitiveCentralIdempotents is a complete set of PCIs of FqG, No otherwise 
 ##
-
 ## The function StronglyShodaPairsAndIdempotents computes the record [SSPs, PCIs], 
 ## where SSPs is a list of the SSP and cyclotomic classes that covers 
 ## the complete set of primitive central idempotents,PCIs, 
@@ -1014,7 +1008,6 @@ od;
 return rec( StronglyShodaPairs := list, 
             PrimitiveCentralIdempotents := e);
 end);
-
 
 
 #############################################################################
@@ -1126,8 +1119,6 @@ fi;
 end);
 
 
-
-
 #############################################################################
 ##
 #O PrimitiveCentralIdempotentsByStronglySP( FG )
@@ -1142,15 +1133,12 @@ function( FG )
 local G;
 
 G := UnderlyingMagma( FG );
-if not(IsStronglyMonomial(G)) then 
-   Print("Wedderga: Warning!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
+if not IsStronglyMonomial(G)  then 
+   Print("Wedderga: Warning!!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
 fi;
 
 return StronglyShodaPairsAndIdempotents( FG ).PrimitiveCentralIdempotents; 
 end);
-
-
-
 
 
 #############################################################################
