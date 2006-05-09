@@ -137,10 +137,12 @@ end);
 ##
 #F PrimitiveCentralIdempotentsBySP( QG )
 ##
-## The function PrimitiveCentralIdempotentsBySP computes the primitive central
-## idempotents of the form a e (G,K,H) where a is a rational number and (H,K)
-## is a SP. The sum of the PCIs obtained is 1 if and only if G is monomial
-## 
+## The function computes the primitive central idempotents of the form 
+## a*e(G,K,H) where a is a rational number and (H,K) is a SP. 
+## The sum of the PCIs obtained is 1 if and only if G is monomial
+## This function is for rational group algebras (otherwise you will not
+## use ShodaPairsAndIdempotents)
+##
 InstallGlobalFunction(PrimitiveCentralIdempotentsBySP, 
 function(QG) 
 local G;
