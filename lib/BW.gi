@@ -436,7 +436,7 @@ end);
 InstallMethod( SimpleAlgebraByStronglySTInfo, 
     "for rational group algebras", 
     true, 
-    [ IsPosInt , IsPosInt , IsField , IsGroup , IsList ], 
+    [ IsPosInt, IsPosInt, IsField, IsGroup, IsList ], 
     0,
 
 function( exp, n, cf , Gal , LSST )

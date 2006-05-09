@@ -17,49 +17,6 @@
 #############################################################################
 
 
-
-#############################################################################
-##
-#A WeddDecomp( FG )
-##
-## The function WeddDecomp computes the Wedderburn components realizable by
-## strongly Shoda pairs of the underlying group, of the semisimple group algebra 
-## FG over the finite field or the field of rationals as matrix algebras over 
-## cyclotomic algebras and stores the result as an attribute of FG. 
-## This is an auxiliar function not to be documented.
-##
-InstallMethod( WeddDecomp, 
-    "for semisimple zero characteristic or finite group algebra", 
-    true, 
-    [ IsGroupRing ], 
-    0,
-function( FG )
-local   A,      # Simple algebra
-        i,      # Counter
-        output;
-output := [];
-
-if IsSemisimpleFiniteGroupAlgebra( FG ) then
-  for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-    A := SimpleAlgebraByStronglySPNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
-    Append(output, List(i[3], j -> A ) );
-  od;
-  return output;
-  
-elif IsZeroCharacteristicGroupAlgebra( FG ) then
-  for i in GenWeddDecomp( FG ) do
-    A := SimpleAlgebraByData(i);
-    Add(output, A );
-  od;
-  return output;
-  
-else
-  Error("Wedderga: <FG> must be a semisimple group algebra over rationals or over finite field!!!");
-fi;  
-
-end);
-
-
 #############################################################################
 ##
 #O WedderburnDecomposition( FG )
@@ -90,6 +47,78 @@ end);
 
 #############################################################################
 ##
+#A WeddDecomp( FG )
+##
+## The function WeddDecomp computes the Wedderburn components realizable by
+## strongly Shoda pairs of the underlying group, of the semisimple group algebra 
+## FG over the finite field or the field of rationals as matrix algebras over 
+## cyclotomic algebras and stores the result as an attribute of FG. 
+## This is an auxiliar function not to be documented.
+##
+InstallMethod( WeddDecomp, 
+    "for semisimple zero characteristic or finite group algebra", 
+    true, 
+    [ IsGroupRing ], 
+    0,
+function( FG )
+local   A,      # Simple algebra
+        x,      # description of current component
+        i,      # Counter
+        output;
+output := [];
+
+if IsSemisimpleFiniteGroupAlgebra( FG ) then
+  for x in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
+    A := SimpleAlgebraByStronglySPNC( FG, x[ 1 ], x[ 2 ], x[ 3 ][ 1 ]);
+    Append(output, List(x[3], i -> A ) );
+  od;
+  return output;
+  
+elif IsZeroCharacteristicGroupAlgebra( FG ) then
+  for x in GenWeddDecomp( FG ) do
+    A := SimpleAlgebraByData(x);
+    Add(output, A );
+  od;
+  return output;
+  
+else
+  Error("Wedderga: <FG> must be a semisimple group algebra over rationals or over finite field!!!");
+fi;  
+
+end);
+
+
+#############################################################################
+##
+#O WedderburnDecompositionInfo( FG ) 
+##
+## The function WeddDecompInfo compute a list of numerical data describing 
+## the Wedderburn components, realizable by strongly Shoda pairs of the 
+## underlying group, of the semisimple group algebra FG over a finite field or 
+## the field of rationals and stores the result as an attribute of FG. 
+## It uses the attribute WeddDecomp and IsStronglyMonomial to display a warning
+##
+InstallMethod( WedderburnDecompositionInfo , 
+    "for semisimple zero-characteristic or finite group algebra", 
+    true, 
+    [ IsGroupRing ], 
+    0,
+function( FG )
+local   G;      # Underlying group
+
+G := UnderlyingMagma( FG );
+
+if IsSemisimpleFiniteGroupAlgebra( FG ) and not IsStronglyMonomial(G) then 
+    Print("Wedderga: Warning!!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+fi;
+
+return WeddDecompInfo( FG );
+
+end);
+
+
+#############################################################################
+##
 #A WeddDecompInfo( FG ) 
 ##
 ## The function WeddDecompInfo compute a list of numerical data describing 
@@ -99,7 +128,7 @@ end);
 ## This is an auxiliar function not to be documented.
 ##
 InstallMethod( WeddDecompInfo , 
-    "for semisimple rational or finite group algebra", 
+    "for semisimple zero-characteristic or finite group algebra",
     true, 
     [ IsGroupRing ], 
     0,
@@ -150,6 +179,14 @@ if IsSemisimpleRationalGroupAlgebra( FG ) then
     fi;
   
   return output;
+
+elif IsZeroCharacteristicGroupAlgebra(FG) then
+    
+    for i in GenWeddDecomp(FG) do
+      A := SimpleAlgebraInfoByData(i);
+      Append( output, [ A ] );
+    od;  
+    return output;
     
 elif IsSemisimpleFiniteGroupAlgebra( FG ) then
 
@@ -161,7 +198,7 @@ elif IsSemisimpleFiniteGroupAlgebra( FG ) then
     
 else
 
-    Error("Wedderga: <FG> must be a semisimple algebra over rationals or over finite field!!!");
+    Error("Wedderga: <FG> must be a zero-characteristic or finite semisimple group algebra!!!");
 
 fi;
 
@@ -170,30 +207,175 @@ end);
 
 #############################################################################
 ##
-#O WedderburnDecompositionInfo( FG ) 
-##
-## The function WeddDecompInfo compute a list of numerical data describing 
-## the Wedderburn components, realizable by strongly Shoda pairs of the 
-## underlying group, of the semisimple group algebra FG over a finite field or 
-## the field of rationals and stores the result as an attribute of FG. 
-## It uses the attribute WeddDecomp and IsStronglyMonomial to display a warning
-##
-InstallMethod( WedderburnDecompositionInfo , 
-    "for semisimple rational or finite group algebra", 
-    true, 
-    [ IsGroupRing ], 
-    0,
-function( FG )
-local   G;      # Underlying group
+InstallMethod( GenWeddDecomp,
+"for semisimple infinite group algebras",
+true,
+[ IsGroupAlgebra ],
+0,
+function(KG)
+local 
+K,          # Coefficient Field
+G,          # Underlying Group
+wdd,        # Wedderburn Decomposition data for QG
+output,     # the output
+x,          # an element of wdd
+z,          # Centre of a Wedderburn component of QG
+F,          # Centre of a Wedderburn component of KG
+a,          # The number of Wedderburn components of KG associated to a simple 
+            # component of QG
+i,          # counter
+n,          # Matrix size of a Wederburn component of QG
+ok,         # Order of root of unity
+Gal,        # The group of a crossed product of a simple component of QG
+coc,        # The cocycle of a crossed product of a simple component of QG and KG
+Fxi,        # F(ok)
+d,          # Factor of increase of matrix size
+condK,      # Conductor of K
+m,          # Lcm(condK,ok)
+redmok,     # Reduction Z_m --> Z_ok
+redmcondK,  # Reduction Z_m --> Z_ok
+gal;        # The group of a crossed product of a simple component of KG
 
-G := UnderlyingMagma( FG );
+K := LeftActingDomain(KG);
+G := UnderlyingMagma(KG);
+wdd := WeddDecompData(G);
+if K=Rationals then
+    return wdd;
+else
 
-if IsSemisimpleFiniteGroupAlgebra( FG ) and not IsStronglyMonomial(G) then 
-    Print("Wedderga: Warning!!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+    output := [];
+    
+    for x in wdd do
+      n := x[1];
+      z := x[2];
+      if Length(x) = 2 then 
+        z := x[2];
+        F :=  Field(Union(GeneratorsOfField(z),GeneratorsOfField(K)));
+        a := Dimension(z)*Dimension(K)/Dimension(F);
+        for i in [1..a] do
+          Add(output,[n,F]);
+        od;
+      else 
+        ok := x[3];
+        Gal := x[4];
+        coc := x[5];
+        F :=  Field(Union(GeneratorsOfField(z),GeneratorsOfField(K)));
+        a := Dimension(z)*Dimension(K)/Dimension(F);
+        Fxi := Field(F,[E(ok)]);
+        d := Dimension(Field(z,[E(ok)]))/Dimension(Fxi);
+        condK := Conductor(K);
+        m := Lcm(condK,ok);
+        redmok := ReductionModnZ(m,ok);
+        redmcondK := ReductionModnZ(m,condK);
+        gal := Subgroup(Units(ZmodnZ(ok)),
+                    Filtered(Gal,y->
+                            Size(
+                                Intersection(
+                                    GaloisStabilizer(K),
+                                    List(PreImages(redmok,y),w->Int(w^redmcondK))
+                                            )
+                                )<>0
+                            )
+                        );
+        for i in [1..a] do
+            Add(output,[n*d,F,ok,gal,coc]);
+        od;
+      fi;
+    od;
 fi;
 
-return WeddDecompInfo( FG );
+return output;
+end);
 
+
+#############################################################################
+##
+InstallMethod( WeddDecompData,
+"for numerical data for decomposition of semisimple infinite group algebras",
+true,
+[ IsGroup ],
+0,
+function(G)
+
+local output,exp,br,sst,chi,cf;
+
+output :=  List(StronglyShodaPairs(G),x->AddCrossedProductBySSP(G,x[1],x[2]));
+
+if not IsStronglyMonomial(G) then
+  exp := Exponent(G);
+  br:=BWNoStMon(G);
+
+  for sst in br do
+    chi:=sst[1];
+    cf:=sst[2];
+    if Length(sst)=2 then 
+      Add(output,[chi[1],cf]);
+    else
+      Add(output,AddCrossedProductBySST(exp,chi[1],cf,sst[4],sst[3]));
+    fi;
+  od;  
+fi;
+
+return output;
+
+end);
+
+
+#############################################################################
+##
+InstallMethod(AddCrossedProductBySST,
+"for semisimple infinite group algebras",
+true,
+[ IsInt, IsInt, IsCyclotomicField, IsGroup, IsList ],
+0,
+function( exp, n, cf , Gal , LSST )
+local
+  Galnum,       # Numeric version of Gal(Q(exp)/cf)
+  pp,           # Maximum prime power divisors of n = Degree of the character
+  LC,           # List of cocycles
+  x,            # An element of LSST or of LC
+  primes,       # List of primes covered by x, an SST
+  a,            # The products of the elements of pp corresponding to primes
+  Cond,         # The conductor of the coefficient field of the output
+  GalCond,      # The reduction of Galnum module Cond (the grading group)
+  coc,          # The cocycle of the algebra
+  out,          # The output of definition of coc
+  redu;         # Reduction Cond to the conductor corresponding to a partial cocycle
+  
+
+  Galnum := Image(GalToInt(Gal));
+  
+  if Gcd(exp,4)=2 then
+    Galnum := Subgroup(Units(ZmodnZ(exp)),PreImage(ReductionModnZ(exp,exp/2),Galnum));
+  fi;
+  
+  pp := PrimePowersInt(n);
+  
+  LC:=[];
+  for x in LSST do
+    primes := x[4];
+    a:= Product(primes,p->p^pp[Position(pp,p)+1]);
+    Add(LC,CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a));
+  od;
+  
+  Cond := Lcm(List(LC,x->x[1]));
+  GalCond := Subgroup(Units(ZmodnZ(Cond)),Image(ReductionModnZ(exp,Cond),Galnum));
+  coc := function(a,b)
+    local out,x,redu;  
+      out := Zero(ZmodnZ(Cond));
+      for x in LC do
+        redu := ReductionModnZ(Cond,x[1]);
+        out := out + (Cond/x[1])*ZmodnZObj(Int(x[2](a^redu,b^redu)),Cond);
+      od;
+      return out;
+  end;
+
+if Size(GalCond)=1 then 
+    return [n,cf];
+else
+    return [ n/Size(GalCond), cf, Cond, GalCond, coc ];
+fi;
+   
 end);
 
 
@@ -376,6 +558,130 @@ end);
 
 #############################################################################
 ##
+InstallMethod( AddCrossedProductBySSP,
+"for semisimple infinite group algebras",
+true,
+[ IsGroup, IsGroup, IsGroup ],
+0,
+function( G, K, H )
+local   N,          # Normalizer of H in G
+        ind,        # Index of N in G
+        ok,         # Order of k
+        Epi,        # N --> N/H
+        NH,         # NH/H
+        KH,         # K/H
+        k,          # Generator of K/H
+        Epi2,       # NH --> NH/KH        
+        NdK,        # N/K
+        bij,bijunit,
+        coc,        # Twisting for the crossed product over NdK
+        Uok,        # Units(ZmodnZ(ok))
+        funNdK,     # Embedding of NdK in Uok,
+        GalSSP,     # Subgroup(Uok,Image(funNdK))
+        cocSSP,     # cocycle in Z^2(GalSSP,<E(ok)>)
+        chi,        # Monomial character of G induced the SSP (K,H)
+        cf;         # Fields of character values of chi = Centre
+  
+N   := Normalizer(G,H);
+ind := Index(G,N);
+ok := Index( K, H );
+if N=K then
+
+    return [ ind, CF(ok) ];
+
+else # if N_G(H) <> K
+
+    Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
+    NH  := Image(Epi,N);
+    KH  := Image(Epi,K);
+    repeat
+        k  := Random(KH);
+    until Order(k) = ok;
+    Epi2:=NaturalHomomorphismByNormalSubgroup( NH, KH ) ;
+    NdK:=Image(Epi2,NH);
+    bij := MappingByFunction(ZmodnZ(ok),KH,i->k^Int(i));
+    
+    # The cocycle in Z^2(NdK,<E(ok)>)
+    coc := function(a,b)
+       return PreImagesRepresentative(bij,
+                              PreImagesRepresentative(Epi2,a*b)^-1 *
+                              PreImagesRepresentative(Epi2,a) *
+                              PreImagesRepresentative(Epi2,b) );
+       end;   
+
+    # The cocycle in Z^2(GalSSP,<E(ok)>)
+    Uok:=Units(ZmodnZ(ok));
+    bijunit := MappingByFunction(Uok,KH,i->k^Int(i));
+
+    funNdK := MappingByFunction(NdK,Uok,
+        function(n) 
+            return PreImagesRepresentative(bijunit,
+                                 k^PreImagesRepresentative( Epi2 , n ) );
+              end
+              );
+    GalSSP := Subgroup(Uok,Image(funNdK));
+    cocSSP := function(a,b)
+                return 
+        coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
+                end;
+    
+    chi := LinCharByStronglySP(K,H)^G;
+    cf := Field( chi );
+                    
+    return [ ind, cf, ok , GalSSP , cocSSP ];
+fi;      
+end);
+
+
+
+#############################################################################
+##
+InstallMethod( SimpleAlgebraByData,
+"for semisimple infinite group algebras",
+true,
+[ IsList ],
+0,
+function(x)
+
+local 
+L,     #Field 
+cond,  #
+redu,  #The reduction 
+act,   #The action
+coc;   #The cocycle
+
+if Length(x) = 2 or Size(x[4])=1 then
+    if x[1] = 1 then 
+        return x[2];
+    else
+        return FullMatrixAlgebra( x[2], x[1] );
+    fi;
+else
+    L := Field(x[2],[E(x[3])]);
+    cond := Lcm(Conductor(L),x[3]);
+    redu := ReductionModnZ(cond,x[3]);
+    
+    act := function(a) 
+             return ANFAutomorphism(CF(cond),Int(PreImagesRepresentative(redu,a)));
+             end;
+             
+    coc := function(a,b)
+            return E(x[3])^x[5](Int(a),Int(b));
+            end;
+    
+    if x[1] = 1 then 
+        return CrossedProduct(L,x[4],act,coc);
+    else
+        return FullMatrixAlgebra( CrossedProduct(L,x[4],act,coc) , x[1]/Size(x[4]) );
+    fi;
+fi;
+
+end);
+
+
+
+#############################################################################
+##
 #O SimpleAlgebraByStronglySPNC( FqG, K, H, C )
 ##
 ## The function SimpleAlgebraByStronglySPNC computes simple algebras 
@@ -500,6 +806,102 @@ if  IsStronglyShodaPair( UnderlyingMagma( QG ), K, H ) then
 else
     Error("Wedderga: <(K,H)> should be a strongly Shoda pair of the underlying group of <QG>\n");
 fi;
+end);
+
+
+#############################################################################
+##
+InstallMethod( SimpleAlgebraInfoByData,
+"for semisimple infinite group algebras",
+true,
+[ IsList ],
+0,
+function(x)
+local 
+Cond,           # Positive integer 
+coc,            # cocycle
+PrimGen,        # Indenpendent Generators of GalCond  
+l, o, p,        # Positive integer and lists of integers
+primes2,        # Duplicate of p
+lp,             # Length of primes2
+first,          # Positions,
+g,              # One generator
+Gen,            # Generators of GalCond
+ll, plus, next, 
+i, j, newpos,   # Counters
+genF,           # E(Cond)
+powgenF,        # Powers of genF
+beta,           # numerical value of cyclic cocycle 
+h,              # Group element
+c;              # Value of cocycle 
+
+if Length(x) = 2 then 
+    return x;
+elif Size(x[4])=1 then
+    return [x[1],x[2],x[3]];
+else
+    Cond := x[3];
+    coc := x[5];
+    
+# Computing a set Gen of generators of the canonical decomposition of x[4]
+# an abelian group
+
+    PrimGen:=IndependentGeneratorsOfAbelianGroup(x[4]);
+    l := Length( PrimGen );
+    o := List( [ 1 .. l ], i -> Order( PrimGen[i] ) );
+    p := List( [ 1 .. l ], i -> FactorsInt( o[i] )[1] );
+    primes2 := DuplicateFreeList( p );
+    lp:= Length( primes2 );
+    first:=List( [ 1 .. lp ], i -> Position( p, primes2[i] ) );
+    g := Product( List( first, i -> PrimGen[i] ) );
+    Gen:=[ g ];
+    ll:=lp;
+    plus:=0;
+    while ll<l do
+        next:=[];
+        for i in [ 1 .. lp ] do
+            newpos := Position( p, primes2[i], first[i]+plus );
+            if newpos <> fail then
+                Add( next, newpos );
+            fi;
+        od;
+        g:=Product( List( next, i -> PrimGen[i] ) );
+        Add( Gen, g );
+        ll:=ll+Length(next);
+        plus:=plus+1;
+    od;
+     
+    o:=List(Gen,x->Order(x));
+    beta := [];
+    for i in [1..Length(Gen)] do
+        g:=Gen[i];
+        h:=g;
+        c:=Zero(ZmodnZ(Cond));
+        for j in [1..o[i]-1] do
+            c:=c+coc(g,h);
+            h:=h*g;
+        od;
+        Add(beta, Int(c));
+    od;
+         
+    if Size(Gen)=1 then
+        return [x[1]/Size(x[4]),x[2],Cond, [o[1], Int(Gen[1]) , beta[1]]]; 
+                   
+    else
+        return [x[1]/Size(x[4]),x[2],Cond,
+            List([1..Length(Gen)],i->
+                [o[i], Int(Gen[i]) , beta[i]]),
+            List( [1..Length(Gen)-1], i -> 
+                       List( [i+1..Length(Gen)], 
+                       j -> 
+                            Int(coc(Gen[j],Gen[i])-coc(Gen[i],Gen[j]))
+                            )
+                )
+                ];        
+    fi;       
+
+fi;
+
 end);
 
 
