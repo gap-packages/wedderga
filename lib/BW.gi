@@ -56,12 +56,12 @@ end);
 #O BWNoStMon( G )
 ##
 ## Returns a list of 4-tuples:
-## First psition = an irreducible not strongly monomial character of G 
-##      (a representative from his rationalized class) 
+## First position  = an irreducible not strongly monomial character of G 
+##                   (a representative from his rationalized class) 
 ## Second position = character field of chi
-## Third position = List of strongly Shoda triples with list of primes
+## Third position  = List of strongly Shoda triples with list of primes
 ## Fourth position = Galois group of CF(exponent(G))/character field of chi
-#
+##
 InstallMethod( BWNoStMon ,
     "for finite groups", 
     true, 
@@ -109,7 +109,7 @@ local
     p,          	# element of primes[controlcounter]
     P,          	# p-Sylow subgroup of GalList[controlcounter]
     genP,       	# set of generators of P
-    irrcounter,	    # irreducible characters counter
+    irrcounter,	  # irreducible characters counter
     sprod;      	# (chi_M,psi)
 
 
@@ -220,7 +220,7 @@ end);
 #O ReductionModnZ( n, m )
 ##
 ## Projection Zn^* ----> Zm^* for m|n
-#
+##
 InstallMethod( ReductionModnZ ,
     "for positive integers ", 
     true, 
@@ -249,9 +249,8 @@ end);
 ##
 #O GalToInt( G )
 ##
-## Returns an isomorphism Gal(Q(xi_n)/Q)  ----> Zn^*
+## Returns an isomorphism Gal(Q(xi_n)/Q)  ---->  Zn^*
 ##
-#
 InstallMethod( GalToInt ,
     "for Galois groups of cyclotomic extensions", 
     true, 
@@ -278,6 +277,7 @@ return MappingByFunction(G,UZcon,
     
 end);
 
+
 ###############################################################################
 ##
 #O CocycleByData( exp, Gal, cf, M, K, H, div)
@@ -285,7 +285,7 @@ end);
 ## Returns a pair formed by a positive integer cond and 
 ## the (additive) twisting for a crossed product algebra over 
 ## Gal=Galcf(Q(cond)/cf) associated to the triple (M,K,H) to the div power
-#
+##
 InstallGlobalFunction(CocycleByData,function( exp, Gal, cf, M, K, H, div)
 
 local   
@@ -415,6 +415,8 @@ fi;
 return [cond,out];
 
 end);
+
+
 
 ###############################################################################
 ################         SimpleAlgebraBySTInfo             ####################
