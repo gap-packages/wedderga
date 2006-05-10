@@ -1,4 +1,4 @@
-F#############################################################################
+#############################################################################
 ##
 #W  main.gi               The Wedderga package            Osnel Broche Cristo
 #W                                                        Alexander Konovalov
@@ -92,10 +92,10 @@ end);
 ##
 #O WedderburnDecompositionInfo( FG ) 
 ##
-## The function WeddDecompInfo compute a list of numerical data describing 
-## the Wedderburn components, realizable by strongly Shoda pairs of the 
-## underlying group, of the semisimple group algebra FG over a finite field or 
-## the field of rationals and stores the result as an attribute of FG. 
+## The function WedderburnDecompositionInfo compute a list of numerical data 
+## describing the Wedderburn components, realizable by strongly Shoda pairs of 
+## the underlying group, of the semisimple group algebra FG over a finite field 
+## or the field of rationals and stores the result as an attribute of FG. 
 ## It uses the attribute WeddDecomp and IsStronglyMonomial to display a warning
 ##
 InstallMethod( WedderburnDecompositionInfo , 
@@ -209,6 +209,19 @@ end);
 ##
 #O GenWeddDecomp( KG )
 ## 
+## The function returns information about the Wedderburn decomposition of
+## zero-characteristic group algebra KG in the form of list of 2-tuples
+## or 5-tuples, where each tuple contains the following information:
+## (in the case of a 2-tuple we consider only the first two entries of 
+## a 5-tuple):
+## 1st position = the size of the matrices
+## 2nd position = the centre of the simple component
+## 3rd position = integer that is the order of the root of unity
+## 4th position = Galois group of a crossed product
+## 5th position = the cocycle
+## The function uses WeddDecompData(G), and in the case of K=Rationals
+## this is the output. 
+##
 InstallMethod( GenWeddDecomp,
 "for semisimple infinite group algebras",
 true,
@@ -294,6 +307,23 @@ end);
 ##
 #A WeddDecompData( G )
 ##
+## The attribute stores data for a group G using the function 
+## AddCrossedProductBySSP and, in a non strongly monomial case, also using
+## the function AddCrossedProductBySST. The input of AddCrossedProductBySST
+## uses the function BWNoStMon. The output is a list, each entry of which 
+## is either 2-tuples or 5-tuple.
+## The 2-tuple contains the following data:
+## 1st position = the size of the matrices
+## 2nd position = the cyclotomic field = the center of the simple component
+## The 5 tuple contains the following data:
+## 1st position = the size of the matrices
+## 2nd position = the cyclotomic field = the center of the simple component
+## 3rd position = an integer that is the index (K:H) in a strongly monomial case
+##                or the conductor in the other case, and it gives us the order
+##                of the root of unity to be used
+## 4th position = the Galois group of the cyclotomic extension
+## 5th position = the cocycle
+##
 InstallMethod( WeddDecompData,
 "for numerical data for decomposition of semisimple infinite group algebras",
 true,
@@ -301,9 +331,15 @@ true,
 0,
 function(G)
 
-local output,exp,br,sst,chi,cf;
+local output, # the output
+         exp, # the exponent of G
+          br, # the information given by BWNoStMon(G)
+         sst, # current element from br
+         chi, # character that is the 1st entry of sst
+          cf; # cyclotomic field that is the 2nd entry of sst
 
-output :=  List(StronglyShodaPairs(G),x->AddCrossedProductBySSP(G,x[1],x[2]));
+output :=  List( StronglyShodaPairs(G), x -> 
+             AddCrossedProductBySSP(G,x[1],x[2]));
 
 if not IsStronglyMonomial(G) then
   exp := Exponent(G);
@@ -328,6 +364,27 @@ end);
 #############################################################################
 ##
 #O AddCrossedProductBySST( exp, n, cf , Gal , LSST )
+##
+## The arguments are:
+##  exp = the exponent of the group
+##    n = an integer ...
+##   cf = cyclotomic field
+##  Gal = the Galois group of the cyclotomic extension
+## LSST = a list of strongly Shoda triples needed to
+##        describe the simple component
+## Returns a list, each entry of which is either a 2-tuple or a 5-tuple
+## containing the following data:
+## for the 2-tuple:
+## 1st position = the size of the matrices
+## 2nd position = the cyclotomic field = the center of the simple component
+## for the 5-tuple:
+## 1st position = the size of the matrices
+## 2nd position = the cyclotomic field = the center of the simple component
+## 3rd position = an integer that is the index (K:H) in a strongly monomial case
+##                or the conductor in the other case, and it gives us the order
+##                of the root of unity to be used
+## 4th position = the Galois group of the cyclotomic extension
+## 5th position = the cocycle
 ##
 InstallMethod(AddCrossedProductBySST,
 "for semisimple infinite group algebras",
@@ -565,6 +622,21 @@ end);
 #############################################################################
 ##
 #O AddCrossedProductBySSP( G, K, H )
+## 
+## Let G be a group and K,H be a strongly Shoda pair in G. The function
+## returns the 2-tuple of the 5-tuple that will describe the structure 
+## of the crossed product given by this SSP:
+## for the 2-tuple ( if K=N, where N=N_G(H) ):
+## 1st position = the size of the matrices = index (G:N)
+## 2nd position = the cyclotomic field = the center of the simple component
+## for the 5-tuple (if K<>N):
+## 1st position = the size of the matrices
+## 2nd position = the cyclotomic field = the center of the simple component
+## 3rd position = an integer that is the index (K:H) in a strongly monomial case
+##                or the conductor in the other case, and it gives us the order
+##                of the root of unity to be used
+## 4th position = the Galois group of the cyclotomic extension
+## 5th position = the cocycle
 ##
 InstallMethod( AddCrossedProductBySSP,
 "for semisimple infinite group algebras",
@@ -641,12 +713,20 @@ fi;
 end);
 
 
-
 #############################################################################
 ##
 #O SimpleAlgebraByData( x )
 ##
-## x is a list of length 5.
+## An argument is either a 2-tuple or a 5-tuple, with the following 
+## components:
+## 1st position = the size of the matrices
+## 2nd position = the centre of the simple component
+## 3rd position = integer that is the order of the root of unity
+## 4th position = Galois group of a crossed product
+## 5th position = the cocycle
+##
+## The output is a crossed product or the matrix algebra over the crossed 
+## product, constructed using this input
 ##
 InstallMethod( SimpleAlgebraByData,
 "for semisimple infinite group algebras",
@@ -656,11 +736,12 @@ true,
 function(x)
 
 local 
-L,     #Field 
-cond,  #
-redu,  #The reduction 
-act,   #The action
-coc;   #The cocycle
+L,     # The field obtained by extension of the centre of the simple
+       # component with the root of unity of degree x[3]
+cond,  # Lcm( Conductor(L), x[3] );
+redu,  # The reduction from cond to x[3]
+act,   # The action
+coc;   # The cocycle
 
 if Length(x) = 2 or Size(x[4])=1 then
     if x[1] = 1 then 
@@ -670,7 +751,7 @@ if Length(x) = 2 or Size(x[4])=1 then
     fi;
 else
     L := Field(x[2],[E(x[3])]);
-    cond := Lcm(Conductor(L),x[3]);
+    cond := Lcm( Conductor(L),x[3] );
     redu := ReductionModnZ(cond,x[3]);
     
     act := function(a) 
@@ -784,8 +865,8 @@ end);
 ##
 ## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
 ## c is an integer coprime with n=[K:H]. 
-## In the answer is positive then return SimpleAlgebraByStronglySP(FqG, K, H, C) where
-## C is the cyclotomic class of q=|Fq| module n=[K:H] containing c.
+## In the answer is positive then return SimpleAlgebraByStronglySP(FqG, K, H, C) 
+## where C is the cyclotomic class of q=|Fq| module n=[K:H] containing c.
 ##
 InstallOtherMethod( SimpleAlgebraByStronglySPNC, 
     "for semisimple finite group algebras", 
@@ -817,8 +898,8 @@ end);
 ##
 #O SimpleAlgebraByStronglySPInfo( QG, K, H ) 
 ##
-## The function SimpleAlgebraByStronglySPInfo compute the data describing simple algebras
-## QG*e( G, K, H ), for ( H, K ) a SSP of G, but first verify the inputs 
+## The function SimpleAlgebraByStronglySPInfo compute the data describing simple
+## algebras QG*e( G, K, H ), for ( H, K ) a SSP of G, but first verify the input
 ##
 InstallOtherMethod( SimpleAlgebraByStronglySPInfo, 
     "for semisimple rational group algebras", 
@@ -838,7 +919,23 @@ end);
 ##
 #O SimpleAlgebraInfoByData( x )
 ##
-## x is a list of length 5.
+## An argument is either a 2-tuple or a 5-tuple, with the following 
+## components:
+## 1st position = the size of the matrices
+## 2nd position = the centre of the simple component
+## 3rd position = integer that is the order of the root of unity
+## 4th position = Galois group of a crossed product
+## 5th position = the cocycle
+##
+## The output is list of 2, 3, 4 or 5 elements:
+## 1st position = the size of the matrices
+## 2nd position = the centre of the simple component
+## 3rd position = integer that is the order of the root of unity
+## 4th position = a list of 3 elements:
+##                1st position 
+##                2nd position
+##                3rd position
+##
 ##
 InstallMethod( SimpleAlgebraInfoByData,
 "for semisimple infinite group algebras",
@@ -867,7 +964,7 @@ c;              # Value of cocycle
 if Length(x) = 2 then 
     return x;
 elif Size(x[4])=1 then
-    return [x[1],x[2],x[3]];
+    return [ x[1], x[2], x[3] ];
 else
     Cond := x[3];
     coc := x[5];
@@ -914,18 +1011,22 @@ else
     od;
          
     if Size(Gen)=1 then
-        return [x[1]/Size(x[4]),x[2],Cond, [o[1], Int(Gen[1]) , beta[1]]]; 
+        return [ x[1]/Size(x[4]),               # the size of matrices
+                 x[2],                          # the centre of the simple component
+                 Cond,                          # the order of the root of unity
+                 [ o[1], Int(Gen[1]) , beta[1]] #
+               ]; 
                    
     else
-        return [x[1]/Size(x[4]),x[2],Cond,
-            List([1..Length(Gen)],i->
-                [o[i], Int(Gen[i]) , beta[i]]),
-            List( [1..Length(Gen)-1], i -> 
-                       List( [i+1..Length(Gen)], 
-                       j -> 
-                            Int(coc(Gen[j],Gen[i])-coc(Gen[i],Gen[j]))
-                            )
-                )
+        return [ x[1]/Size(x[4]),
+                 x[2],
+                 Cond,
+                 List([1..Length(Gen)], i -> [ o[i], Int(Gen[i]) , beta[i] ] ),
+                 List( [1..Length(Gen)-1], i -> 
+                     List( [i+1..Length(Gen)], j -> 
+                         Int(coc(Gen[j],Gen[i])-coc(Gen[i],Gen[j]))
+                          )
+                     )
                 ];        
     fi;       
 
@@ -958,7 +1059,6 @@ end);
 ## q-cyclotomic class module n=[K:H]. In that case computes the data describing 
 ## the simple algebra FqG*e( G, K, H, C)
 ##
-
 InstallMethod( SimpleAlgebraByStronglySPInfo, 
     "for semisimple finite group algebras", 
     true, 
