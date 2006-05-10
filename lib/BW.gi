@@ -30,22 +30,25 @@ InstallMethod( LinCharByStronglySP,
 function(K,H)
 
 local 
-cc,Epi,KH,ok,k,elKH,exp,chi;
+cc, Epi, KH, ok, k, elKH, exp, chi;
 
-cc:=ConjugacyClasses(K);
-Epi:=NaturalHomomorphismByNormalSubgroup( K, H ) ;
-KH:=Image(Epi,K);
-ok:=Index(K,H);
+cc := ConjugacyClasses( K );
+Epi := NaturalHomomorphismByNormalSubgroup( K, H ) ;
+KH := Image(Epi,K);
+ok := Index(K,H);
 if ok = 1 then 
-  return ClassFunction(K,List(cc,x->1));
+  return ClassFunction( K, List( cc, x->1 ) );
 else 
+  #
+  # !!! TAKING HERE RANDOM ELEMENT IS VERY DANGEROUS !!!
+  #
   repeat
-    k  := Random(KH);
+    k := Random(KH);
   until ok = Order(k);
-  elKH:=Elements(KH);
-  exp:=List([0..ok-1],x->Position(elKH,k^x));
-  chi:=ClassFunction(K,List(cc,x->E(ok)^(Position(exp,Position(elKH,
-  Image(Epi,Representative(x))))-1)));
+  elKH := AsSet( KH );
+  exp := List( [0..ok-1], x -> Position(elKH,k^x) );
+  chi := ClassFunction( K, List( cc, x -> 
+    E(ok)^(Position(exp,Position(elKH, Image( Epi, Representative(x))))-1)));
   return chi;
 fi;
 end);

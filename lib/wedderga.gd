@@ -57,6 +57,8 @@ DeclareOperation( "SimpleAlgebraByData", [ IsList ] );
 # DeclareOperation( "WDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraInfoByData", [ IsList ] );
 DeclareOperation( "WDecompInfo", [ IsGroupAlgebra ] );
+DeclareOperation( "SimpleAlgebraByCharacter", [ IsGroupRing, IsCharacter ] );
+DeclareOperation( "SimpleAlgebraInfoByCharacter", [ IsGroupRing, IsCharacter ] );
 
 #################### idempot.gi #####################
 
