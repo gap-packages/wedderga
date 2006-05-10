@@ -1,4 +1,4 @@
-#############################################################################
+F#############################################################################
 ##
 #W  main.gi               The Wedderga package            Osnel Broche Cristo
 #W                                                        Alexander Konovalov
@@ -1303,7 +1303,7 @@ else
     H:=Representative(CCS[j]);        
     if IsSubset( H, DG ) then
       if IsCyclic( FactorGroup( G, H ) ) then 
-        idempeGKH:=eG(QG,G,H)[2]; 
+        idempeGKH:=eGsum(QG,G,H)[2]; 
         SeGKHs:= SeGKHs + idempeGKH;
         Add( KHs, [ G, H ] );
         Add( eGKHs, idempeGKH );
@@ -1486,7 +1486,7 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
             if IsAbelian(Cen) then
                 if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
                     K:=PreImages(Epi,Cen);
-                    return eG(QG,K,H);
+                    return eGsum(QG,K,H);
                 else 
                     return fail;
                 fi;
@@ -1496,7 +1496,7 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
                     KH:=ClosureSubgroup( L, [X[1]] );
                     if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
                         K:=PreImages(Epi,KH);
-                        return eG(QG,K,H);
+                        return eGsum(QG,K,H);
                     fi;
                     X:=Difference(X,KH);
                 od;
@@ -1508,12 +1508,12 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
 
 #############################################################################
 ##
-#M eG( QG, K, H )
+#M eGsum( QG, K, H )
 ##
 ## The following function computes e(G,K,H)    
 ## Note that actually it returns a list of the form [ [K,H], eGKH ]
 ##
-InstallMethod( eG,
+InstallMethod( eGsum,
     "for pairs of subgroups", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
