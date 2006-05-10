@@ -207,6 +207,8 @@ end);
 
 #############################################################################
 ##
+#O GenWeddDecomp( KG )
+## 
 InstallMethod( GenWeddDecomp,
 "for semisimple infinite group algebras",
 true,
@@ -290,6 +292,8 @@ end);
 
 #############################################################################
 ##
+#A WeddDecompData( G )
+##
 InstallMethod( WeddDecompData,
 "for numerical data for decomposition of semisimple infinite group algebras",
 true,
@@ -322,6 +326,8 @@ end);
 
 
 #############################################################################
+##
+#O AddCrossedProductBySST( exp, n, cf , Gal , LSST )
 ##
 InstallMethod(AddCrossedProductBySST,
 "for semisimple infinite group algebras",
@@ -558,6 +564,8 @@ end);
 
 #############################################################################
 ##
+#O AddCrossedProductBySSP( G, K, H )
+##
 InstallMethod( AddCrossedProductBySSP,
 "for semisimple infinite group algebras",
 true,
@@ -636,6 +644,10 @@ end);
 
 #############################################################################
 ##
+#O SimpleAlgebraByData( x )
+##
+## x is a list of length 5.
+##
 InstallMethod( SimpleAlgebraByData,
 "for semisimple infinite group algebras",
 true,
@@ -678,6 +690,19 @@ fi;
 
 end);
 
+
+#############################################################################
+##
+#O SimpleAlgebraByCharacter( FG, chi )
+##
+InstallMethod( SimpleAlgebraByCharacter,
+"for semisimple infinite group algebras",
+true,
+[ IsGroupRing, IsCharacter ],
+0,
+function( FG, chi )
+
+end);
 
 
 #############################################################################
@@ -811,6 +836,10 @@ end);
 
 #############################################################################
 ##
+#O SimpleAlgebraInfoByData( x )
+##
+## x is a list of length 5.
+##
 InstallMethod( SimpleAlgebraInfoByData,
 "for semisimple infinite group algebras",
 true,
@@ -901,6 +930,20 @@ else
     fi;       
 
 fi;
+
+end);
+
+
+#############################################################################
+##
+#O SimpleAlgebraInfoByCharacter( FG, chi )
+##
+InstallMethod( SimpleAlgebraInfoByCharacter,
+"for semisimple infinite group algebras",
+true,
+[ IsGroupRing, IsCharacter ],
+0,
+function( FG, chi )
 
 end);
 
