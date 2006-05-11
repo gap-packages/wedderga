@@ -98,6 +98,7 @@ local   G,          #The group
 
     G:=UnderlyingMagma(QG);
     CCS:=ConjugacyClassesSubgroups(G);
+    # here we dont' take care how CCS is ordered
     LCCS:=Length(CCS);
     one:=One(QG);
     Es:=[ ];
