@@ -50,7 +50,7 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStronglySP" );
 
 DeclareOperation( "AddCrossedProductBySSP", [ IsGroup, IsGroup, IsGroup]);
 DeclareOperation( "AddCrossedProductBySST", 
-                  [ IsInt, IsInt, IsCyclotomicField, IsGroup, IsList ] );
+                  [ IsInt, IsInt, IsField, IsGroup, IsList ] );
 DeclareAttribute( "WeddDecompData", IsGroup );
 DeclareOperation( "GenWeddDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraByData", [ IsList ] );

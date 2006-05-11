@@ -389,7 +389,7 @@ end);
 InstallMethod(AddCrossedProductBySST,
 "for semisimple infinite group algebras",
 true,
-[ IsInt, IsInt, IsCyclotomicField, IsGroup, IsList ],
+[ IsInt, IsInt, IsField, IsGroup, IsList ],
 0,
 function( exp, n, cf , Gal , LSST )
 local
@@ -773,8 +773,8 @@ end);
 
 
 #############################################################################
-##
-#O SimpleAlgebraByCharacter( FG, chi )
+## 
+#O SimpleAlgebraByCharacter( FG, chi ) 
 ##
 InstallMethod( SimpleAlgebraByCharacter,
 "for semisimple infinite group algebras",
@@ -782,49 +782,92 @@ true,
 [ IsGroupRing, IsCharacter ],
 0,
 function( FG, chi )
-local G, # underlying group 
-      shodapairs, sp, psi, K, H, data, br, n, t, ratchi, ratirr;
-if not ( IsSemisimpleRationalGroupAlgebra(FG) or 
-         IsZeroCharacteristicGroupAlgebra( FG ) ) then
+ local G, # underlying group 
+       bw, # the output of the function BW(G))
+       n,  #the position of ratchi in ratirr
+       t,  #counter
+       ratchi,  #rationalized character
+       ratirr;  #list of rationalized characters 
+       
+if not IsZeroCharacteristicGroupAlgebra( FG ) then
   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
-fi;              
-G := UnderlyingMagma(FG);
-if IsSemisimpleRationalGroupAlgebra(FG) then
-  if IsMonomial( chi ) then
-    shodapairs:=ShodaPairsAndIdempotents(FG).ShodaPairs;
-    for sp in shodapairs do
-      psi := Induced ( LinCharByStronglySP( sp[1], sp[2] ), G );
-      Print("psi=", psi, "\n");
-#      if chi=psi then
-      if RationalizedMat([ValuesOfClassFunction(chi)])[1]=
-         RationalizedMat([ValuesOfClassFunction(psi)])[1] then     
-        K := sp[1];
-        H := sp[2];
-        if [K,H] in StronglyShodaPairsAndIdempotents(FG).StronglyShodaPairs then       
-#        if IsStronglyShodaPair( G, K, H ) then
-          return SimpleAlgebraByStronglySPNC( FG, K, H ); 
-        fi;
-      fi;
-    od;
-  fi;
-fi;
-if IsZeroCharacteristicGroupAlgebra( FG ) then
-  br := BWNoStMon( G );
-  ratirr := List( br, t -> RationalizedMat([ValuesOfClassFunction(t[1])])[1]);
+fi;   
+    
+  G := UnderlyingMagma(FG);         
+  bw := BW( G );
+  ratirr := List( bw, t -> RationalizedMat([ValuesOfClassFunction(t[1])])[1]);
   ratchi:=RationalizedMat([ValuesOfClassFunction(chi)])[1];
   n := PositionProperty( ratirr, t -> ratchi=t );
-  if Length(br[n])=2 then
-    return SimpleAlgebraByData( [ br[n][1][1], br[n][2] ] );
+  if n=fail then
+    Error("Can not find the suitable character !!!");
+  fi;
+  if Length(bw[n])=2 then
+    return SimpleAlgebraByData( [ bw[n][1][1], bw[n][2] ] );
   else
+    
     return SimpleAlgebraByData( 
       AddCrossedProductBySST( Exponent(G), 
-                              br[n][1][1], 
-                              br[n][2], 
-                              br[n][4], 
-                              br[n][3]) );  
+                              bw[n][1][1], 
+                              bw[n][2], 
+                              bw[n][4], 
+                              bw[n][3]) );  
   fi;
-fi;  
+ 
 end);
+
+#############################################################################
+##
+#O SimpleAlgebraByCharacter( FG, chi )
+##
+# InstallMethod( SimpleAlgebraByCharacter,
+# "for semisimple infinite group algebras",
+# true,
+# [ IsGroupRing, IsCharacter ],
+# 0,
+# function( FG, chi )
+# local G, # underlying group 
+#       shodapairs, sp, psi, K, H, data, br, n, t, ratchi, ratirr;
+# if not ( IsSemisimpleRationalGroupAlgebra(FG) or 
+#          IsZeroCharacteristicGroupAlgebra( FG ) ) then
+#   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
+# fi;              
+# G := UnderlyingMagma(FG);
+# if IsSemisimpleRationalGroupAlgebra(FG) then
+#   if IsMonomial( chi ) then
+#     shodapairs:=ShodaPairsAndIdempotents(FG).ShodaPairs;
+#     for sp in shodapairs do
+#       psi := Induced ( LinCharByStronglySP( sp[1], sp[2] ), G );
+#       Print("strongly monomial case", "\n");
+# #      if chi=psi then
+#       if RationalizedMat([ValuesOfClassFunction(chi)])[1]=
+#          RationalizedMat([ValuesOfClassFunction(psi)])[1] then     
+#         K := sp[1];
+#         H := sp[2];
+#         if [K,H] in StronglyShodaPairsAndIdempotents(FG).StronglyShodaPairs then       
+# #        if IsStronglyShodaPair( G, K, H ) then
+#           return SimpleAlgebraByStronglySPNC( FG, K, H ); 
+#         fi;
+#       fi;
+#     od;
+#   fi;
+# fi;
+# if IsZeroCharacteristicGroupAlgebra( FG ) then
+#   br := BWNoStMon( G );
+#   ratirr := List( br, t -> RationalizedMat([ValuesOfClassFunction(t[1])])[1]);
+#   ratchi:=RationalizedMat([ValuesOfClassFunction(chi)])[1];
+#   n := PositionProperty( ratirr, t -> ratchi=t );
+#   if Length(br[n])=2 then
+#     return SimpleAlgebraByData( [ br[n][1][1], br[n][2] ] );
+#   else
+#     return SimpleAlgebraByData( 
+#       AddCrossedProductBySST( Exponent(G), 
+#                               br[n][1][1], 
+#                               br[n][2], 
+#                               br[n][4], 
+#                               br[n][3]) );  
+#   fi;
+# fi;  
+# end);
 
 
 #############################################################################
