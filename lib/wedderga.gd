@@ -90,10 +90,10 @@ DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
 
 #################### others.gi #####################
 
-DeclareAttribute( "ShodaPairsAndIdempotents", IsSemisimpleRationalGroupAlgebra );
+DeclareAttribute( "ShodaPairsAndIdempotents", IsGroupRing );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsBySP" );
 DeclareOperation( "PrimitiveCentralIdempotentBySP", 
-                        [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+                        [IsGroupRing, IsGroup, IsGroup ] );
 DeclareOperation( "PCIBySP", 
                         [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
 
