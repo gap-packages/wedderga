@@ -23,7 +23,7 @@
 InstallMethod( ShodaPairsAndIdempotents, 
     "for rational group algebra", 
     true, 
-    [ IsSemisimpleRationalGroupAlgebra ], 
+    [ IsGroupRing ], 
     0,
 function(QG) 
 
