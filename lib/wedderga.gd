@@ -54,9 +54,7 @@ DeclareOperation( "AddCrossedProductBySST",
 DeclareAttribute( "WeddDecompData", IsGroup );
 DeclareOperation( "GenWeddDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraByData", [ IsList ] );
-# DeclareOperation( "WDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraInfoByData", [ IsList ] );
-DeclareOperation( "WDecompInfo", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraByCharacter", [ IsGroupRing, IsCharacter ] );
 DeclareOperation( "SimpleAlgebraInfoByCharacter", [ IsGroupRing, IsCharacter ] );
 
@@ -94,21 +92,13 @@ DeclareAttribute( "ShodaPairsAndIdempotents", IsGroupRing );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsBySP" );
 DeclareOperation( "PrimitiveCentralIdempotentBySP", 
                         [IsGroupRing, IsGroup, IsGroup ] );
-DeclareOperation( "PCIBySP", 
-                        [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
 
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
-DeclareOperation( "IsSP", [ IsGroup, IsGroup, IsGroup ]);
-
 
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 
-
-
-
 #################### bw.gi #####################
-
 
 DeclareOperation( "LinCharByStronglySP", [ IsGroup, IsGroup ] );
 DeclareOperation( "BW", [IsGroup and IsFinite] );
@@ -118,7 +108,6 @@ DeclareOperation( "GalToInt", [IsGroup] );
 DeclareGlobalFunction( "CocycleByData" );
 DeclareOperation( "SimpleAlgebraByStronglySTInfo", 
                             [IsPosInt , IsPosInt , IsField , IsGroup , IsList] );
-
 
 #############################################################################
 ##
