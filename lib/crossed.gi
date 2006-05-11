@@ -126,7 +126,7 @@ InstallMethod( PrintObj,
 
     coeffs_and_words:= CoefficientsAndMagmaElements( elm );
     for i in [ 1, 3 .. Length( coeffs_and_words ) - 3 ] do
-      Print( "(", coeffs_and_words[i], ")*", coeffs_and_words[i+1], "+" );
+      Print( "(", coeffs_and_words[i], ")*(", coeffs_and_words[i+1], ")+" );
     od;
     i:= Length( coeffs_and_words );
     if i = 0 then
