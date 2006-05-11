@@ -1595,6 +1595,8 @@ return rec( StronglyShodaPairs := list,
             PrimitiveCentralIdempotents := e);
 end);
 
+RedispatchOnCondition( StronglyShodaPairsAndIdempotents,
+  true, [ IsGroupRing ], [ IsSemisimpleFiniteGroupAlgebra ], 0 );
 
 #############################################################################
 ## 
