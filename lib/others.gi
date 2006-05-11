@@ -167,7 +167,7 @@ end);
 InstallMethod( PrimitiveCentralIdempotentBySP,
    "for pairs of subgroups", 
    true, 
-   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ],
+   [ IsGroupRing, IsGroup, IsGroup ],
    0,
 function(QG,K,H)
 local   eGKH,       # Function for eGKH
@@ -198,6 +198,10 @@ local   eGKH,       # Function for eGKH
 #end of functions       
 
 #Program    
+
+    if not IsSemisimpleRationalGroupAlgebra(QG) then
+        Error("Wedderga: <QG> must be a rational group algebra!!!\n");
+    fi;
 
     G:=UnderlyingMagma(QG);
   
