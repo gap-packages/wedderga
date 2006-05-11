@@ -53,6 +53,170 @@ else
 fi;
 end);
 
+#############################################################################
+##
+#O BW( G )
+##
+## Returns a list of 4-tuples:
+## First position  = an irreducible character of G 
+##                   (a representative from his rationalized class) 
+## Second position = character field of chi
+## Third position  = List of strongly Shoda triples with list of primes
+## Fourth position = Galois group of CF(exponent(G))/character field of chi
+##
+InstallMethod( BW ,
+    "for finite groups", 
+    true, 
+    [ IsGroup and IsFinite ], 
+    0,
+
+function(G)
+
+local 
+    irr,        	# irreducible characters
+    ratirr,	    	# rational irreducible characters
+    classirr,   	# irreducible characters classified into rationalized classes
+    chi,	    	  # one irreducible character
+    ratchi,       # rationalized of chi
+    L,          	# Splitting Field of G
+    sspsub,     	# List of pairs [p,SST] where p is a set of primes and SST is a 
+    	    	      # strongly Shoda triple such that the simple algebra associated
+    	    	      # to SST is the p-part of one Wedderburn component of QG
+    control,    	# A list of integers controlling the position in classirr
+                	# still not covered by sspsub
+    GalList,      # the list of Galois Groups Gal(L/character fields) 
+    sylow,      	# the list of Sylow subgroups of the elements in GalList
+    primes,     	# a list of lists of primes controlling the p-parts still not covered 
+    i,          	# counter
+    cf,         	# character field of chi
+    Gal,        	# Gal(L/cf)
+    d,          	# integer
+    pr,         	# prime divisors of d
+    sub,        	# Conjugacy Classes of subgroups of G
+    nsub,       	# Cardinality of sub
+    subcounter, 	# counter for sub
+    M,          	# subgroup of G
+    ssp,        	# strongly Shoda pairs of M
+    m,          	# Size of ssp
+    sspcounter, 	# counter for ssp
+    K,H,        	# strongly Shoda pair of M
+    psi,        	# the strongly monomial character of M given by M
+    cfpsi,      	# character field of psi
+    gencfpsi,   	# generators of character field of psi
+    dropcontrol,	# list to be drop from control
+    controlcounter,	# control counter
+    dropprimes,	    # list of primes to be drop from primes
+    remainingprimes,# counter of remaining primes
+    primecounter,   # primes counter
+    p,          	# element of primes[controlcounter]
+    P,          	# p-Sylow subgroup of GalList[controlcounter]
+    genP,       	# set of generators of P
+    irrcounter,	  # irreducible characters counter
+    sprod;      	# (chi_M,psi)
+
+
+# Classifying the irreducible characters into rational classes
+
+  irr := Irr(G);
+  ratirr := RationalizedMat(irr);
+  classirr := List(ratirr,x->[]);
+  for chi in irr do
+      ratchi := RationalizedMat([chi])[1];
+      if ratchi in ratirr then 
+        Add(classirr[Position(ratirr,ratchi)],chi);
+      fi;
+  od;
+
+# Initialization of lists
+
+  L := CF(Exponent(G));
+  sspsub := [];
+  control := [];
+  GalList := [];
+  sylow := [];
+  primes := [];
+  for i in [1..Length(ratirr)] do
+      chi := classirr[i][1];
+      cf := Field( chi );
+      Gal := GaloisGroup(AsField(cf,L));
+      Add(GalList,Gal);
+      d:=Gcd(Size(Gal),chi[1]);
+      if  d = 1 then 
+          Add(sspsub,[chi,cf]);
+          Add(primes,[]);
+          Add(sylow,[]);
+      else
+          Add(sspsub,[chi,cf,[],Gal]);
+          pr := Set(FactorsInt(d));
+          Add(primes,pr);
+          Add(sylow,List(pr,p->SylowSubgroup(Gal,p)));
+          Add(control,i);
+      fi;    
+  od;
+
+sub:=ConjugacyClassesSubgroups(G);
+  if ForAny( [1 .. Length(sub)-1 ], i -> 
+             Size(Representative(sub[i])) > Size(Representative(sub[i+1])) ) then
+    sub:=ShallowCopy(ConjugacyClassesSubgroups(G));
+    Sort(sub, function(v,w) return Size(Representative(v))<Size(Representative(w)); 
+    end);
+  fi;  
+         
+nsub := Size(sub);
+subcounter := nsub;
+while Sum(List(primes,Length)) > 0 do
+    M:=Representative( sub[ subcounter ] );
+    ssp := StronglyShodaPairs(M);
+    m := Length(ssp);
+    sspcounter := 1;
+    while sspcounter <= m and Sum(List(primes,Length))> 0 do
+        K := ssp[sspcounter][1]; 
+        H := ssp[sspcounter][2];
+        psi := LinCharByStronglySP(K,H)^M;
+        cfpsi := Field(psi);
+        gencfpsi := GeneratorsOfField(cfpsi);
+        dropcontrol := [];
+        for controlcounter in control do 
+            dropprimes := [];
+            chi := classirr[controlcounter][1];
+            remainingprimes := Length(primes[controlcounter]);
+            primecounter := 1;
+            while primecounter <= remainingprimes do
+                p := primes[controlcounter][primecounter];
+                P := sylow[controlcounter][primecounter];
+                genP := GeneratorsOfGroup(P);
+                if ForAll(Cartesian(genP,gencfpsi), x -> x[2]^x[1]=x[2]) then 
+                    irrcounter := 1;
+                    while irrcounter <= 
+Length(classirr[controlcounter]) and dropprimes <> primes[controlcounter] do
+                        chi := classirr[controlcounter][irrcounter];
+                        sprod := ScalarProduct( Restricted(chi,M) , psi 
+);
+                        if sprod mod p <> 0 then
+                            Add(dropprimes,p);
+                        fi;
+                        irrcounter := irrcounter+1;
+                    od;
+                fi;
+                primecounter := primecounter+1;
+            od;
+            primes[controlcounter] := Difference(primes[controlcounter],dropprimes);
+            if dropprimes <> [] then
+            Add(sspsub[controlcounter][3],[M,K,H,dropprimes]);
+            fi;
+            if primes[controlcounter] = [] then 
+                control := Difference(control,[controlcounter]);
+            fi;
+        od;
+    sspcounter := sspcounter + 1;
+    od;
+    subcounter:=subcounter-1;
+od;
+
+return sspsub;
+
+end);
+
 
 #############################################################################
 ##
