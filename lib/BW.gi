@@ -157,6 +157,11 @@ local
   od;
 
 sub:=ConjugacyClassesSubgroups(G);
+if ForAny( [1 .. Length(sub)-1 ], i -> 
+           Size(Representative(sub[i])) > Size(Representative(sub[i+1])) ) then
+  sub:=ShallowCopy(ConjugacyClassesSubgroups(G));
+  Sort(sub, function(v,w) return Size(Representative(v))<Size(Representative(w)); end);
+fi;
 nsub := Size(sub);
 subcounter := nsub-1;
 while Sum(List(primes,Length)) > 0 do

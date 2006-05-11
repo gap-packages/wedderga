@@ -1430,6 +1430,13 @@ if HasStronglyShodaPairs( G ) then
 else
 
   CCS:=ConjugacyClassesSubgroups(G);
+  # here we take care how CCS is ordered because we want it
+  # to be sorted in increasing size order
+  if ForAny( [1 .. Length(CCS)-1 ], i -> 
+           Size( Representative(CCS[i]) ) > Size( Representative(CCS[i+1] ) ) ) then
+    CCS:=ShallowCopy( ConjugacyClassesSubgroups( G ) );
+    Sort(CCS, function(v,w) return Size(Representative(v))<Size(Representative(w)); end);
+  fi;   
   LCCS:=Length(CCS);
   DG:=DerivedSubgroup(G); 
   KHs:=[];
