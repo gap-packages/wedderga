@@ -1473,7 +1473,10 @@ fi;
 
 end);
 
-
+RedispatchOnCondition( StronglyShodaPairsAndIdempotents,
+  true, [ IsGroupRing ], [ IsSemisimpleRationalGroupAlgebra ], 0 );
+  
+  
 #############################################################################
 ##
 #A StronglyShodaPairsAndIdempotents( FqG )
