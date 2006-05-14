@@ -1,100 +1,249 @@
 <!-- $Id$ -->
-<Chapter Label="Idempot">
+
+<!-- ********************idempot******************** -->
+
+<Chapter Label="Idemp">
 <Heading>Idempotents</Heading>
 
-<Section Label="IdempotShoda">
-<Heading>Idempotents from Shoda pairs</Heading>
+
+
+<Section Label="IdempotIrr">
+<Heading>Computing idempotents from character table</Heading>
+
 
 <ManSection>
-   <Oper Name="IsCompleteSetOfPCIs" 
-         Arg="R l"  
-         Comm="" />
+   <Oper Name="PrimitiveCentralIdempotentsByCharacterTable" 
+         Arg="QG"  
+         Comm="PCI Using the Character Table" />
+   <Returns>
+         a list of group algebra elements
+   </Returns>         
    <Description>
-         R can be a ring with identity
+         Returns the list of primitive central idempotents of a rational group 
+         algebra <M>QG</M> of a finite group <M>G</M> by using the formula by
+         using the method explained in <Ref Sect="IdempotIrr" />
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> QD8 := GroupRing( Rationals, DihedralGroup(8));
+<algebra-with-one over Rationals, with 3 generators>
+gap> PrimitiveCentralIdempotentsByCharacterTable( QD8 );
+[ (1/8)*<identity> of ...+(-1/8)*f1+(-1/8)*f2+(1/8)*f3+(1/8)*f1*f2+(-1/
+    8)*f1*f3+(-1/8)*f2*f3+(1/8)*f1*f2*f3, (1/8)*<identity> of ...+(-1/8)*f1+(
+    1/8)*f2+(1/8)*f3+(-1/8)*f1*f2+(-1/8)*f1*f3+(1/8)*f2*f3+(-1/8)*f1*f2*f3,
+  (1/8)*<identity> of ...+(1/8)*f1+(-1/8)*f2+(1/8)*f3+(-1/8)*f1*f2+(1/
+    8)*f1*f3+(-1/8)*f2*f3+(-1/8)*f1*f2*f3, (1/8)*<identity> of ...+(1/8)*f1+(
+    1/8)*f2+(1/8)*f3+(1/8)*f1*f2+(1/8)*f1*f3+(1/8)*f2*f3+(1/8)*f1*f2*f3,
+  (1/2)*<identity> of ...+(-1/2)*f3 ]
 ]]>
 </Example>
+
+<ManSection>
+   <Oper Name="IsCompleteSetOfPCIs" 
+         Arg="R l"  
+         Comm="Is Complete Set Of PCIs" />
+   <Returns>
+         Boolean.
+   </Returns>         
+   <Description>
+          Returns <E>true</E> if the elements of the second input data is a list 
+          of idempotents in the first input data, which should be a ring, whose 
+          sum is <M>1</M>.
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> QS5 := GroupRing( Rationals, SymmetricGroup(5) );
+<algebra-with-one over Rationals, with 2 generators>
+gap> idemp := PrimitiveCentralIdempotentsByCharacterTable( QS5 );;
+gap> Length(idemp);
+7
+gap> IsCompleteSetOfPCIs( QS5, idemp );
+true
+]]>
+</Example>
+
+
+</Section>
+
+
+
+<!-- ********************************************************* -->
+
+
+<Section Label="IdempotShoda">
+<Heading>Idempotents from Shoda pairs</Heading>
+
 
 
 <ManSection>
    <Attr Name="PrimitiveCentralIdempotentsByStronglySP( FG )" 
          Arg="FG"  
-         Comm="" />
+         Comm="The PCIs realizable by SSPs" />
    <Returns>
-         a list of group algebra elements 
+         a list of group algebra elements
    </Returns>         
    <Description>
-         Description
+         The input <M>FG</M> should be the group algebra of a finite group <M>G</M>
+         with coefficients in <M>F</M> where <M>F</M> is either <M>Q</M>, the field of rational 
+         numbers, or a finite field of order <M>q</M>, coprime with the order of <M>G</M>. <P/>
+         
+         If <M>F=Q</M> then the output is the list of primitive central idempotents of the group 
+         algebra <M>FG</M> realizable by strongly Shoda pairs of <M>G</M> <Ref Sect="SSPDef" />. <P/>
+         
+         If <M>F</M> is a finite field then the output is the list of primitive central idempotents 
+         of <M>FG</M> realizable by strongly Shoda pairs <M>(K,H)</M> of <M>G</M> and 
+         <M>q</M>-cyclotomic classes module the index of <M>H</M> in <M>K</M> 
+         <Ref Sect="CyclotomicClass" />. <P/>
+         
+         If the list of primitive central idempotents given by the output is not complete then a
+         warning sentence is displayed.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> G:=Group([(1,2,3)]); FG:=GroupRing(GF(2),G);
+Group([ (1,2,3) ])
+<algebra-with-one over GF(2), with 1 generators>
+gap> idem:=PrimitiveCentralIdempotentsByStronglySP(FG);
+[ (Z(2)^0)*()+(Z(2)^0)*(1,2,3)+(Z(2)^0)*(1,3,2),
+  (Z(2)^0)*(1,2,3)+(Z(2)^0)*(1,3,2) ]
+gap> IsCompleteSetOfPCIs(FG,idem);
+true
+gap>
+gap> G:=SmallGroup(48,28);QG:=GroupRing(Rationals,G);
+<pc group of size 48 with 5 generators>
+<algebra-with-one over Rationals, with 5 generators>
+gap> PrimitiveCentralIdempotentsByStronglySP(QG);;
+Warning!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 ]]>
 </Example>
 
 
 <ManSection>
-   <Func Name="PrimitiveCentralIdempotentsBySP( FG )" 
+   <Func Name="PrimitiveCentralIdempotentsBySP( QG )" 
          Arg="QG"  
-         Comm="" />
+         Comm="The list of primitive central idempotents of QG realizable by Shoda pairs" />
    <Returns>
          a list of group algebra elements 
    </Returns>         
    <Description>
-         Description
+          Returns a list containing all the primitive central idempotents of the rational group 
+          algebra <M>QG</M> given of the finite group <M>G</M> realizable by Shoda pairs 
+          <Ref Sect="SPDef" />. <P/>
+          
+          The output contains the output of <E>PrimitiveCentralIdempotentsByStronglySP(QG)</E>. <P/>
+          
+          The sum of the elements of the output  obtained is 1 if and only if G is monomial. <P/>
+
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> G := SmallGroup(39,2); QG := GroupRing( Rationals, G);
+<pc group of size 39 with 2 generators>
+<algebra-with-one over Rationals, with 2 generators>
+gap> idemp := PrimitiveCentralIdempotentsBySP( QG );
+[ (1/39)*<identity> of ...+(1/39)*f1+(1/39)*f2+(1/39)*f1^2+(1/39)*f1*f2+(1/
+    39)*f2^2+(1/39)*f1^2*f2+(1/39)*f1*f2^2+(1/39)*f2^3+(1/39)*f1^2*f2^2+(1/
+    39)*f1*f2^3+(1/39)*f2^4+(1/39)*f1^2*f2^3+(1/39)*f1*f2^4+(1/39)*f2^5+(1/
+    39)*f1^2*f2^4+(1/39)*f1*f2^5+(1/39)*f2^6+(1/39)*f1^2*f2^5+(1/39)*f1*f2^6+(
+    1/39)*f2^7+(1/39)*f1^2*f2^6+(1/39)*f1*f2^7+(1/39)*f2^8+(1/39)*f1^2*f2^7+(
+    1/39)*f1*f2^8+(1/39)*f2^9+(1/39)*f1^2*f2^8+(1/39)*f1*f2^9+(1/39)*f2^10+(1/
+    39)*f1^2*f2^9+(1/39)*f1*f2^10+(1/39)*f2^11+(1/39)*f1^2*f2^10+(1/39)*f1*f2^
+    11+(1/39)*f2^12+(1/39)*f1^2*f2^11+(1/39)*f1*f2^12+(1/39)*f1^2*f2^12,
+  (2/39)*<identity> of ...+(-1/39)*f1+(2/39)*f2+(-1/39)*f1^2+(-1/39)*f1*f2+(2/
+    39)*f2^2+(-1/39)*f1^2*f2+(-1/39)*f1*f2^2+(2/39)*f2^3+(-1/39)*f1^2*f2^2+(
+    -1/39)*f1*f2^3+(2/39)*f2^4+(-1/39)*f1^2*f2^3+(-1/39)*f1*f2^4+(2/39)*f2^5+(
+    -1/39)*f1^2*f2^4+(-1/39)*f1*f2^5+(2/39)*f2^6+(-1/39)*f1^2*f2^5+(-1/
+    39)*f1*f2^6+(2/39)*f2^7+(-1/39)*f1^2*f2^6+(-1/39)*f1*f2^7+(2/39)*f2^8+(-1/
+    39)*f1^2*f2^7+(-1/39)*f1*f2^8+(2/39)*f2^9+(-1/39)*f1^2*f2^8+(-1/39)*f1*f2^
+    9+(2/39)*f2^10+(-1/39)*f1^2*f2^9+(-1/39)*f1*f2^10+(2/39)*f2^11+(-1/39)*f1^
+    2*f2^10+(-1/39)*f1*f2^11+(2/39)*f2^12+(-1/39)*f1^2*f2^11+(-1/39)*f1*f2^
+    12+(-1/39)*f1^2*f2^12, (4/13)*<identity> of ...+(4/13)*f1+(-1/39)*f2+(4/
+    13)*f1^2+(-1/39)*f1*f2+(-1/39)*f2^2+(-1/39)*f1^2*f2+(-1/39)*f1*f2^2+(-1/
+    39)*f2^3+(-1/39)*f1^2*f2^2+(-1/39)*f1*f2^3+(-1/39)*f2^4+(-1/39)*f1^2*f2^
+    3+(-1/39)*f1*f2^4+(-1/39)*f2^5+(-1/39)*f1^2*f2^4+(-1/39)*f1*f2^5+(-1/
+    39)*f2^6+(-1/39)*f1^2*f2^5+(-1/39)*f1*f2^6+(-1/39)*f2^7+(-1/39)*f1^2*f2^
+    6+(-1/39)*f1*f2^7+(-1/39)*f2^8+(-1/39)*f1^2*f2^7+(-1/39)*f1*f2^8+(-1/
+    39)*f2^9+(-1/39)*f1^2*f2^8+(-1/39)*f1*f2^9+(-1/39)*f2^10+(-1/39)*f1^2*f2^
+    9+(-1/39)*f1*f2^10+(-1/39)*f2^11+(-1/39)*f1^2*f2^10+(-1/39)*f1*f2^11+(-1/
+    39)*f2^12+(-1/39)*f1^2*f2^11+(-1/39)*f1*f2^12+(-1/39)*f1^2*f2^12,
+  (8/13)*<identity> of ...+(-4/13)*f1+(-2/39)*f2+(-4/13)*f1^2+(1/39)*f1*f2+(
+    -2/39)*f2^2+(1/39)*f1^2*f2+(1/39)*f1*f2^2+(-2/39)*f2^3+(1/39)*f1^2*f2^2+(
+    1/39)*f1*f2^3+(-2/39)*f2^4+(1/39)*f1^2*f2^3+(1/39)*f1*f2^4+(-2/39)*f2^5+(
+    1/39)*f1^2*f2^4+(1/39)*f1*f2^5+(-2/39)*f2^6+(1/39)*f1^2*f2^5+(1/39)*f1*f2^
+    6+(-2/39)*f2^7+(1/39)*f1^2*f2^6+(1/39)*f1*f2^7+(-2/39)*f2^8+(1/39)*f1^
+    2*f2^7+(1/39)*f1*f2^8+(-2/39)*f2^9+(1/39)*f1^2*f2^8+(1/39)*f1*f2^9+(-2/
+    39)*f2^10+(1/39)*f1^2*f2^9+(1/39)*f1*f2^10+(-2/39)*f2^11+(1/39)*f1^2*f2^
+    10+(1/39)*f1*f2^11+(-2/39)*f2^12+(1/39)*f1^2*f2^11+(1/39)*f1*f2^12+(1/
+    39)*f1^2*f2^12 ]
+gap> IsCompleteSetOfPCIs( QG, idemp );
+true
 ]]>
 </Example>
 
-
-<ManSection>
-   <Oper Name="IsShodaPair" 
-         Arg="G K H"  
-         Comm="" />
-   <Description>
-         Description
-   </Description>
-</ManSection>
+If the list of primitive central idempotents gives as output is not complete
+then a warning message is displayed. 
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> G := SmallGroup(48,28); QG:=GroupRing( Rationals, G);
+<pc group of size 48 with 5 generators>
+<algebra-with-one over Rationals, with 5 generators>
+gap> Length( PrimitiveCentralIdempotentsByStronglySP( QG ) );
+Wedderga: Warning!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input!
+5
+gap> Length( PrimitiveCentralIdempotentsBySP( QG ) );
+Wedderga: Warning!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input!
+6
 ]]>
 </Example>
 
+The output of <E>PrimitiveCentralIdempotentsByStronglySP( QG )</E> contains the 
+output of <E>PrimitiveCentralIdempotentsByStronglySP( QG )</E>, possibly 
+properly as the previous example shows.
 
 <ManSection>
    <Oper Name="PrimitiveCentralIdempotentBySP" 
          Arg="QG K H"  
-         Comm="" />
+         Comm="e(G,K,H)" />
    <Returns>
          an element of a group algebra
    </Returns>         
    <Description>
-         Description
+         Returns the primitive central idempotent realized by a Shoda pair 
+         <M>(K,H)</M> of <M>G</M> <Ref Sect="SPDef" />.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> G:=AlternatingGroup(5);
+Alt( [ 1 .. 5 ] )
+gap> K:=AlternatingGroup(4);
+Alt( [ 1 .. 4 ] )
+gap> H := Group([(1,2)(3,4),(1,3)(2,4)]);
+Group([ (1,2)(3,4), (1,3)(2,4) ])
+gap> QG := GroupRing( Rationals, G);
+<algebra-with-one over Rationals, with 2 generators>
+gap> PrimitiveCentralIdempotentBySP( QG, K, H);
+(5/12)*()+(-1/12)*(3,4,5)+(-1/12)*(3,5,4)+(1/12)*(2,3)(4,5)+(-1/12)*(2,3,4)+(
+-1/12)*(2,3,5)+(-1/12)*(2,4,3)+(-1/12)*(2,4,5)+(1/12)*(2,4)(3,5)+(-1/12)*
+(2,5,3)+(-1/12)*(2,5,4)+(1/12)*(2,5)(3,4)+(1/12)*(1,2)(4,5)+(1/12)*(1,2)
+(3,4)+(1/12)*(1,2)(3,5)+(-1/12)*(1,2,3)+(-1/12)*(1,2,4)+(-1/12)*(1,2,5)+(-1/
+12)*(1,3,2)+(1/12)*(1,3)(4,5)+(-1/12)*(1,3,4)+(-1/12)*(1,3,5)+(1/12)*(1,3)
+(2,4)+(1/12)*(1,3)(2,5)+(-1/12)*(1,4,2)+(-1/12)*(1,4,3)+(-1/12)*(1,4,5)+(1/
+12)*(1,4)(3,5)+(1/12)*(1,4)(2,3)+(1/12)*(1,4)(2,5)+(-1/12)*(1,5,2)+(-1/12)*
+(1,5,3)+(-1/12)*(1,5,4)+(1/12)*(1,5)(3,4)+(1/12)*(1,5)(2,3)+(1/12)*(1,5)(2,4)
 ]]>
 </Example>
 
@@ -110,25 +259,63 @@ GAP output
 <ManSection>
    <Oper Name="IdempotentBySubgroups" 
          Arg="QG K H"  
-         Comm="" />
+         Comm="Epsilon(QG,K,H)" />
    <Oper Name="IdempotentBySubgroups" 
          Arg="FG K H c"  
-         Comm="" />
+         Comm="Epsilon(G,K,H,C)" />
    <Returns>
          idempotent of a group algebra
    </Returns>         
    <Description>
-         Description
+        The versions with three input data computes <M>\varepsilon(K,H)</M>
+        as an element of the rational group algebra <M>QG</M>, where <M>K</M>
+        is a subgroup of <M>G</M> and <M>H</M> is a normal subgroup of <M>K</M>. 
+        (see Section <Ref Sect="IdempotentsSbgps"/>). <P/>
+                 
+        The versions with three input data computes <M>\varepsilon_C(K,H)</M>
+        as an element of the group algebra <M>FG</M>, where <M>F</M> is a finite 
+        field of order <M>q</M> and <M>G</M> is a finite group of order coprime 
+        with <M>q</M>. Moreover <M>K</M> should be a subgroup of <M>G</M>, 
+        <M>H</M> a normal subgroup of <M>K</M>  such that <M>K/H</M> is cyclic 
+        and <M>C</M> is a <M>q</M>-cyclotomic class module <M>[K:H]</M> 
+        (see Section <Ref Sect="CyclotomicClass"/>).
+        The cyclotomic class can be given either by the cyclotomic class itself 
+        or by a representative, that is an integer.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> G:=SymmetricGroup(5);
+Sym( [ 1 .. 5 ] )
+gap> K:=Group([(1,2,3,4)]);
+Group([ (1,2,3,4) ])
+gap> H:=Group( () );
+Group(())
+gap> FG:=GroupRing(GF(7),G);
+<algebra-with-one over GF(7), with 2 generators>
+gap> QG:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 2 generators>
+gap> IdempotentBySubgroups(QG,K,H);
+(1/2)*()+(-1/2)*(1,3)(2,4)
+gap> IdempotentBySubgroups(FG,K,H,1);
+(Z(7)^4)*()+(Z(7))*(1,3)(2,4)
+gap> IdempotentBySubgroups(FG,K,H,[1,3]);
+(Z(7)^4)*()+(Z(7))*(1,3)(2,4)
+gap> IdempotentBySubgroups(FG,K,H,[1]);
+Error, Wedderga:
+ <C> should be a cyclotomic class module the index of <H> on <K>
+ called from
+<function>( <arguments> ) called from read-eval-loop
+Entering break read-eval-print loop ...
+you can 'quit;' to quit to outer loop, or
+you can 'return;' to continue
+brk>
 ]]>
 </Example>
 
+
+The output of <E>IdempotentBySubgroups</E> is an idempotent in the corresponding group algebra.
 
 <ManSection>
    <Oper Name="CentralElementBySubgroups" 
@@ -141,43 +328,66 @@ GAP output
          central element of a group algebra
    </Returns>         
    <Description>
-         Description
+          The versions with three input data computes <M>e(G,K,H)</M>
+          as an element of the rational group algebra <M>QG</M>, where <M>K</M>
+          is a subgroup of <M>G</M> and <M>H</M> is a normal subgroup of <M>K</M>. 
+          (see Section <Ref Sect="SPDef"/>). <P/>
+                   
+          The versions with three input data computes <M>e_C(G,K,H)</M>
+          as an element of the group algebra <M>FG</M>, where <M>F</M> is a finite 
+          field of order <M>q</M> and <M>G</M> is a finite group of order coprime 
+          with <M>q</M>. Moreover <M>K</M> should be a subgroup of <M>G</M>, 
+          <M>H</M> a normal subgroup of <M>K</M> such that <M>K/H</M> is cyclic 
+          and <M>C</M> is a <M>q</M>-cyclotomic class module <M>[K:H]</M> 
+          (see Section <Ref Sect="CyclotomicClass"/>). 
+          The cyclotomic class can be given either by the cyclotomic class itself 
+          or by a representative, that is an integer.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> G:=SymmetricGroup(5);
+Sym( [ 1 .. 5 ] )
+gap> K:=Group([(1,2,3,4)]);
+Group([ (1,2,3,4) ])
+gap> H:=Group( () );
+Group(())
+gap> FG:=GroupRing(GF(7),G);
+<algebra-with-one over GF(7), with 2 generators>
+gap> QG:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 2 generators>
+gap> CentralElementBySubgroups(QG,K,H);
+(15/2)*()+(-1/2)*(2,3)(4,5)+(-1/2)*(2,4)(3,5)+(-1/2)*(2,5)(3,4)+(-1/2)*(1,2)
+(4,5)+(-1/2)*(1,2)(3,4)+(-1/2)*(1,2)(3,5)+(-1/2)*(1,3)(4,5)+(-1/2)*(1,3)
+(2,4)+(-1/2)*(1,3)(2,5)+(-1/2)*(1,4)(3,5)+(-1/2)*(1,4)(2,3)+(-1/2)*(1,4)
+(2,5)+(-1/2)*(1,5)(3,4)+(-1/2)*(1,5)(2,3)+(-1/2)*(1,5)(2,4)
+gap> CentralElementBySubgroups(FG,K,H,1);
+(Z(7)^4)*()+(Z(7))*(2,3)(4,5)+(Z(7))*(2,4)(3,5)+(Z(7))*(2,5)(3,4)+(Z(7))*(1,2)
+(4,5)+(Z(7))*(1,2)(3,4)+(Z(7))*(1,2)(3,5)+(Z(7))*(1,3)(4,5)+(Z(7))*(1,3)
+(2,4)+(Z(7))*(1,3)(2,5)+(Z(7))*(1,4)(3,5)+(Z(7))*(1,4)(2,3)+(Z(7))*(1,4)
+(2,5)+(Z(7))*(1,5)(3,4)+(Z(7))*(1,5)(2,3)+(Z(7))*(1,5)(2,4)
+gap> CentralElementBySubgroups(FG,K,H,[1,3]);
+(Z(7)^4)*()+(Z(7))*(2,3)(4,5)+(Z(7))*(2,4)(3,5)+(Z(7))*(2,5)(3,4)+(Z(7))*(1,2)
+(4,5)+(Z(7))*(1,2)(3,4)+(Z(7))*(1,2)(3,5)+(Z(7))*(1,3)(4,5)+(Z(7))*(1,3)
+(2,4)+(Z(7))*(1,3)(2,5)+(Z(7))*(1,4)(3,5)+(Z(7))*(1,4)(2,3)+(Z(7))*(1,4)
+(2,5)+(Z(7))*(1,5)(3,4)+(Z(7))*(1,5)(2,3)+(Z(7))*(1,5)(2,4)
+gap> CentralElementBySubgroups(FG,K,H,[1]);
+Error, Wedderga:
+<C> should be a cyclotomic class module the index of <H> on <K>
+ called from
+<function>( <arguments> ) called from read-eval-loop
+Entering break read-eval-print loop ...
+you can 'quit;' to quit to outer loop, or
+you can 'return;' to continue
+brk>
 ]]>
 </Example>
 
-</Section>
-
-<!-- ********************************************************* -->
-
-<Section Label="IdempotIrr">
-<Heading>Computing idempotents from character table</Heading>
-
-
-<ManSection>
-   <Oper Name="PrimitiveCentralIdempotentsByCharacterTable" 
-         Arg="QG"  
-         Comm="" />
-   <Returns>
-         a list of group algebra elements
-   </Returns>         
-   <Description>
-         Description
-   </Description>
-</ManSection>
-
-<Example>
-<![CDATA[
-gap> GAP command;
-GAP output      
-]]>
-</Example>
+The output of <E>CentralElementBySubgroups</E> is central in the corresponding group algebra.
+If some additional conditions are satisfied then it is also an idempotent but in general 
+it could be not idempotent. For example this is the case if <M>(K,H)</M> is a strongly
+Shoda pair of <M>G</M>.
 
 </Section>
 

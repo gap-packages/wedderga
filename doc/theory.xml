@@ -1,34 +1,332 @@
 <!-- $Id$ -->
+
+<!-- ********************theory******************** -->
+
 <Chapter Label="Theory">
 <Heading>The basic theory behind &Wedderga;</Heading>    
+
 
 In this chapter we describe the theory that is behind the algorithms used by
 &Wedderga;. 
 
-<Section Label="TheoryFirst">
-<Heading>Notation and definitions</Heading>
+<Section Label="GroupRings">
+<Heading>Group rings and group algebras</Heading>
+
+<Index>group ring</Index>
+Let <M>G</M> be a group and <M>R</M> an associative ring. 
+Then the <E>group ring</E> <M>RG</M> over the group <M>G</M> with coefficients in <M>R</M> 
+is the associative ring whose underlying additive group is a right <M>R-</M>module with basis <M>G</M>
+such that the product is defined by 
+  <Display> 
+  (gr)(hs)=(gh)(rs)
+  </Display>
+for <M>r,s \in R</M> and <M>g, h \in G</M> and extended to 
+<M>RG</M> by linearity.
+<P/>
 
 <Index>group algebra</Index>
-Let <M>G</M> be a group and <M>F</M> a field. Then the <E>group algebra</E> 
-<M>FG</M> consists of the set of formal linear combinations of the form 
-<Display> 
-\sum_{g \in G}\alpha_g g,\qquad \alpha_g \in F
-</Display>
-where all but finitely many of the <M>\alpha_g</M> are zero. The group algebra
-<M>FG</M> is an <M>F</M>-algebra with the obvious operations. 
-Clearly, <M>\dim FG=|G|</M>.<P/>
+A <E>group algebra</E> is a group ring in which the coefficient ring is a field.
 
 </Section>
 
 <!-- ********************************************************* -->
 
-<Section Label="TheorySecond">
-<Heading>Modular group algebras</Heading>
+<Section Label="CrossedProducts">
+<Heading>Crossed Products</Heading>
 
-<Index Key="Modular group algebra">Modular group algebra</Index>
-A group algebra <M>FG</M> is said to be <E>modular</E> if <M>F</M> is the
-field of characteristic <M>p</M>, and <M>G</M> contains an element of order
-<M>p</M>.
+<Index Key="Crossed Product">Crossed Product</Index>
+Let <M>R</M> be an associative ring with identity and <M>G</M> a group. 
+A <E>crossed product</E> <Cite Key="P" /> over <M>G</M> with coefficients in <M>R</M>, 
+action <M>a</M> and twisting <M>t</M> is an associative ring <M>R*G</M> (also denoted <M>R*_a^t G</M>) 
+whose underlying additive group is a <M>R-</M>module with 
+basis <M>G</M> such that the product is defined by
+  <Display> 
+  (gr)(hs)=(gh)(t(g,h)r^h s)
+  </Display>
+and extended to <M>R*G</M> by linearity,where <P/>
+* for every <M>g \in G</M>, the assignement <M>r \mapsto a(g)(r)=r^g</M> is an automorphism of <M>R</M> 
+  and <P/>
+* <M>t(g,h)</M> is a unit of <M>R</M>, for every <M>g,h \in G</M>. <P/>
+
+The necessary and sufficient conditions for the above product to be associative 
+(equivalently define on <M>R*G</M> a crossed product structure) is that the following 
+two conditions hold for every <M>g</M>, <M>h</M> and <M>k</M> in <M>G</M>: <P/>
+
+* <M>a(gh)^(-1) a(g) a(h)</M> is the inner automorphism of <M>R</M> induced by <M>t(g,h)</M> and <P/>
+
+* <M>t(gh,k) t(g,h)^k = t(g,hk) t(h,k).</M> <P/>
+
+</Section>
+
+<!-- ********************************************************* -->
+
+
+<Section Label="Cyclotomic">
+<Heading>Classical crossed products and cyclotomic algebras</Heading>
+
+If the group <M>G</M> is the Galois group of a field extension <M>F/E</M> and <M>a</M> is 
+the natural action of <M>G</M> on <M>F</M> then the crossed product <M>F*_a^t G</M> is denoted by
+<M>(F/E,t)</M> and it is simple <Cite Key="Reiner" />. <P/> 
+
+<Index Key="Cyclotomic algebra">Cyclotomic algebra</Index>
+A <E>cyclotomic algebra</E> over <M>F</M> is a crossed product <M>(F(\xi)/F,t)</M>, 
+where <M>F</M> is a field, <M>\xi</M> is a root of unity on an extension of <M>F</M> 
+and <M>t(g,h)</M> is a root of unity for every <M>g</M> and <M>h</M> in <M>Gal(F(\xi)/F)</M>. <P/>
+
+</Section>
+
+
+<!-- ********************************************************* -->
+
+<Section Label="WedDec">
+<Heading>Wedderburn decomposition</Heading>
+
+A ring <M>R</M> is semisimple artinian if it is a direct sum of simple left (alternatively right) ideals 
+or equivalently if <M>R</M> is isomorphic to a direct product of simple algebras each one isomorphic
+to a matrix ring over a division ring. <P/>
+
+<Index>Wedderburn decomposition</Index>
+<Index>Wedderburn components</Index>
+If <M>R</M> is a semisimple ring then the <E>Wedderburn decomposition</E> of <M>R</M> is the 
+decomposition of <M>R</M> as a direct product of simple algebras. 
+The factors of this Wedderburn decomposition are called <E>Wedderburn components</E> of <M>R</M>. <P/> 
+
+By Maschke's Theorem the group algebra <M>FG</M> is semisimple artinian if and only if the 
+group <M>G</M> if finite and the characteristic of the coefficient field <M>F</M> does not divide 
+the order of <M>G</M>. <P/>
+
+
+Let <M>FG</M> be a semisimple group algebra.
+Computing the Wedderburn decomposition of an arbitrary semisimple group algebra <M>FG</M> reduces
+to the case when <M>F</M> is a prime field, that is <M>F</M> is either the field of rationals or a finite field
+of prime order. This is because if <M>K</M> is a subfield of <M>F</M>, then <M>FG</M> is isomorphic to 
+<M>F \otimes_{K} FG</M>. 
+Moreover if <M>A</M> is a Wedderburn component of <M>KG</M> then <M>F \otimes_{K} A</M> is isomorphic to 
+<M>B^n</M> for some Wedderburn component of <M>FG</M>. <P/>
+
+By the <E>Brauer-Witt Theorem</E> <Cite Key="Y" />, the Wedderburn components of <M>FG</M> 
+are similar to cyclotomic algebras <Ref Sect="Cyclotomic" />. <P/> 
+
+The main functions of &Wedderga; describes the Wedderburn components of <M>FG</M>
+associated to strongly Shoda pairs <Ref Sect="SSPDef" /> of the group <M>G</M>, as matrix algebras
+over cyclotomic algebras. 
+If the coefficient ring <M>F</M> is finite then these cyclotomic algebras are 
+finite extensions of <M>F</M>. 
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="Idempotents">
+<Heading>Primitive central idempotents</Heading>
+
+<Index>primitive central idempotent</Index>
+A <E>primitive central idempotent</E> of a ring <M>R</M> is central idempotent 
+<M>e</M> which cannot be written as the sum of two non-zero central idempotents 
+of <M>eR</M>, or equivalently such that <M>eR</M> is indecomposable as a direct 
+product of two non-trivial two-sided ideals.  <P/>
+
+The <E>Wedderburn components</E> <Ref Sect="WedDec" /> of a semisimple ring 
+<M>R</M> are the rings of the form <M>Re</M> for <M>e</M> 
+running on the set of primitive central idempotents of <M>R</M>.
+<P/>
+
+If <M>FG</M> is a semisimple group algebra with coefficients on an algebraically 
+closed field <M>F</M> then there is a one-to-one correspondence between the 
+primitive central idempotents of <M>FG</M> and the irreducible characters of 
+<M>G</M> over the field <M>F</M>. Namely the primitive central idempotent of 
+<M>FG</M> associated with the irreducible character <M>\chi</M> is given by the 
+formula:
+  <Display>
+  e(\chi) = |G|^{-1} \sum_{g\in G} \chi(g\inv) g.
+  </Display><P/>
+  
+If <M>F</M> is an arbitrary field and <M>K</M> is an algebraic closure of <M>F</M>
+then there is a surjective (non-necessarily injective) map from the set of
+irreducible characters of <M>G</M> over <M>K</M> to the set of primitive central idempotents 
+of <M>FG</M> that associates to every irreducible character <M>\chi</M> the sum of 
+the primitive central idempotents of the form <M>e(\sigma \chi)</M> where <M>\sigma</M>
+runs on the elements of the Galois field of the character field <M>F(\chi)</M> of <M>\chi</M> 
+over <M>F</M>. 
+
+</Section>
+
+
+<!-- ********************************************************* -->
+
+<Section Label="IdempotentsSbgps">
+<Heading>Idempotents given by subgroups</Heading>
+
+Let <M>G</M> be a finite group and <M>F</M> a field whose characteristic does not 
+divide the order of <M>G</M>.
+If <M>H</M> is a subgroup of <M>G</M> then set
+<Display>
+\widehat{H} = |H|^{-1}\sum_{x \in H} x
+</Display>
+The element <M>\widehat{H}</M> is an idempotent of <M>FG</M> which is central in <M>FG</M> if and
+only if <M>H</M> is normal in <M>G</M>. <P/>
+
+If <M>H</M> is a proper normal subgroup of a subgroup <M>K</M> of  <M>G</M> then set
+<Display>
+\varepsilon(K,H) = \prod_{L} (\widehat{N}-\widehat{L})
+</Display>
+where <M>L</M> runs on the minimal normal subgroups of <M>K</M> containing <M>N</M> properly. 
+By convention, <M>\varepsilon(K,K)=\widehat{K}</M>. 
+The element <M>\varepsilon(K,H)</M> is an idempotent of <M>FG</M>. <P/>
+
+If <M>H</M> and <M>K</M> are subgroups of <M>G</M> such that <M>H</M> is normal in <M>K</M> then 
+<M>e(G,K,H)</M> denotes the sum of all different <M>G</M>-conjugates of <M>\varepsilon(K,H)</M>.
+The element <M>e(G,K,H)</M> is central in <M>FG</M>. In general it is not an idempotent but if the 
+different conjugates of <M>\varepsilon(K,H)</M> are orthogonal then 
+<M>e(G,K,H)</M> is a central idempotent of <M>FG</M>.
+<P/>
+
+If <M>(K,H)</M> is a Shoda Pair <Ref Sect="SPDef" /> of <M>G</M> then there is a non-zero rational number <M>a</M> 
+such that <M>ae(G,K,H))</M> is a primitive central idempotent or the rational group algebra <M>Q G</M>. 
+If <M>(K,H)</M> is a strongly Shoda pair <Ref Sect="SSPDef" /> of <M>G</M> then <M>e(G,K,H)</M> is a primitive central 
+idempotent of <M>Q G</M>. 
+<P/>
+
+Assume now that <M>F</M> is a finite field of order <M>q</M>, <M>(K,H)</M> a strongly Shoda pair of <M>G</M> and 
+<M>C</M> a cyclotomic class of <M>K/H</M> <Ref Sect="CyclotomicClass" /> containing a generator of <M>K/H</M>. 
+Then <M>e_C(G,K,H)</M> is a primitive central idempotent of <M>F</M>. <P/>
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="SPDef">
+<Heading>Shoda pairs</Heading>
+
+Let <M>G</M> be a finite group.
+<Index>Shoda pair</Index>
+A <E>Shoda pair</E> of <M>G</M> is a pair <M>(K,H)</M> of
+subgroups of <M>G</M> such that there is a linear character <M>\chi</M> of <M>K</M> with
+kernel <M>H</M> such that the induced character <M>\chi^G</M> in <M>G</M> is irreducible.
+By <Cite Key="S" /> or <Cite Key="ORS" />, <M>(K,H)</M> is a Shoda pair if and only if the
+following conditions hold:<P/>
+* <M>H</M> is normal in <M>K</M>, <P/>
+* <M>K/H</M> is cyclic and <P/> 
+* if <M>(K,g)\cap K \subseteq H</M> for some <M>g \in G</M> then <M>g \in K</M><P/>
+
+<Index>primitive central idempotent realized by a Shoda pair</Index>
+If <M>(K,H)</M> is a Shoda pair then the primitive central idempotent of <M>QG</M> associated 
+to the irreducible character <M>\chi^G</M> is of the form <M>e=a e(G,K,H)</M> for 
+some <M>a \in Q</M> 
+<Cite Key="ORS" />. (See <Ref Sect="IdempotentsSbgps" /> for the definition of <M>e(G,K,H)</M>.)
+In that case we say that <M>e</M> is the <E>primitive central idempotent realized by the Shoda pair</E> 
+<M>(K,H)</M> of <M>G</M>. <P/>
+
+A group <M>G</M> is monomial, that is every irreducible character of <M>G</M> is monomial, if and only if 
+every primitive central idempotent of <M>QG</M> is realizable by a Shoda pair of <M>G</M>.
+<P/>
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="SSPDef">
+<Heading>Strongly Shoda pairs</Heading>
+
+<Index>strongly Shoda pair</Index>
+A <E>strongly Shoda pair</E> of <M>G</M> is a pair <M>(K,H)</M> of
+subgroups of <M>G</M> satisfying the following conditions:<P/>
+* <M>H</M> is normal in <M>K</M> and <M>K</M> is normal in the normalizer <M>N</M> of <M>H</M> in 
+  <M>G</M>, <P/>
+* <M>K/H</M> is cyclic and a maximal abelian subgroup of <M>N/H</M> and <P/>
+* for every <M>g \in G\setminus N</M> ,  <M>\varepsilon(K,H)\varepsilon(K,H)^g=0</M>.
+(See <Ref Sect="IdempotentsSbgps" /> for the definition of <M>\varepsilon</M>.)
+<P/>
+
+Let <M>(K,H)</M> be a strongly Shoda pair of <M>G</M>. Then <M>(K,H)</M> is a Shoda pair of <M>G</M> and the 
+primitive central idempotent of <M>QG</M> realized by <M>(K,H)</M> is <M>e(G,K,H)</M>, 
+see <Cite Key="ORS" />. 
+Moreover the simple algebra <M>QGe(G,K,H)</M> is isomorphic to <M>M_n(Q(\xi)*N/K)</M>, 
+where <M>\xi</M> is a <M>[K:H]-</M>th root of unity, <M>N</M> is the normalizer of <M>H</M> in <M>G</M>, 
+<M>n=[G:N]</M> and <M>Q(\xi)* N/K</M> is a crossed product <Ref Sect="CrossedProducts" /> 
+whose action and twisting <M>t</M> are given as follows: <P/>
+Let <M>x</M> be a fixed generator of <M>K/H</M> and 
+<M>\phi:N/K\rightarrow N/H</M> a fixed left inverse of the canonical projection 
+<M>N/H\rightarrow N/K</M>. Then 
+  <Display>
+  \xi^a} = \xi^i, \mbox{ if }  x^a= x^i
+  </Display>
+and 
+  <Display>
+  t(a,b) = \xi^j, \mbox{ if } \phi(ab)^{-1} \phi(a)\phi(b) H = x^j,
+  </Display>
+for <M>a,b \in N/K</M> and integers <M>i</M> and <M>j</M>, see <Cite Key="ORS" />. 
+<P/>
+
+The action of <M>N/K</M> on <M>Q(\xi)</M> is faithful and thus <M>Q(\xi)* N/K</M> is 
+a cyclotomic algebra <M>(F(\xi)/F,t)</M>, where <M>F</M> is the centre of <M>Q(\xi)*N/K</M>.
+In particular <M>N/K</M> is abelian and the crossed product <M>Q(\xi)*N/K</M> defined
+above is isomorphic to the algebra
+  <Display>
+  Q(\xi)[g_1,\ldots,g_m \mid 
+  \xi^{g_i} = \xi^{\alpha_i}, g_i^{o_i}=\xi^{\beta_i}, [g_i,g_j]=\xi^{\gamma_{ij}}]
+  </Display>
+where <P/> 
+* <M>\{g_1,\ldots,g_m\}</M> is an independent set of generators of <M>N/K</M>, <P/>
+* the order of <M>g_i</M> is <M>o_i</M>, for every <M>i</M> <P/>
+* <M>\alpha_i</M> and <M>\beta_i</M> are integers such that 
+  <Display>
+  x^{G_i}= x^{\alpha_i}, \quad G_i^{o_i}=x^{\beta_i}, 
+  </Display>
+  where <M>G_i</M> is an element of <M>N/H</M> which is a representative of <M>g_i</M> 
+  (<M>i=1,\ldots,m</M>) and <P/>
+* <M>\gamma_{ij}</M> is an integer such that <M>[G_i,G_j]=x^{\gamma_{ij}}</M> 
+  for every <M>i</M> smaller than <M>j</M>. <P/>
+<P/>
+
+If <M>G</M> is abelian-by-supersolvable then every primitive central idempotent of <M>QG</M> is realizable by
+a strongly Shoda pair of <M>G</M> <Cite Key="ORS" />.<P/>
+
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="CyclotomicClass">
+<Heading>Cyclotomic Classes and Strongly Shoda Pairs</Heading>
+
+Let <M>G</M> be a finite group and <M>F</M> a finite field of order <M>q</M>, 
+coprime with the order of <M>G</M>. <P/>
+
+<Index>cyclotomic class</Index>
+Given a positive integer <M>n</M>, coprime with <M>q</M>, the <M>q</M>-<E>cyclotomic classes</E> module <M>n</M> 
+are the set of residues classes module <M>n</M> of the form
+  <Display>
+  \{i,iq,iq^2,iq^3, \dots \}
+  </Display>
+The <M>q</M>-cyclotomic classes module <M>n</M> form a partition of the set of residue classes module <M>n</M>. <P/>
+
+<Index>generating cyclotomic class</Index>
+A <E>generating cyclotomic class </E> module <M>n</M> is a cyclotomic class containing a generator of the 
+additive group of residue classes module <M>n</M>, or equivalently formed by integers coprime with <M>n</M>. <P/>
+
+Let <M>(K,H)</M> be strongly Shoda pair <Ref Sect="SSPDef" /> of <M>G</M> and set <M>n=[K:H]</M>. 
+Fix a primitive <M>n-</M>th root of the unity <M>\xi</M> in some extension of <M>F</M>
+and an element <M>g</M> of <M>K</M> such that <M>gH</M> is a generator of <M>K/H</M>.
+Given <M>C</M>, a generating <M>q</M>-cyclotomic class module <M>n</M> one defines 
+    <Display>
+    \varepsilon_C(K,H) =
+    [K:H]\inv \overline{H} \sum_{i=0}^{n-1}} tr(\xi^{-ci})g^i,
+    </Display>
+where <M>c</M> is an arbitrary element of <M>C</M> and <M>tr</M> is the trace map of the field extension 
+<M>F(\xi)/F</M>. Then <M>\varepsilon_C(K,H)</M> does not depend on the election of <M>c \in C</M> and it is a 
+primitive central idempotent of <M>FK</M>. <P/>
+
+
+<Index>primitive central idempotent realized by a strongly Shoda pair and a cyclotomic class</Index>
+Finally let <M>e_C(G,K,H)</M> denote the sum of the different <M>G</M>-conjugates of <M>\varepsilon_C(K,H)</M>. 
+Then <M>e_C(G,K,H)</M> is a primitive central idempotent of <M>FG</M> <Cite Key="BR" />. 
+Then we say that <M>e_C(G,K,H)</M> is the primitive central idempotent realized by the strongly Shoda pair 
+<M>(K,H)</M> of <M>G</M> and the cyclotomic class <M>C</M>.
+<P/>
+
+If every primitive central idempotent of <M>QG</M> is realizable by a strongly Shoda pair of <M>G</M> then every
+primitive central idempotent of <M>FG</M> is realizable by some strongly Shoda pair of <M>G</M> 
+and some cyclotomic class <M>C</M> <Cite Key="BR" />.<P/>
 
 </Section>
 

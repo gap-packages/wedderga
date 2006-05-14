@@ -1,4 +1,7 @@
 <!-- $Id$ -->
+
+<!-- ********************SSP******************** -->
+
 <Chapter Label="SSP">
 <Heading>Strongly Shoda pairs</Heading>
 
@@ -7,40 +10,138 @@
 
 <ManSection>
    <Attr Name="StronglyShodaPairs" 
-         Arg="KG"  
-         Comm="" />
+         Arg="G"  
+         Comm="A list of representatives of strongly Shoda pairs which realize the Wedderburn components of QG 
+         realized by strongly Shoda pairs" />
    <Returns>
-         ???
+         A list of pairs of subgroups of the input
    </Returns>
    <Description>
-         Description
+         Computes a list <M>ssp</M> of strongly Shoda pairs of the finite group <M>G</M> given as input 
+         such that every Wedderburn component of the rational group algebra <M>QG</M> over <M>G</M> realizable 
+         by a strongly Shoda pair is realizable by one member of <M>ssp</M> (see <Ref Sect="SSPDef" />). <P/>
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> StronglyShodaPairs(SymmetricGroup(4));
+[ [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3), (3,4) ]) ],
+  [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3) ]) ],
+  [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ],
+  [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) ],
+  [ Group([ (2,4,3), (1,4)(2,3) ]), Group([ (1,4)(2,3), (1,3)(2,4) ]) ] ]
+gap> StronglyShodaPairs(SmallGroup(78,1));
+[ [ <pc group of size 78 with 3 generators>, Group([ f3, f2, f1 ]) ],
+  [ <pc group of size 78 with 3 generators>, Group([ f3, f2 ]) ],
+  [ <pc group of size 78 with 3 generators>, Group([ f3, f1 ]) ],
+  [ <pc group of size 78 with 3 generators>, Group([ f3 ]) ],
+  [ Group([ f3 ]), Group([  ]) ] ]
+]]>
+</Example>
+
+</Section>
+
+<Section Label="IsSSP">
+<Heading>Booleans on Shoda pairs</Heading>
+
+<ManSection>
+   <Oper Name="IsStronglyShodaPair" 
+         Arg="G K H"  
+         Comm="Is (K,H) a strongly Shoda pair of G?" />
+   <Returns>
+         Boolean.
+   </Returns>         
+   <Description>
+         Returns <E>true</E> if <M>(K,H)</M> is a strongly Shoda pair of <M>G</M> and 
+         <E>false</E> otherwise <Ref Sect="SSPDef" />.
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> G:=SymmetricGroup(3);K:=Group([(1,2,3)]);H:=Group( () );
+Sym( [ 1 .. 3 ] )
+Group([ (1,2,3) ])
+Group(())
+gap> IsStronglyShodaPair(G,K,H);
+true
+gap> IsStronglyShodaPair(G,G,H);
+false
+gap> IsStronglyShodaPair(G,K,K);
+false
+gap> IsStronglyShodaPair(G,G,K);
+true
 ]]>
 </Example>
 
 
 <ManSection>
-   <Oper Name="IsStronglyShodaPair" 
+   <Oper Name="IsShodaPair" 
          Arg="G K H"  
-         Comm="" />
+         Comm="Is (K,H) a Shoda pair of G?" />
    <Description>
-         Description
+        Returns <E>true</E> if <M>(K,H)</M> is a Shoda pair of <M>G</M> and 
+        <E>false</E> otherwise <Ref Sect="SSPDef" />.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> G:=AlternatingGroup(5);
+Alt( [ 1 .. 5 ] )
+gap> K:=AlternatingGroup(4);
+Alt( [ 1 .. 4 ] )
+gap> H := Group([(1,2)(3,4),(1,3)(2,4)]);
+Group([ (1,2)(3,4), (1,3)(2,4) ])
+gap> IsStronglyShodaPair( G, K, H);
+false
+gap> IsShodaPair(G,K,H);
+true
 ]]>
 </Example>
 
+Every strongly Shoda pair is a Shoda pair but the converse is not true.
+
+<ManSection>
+   <Oper Name="IsStronglyMonomial" 
+         Arg="G"  
+         Comm="Is every Wedderburn component realizable by a SSP" />
+   <Description>
+        Returns <E>true</E> if the finite group <M>G</M> is strongly monomial, that is
+        if every Wedderburn component of the rational group algebra
+        is realizable by a strongly Shoda pair <Ref Sect="SSPDef" />.
+        In that case also every Wedderburn component of a semisimple finite group algebra
+        over <M>G</M> is also realizable by a strongly Shoda pair together with
+        a cyclotomic class <Ref Sect="CyclotomicClass" />.
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> S4:=SymmetricGroup(4);
+Sym( [ 1 .. 4 ] )
+gap> IsStronglyMonomial(S4);
+true
+gap> G:=SmallGroup(24,3);
+<pc group of size 24 with 4 generators>
+gap> IsStronglyMonomial(G);
+false
+gap> IsMonomial(G);
+false
+gap> G:=SmallGroup(1000,86);
+<pc group of size 1000 with 6 generators>
+gap> IsMonomial(G);
+true
+gap> IsStronglyMonomial(G);
+false
+]]>
+</Example>
+
+Every strongly monomial finite group is monomial. 
+Every abelian-by-supersolvable or metabelian finite group is strongly monomial. 
+Every monomial group of order less than 1000 is strongly monomial, but there is one
+monomial group of order 1000 which is not strongly monomial.
 
 </Section>
 
