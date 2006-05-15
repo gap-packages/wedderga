@@ -14,65 +14,69 @@
 ##
 #P IsSemisimpleRationalGroupAlgebra( FG )
 ##  
-## The function checks whether a group ring is a rational group algebra
+## The function checks whether a group ring is a rational group algebra 
+## of a finite group
 ##
 InstallImmediateMethod( IsSemisimpleRationalGroupAlgebra,
-                        IsGroupRing, 
-                        0,
-    R -> IsRationals(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))
-); 
+    IsGroupRing,
+    0,
+R -> IsRationals(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
 
 
 #############################################################################
 ##
 #P IsZeroCharacteristicGroupAlgebra( FG )
 ##  
-## The function checks whether a group ring is a group algebra of a finite
-## group over the field of characteristic zero
+## The function checks whether a group ring is a group algebra 
+## of a finite group over the field of characteristic zero
 ##
 InstallImmediateMethod( IsZeroCharacteristicGroupAlgebra,
-                        IsGroupRing, 
-                        0,
-    R -> Characteristic(LeftActingDomain(R))=0 and IsFinite(UnderlyingMagma(R))
-); 
+    IsGroupRing, 
+    0,
+R -> Characteristic(LeftActingDomain(R))=0 and IsFinite(UnderlyingMagma(R))); 
 
 
 #############################################################################
 ##
 #P IsSemisimpleFiniteGroupAlgebra( FG )
 ##  
-## The function checks whether a group ring is a semisimple finite group algebra
+## The function checks whether a group ring is a semisimple group algebra
+## of a finite group over a finite field
 ##
 InstallImmediateMethod( IsSemisimpleFiniteGroupAlgebra,
-                        IsGroupRing, 
-                        0,
-                
+    IsGroupRing, 
+    0,
 function( FG )
-local   F,      # Field
-        G;      # Group
+	local   F,      # Field
+    	    G;      # Group
 
-F := LeftActingDomain( FG );
-G := UnderlyingMagma( FG );
+	F := LeftActingDomain( FG );
+	G := UnderlyingMagma( FG );
        
-return IsField( F ) and IsFinite( F ) and IsFinite( G ) and Gcd( Size( F ), Size( G ) )=1;
+	return IsField( F ) and IsFinite( F ) and IsFinite( G ) and 
+    	   Gcd( Size( F ), Size( G ) ) = 1;
 end); 
 
 
 #############################################################################
 ##
-#M IsCompleteSetOfPCIs( A, ListPCIs )
+#M IsCompleteSetOfPCIs( R, ListPCIs )
 ##
-## The function IsCompleteSetOfPCIs checks if the sum of the elements of A is 1
-## It is supposed to be used to check if a list of PCIs of A is complete.
+## The function checks if the sum of given idempotents of a ring R is the
+## identity element of R. It is supposed to be used to check if a given 
+## list of PCIs of R is complete.
 ##
-InstallMethod( IsCompleteSetOfPCIs,"for list of primitive central idempotents", true, 
-[ IsRing,IsList ], 0,
-function( A, ListPCIs )
+InstallMethod( IsCompleteSetOfPCIs,
+    "for list of idempotents", 
+    true, 
+    [ IsRing, IsList ], 
+    0,
+function( R, ListPCIs )
     local x;
-    if not ForAll( ListPCIs, x -> x in A ) then
-        Error("Wedderga: An element of <ListPCIs> does not belong to <A>!!!\n");
+    if not ForAll( ListPCIs, x -> x in R ) then
+        Error("Wedderga: An element of <ListPCIs> does not belong to <R>!!!\n");
     else
-        return Sum( ListPCIs ) = One( A ) and ForAll(ListPCIs,x->x=x^2) ;
+        return Sum( ListPCIs ) = One( R ) and ForAll( ListPCIs, x -> x=x^2 );
     fi;
 end);
 
@@ -81,7 +85,7 @@ end);
 ##
 #F IsStronglyShodaPair( G, K, H )
 ##
-## The function IsStronglyShodaPair verifies if (H,K) is a SSP 
+## The function IsStronglyShodaPair verifies if (H,K) is a SSP of G
 ##
 InstallMethod( IsStronglyShodaPair,
     "for a group and two subgroups", 
@@ -102,15 +106,15 @@ local   QG,
         Epi,
         NHH,
         KH,
-	zero;
+		zero;
 
 # First verifies if H, K are subgroups of G and K is a normal subgroup of K
 if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) ) then
-    Error("Wedderga: Each argument should contain the next one!!!\n");
+    Error("Wedderga: <G> must contain <K> and <K> must contain <H> !!!\n");
 fi;
 
 if not IsNormal( K, H ) then
-    Info(InfoPCI, 2, "Wedderga: The 3rd subgroup is not normal in the 2nd");
+    Info(InfoPCI, 2, "Wedderga: IsSSP: <H> is not normal in <K>");
     return false;
 fi;
 
@@ -120,7 +124,7 @@ fi;
 NH:=Normalizer(G,H);
 
 if not(IsNormal( NH, K ) ) then
-    Info(InfoPCI, 2, "Wedderga: The 2nd is not normal in the normalizer of 3rd one in the 1st");
+    Info(InfoPCI, 2, "Wedderga: IsSSP: <K> is not normal in N_<G>(<H>)");
     return false;
 fi;
 
@@ -129,14 +133,13 @@ NHH:=Image( Epi, NH ); #It is isomorphic to the factor group NH/H.
 KH:=Image( Epi, K ); #It is isomorphic to the factor group K/H.
 
 if not(IsCyclic(KH)) then
-    Info(InfoPCI, 2, "Wedderga: The 2nd subgroup over the 3rd one is not cyclic");
+    Info(InfoPCI, 2, "Wedderga: IsSSP: <K>/<H> is not cyclic");
     return false;
 fi;
 
 if Centralizer( NHH, KH ) <> KH then
-    Info(InfoPCI, 2, "Wedderga: The 2nd subgroup over the 3rd one is not cyclic");
-    Info(InfoPCI, 2, "Wedderga: The factor group (2nd over 3rd) is not maximal ",
-                     "abelian in the normalizer of the 3rd in the 1st");
+    Info(InfoPCI, 2, "Wedderga: IsSSP: <K>/<H> is not maximal ",
+                     "abelian in N_<G>(<H>)");
     return false;
 fi;
 
@@ -154,7 +157,8 @@ if NdK<>G then
     for i in [ 2 .. nRTNdK ] do
         g:=RTNdK[i];
         if eGKH1*eGKH1^g <> zero then
-            Info(InfoPCI, 2, "Wedderga: The conjugates of epsilon are not orthogonal");
+            Info(InfoPCI, 2, 
+                 "Wedderga: IsSSP: The conjugates of epsilon are not orthogonal");
             return  false;
         fi;
     od;
@@ -208,9 +212,9 @@ end);
 ##
 #M OnPoints( a, g )
 ##
-## The function OnPoints(a,g) computes the conjugate a^g where a is an element 
-## of the group ring FG and g an element of G. You can use a^g notation to
-## compute it as well.
+## The function OnPoints(a,g) computes the conjugate a^g where a is an 
+## element of the group ring FG and g an element of G. You can use the
+## notation a^g to compute it as well.
 ##
 InstallMethod( \^,
     "Wedderga: for a group ring element and a group element",
@@ -284,8 +288,8 @@ end);
 ##
 ## BigPrimitiveRoot( q )
 ##
-## The function BigPrimitiveRoot computes a primitive root of the finite field
-## of order q.
+## The function BigPrimitiveRoot computes a primitive root of the finite 
+## field of order q.
 ##
 InstallMethod( BigPrimitiveRoot,
     "for a prime power", 
@@ -366,8 +370,11 @@ end);
 ##  
 ## The function checks whether a group is strongly monomial
 ##
-InstallMethod( IsStronglyMonomial,"for finite groups", true, 
-[ IsGroup ], 0,
+InstallMethod( IsStronglyMonomial,
+	"for finite groups", 
+	true, 
+    [ IsGroup ], 
+    0,
 function( G )
 
 local QG ;
@@ -376,11 +383,11 @@ if IsFinite(G) then
     if IsSupersolvable(G) or IsAbelian(DerivedSubgroup(G)) then 
         return true;
     elif IsMonomial(G) then 
-        QG := GroupRing( Rationals, G);
+        QG := GroupRing( Rationals, G );
         return IsCompleteSetOfPCIs( QG , 
-        StronglyShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
+        	StronglyShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
     else
-    return false;
+    	return false;
     fi;
 else
     Error("Wedderga: The input should be a finite group\n");
@@ -395,9 +402,10 @@ end);
 ## The function IsCyclotomicClass checks if C is a q-cyclotomic class module n
 ##
 InstallMethod( IsCyclotomicClass,
-"for two coprime positive integers and a list of integers", 
-true, 
-[ IsPosInt, IsPosInt, IsList ], 0,
+	"for two coprime positive integers and a list of integers", 
+	true, 
+	[ IsPosInt, IsPosInt, IsList ], 
+	0,
 function( q, n, C )
     local c,C1,j;
 

@@ -549,11 +549,11 @@ local   G,      # Group
 
 # Initialization        
 if not IsFinite( X ) then
-  Error("Wedderga: The second input must be finite set!!!\n"); 
+  Error("Wedderga: <X> must be a finite set !!!\n"); 
 fi;
 G := UnderlyingMagma( FG );
 if not IsSubset( G, X ) then
-  Error("Wedderga: The group algebra does not correspond to the subset!!!\n"); 
+  Error("Wedderga: The group algebra <FG> does not correspond to <X>!!!\n"); 
 fi;
 F := LeftActingDomain( FG );
 one := One( F );
@@ -561,7 +561,7 @@ n := Size( X );
 # Program
 quo := Inverse( n * one );
 if quo=fail then
-  Error("Wedderga: The order of second input must be a unit of the ring of coefficients!!!\n"); 
+  Error("Wedderga: The order of <X> must be a unit of the ring of coefficients!!!\n"); 
 else
   return ElementOfMagmaRing( FamilyObj( Zero( FG ) ),
                              Zero( F ),

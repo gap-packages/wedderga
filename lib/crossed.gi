@@ -29,49 +29,49 @@ DeclareRepresentation( "IsCrossedProductObjDefaultRep",
 
 #############################################################################
 ##
-#M  ElementOfCrossedProduct( <Fam>, <zerocoeff>, <coeff>, <words> )
+#M  ElementOfCrossedProduct( <Fam>, <zerocoeff>, <coeffs>, <words> )
 ##
-##  check whether <coeff> and <words> lie in the correct domains,
+##  check whether <coeffs> and <words> lie in the correct domains,
 ##  and remove zeroes.
 ##
 InstallMethod( ElementOfCrossedProduct,
     "for family, ring element, and two homogeneous lists",
     [ IsFamily, IsRingElement, IsHomogeneousList, IsHomogeneousList ],
-    function( Fam, zerocoeff, coeff, words )
+    function( Fam, zerocoeff, coeffs, words )
     local rep, i, j;
 
     # Check that the data is admissible.
     if not IsBound( Fam!.defaultType ) then
       TryNextMethod();
-    elif IsEmpty( coeff ) and IsEmpty( words ) then
+    elif IsEmpty( coeffs ) and IsEmpty( words ) then
       return Objectify( Fam!.defaultType, [ zerocoeff, [] ] );
-    elif not IsIdenticalObj( FamilyObj( coeff ), Fam!.familyRing ) then
-      Error( "<coeff> are not all in the correct domain" );
+    elif not IsIdenticalObj( FamilyObj( coeffs ), Fam!.familyRing ) then
+      Error( "<coeffs> are not all in the correct domain" );
     elif not IsIdenticalObj( FamilyObj( words ), Fam!.familyMagma ) then
       Error( "<words> are not all in the correct domain" );
-    elif Length( coeff ) <> Length( words ) then
-      Error( "<coeff> and <words> must have same length" );
+    elif Length( coeffs ) <> Length( words ) then
+      Error( "<coeffs> and <words> must have same length" );
     fi;
 
     # Make sure that the list of words is strictly sorted.
     if not IsSSortedList( words ) then
       words:= ShallowCopy( words );
-      coeff:= ShallowCopy( coeff );
-      SortParallel( words, coeff );
+      coeffs:= ShallowCopy( coeffs );
+      SortParallel( words, coeffs );
       if not IsSSortedList( words ) then
         j:= 1;
-        for i in [ 2 .. Length( coeff ) ] do
+        for i in [ 2 .. Length( coeffs ) ] do
           if words[i] = words[j] then
-            coeff[j]:= coeff[j] + coeff[i];
+            coeffs[j]:= coeffs[j] + coeffs[i];
           else
             j:= j+1;
             words[j]:= words[i];
-            coeff[j]:= coeff[i];
+            coeffs[j]:= coeffs[i];
           fi;
         od;
-        for i in [ j+1 .. Length( coeff ) ] do
+        for i in [ j+1 .. Length( coeffs ) ] do
           Unbind( words[i] );
-          Unbind( coeff[i] );
+          Unbind( coeffs[i] );
         od;
       fi;
     fi;
@@ -79,10 +79,10 @@ InstallMethod( ElementOfCrossedProduct,
     # Create the default representation, and remove zeros.
     rep:= [];
     j:= 1;
-    for i in [ 1 .. Length( coeff ) ] do
-      if coeff[i] <> zerocoeff then
+    for i in [ 1 .. Length( coeffs ) ] do
+      if coeffs[i] <> zerocoeff then
         rep[  j  ]:= words[i];
-        rep[ j+1 ]:= coeff[i];
+        rep[ j+1 ]:= coeffs[i];
         j:= j+2;
       fi;
     od;
@@ -522,16 +522,16 @@ InstallMethod( \/,
 #F  CrossedProduct( <R>, <G>, act, twist )
 ##
 ## An example of trivial action and twisting:
-## action should return a mapping F-->F that can be applied via "^" operation
+## action should return a mapping R-->R that can be applied via "^" operation
 ##
 ##   function(a)
-##     return IdentityMapping(F);
+##     return IdentityMapping(R);
 ##   end,
 ##
-## twisting should return an (invertible) element of F
+## twisting should return an (invertible) element of R
 ## 
-##   function( g, h)
-##     return One(F);
+##   function( g, h )
+##     return One(R);
 ##   end );
 ##
 ## to be used in the following way:
