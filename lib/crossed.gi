@@ -629,8 +629,15 @@ InstallMethod( ViewObj,
     [ IsCrossedProduct ],
     10,
     function( RG )
-    Print( "<crossed product over ", LeftActingDomain( RG ), ", with ", 
-           Length(GeneratorsOfGroup(UnderlyingMagma(RG))), " generators>" );
+    if HasCenterOfCrossedProduct(RG) then
+      Print( "<crossed product over ", LeftActingDomain( RG ), 
+             ", with ", Length(GeneratorsOfGroup(UnderlyingMagma(RG))), 
+             " generators and center=", CenterOfCrossedProduct(RG), ">" );
+    else
+      Print( "<crossed product over ", LeftActingDomain( RG ), 
+             ", with ", Length(GeneratorsOfGroup(UnderlyingMagma(RG))), 
+             " generators>" );  
+    fi;                  
     end );
 
 
