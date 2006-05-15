@@ -741,7 +741,8 @@ L,     # The field obtained by extension of the centre of the simple
 cond,  # Lcm( Conductor(L), x[3] );
 redu,  # The reduction from cond to x[3]
 act,   # The action
-coc;   # The cocycle
+coc,   # The cocycle
+R;     # The crossed product
 
 if Length(x) = 2 or Size(x[4])=1 then
     if x[1] = 1 then 
@@ -763,9 +764,13 @@ else
             end;
     
     if x[1] = 1 then 
-        return CrossedProduct(L,x[4],act,coc);
+        R := CrossedProduct(L,x[4],act,coc);
+        SetCenterOfCrossedProduct( R, x[2] );
+        return R;
     else
-        return FullMatrixAlgebra( CrossedProduct(L,x[4],act,coc) , x[1]/Size(x[4]) );
+        R := CrossedProduct(L,x[4],act,coc);
+        SetCenterOfCrossedProduct( R, x[2] );
+        return FullMatrixAlgebra( R, x[1]/Size(x[4]) );
     fi;
 fi;
 
