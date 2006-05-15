@@ -236,16 +236,16 @@ InstallMethod( \*,
     cofs := [];
     for i  in [ 1, 3 .. Length(x)-1 ]  do
       for j  in [ 1, 3 .. Length(y)-1 ]  do
-	      # we compute product of the coefficients as follows 
-	      # (x * a1) * (y * a2) = (x) * (y) * a1^action(y) * a2 = 
+	    # we compute product of the coefficients as follows 
+	    # (x * a1) * (y * a2) = (x) * (y) * a1^action(y) * a2 = 
         # (x * y) * twisting(x,y) *a1^action(y) * a2 
-        c := Twisting(x[i],y[j]) * ( x[i+1]^Action(y[i]) * y[j+1] );
-	      if c <> z  then
-	        ##  add the product of the monomials
-	        Add( mons, x[i] * y[j] );
-	        ##  and the coefficient
-	        Add( cofs, c );
-	      fi;
+        c := Twisting(x[i],y[j]) * ( x[i+1]^Action(y[j]) * y[j+1] );
+	    if c <> z  then
+	      ##  add the product of the monomials
+	      Add( mons, x[i] * y[j] );
+	      ##  and the coefficient
+	      Add( cofs, c );
+	    fi;
       od;
     od;
 
