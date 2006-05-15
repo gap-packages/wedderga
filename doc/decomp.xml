@@ -12,9 +12,9 @@
    <Attr Name="WedderburnDecomposition" 
          Arg="FG"  
          Comm="The Wedderburn decomposition of a group algebras given as a list 
-         of gap objects" />
+         of GAP objects" />
    <Returns>
-         a list of simple algebras as GAP objects
+         a list of simple algebras
    </Returns>
    <Description>
          Computes the list of <E>Wedderburn components</E> <Ref Sect="WedDec" /> 
@@ -84,7 +84,7 @@ The direct product of the output is a PROPER direct factor of the input!
          Comm="The Wedderburn decomposition of a group algebras given as a list of lists of numerical data 
          describing each Wedderburn component" />
    <Returns>
-         a list of descriptions of simple algebras (not as GAP objects)
+         a list of numerical descriptions of simple algebras
    </Returns>
    <Description>
          Computes some numerical data describing the Wedderburn components 
@@ -137,7 +137,7 @@ QS4 = 2Q \oplus 2 M_2(\Q) \oplus B
 </Display>
 where <M>A</M> and <M>B</M> are crossed products with coefficients in the 
 cyclotomic fields <M>CF(8)</M> and <M>CF(3)</M> respectively. 
-This output can be used as a GAP object but as it is it does not give precise
+This output can be used as a &GAP; object but as it is it does not give precise
 information on the algebras <M>A</M> and <M>B</M>. <P/>
 
 Instead the numerical information displayed by 
@@ -158,7 +158,7 @@ However the relation <M>g^2=-1</M> in <M>A</M> shows that
   <Display>
   A=Q(\sqrt{2})[i,g|i^2=g^2=-1,ig=-gi]
   </Display>
-and so <M>A</M> is a division algebra with centre Q(\sqrt{2}), which is a 
+and so <M>A</M> is a division algebra with centre <M>Q(\sqrt{2})</M>, which is a 
 subalgebra of the algebra of Hamiltonian quaternions.
 </Section>
 
@@ -186,7 +186,7 @@ subalgebra of the algebra of Hamiltonian quaternions.
          Comm="Same as the non NC version without cheking that (K,H) is a 
          strongly Shoda pair of G" />
    <Returns>
-         A simple algebra as GAP object
+         A simple algebra
    </Returns>
    <Description>
          The versions with three input data computes the Wedderburn component 
@@ -240,7 +240,7 @@ gap> SimpleAlgebraByStronglySP(FG,K,H,1);
          Arg="QG K H"  
          Comm="The numerical data describing the output of SimpleAlgebraByStronglySPNC" />
    <Returns>
-         description of one simple algebra (not as a GAP object)
+         numerical description of one simple algebra
    </Returns>
    <Description>
          The versions with three input data computes the numerical information 
@@ -293,7 +293,7 @@ gap> SimpleAlgebraByStronglySPInfo(FG,K,H,1);
          Comm="The Wedderburn component of the group algebra QG 
          determined by the irreducible character chi" />
    <Returns>
-         description of one simple algebra (not as a GAP object)
+         numerical description of one simple algebra
    </Returns>
    <Description>
    </Description>
@@ -314,7 +314,7 @@ gap>
          Comm="The numerical data describing the output of
          SimpleAlgebraByCharacter" />
    <Returns>
-         The numerical data describing the output of SimpleAlgebraByStronglySPNCA simple algebra as GAP object
+         The numerical description of SimpleAlgebraByStronglySP output
    </Returns>
    <Description>
    </Description>

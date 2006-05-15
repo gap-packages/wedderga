@@ -71,7 +71,7 @@ gap> WedderburnDecomposition(FG);
 </Example>
 
 Instead of <Ref Attr="WedderburnDecompositionInfo" />, that returns a list of 
-GAP objects, <Ref Attr="WedderburnDecompositionInfo" /> returns the numerical 
+&GAP; objects, <Ref Attr="WedderburnDecompositionInfo" /> returns the numerical 
 description of these objects. 
 See Chapter <Ref Sect="SSPDef" /> for theoretical background.
 

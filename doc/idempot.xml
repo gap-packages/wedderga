@@ -6,7 +6,6 @@
 <Heading>Idempotents</Heading>
 
 
-
 <Section Label="IdempotIrr">
 <Heading>Computing idempotents from character table</Heading>
 
@@ -44,13 +43,10 @@ gap> PrimitiveCentralIdempotentsByCharacterTable( QD8 );
    <Oper Name="IsCompleteSetOfPCIs" 
          Arg="R l"  
          Comm="Is Complete Set Of PCIs" />
-   <Returns>
-         Boolean.
-   </Returns>         
    <Description>
-          Returns <E>true</E> if the elements of the second input data is a list 
-          of idempotents in the first input data, which should be a ring, whose 
-          sum is <M>1</M>.
+          Returns <K>true</K> if the <M>l</M> is a list of idempotents 
+          of the ring <M>R</M>, and the sum of elements of <M>1</M> is
+          the identity element of the ring <M>R</M>.
    </Description>
 </ManSection>
 
@@ -80,7 +76,7 @@ true
 
 
 <ManSection>
-   <Attr Name="PrimitiveCentralIdempotentsByStronglySP( FG )" 
+   <Attr Name="PrimitiveCentralIdempotentsByStronglySP" 
          Arg="FG"  
          Comm="The PCIs realizable by SSPs" />
    <Returns>
@@ -126,7 +122,7 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 
 
 <ManSection>
-   <Func Name="PrimitiveCentralIdempotentsBySP( QG )" 
+   <Func Name="PrimitiveCentralIdempotentsBySP" 
          Arg="QG"  
          Comm="The list of primitive central idempotents of QG realizable by Shoda pairs" />
    <Returns>
@@ -208,49 +204,17 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 ]]>
 </Example>
 
-The output of <E>PrimitiveCentralIdempotentsByStronglySP( QG )</E> contains the 
-output of <E>PrimitiveCentralIdempotentsByStronglySP( QG )</E>, possibly 
+The output of <C>PrimitiveCentralIdempotentsByStronglySP( QG )</C> contains 
+the output of <C>PrimitiveCentralIdempotentsByStronglySP( QG )</C>, possibly 
 properly as the previous example shows.
-
-<ManSection>
-   <Oper Name="PrimitiveCentralIdempotentBySP" 
-         Arg="QG K H"  
-         Comm="e(G,K,H)" />
-   <Returns>
-         an element of a group algebra
-   </Returns>         
-   <Description>
-         Returns the primitive central idempotent realized by a Shoda pair 
-         <M>(K,H)</M> of <M>G</M> <Ref Sect="SPDef" />.
-   </Description>
-</ManSection>
-
-<Example>
-<![CDATA[
-gap> G:=AlternatingGroup(5);
-Alt( [ 1 .. 5 ] )
-gap> K:=AlternatingGroup(4);
-Alt( [ 1 .. 4 ] )
-gap> H := Group([(1,2)(3,4),(1,3)(2,4)]);
-Group([ (1,2)(3,4), (1,3)(2,4) ])
-gap> QG := GroupRing( Rationals, G);
-<algebra-with-one over Rationals, with 2 generators>
-gap> PrimitiveCentralIdempotentBySP( QG, K, H);
-(5/12)*()+(-1/12)*(3,4,5)+(-1/12)*(3,5,4)+(1/12)*(2,3)(4,5)+(-1/12)*(2,3,4)+(
--1/12)*(2,3,5)+(-1/12)*(2,4,3)+(-1/12)*(2,4,5)+(1/12)*(2,4)(3,5)+(-1/12)*
-(2,5,3)+(-1/12)*(2,5,4)+(1/12)*(2,5)(3,4)+(1/12)*(1,2)(4,5)+(1/12)*(1,2)
-(3,4)+(1/12)*(1,2)(3,5)+(-1/12)*(1,2,3)+(-1/12)*(1,2,4)+(-1/12)*(1,2,5)+(-1/
-12)*(1,3,2)+(1/12)*(1,3)(4,5)+(-1/12)*(1,3,4)+(-1/12)*(1,3,5)+(1/12)*(1,3)
-(2,4)+(1/12)*(1,3)(2,5)+(-1/12)*(1,4,2)+(-1/12)*(1,4,3)+(-1/12)*(1,4,5)+(1/
-12)*(1,4)(3,5)+(1/12)*(1,4)(2,3)+(1/12)*(1,4)(2,5)+(-1/12)*(1,5,2)+(-1/12)*
-(1,5,3)+(-1/12)*(1,5,4)+(1/12)*(1,5)(3,4)+(1/12)*(1,5)(2,3)+(1/12)*(1,5)(2,4)
-]]>
-</Example>
-
 
 </Section>
 
+</Chapter>
+
 <!-- ********************************************************* -->
+
+<!-- the following two sections were commented out by AK
 
 <Section Label="IdempotSubgroups">
 <Heading>Idempotents determined by subgroups</Heading>
@@ -384,11 +348,11 @@ brk>
 ]]>
 </Example>
 
-The output of <E>CentralElementBySubgroups</E> is central in the corresponding group algebra.
-If some additional conditions are satisfied then it is also an idempotent but in general 
-it could be not idempotent. For example this is the case if <M>(K,H)</M> is a strongly
+The output of <C>CentralElementBySubgroups</C> is central in the 
+corresponding group algebra.
+If some additional conditions are satisfied then it is also an 
+idempotent but in general it could be not idempotent. 
+For example this is the case if <M>(K,H)</M> is a strongly
 Shoda pair of <M>G</M>.
 
-</Section>
-
-</Chapter>
+-->

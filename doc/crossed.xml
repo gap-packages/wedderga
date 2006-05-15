@@ -3,28 +3,173 @@
 <!-- ********************crossed******************** -->
 
 <Chapter Label="Crossed">
-<Heading>Crossed products</Heading>
+<Heading>Crossed products and their properties</Heading>
 
-<Section Label="CrossedCrossed">
-<Heading>Crossed products</Heading>
+The package &Wedderga; allows you to construct crossed products
+over a group with coefficients in an associative ring with identity,
+and with the multiplication determined by a given action and twisting 
+(see <Ref Sect="CrossedProducts" /> for definitions). This can be done
+using the function <Ref Func="CrossedProduct" />.<P/>
 
-
+Note that this function does not check the associativity conditions, 
+so in fact it is the NC-version of itself, and its output will be always 
+assumed to be associative. For all crossed products that appear in &Wedderga;
+algorithms their associativity follows from theoretical arguments, so
+the usage of NC-method in the package is safe. If the user will try to 
+construct a crossed product with his own action and twisting, he should 
+check the associativity conditions himself to make it sure that the result 
+is correct.
+ 
+<Section Label="CrossedConstruction">
+<Heading>Construction of crossed products</Heading>
+            
 <ManSection>
    <Attr Name="CrossedProduct" 
-         Arg="K G action twisting"  
+         Arg="R G act twist"  
          Comm="" />
    <Returns>
-         ???
+         Ring in the category <C>IsCrossedProduct</C>
    </Returns>
    <Description>
-         Description
+         Returns the crossed product over <A>G</A> with coefficients 
+         in the ring <A>R</A>, action <A>act</A> and twisting <A>twist</A>.
+         The resulting crossed product will belong to the category
+         <Index Key="IsCrossedProduct"><C>IsCrossedProduct</C></Index>
+         <C>IsCrossedProduct</C>, 
+         which is defined as a subcategory of 
+         <C>IsFLMLORWithOne</C>.
+         To get the initial group and ring you can use attributes 
+         <Index Key="UnderlyingMagma"><C>UnderlyingMagma</C></Index> 
+         <C>UnderlyingMagma</C> and 
+         <Index Key="LeftActingDomain"><C>LeftActingDomain</C></Index>
+         <C>LeftActingDomain</C>.
+         The action <A>act</A> must be a function that accepts an element 
+         of <A>G</A> as an argument and returns a mapping from <A>R</A> to
+         <A>R</A> that can be applied via the "<C>\^</C>" operation. 
+         An example of the trivial action:
+<Log> 
+act := function(a)
+    return IdentityMapping(R);
+end;
+</Log>
+		 <A>twist</A> must be a function of two arguments, that accepts
+		 a pair of elements of <A>G</A> and returns an invertible element
+		 of <A>R</A>. An example of the trivial twisting:
+<Log>
+twist := function( g, h )
+    return One(R);
+end;
+</Log>	
+	To get the action and twisting that were used for construction of the 
+	given crossed product, you can use attributes
+	<Index Key="ActionForCrossedProduct"><C>ActionForCrossedProduct</C></Index> 
+	<C>ActionForCrossedProduct</C> and
+	<Index Key="TwistingForCrossedProduct"><C>TwistingForCrossedProduct</C></Index>
+	<C>TwistingForCrossedProduct</C>.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> GAP command;
-GAP output      
+gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );;
+gap> WedderburnDecomposition(QG);
+[ Rationals, CF(3), ( Rationals^[ 3, 3 ] ), 
+  <crossed product over GaussianRationals, 
+    with 2 generators and center=Rationals>, 
+  <crossed product over AsField( CF(3), CF(12) ), 
+    with 2 generators and center=CF(3)> ]
+gap> R:=WedderburnDecomposition( QG )[4];
+<crossed product over GaussianRationals, with 2 generators and center=Rationals>
+gap> IsCrossedProduct(R);
+true
+gap> IsAlgebra(R);
+true
+gap> IsRing(R);       
+true
+gap> LeftActingDomain( R );
+GaussianRationals
+gap> AsList( UnderlyingMagma( R ) );
+[ ZmodnZObj( 1, 4 ), ZmodnZObj( 3, 4 ) ]
+endgap> Print( ActionForCrossedProduct( R ) ); Print("\n");
+function ( a )
+    return ANFAutomorphism( CF( cond ), Int( PreImagesRepresentative( redu, a ) ) );
+end
+gap> Print( TwistingForCrossedProduct( R ) ); Print("\n");                     
+function ( a, b )
+    return E( x[3] ) ^ x[5]( Int( a ), Int( b ) );
+end
+gap> IsAssociative(R);
+true
+gap> IsFinite(R);           
+false
+gap> IsFiniteDimensional(R);
+true
+gap> AsList(Basis(R));
+[ (ZmodnZObj( 1, 4 ))*(1), (ZmodnZObj( 3, 4 ))*(1) ] 
+gap> GeneratorsOfLeftOperatorRingWithOne(R);
+[ (ZmodnZObj( 1, 4 ))*(1), (ZmodnZObj( 3, 4 ))*(1) ]
+gap> One(R);
+(ZmodnZObj( 1, 4 ))*(1)
+gap> Zero(R);
+<zero> of ...
+gap> Characteristic(R);
+0
+gap> CenterOfCrossedProduct(R);
+Rationals
+]]>
+</Example>
+
+</Section>
+
+<Section Label="CrossedElements">
+<Heading>Crossed product elements and their properties</Heading>
+
+<ManSection>
+   <Prop Name="ElementOfCrossedProduct" 
+         Arg="Fam zerocoeff coeffs elts"  
+         Comm="" />
+   <Description>
+         Returns the element of the crossed product <M>m1*c1 + ... + mn*cn</M>, 
+         where <A>elts = [ m1, m2, ..., mn ]</A> is a list of magma elements,
+         <A>coeffs = [ c1, c2, ..., cn ]</A> is a list of coefficients.
+         The output belongs to the crossed product whose elements lie in the 
+         family <A>Fam</A>. The zero element of the coefficient ring containing
+         <C>ci</C> must be given as <A>zerocoeff</A>, and later can be obtained
+using <Index Key="ZeroCoefficient"><C>ZeroCoefficient</C></Index><C>ZeroCoefficient</C>.
+         <P/>  
+         The output will be in the category <Index Key="IsElementOfCrossedProduct">
+         <C>IsElementOfCrossedProduct</C></Index><C>IsElementOfCrossedProduct</C>, 
+         which is a subcategory of <C>IsRingElementWithInverse</C>. It will have the 
+         presentation 
+<Index Key="IsCrossedProductObjDefaultRep"><C>IsCrossedProductObjDefaultRep</C></Index><C>IsCrossedProductObjDefaultRep</C>.<P/>
+         Similarly to magma rings, you can obtain the list of coefficients and
+         elements with 
+<Index Key="CoefficientsAndMagmaElements"><C>CoefficientsAndMagmaElements</C></Index><C>CoefficientsAndMagmaElements</C>.
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );                    
+<algebra-with-one over Rationals, with 4 generators>
+gap> R:=WedderburnDecomposition( QG )[4];
+<crossed product over GaussianRationals, with 2 generators and center=Rationals>
+gap> H:=UnderlyingMagma( R );
+<group of size 2 with 2 generators>
+gap> fam:=ElementsFamily( FamilyObj( R ) );;
+gap> g:=ElementOfCrossedProduct( fam, 0, [ 1, E(4) ], AsList(H) );
+(ZmodnZObj( 1, 4 ))*(1)+(ZmodnZObj( 3, 4 ))*(E(4))
+gap> CoefficientsAndMagmaElements(x);    
+[ ZmodnZObj( 1, 4 ), 1, ZmodnZObj( 3, 4 ), E(4) ]
+gap> h:=ElementOfCrossedProduct( fam, 0, [ E(4), 1 ], AsList(H) );     
+(ZmodnZObj( 1, 4 ))*(E(4))+(ZmodnZObj( 3, 4 ))*(1)
+gap> g+h;
+(ZmodnZObj( 1, 4 ))*(1+E(4))+(ZmodnZObj( 3, 4 ))*(1+E(4))
+gap> g*E(4);
+(ZmodnZObj( 1, 4 ))*(E(4))+(ZmodnZObj( 3, 4 ))*(-1)
+gap> E(4)*g;     
+(ZmodnZObj( 1, 4 ))*(E(4))+(ZmodnZObj( 3, 4 ))*(1)
+gap> g*h;
 ]]>
 </Example>
 

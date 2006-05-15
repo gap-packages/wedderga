@@ -43,18 +43,16 @@ gap> StronglyShodaPairs(SmallGroup(78,1));
 </Section>
 
 <Section Label="IsSSP">
-<Heading>Booleans on Shoda pairs</Heading>
+<Heading>Properties related with Shoda pairs</Heading>
 
 <ManSection>
    <Oper Name="IsStronglyShodaPair" 
          Arg="G K H"  
          Comm="Is (K,H) a strongly Shoda pair of G?" />
-   <Returns>
-         Boolean.
-   </Returns>         
    <Description>
-         Returns <E>true</E> if <M>(K,H)</M> is a strongly Shoda pair of <M>G</M> and 
-         <E>false</E> otherwise <Ref Sect="SSPDef" />.
+         Returns <K>true</K> if <M>(K,H)</M> is a strongly Shoda 
+         pair of <M>G</M> and <K>false</K> otherwise 
+         <Ref Sect="SSPDef" />.
    </Description>
 </ManSection>
 
@@ -81,8 +79,8 @@ true
          Arg="G K H"  
          Comm="Is (K,H) a Shoda pair of G?" />
    <Description>
-        Returns <E>true</E> if <M>(K,H)</M> is a Shoda pair of <M>G</M> and 
-        <E>false</E> otherwise <Ref Sect="SSPDef" />.
+        Returns <K>true</K> if <M>(K,H)</M> is a Shoda pair of <M>G</M> and 
+        <K>false</K> otherwise <Ref Sect="SSPDef" />.
    </Description>
 </ManSection>
 
@@ -108,12 +106,13 @@ Every strongly Shoda pair is a Shoda pair but the converse is not true.
          Arg="G"  
          Comm="Is every Wedderburn component realizable by a SSP" />
    <Description>
-        Returns <E>true</E> if the finite group <M>G</M> is strongly monomial, that is
+        Returns <K>true</K> if the finite group <M>G</M> is strongly monomial, that is
         if every Wedderburn component of the rational group algebra
         is realizable by a strongly Shoda pair <Ref Sect="SSPDef" />.
-        In that case also every Wedderburn component of a semisimple finite group algebra
-        over <M>G</M> is also realizable by a strongly Shoda pair together with
-        a cyclotomic class <Ref Sect="CyclotomicClass" />.
+        In that case also every Wedderburn component of a semisimple 
+        finite group algebra over <M>G</M> is also realizable by a 
+        strongly Shoda pair together with a cyclotomic class 
+        <Ref Sect="CyclotomicClass" />.
    </Description>
 </ManSection>
 
@@ -140,8 +139,7 @@ false
 
 Every strongly monomial finite group is monomial. 
 Every abelian-by-supersolvable or metabelian finite group is strongly monomial. 
-Every monomial group of order less than 1000 is strongly monomial, but there is one
-monomial group of order 1000 which is not strongly monomial.
+Every monomial group of order less than 1000 is strongly monomial, but there is one monomial group of order 1000 which is not strongly monomial.
 
 </Section>
 
