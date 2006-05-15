@@ -44,15 +44,17 @@ basis <M>G</M> such that the product is defined by
   (gr)(hs)=(gh)(t(g,h)r^h s)
   </Display>
 and extended to <M>R*G</M> by linearity,where <P/>
-* for every <M>g \in G</M>, the assignement <M>r \mapsto a(g)(r)=r^g</M> is an automorphism of <M>R</M> 
-  and <P/>
+
+* for every <M>g \in G</M>, the assignement <M>r \mapsto a(g)(r)=r^g</M> is an automorphism of <M>R</M> <P/>
+  
 * <M>t(g,h)</M> is a unit of <M>R</M>, for every <M>g,h \in G</M>. <P/>
 
 The necessary and sufficient conditions for the above product to be associative 
-(equivalently define on <M>R*G</M> a crossed product structure) is that the following 
-two conditions hold for every <M>g</M>, <M>h</M> and <M>k</M> in <M>G</M>: <P/>
+(equivalently define on <M>R*G</M> a crossed product structure) is that the following two conditions hold for every <M>g</M>, <M>h</M> and <M>k</M> in 
+<M>G</M>: <P/>
 
-* <M>a(gh)^(-1) a(g) a(h)</M> is the inner automorphism of <M>R</M> induced by <M>t(g,h)</M> and <P/>
+* <M>a(gh)^{-1} a(g) a(h)</M> is the inner automorphism of <M>R</M> 
+  induced by <M>t(g,h)</M> and <P/>
 
 * <M>t(gh,k) t(g,h)^k = t(g,hk) t(h,k).</M> <P/>
 
