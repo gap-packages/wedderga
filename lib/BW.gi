@@ -407,13 +407,13 @@ if not IsInt(n/m) then
   return fail;
 fi;
   
-UZn := Units(ZmodnZ(n));
-UZm := Units(ZmodnZ(m));
+UZn := Units( ZmodnZ(n) );
+UZm := Units( ZmodnZ(m) );
 
-return MappingByFunction(UZn,UZm,
-          function(x) 
-            return ZmodnZObj(Int(x),m); end            
-            );
+return MappingByFunction( UZn, UZm,
+         function(x) 
+           return ZmodnZObj( Int(x), m ); 
+         end);
 end);
 
 
