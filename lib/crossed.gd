@@ -89,6 +89,13 @@ DeclareAttribute( "TwistingForCrossedProduct", IsCrossedProduct );
 
 #############################################################################
 ##
+#A  CenterOfCrossedProduct( <RM> )
+##
+DeclareAttribute( "CenterOfCrossedProduct", IsCrossedProduct );
+
+
+#############################################################################
+##
 #O  ElementOfCrossedProduct( <Fam>, <zerocoeff>, <coeffs>, <mgmelms> )
 ##
 ##  `ElementOfCrossedProduct' returns the element $\sum_{i=1}^n c_i m_i^{\prime}$,
