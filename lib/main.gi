@@ -62,21 +62,21 @@ InstallMethod( WeddDecomp,
     0,
 function( FG )
 local   A,      # Simple algebra
-        x,      # description of current component
+        descr,  # description of current component
         i,      # Counter
         output;
 output := [];
 
 if IsSemisimpleFiniteGroupAlgebra( FG ) then
-  for x in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-    A := SimpleAlgebraByStronglySPNC( FG, x[ 1 ], x[ 2 ], x[ 3 ][ 1 ]);
-    Append(output, List(x[3], i -> A ) );
+  for descr in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
+    A := SimpleAlgebraByStronglySPNC( FG, descr[ 1 ], descr[ 2 ], descr[ 3 ][ 1 ]);
+    Append( output, List(descr[3], i -> A ) );
   od;
   return output;
   
 elif IsZeroCharacteristicGroupAlgebra( FG ) then
-  for x in GenWeddDecomp( FG ) do
-    A := SimpleAlgebraByData(x);
+  for descr in GenWeddDecomp( FG ) do
+    A := SimpleAlgebraByData( descr );
     Add(output, A );
   od;
   return output;
@@ -565,7 +565,7 @@ local   G,          # Underlying group
         Epi2,       # NH --> NH/KH
         i,          # Loop controller
         act,        # Action for the crossed product
-        coc;        # Twisting for the crossed product
+        coc;        #  for the crossed product
         
 G := UnderlyingMagma( QG );
 N   := Normalizer(G,H);
@@ -715,7 +715,7 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebraByData( x )
+#O SimpleAlgebraByData( algdata )
 ##
 ## An argument is either a 2-tuple or a 5-tuple, with the following 
 ## components:
@@ -733,44 +733,44 @@ InstallMethod( SimpleAlgebraByData,
 true,
 [ IsList ],
 0,
-function(x)
+function( algdata )
 
 local 
 L,     # The field obtained by extension of the centre of the simple
-       # component with the root of unity of degree x[3]
-cond,  # Lcm( Conductor(L), x[3] );
-redu,  # The reduction from cond to x[3]
+       # component with the root of unity of degree algdata[3]
+cond,  # Lcm( Conductor(L), algdata[3] );
+redu,  # The reduction from cond to algdata[3]
 act,   # The action
 coc,   # The cocycle
 R;     # The crossed product
 
-if Length(x) = 2 or Size(x[4])=1 then
-    if x[1] = 1 then 
-        return x[2];
+if Length(algdata) = 2 or Size(algdata[4])=1 then
+    if algdata[1] = 1 then 
+        return algdata[2];
     else
-        return FullMatrixAlgebra( x[2], x[1] );
+        return FullMatrixAlgebra( algdata[2], algdata[1] );
     fi;
 else
-    L := Field(x[2],[E(x[3])]);
-    cond := Lcm( Conductor(L),x[3] );
-    redu := ReductionModnZ(cond,x[3]);
+    L := Field( algdata[2],[E(algdata[3])]);
+    cond := Lcm( Conductor(L), algdata[3] );
+    redu := ReductionModnZ( cond, algdata[3]);
     
     act := function(a) 
              return ANFAutomorphism(CF(cond),Int(PreImagesRepresentative(redu,a)));
              end;
              
     coc := function(a,b)
-            return E(x[3])^x[5](Int(a),Int(b));
+            return E( algdata[3])^ algdata[5](Int(a),Int(b));
             end;
     
-    if x[1] = 1 then 
-        R := CrossedProduct(L,x[4],act,coc);
-        SetCenterOfCrossedProduct( R, x[2] );
+    if algdata[1] = 1 then 
+        R := CrossedProduct(L, algdata[4],act,coc);
+        SetCenterOfCrossedProduct( R, algdata[2] );
         return R;
     else
-        R := CrossedProduct(L,x[4],act,coc);
-        SetCenterOfCrossedProduct( R, x[2] );
-        return FullMatrixAlgebra( R, x[1]/Size(x[4]) );
+        R := CrossedProduct(L, algdata[4],act,coc);
+        SetCenterOfCrossedProduct( R, algdata[2] );
+        return FullMatrixAlgebra( R, algdata[1]/Size(algdata[4]) );
     fi;
 fi;
 
