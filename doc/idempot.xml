@@ -5,74 +5,67 @@
 <Chapter Label="Idemp">
 <Heading>Idempotents</Heading>
 
-
 <Section Label="IdempotIrr">
 <Heading>Computing idempotents from character table</Heading>
 
 
 <ManSection>
    <Oper Name="PrimitiveCentralIdempotentsByCharacterTable" 
-         Arg="QG"  
-         Comm="PCI Using the Character Table" />
+         Arg="QG" />
    <Returns>
          a list of group algebra elements
    </Returns>         
    <Description>
-         Returns the list of primitive central idempotents of a rational group 
-         algebra <M>QG</M> of a finite group <M>G</M> by using the formula by
-         using the method explained in <Ref Sect="IdempotIrr" />
+         Returns the list of primitive central idempotents of a rational
+         group algebra <A>QG</A> of a finite group <M>G</M> using the 
+         method explained in <Ref Sect="Idempotents" />. 
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> QD8 := GroupRing( Rationals, DihedralGroup(8));
-<algebra-with-one over Rationals, with 3 generators>
-gap> PrimitiveCentralIdempotentsByCharacterTable( QD8 );
-[ (1/8)*<identity> of ...+(-1/8)*f1+(-1/8)*f2+(1/8)*f3+(1/8)*f1*f2+(-1/
-    8)*f1*f3+(-1/8)*f2*f3+(1/8)*f1*f2*f3, (1/8)*<identity> of ...+(-1/8)*f1+(
-    1/8)*f2+(1/8)*f3+(-1/8)*f1*f2+(-1/8)*f1*f3+(1/8)*f2*f3+(-1/8)*f1*f2*f3,
-  (1/8)*<identity> of ...+(1/8)*f1+(-1/8)*f2+(1/8)*f3+(-1/8)*f1*f2+(1/
-    8)*f1*f3+(-1/8)*f2*f3+(-1/8)*f1*f2*f3, (1/8)*<identity> of ...+(1/8)*f1+(
-    1/8)*f2+(1/8)*f3+(1/8)*f1*f2+(1/8)*f1*f3+(1/8)*f2*f3+(1/8)*f1*f2*f3,
-  (1/2)*<identity> of ...+(-1/2)*f3 ]
+gap> QS3 := GroupRing( Rationals, SymmetricGroup(3) );;                 
+gap> PrimitiveCentralIdempotentsByCharacterTable( QS3 );
+[ (1/6)*()+(-1/6)*(2,3)+(-1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(-1/6)*(1,3),
+  (2/3)*()+(-1/3)*(1,2,3)+(-1/3)*(1,3,2), 
+  (1/6)*()+(1/6)*(2,3)+(1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(1/6)*(1,3) ]
 ]]>
 </Example>
 
+</Section>
+
+<!-- ********************************************************* -->
+
+<Section Label="IdempotTesting">
+<Heading>Testing lists of idempotents for completeness</Heading>
+
 <ManSection>
    <Oper Name="IsCompleteSetOfPCIs" 
-         Arg="R l"  
-         Comm="Is Complete Set Of PCIs" />
+         Arg="R l" />
    <Description>
-          Returns <K>true</K> if the <M>l</M> is a list of idempotents 
-          of the ring <M>R</M>, and the sum of elements of <M>1</M> is
-          the identity element of the ring <M>R</M>.
+         Returns <K>true</K> if the <A>l</A> is a list of idempotents 
+         of the ring <A>R</A>, and the sum of elements of <A>l</A> is
+         the identity element of the ring <A>R</A>.
+         Note that this function do not check that idempotents are 
+         primitive.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> QS5 := GroupRing( Rationals, SymmetricGroup(5) );
-<algebra-with-one over Rationals, with 2 generators>
+gap> QS5 := GroupRing( Rationals, SymmetricGroup(5) );;
 gap> idemp := PrimitiveCentralIdempotentsByCharacterTable( QS5 );;
-gap> Length(idemp);
-7
 gap> IsCompleteSetOfPCIs( QS5, idemp );
 true
 ]]>
 </Example>
 
-
 </Section>
-
-
 
 <!-- ********************************************************* -->
 
-
 <Section Label="IdempotShoda">
 <Heading>Idempotents from Shoda pairs</Heading>
-
 
 
 <ManSection>
@@ -83,40 +76,49 @@ true
          a list of group algebra elements
    </Returns>         
    <Description>
-         The input <M>FG</M> should be the group algebra of a finite group <M>G</M>
-         with coefficients in <M>F</M> where <M>F</M> is either <M>Q</M>, the field of rational 
-         numbers, or a finite field of order <M>q</M>, coprime with the order of <M>G</M>. <P/>
+         The input <A>FG</A> should be the group algebra of a finite group 
+         <M>G</M> with coefficients in the field <M>F</M>, where <M>F</M>
+         is either the field of rationals <M>Q</M> or a finite field of 
+         order <M>q</M> such that <M>q</M> is coprime with the order of 
+         the group <M>G</M>. <P/>
          
-         If <M>F=Q</M> then the output is the list of primitive central idempotents of the group 
-         algebra <M>FG</M> realizable by strongly Shoda pairs of <M>G</M> <Ref Sect="SSPDef" />. <P/>
+         If <M>F=Q</M> then the output is the list of primitive central 
+         idempotents of the group algebra <M>FG</M> realizable by strongly 
+         Shoda pairs of <M>G</M> (see <Ref Sect="SSPDef" />). <P/>
          
-         If <M>F</M> is a finite field then the output is the list of primitive central idempotents 
-         of <M>FG</M> realizable by strongly Shoda pairs <M>(K,H)</M> of <M>G</M> and 
-         <M>q</M>-cyclotomic classes module the index of <M>H</M> in <M>K</M> 
-         <Ref Sect="CyclotomicClass" />. <P/>
+         If <M>F</M> is a finite field then the output is the list of primitive
+         central idempotents of <M>FG</M> realizable by strongly Shoda pairs 
+         <M>(K,H)</M> of <M>G</M> and <M>q</M>-cyclotomic classes modulo the 
+         index of <M>H</M> in <M>K</M> (see <Ref Sect="CyclotomicClass" />). <P/>
          
-         If the list of primitive central idempotents given by the output is not complete then a
-         warning sentence is displayed.
+         If the list of primitive central idempotents given by the output is 
+         not complete then a warning is displayed.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> G:=Group([(1,2,3)]); FG:=GroupRing(GF(2),G);
-Group([ (1,2,3) ])
-<algebra-with-one over GF(2), with 1 generators>
-gap> idem:=PrimitiveCentralIdempotentsByStronglySP(FG);
-[ (Z(2)^0)*()+(Z(2)^0)*(1,2,3)+(Z(2)^0)*(1,3,2),
+gap> QG:=GroupRing( Rationals, AlternatingGroup(4) );;           
+gap> PrimitiveCentralIdempotentsByStronglySP( QG );
+[ (1/12)*()+(1/12)*(2,3,4)+(1/12)*(2,4,3)+(1/12)*(1,2)(3,4)+(1/12)*(1,2,3)+
+    (1/12)*(1,2,4)+(1/12)*(1,3,2)+(1/12)*(1,3,4)+(1/12)*(1,3)(2,4)+(1/12)*
+    (1,4,2)+(1/12)*(1,4,3)+(1/12)*(1,4)(2,3), 
+  (1/6)*()+(-1/12)*(2,3,4)+(-1/12)*(2,4,3)+(1/6)*(1,2)(3,4)+(-1/12)*(1,2,3)+
+    (-1/12)*(1,2,4)+(-1/12)*(1,3,2)+(-1/12)*(1,3,4)+(1/6)*(1,3)(2,4)+(-1/12)*
+    (1,4,2)+(-1/12)*(1,4,3)+(1/6)*(1,4)(2,3), 
+  (3/4)*()+(-1/4)*(1,2)(3,4)+(-1/4)*(1,3)(2,4)+(-1/4)*(1,4)(2,3) ]
+gap> QG := GroupRing( Rationals, SmallGroup(24,3) );;
+gap> PrimitiveCentralIdempotentsByStronglySP( QG );;
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+gap> FG := GroupRing( GF(2), Group((1,2,3)) );;
+gap> PrimitiveCentralIdempotentsByStronglySP( FG );
+[ (Z(2)^0)*()+(Z(2)^0)*(1,2,3)+(Z(2)^0)*(1,3,2), 
   (Z(2)^0)*(1,2,3)+(Z(2)^0)*(1,3,2) ]
-gap> IsCompleteSetOfPCIs(FG,idem);
-true
-gap>
-gap> G:=SmallGroup(48,28);QG:=GroupRing(Rationals,G);
-<pc group of size 48 with 5 generators>
-<algebra-with-one over Rationals, with 5 generators>
-gap> PrimitiveCentralIdempotentsByStronglySP(QG);;
-Warning!!
-The output is a NON-COMPLETE list of prim. central idemp.s of the input!
+gap> FG := GroupRing( GF(5), SmallGroup(24,3) );; 
+gap> PrimitiveCentralIdempotentsByStronglySP( FG );;
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
 ]]>
 </Example>
 
@@ -124,89 +126,74 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 <ManSection>
    <Func Name="PrimitiveCentralIdempotentsBySP" 
          Arg="QG"  
-         Comm="The list of primitive central idempotents of QG realizable by Shoda pairs" />
+         Comm="The list of PCIs of QG realizable by Shoda pairs" />
    <Returns>
          a list of group algebra elements 
    </Returns>         
    <Description>
-          Returns a list containing all the primitive central idempotents of the rational group 
-          algebra <M>QG</M> given of the finite group <M>G</M> realizable by Shoda pairs 
-          <Ref Sect="SPDef" />. <P/>
+         Returns a list containing all the primitive central idempotents
+         of the rational group algebra <A>QG</A> of a finite group 
+         <M>G</M> realizable by Shoda pairs (see <Ref Sect="SPDef" />). <P/>
           
-          The output contains the output of <E>PrimitiveCentralIdempotentsByStronglySP(QG)</E>. <P/>
+         The sum of the elements of the output obtained is identity
+         if and only if G is monomial. <P/>
           
-          The sum of the elements of the output  obtained is 1 if and only if G is monomial. <P/>
-
+         If the list of primitive central idempotents given by the output is 
+         not complete then a warning is displayed.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> G := SmallGroup(39,2); QG := GroupRing( Rationals, G);
-<pc group of size 39 with 2 generators>
+gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
 <algebra-with-one over Rationals, with 2 generators>
-gap> idemp := PrimitiveCentralIdempotentsBySP( QG );
-[ (1/39)*<identity> of ...+(1/39)*f1+(1/39)*f2+(1/39)*f1^2+(1/39)*f1*f2+(1/
-    39)*f2^2+(1/39)*f1^2*f2+(1/39)*f1*f2^2+(1/39)*f2^3+(1/39)*f1^2*f2^2+(1/
-    39)*f1*f2^3+(1/39)*f2^4+(1/39)*f1^2*f2^3+(1/39)*f1*f2^4+(1/39)*f2^5+(1/
-    39)*f1^2*f2^4+(1/39)*f1*f2^5+(1/39)*f2^6+(1/39)*f1^2*f2^5+(1/39)*f1*f2^6+(
-    1/39)*f2^7+(1/39)*f1^2*f2^6+(1/39)*f1*f2^7+(1/39)*f2^8+(1/39)*f1^2*f2^7+(
-    1/39)*f1*f2^8+(1/39)*f2^9+(1/39)*f1^2*f2^8+(1/39)*f1*f2^9+(1/39)*f2^10+(1/
-    39)*f1^2*f2^9+(1/39)*f1*f2^10+(1/39)*f2^11+(1/39)*f1^2*f2^10+(1/39)*f1*f2^
-    11+(1/39)*f2^12+(1/39)*f1^2*f2^11+(1/39)*f1*f2^12+(1/39)*f1^2*f2^12,
-  (2/39)*<identity> of ...+(-1/39)*f1+(2/39)*f2+(-1/39)*f1^2+(-1/39)*f1*f2+(2/
-    39)*f2^2+(-1/39)*f1^2*f2+(-1/39)*f1*f2^2+(2/39)*f2^3+(-1/39)*f1^2*f2^2+(
-    -1/39)*f1*f2^3+(2/39)*f2^4+(-1/39)*f1^2*f2^3+(-1/39)*f1*f2^4+(2/39)*f2^5+(
-    -1/39)*f1^2*f2^4+(-1/39)*f1*f2^5+(2/39)*f2^6+(-1/39)*f1^2*f2^5+(-1/
-    39)*f1*f2^6+(2/39)*f2^7+(-1/39)*f1^2*f2^6+(-1/39)*f1*f2^7+(2/39)*f2^8+(-1/
-    39)*f1^2*f2^7+(-1/39)*f1*f2^8+(2/39)*f2^9+(-1/39)*f1^2*f2^8+(-1/39)*f1*f2^
-    9+(2/39)*f2^10+(-1/39)*f1^2*f2^9+(-1/39)*f1*f2^10+(2/39)*f2^11+(-1/39)*f1^
-    2*f2^10+(-1/39)*f1*f2^11+(2/39)*f2^12+(-1/39)*f1^2*f2^11+(-1/39)*f1*f2^
-    12+(-1/39)*f1^2*f2^12, (4/13)*<identity> of ...+(4/13)*f1+(-1/39)*f2+(4/
-    13)*f1^2+(-1/39)*f1*f2+(-1/39)*f2^2+(-1/39)*f1^2*f2+(-1/39)*f1*f2^2+(-1/
-    39)*f2^3+(-1/39)*f1^2*f2^2+(-1/39)*f1*f2^3+(-1/39)*f2^4+(-1/39)*f1^2*f2^
-    3+(-1/39)*f1*f2^4+(-1/39)*f2^5+(-1/39)*f1^2*f2^4+(-1/39)*f1*f2^5+(-1/
-    39)*f2^6+(-1/39)*f1^2*f2^5+(-1/39)*f1*f2^6+(-1/39)*f2^7+(-1/39)*f1^2*f2^
-    6+(-1/39)*f1*f2^7+(-1/39)*f2^8+(-1/39)*f1^2*f2^7+(-1/39)*f1*f2^8+(-1/
-    39)*f2^9+(-1/39)*f1^2*f2^8+(-1/39)*f1*f2^9+(-1/39)*f2^10+(-1/39)*f1^2*f2^
-    9+(-1/39)*f1*f2^10+(-1/39)*f2^11+(-1/39)*f1^2*f2^10+(-1/39)*f1*f2^11+(-1/
-    39)*f2^12+(-1/39)*f1^2*f2^11+(-1/39)*f1*f2^12+(-1/39)*f1^2*f2^12,
-  (8/13)*<identity> of ...+(-4/13)*f1+(-2/39)*f2+(-4/13)*f1^2+(1/39)*f1*f2+(
-    -2/39)*f2^2+(1/39)*f1^2*f2+(1/39)*f1*f2^2+(-2/39)*f2^3+(1/39)*f1^2*f2^2+(
-    1/39)*f1*f2^3+(-2/39)*f2^4+(1/39)*f1^2*f2^3+(1/39)*f1*f2^4+(-2/39)*f2^5+(
-    1/39)*f1^2*f2^4+(1/39)*f1*f2^5+(-2/39)*f2^6+(1/39)*f1^2*f2^5+(1/39)*f1*f2^
-    6+(-2/39)*f2^7+(1/39)*f1^2*f2^6+(1/39)*f1*f2^7+(-2/39)*f2^8+(1/39)*f1^
-    2*f2^7+(1/39)*f1*f2^8+(-2/39)*f2^9+(1/39)*f1^2*f2^8+(1/39)*f1*f2^9+(-2/
-    39)*f2^10+(1/39)*f1^2*f2^9+(1/39)*f1*f2^10+(-2/39)*f2^11+(1/39)*f1^2*f2^
-    10+(1/39)*f1*f2^11+(-2/39)*f2^12+(1/39)*f1^2*f2^11+(1/39)*f1*f2^12+(1/
-    39)*f1^2*f2^12 ]
-gap> IsCompleteSetOfPCIs( QG, idemp );
+gap> pci:=PrimitiveCentralIdempotentsBySP( QG );
+[ (1/24)*()+(1/24)*(3,4)+(1/24)*(2,3)+(1/24)*(2,3,4)+(1/24)*(2,4,3)+(1/24)*
+    (2,4)+(1/24)*(1,2)+(1/24)*(1,2)(3,4)+(1/24)*(1,2,3)+(1/24)*(1,2,3,4)+(1/
+    24)*(1,2,4,3)+(1/24)*(1,2,4)+(1/24)*(1,3,2)+(1/24)*(1,3,4,2)+(1/24)*
+    (1,3)+(1/24)*(1,3,4)+(1/24)*(1,3)(2,4)+(1/24)*(1,3,2,4)+(1/24)*(1,4,3,2)+(
+    1/24)*(1,4,2)+(1/24)*(1,4,3)+(1/24)*(1,4)+(1/24)*(1,4,2,3)+(1/24)*(1,4)
+    (2,3), (1/24)*()+(-1/24)*(3,4)+(-1/24)*(2,3)+(1/24)*(2,3,4)+(1/24)*
+    (2,4,3)+(-1/24)*(2,4)+(-1/24)*(1,2)+(1/24)*(1,2)(3,4)+(1/24)*(1,2,3)+(-1/
+    24)*(1,2,3,4)+(-1/24)*(1,2,4,3)+(1/24)*(1,2,4)+(1/24)*(1,3,2)+(-1/24)*
+    (1,3,4,2)+(-1/24)*(1,3)+(1/24)*(1,3,4)+(1/24)*(1,3)(2,4)+(-1/24)*
+    (1,3,2,4)+(-1/24)*(1,4,3,2)+(1/24)*(1,4,2)+(1/24)*(1,4,3)+(-1/24)*(1,4)+(
+    -1/24)*(1,4,2,3)+(1/24)*(1,4)(2,3), (3/8)*()+(-1/8)*(3,4)+(-1/8)*(2,3)+(
+    -1/8)*(2,4)+(-1/8)*(1,2)+(-1/8)*(1,2)(3,4)+(1/8)*(1,2,3,4)+(1/8)*
+    (1,2,4,3)+(1/8)*(1,3,4,2)+(-1/8)*(1,3)+(-1/8)*(1,3)(2,4)+(1/8)*(1,3,2,4)+(
+    1/8)*(1,4,3,2)+(-1/8)*(1,4)+(1/8)*(1,4,2,3)+(-1/8)*(1,4)(2,3), 
+  (3/8)*()+(1/8)*(3,4)+(1/8)*(2,3)+(1/8)*(2,4)+(1/8)*(1,2)+(-1/8)*(1,2)(3,4)+(
+    -1/8)*(1,2,3,4)+(-1/8)*(1,2,4,3)+(-1/8)*(1,3,4,2)+(1/8)*(1,3)+(-1/8)*(1,3)
+    (2,4)+(-1/8)*(1,3,2,4)+(-1/8)*(1,4,3,2)+(1/8)*(1,4)+(-1/8)*(1,4,2,3)+(-1/
+    8)*(1,4)(2,3), (1/6)*()+(-1/12)*(2,3,4)+(-1/12)*(2,4,3)+(1/6)*(1,2)(3,4)+(
+    -1/12)*(1,2,3)+(-1/12)*(1,2,4)+(-1/12)*(1,3,2)+(-1/12)*(1,3,4)+(1/6)*(1,3)
+    (2,4)+(-1/12)*(1,4,2)+(-1/12)*(1,4,3)+(1/6)*(1,4)(2,3) ]
+gap> IsCompleteSetOfPCIs(QG,pci);
 true
 ]]>
 </Example>
 
-If the list of primitive central idempotents gives as output is not complete
-then a warning message is displayed. 
+The output of <C>PrimitiveCentralIdempotentsBySP( QG )</C> contains 
+the output of <Ref Func="PrimitiveCentralIdempotentsByStronglySP" />, 
+possibly properly, as this is demonstrated in the next example.
 
 <Example>
 <![CDATA[
-gap> G := SmallGroup(48,28); QG:=GroupRing( Rationals, G);
-<pc group of size 48 with 5 generators>
-<algebra-with-one over Rationals, with 5 generators>
-gap> Length( PrimitiveCentralIdempotentsByStronglySP( QG ) );
+gap> QG := GroupRing( Rationals, SmallGroup(48,28) );;
+gap> pci:=PrimitiveCentralIdempotentsBySP( QG );;
 Wedderga: Warning!!
-The output is a NON-COMPLETE list of prim. central idemp.s of the input!
-5
-gap> Length( PrimitiveCentralIdempotentsBySP( QG ) );
-Wedderga: Warning!!
-The output is a NON-COMPLETE list of prim. central idemp.s of the input!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+gap> Length(pci);    
 6
+gap> spci:=PrimitiveCentralIdempotentsByStronglySP( QG );;
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+gap> Length(spci);
+5
+gap> IsSubset(pci,spci);          
+true
 ]]>
 </Example>
-
-The output of <C>PrimitiveCentralIdempotentsByStronglySP( QG )</C> contains 
-the output of <C>PrimitiveCentralIdempotentsByStronglySP( QG )</C>, possibly 
-properly as the previous example shows.
 
 </Section>
 
