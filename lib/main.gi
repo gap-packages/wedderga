@@ -418,17 +418,17 @@ local
   for x in LSST do
     primes := x[4];
     a:= Product(primes,p->p^pp[Position(pp,p)+1]);
-    Add(LC,CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a));
+    Add( LC, CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a) );
   od;
   
   Cond := Lcm(List(LC,x->x[1]));
   GalCond := Subgroup(Units(ZmodnZ(Cond)),Image(ReductionModnZ(exp,Cond),Galnum));
   coc := function(a,b)
-    local out,x,redu;  
-      out := Zero(ZmodnZ(Cond));
+    local out, x, redu;  
+      out := Zero( ZmodnZ( Cond ) );
       for x in LC do
-        redu := ReductionModnZ(Cond,x[1]);
-        out := out + (Cond/x[1])*ZmodnZObj(Int(x[2](a^redu,b^redu)),Cond);
+        redu := ReductionModnZ( Cond, x[1] );
+        out := out + (Cond/x[1]) * ZmodnZObj(Int(x[2](a^redu,b^redu)),Cond);
       od;
       return out;
   end;

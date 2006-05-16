@@ -223,7 +223,7 @@ InstallMethod( \*,
     [ IsElementOfCrossedProduct,
       IsElementOfCrossedProduct ],
     function( x, y )
-    local F, prod, z,  mons,  cofs,  i,  j,  c, Twisting, Action;
+    local F, prod, z, mons, cofs, i, j, c, Twisting, Action;
     F := FamilyObj( x );
     Twisting := F!.twisting;
     Action := F!.action;
@@ -236,8 +236,8 @@ InstallMethod( \*,
     cofs := [];
     for i  in [ 1, 3 .. Length(x)-1 ]  do
       for j  in [ 1, 3 .. Length(y)-1 ]  do
-	    # we compute product of the coefficients as follows 
-	    # (x * a1) * (y * a2) = (x) * (y) * a1^action(y) * a2 = 
+	# we compute product of the coefficients as follows 
+        # (x * a1) * (y * a2) = (x) * (y) * a1^action(y) * a2 = 
         # (x * y) * twisting(x,y) *a1^action(y) * a2 
         c := Twisting(x[i],y[j]) * ( x[i+1]^Action(y[j]) * y[j+1] );
 	    if c <> z  then
@@ -521,17 +521,17 @@ InstallMethod( \/,
 ##
 #F  CrossedProduct( <R>, <G>, act, twist )
 ##
-## An example of trivial action and twisting:
-## action should return a mapping R-->R that can be applied via "^" operation
+## An example of trivial action and twisting for the crossed product RG:
+## action should return a mapping R->R that can be applied via "^" operation
 ##
-##   function(a)
-##     return IdentityMapping(R);
+##   function( RG, a )
+##     return IdentityMapping( LeftActingDomain( RG ) );
 ##   end,
 ##
 ## twisting should return an (invertible) element of R
 ## 
-##   function( g, h )
-##     return One(R);
+##   function( RG, g, h )
+##     return One( LeftActingDomain( RG ) );
 ##   end );
 ##
 ## to be used in the following way:

@@ -93,11 +93,12 @@ of these group algebras.<P/>
   
 <Acknowledgements>
 
-We  are all very grateful to Steve Linton for communicating the package and to
+We all are very grateful to Steve Linton for communicating the package and to
 the referee for careful testing &Wedderga; and useful suggestions. Also we 
 acknowledge very much the members of the &GAP; team: Thomas Breuer, 
 Alexander Hulpke, Frank L&#252;beck and many other colleagues 
-for helpful comments and advise. 
+for helpful comments and advise. We would like also to thank Thomas Breuer 
+for the code of <C>PrimitiveCentralIdempotentsByCharacterTable</C>. 
 <P/> 
 
 </Acknowledgements>
