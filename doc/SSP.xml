@@ -11,33 +11,36 @@
 <ManSection>
    <Attr Name="StronglyShodaPairs" 
          Arg="G"  
-         Comm="A list of representatives of strongly Shoda pairs which realize the Wedderburn components of QG 
-         realized by strongly Shoda pairs" />
+         Comm="A list of SSPs representatives realizing Wedderburn components of QG" />
    <Returns>
-         A list of pairs of subgroups of the input
+         A list of pairs of subgroups of the input group
    </Returns>
    <Description>
-         Computes a list <M>ssp</M> of strongly Shoda pairs of the finite group <M>G</M> given as input 
-         such that every Wedderburn component of the rational group algebra <M>QG</M> over <M>G</M> realizable 
-         by a strongly Shoda pair is realizable by one member of <M>ssp</M> (see <Ref Sect="SSPDef" />). <P/>
+         Computes a list <M>ssp</M> of strongly Shoda pairs of the finite group
+         <A>G</A> such that every Wedderburn component of the rational group algebra
+         <M>QG</M> of the group <A>G</A> realizable by a strongly Shoda pair is
+         realizable by exactly one strongly Shoda pair from the list <M>ssp</M> 
+         (see <Ref Sect="SSPDef" />). <P/>
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> StronglyShodaPairs(SymmetricGroup(4));
+gap> StronglyShodaPairs( SymmetricGroup(4) );
 [ [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3), (3,4) ]) ],
   [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3) ]) ],
   [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ],
   [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) ],
   [ Group([ (2,4,3), (1,4)(2,3) ]), Group([ (1,4)(2,3), (1,3)(2,4) ]) ] ]
-gap> StronglyShodaPairs(SmallGroup(78,1));
-[ [ <pc group of size 78 with 3 generators>, Group([ f3, f2, f1 ]) ],
-  [ <pc group of size 78 with 3 generators>, Group([ f3, f2 ]) ],
-  [ <pc group of size 78 with 3 generators>, Group([ f3, f1 ]) ],
-  [ <pc group of size 78 with 3 generators>, Group([ f3 ]) ],
-  [ Group([ f3 ]), Group([  ]) ] ]
-]]>
+gap> StronglyShodaPairs( DihedralGroup(64) );
+[ [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f1, f2 ]) ], 
+  [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f1*f2 ]) ], 
+  [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f2 ]) ], 
+  [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f1 ]) ], 
+  [ Group([ f1*f2, f4*f5*f6, f5*f6, f6, f3, f3 ]), Group([ f6, f5, f4, f1*f2 ]) ], 
+  [ Group([ f6, f5, f2, f3, f4 ]), Group([ f6, f5 ]) ], 
+  [ Group([ f6, f2, f3, f4, f5 ]), Group([ f6 ]) ], 
+  [ Group([ f2, f3, f4, f5, f6 ]), Group([  ]) ] ]]]>
 </Example>
 
 </Section>
@@ -50,25 +53,26 @@ gap> StronglyShodaPairs(SmallGroup(78,1));
          Arg="G K H"  
          Comm="Is (K,H) a strongly Shoda pair of G?" />
    <Description>
-         Returns <K>true</K> if <M>(K,H)</M> is a strongly Shoda 
-         pair of <M>G</M> and <K>false</K> otherwise 
-         <Ref Sect="SSPDef" />.
+         Returns <K>true</K> if (<A>K</A>,<A>H</A>)
+         is a strongly Shoda pair of the group <A>G</A>,
+         and <K>false</K> otherwise (see <Ref Sect="SSPDef" />
+         for the definition).
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> G:=SymmetricGroup(3);K:=Group([(1,2,3)]);H:=Group( () );
+gap> G:=SymmetricGroup(3); K:=Group([(1,2,3)]); H:=Group( () );
 Sym( [ 1 .. 3 ] )
 Group([ (1,2,3) ])
 Group(())
-gap> IsStronglyShodaPair(G,K,H);
+gap> IsStronglyShodaPair( G, K, H );
 true
-gap> IsStronglyShodaPair(G,G,H);
+gap> IsStronglyShodaPair( G, G, H );
 false
-gap> IsStronglyShodaPair(G,K,K);
+gap> IsStronglyShodaPair( G, K, K );
 false
-gap> IsStronglyShodaPair(G,G,K);
+gap> IsStronglyShodaPair( G, G, K );
 true
 ]]>
 </Example>
@@ -79,8 +83,11 @@ true
          Arg="G K H"  
          Comm="Is (K,H) a Shoda pair of G?" />
    <Description>
-        Returns <K>true</K> if <M>(K,H)</M> is a Shoda pair of <M>G</M> and 
-        <K>false</K> otherwise <Ref Sect="SSPDef" />.
+        Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a Shoda pair of 
+        the group <A>G</A>, and <K>false</K> otherwise 
+        (see <Ref Sect="SPDef" /> for the definition).
+        Note that every strongly Shoda pair is a Shoda pair,
+        but the converse is not true.
    </Description>
 </ManSection>
 
@@ -90,29 +97,35 @@ gap> G:=AlternatingGroup(5);
 Alt( [ 1 .. 5 ] )
 gap> K:=AlternatingGroup(4);
 Alt( [ 1 .. 4 ] )
-gap> H := Group([(1,2)(3,4),(1,3)(2,4)]);
+gap> H := Group( (1,2)(3,4), (1,3)(2,4) );
 Group([ (1,2)(3,4), (1,3)(2,4) ])
-gap> IsStronglyShodaPair( G, K, H);
+gap> IsStronglyShodaPair( G, K, H );
 false
-gap> IsShodaPair(G,K,H);
+gap> IsShodaPair( G, K, H );
 true
 ]]>
 </Example>
 
-Every strongly Shoda pair is a Shoda pair but the converse is not true.
 
 <ManSection>
    <Oper Name="IsStronglyMonomial" 
          Arg="G"  
          Comm="Is every Wedderburn component realizable by a SSP" />
    <Description>
-        Returns <K>true</K> if the finite group <M>G</M> is strongly monomial, that is
-        if every Wedderburn component of the rational group algebra
-        is realizable by a strongly Shoda pair <Ref Sect="SSPDef" />.
-        In that case also every Wedderburn component of a semisimple 
-        finite group algebra over <M>G</M> is also realizable by a 
+        Returns <K>true</K> if the finite group <A>G</A> is strongly 
+        monomial, that is if every Wedderburn component of the rational 
+        group algebra is realizable by a strongly Shoda pair 
+        (see <Ref Sect="SSPDef" />).
+        In this case also every Wedderburn component of a semisimple 
+        finite group algebra over <A>G</A> is also realizable by a 
         strongly Shoda pair together with a cyclotomic class 
-        <Ref Sect="CyclotomicClass" />.
+        (see <Ref Sect="CyclotomicClass" />).<P/>
+        Note that every strongly monomial finite group is monomial, and
+        every abelian-by-supersolvable or metabelian finite group is 
+        strongly monomial. Also every monomial group of order less than 
+        1000 is strongly monomial, but in general this is not true:
+        there is a monomial group of order 1000 which is 
+        not strongly monomial.
    </Description>
 </ManSection>
 
@@ -137,9 +150,6 @@ false
 ]]>
 </Example>
 
-Every strongly monomial finite group is monomial. 
-Every abelian-by-supersolvable or metabelian finite group is strongly monomial. 
-Every monomial group of order less than 1000 is strongly monomial, but there is one monomial group of order 1000 which is not strongly monomial.
 
 </Section>
 
