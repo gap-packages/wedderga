@@ -12,7 +12,8 @@ The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of a
 components of the Wedderburn decomposition of group algebras of finite 
 groups over fields of characteristic zero and over finite fields. 
 It also contains functions that produce the primitive central idempotents 
-of these group algebras.<P/>
+of group algebras of finite groups over the field of rationals and
+and over finite fields.<P/>
 
 </Section>
 
@@ -26,47 +27,72 @@ The main functions of &Wedderga; are
 <Ref Attr="WedderburnDecompositionInfo" />.
 <P/>
 
+In the case when the input <A>FG</A> is a group algebra of a finite
+group <M>G</M> over a field <M>F</M> of characteristic zero,
 <Ref Attr="WedderburnDecomposition" /> 
-computes a list of simple algebras such that its direct product is a direct
-factor of the group algebra <M>FG</M> given as input, where <M>G</M> should be a 
-finite group, and <M>F</M> has to be either the field <M>Q</M> of rationals or a 
-finite field of characterisitc coprime with the order of <M>G</M>. <P/>
+computes a list of simple algebras such that their direct product is
+isomorphic to the group algebra <M>FG</M>, thus, the output is
+the complete Wedderburn decomposition of <A>FG</A>. <P/>
 
-If the group <M>G</M> satisfies some mild conditions the the direct product of 
-the output is the full group ring <M>FG</M> so that, in that case, the output 
-is the Wedderburn decomposition of <M>FG</M>. 
-For example this is the case if <M>G</M> is abelian by supersolvable.
-(see Chapter <Ref Chap="Theory" />) for theoretical background.  
+In the case when the input <A>FG</A> is a group algebra of a finite
+group <M>G</M> over a field <M>F</M> of characteristic <M>q</M>
+coprime with the order of <M>G</M>, <Ref Attr="WedderburnDecomposition" /> 
+computes a list of simple algebras such that their direct product is 
+isomorphic to certain direct factor of the group algebra <A>FG</A>
+(if this is a proper direct factor, a warning will be displayed). 
+If the group <M>G</M> satisfies some additional conditions, 
+the direct product of simple algebras from the output will 
+be isomorphic to the whole group algebra <A>FG</A>, so in this 
+case the output is the complete Wedderburn decomposition of <A>FG</A>. 
+For example, this is the case if <M>G</M> is abelian by supersolvable.
+(see Chapter <Ref Chap="Theory" /> for theoretical background). <P/>  
 
-The entries of the output are given as matrix algebras over some 
-crossed products over some cyclotomic extensions of the field <M>F</M>. 
-These crossed products are in fact cyclotomic algebras <Ref Sect="Cyclotomic" /> 
-and thus the entries of the output of <Ref Attr="WedderburnDecomposition" /> 
-are realizations of the Wedderburn components of <M>QG</M> as algebras similar 
+When <M>F</M> is a field of characteristic zero,
+the entries of the output are given as matrix algebras over some 
+crossed products over certain cyclotomic extensions of the field <M>F</M>. 
+These crossed products are in fact cyclotomic algebras 
+(see <Ref Sect="Cyclotomic" />), thus, the entries of the output of 
+<Ref Attr="WedderburnDecomposition" /> 
+are realizations of the Wedderburn components of <A>FG</A> as algebras similar 
 to cyclotomic algebras. Recall that the Brauer-Witt Theorem ensures 
 that every simple factor of a semisimple group ring <M>FG</M> is similar 
 (that is represents the same class in the Brauer group of its centre) 
 to a cyclotomic algebra <Cite Key="BR" />. <P/>
 
-The simple factors of <M>FG</M> are also matrix algebras over division rings 
-which are finite extensions of the coefficient ring <M>F</M>.
-If <M>F</M> is finite then these division rings are finite fields, by Wedderburn 
-Theorem. In that case the the output of <Ref Attr="WedderburnDecomposition" />
-represents the factors of <M>FG</M> as matrix algebras over finite extensions of 
-<M>F</M>.
+When <M>F</M> is a finite field,
+the simple factors of <A>FG</A> are also matrix algebras over division rings 
+which are finite extensions of the field <M>F</M>.
+If <M>F</M> is finite then by the Wedderburn theorem these division rings 
+are finite fields. In this case the the output of 
+<Ref Attr="WedderburnDecomposition" />
+represents the factors of <A>FG</A> as matrix algebras over finite extensions
+of the field <M>F</M>.
 <P/>
 
 <Example>
 <![CDATA[
-gap> QG:=GroupRing(Rationals,SymmetricGroup(4));;
+gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
 <algebra-with-one over Rationals, with 2 generators>
-gap> WedderburnDecomposition(QG);
-[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),
-  <crossed product over CF(3), with 2 generators> ]
-gap> FG:=GroupRing(GF(5),SymmetricGroup(4));
+gap> WedderburnDecomposition( QG );
+[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
+  <crossed product over CF(3), with 2 generators and center=Rationals> ]
+gap> FG := GroupRing( CF(5), SymmetricGroup(4) );
+<algebra-with-one over CF(5), with 2 generators>
+gap> WedderburnDecomposition( FG );
+[ CF(5), CF(5), ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ), 
+  <crossed product over AsField( CF(5), CF(15) ), 
+    with 2 generators and center=CF(5)> ]
+gap> FG := GroupRing( GF(5), SymmetricGroup(4) ); 
 <algebra-with-one over GF(5), with 2 generators>
-gap> WedderburnDecomposition(FG);
+gap> WedderburnDecomposition( FG );              
 [ GF(5), GF(5), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 2, 2 ] ) ]
+gap> FG := GroupRing( GF(5), SmallGroup(24,3) );
+<algebra-with-one over GF(5), with 4 generators>
+gap> WedderburnDecomposition( FG );             
+Wedderga: Warning!!!
+The direct product of the output is a PROPER direct factor of the input! 
+[ GF(5), GF(5^2), ( GF(5)^[ 3, 3 ] ) ]
+
 ]]>
 </Example>
 
