@@ -194,10 +194,12 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,28) ) );
 
 </Section>
 
+<Alt Only="LaTeX">\newpage</Alt> 
+
 <!-- ********************************************************* -->
 
 <Section Label="DecompSimple">
-<Heading>Simple quotient</Heading>
+<Heading>Simple quotients</Heading>
 
 <ManSection>
    <Oper Name="SimpleAlgebraByStronglySP" 
@@ -211,47 +213,48 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,28) ) );
          q-cyclotomic class" />
    <Oper Name="SimpleAlgebraByStronglySPNC" 
          Arg="QG K H"  
-         Comm="Same as the non NC version without cheking that (K,H) is a 
+         Comm="Same as the non NC version without checking that (K,H) is a 
          strongly Shoda pair of G" />
    <Oper Name="SimpleAlgebraByStronglySPNC" 
          Arg="FG K H C"  
-         Comm="Same as the non NC version without cheking that (K,H) is a 
+         Comm="Same as the non NC version without checking that (K,H) is a 
          strongly Shoda pair of G" />
    <Returns>
          A simple algebra
    </Returns>
    <Description>
-         The versions with three input data computes the Wedderburn component 
-         <Ref Sect="WedDec" /> of the rational group algebra <M>QG</M> of a 
-         finite group <M>G</M> realized by a strongly Shoda pair <M>(K,H)</M> of 
-         <M>G</M> (see Section <Ref Sect="SSPDef"/>). <P/>
+         The three-input versions computes the Wedderburn component 
+         (<Ref Sect="WedDec" />) of the rational group algebra <A>QG</A> of a 
+         finite group <M>G</M> realized by a strongly Shoda pair 
+         (<A>K</A>,<A>H</A>) of <M>G</M> (see Section <Ref Sect="SSPDef"/>). <P/>
          
-         The versions with four input data computes the Wedderburn component of 
-         the semisimple finite group algebra <M>FG</M> realized by a strongly 
-         Shoda pair <M>(K,H)</M> of <M>G</M> and a generating <M>q</M>-cyclotomic 
-         class module <M>[K:H]</M> (see Section <Ref Sect="CyclotomicClass"/>).
+         The four-input versions computes the Wedderburn component of 
+         the semisimple finite group algebra <A>FG</A> realized by a strongly 
+         Shoda pair (<A>K</A>,<A>H</A>) of <M>G</M> and a generating 
+         <M>q</M>-cyclotomic class modulo <M>[K:H]</M> 
+         (see Section <Ref Sect="CyclotomicClass"/>).
          The cyclotomic class can be given either by the cyclotomic class itself 
          or by a representative, that is an integer coprime with <M>[K:H]</M>. <P/>
          
-         The versions ended in NC does not check if <M>(K,H)</M> is a 
-         strongly Shoda pair of <M>G</M> and, in the four input data version, 
-         if <M>C</M> is either of generating <M>q</M>-cyclotomic class <M>C</M> module 
-         <M>[K:H]</M> or an integer coprime with <M>[K:H]</M>.
+         The versions ended in NC does not check if (<A>K</A>,<A>H</A>) is a 
+         strongly Shoda pair of <M>G</M> and, in the four-input version, 
+         if <A>C</A> is either a generating <M>q</M>-cyclotomic class <A>C</A> 
+         modulo <M>[K:H]</M> or an integer coprime with <M>[K:H]</M>.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> F:=FreeGroup("a","b");;a:=F.1;;b:=F.2;;
-gap> G:=F/[a^16,b^2*a^8,b^-1*a*b*a^9];;a:=G.1;;b:=G.2;;
+gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
+gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
 gap> K:=Subgroup(G,[a]);; H:=Subgroup(G,[]);; 
-gap> QG:=GroupRing(Rationals,G);;
-gap> FG:=GroupRing(GF(7),G);;
-gap> SimpleAlgebraByStronglySP(QG,K,H);
+gap> QG:=GroupRing( Rationals, G );;
+gap> FG:=GroupRing( GF(7), G );;
+gap> SimpleAlgebraByStronglySP( QG, K, H );
 <crossed product over CF(16), with 2 generators>
-gap> SimpleAlgebraByStronglySP(FG,K,H,[1,7]);
+gap> SimpleAlgebraByStronglySP( FG, K, H, [1,7] );
 ( GF(7)^[ 2, 2 ] )
-gap> SimpleAlgebraByStronglySP(FG,K,H,1);
+gap> SimpleAlgebraByStronglySP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 ]]>
 </Example>
@@ -275,44 +278,44 @@ gap> SimpleAlgebraByStronglySP(FG,K,H,1);
          numerical description of one simple algebra
    </Returns>
    <Description>
-         The versions with three input data computes the numerical information 
-         describing the Wedderburn component <Ref Sect="WedDec" /> of the 
-         rational group algebra <M>QG</M> of a finite group <M>G</M> realized 
-         by a strongly Shoda pair <M>(K,H)</M> of <M>G</M> 
+         The three-input versions computes the numerical information 
+         describing the Wedderburn component (<Ref Sect="WedDec" />) of the 
+         rational group algebra <A>QG</A> of a finite group <M>G</M> realized 
+         by a strongly Shoda pair (<A>K</A>,<A>H</A>) of <M>G</M> 
          (see Section <Ref Sect="SSPDef"/>). <P/>
          
-         The versions with four input data computes a pair <M>[n,q]</M> of 
+         The four-input versions computes a pair <M>[n,q]</M> of 
          positive integers with <M>q</M> a prime power describing the Wedderburn 
-         component of the semisimple finite group algebra <M>FG</M> realized by a 
-         strongly Shoda pair <M>(K,H)</M> of <M>G</M> and a generating 
-         <M>q</M>-cyclotomic class <M>C</M> module <M>[K:H]</M> as the 
+         component of the semisimple finite group algebra <A>FG</A> realized by a 
+         strongly Shoda pair (<A>K</A>,<A>H</A>) of <M>G</M> and a generating 
+         <M>q</M>-cyclotomic class <M>C</M> modulo <M>[K:H]</M> as the 
          <M>n</M> by <M>n</M> matrix algebra over <M>GF(q)</M> 
          (see Section <Ref Sect="CyclotomicClass"/>). <P/>
          
-         The fourth input data can be given either as a cyclotomic class or as
-         one of its representatives. <P/>
+         The fourth input can be given either as a cyclotomic class or as
+         its representative. <P/>
 
-         The versions ended in NC does not check if <M>(K,H)</M> is a strongly 
-         Shoda pair of <M>G</M> and in the four input data version if 
-         <M>C</M> is a generating <M>q</M>-cyclotomic class <M>C</M> module 
+         The versions ended in NC does not check if (<A>K</A>,<A>H</A>)
+         is a strongly Shoda pair of <M>G</M>, and, in the four-input version,
+         if <M>C</M> is a generating <M>q</M>-cyclotomic class <M>C</M> modulo 
          <M>[K:H]</M> or an integer coprime with <M>[K:H]</M>.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> F:=FreeGroup("a","b");;a:=F.1;;b:=F.2;;
-gap> G:=F/[a^16,b^2*a^8,b^-1*a*b*a^9];;a:=G.1;;b:=G.2;;
+gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
+gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
 gap> K:=Subgroup(G,[a]);; H:=Subgroup(G,[]);; 
-gap> QG:=GroupRing(Rationals,G);;
-gap> FG:=GroupRing(GF(7),G);;
-gap> SimpleAlgebraByStronglySP(QG,K,H);
+gap> QG:=GroupRing( Rationals, G );;
+gap> FG:=GroupRing( GF(7), G );;
+gap> SimpleAlgebraByStronglySP( QG, K, H );
 <crossed product over CF(16), with 2 generators>
-gap> SimpleAlgebraByStronglySPInfo(QG,K,H);
+gap> SimpleAlgebraByStronglySPInfo( QG, K, H );
 [ 1, 16, [ [ 2, 7, 8 ] ], [  ] ]
-gap> SimpleAlgebraByStronglySPInfo(FG,K,H,[1,7]);
+gap> SimpleAlgebraByStronglySPInfo( FG, K, H, [1,7] );
 [ 2, 7 ]
-gap> SimpleAlgebraByStronglySPInfo(FG,K,H,1);
+gap> SimpleAlgebraByStronglySPInfo( FG, K, H, 1 );
 [ 2, 7 ]
 ]]>
 </Example>
