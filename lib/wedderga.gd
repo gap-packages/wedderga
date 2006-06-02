@@ -93,10 +93,10 @@ DeclareOperation( "SizeOfSplittingField", [IsCharacter, IsPosInt] );
 
 #################### others.gi #####################
 
-DeclareAttribute( "ShodaPairsAndIdempotents", IsSemisimpleRationalGroupAlgebra );
+DeclareAttribute( "ShodaPairsAndIdempotents", IsGroupRing );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsBySP" );
 DeclareOperation( "PrimitiveCentralIdempotentBySP", 
-                        [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
+                        [IsGroupRing, IsGroup, IsGroup ] );
 
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 
