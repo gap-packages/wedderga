@@ -18,11 +18,11 @@
 
 #############################################################################
 ##
-#O LinCharByStronglySP( K, H )
+#O LinCharByKernel( K, H )
 ##
-## Returns the linear character given by a strongly Shoda pair (K,H)
+## Returns a linear character of K with kernel H
 ##
-InstallMethod( LinCharByStronglySP,
+InstallMethod( LinCharByKernel,
     "for subgroups", 
     true, 
     [ IsGroup , IsGroup ], 
@@ -39,9 +39,6 @@ ok := Index(K,H);
 if ok = 1 then 
   return ClassFunction( K, List( cc, x->1 ) );
 else 
-  #
-  # !!! TAKING HERE RANDOM ELEMENT IS VERY DANGEROUS !!!
-  #
   repeat
     k := Random(KH);
   until ok = Order(k);
@@ -51,170 +48,6 @@ else
     E(ok)^(Position(exp,Position(elKH, Image( Epi, Representative(x))))-1)));
   return chi;
 fi;
-end);
-
-#############################################################################
-##
-#O BW( G )
-##
-## Returns a list of 4-tuples:
-## First position  = an irreducible character of G 
-##                   (a representative from his rationalized class) 
-## Second position = character field of chi
-## Third position  = List of strongly Shoda triples with list of primes
-## Fourth position = Galois group of CF(exponent(G))/character field of chi
-##
-InstallMethod( BW ,
-    "for finite groups", 
-    true, 
-    [ IsGroup and IsFinite ], 
-    0,
-
-function(G)
-
-local 
-    irr,        	# irreducible characters
-    ratirr,	    	# rational irreducible characters
-    classirr,   	# irreducible characters classified into rationalized classes
-    chi,	    	  # one irreducible character
-    ratchi,       # rationalized of chi
-    L,          	# Splitting Field of G
-    sspsub,     	# List of pairs [p,SST] where p is a set of primes and SST is a 
-    	    	      # strongly Shoda triple such that the simple algebra associated
-    	    	      # to SST is the p-part of one Wedderburn component of QG
-    control,    	# A list of integers controlling the position in classirr
-                	# still not covered by sspsub
-    GalList,      # the list of Galois Groups Gal(L/character fields) 
-    sylow,      	# the list of Sylow subgroups of the elements in GalList
-    primes,     	# a list of lists of primes controlling the p-parts still not covered 
-    i,          	# counter
-    cf,         	# character field of chi
-    Gal,        	# Gal(L/cf)
-    d,          	# integer
-    pr,         	# prime divisors of d
-    sub,        	# Conjugacy Classes of subgroups of G
-    nsub,       	# Cardinality of sub
-    subcounter, 	# counter for sub
-    M,          	# subgroup of G
-    ssp,        	# strongly Shoda pairs of M
-    m,          	# Size of ssp
-    sspcounter, 	# counter for ssp
-    K,H,        	# strongly Shoda pair of M
-    psi,        	# the strongly monomial character of M given by M
-    cfpsi,      	# character field of psi
-    gencfpsi,   	# generators of character field of psi
-    dropcontrol,	# list to be drop from control
-    controlcounter,	# control counter
-    dropprimes,	    # list of primes to be drop from primes
-    remainingprimes,# counter of remaining primes
-    primecounter,   # primes counter
-    p,          	# element of primes[controlcounter]
-    P,          	# p-Sylow subgroup of GalList[controlcounter]
-    genP,       	# set of generators of P
-    irrcounter,	  # irreducible characters counter
-    sprod;      	# (chi_M,psi)
-
-
-# Classifying the irreducible characters into rational classes
-
-  irr := Irr(G);
-  ratirr := RationalizedMat(irr);
-  classirr := List(ratirr,x->[]);
-  for chi in irr do
-      ratchi := RationalizedMat([chi])[1];
-      if ratchi in ratirr then 
-        Add(classirr[Position(ratirr,ratchi)],chi);
-      fi;
-  od;
-
-# Initialization of lists
-
-  L := CF(Exponent(G));
-  sspsub := [];
-  control := [];
-  GalList := [];
-  sylow := [];
-  primes := [];
-  for i in [1..Length(ratirr)] do
-      chi := classirr[i][1];
-      cf := Field( chi );
-      Gal := GaloisGroup(AsField(cf,L));
-      Add(GalList,Gal);
-      d:=Gcd(Size(Gal),chi[1]);
-      if  d = 1 then 
-          Add(sspsub,[chi,cf]);
-          Add(primes,[]);
-          Add(sylow,[]);
-      else
-          Add(sspsub,[chi,cf,[],Gal]);
-          pr := Set(FactorsInt(d));
-          Add(primes,pr);
-          Add(sylow,List(pr,p->SylowSubgroup(Gal,p)));
-          Add(control,i);
-      fi;    
-  od;
-
-sub:=ConjugacyClassesSubgroups(G);
-  if ForAny( [1 .. Length(sub)-1 ], i -> 
-             Size(Representative(sub[i])) > Size(Representative(sub[i+1])) ) then
-    sub:=ShallowCopy(ConjugacyClassesSubgroups(G));
-    Sort(sub, function(v,w) return Size(Representative(v))<Size(Representative(w)); 
-    end);
-  fi;  
-         
-nsub := Size(sub);
-subcounter := nsub;
-while Sum(List(primes,Length)) > 0 do
-    M:=Representative( sub[ subcounter ] );
-    ssp := StronglyShodaPairs(M);
-    m := Length(ssp);
-    sspcounter := 1;
-    while sspcounter <= m and Sum(List(primes,Length))> 0 do
-        K := ssp[sspcounter][1]; 
-        H := ssp[sspcounter][2];
-        psi := LinCharByStronglySP(K,H)^M;
-        cfpsi := Field(psi);
-        gencfpsi := GeneratorsOfField(cfpsi);
-        dropcontrol := [];
-        for controlcounter in control do 
-            dropprimes := [];
-            chi := classirr[controlcounter][1];
-            remainingprimes := Length(primes[controlcounter]);
-            primecounter := 1;
-            while primecounter <= remainingprimes do
-                p := primes[controlcounter][primecounter];
-                P := sylow[controlcounter][primecounter];
-                genP := GeneratorsOfGroup(P);
-                if ForAll(Cartesian(genP,gencfpsi), x -> x[2]^x[1]=x[2]) then 
-                    irrcounter := 1;
-                    while irrcounter <= 
-Length(classirr[controlcounter]) and dropprimes <> primes[controlcounter] do
-                        chi := classirr[controlcounter][irrcounter];
-                        sprod := ScalarProduct( Restricted(chi,M) , psi 
-);
-                        if sprod mod p <> 0 then
-                            Add(dropprimes,p);
-                        fi;
-                        irrcounter := irrcounter+1;
-                    od;
-                fi;
-                primecounter := primecounter+1;
-            od;
-            primes[controlcounter] := Difference(primes[controlcounter],dropprimes);
-            if dropprimes <> [] then
-            Add(sspsub[controlcounter][3],[M,K,H,dropprimes]);
-            fi;
-            if primes[controlcounter] = [] then 
-                control := Difference(control,[controlcounter]);
-            fi;
-        od;
-    sspcounter := sspcounter + 1;
-    od;
-    subcounter:=subcounter-1;
-od;
-
-return sspsub;
-
 end);
 
 
@@ -283,8 +116,10 @@ local
 # Classifying the irreducible characters into rational classes
 
   irr := Filtered(Irr(G),chi->chi[1]>1);
-  ratirr := Difference(RationalizedMat(irr),
-              RationalizedMat(List(StronglyShodaPairs(G),x->LinCharByStronglySP(x[1],x[2])^G)));
+  ratirr := Difference(
+              RationalizedMat( irr ),
+              RationalizedMat( List( StronglyShodaPairs( G ), x ->
+                                     LinCharByKernel( x[1], x[2] )^G ) ) );
   classirr := List(ratirr,x->[]);
   for chi in irr do
       ratchi := RationalizedMat([chi])[1];
@@ -336,7 +171,7 @@ while Sum(List(primes,Length)) > 0 do
     while sspcounter <= m and Sum(List(primes,Length))> 0 do
         K := ssp[sspcounter][1]; 
         H := ssp[sspcounter][2];
-        psi := LinCharByStronglySP(K,H)^M;
+        psi := LinCharByKernel(K,H)^M;
         cfpsi := Field(psi);
         gencfpsi := GeneratorsOfField(cfpsi);
         dropcontrol := [];
@@ -354,8 +189,7 @@ while Sum(List(primes,Length)) > 0 do
                     while irrcounter <= 
 Length(classirr[controlcounter]) and dropprimes <> primes[controlcounter] do
                         chi := classirr[controlcounter][irrcounter];
-                        sprod := ScalarProduct( Restricted(chi,M) , psi 
-);
+                        sprod := ScalarProduct( Restricted(chi,M) , psi );
                         if sprod mod p <> 0 then
                             Add(dropprimes,p);
                         fi;
@@ -589,148 +423,7 @@ return [cond,out];
 end);
 
 
-
-###############################################################################
-################         SimpleAlgebraBySTInfo             ####################
-###############################################################################
-
-
 #############################################################################
 ##
-#O SimpleAlgebraByStronglySTInfo( exp, n, cf , Gal , LSST )
+#E
 ##
-## Returns the numerical information that gives the description of the simple 
-## component A of a rational group algebra QG parametrized by a list of strongly
-## Shoda triples LSST. 
-## Each element of LSST is a 4-tuple (M,K,H,L) where M is a subgroup of G,
-## (K,H) is a strongly SP of M and L is a list of primes. 
-## For every p in L the p-th part of A is similar to the simple quotient of QM 
-## associated to the strongly SP (K,H)
-#
-InstallMethod( SimpleAlgebraByStronglySTInfo, 
-    "for rational group algebras", 
-    true, 
-    [ IsPosInt, IsPosInt, IsField, IsGroup, IsList ], 
-    0,
-
-function( exp, n, cf , Gal , LSST )
-
-local
-  Galnum,       # Numeric version of Gal(Q(exp)/cf)
-  pp,           # Maximum prime power divisors of n = Degree of the character
-  LC,           # List of cocycles
-  x,            # An element of LSST or of LC
-  primes,       # List of primes covered by x, an SST
-  a,            # The products of the elements of pp corresponding to primes
-  Cond,         # The conductor of the coefficient field of the output
-  GalCond,      # The reduction of Galnum module Cond (the grading group)
-  coc,          # The cocycle of the algebra
-  out,          # The output of definition of coc
-  redu,         # Reduction Cond to the conductor corresponding to a partial cocycle
-  PrimGen,      # Indenpendent Generators of GalCond  
-  l, o, p,      # Positive integer and lists of integers
-  primes2,      # Duplicate of p
-  lp,           # Length of primes2
-  first,        # Positions,
-  g,            # One generator
-  Gen,          # Generators of GalCond
-  ll, plus, next, i, j, 
-  newpos,       # Counters
-  genF,         # E(Cond)
-  powgenF,      # Powers of genF
-  beta,         # numerical value of cyclic cocycle 
-  h,            # Group element
-  c;            # Value of cocycle 
-
-  Galnum := Image(GalToInt(Gal));
-  
-  if Gcd(exp,4)=2 then
-    Galnum := Subgroup(Units(ZmodnZ(exp)),PreImage(ReductionModnZ(exp,exp/2),Galnum));
-  fi;
-  
-  pp := PrimePowersInt(n);
-  
-  LC:=[];
-  for x in LSST do
-    primes := x[4];
-    a:= Product(primes,p->p^pp[Position(pp,p)+1]);
-    Add(LC,CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a));
-  od;
-  
-  Cond := Lcm(List(LC,x->x[1]));
-  GalCond := Subgroup(Units(ZmodnZ(Cond)),Image(ReductionModnZ(exp,Cond),Galnum));
-  coc := function(a,b)
-    local out,x,redu;  
-      out := Zero(ZmodnZ(Cond));
-      for x in LC do
-        redu := ReductionModnZ(Cond,x[1]);
-        out := out + (Cond/x[1])*ZmodnZObj(Int(x[2](a^redu,b^redu)),Cond);
-      od;
-      return out;
-  end;
-
-if Size(GalCond)=1 then 
-    return [n,Cond];
-else
-    PrimGen:=IndependentGeneratorsOfAbelianGroup(GalCond);
-    l := Length( PrimGen );
-    o := List( [ 1 .. l ], i -> Order( PrimGen[i] ) );
-    p := List( [ 1 .. l ], i -> FactorsInt( o[i] )[1] );
-    primes2 := DuplicateFreeList( p );
-    lp:= Length( primes2 );
-    first:=List( [ 1 .. lp ], i -> Position( p, primes2[i] ) );
-    g := Product( List( first, i -> PrimGen[i] ) );
-    Gen:=[ g ];
-    ll:=lp;
-    plus:=0;
-    while ll<l do
-        next:=[];
-        for i in [ 1 .. lp ] do
-            newpos := Position( p, primes2[i], first[i]+plus );
-            if newpos <> fail then
-                Add( next, newpos );
-            fi;
-        od;
-        g:=Product( List( next, i -> PrimGen[i] ) );
-        Add( Gen, g );
-        ll:=ll+Length(next);
-        plus:=plus+1;
-    od;
-        
-    o:=List(Gen,x->Order(x));
-    beta := [];
-    for i in [1..Length(Gen)] do
-        g:=Gen[i];
-        h:=g;
-        c:=Zero(ZmodnZ(Cond));
-        for j in [1..o[i]-1] do
-            c:=c+coc(g,h);
-            h:=h*g;
-        od;
-        Add(beta, Int(c));
-    od;
-         
-    if Size(Gen)=1 then
-        return [n/Size(GalCond),
-        Cond,
-        List([1..Length(Gen)],i->
-            [o[i], Int(Gen[i]) ,beta[i]]
-            )
-               ]; 
-                   
-    else
-        return [n/Size(GalCond),
-            Cond,
-            List([1..Length(Gen)],i->
-                [o[i], Int(Gen[i]) ,beta[i]]),
-            List( [1..Length(Gen)-1], i -> 
-                       List( [i+1..Length(Gen)], 
-                       j -> 
-Int(coc(Gen[j],Gen[i])-coc(Gen[i],Gen[j]))
-                           )
-                )
-            ];        
-    fi;       
-fi;
-   
-end);
