@@ -3,6 +3,7 @@
 #W  main.gi               The Wedderga package            Osnel Broche Cristo
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
+#W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
 ##
 #H  $Id$
@@ -21,26 +22,26 @@
 ##
 #O WedderburnDecomposition( FG )
 ##
-## The function WeddDecomp computes the Wedderburn components realizable by
-## strongly Shoda pairs of the underlying group, of the semisimple group algebra 
-## FG over the finite field or the field of rationals as matrix algebras over 
-## cyclotomic algebras and stores the result as an attribute of FG. 
-## It uses the attribute WeddDecomp and IsStronglyMonomial to display a warning.
+## The function WeddDecomp computes the Wedderburn components of the semisimple
+## group algebra FG over a cyclotomic field F and for G an arbitrary 
+## finite group, as matrix algebras over cyclotomic algebras and stores the 
+## result as an attribute of FG. WedderburnDecomposition uses the attributes 
+## WeddDecomp and IsCyclGroupAlgebra to display a warning.
 ## The reason for such combination of operation 'WedderburnDecomposition' and
 ## attribute 'WeddDecomp' was in the necessity of displaying the warning each
-## time when we refer to this information
+## time when we refer to this information.
 ##
 InstallMethod( WedderburnDecomposition, 
-    "for semisimple zero characteristic or finite group algebra", 
+    "for semisimple group algebra over cyclotomic fields", 
     true, 
-    [ IsGroupRing ], 
+    [ IsCFGroupAlgebra ], 
     0,
 function( FG )
-local G;   # Underlying group
-G := UnderlyingMagma( FG );
-if not IsStronglyMonomial( G ) and IsSemisimpleFiniteGroupAlgebra( FG ) then 
-    Print("Wedderga: Warning!!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
+
+if not IsCyclGroupAlgebra( FG ) then  #IsCyclotomicAlgebra
+    Print("Wedderga: Warning!!!\nSome of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
 fi;
+
 return WeddDecomp( FG );
 end);
 
@@ -49,43 +50,99 @@ end);
 ##
 #A WeddDecomp( FG )
 ##
-## The function WeddDecomp computes the Wedderburn components realizable by
-## strongly Shoda pairs of the underlying group, of the semisimple group algebra 
-## FG over the finite field or the field of rationals as matrix algebras over 
-## cyclotomic algebras and stores the result as an attribute of FG. 
-## This is an auxiliar function not to be documented.
-##
+## The function WeddDecomp computes the Wedderburn components of the semisimple 
+## group algebra FG over a cyclotomic field F and for G an arbitrary 
+## finite group, as matrix algebras over cyclotomic algebras and stores the 
+## result as an attribute of FG. This is an auxiliar function not to be 
+## documented.
 InstallMethod( WeddDecomp, 
-    "for semisimple zero characteristic or finite group algebra", 
+    "for semisimple group algebra over cyclotomic fields", 
     true, 
-    [ IsGroupRing ], 
+    [ IsCFGroupAlgebra ], 
     0,
 function( FG )
 local   A,      # Simple algebra
-        descr,  # description of current component
-        i,      # Counter
+        x,      # description of current component
         output;
+        
 output := [];
 
-if IsSemisimpleFiniteGroupAlgebra( FG ) then
-  for descr in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-    A := SimpleAlgebraByStronglySPNC( FG, descr[ 1 ], descr[ 2 ], descr[ 3 ][ 1 ]);
-    Append( output, List(descr[3], i -> A ) );
-  od;
-  return output;
-  
-elif IsZeroCharacteristicGroupAlgebra( FG ) then
-  for descr in GenWeddDecomp( FG ) do
-    A := SimpleAlgebraByData( descr );
+if IsCFGroupAlgebra( FG ) then
+ 
+  for x in GenWeddDecomp( FG ) do
+    A := SimpleAlgebraByData(x);
     Add(output, A );
   od;
+  
   return output;
   
 else
-  Error("Wedderga: <FG> must be a semisimple group algebra over rationals or over finite field!!!");
+  Error("Wedderga: <FG> must be a semisimple group algebra over a cyclotomic field!!!");
 fi;  
 
 end);
+
+#############################################################################
+#A WedderburnDecomposition( FG )
+##
+## The function WeddDecomp computes the Wedderburn components of the semisimple
+## finite group algebra FG as matrix algebras over cyclotomic algebras and 
+## stores the result as an attribute of FG. 
+##
+InstallMethod( WedderburnDecomposition, 
+    "for semisimple finte group algebra", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra ], 
+    0,
+function(FG)
+
+local G,      # Underlying group of FG
+      F,      # Coefficient field of FG
+      p,      # Characteristic of the field F
+      m,      # Power of p in the size of the field F
+      irr,    # Irreducible characters of G
+      lex,    # lexicographical ordering function
+      data,   #  list of 2-tuples, the first is the degree of the character x and 
+              #  the second is the lcm(m, the power of p in the field where x can 
+              #  be realized
+      cdata,  #  list of the form [x,n], where x is an irredicible character and
+              #  n is the number of times is appears in data
+      x,n,i,  #  counters
+      wd;     #
+
+G := UnderlyingMagma(FG);
+F := LeftActingDomain(FG);
+p := Characteristic(F);
+m := Log(Size(F),p);
+irr := Irr(G);
+
+lex:=function(x,y) 
+ return x[1]<y[1] or (x[1]=y[1] and x[2]<y[2]); 
+ end;
+ 
+data := List(irr,x->[x[1],Lcm(m,Log(SizeOfSplittingField(x,p),p))]);
+Sort(data,lex);
+cdata := [];
+while data <> [] do
+    x:=data[1];
+    n:=0;
+    while data<>[] and x=data[1] do
+        n:=n+1;
+        Remove(data,1);
+    od;
+    Add(cdata,[x,n]);
+od;
+
+wd := [];
+for x in cdata do;
+    for i in [1..m*x[2]/x[1][2]] do
+        Add(wd, FullMatrixAlgebra(GF(p^x[1][2]), x[1][1]));
+    od;
+od;
+
+return wd;
+
+end);    
 
 
 #############################################################################
@@ -1251,7 +1308,7 @@ local   G,          # Group
         
     G := UnderlyingMagma( QG );
     if G = H then
-        return [ 1, 1, [], [] ];
+        return [ 1, Rationals ];
     fi;
     
     # First one computes an idependent set PrimGen of generators 
@@ -1259,7 +1316,7 @@ local   G,          # Group
     N   := Normalizer(G,H);
     if N=K then
         ok := Index( K, H );
-        return [ Index(G,N), ok, [ ], [ ] ];
+        return [ Index(G,N), CF(ok) ];
     else
         Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
         NH  := Image(Epi,N);
@@ -1300,6 +1357,7 @@ local   G,          # Group
         od;
         gen:=List( [ 1 .. Length(Gen) ], i -> PreImagesRepresentative(Epi2,Gen[i]) );
         return [ Index(G,N), 
+                 NF(ok, List( [1..Length(Gen)],i->RemInt(Position(Potk,k^gen[i]),ok))),
                  ok, 
                  List( [1..Length(Gen)],
                    i->[ Order(Gen[i]),
