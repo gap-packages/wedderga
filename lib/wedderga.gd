@@ -22,14 +22,15 @@ DeclareInfoClass("InfoPCI");
 DeclareProperty( "IsSemisimpleRationalGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsZeroCharacteristicGroupAlgebra", IsGroupRing );
+DeclareProperty( "IsCFGroupAlgebra", IsGroupRing );
 
 #################### main.gi #####################
 
-DeclareAttribute( "WeddDecomp", IsGroupRing );
-DeclareOperation( "WedderburnDecomposition", [IsGroupRing] );
-
-DeclareAttribute( "WeddDecompInfo", IsGroupRing );
-DeclareOperation( "WedderburnDecompositionInfo", [ IsGroupRing ]  );
+DeclareOperation( "WedderburnDecomposition", [IsCFGroupAlgebra] );
+DeclareOperation( "WedderburnDecomposition", [IsSemisimpleFiniteGroupAlgebra] );
+DeclareAttribute( "WeddDecomp", IsCFGroupAlgebra );
+DeclareAttribute( "WedderburnDecompositionInfo", IsCFGroupAlgebra );
+DeclareAttribute( "WedderburnDecompositionInfo", IsSemisimpleFiniteGroupAlgebra );
 
 DeclareOperation( "SimpleAlgebraByStronglySP", [ IsGroupRing, 
                                        IsGroup, IsGroup, IsList ] );
@@ -55,8 +56,10 @@ DeclareAttribute( "WeddDecompData", IsGroup );
 DeclareOperation( "GenWeddDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraByData", [ IsList ] );
 DeclareOperation( "SimpleAlgebraInfoByData", [ IsList ] );
-DeclareOperation( "SimpleAlgebraByCharacter", [ IsGroupRing, IsCharacter ] );
-DeclareOperation( "SimpleAlgebraInfoByCharacter", [ IsGroupRing, IsCharacter ] );
+DeclareOperation( "SimpleAlgebraByCharacter", [ IsCFGroupAlgebra, IsCharacter ] );
+DeclareOperation( "SimpleAlgebraByCharacter", [ IsSemisimpleFiniteGroupAlgebra, IsCharacter]);
+DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsCFGroupAlgebra, IsCharacter ] );
+DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleFiniteGroupAlgebra, IsCharacter ] );
 
 #################### idempot.gi #####################
 
@@ -85,13 +88,15 @@ DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] );
 DeclareProperty( "IsStronglyMonomial", IsGroup );
 
 DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
+DeclareAttribute( "IsCyclGroupAlgebra", IsGroupRing );
+DeclareOperation( "SizeOfSplittingField", [IsCharacter, IsPosInt] ); 
 
 #################### others.gi #####################
 
-DeclareAttribute( "ShodaPairsAndIdempotents", IsGroupRing );
+DeclareAttribute( "ShodaPairsAndIdempotents", IsSemisimpleRationalGroupAlgebra );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsBySP" );
 DeclareOperation( "PrimitiveCentralIdempotentBySP", 
-                        [IsGroupRing, IsGroup, IsGroup ] );
+                        [IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] );
 
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 
@@ -100,7 +105,8 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 
 #################### bw.gi #####################
 
-DeclareOperation( "LinCharByStronglySP", [ IsGroup, IsGroup ] );
+DeclareOperation( "LinCharByKernel", [ IsGroup, IsGroup ] );
+#DeclareOperation( "LinCharsByKernel", [ IsGroup, IsGroup ] );
 DeclareOperation( "BW", [IsGroup and IsFinite] );
 DeclareOperation( "BWNoStMon", [IsGroup and IsFinite] );
 DeclareOperation( "ReductionModnZ", [IsPosInt, IsPosInt] );
