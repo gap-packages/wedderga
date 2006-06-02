@@ -147,50 +147,21 @@ end);
 
 #############################################################################
 ##
-#O WedderburnDecompositionInfo( FG ) 
+#A WedderburnDecompositionInfo( FG ) 
 ##
 ## The function WedderburnDecompositionInfo compute a list of numerical data 
-## describing the Wedderburn components, realizable by strongly Shoda pairs of 
-## the underlying group, of the semisimple group algebra FG over a finite field 
-## or the field of rationals and stores the result as an attribute of FG. 
-## It uses the attribute WeddDecomp and IsStronglyMonomial to display a warning
+## describing the Wedderburn components of the semisimple group algebra FG over 
+## a cyclotomic field, and stores the result as an attribute of FG. 
 ##
 InstallMethod( WedderburnDecompositionInfo , 
-    "for semisimple zero-characteristic or finite group algebra", 
+    "for semisimple group algebra over cyclotomic fields", 
     true, 
-    [ IsGroupRing ], 
+    [ IsCFGroupAlgebra ], 
     0,
 function( FG )
-local   G;      # Underlying group
 
-G := UnderlyingMagma( FG );
-
-if IsSemisimpleFiniteGroupAlgebra( FG ) and not IsStronglyMonomial(G) then 
-    Print("Wedderga: Warning!!!\nThe direct product of the output is a PROPER direct factor of the input! \n");
-fi;
-
-return WeddDecompInfo( FG );
-
-end);
-
-
-#############################################################################
-##
-#A WeddDecompInfo( FG ) 
-##
-## The function WeddDecompInfo compute a list of numerical data describing 
-## the Wedderburn components, realizable by strongly Shoda pairs of the 
-## underlying group, of the semisimple group algebra FG over a finite field or 
-## the field of rationals and stores the result as an attribute of FG. 
-## This is an auxiliar function not to be documented.
-##
-InstallMethod( WeddDecompInfo , 
-    "for semisimple zero-characteristic or finite group algebra",
-    true, 
-    [ IsGroupRing ], 
-    0,
-function( FG )
 local   G,      # Group
+        F,      # Coefficient field
         pairs,  # Strongly Shoda pairs of G
         A,      # Simple algebra
         i,      # Counter
@@ -202,64 +173,84 @@ local   G,      # Group
         output;
         
 G := UnderlyingMagma(FG);
+F:=LeftActingDomain(FG);
 output := [];
 
-if IsSemisimpleRationalGroupAlgebra( FG ) then
-
-    if IsAbelian(G) then 
-      return List( RationalClasses(G), x -> [ 1, Order(Representative(x)) ] );
-    else
-      if HasStronglyShodaPairs( G ) then
-          pairs := StronglyShodaPairs( G );
-      else
-          pairs := StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs;
-      fi;
-      
-      for i in pairs do
-        Add(output, SimpleAlgebraByStronglySPInfoNC( FG, i[ 1 ], i[ 2 ] ) );
-      od;
-  
-      if not IsStronglyMonomial(G) then 
-        exp := Exponent(G);
-        br:=BWNoStMon(G);
-      
-        for sst in br do
-          chi:=sst[1];
-          cf:=sst[2];
-          if Length(sst)=2 then 
-            Add(output,[chi[1],Conductor(cf)]);
-          else
-            Add(output,SimpleAlgebraByStronglySTInfo(exp,chi[1],cf,sst[4],sst[3]));
-          fi;
-        od;
-      fi;
-    fi;
-  
-  return output;
-
-elif IsZeroCharacteristicGroupAlgebra(FG) then
+if IsCFGroupAlgebra(FG) then
     
     for i in GenWeddDecomp(FG) do
       A := SimpleAlgebraInfoByData(i);
       Append( output, [ A ] );
     od;  
-    return output;
     
-elif IsSemisimpleFiniteGroupAlgebra( FG ) then
-
-    for i in StronglyShodaPairsAndIdempotents( FG ).StronglyShodaPairs do
-        A := SimpleAlgebraByStronglySPInfoNC( FG, i[ 1 ], i[ 2 ], i[ 3 ][ 1 ]);
-        Append(output, List(i[3], j -> A ) );
-    od;
     return output;
     
 else
 
-    Error("Wedderga: <FG> must be a zero-characteristic or finite semisimple group algebra!!!");
+    Error("Wedderga: <FG> must be a group algebra over a cyclotomic field!!!");
 
 fi;
 
 end); 
+
+#############################################################################
+##
+#A  WedderburnDecompositionInfo( FG ) 
+##
+InstallMethod( WedderburnDecompositionInfo , 
+    "for semisimple finite group algebra",
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra ], 
+    0,
+function( FG )
+
+local G,      # Underlying group of FG
+      F,      # Coefficient field of FG
+      p,      # Characteristic of the field F
+      m,      # Power of p in the size of the field F
+      irr,    # Irreducible characters of G
+      lex,    # lexicographical ordering function
+      data,   #  list of 2-tuples, the first is the degree of the character x and 
+              #  the second is the lcm(m, the power of p in the field where x can 
+              #  be realized
+      cdata,  #  list of the form [x,n], where x is an irredicible character and
+              #  n is the number of times is appears in data
+      x,n,i,  #  counters
+      output;     
+
+G := UnderlyingMagma(FG);
+F := LeftActingDomain(FG);
+p := Characteristic(F);
+m := Log(Size(F),p);
+irr := Irr(G);
+
+lex:=function(x,y) 
+ return x[1]<y[1] or (x[1]=y[1] and x[2]<y[2]); 
+ end;
+ 
+data := List(irr,x->[x[1],Lcm(m,Log(SizeOfSplittingField(x,p),p))]);
+Sort(data,lex);
+cdata := [];
+while data <> [] do
+    x:=data[1];
+    n:=0;
+    while data<>[] and x=data[1] do
+        n:=n+1;
+        Remove(data,1);
+    od;
+    Add(cdata,[x,n]);
+od;
+
+output := [];
+for x in cdata do;
+    for i in [1..m*x[2]/x[1][2]] do
+        Add(output,[x[1][1],p^x[1][2]]);
+    od;
+od;
+
+return output;
+
+end);
 
 
 #############################################################################
@@ -394,6 +385,10 @@ local output, # the output
          sst, # current element from br
          chi, # character that is the 1st entry of sst
           cf; # cyclotomic field that is the 2nd entry of sst
+
+if IsAbelian(G) then 
+      return List( RationalClasses(G), x -> [ 1, CF(Order(Representative(x))) ] );
+fi;
 
 output :=  List( StronglyShodaPairs(G), x -> 
              AddCrossedProductBySSP(G,x[1],x[2]));
@@ -622,7 +617,7 @@ local   G,          # Underlying group
         Epi2,       # NH --> NH/KH
         i,          # Loop controller
         act,        # Action for the crossed product
-        coc;        #  for the crossed product
+        coc;        # Twisting for the crossed product
         
 G := UnderlyingMagma( QG );
 N   := Normalizer(G,H);
@@ -762,7 +757,7 @@ else # if N_G(H) <> K
         coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
                 end;
     
-    chi := LinCharByStronglySP(K,H)^G;
+    chi := LinCharByKernel(K,H)^G;
     cf := Field( chi );
                     
     return [ ind, cf, ok , GalSSP , cocSSP ];
@@ -808,26 +803,30 @@ if Length(algdata) = 2 or Size(algdata[4])=1 then
         return FullMatrixAlgebra( algdata[2], algdata[1] );
     fi;
 else
-    L := Field( algdata[2],[E(algdata[3])]);
-    cond := Lcm( Conductor(L), algdata[3] );
-    redu := ReductionModnZ( cond, algdata[3]);
+    L := Field(algdata[2],[E(algdata[3])]);
+    cond := Lcm( Conductor(L),algdata[3] );
+    redu := ReductionModnZ(cond,algdata[3]);
     
     act := function(a) 
              return ANFAutomorphism(CF(cond),Int(PreImagesRepresentative(redu,a)));
              end;
              
     coc := function(a,b)
-            return E( algdata[3])^ algdata[5](Int(a),Int(b));
+            return E(algdata[3])^algdata[5](Int(a),Int(b));
             end;
-    
+
+    R := CrossedProduct(L, algdata[4],act,coc);
+    SetCenterOfCrossedProduct( R, algdata[2] ); 
+            
     if algdata[1] = 1 then 
-        R := CrossedProduct(L, algdata[4],act,coc);
-        SetCenterOfCrossedProduct( R, algdata[2] );
         return R;
     else
-        R := CrossedProduct(L, algdata[4],act,coc);
-        SetCenterOfCrossedProduct( R, algdata[2] );
-        return FullMatrixAlgebra( R, algdata[1]/Size(algdata[4]) );
+        if IsInt(algdata[1]) then
+            return FullMatrixAlgebra( R, algdata[1] );
+        else 
+            # Print("wedderga: Warning!\nThe output is a FRACTIONAL MATRIX ALGEBRAS!!!!\n");
+            return [ algdata[1], R ];
+        fi;
     fi;
 fi;
 
@@ -837,99 +836,176 @@ end);
 #############################################################################
 ## 
 #O SimpleAlgebraByCharacter( FG, chi ) 
+#
+# The input is a semisimple infinite group algebra and an irreducible character
+# of the finite group G.
+#
+# The output is a crossed product or the matrix algebra over the crossed 
+## product, the simple component of FG gven by the character chi.
 ##
 InstallMethod( SimpleAlgebraByCharacter,
 "for semisimple infinite group algebras",
 true,
-[ IsGroupRing, IsCharacter ],
+[ IsCFGroupAlgebra, IsCharacter ],
 0,
 function( FG, chi )
- local G, # underlying group 
-       bw, # the output of the function BW(G))
-       n,  #the position of ratchi in ratirr
-       t,  #counter
-       ratchi,  #rationalized character
-       ratirr;  #list of rationalized characters 
-       
-if not IsZeroCharacteristicGroupAlgebra( FG ) then
-  Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
-fi;   
+ local G,               # underlying group 
+       ratchi,          # rationalized of chi
+       L,          	    # Splitting Field of G
+       sspsub,     	    # List of pairs [p,SST] where p is a set of primes and 
+                        # SST is a strongly Shoda triple such that the simple 
+                        # algebra associated to SST is the p-part of one 
+                        # Wedderburn component of QG
+        sylow,      	  # the list of Sylow subgroups of Gal
+        i,          	  # counter
+        cf,         	  # character field of chi
+        Gal,        	  # Gal(L/cf)
+        d,          	  # integer
+        pr,         	  # prime divisors of d
+        sub,        	  # Conjugacy Classes of subgroups of G
+        nsub,       	  # Cardinality of sub
+        subcounter, 	  # counter for sub
+        M,          	  # subgroup of G
+        ssp,        	  # strongly Shoda pairs of M
+        m,          	  # Size of ssp
+        sspcounter, 	  # counter for ssp
+        K,H,        	  # strongly Shoda pair of M
+        psi,        	  # the strongly monomial character of M given by M
+        cfpsi,      	  # character field of psi
+        gencfpsi,   	  # generators of character field of psi
+        dropprimes,	    # list of primes to be drop from primes
+        remainingprimes,# counter of remaining primes
+        primecounter,   # primes counter
+        p,          	  # element of primes[controlcounter]
+        P,          	  # p-Sylow subgroup of GalList[controlcounter]
+        genP,       	  # set of generators of P
+        x,              # 5-tuples, output of AddCrossedProductBySST
+        sprod;      	  # (chi_M,psi)
+        
+
+# if not IsZeroCharacteristicGroupAlgebra( FG ) then
+#   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
+# fi;   
     
-  G := UnderlyingMagma(FG);         
-  bw := BW( G );
-  ratirr := List( bw, t -> RationalizedMat([ValuesOfClassFunction(t[1])])[1]);
-  ratchi:=RationalizedMat([ValuesOfClassFunction(chi)])[1];
-  n := PositionProperty( ratirr, t -> ratchi=t );
-  if n=fail then
-    Error("Can not find the suitable character !!!");
-  fi;
-  if Length(bw[n])=2 then
-    return SimpleAlgebraByData( [ bw[n][1][1], bw[n][2] ] );
-  else
-    
-    return SimpleAlgebraByData( 
-      AddCrossedProductBySST( Exponent(G), 
-                              bw[n][1][1], 
-                              bw[n][2], 
-                              bw[n][4], 
-                              bw[n][3]) );  
-  fi;
+  G := UnderlyingMagma(FG);      
+  cf := Field( chi );
+  L := CF(Exponent(G));  
+  sspsub:=[];
+  Gal := GaloisGroup(AsField(cf,L));
+  d:=Gcd(Size(Gal),chi[1]);
+  
+  if  d = 1 then 
+      sspsub:=[chi,cf];
+      pr:=[];
+  else 
+      pr := Set(FactorsInt(d));
+      sspsub:=[chi,cf,[],Gal];
+      sylow:=List(pr,p->SylowSubgroup(Gal,p));
+  fi;    
+  
+  sub:=ConjugacyClassesSubgroups(G);
+  if ForAny( [1 .. Length(sub)-1 ], i -> 
+             Size(Representative(sub[i])) > Size(Representative(sub[i+1]))) 
+             then
+               sub:=ShallowCopy(ConjugacyClassesSubgroups(G));
+               Sort(sub, function(v,w) return Size(Representative(v))<
+               Size(Representative(w)); 
+              end);
+  fi;  
+  
+  nsub := Size(sub);
+  subcounter := nsub;
+  while Length(pr) > 0 do
+        M:=Representative( sub[ subcounter ] );
+        ssp := StronglyShodaPairs(M);
+        m := Length(ssp);
+        sspcounter := 1;
+        while sspcounter <= m and Length(pr) > 0 do
+            K := ssp[sspcounter][1]; 
+            H := ssp[sspcounter][2];
+            psi := LinCharByKernel(K,H)^M;
+            cfpsi := Field(psi);
+            gencfpsi := GeneratorsOfField(cfpsi);
+              dropprimes := [];
+              remainingprimes := Length(pr);
+            primecounter := 1;
+               while primecounter <= remainingprimes do
+                    p := pr[primecounter];
+                    P := sylow[primecounter];
+                    genP := GeneratorsOfGroup(P);
+                    if ForAll(Cartesian(genP,gencfpsi), x -> x[2]^x[1]=x[2]) 
+                        then 
+                          sprod := ScalarProduct( Restricted(chi,M),
+                                      ClassFunction(M,RationalizedMat([psi])[1]));
+                          if sprod mod p <> 0 then
+                             Add(dropprimes,p);
+                          fi;
+                    fi;
+                    primecounter := primecounter+1;
+                od;
+                pr:= Difference(pr,dropprimes);
+                if dropprimes <> [] then
+                Add(sspsub[3],[M,K,H,dropprimes]);
+                fi;
+
+        sspcounter := sspcounter + 1;
+        od;
+        subcounter:=subcounter-1;
+  od;
+  
+ if Length(sspsub)=2 then
+    return SimpleAlgebraByData( [ sspsub[1][1], sspsub[2] ] );
+ else
+    x:=AddCrossedProductBySST( Exponent(G), 
+                              sspsub[1][1], 
+                              sspsub[2], 
+                              sspsub[4], 
+                              sspsub[3]);
+     if not IsInt(x[1]) then 
+      Print("Wedderga: Warning!\nThe output is a FRACTIONAL MATRIX ALGEBRA!!!\n\n");
+     fi;                         
+     return SimpleAlgebraByData(x);  
+ fi;
+
  
 end);
 
+
 #############################################################################
+## 
+#O SimpleAlgebraByCharacter( FG, chi ) 
+#
+# The input is a semisimple infinite group algebra and an irreducible character
+# of the finite group G.
+#
+# The output is a crossed product or the matrix algebra over the crossed 
+## product, the simple component of FG gven by the character chi.
 ##
-#O SimpleAlgebraByCharacter( FG, chi )
-##
-# InstallMethod( SimpleAlgebraByCharacter,
-# "for semisimple infinite group algebras",
-# true,
-# [ IsGroupRing, IsCharacter ],
-# 0,
-# function( FG, chi )
-# local G, # underlying group 
-#       shodapairs, sp, psi, K, H, data, br, n, t, ratchi, ratirr;
-# if not ( IsSemisimpleRationalGroupAlgebra(FG) or 
-#          IsZeroCharacteristicGroupAlgebra( FG ) ) then
-#   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
-# fi;              
-# G := UnderlyingMagma(FG);
-# if IsSemisimpleRationalGroupAlgebra(FG) then
-#   if IsMonomial( chi ) then
-#     shodapairs:=ShodaPairsAndIdempotents(FG).ShodaPairs;
-#     for sp in shodapairs do
-#       psi := Induced ( LinCharByStronglySP( sp[1], sp[2] ), G );
-#       Print("strongly monomial case", "\n");
-# #      if chi=psi then
-#       if RationalizedMat([ValuesOfClassFunction(chi)])[1]=
-#          RationalizedMat([ValuesOfClassFunction(psi)])[1] then     
-#         K := sp[1];
-#         H := sp[2];
-#         if [K,H] in StronglyShodaPairsAndIdempotents(FG).StronglyShodaPairs then       
-# #        if IsStronglyShodaPair( G, K, H ) then
-#           return SimpleAlgebraByStronglySPNC( FG, K, H ); 
-#         fi;
-#       fi;
-#     od;
-#   fi;
-# fi;
-# if IsZeroCharacteristicGroupAlgebra( FG ) then
-#   br := BWNoStMon( G );
-#   ratirr := List( br, t -> RationalizedMat([ValuesOfClassFunction(t[1])])[1]);
-#   ratchi:=RationalizedMat([ValuesOfClassFunction(chi)])[1];
-#   n := PositionProperty( ratirr, t -> ratchi=t );
-#   if Length(br[n])=2 then
-#     return SimpleAlgebraByData( [ br[n][1][1], br[n][2] ] );
-#   else
-#     return SimpleAlgebraByData( 
-#       AddCrossedProductBySST( Exponent(G), 
-#                               br[n][1][1], 
-#                               br[n][2], 
-#                               br[n][4], 
-#                               br[n][3]) );  
-#   fi;
-# fi;  
-# end);
+InstallMethod( SimpleAlgebraByCharacter,
+"for semisimple finite group algebras",
+true,
+[ IsSemisimpleFiniteGroupAlgebra, IsCharacter ],
+0,
+function( FG, chi )
+
+local G,      # Underlying group of FG
+      F,      # Coefficient field of FG
+      p,      # Characteristic of the field F
+      m,      # Power of p in the size of the field F
+      power,  #  lcm(m, the power of p in the field where chi can be realized)
+      alg;     #
+
+G := UnderlyingMagma(FG);
+F := LeftActingDomain(FG);
+p := Characteristic(F);
+m := Log(Size(F),p);
+
+power := Lcm(m,Log(SizeOfSplittingField(chi,p),p));
+alg := FullMatrixAlgebra(GF(p^power), chi[1]);
+
+return alg;
+
+end);
 
 
 #############################################################################
@@ -1109,8 +1185,8 @@ c;              # Value of cocycle
 
 if Length(x) = 2 then 
     return x;
-elif Size(x[4])=1 then
-    return [ x[1], x[2], x[3] ];
+# elif Size(x[4])=1 then
+#    return [ x[1], x[2] ];
 else
     Cond := x[3];
     coc := x[5];
@@ -1157,14 +1233,14 @@ else
     od;
          
     if Size(Gen)=1 then
-        return [ x[1]/Size(x[4]),               # the size of matrices
+        return [ x[1],                          # the size of matrices
                  x[2],                          # the centre of the simple component
                  Cond,                          # the order of the root of unity
                  [ o[1], Int(Gen[1]) , beta[1]] #
                ]; 
                    
     else
-        return [ x[1]/Size(x[4]),
+        return [ x[1],
                  x[2],
                  Cond,
                  List([1..Length(Gen)], i -> [ o[i], Int(Gen[i]) , beta[i] ] ),
@@ -1183,14 +1259,181 @@ end);
 
 #############################################################################
 ##
-#O SimpleAlgebraInfoByCharacter( FG, chi )
+#O SimpleAlgebraByCharacterInfo( FG, chi )
 ##
-InstallMethod( SimpleAlgebraInfoByCharacter,
+# The input is an infinite group algebra FG and chi an irreducible character of a 
+# finite group G.
+# 
+# The output is a list of 2, 3, 4 or 5 elements that describe the simple 
+# algebra given by the character chi, in the following form:
+## 1st position = the size of the matrices
+## 2nd position = the centre of the simple component
+## 3rd position = integer that is the order of the root of unity
+## 4th position = a list of 3 elements:
+##                1st position 
+##                2nd position
+##                3rd position
+#
+InstallMethod( SimpleAlgebraByCharacterInfo,
 "for semisimple infinite group algebras",
 true,
-[ IsGroupRing, IsCharacter ],
+[ IsCFGroupAlgebra, IsCharacter ],
 0,
 function( FG, chi )
+
+local G,               # underlying group 
+       ratchi,          # rationalized of chi
+       L,          	    # Splitting Field of G
+       sspsub,     	    # List of pairs [p,SST] where p is a set of primes and 
+                        # SST is a strongly Shoda triple such that the simple 
+                        # algebra associated to SST is the p-part of one 
+                        # Wedderburn component of QG
+        sylow,      	  # the list of Sylow subgroups of the elements in GalList
+        i,          	  # counter
+        cf,         	  # character field of chi
+        Gal,        	  # Gal(L/cf)
+        d,          	  # integer
+        pr,         	  # prime divisors of d
+        sub,        	  # Conjugacy Classes of subgroups of G
+        nsub,       	  # Cardinality of sub
+        subcounter, 	  # counter for sub
+        M,          	  # subgroup of G
+        ssp,        	  # strongly Shoda pairs of M
+        m,          	  # Size of ssp
+        sspcounter, 	  # counter for ssp
+        K,H,        	  # strongly Shoda pair of M
+        psi,        	  # the strongly monomial character of M given by M
+        cfpsi,      	  # character field of psi
+        gencfpsi,   	  # generators of character field of psi
+        dropprimes,	    # list of primes to be drop from primes
+        remainingprimes,# counter of remaining primes
+        primecounter,   # primes counter
+        p,          	  # element of primes[controlcounter]
+        P,          	  # p-Sylow subgroup of GalList[controlcounter]
+        genP,       	  # set of generators of P
+        sprod;      	  # (chi_M,psi)
+
+# if not IsZeroCharacteristicGroupAlgebra( FG ) then
+#   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
+# fi;   
+    
+  G := UnderlyingMagma(FG);    
+  ratchi:=RationalizedMat([chi])[1];
+  cf := Field( chi );
+  
+  L := CF(Exponent(G));  
+  Gal := GaloisGroup(AsField(cf,L));
+  
+  d:=Gcd(Size(Gal),chi[1]);
+      if  d = 1 then 
+          sspsub:=[chi,cf];
+          pr:=[];
+      else 
+          pr := Set(FactorsInt(d));
+          sspsub:=[chi,cf,[],Gal];
+          sylow:=List(pr,p->SylowSubgroup(Gal,p));
+       fi;    
+  
+  sub:=ConjugacyClassesSubgroups(G);
+  if ForAny( [1 .. Length(sub)-1 ], i -> 
+             Size(Representative(sub[i])) > Size(Representative(sub[i+1]))) then
+    sub:=ShallowCopy(ConjugacyClassesSubgroups(G));
+    Sort(sub, function(v,w) return Size(Representative(v))<
+    Size(Representative(w)); 
+    end);
+  fi;  
+  
+  nsub := Size(sub);
+  subcounter := nsub;
+  while Length(pr) > 0 do
+        M:=Representative( sub[ subcounter ] );
+        ssp := StronglyShodaPairs(M);
+        m := Length(ssp);
+        sspcounter := 1;
+        while sspcounter <= m and Length(pr) > 0 do
+            K := ssp[sspcounter][1]; 
+            H := ssp[sspcounter][2];
+            psi := LinCharByKernel(K,H)^M;
+            cfpsi := Field(psi);
+            gencfpsi := GeneratorsOfField(cfpsi);
+              dropprimes := [];
+              remainingprimes := Length(pr);
+            primecounter := 1;
+               while primecounter <= remainingprimes do
+                    p := pr[primecounter];
+                    P := sylow[primecounter];
+                    genP := GeneratorsOfGroup(P);
+                    if ForAll(Cartesian(genP,gencfpsi), x -> x[2]^x[1]=x[2]) 
+                        then 
+                          sprod := ScalarProduct( Restricted(chi,M),
+                                      ClassFunction(M,RationalizedMat([psi])[1]));
+                          if sprod mod p <> 0 then
+                             Add(dropprimes,p);
+                          fi;
+                    fi;
+                    primecounter := primecounter+1;
+                od;
+                pr:= Difference(pr,dropprimes);
+                if dropprimes <> [] then
+                Add(sspsub[3],[M,K,H,dropprimes]);
+                fi;
+
+        sspcounter := sspcounter + 1;
+        od;
+        subcounter:=subcounter-1;
+    od;
+    
+  if Length(sspsub)=2 then
+    return  [ sspsub[1][1], sspsub[2] ] ;
+    
+  elif Size(sspsub[4])=1 then
+    return [ sspsub[1][1], sspsub[2], sspsub[3] ];   
+  else
+    return SimpleAlgebraInfoByData( 
+      AddCrossedProductBySST( Exponent(G), 
+                              sspsub[1][1], 
+                              sspsub[2], 
+                              sspsub[4], 
+                              sspsub[3]) ); 
+  fi;  
+  
+end);
+
+
+#############################################################################
+##
+#O SimpleAlgebraByCharacterInfo( FG, chi )
+##
+# The input is a finite group algebra FG and chi an irreducible character of a 
+# finite group G.
+# 
+# The output is a 2-tuple with the first entry the degree of the character and
+# the second entry the power of p
+
+InstallMethod( SimpleAlgebraByCharacterInfo,
+"for semisimple finite group algebras",
+true,
+[ IsSemisimpleFiniteGroupAlgebra, IsCharacter ],
+0,
+function( FG, chi )
+
+local G,      # Underlying group of FG
+      F,      # Coefficient field of FG
+      p,      # Characteristic of the field F
+      m,      # Power of p in the size of the field F
+      power,  #  lcm(m, the power of p in the field where chi can be realized)
+      alg;     #
+      
+     
+G := UnderlyingMagma(FG);
+F := LeftActingDomain(FG);
+p := Characteristic(F);
+m := Log(Size(F),p);
+
+power := Lcm(m,Log(SizeOfSplittingField(chi,p),p));
+alg := [chi[1], p^power];
+
+return alg;
 
 end);
 
