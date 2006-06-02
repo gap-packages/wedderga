@@ -38,6 +38,19 @@ R -> Characteristic(LeftActingDomain(R))=0 and IsFinite(UnderlyingMagma(R)));
 
 #############################################################################
 ##
+#P IsCFGroupAlgebra( FG )
+##  
+## The function checks whether a group ring is a group algebra of a finite
+## group over a cyclotomic field
+##
+InstallImmediateMethod( IsCFGroupAlgebra,
+    IsGroupRing, 
+    0,
+R -> IsCyclotomicField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
+
+
+#############################################################################
+##
 #P IsSemisimpleFiniteGroupAlgebra( FG )
 ##  
 ## The function checks whether a group ring is a semisimple group algebra
@@ -371,8 +384,8 @@ end);
 ## The function checks whether a group is strongly monomial
 ##
 InstallMethod( IsStronglyMonomial,
-	"for finite groups", 
-	true, 
+	  "for finite groups", 
+	  true, 
     [ IsGroup ], 
     0,
 function( G )
@@ -429,10 +442,77 @@ fi;
 
 end);
 
+
+#############################################################################
+##
+#P IsCyclGroupAlgebra( FG )
+##  
+## The function checks whether a group is strongly monomial
+##
+InstallMethod( IsCyclGroupAlgebra, 
+    "for semisimple group algebras", 
+    true, 
+    [ IsGroupRing ], 
+    0,
+function( FG )
+
+local G ;
+
+G := UnderlyingMagma(FG);
+
+if not(IsSemisimpleFiniteGroupAlgebra(FG) or IsZeroCharacteristicGroupAlgebra(FG)) then 
+  Error("Wedderga: The input should be a semisimple group algebra \n",
+        "over a finite or a zero characteristic field \n");
+fi;
+
+if IsSemisimpleFiniteGroupAlgebra(FG) or 
+   IsStronglyMonomial(G) or 
+   ForAll( WeddDecomp(FG), x-> not IsList(x) ) then 
+    return true;
+else
+    return false;
+fi;
+end);
+
+
+#############################################################################
+##
+## SizeOfSplittingField( char, p )  
+##
+## The function SizeOfSplittingField returns the SizeOfFieldOfDefinition 
+## for the character char and the prime p
+##
+InstallMethod( SizeOfSplittingField,
+    "for character of finite group and prime number", 
+    true, 
+    [ IsCharacter, IsPosInt ], 
+    0,
+function( char, p )
+
+local size,    #  The power of p
+      cc,      #  Conjugacy Classes
+      value,   #  Element in ValuesOfClassFunction(char)
+      m,       #  counter
+      image;   #  Galois Group
+
+size := 1;
+cc := ConjugacyClasses( UnderlyingCharacterTable( char ) );
+for value in ValuesOfClassFunction(char) do
+   m:= 1;
+   image:= GaloisCyc( value, p );
+   while image <> value do
+       m:= m+1;
+       image:= GaloisCyc( image, p );
+   od;      
+   size := Lcm( size , m );
+od;
+
+return p^size;
+
+end);
+
+
 #############################################################################
 ##
 #E
 ##
-
-
-
