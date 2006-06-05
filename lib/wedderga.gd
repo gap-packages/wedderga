@@ -64,15 +64,10 @@ DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleFiniteGroupAlgeb
 #################### idempot.gi #####################
 
 DeclareOperation( "CentralElementBySubgroups",   
-        [ IsGroupRing , IsGroup, IsGroup, IsList, IsList ] ); 
+        [ IsGroupRing, IsGroup, IsGroup, IsList, IsList, IsList ] );
         
 DeclareOperation( "IdempotentBySubgroups", 
-        [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ] );
-DeclareOperation( "IdempotentBySubgroups", 
-            [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList ] );
-DeclareOperation( "IdempotentBySubgroups", 
-            [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsPosInt ] );
-
+        [ IsGroupRing, IsGroup, IsGroup, IsList, IsList, IsList ] );
 
 DeclareOperation( "AverageSum", [ IsGroupRing, IsObject ] );
 
@@ -106,8 +101,6 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 #################### bw.gi #####################
 
 DeclareOperation( "LinCharByKernel", [ IsGroup, IsGroup ] );
-#DeclareOperation( "LinCharsByKernel", [ IsGroup, IsGroup ] );
-DeclareOperation( "BW", [IsGroup and IsFinite] );
 DeclareOperation( "BWNoStMon", [IsGroup and IsFinite] );
 DeclareOperation( "ReductionModnZ", [IsPosInt, IsPosInt] );
 DeclareOperation( "GalToInt", [IsGroup] );

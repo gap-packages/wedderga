@@ -1837,18 +1837,13 @@ RedispatchOnCondition( StronglyShodaPairsAndIdempotents,
 ##
 #A StronglyShodaPairsAndIdempotents( FqG )
 ##
-## The attribute StronglyShodaPairsAndIdempotents of the semisimple finite group algebra FqG 
-## returns a record with components StronglyShodaPairs, PrimitiveCentralIdempotents and 
-## StronglyMonomial where 
-## StronglyShodaPairs = list of SSP and cyclotomic classes that covers the set of PCIs of FqG 
-##        realizable by SSPs, 
-## PrimitiveCentralIdempotents = list of PCIs of FqG realizable by SSPs and cyclotomic classes,
-## StronglyMonomial := Yes if PrimitiveCentralIdempotents is a complete set of PCIs of FqG, No otherwise 
-##
-## The function StronglyShodaPairsAndIdempotents computes the record [SSPs, PCIs], 
-## where SSPs is a list of the SSP and cyclotomic classes that covers 
-## the complete set of primitive central idempotents,PCIs, 
-## of the finite group algebra FqG
+## The attribute StronglyShodaPairsAndIdempotents of the semisimple finite 
+## group algebra FqG returns a record with components StronglyShodaPairs
+## and PrimitiveCentralIdempotents, where 
+## StronglyShodaPairs = list of SSP and cyclotomic classes that covers the 
+##                      set of PCIs of FqG realizable by SSPs, 
+## PrimitiveCentralIdempotents = list of PCIs of FqG realizable by SSPs 
+##                      and cyclotomic classes
 ##
 InstallMethod( StronglyShodaPairsAndIdempotents, 
     "for semisimple finite group algebra", 
@@ -1857,69 +1852,78 @@ InstallMethod( StronglyShodaPairsAndIdempotents,
     0,
 function( FqG )                
 local   G,          # Group
+        Fq,         # Field (finite)
+        F,          # Family of elements of FqG 
+        elmsG,      # Elements of G
+        q,          # Order of Fq
+        zero,       # Zero of Fq
+        e,          # The list of primitive central idempotents
         SSPsG,      # List of strongly Shoda pairs of G
+        list,       # List SSP and cyclotomic classes
+        setind,     # Set of n's 
+        lltrace,    # List of ltrace's for n in setind
+        lcc,        # Set of cc's 
+        lorders,    # Set of o's for various n's
+        lprimitives,# Set of pr's for o in lorders
+        p,          # Integer
         H,K,        # Subgroups of G
         n,          # Index of H in K
-        Fq,         # Field (finite)
-        q,          # Order of Fq
-        idemp,      # Idempotent eGKHc 
-        cc,         # Set of cyclotomic classes of q module n
-        lcc,        # Set of cc's 
-        i,          # Cyclotomic class of q module
-        e,          # The list of primitive central idempotents
-        list,       # List SSP and cyclotomic classes
-        p,          # Integer
-        a,          # Primitive n-th root of 1 in an extension of Fq
-        ltrace,     # List of traces of a^c over Fq for c in representatives of cc
-        lltrace,    # List of ltrace's for n in setind
-        setind,     # Set of n's 
+        N,          # Normalizer of H in G
+        epi,        # N --> N/H
+        QKH,        # K/H
+        gq,         # Generator of K/H
         pos,        # Positions
-        j,          # Counter
+        cc,         # Set of cyclotomic classes of q module n
+        ltrace,     # List of traces of a^c over Fq for c in representatives of cc
         o,          # The  multiplicative order of q module n
-        lorders,    # Set of o's for various n's
         pr,         # Primitive root of the field of order q^o
-        lprimitives,# Set of pr's for o in lorders
+        a,          # Primitive n-th root of 1 in an extension of Fq
+        i,          # Cyclotomic class of q module
+        j,          # Counter
         etemp,      # List of idempotents eGKHc for different classes c and fixed K and H
         templist,   # List of some cyclotomic classes
-        elmsG,      # Elements of G
-        F,          # Family of elements of FqG 
-        zero;       # Zero of Fq
+        idemp;      # Idempotent eGKHc 
 
-# Program
 G := UnderlyingMagma( FqG  );
 Fq := LeftActingDomain( FqG );
 F := FamilyObj(Zero(FqG));
 elmsG := Elements(G);
 q := Size( Fq );
 zero := Zero(Fq);
-e := [AverageSum(FqG,G)];
+e := [ AverageSum(FqG,G) ];
 SSPsG := StronglyShodaPairs(G);
-list := [ [ SSPsG[ 1 ][1], SSPsG[ 1 ][2], [ [ 0 ] ] ] ];
+list := [ [ SSPsG[1][1], SSPsG[1][2], [[0]] ] ];
 setind := [];
 lltrace := [];
 lcc := [];
 lorders := [];
 lprimitives := [];
 for p in [ 2 .. Size(SSPsG) ] do
-    H :=SSPsG[p][2];
+    H := SSPsG[p][2];
     K := SSPsG[p][1];
     n := Index(K,H);
+    N := Normalizer( G, H );
+    epi := NaturalHomomorphismByNormalSubgroup( N, H );
+    QKH := Image( epi, K );
+    repeat
+        gq := Random(QKH);
+    until Order(gq) = n;
     if n in setind then
-    # If n is in setind then we just take Cyclotomic Classes and traces 
-    # from lcc and lltrace
+        # If n is in setind then we just take Cyclotomic Classes and traces 
+        # from lcc and lltrace
         pos := Position(setind,n);
         cc := lcc[pos];
         ltrace  := lltrace[pos];
     else
-    # Otherwise we compute traces and cyclotomic classes and store them
-    # in lltrace and lcc
+        # Otherwise we compute traces and cyclotomic classes and store them
+        # in lltrace and lcc
         cc := CyclotomicClasses(q,n);
         o:=Size(cc[2]);
         if o in lorders then
-        # If o is in lorders then a primitive root of 1 is stored in lprimitives
+            # If o is in lorders then a primitive root of 1 is stored in lprimitives
             pr := lprimitives[Position(lorders,o)];
         else
-        # Otherwise we compute the primitive root and store it in lprimitives
+            # Otherwise we compute the primitive root and store it in lprimitives
             pr := BigPrimitiveRoot(q^o);
             Add(lorders,o);
             Add(lprimitives,pr);
@@ -1932,17 +1936,17 @@ for p in [ 2 .. Size(SSPsG) ] do
                 ltrace[j+1] := ltrace[i[1]+1];
             od;
         od;
-        Add(lltrace,ltrace);
-        Add(lcc,cc);
-        Add(setind,n);
+        Add( lltrace, ltrace );
+        Add( lcc, cc );
+        Add( setind, n );
     fi;
     etemp := [];
     templist := [];
     for i in cc do
         if Gcd(i[1],n)=1 then
-            idemp := CentralElementBySubgroups(FqG, K, H, i, ltrace);
-            if not(idemp in etemp) then
-                Add(etemp, idemp);
+            idemp := CentralElementBySubgroups( FqG, K, H, i, ltrace, [epi, gq] );
+            if not idemp in etemp then
+                Add( etemp, idemp );
                 Add( templist, i );
             fi;
         fi;
@@ -1951,11 +1955,13 @@ for p in [ 2 .. Size(SSPsG) ] do
     Add( list, [ K, H, templist ] );
 od;
 return rec( StronglyShodaPairs := list, 
-            PrimitiveCentralIdempotents := e);
+            PrimitiveCentralIdempotents := e );
 end);
+
 
 RedispatchOnCondition( StronglyShodaPairsAndIdempotents,
   true, [ IsGroupRing ], [ IsSemisimpleFiniteGroupAlgebra ], 0 );
+
 
 #############################################################################
 ## 
