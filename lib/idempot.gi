@@ -64,7 +64,7 @@ end);
 ## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
 ## The list ltrace contains information about the trace of a n-th roots of 1.  
 ##
-InstallMethod( CentralElementBySubgroups,
+InstallOtherMethod( CentralElementBySubgroups,
     "for pairs of subgroups, one cyclotomic class and trace info", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ],
@@ -99,6 +99,46 @@ Eps := IdempotentBySubgroups( FqG, K, H, c, ltrace );
 
 return Sum( List( GN1, g -> Eps^g ) );
 end);
+
+
+
+#############################################################################
+##  
+## CentralElementBySubgroups( FqG, K, H, c, ltrace, [epi, gq] )
+##
+## The function CentralElementBySubgroups computes e(G, K, H, C) for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
+## The list ltrace contains information about the trace of a n-th roots of 1.  
+##
+InstallMethod( CentralElementBySubgroups,
+    "for pairs of subgroups, cyclotomic class and trace info, mapping and group element", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList, IsList ],
+#      IsMapping, IsMultiplicativeElementWithInverse ],
+    0,
+function( FqG, K, H, c, ltrace, arg6 )
+local   G,      # Group
+        QNH,    # N/H
+        C1,     # Cyclotomic class of q module n in K/H
+        St,     # Stabilizer of C in K/H
+        N1,     # Set of representatives of St by epi
+        GN1,    # Right transversal of N1 in G
+        Eps,    # Output of IdempotentBySubgroups 
+        epi,    # Extra argument
+        gq;     # Extra argument
+epi:=arg6[1];
+gq:=arg6[2];
+G := UnderlyingMagma( FqG );
+QNH := Range(epi);
+C1 := Set( List( c, ii -> gq^ii ) );
+St := Stabilizer( QNH, C1, OnSets );
+N1 := PreImage( epi, St );
+GN1 := RightTransversal( G, N1 );
+Eps := IdempotentBySubgroups( FqG, K, H, c, ltrace, [epi,gq] );
+return Sum( List( GN1, g -> Eps^g ) );
+end);
+
 
 #############################################################################
 ##
@@ -357,17 +397,17 @@ end);
 ##
 #M IdempotentBySubgroups( FqG, K, H, C, ltrace )
 ##
-## The function IdempotentBySubgroups computes epsilon( K, H, C), for H and K
+## The function IdempotentBySubgroups computes epsilon(K, H, C), for H and K
 ## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
 ## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
 ## The list ltrace contains information about the traces of the n-th roots of 1.   
 ##
-InstallMethod( IdempotentBySubgroups,
+InstallOtherMethod( IdempotentBySubgroups,
     "for pairs of subgroups, one cyclotomic class and traces", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ], 
     0,
-function(FqG, K, H, c, ltrace)
+function( FqG, K, H, c, ltrace )
 local   G,      # Group
         Fq,     # Field
         q,      # Order of field Fq
@@ -408,6 +448,55 @@ od;
 coeff:=Inverse(Size(K)*One(Fq))*coeff;
 
 # Output
+return ElementOfMagmaRing( FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp );
+end);
+
+
+#############################################################################
+##
+#M IdempotentBySubgroups( FqG, K, H, c, ltrace, [ epi, gq ] )
+##
+## The function IdempotentBySubgroups computes epsilon(K, H, C), for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## is a cyclotomic class of q=|Fq| modulo n=[K:H] containing generators of K/H.
+## The list ltrace contains information about the traces of the n-th roots of 1.   
+##
+InstallMethod( IdempotentBySubgroups,
+    "for pairs of subgroups, one cyclotomic class and traces, mapping and group element", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList, IsList ],
+#     IsMapping, IsMultiplicativeElementWithInverse ], 
+    0,
+function( FqG, K, H, c, ltrace, arg6 )
+local   Fq,     # Field
+        q,      # Order of field Fq
+        n,      # Order of K/H
+        cc,     # Set of cyclotomic classes of q module n
+        supp,   # Support of the output
+        coeff,  # Coefficients of the output
+        d,      # Cyclotomic class of q module n   
+        tr,     # Element of ltrace
+        epi,    # Extra argument
+        gq;     # Extra argument
+
+# In this case the conditions are not necesary because this function
+# is used as local function of PCIs
+
+# Program
+epi:=arg6[1];
+gq:=arg6[2];
+Fq := LeftActingDomain( FqG );
+q := Size( Fq );
+n := Index( K, H );
+cc := CyclotomicClasses( q, n );
+supp := [];
+coeff := [];
+for d in cc do
+    tr := ltrace[ 1+(-c[1]*d[1] mod n) ];
+    Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
+    Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
+od;
+coeff:=Inverse(Size(K)*One(Fq))*coeff;
 return ElementOfMagmaRing( FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp );
 end);
 
