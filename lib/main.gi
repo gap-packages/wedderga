@@ -616,6 +616,7 @@ local   G,          # Underlying group
         Epi,        # N --> N/H
         Epi2,       # NH --> NH/KH
         i,          # Loop controller
+        R,          # Crossed product       
         act,        # Action for the crossed product
         coc;        # Twisting for the crossed product
         
@@ -647,25 +648,37 @@ else # if N_G(H) <> K
     Epi2:=NaturalHomomorphismByNormalSubgroup( NH, KH ) ;
     NdK:=Image(Epi2,NH);
         
-      act := function(a) 
-             local x;
+      act := function( RG, a ) 
+             local x, ok, Potk, Epi2;
+             ok   := OperationRecord(RG).ok;
+             Potk := OperationRecord(RG).Potk;
+             Epi2 := OperationRecord(RG).Epi2;
              return MappingByFunction( CF(ok), CF(ok), x -> 
                GaloisCyc(x, Position(Potk,k^PreImagesRepresentative(Epi2,a))));
              end;
                
-      coc := function(a,b)
+      coc := function( RG, a, b )
+             local ok, Potk, Epi2;
+             ok   := OperationRecord(RG).ok;
+             Potk := OperationRecord(RG).Potk;
+             Epi2 := OperationRecord(RG).Epi2;     
              return E(ok)^Position( Potk,
-                                    PreImagesRepresentative(Epi2,a*b)^-1 *
-                                    PreImagesRepresentative(Epi2,a) *
-                                    PreImagesRepresentative(Epi2,b) );
-             end;        
+                                    PreImagesRepresentative( Epi2, a*b )^-1 *
+                                    PreImagesRepresentative( Epi2, a ) *
+                                    PreImagesRepresentative( Epi2, b ) );
+             end;   
+      
+    R := CrossedProduct(CF(ok), NdK, act, coc);       
+                 
+    SetOperationRecord( R, rec(ok:=ok, Potk:=Potk, Epi2:=Epi2) );                 
+                  
     if ind=1 then
       Info( InfoPCI, 2, "N_G(H) <> K, returning crossed product");
-      return CrossedProduct(CF(ok), NdK, act, coc);
+      return R;
     else
       Info( InfoPCI, 2, 
         "N_G(H) <> K, returning matrix algebra over crossed product");
-      return FullMatrixAlgebra( CrossedProduct(CF(ok), NdK, act, coc), ind );
+      return FullMatrixAlgebra( R, ind );
     fi;  
 fi;      
 end);
@@ -807,16 +820,26 @@ else
     cond := Lcm( Conductor(L),algdata[3] );
     redu := ReductionModnZ(cond,algdata[3]);
     
-    act := function(a) 
+    act := function( RG, a ) 
+             local cond, redu;
+             cond := OperationRecord(RG).cond;
+             redu := OperationRecord(RG).redu;
              return ANFAutomorphism(CF(cond),Int(PreImagesRepresentative(redu,a)));
              end;
              
-    coc := function(a,b)
-            return E(algdata[3])^algdata[5](Int(a),Int(b));
-            end;
+    coc := function( RG, a, b )
+             local orderroot, cocycle;
+             orderroot := OperationRecord(RG).orderroot;
+             cocycle   := OperationRecord(RG).cocycle;             
+             return E(orderroot)^cocycle(Int(a),Int(b));
+             end;
 
-    R := CrossedProduct(L, algdata[4],act,coc);
+    R := CrossedProduct( L, algdata[4], act, coc );
     SetCenterOfCrossedProduct( R, algdata[2] ); 
+    SetOperationRecord( R, rec( cond := cond, 
+                                redu := redu, 
+                           orderroot := algdata[3],
+                             cocycle := algdata[5] ) );
             
     if algdata[1] = 1 then 
         return R;
@@ -879,7 +902,7 @@ function( FG, chi )
         p,          	  # element of primes[controlcounter]
         P,          	  # p-Sylow subgroup of GalList[controlcounter]
         genP,       	  # set of generators of P
-        x,              # 5-tuples, output of AddCrossedProductBySST
+        x,                # 5-tuples, output of AddCrossedProductBySST
         sprod;      	  # (chi_M,psi)
         
 
@@ -957,10 +980,10 @@ function( FG, chi )
     return SimpleAlgebraByData( [ sspsub[1][1], sspsub[2] ] );
  else
     x:=AddCrossedProductBySST( Exponent(G), 
-                              sspsub[1][1], 
-                              sspsub[2], 
-                              sspsub[4], 
-                              sspsub[3]);
+                               sspsub[1][1], 
+                               sspsub[2], 
+                               sspsub[4], 
+                               sspsub[3]);
      if not IsInt(x[1]) then 
       Print("Wedderga: Warning!\nThe output is a FRACTIONAL MATRIX ALGEBRA!!!\n\n");
      fi;                         
@@ -974,11 +997,11 @@ end);
 #############################################################################
 ## 
 #O SimpleAlgebraByCharacter( FG, chi ) 
-#
-# The input is a semisimple infinite group algebra and an irreducible character
-# of the finite group G.
-#
-# The output is a crossed product or the matrix algebra over the crossed 
+##
+## The input is a semisimple infinite group algebra and an irreducible character
+## of the finite group G.
+##
+## The output is a crossed product or the matrix algebra over the crossed 
 ## product, the simple component of FG gven by the character chi.
 ##
 InstallMethod( SimpleAlgebraByCharacter,

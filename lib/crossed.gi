@@ -223,10 +223,11 @@ InstallMethod( \*,
     [ IsElementOfCrossedProduct,
       IsElementOfCrossedProduct ],
     function( x, y )
-    local F, prod, z, mons, cofs, i, j, c, Twisting, Action;
+    local F, prod, z, mons, cofs, i, j, c, Twisting, Action, R;
     F := FamilyObj( x );
     Twisting := F!.twisting;
     Action := F!.action;
+    R := F!.crossedProduct;
     z := ZeroCoefficient( x );
     x := CoefficientsAndMagmaElements( x );
     y := CoefficientsAndMagmaElements( y );
@@ -239,7 +240,7 @@ InstallMethod( \*,
 	# we compute product of the coefficients as follows 
         # (x * a1) * (y * a2) = (x) * (y) * a1^action(y) * a2 = 
         # (x * y) * twisting(x,y) *a1^action(y) * a2 
-        c := Twisting(x[i],y[j]) * ( x[i+1]^Action(y[j]) * y[j+1] );
+        c := Twisting(R,x[i],y[j]) * ( x[i+1]^Action(R,y[j]) * y[j+1] );
 	    if c <> z  then
 	      ##  add the product of the monomials
 	      Add( mons, x[i] * y[j] );
@@ -347,8 +348,10 @@ InstallMethod( \*,
 #M  \*( <r>, <x> )  . . . . . . . .  for rational and crossed product element
 ##
 RingElmTimesCrossedElm := function( x, y )
-    local F, i, z;
+    local F, i, z, Action, R;
     F:= FamilyObj( y );
+    Action := F!.action;
+    R := F!.crossedProduct;
     z:= ZeroCoefficient( y );
     y:= ShallowCopy( CoefficientsAndMagmaElements( y ) );
     # if x is rational, it will be fixed by action
@@ -358,7 +361,7 @@ RingElmTimesCrossedElm := function( x, y )
       od;
     else
       for i in [ 2, 4 .. Length(y) ] do
-        y[i]:= x^F!.action(y[i-1]) * y[i];
+        y[i]:= x^Action(R,y[i-1]) * y[i];
       od;
     fi;
     return Objectify( F!.defaultType, [ z, FMRRemoveZero( y, z ) ] );
@@ -582,6 +585,11 @@ function( R, G, act, twist )
     RG:= Objectify( NewType( CollectionsFamily( F ),
                             IsCrossedProduct and IsAttributeStoringRep ),
                       rec() );
+
+    # Store RG in the family of its elements to make it possible
+    # to extract from RG the data for action and twisting, stored 
+    # in OperationRecord( RG )
+    F!.crossedProduct := RG;
 
     # Set the necessary attributes.
     SetLeftActingDomain( RG, R );

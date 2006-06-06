@@ -75,6 +75,13 @@ DeclareAttribute( "UnderlyingMagma", IsCrossedProduct );
 
 #############################################################################
 ##
+#A  OperationRecord( <RM> )
+##
+DeclareAttribute( "OperationRecord", IsCrossedProduct );
+
+
+#############################################################################
+##
 #A  ActionForCrossedProduct( <RM> )
 ##
 DeclareAttribute( "ActionForCrossedProduct", IsCrossedProduct );
