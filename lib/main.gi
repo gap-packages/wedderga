@@ -90,7 +90,7 @@ end);
 ## stores the result as an attribute of FG. 
 ##
 InstallMethod( WedderburnDecomposition, 
-    "for semisimple finte group algebra", 
+    "for semisimple finite group algebra", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra ], 
     0,
@@ -108,7 +108,8 @@ local G,      # Underlying group of FG
       cdata,  #  list of the form [x,n], where x is an irredicible character and
               #  n is the number of times is appears in data
       x,n,i,  #  counters
-      wd;     #
+      wd,     #
+      L;      #
 
 G := UnderlyingMagma(FG);
 F := LeftActingDomain(FG);
@@ -136,7 +137,12 @@ od;
 wd := [];
 for x in cdata do;
     for i in [1..m*x[2]/x[1][2]] do
-        Add(wd, FullMatrixAlgebra(GF(p^x[1][2]), x[1][1]));
+        if IsCheapConwayPolynomial(p,x[1][2]) then
+            L := GF( p, ConwayPolynomial(p,x[1][2]) );
+        else
+            L := GF( p, RandomPrimitivePolynomial(p,x[1][2]) ); 
+        fi;
+        Add(wd, FullMatrixAlgebra(L, x[1][1]));
     od;
 od;
 
