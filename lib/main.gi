@@ -837,7 +837,7 @@ else
              local orderroot, cocycle;
              orderroot := OperationRecord(RG).orderroot;
              cocycle   := OperationRecord(RG).cocycle;             
-             return E(orderroot)^cocycle(Int(a),Int(b));
+              return E(orderroot)^Int(cocycle(a,b));
              end;
 
     R := CrossedProduct( L, algdata[4], act, coc );
