@@ -412,7 +412,7 @@ coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
         Sum(T,t-> 
 cocSSPcond(t*a*CanonicalRightCosetElement(Galcomp,t*a)^-1,
         CanonicalRightCosetElement(Galcomp,t*a)*b*
-        CanonicalRightCosetElement(Galcomp,t*a*b)^-1)*Int(t)
+        CanonicalRightCosetElement(Galcomp,t*a*b)^-1)*t^-1
             )*pow;
     fi;  
   end;
