@@ -46,6 +46,18 @@ R -> Characteristic(LeftActingDomain(R))=0 and IsFinite(UnderlyingMagma(R)));
 InstallImmediateMethod( IsCFGroupAlgebra,
     IsGroupRing, 
     0,
+R -> IsCyclotomicField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
+
+#############################################################################
+##
+#P IsSemisimpleANFGroupAlgebra( FG )
+##  
+## The function checks whether a group ring is a group algebra of a finite
+## group over an abelian number field
+##
+InstallImmediateMethod( IsSemisimpleANFGroupAlgebra,
+    IsGroupRing, 
+    0,
 R -> IsAbelianNumberField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
 
 
