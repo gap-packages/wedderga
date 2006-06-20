@@ -276,73 +276,6 @@ end);
 
 
 
-#############################################################################
-##
-#F PrimitiveCentralIdempotentsByCharacterTable( QG )
-##
-## The function PrimitiveCentralIdempotentsByCharacterTable 
-## uses the character table of G to compute the primitive 
-## central idempotents of QG with the classical method.
-##
-InstallGlobalFunction( PrimitiveCentralIdempotentsByCharacterTable, 
-function(QG) 
-local G,      # The group
-      OrderG, # Order of G
-      zero,   # Zero of QG
-      I,      # The irreducible characters of G
-      rat,    # rational irreducible characters (Galois orbit sums)
-      norms,  # norms of the orbit sums
-      Id,     # The list of primitive central idempotents of QG computed
-      nccl,
-      i,
-      chi,    # one entry in `rat'
-      eC,     # one primitive central idempotent of QG
-      j,      # loop over class positions
-      F, c, elms, val, k, tbl, fusions, deg;
-
-    # First check if `QG' is a rational group algebra of a finite group.
-    if not ( IsFreeMagmaRing( QG ) and IsGroup( UnderlyingMagma( QG ) )
-             and IsRationals( LeftActingDomain( QG ) ) ) then
-      Error( "The input must be a rational group algebra" );
-    fi;
-
-    # Initialization
-    G:= UnderlyingMagma( QG );
-    elms:= Elements( G );
-    OrderG:= Size( G );
-    zero:= Zero( QG );
-		       
-    # Compute the irreducible characters.
-    IsSupersolvable( G );
-    tbl:= CharacterTable( G );
-    I:= List( Irr( G ), ValuesOfClassFunction );
-
-    # Compute the Galois orbit sums.
-    rat:= RationalizedMat( I );
-    norms:= List( rat, x -> ScalarProduct( tbl, x, x ) );
-
-    # Compute the PCIs of QG.
-    F:= FamilyObj( zero );
-    fusions:= List( ConjugacyClasses( tbl ),
-                    c -> List( Elements( c ),
-                               x -> PositionSorted( elms, x ) ) );
-    Id:= [];
-    nccl:= Length( I );    
-    for i in [ 1 .. Length( rat ) ] do
-      chi:= rat[i];
-      deg:= chi[1] / norms[i];
-      eC:= 0 * [ 1 .. OrderG ] + 1;
-      for j in [ 1 .. nccl ] do
-        val:= chi[j] * deg / OrderG;
-        for k in fusions[j] do
-          eC[k]:= val;
-        od;
-      od;
-      Add( Id, ElementOfMagmaRing( F, 0, eC, elms ) );
-    od;
-
-    return Id;
-end);
  
 
 #############################################################################
@@ -400,3 +333,190 @@ end);
 ##
 #E
 ##
+
+
+
+
+
+
+#############################################################################
+##
+#O PrimitiveCentralIdempotentsByCharacterTable( FG )
+##
+## The function PrimitiveCentralIdempotentsByCharacterTable 
+## uses the character table of G to compute the primitive 
+## central idempotents of the group algebra FG with the classical method.
+##
+InstallMethod( PrimitiveCentralIdempotentsByCharacterTable, 
+"for SemisimpleANFGroupAlgebras", 
+    true, 
+    [ IsSemisimpleANFGroupAlgebra ], 
+    0,
+function(FG) 
+local G,         # Underlying group of FG
+      F,         # Coefficient field of FG
+      irr,       # The irreducible characters of G
+      galmat,    # the output of the function GaloisMat(irr).galoisfams (the 
+                 # fuction GaloisMat computes the complete orbits under the 
+                 # operation of the Galois group of the (irrational) entries of 
+                 # irr), that is a list, its entries are either 1, 0, -1, or lists
+      galirr,    # function which computes for the character chi and the field F, 
+                 # the Galois group of the extension 
+                 # Field(chi)/Intersection(Field(chi),F);  
+      gal,       # List of Galois groups as outputs of galirr for chi in Irr(G)
+      cong,      # function with input a list l and a list of Galois groups gal
+      posit, # function that computes the positions of galmat in gal
+      irrClasses,# the positions of galmat in gal
+      coef,      # list of coefficients
+      cc,        # Conjugacy classes of G
+      idem;      # List of idempotents, the output
+      
+
+    
+  F := LeftActingDomain(FG);
+  G := UnderlyingMagma(FG);
+
+ # Computes the Galois orbit sums
+  irr := Irr(G);
+  galmat := GaloisMat(irr).galoisfams;
+
+  galirr:=function(chi,F)
+        return GaloisGroup(AsField(Intersection(Field(chi),F),Field(chi)));
+        end;
+        
+  gal := List( irr , x->galirr(x,F) );
+
+# The function cong is used to classified the second component of the entries of
+# a list l (whose entries are integers representing an automorphism of a 
+# cyclotomic field as the exponent of the action on roots of unity) into 
+# congruence classes modulo the Galois group gal
+
+cong := function(l,gal)
+
+  local gn,cond,remainder,length,pos,x,pospar;
+  
+  gn := Group(List(gal,x->x^GalToInt(gal)));
+  cond := Conductor(Source(One(gal)));
+  remainder := l[2];
+  length := Length(l[2]);
+  pos := [];
+  while remainder<>[] do
+    x:=remainder[1];
+    pospar := Filtered([1..length],y->ZmodnZObj(x,cond)*ZmodnZObj(l[2][y],cond)^-1 in gn);
+    Add(pos,pospar);
+    remainder := Difference(remainder,List(pospar,i->l[2][i]));
+  od;
+  
+  return List(pos,y->List(y,i->l[1][i]));
+
+end;  
+     
+# Computes the positions corresponding to the classes given by cong applied to
+# entries of galmat and gal 
+ 
+posit := function(galmat,gal)
+
+  local posi,i;
+  
+  posi := [];
+  for i in [1..Length(galmat)] do
+    if galmat[i] = 1 then 
+      Add(posi,[i]);
+    elif IsList(galmat[i]) then 
+      posi := Concatenation( posi , cong( galmat[i] , gal[i] ) );
+    fi;
+  od;
+  
+  return posi;
+end;
+
+ # main part of the function
+  irrClasses := posit(galmat,gal);
+  coef := List(irrClasses,x->Sum(x,y->irr[y]*irr[y][1]));
+  cc := ConjugacyClasses(G);
+  
+  idem := List(coef, chi -> Sum( cc , X -> ElementOfMagmaRing( 
+                                          FamilyObj( Zero( FG ) ), 
+                                          Zero( F ), 
+                                          List(X,x->Representative(X)^chi/Size(G)), 
+                                          AsList(X) ) 
+                               ) 
+              );
+  
+  return idem;   
+end);		       
+
+
+######################################################################################
+# E   
+
+
+
+
+#############################################################################
+##
+#F PrimitiveCentralIdempotentsByCharacterTable( QG ) (RATIONAL VERSION)
+##
+## The function PrimitiveCentralIdempotentsByCharacterTable 
+## uses the character table of G to compute the primitive 
+## central idempotents of QG with the classical method.
+##
+# InstallGlobalFunction( PrimitiveCentralIdempotentsByCharacterTable, 
+# function(QG) 
+# local G,      # The group
+#       OrderG, # Order of G
+#       zero,   # Zero of QG
+#       I,      # The irreducible characters of G
+#       rat,    # rational irreducible characters (Galois orbit sums)
+#       norms,  # norms of the orbit sums
+#       Id,     # The list of primitive central idempotents of QG computed
+#       nccl,
+#       i,
+#       chi,    # one entry in `rat'
+#       eC,     # one primitive central idempotent of QG
+#       j,      # loop over class positions
+#       F, c, elms, val, k, tbl, fusions, deg;
+# 
+#     # First check if `QG' is a rational group algebra of a finite group.
+#     if not ( IsFreeMagmaRing( QG ) and IsGroup( UnderlyingMagma( QG ) )
+#              and IsRationals( LeftActingDomain( QG ) ) ) then
+#       Error( "The input must be a rational group algebra" );
+#     fi;
+# 
+#     # Initialization
+#     G:= UnderlyingMagma( QG );
+#     elms:= Elements( G );
+#     OrderG:= Size( G );
+#     zero:= Zero( QG );
+# 		       
+#     # Compute the irreducible characters.
+#     IsSupersolvable( G );
+#     tbl:= CharacterTable( G );
+#     I:= List( Irr( G ), ValuesOfClassFunction );
+# 
+#     # Compute the Galois orbit sums.
+#     rat:= RationalizedMat( I );
+#     norms:= List( rat, x -> ScalarProduct( tbl, x, x ) );
+# 
+#     # Compute the PCIs of QG.
+#     F:= FamilyObj( zero );
+#     fusions:= List( ConjugacyClasses( tbl ),
+#                     c -> List( Elements( c ),
+#                                x -> PositionSorted( elms, x ) ) );
+#     Id:= [];
+#     nccl:= Length( I );    
+#     for i in [ 1 .. Length( rat ) ] do
+#       chi:= rat[i];
+#       deg:= chi[1] / norms[i];
+#       eC:= 0 * [ 1 .. OrderG ] + 1;
+#       for j in [ 1 .. nccl ] do
+#         val:= chi[j] * deg / OrderG;
+#         for k in fusions[j] do
+#           eC[k]:= val;
+#         od;
+#       od;
+#       Add( Id, ElementOfMagmaRing( F, 0, eC, elms ) );
+#     od;
+# 
+#     return Id;
+# end);
