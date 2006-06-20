@@ -34,7 +34,7 @@
 InstallMethod( WedderburnDecomposition, 
     "for semisimple group algebra over cyclotomic fields", 
     true, 
-    [ IsCFGroupAlgebra ], 
+    [ IsSemisimpleANFGroupAlgebra ], 
     0,
 function( FG )
 
@@ -58,7 +58,7 @@ end);
 InstallMethod( WeddDecomp, 
     "for semisimple group algebra over cyclotomic fields", 
     true, 
-    [ IsCFGroupAlgebra ], 
+    [ IsSemisimpleANFGroupAlgebra ], 
     0,
 function( FG )
 local   A,      # Simple algebra
@@ -67,7 +67,7 @@ local   A,      # Simple algebra
         
 output := [];
 
-if IsCFGroupAlgebra( FG ) then
+if IsSemisimpleANFGroupAlgebra( FG ) then
  
   for x in GenWeddDecomp( FG ) do
     A := SimpleAlgebraByData(x);
@@ -162,7 +162,7 @@ end);
 InstallMethod( WedderburnDecompositionInfo , 
     "for semisimple group algebra over cyclotomic fields", 
     true, 
-    [ IsCFGroupAlgebra ], 
+    [ IsSemisimpleANFGroupAlgebra ], 
     0,
 function( FG )
 
@@ -182,7 +182,7 @@ G := UnderlyingMagma(FG);
 F:=LeftActingDomain(FG);
 output := [];
 
-if IsCFGroupAlgebra(FG) then
+if IsSemisimpleANFGroupAlgebra(FG) then
     
     for i in GenWeddDecomp(FG) do
       A := SimpleAlgebraInfoByData(i);
@@ -875,7 +875,7 @@ end);
 InstallMethod( SimpleAlgebraByCharacter,
 "for semisimple infinite group algebras",
 true,
-[ IsCFGroupAlgebra, IsCharacter ],
+[ IsSemisimpleANFGroupAlgebra, IsCharacter ],
 0,
 function( FG, chi )
  local G,               # underlying group 
@@ -1306,7 +1306,7 @@ end);
 InstallMethod( SimpleAlgebraByCharacterInfo,
 "for semisimple infinite group algebras",
 true,
-[ IsCFGroupAlgebra, IsCharacter ],
+[ IsSemisimpleANFGroupAlgebra, IsCharacter ],
 0,
 function( FG, chi )
 
