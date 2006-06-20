@@ -346,6 +346,7 @@ end);
 ## The function PrimitiveCentralIdempotentsByCharacterTable 
 ## uses the character table of G to compute the primitive 
 ## central idempotents of the group algebra FG with the classical method.
+## FOR SEMISIMPLE ABELIAN NUMBER FIELD GROUP ALGEBRAS
 ##
 InstallMethod( PrimitiveCentralIdempotentsByCharacterTable, 
 "for SemisimpleANFGroupAlgebras", 
@@ -371,6 +372,7 @@ local G,         # Underlying group of FG
       cc,        # Conjugacy classes of G
       idem;      # List of idempotents, the output
       
+
 
     
   F := LeftActingDomain(FG);
@@ -446,9 +448,83 @@ end;
   return idem;   
 end);		       
 
+######################################################################################
+# E   
+
+
+
+#############################################################################
+##
+#O PrimitiveCentralIdempotentsByCharacterTable( FG )
+##
+## The function PrimitiveCentralIdempotentsByCharacterTable 
+## uses the character table of G to compute the primitive 
+## central idempotents of the group algebra FG with the classical method.
+## FOR SEMISIMPLE FINITE GROUP ALGEBRAS
+##
+InstallMethod( PrimitiveCentralIdempotentsByCharacterTable, 
+"for SemisimpleFiniteGroupAlgebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra ], 
+    0,
+function(FG) 
+local G,         # Underlying group of FG
+      F,         # Coefficient field of FG
+      p,         # Characteristic 
+      irr,       # The irreducible characters of G
+      irrp,      # irr module p
+      cfs,       # character fields
+      galirr,    # Galois groups
+      remainder, # remaining positions
+      SumIrrClass, # F-Characters 
+      i,         # counter
+      oneclass,  # List of Galois groups as outputs of galirr for chi in Irr(G)
+      positions, # positions of Galois conjugate irreducible characters
+      cc,        # Conjugacy classes of G
+      idem;      # List of idempotents, the output
+      
+
+
+    
+  F := LeftActingDomain(FG);
+  p := Characteristic(F);
+  G := UnderlyingMagma(FG);
+
+ # Computes the Galois orbit sums
+  irr := Irr(G);
+  irrp := List( irr , x -> Character(G , List( x, y -> FrobeniusCharacterValue(  y , p ) ) ) );
+  cfs := List( irrp , x -> Field(x) );
+  galirr := List( cfs , x -> GaloisGroup( AsField( Intersection( F , x ) , x ) ) );
+  
+  remainder := [1..Length(irrp)];
+  SumIrrClass := [];
+  
+  while remainder <> [] do
+    i := remainder[1];
+    oneclass := List( galirr[i] , x -> Character( G , List( irrp[i] , y -> y^x )) );
+    Add( SumIrrClass , irr[i][1]*Sum( oneclass ) );
+    positions := List( oneclass, x -> Position( irrp , x ) );
+    remainder := Difference( remainder , positions );
+  od;
+  
+ # Compute idempotents 
+  cc := ConjugacyClasses(G);
+  
+  idem := List(SumIrrClass, chi -> Sum( cc , X -> ElementOfMagmaRing( 
+                                          FamilyObj( Zero( FG ) ), 
+                                          Zero( F ), 
+                                          List(X,x->Representative(X)^chi/Size(G)), 
+                                          AsList(X) ) 
+                               ) 
+              );
+  
+  return idem;   
+end);		       
 
 ######################################################################################
 # E   
+
+
 
 
 
