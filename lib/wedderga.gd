@@ -99,6 +99,7 @@ DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
 #DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 DeclareOperation( "PrimitiveCentralIdempotentsByCharacterTable", [ IsSemisimpleANFGroupAlgebra ] );
+DeclareOperation( "PrimitiveCentralIdempotentsByCharacterTable", [ IsSemisimpleFiniteGroupAlgebra ] );
 
 #################### bw.gi #####################
 
