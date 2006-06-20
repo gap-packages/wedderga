@@ -23,13 +23,14 @@ DeclareProperty( "IsSemisimpleRationalGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsZeroCharacteristicGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsCFGroupAlgebra", IsGroupRing );
+DeclareProperty( "IsSemisimpleANFGroupAlgebra", IsGroupRing );
 
 #################### main.gi #####################
 
-DeclareOperation( "WedderburnDecomposition", [IsCFGroupAlgebra] );
+DeclareOperation( "WedderburnDecomposition", [IsSemisimpleANFGroupAlgebra] );
 DeclareOperation( "WedderburnDecomposition", [IsSemisimpleFiniteGroupAlgebra] );
-DeclareAttribute( "WeddDecomp", IsCFGroupAlgebra );
-DeclareAttribute( "WedderburnDecompositionInfo", IsCFGroupAlgebra );
+DeclareAttribute( "WeddDecomp", IsSemisimpleANFGroupAlgebra );
+DeclareAttribute( "WedderburnDecompositionInfo", IsSemisimpleANFGroupAlgebra );
 DeclareAttribute( "WedderburnDecompositionInfo", IsSemisimpleFiniteGroupAlgebra );
 
 DeclareOperation( "SimpleAlgebraByStronglySP", [ IsGroupRing, 
@@ -56,9 +57,9 @@ DeclareAttribute( "WeddDecompData", IsGroup );
 DeclareOperation( "GenWeddDecomp", [ IsGroupAlgebra ] );
 DeclareOperation( "SimpleAlgebraByData", [ IsList ] );
 DeclareOperation( "SimpleAlgebraInfoByData", [ IsList ] );
-DeclareOperation( "SimpleAlgebraByCharacter", [ IsCFGroupAlgebra, IsCharacter ] );
+DeclareOperation( "SimpleAlgebraByCharacter", [ IsSemisimpleANFGroupAlgebra, IsCharacter ] );
 DeclareOperation( "SimpleAlgebraByCharacter", [ IsSemisimpleFiniteGroupAlgebra, IsCharacter]);
-DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsCFGroupAlgebra, IsCharacter ] );
+DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleANFGroupAlgebra, IsCharacter ] );
 DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleFiniteGroupAlgebra, IsCharacter ] );
 
 #################### idempot.gi #####################
@@ -96,7 +97,8 @@ DeclareOperation( "PrimitiveCentralIdempotentBySP",
 DeclareOperation( "IsShodaPair", [ IsGroup, IsGroup, IsGroup ]);
 
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
-DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
+#DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
+DeclareOperation( "PrimitiveCentralIdempotentsByCharacterTable", [ IsSemisimpleANFGroupAlgebra ] );
 
 #################### bw.gi #####################
 
