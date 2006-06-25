@@ -1528,7 +1528,6 @@ G := UnderlyingMagma( FqG );
 if IsStronglyShodaPair(G, K, H ) then
   n := Index( K, H );
   if c<n and Gcd( c, n ) = 1 then
-    Print("pasé");
     return SimpleAlgebraByStronglySPInfoNC( FqG, K, H, c );
   else 
     Error("Wedderga: <c> should be coprime with the index of <H> in <K>\n");
