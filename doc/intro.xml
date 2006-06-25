@@ -85,15 +85,14 @@ gap> WedderburnDecomposition( FG );
     with 2 generators and center=CF(5)> ]
 gap> FG := GroupRing( GF(5), SymmetricGroup(4) ); 
 <algebra-with-one over GF(5), with 2 generators>
-gap> WedderburnDecomposition( FG );              
-[ GF(5), GF(5), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 2, 2 ] ) ]
+gap> WedderburnDecomposition( FG );
+[ ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), 
+  ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ) ]
 gap> FG := GroupRing( GF(5), SmallGroup(24,3) );
 <algebra-with-one over GF(5), with 4 generators>
-gap> WedderburnDecomposition( FG );             
-Wedderga: Warning!!!
-The direct product of the output is a PROPER direct factor of the input! 
-[ GF(5), GF(5^2), ( GF(5)^[ 3, 3 ] ) ]
-
+gap> WedderburnDecomposition( FG );
+[ ( GF(5)^[ 1, 1 ] ), ( GF(5^2)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), 
+  ( GF(5^2)^[ 2, 2 ] ), ( GF(5)^[ 3, 3 ] ) ]
 ]]>
 </Example>
 

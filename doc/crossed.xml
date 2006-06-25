@@ -154,12 +154,11 @@ gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );
 <algebra-with-one over Rationals, with 4 generators>
 gap> R:=WedderburnDecomposition( QG )[4];
 <crossed product over GaussianRationals, with 2 generators and center=Rationals>
-gap> H:=UnderlyingMagma( R );
-<group of size 2 with 2 generators>
+gap> H:=UnderlyingMagma( R );;
 gap> fam:=ElementsFamily( FamilyObj( R ) );;
 gap> g:=ElementOfCrossedProduct( fam, 0, [ 1, E(4) ], AsList(H) );
 (ZmodnZObj( 1, 4 ))*(1)+(ZmodnZObj( 3, 4 ))*(E(4))
-gap> CoefficientsAndMagmaElements(x);    
+gap> CoefficientsAndMagmaElements(g);    
 [ ZmodnZObj( 1, 4 ), 1, ZmodnZObj( 3, 4 ), E(4) ]
 gap> h:=ElementOfCrossedProduct( fam, 0, [ E(4), 1 ], AsList(H) );     
 (ZmodnZObj( 1, 4 ))*(E(4))+(ZmodnZObj( 3, 4 ))*(1)
@@ -170,6 +169,7 @@ gap> g*E(4);
 gap> E(4)*g;     
 (ZmodnZObj( 1, 4 ))*(E(4))+(ZmodnZObj( 3, 4 ))*(1)
 gap> g*h;
+(ZmodnZObj( 1, 4 ))*(2*E(4))
 ]]>
 </Example>
 

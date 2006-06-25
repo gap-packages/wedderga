@@ -185,7 +185,7 @@ Wedderga: Warning!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
 gap> Length(pci);    
 6
-gap> spci:=PrimitiveCentralIdempotentsByStronglySP( QG );;
+gap> spci:=PrimitiveCentralIdempotentsByStronglySP( QG );;  
 Wedderga: Warning!!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
 gap> Length(spci);
@@ -237,12 +237,9 @@ true
 
 <Example>
 <![CDATA[
-gap> G:=SymmetricGroup(5);
-Sym( [ 1 .. 5 ] )
-gap> K:=Group([(1,2,3,4)]);
-Group([ (1,2,3,4) ])
-gap> H:=Group( () );
-Group(())
+gap> G:=SymmetricGroup(5);;
+gap> K:=Group([(1,2,3,4)]);;
+gap> H:=Group( () );;
 gap> FG:=GroupRing(GF(7),G);
 <algebra-with-one over GF(7), with 2 generators>
 gap> QG:=GroupRing(Rationals,G);
@@ -253,15 +250,6 @@ gap> IdempotentBySubgroups(FG,K,H,1);
 (Z(7)^4)*()+(Z(7))*(1,3)(2,4)
 gap> IdempotentBySubgroups(FG,K,H,[1,3]);
 (Z(7)^4)*()+(Z(7))*(1,3)(2,4)
-gap> IdempotentBySubgroups(FG,K,H,[1]);
-Error, Wedderga:
- <C> should be a cyclotomic class module the index of <H> on <K>
- called from
-<function>( <arguments> ) called from read-eval-loop
-Entering break read-eval-print loop ...
-you can 'quit;' to quit to outer loop, or
-you can 'return;' to continue
-brk>
 ]]>
 </Example>
 
@@ -298,12 +286,9 @@ The output of <E>IdempotentBySubgroups</E> is an idempotent in the corresponding
 
 <Example>
 <![CDATA[
-gap> G:=SymmetricGroup(5);
-Sym( [ 1 .. 5 ] )
-gap> K:=Group([(1,2,3,4)]);
-Group([ (1,2,3,4) ])
-gap> H:=Group( () );
-Group(())
+gap> G:=SymmetricGroup(5);;
+gap> K:=Group([(1,2,3,4)]);;
+gap> H:=Group( () );;
 gap> FG:=GroupRing(GF(7),G);
 <algebra-with-one over GF(7), with 2 generators>
 gap> QG:=GroupRing(Rationals,G);
@@ -323,15 +308,6 @@ gap> CentralElementBySubgroups(FG,K,H,[1,3]);
 (4,5)+(Z(7))*(1,2)(3,4)+(Z(7))*(1,2)(3,5)+(Z(7))*(1,3)(4,5)+(Z(7))*(1,3)
 (2,4)+(Z(7))*(1,3)(2,5)+(Z(7))*(1,4)(3,5)+(Z(7))*(1,4)(2,3)+(Z(7))*(1,4)
 (2,5)+(Z(7))*(1,5)(3,4)+(Z(7))*(1,5)(2,3)+(Z(7))*(1,5)(2,4)
-gap> CentralElementBySubgroups(FG,K,H,[1]);
-Error, Wedderga:
-<C> should be a cyclotomic class module the index of <H> on <K>
- called from
-<function>( <arguments> ) called from read-eval-loop
-Entering break read-eval-print loop ...
-you can 'quit;' to quit to outer loop, or
-you can 'return;' to continue
-brk>
 ]]>
 </Example>
 
