@@ -57,7 +57,8 @@ are realizations of the Wedderburn components of <A>FG</A> as algebras similar
 to cyclotomic algebras. Recall that the Brauer-Witt Theorem ensures 
 that every simple factor of a semisimple group ring <M>FG</M> is similar 
 (that is represents the same class in the Brauer group of its centre) 
-to a cyclotomic algebra <Cite Key="BR" />. <P/>
+to a cyclotomic algebra (<Cite Key="BR"/>, <Cite Key="Olteanu" />). 
+<P/>
 
 When <M>F</M> is a finite field,
 the simple factors of <A>FG</A> are also matrix algebras over division rings 
