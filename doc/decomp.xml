@@ -43,7 +43,10 @@
 <Example>
 <![CDATA[
 gap> WedderburnDecomposition( GroupRing( GF(5), DihedralGroup(16) ) );
-[ GF(5), GF(5), GF(5), GF(5), ( GF(5)^[ 2, 2 ] ), ( GF(5^2)^[ 2, 2 ] ) ]
+[ GF(5), GF(5), GF(5), GF(5), ( GF(5)^[ 2, 2 ] ), ( GF(5^2)^[ 2, 2 ] ) ] # OLD
+gap>  WedderburnDecomposition( GroupRing( GF(5), DihedralGroup(16) ) );
+[ ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), 
+  ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), ( GF(5^2)^[ 2, 2 ] ) ] # NEW!!!
 ]]>
 </Example>
 
@@ -63,16 +66,17 @@ gap> WedderburnDecomposition( GroupRing( Rationals, SymmetricGroup(4) ) );
 ]]>
 </Example>
 
-If not all the Wedderburn components of the input are realizable by strongly Shoda pairs, a warning message is displayed together with the output, like in the 
-following example for the smallest group with a monomial but non-strongly
+If not all the Wedderburn components of the input are realizable by strongly 
+Shoda pairs, a warning message is displayed together with the output, like 
+in the following example for the smallest group with a monomial but non-strongly
 monomial irreducible character:
 
 <Example>
 <![CDATA[
-gap> WedderburnDecomposition( GroupRing( GF(5), SmallGroup(48,28) ) );  
-Wedderga: Warning!!!
-The direct product of the output is a PROPER direct factor of the input! 
-[ GF(5), GF(5), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 2, 2 ] ) ]
+gap> WedderburnDecomposition( GroupRing( GF(5), SmallGroup(48,28) ) );
+[ ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), 
+  ( GF(5^2)^[ 2, 2 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), 
+  ( GF(5)^[ 4, 4 ] ) ] # NEW!!!
 ]]>
 </Example>
 
@@ -83,9 +87,17 @@ Nevertheless, we are able to give the full Wedderburn decomposition for group al
 gap> WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,28) ) );
 [ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
   <crossed product over CF(3), with 2 generators and center=Rationals>, 
-  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), 
-    with 2 generators and center=NF(8,[ 1, 7 ])>, ( <crossed product over CF(3),
-    with 2 generators and center=Rationals>^[ 1, 1 ] ) ]
+  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with 
+    2 generators and center=NF(8,[ 1, 7 ])>, 
+  ( <crossed product over CF(3), with 2 generators and center=Rationals>^
+    [ 1, 1 ] ) ] # OLD!!!
+gap> WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,28) ) );
+[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
+  <crossed product over CF(3), with 2 generators and center=Rationals>, 
+  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with 
+    2 generators and center=NF(8,[ 1, 7 ])>, 
+  ( <crossed product over CF(3), with 2 generators and center=Rationals>^
+    [ 2, 2 ] ) ] # NEW !!!
 gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,28) ) );
 [ CF(3), CF(3), ( CF(3)^[ 3, 3 ] ), ( CF(3)^[ 3, 3 ] ), ( CF(3)^[ 2, 2 ] ), 
   <crossed product over AsField( NF(24,[ 1, 7 ]), CF(24) ), 
@@ -121,19 +133,19 @@ gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,28) ) );
 gap> F:=FreeGroup("a","b");;a:=F.1;;b:=F.2;;rel:=[a^8,a^4*b^2,b^-1*a*b*a];;
 gap> Q16:=F/rel;; QQ16:=GroupRing( Rationals, Q16 );;
 gap> QS4:=GroupRing( Rationals, SymmetricGroup(4) );;
-gap>  WedderburnDecomposition(QQ16);
+gap> WedderburnDecomposition(QQ16);
 [ Rationals, Rationals, Rationals, Rationals, ( Rationals^[ 2, 2 ] ), 
   <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with 2 generators 
     and center=NF(8,[ 1, 7 ])> ]
 gap> WedderburnDecomposition( QS4 );  
 [ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
   <crossed product over CF(3), with 2 generators and center=Rationals> ]
-gap>  WedderburnDecompositionInfo(QQ16);
-[ [ 1, 1, [  ], [  ] ], [ 1, 2, [  ], [  ] ], [ 1, 2, [  ], [  ] ], 
-  [ 1, 2, [  ], [  ] ], [ 2, 2, [  ], [  ] ], [ 1, 8, [ [ 2, 7, 4 ] ], [  ] ] ]
-gap>  WedderburnDecompositionInfo(QS4);   
-[ [ 1, 1, [  ], [  ] ], [ 1, 2, [  ], [  ] ], [ 3, 2, [  ], [  ] ], 
-  [ 3, 2, [  ], [  ] ], [ 1, 3, [ [ 2, 2, 0 ] ], [  ] ] ]
+gap> WedderburnDecompositionInfo(QQ16);
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ] ]
+gap> WedderburnDecompositionInfo(QS4);  
+[ [ 1, Rationals ], [ 1, Rationals ], [ 3, Rationals ], [ 3, Rationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ] ]
 ]]>
 </Example>
 
@@ -183,12 +195,13 @@ for <C>SmallGroup(48,28)</C>. You can compare it with the output of
 <Example>
 <![CDATA[
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,28) ) );
-[ [ 1, 1, [  ], [  ] ], [ 1, 2, [  ], [  ] ], [ 3, 2, [  ], [  ] ], 
-  [ 3, 2, [  ], [  ] ], [ 1, 3, [ [ 2, 2, 0 ] ], [  ] ],
-  [ 1, 8, [ [ 2, 7, 4 ] ] ], [ 2, 6, [ [ 2, 5, 3 ] ] ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 3, Rationals ], [ 3, Rationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ], 
+  [ 2, Rationals, 6, [ 2, 5, 3 ] ] ]
 gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,28) ) );         
-[ [ 1, CF(3) ], [ 1, CF(3) ], [ 3, CF(3) ], [ 3, CF(3) ], [ 2, CF(3), 3 ], 
-  [ 1/2, NF(24,[ 1, 7 ]), 8, [ 2, 7, 4 ] ], [ 4, CF(3), 6 ] ]
+[ [ 1, CF(3) ], [ 1, CF(3) ], [ 3, CF(3) ], [ 3, CF(3) ], 
+  [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 4 ] ], 
+  [ 4, CF(3), 6, [ 1, 1, 0 ] ] ]
 ]]>
 </Example>
 
@@ -312,7 +325,7 @@ gap> FG:=GroupRing( GF(7), G );;
 gap> SimpleAlgebraByStronglySP( QG, K, H );
 <crossed product over CF(16), with 2 generators>
 gap> SimpleAlgebraByStronglySPInfo( QG, K, H );
-[ 1, 16, [ [ 2, 7, 8 ] ], [  ] ]
+[ 1, NF(16,[ 1, 7 ]), 16, [ [ 2, 7, 8 ] ], [  ] ]
 gap> SimpleAlgebraByStronglySPInfo( FG, K, H, [1,7] );
 [ 2, 7 ]
 gap> SimpleAlgebraByStronglySPInfo( FG, K, H, 1 );
