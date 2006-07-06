@@ -15,8 +15,7 @@
          Comm="Is a group algebra of a finite group over the field of char zero?" />
    <Description>
          Returns <K>true</K> if <A>KG</A> is the group algebra of a finite 
-         group over the field of characteristic zero, and <K>false</K> if 
-         <A>KG</A> is another kind of a group ring.
+         group over the field of characteristic zero, and <K>false</K> otherwise.
    </Description>
 </ManSection>
 
@@ -38,7 +37,7 @@ false
          Comm="Is rational group algebra of finite group?" />
    <Description>
          Returns <K>true</K> if <A>KG</A> is the rational group algebra of a finite 
-         group and <K>false</K> if <A>KG</A> is another kind of a group ring.
+         group and <K>false</K> otherwise.
    </Description>
 </ManSection>
 
@@ -56,6 +55,48 @@ false
 ]]>
 </Example>
 
+<ManSection>
+   <Prop Name="IsCFGroupAlgebra" 
+         Arg="KG"  
+         Comm="Is a group algebra of a finite group over a cyclotomic extension of the rationals?" />
+   <Description>
+         Returns <K>true</K> if <A>KG</A> is the group algebra of a finite 
+         group over a cyclotomic extension of the rationals and <K>false</K> otherwise.
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> IsCFGroupAlgebra( GroupRing( GaussianRationals, SmallGroup(28,1) ) );
+true
+gap> IsCFGroupAlgebra( GroupRing( NF(5,[1,4]) , SmallGroup(28,1) ) );
+false
+]]>
+</Example>
+
+
+<ManSection>
+   <Prop Name="IsSemisimpleANFGroupAlgebra" 
+         Arg="KG"  
+         Comm="Is a group algebra of a finite group over an abelian number field 
+         (a subfield of a cyclotomic extension of the rationals)?" />
+   <Description>
+         Returns <K>true</K> if <A>KG</A> is the group algebra of a finite 
+         group over a subfield of a cyclotomic extension of the rationals and <K>false</K> 
+         otherwise.
+   </Description>
+</ManSection>
+
+<Example>
+<![CDATA[
+gap> IsSemisimpleANFGroupAlgebra( GroupRing( NF(5,[4]) , CyclicGroup(28) ) );
+true
+gap> IsSemisimpleANFGroupAlgebra( GroupRing( GF(11) , CyclicGroup(28) ) );
+false
+]]>
+</Example>
+
+
 
 <ManSection>
    <Prop Name="IsSemisimpleFiniteGroupAlgebra" 
@@ -64,8 +105,7 @@ false
    <Description>
          Returns <K>true</K> if <A>KG</A> is a semisimple finite group algebra, 
          that is a group algebra of a finite group <M>G</M> over a field <M>K</M> 
-         of order coprime with the order of <M>G</M>, and <K>false</K> 
-         if <A>KG</A> is another kind of a group ring.
+         of order coprime with the order of <M>G</M>, and <K>false</K> otherwisse.
    </Description>
 </ManSection>
 

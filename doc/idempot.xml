@@ -29,6 +29,16 @@ gap> PrimitiveCentralIdempotentsByCharacterTable( QS3 );
 [ (1/6)*()+(-1/6)*(2,3)+(-1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(-1/6)*(1,3),
   (2/3)*()+(-1/3)*(1,2,3)+(-1/3)*(1,3,2), 
   (1/6)*()+(1/6)*(2,3)+(1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(1/6)*(1,3) ]
+gap> QG:=GroupRing( Rationals , SmallGroup(24,3) );
+<algebra-with-one over Rationals, with 4 generators>
+gap> FG:=GroupRing( CF(3) , SmallGroup(24,3) );
+<algebra-with-one over CF(3), with 4 generators>
+gap> pciQG := PrimitiveCentralIdempotentsByCharacterTable(QG);;
+gap> pciFG := PrimitiveCentralIdempotentsByCharacterTable(FG);;
+gap> Length(pciQG);
+5
+gap> Length(pciFG);
+7
 ]]>
 </Example>
 
@@ -173,7 +183,7 @@ true
 ]]>
 </Example>
 
-The output of <C>PrimitiveCentralIdempotentsBySP( QG )</C> contains 
+The output of <Ref Func="PrimitiveCentralIdempotentsBySP" /> contains 
 the output of <Ref Func="PrimitiveCentralIdempotentsByStronglySP" />, 
 possibly properly, as this is demonstrated in the next example.
 
@@ -192,6 +202,14 @@ gap> Length(spci);
 5
 gap> IsSubset(pci,spci);          
 true
+gap> QG:=GroupRing(Rationals,SmallGroup(1000,86));
+<algebra-with-one over Rationals, with 6 generators>
+gap> IsCompleteSetOfPCIs( QG , PrimitiveCentralIdempotentsBySP(QG) );
+true
+gap> IsCompleteSetOfPCIs( QG , PrimitiveCentralIdempotentsByStronglySP(QG) );
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input!
+false
 ]]>
 </Example>
 

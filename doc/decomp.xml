@@ -1,7 +1,6 @@
 <!-- $Id$ -->
 
 <!-- ********************Decomp******************** -->
-
 <Chapter Label="Decomp">
 <Heading>Wedderburn decomposition</Heading>
 
@@ -18,90 +17,95 @@
    </Returns>
    <Description>
          The input <A>FG</A> should be a group algebra of a finite group <M>G</M> 
-         over the field <M>F</M>, where <M>F</M> is either the field 
-         of characteristic zero or a finite field of characteristic coprime 
+         over the field <M>F</M>, where <M>F</M> is either and abelian number field 
+         (i.e. a subfield of a finite cyclotomic extension of the rationals) or a finite field of characteristic coprime 
          with the order of <M>G</M>. <P/> 
          
-         In the case of characteristic zero,
-         the function returns the list of all <E>Wedderburn components</E>
-         (<Ref Sect="WedDec" />) of the group algebra <A>FG</A>. <P/> 
+         The function returns the list of all <E>Wedderburn components</E>
+         (<Ref Sect="WedDec" />) of the group algebra <A>FG</A>. 
+         If <M>F</M> is an abelian number field then the Wedderburn components are given as matrix algebras
+         over cyclotomic algebras (<Ref Sect="Cyclotomic" />). 
+         If <M>F</M> is finite then the Wedderburn components are given as matrix algebras over finite fields.         
+         <P/> 
          
-         In the case of non-zero characteristic, it returns a list of
-         Wedderburn components of <A>FG</A> realizable by strongly Shoda pairs 
-         (see <Ref Sect="SSPDef" />) of the group <M>G</M>. If not all 
-         Wedderburn components of <A>FG</A> can be realizable by strongly
-         Shoda pairs, a warning will be displayed. 
-         For many groups <M>G</M> every Wedderburn component of <A>FG</A> 
-         is realizable by a strongly Shoda pair and then the direct product of 
-         the entries of the output is isomorphic to <A>FG</A>. 
-         For example this is the case if <M>G</M> is abelian-by-supersolvable 
-         <Cite Key="ORS" />. 
-   </Description>
+         
+            </Description>
 </ManSection>
 
 
 <Example>
 <![CDATA[
 gap> WedderburnDecomposition( GroupRing( GF(5), DihedralGroup(16) ) );
-[ GF(5), GF(5), GF(5), GF(5), ( GF(5)^[ 2, 2 ] ), ( GF(5^2)^[ 2, 2 ] ) ] # OLD
-gap>  WedderburnDecomposition( GroupRing( GF(5), DihedralGroup(16) ) );
-[ ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), 
-  ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), ( GF(5^2)^[ 2, 2 ] ) ] # NEW!!!
+[ ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ),
+  ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), ( GF(5^2)^[ 2, 2 ] ) ]
+gap> WedderburnDecomposition( GroupRing( Rationals, DihedralGroup(16) ) );
+[ Rationals, Rationals, Rationals, Rationals, ( Rationals^[ 2, 2 ] ),
+  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with
+    2 generators and center=NF(8,[ 1, 7 ])> ]
+gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup(16) ) );
+[ CF(5), CF(5), CF(5), CF(5), ( CF(5)^[ 2, 2 ] ),
+  <crossed product over AsField( NF(40,[ 1, 31 ]), CF(40) ), with
+    2 generators and center=NF(40,[ 1, 31 ])> ]
 ]]>
 </Example>
 
-The previous example shows that the Wedderburn decomposition of the group 
-algebra <M>GF(5) D_{16}</M> of the dihedral group of order <M>16</M> over the 
-field of order <M>5</M> is 
-<M>4 GF(5) \oplus M_2(GF(5)) \oplus M_2(GF(25))</M>. <P/>
+The previous examples show that if <M>D_{16}</M> denotes the dihedral group of order <M>16</M> then 
+the Wedderburn decompositions of <M>GF(5) D_{16}</M>, <M>QD_{16}</M> and <M>CF(5)</M> are
+  <Display>
+  GF(5) D_{16} = 4 GF(5) \oplus M_2(GF(5)) \oplus M_2(GF(25)).  
+  </Display>
+  <Display>
+  Q D_{16} = 4 Q \oplus M_2(Q) \oplus (K(\xi_8)/K,t).  
+  </Display>
+  <Display>
+  CF(5) D_{16} = 4 CF(5) \oplus M_2(CF(5)) \oplus (F(\xi_{40})/F,t).  
+  </Display>
+where <M>(K(\xi_8)/K,t)</M> is a cyclotomic algebra with centre  <M>K=NF(8,[ 1, 7 ])=Q(\sqrt{2})</M>, 
+<M>(F(\xi_{40})/F,t)</M> is a cyclotomic algebra with centre  <M>F=NF(40,[ 1, 31 ])</M> and <M>\xi_n</M> denotes a 
+<M>n</M>-th root of unity.
+<P/>
 
-Next example shows the Wedderburn decomposition of the rational group algebra of 
-the symmetric group on <M>4</M> letters.
+Two more example
 
 <Example>
 <![CDATA[
-gap> WedderburnDecomposition( GroupRing( Rationals, SymmetricGroup(4) ) );    
-[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
-  <crossed product over CF(3), with 2 generators and center=Rationals> ]
+gap> WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,15) ) );
+[ Rationals, Rationals, Rationals, Rationals, ( Rationals^[ 2, 2 ] ),
+  <crossed product over CF(3), with 2 generators and center=Rationals>,
+  ( CF(3)^[ 2, 2 ] ), <crossed product over CF(3), with
+    2 generators and center=Rationals>, <crossed product over AsField( NF(8,
+    [ 1, 7 ]), CF(8) ), with 2 generators and center=NF(8,[ 1, 7 ])>,
+  <crossed product over CF(12), with 4 generators and center=Rationals> ]
+gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,15) ) );
+[ CF(3), CF(3), CF(3), CF(3), ( CF(3)^[ 2, 2 ] ), ( CF(3)^[ 2, 2 ] ),
+  ( CF(3)^[ 2, 2 ] ), ( CF(3)^[ 2, 2 ] ), ( CF(3)^[ 2, 2 ] ),
+  <crossed product over AsField( NF(24,[ 1, 7 ]), CF(24) ), with
+    2 generators and center=NF(24,[ 1, 7 ])>,
+  ( <crossed product over AsField( CF(3), CF(12) ), with
+    2 generators and center=CF(3)>^[ 2, 2 ] ) ]
 ]]>
 </Example>
 
-If not all the Wedderburn components of the input are realizable by strongly 
-Shoda pairs, a warning message is displayed together with the output, like 
-in the following example for the smallest group with a monomial but non-strongly
-monomial irreducible character:
+In some exceptional cases, as in the following example, the output of WedderburnDecomposition do not provide
+a full matrix algebra of a cyclotomic algebra, but a "fractional matrix algebra". See <Ref Sect="WedDec" /> for 
+a theoretical explanation of this phenomenon. In that case a warning message is displayed.
 
 <Example>
 <![CDATA[
-gap> WedderburnDecomposition( GroupRing( GF(5), SmallGroup(48,28) ) );
-[ ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), 
-  ( GF(5^2)^[ 2, 2 ] ), ( GF(5)^[ 3, 3 ] ), ( GF(5)^[ 3, 3 ] ), 
-  ( GF(5)^[ 4, 4 ] ) ] # NEW!!!
-]]>
-</Example>
+gap> QG:=GroupRing(Rationals,SmallGroup(240,89));
+<algebra-with-one over Rationals, with 2 generators>
+gap> WedderburnDecomposition(QG);
+Wedderga: Warning!!!
+Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
-Nevertheless, we are able to give the full Wedderburn decomposition for group algebras of the same group in characteristic zero, for example:
-
-<Example>
-<![CDATA[
-gap> WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,28) ) );
-[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
-  <crossed product over CF(3), with 2 generators and center=Rationals>, 
-  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with 
-    2 generators and center=NF(8,[ 1, 7 ])>, 
-  ( <crossed product over CF(3), with 2 generators and center=Rationals>^
-    [ 1, 1 ] ) ] # OLD!!!
-gap> WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,28) ) );
-[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
-  <crossed product over CF(3), with 2 generators and center=Rationals>, 
-  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with 
-    2 generators and center=NF(8,[ 1, 7 ])>, 
-  ( <crossed product over CF(3), with 2 generators and center=Rationals>^
-    [ 2, 2 ] ) ] # NEW !!!
-gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,28) ) );
-[ CF(3), CF(3), ( CF(3)^[ 3, 3 ] ), ( CF(3)^[ 3, 3 ] ), ( CF(3)^[ 2, 2 ] ), 
-  <crossed product over AsField( NF(24,[ 1, 7 ]), CF(24) ), 
-    with 2 generators and center=NF(24,[ 1, 7 ])>, ( CF(3)^[ 4, 4 ] ) ]
+[ Rationals, Rationals, <crossed product over CF(5), with
+    4 generators and center=Rationals>, ( Rationals^[ 4, 4 ] ),
+  ( Rationals^[ 4, 4 ] ), ( Rationals^[ 5, 5 ] ), ( Rationals^[ 5, 5 ] ),
+  ( Rationals^[ 6, 6 ] ),
+  [ 1/2, <crossed product over AsField( NF(12,[ 1, 11 ]), CF(60) ), with
+        8 generators and center=NF(12,[ 1, 11 ])> ],
+  [ 3/4, <crossed product over AsField( NF(8,[ 1, 7 ]), CF(40) ), with
+        8 generators and center=NF(8,[ 1, 7 ])> ] ]
 ]]>
 </Example>
 
@@ -119,14 +123,34 @@ gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,28) ) );
    </Returns>
    <Description>
          This function is a counterpart of <Ref Attr="WedderburnDecomposition" />
-         which uses the same group algebra <A>FG</A> as an input and 
-         computes some numerical data describing the Wedderburn components 
-         (see <Ref Sect="WedDec" />) of the group algebra <A>FG</A> with the 
-         same limitations in the case of non-zero characteristic as in 
-         <Ref Attr="WedderburnDecomposition" />.
-         See <Ref Sect="SSPDef" /> for further interpretation of the output.
+         which uses the same group algebra <A>FG</A> as input and 
+         computes the numerical data describing the Wedderburn components 
+         of the group algebra <A>FG</A>.<P/>
+         
+         The entries in the output are list of length 2, 4 or 5. The interpretation of this list is explaine in
+         (see <Ref Sect="NumDesc" />).
    </Description>
 </ManSection>
+
+<Example>
+<![CDATA[
+gap> WedderburnDecompositionInfo( GroupRing( Rationals, DihedralGroup(16) ) )
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
+  [ 2, Rationals ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ] ]
+gap> WedderburnDecompositionInfo( GroupRing( CF(5), DihedralGroup(16) ) );
+[ [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 2, CF(5) ],
+  [ 1, NF(40,[ 1, 31 ]), 8, [ 2, 7, 0 ] ] ]
+]]>
+</Example>
+
+An intrepretation of the previous example <Ref Sect="NumDesc" /> give rise to the following Wedderburn decompositions
+where <M>F=NF(40,[ 1, 31 ])</M>.
+  <Display>
+  Q D_{16} = 4 Q \oplus M_2(Q) \oplus M_2(Q(\sqrt{2})).  
+  </Display>
+  <Display>
+  CF(5) D_{16} = 4 CF(5) \oplus M_2(CF(5)) \oplus M_2(F(\sqrt{2}).  
+  </Display>
 
 <Example>
 <![CDATA[
@@ -156,12 +180,12 @@ For both group algebras we used both <Ref Attr="WedderburnDecomposition" /> and
 <Ref Attr="WedderburnDecompositionInfo" />. <P/>
 
 The output <Ref Attr="WedderburnDecomposition" /> shows that 
-<Display>
-QQ_{16} = 4 \Q \oplus M_2(\Q) \oplus A 
-</Display>
-<Display>
-QS_{4} = 2Q \oplus 2 M_2(\Q) \oplus B
-</Display>
+  <Display>
+  QQ_{16} = 4 \Q \oplus M_2(\Q) \oplus A 
+  </Display>
+  <Display>
+  QS_{4} = 2Q \oplus 2 M_2(\Q) \oplus B
+  </Display>
 where <M>A</M> and <M>B</M> are crossed products with coefficients in the 
 cyclotomic fields <M>CF(8)</M> and <M>CF(3)</M> respectively. 
 This output can be used as a &GAP; object, but it does not give clear 
@@ -188,20 +212,24 @@ However the relation <M>g^2=-1</M> in <M>A</M> shows that
 and so <M>A</M> is a division algebra with centre <M>Q(\sqrt{2})</M>, which is a 
 subalgebra of the algebra of Hamiltonian quaternions. <P/>
 
-In the next example we show the output of <C>WedderburnDecompositionInfo</C> 
-for <C>SmallGroup(48,28)</C>. You can compare it with the output of
+Next examples show the output of <C>WedderburnDecompositionInfo</C> 
+for <M>QG</M> where <M>G=SmallGroup(48,28)</M>. You can compare it with the output of
 <Ref Attr="WedderburnDecomposition" /> for the same group in the previous section.
+Notice that the last entry of the the Wedderburn decomposition of <M>QG</M> is not presented as a matrix
+algebra of a cyclic algebra but this is not the case for the corresponding entry of <M>CF(3)G</M>.
 
 <Example>
 <![CDATA[
-gap> WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,28) ) );
-[ [ 1, Rationals ], [ 1, Rationals ], [ 3, Rationals ], [ 3, Rationals ], 
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ], 
-  [ 2, Rationals, 6, [ 2, 5, 3 ] ] ]
-gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,28) ) );         
-[ [ 1, CF(3) ], [ 1, CF(3) ], [ 3, CF(3) ], [ 3, CF(3) ], 
-  [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 4 ] ], 
-  [ 4, CF(3), 6, [ 1, 1, 0 ] ] ]
+gap> WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,15) ) );
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
+  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ],
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ],
+  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
+gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
+[ [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 2, CF(3) ],
+  [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 2, CF(3) ], [ 2, CF(3) ],
+  [ 2, CF(3), 6, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 0 ] ],
+  [ 2, CF(3), 12, [ 2, 7, 0 ] ] ]
 ]]>
 </Example>
 
@@ -337,19 +365,34 @@ gap> SimpleAlgebraByStronglySPInfo( FG, K, H, 1 );
 
 <ManSection>
    <Oper Name="SimpleAlgebraByCharacter" 
-         Arg="QG chi"  
-         Comm="The Wedderburn component of the group algebra QG 
+         Arg="FG chi"  
+         Comm="The Wedderburn component of the group algebra FG 
          determined by the irreducible character chi" />
    <Returns>
-         numerical description of one simple algebra
+         A simple algebra.
    </Returns>
    <Description>
+        The first input <A>FG</A> is a semisimple group algebra over a finite group <M>G</M> and the second
+        input is an irreducible character of <M>G</M>.
+        
+        The output is a matrix algebra of a cyclotomic algebra which is isomorphic to the unique 
+        Wedderburn component <M>A</M> of <A>FG</A> such that <M>\chi(A)\ne 0</M>.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap>
+gap> A5 := AlternatingGroup(5);
+Alt( [ 1 .. 5 ] )
+gap> SimpleAlgebraByCharacter( GroupRing( Rationals , A5 ) , Irr( A5) [3] );
+( NF(5,[ 1, 4 ])^[ 3, 3 ] )
+gap> SimpleAlgebraByCharacter( GroupRing( GF(7) , A5 ) , Irr( A5) [3] );
+( GF(7^2)^[ 3, 3 ] )
+gap> G:=SmallGroup(128,100);
+<pc group of size 128 with 7 generators>
+gap> SimpleAlgebraByCharacter( GroupRing( Rationals , G ) , Irr(G)[19] );
+<crossed product over AsField( NF(8,[ 1, 3 ]), CF(8) ), with
+2 generators and center=NF(8,[ 1, 3 ])>
 ]]>
 </Example>
 
@@ -362,15 +405,31 @@ gap>
          Comm="The numerical data describing the output of
          SimpleAlgebraByCharacter" />
    <Returns>
-         The numerical description of SimpleAlgebraByStronglySP output
+         The numerical description of the output of SimpleAlgebraByCharacter
    </Returns>
    <Description>
+        The first input <A>FG</A> is a semisimple group algebra over a finite group <M>G</M> and the second
+        input is an irreducible character of <M>G</M>.
+        
+        The output is the numerical description a cyclotomic algebra which is isomorphic to the unique 
+        Wedderburn component <M>A</M> of <A>FG</A> such that <M>\chi(A)\ne 0</M>. <P/>
+        
+        See <Ref Sect="NumDesc" /> for 
+        the interpretation of the numerical information given by the output.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap>
+gap> G:=SmallGroup(144,11);
+<pc group of size 144 with 6 generators>
+gap> QG:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 6 generators>
+gap> SimpleAlgebraByCharacter( QG , Irr(G)[48] );
+<crossed product over AsField( NF(36,[ 1, 17 ]), CF(36) ), with
+2 generators and center=NF(36,[ 1, 17 ])>
+gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
+[ 1, NF(36,[ 1, 17 ]), 36, [ 2, 17, 18 ] ]
 ]]>
 </Example>
 

@@ -16,11 +16,8 @@
          A list of pairs of subgroups of the input group
    </Returns>
    <Description>
-         Computes a list <M>ssp</M> of strongly Shoda pairs of the finite group
-         <A>G</A> such that every Wedderburn component of the rational group algebra
-         <M>QG</M> of the group <A>G</A> realizable by a strongly Shoda pair is
-         realizable by exactly one strongly Shoda pair from the list <M>ssp</M> 
-         (see <Ref Sect="SSPDef" />). <P/>
+        Computes a list <M>ssp</M> of representatives of the equivalence classes of strongly Shoda pairs 
+        of the finite group <A>G</A> (see <Ref Sect="SSPDef" />). <P/>
    </Description>
 </ManSection>
 
@@ -117,9 +114,7 @@ true
         Note that every strongly monomial finite group is monomial, and
         every abelian-by-supersolvable or metabelian finite group is 
         strongly monomial. Also every monomial group of order less than 
-        1000 is strongly monomial, but in general this is not true:
-        there is a monomial group of order 1000 which is 
-        not strongly monomial.
+        1000 is strongly monomial, but not every monomial group is strongly monomial.
    </Description>
 </ManSection>
 

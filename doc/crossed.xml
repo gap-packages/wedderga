@@ -16,7 +16,7 @@ so in fact it is the NC-version of itself, and its output will be always
 assumed to be associative. For all crossed products that appear in &Wedderga;
 algorithms their associativity follows from theoretical arguments, so
 the usage of NC-method in the package is safe. If the user will try to 
-construct a crossed product with his own action and twisting, he should 
+construct a crossed product with his own action and twisting, he/she should 
 check the associativity conditions himself to make it sure that the result 
 is correct.
  
@@ -46,7 +46,7 @@ is correct.
          The action <A>act</A> must be a function that accepts an element 
          of <A>G</A> as an argument and returns a mapping from <A>R</A> to
          <A>R</A> that can be applied via the "<C>\^</C>" operation. 
-         An example of the trivial action:
+         An example with trivial action:
 <Log> 
 act := function(a)
     return IdentityMapping(R);
@@ -54,7 +54,7 @@ end;
 </Log>
 		 <A>twist</A> must be a function of two arguments, that accepts
 		 a pair of elements of <A>G</A> and returns an invertible element
-		 of <A>R</A>. An example of the trivial twisting:
+		 of <A>R</A>. An example trivial twisting:
 <Log>
 twist := function( g, h )
     return One(R);

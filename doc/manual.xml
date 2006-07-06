@@ -64,10 +64,9 @@
 The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of a 
 <B>g</B>roup <B>a</B>lgebras. This is a &GAP; package to compute the simple 
 components of the Wedderburn decomposition of group algebras of finite 
-groups over fields of characteristic zero and over finite fields. 
+groups over abelian number fields of characteristic zero and over finite fields. 
 It also contains functions that produce the primitive central idempotents 
-of group algebras of finite groups over the field of rationals and
-and over finite fields.
+of group algebras of finite groups over the field of rationals and over finite fields.
 
 </Abstract>
 
@@ -87,7 +86,7 @@ and over finite fields.
   If you publish a result which was partially obtained with the usage of
   &Wedderga;, please cite it in the following form:<P/>
 
-  O. B. Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
+  O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
   Version 4.0;</E> 2006 (<URL>http://ukrgap.exponenta.ru/wedderga.htm</URL>).
 </Copyright>
