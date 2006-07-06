@@ -7,13 +7,12 @@
 
 <Section Label="IntroAims">
 <Heading>General aims of &Wedderga; package</Heading>
-The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of a 
+The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of 
 <B>g</B>roup <B>a</B>lgebras. This is a &GAP; package to compute the simple 
-components of the Wedderburn decomposition of group algebras of finite 
-groups over fields of characteristic zero and over finite fields. 
-It also contains functions that produce the primitive central idempotents 
-of group algebras of finite groups over the field of rationals and
-and over finite fields.<P/>
+components of the Wedderburn decomposition of semisimple group algebras of finite 
+groups over abelian number fields and over finite fields. 
+It also contains functions that compute the primitive central idempotents 
+of the same kind of group algebras.<P/>
 
 </Section>
 
@@ -27,46 +26,29 @@ The main functions of &Wedderga; are
 <Ref Attr="WedderburnDecompositionInfo" />.
 <P/>
 
-In the case when the input <A>FG</A> is a group algebra of a finite
-group <M>G</M> over a field <M>F</M> of characteristic zero,
 <Ref Attr="WedderburnDecomposition" /> 
 computes a list of simple algebras such that their direct product is
-isomorphic to the group algebra <M>FG</M>, thus, the output is
-the complete Wedderburn decomposition of <A>FG</A>. <P/>
+isomorphic to the group algebra <M>FG</M>, given as input. 
+Thus the direct product of the entries of the output is
+the Wedderburn decomposition of <M>FG</M>. <P/>
 
-In the case when the input <A>FG</A> is a group algebra of a finite
-group <M>G</M> over a field <M>F</M> of characteristic <M>q</M>
-coprime with the order of <M>G</M>, <Ref Attr="WedderburnDecomposition" /> 
-computes a list of simple algebras such that their direct product is 
-isomorphic to certain direct factor of the group algebra <A>FG</A>
-(if this is a proper direct factor, a warning will be displayed). 
-If the group <M>G</M> satisfies some additional conditions, 
-the direct product of simple algebras from the output will 
-be isomorphic to the whole group algebra <A>FG</A>, so in this 
-case the output is the complete Wedderburn decomposition of <A>FG</A>. 
-For example, this is the case if <M>G</M> is abelian by supersolvable.
-(see Chapter <Ref Chap="Theory" /> for theoretical background). <P/>  
-
-When <M>F</M> is a field of characteristic zero,
-the entries of the output are given as matrix algebras over some 
-crossed products over certain cyclotomic extensions of the field <M>F</M>. 
-These crossed products are in fact cyclotomic algebras 
+If <M>F</M> is an abelian number field then 
+the entries of the output are given as matrix algebras of cyclotomic algebras 
 (see <Ref Sect="Cyclotomic" />), thus, the entries of the output of 
 <Ref Attr="WedderburnDecomposition" /> 
-are realizations of the Wedderburn components of <A>FG</A> as algebras similar 
+are realizations of the Wedderburn components of <M>FG</M> as algebras which are Brauer equivalent 
 to cyclotomic algebras. Recall that the Brauer-Witt Theorem ensures 
-that every simple factor of a semisimple group ring <M>FG</M> is similar 
+that every simple factor of a semisimple group ring <M>FG</M> is Brauer equivalent
 (that is represents the same class in the Brauer group of its centre) 
-to a cyclotomic algebra (<Cite Key="BR"/>, <Cite Key="Olteanu" />). 
+to a cyclotomic algebra (<Cite Key="Y"/>, <Cite Key="Olteanu" />). 
 <P/>
 
-When <M>F</M> is a finite field,
-the simple factors of <A>FG</A> are also matrix algebras over division rings 
+The Wedderburn components of <M>FG</M> are also matrix algebras over division rings 
 which are finite extensions of the field <M>F</M>.
 If <M>F</M> is finite then by the Wedderburn theorem these division rings 
-are finite fields. In this case the the output of 
+are finite fields. In this case the output of 
 <Ref Attr="WedderburnDecomposition" />
-represents the factors of <A>FG</A> as matrix algebras over finite extensions
+represents the factors of <M>FG</M> as matrix algebras over finite extensions
 of the field <M>F</M>.
 <P/>
 
@@ -99,7 +81,7 @@ gap> WedderburnDecomposition( FG );
 Instead of <Ref Attr="WedderburnDecompositionInfo" />, that returns a list of 
 &GAP; objects, <Ref Attr="WedderburnDecompositionInfo" /> returns the numerical 
 description of these objects. 
-See Chapter <Ref Sect="SSPDef" /> for theoretical background.
+See Section <Ref Sect="NumDesc" /> for theoretical background.
 
 </Section>
 
