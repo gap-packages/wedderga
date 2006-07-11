@@ -43,20 +43,21 @@ is correct.
          <C>UnderlyingMagma</C> and 
          <Index Key="LeftActingDomain"><C>LeftActingDomain</C></Index>
          <C>LeftActingDomain</C>.
-         The action <A>act</A> must be a function that accepts an element 
-         of <A>G</A> as an argument and returns a mapping from <A>R</A> to
+         The action <A>act</A> must be a function of two arguments,
+	 the first being a ring <A>R</A>, the second being an element
+         of <A>G</A>, and returns a mapping from <A>R</A> to
          <A>R</A> that can be applied via the "<C>\^</C>" operation. 
-         An example with trivial action:
+         An example of the trivial action:
 <Log> 
-act := function(a)
+act := function(R,a)
     return IdentityMapping(R);
 end;
 </Log>
-		 <A>twist</A> must be a function of two arguments, that accepts
-		 a pair of elements of <A>G</A> and returns an invertible element
-		 of <A>R</A>. An example trivial twisting:
+	 <A>twist</A> must be a function of three arguments, that accepts
+	 a pair of elements of <A>G</A> and returns an invertible element
+	 of <A>R</A>. An example of the trivial twisting:
 <Log>
-twist := function( g, h )
+twist := function( R, g, h )
     return One(R);
 end;
 </Log>	
@@ -73,13 +74,14 @@ end;
 <![CDATA[
 gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );;
 gap> WedderburnDecomposition(QG);
-[ Rationals, CF(3), ( Rationals^[ 3, 3 ] ), 
-  <crossed product over GaussianRationals, 
-    with 2 generators and center=Rationals>, 
-  <crossed product over AsField( CF(3), CF(12) ), 
-    with 2 generators and center=CF(3)> ]
+[ Rationals, CF(3), ( Rationals^[ 3, 3 ] ),
+  <crossed product over GaussianRationals, with
+    2 generators and center=Rationals>, 
+  <crossed product over AsField( CF(3), CF(12) ), with 
+    2 generators and center=CF(3)> ] 
 gap> R:=WedderburnDecomposition( QG )[4];
-<crossed product over GaussianRationals, with 2 generators and center=Rationals>
+<crossed product over GaussianRationals, with 
+2 generators and center=Rationals>
 gap> IsCrossedProduct(R);
 true
 gap> IsAlgebra(R);
@@ -90,13 +92,20 @@ gap> LeftActingDomain( R );
 GaussianRationals
 gap> AsList( UnderlyingMagma( R ) );
 [ ZmodnZObj( 1, 4 ), ZmodnZObj( 3, 4 ) ]
-endgap> Print( ActionForCrossedProduct( R ) ); Print("\n");
-function ( a )
-    return ANFAutomorphism( CF( cond ), Int( PreImagesRepresentative( redu, a ) ) );
+gap> Print( ActionForCrossedProduct( R ) ); Print("\n");
+function ( RG, a )
+    local  cond, redu;
+    cond := OperationRecord( RG ).cond;
+    redu := OperationRecord( RG ).redu;
+    return
+     ANFAutomorphism( CF( cond ), Int( PreImagesRepresentative( redu, a ) ) );
 end
 gap> Print( TwistingForCrossedProduct( R ) ); Print("\n");                     
-function ( a, b )
-    return E( x[3] ) ^ x[5]( Int( a ), Int( b ) );
+function ( RG, a, b )
+    local  orderroot, cocycle;
+    orderroot := OperationRecord( RG ).orderroot;
+    cocycle := OperationRecord( RG ).cocycle;
+    return E( orderroot ) ^ Int( cocycle( a, b ) );
 end
 gap> IsAssociative(R);
 true
@@ -153,7 +162,8 @@ using <Index Key="ZeroCoefficient"><C>ZeroCoefficient</C></Index><C>ZeroCoeffici
 gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );                    
 <algebra-with-one over Rationals, with 4 generators>
 gap> R:=WedderburnDecomposition( QG )[4];
-<crossed product over GaussianRationals, with 2 generators and center=Rationals>
+<crossed product over GaussianRationals, with 
+2 generators and center=Rationals>
 gap> H:=UnderlyingMagma( R );;
 gap> fam:=ElementsFamily( FamilyObj( R ) );;
 gap> g:=ElementOfCrossedProduct( fam, 0, [ 1, E(4) ], AsList(H) );

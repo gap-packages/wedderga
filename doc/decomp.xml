@@ -134,7 +134,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 <Example>
 <![CDATA[
-gap> WedderburnDecompositionInfo( GroupRing( Rationals, DihedralGroup(16) ) )
+gap> WedderburnDecompositionInfo( GroupRing( Rationals, DihedralGroup(16) ) );
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
   [ 2, Rationals ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ] ]
 gap> WedderburnDecompositionInfo( GroupRing( CF(5), DihedralGroup(16) ) );
@@ -159,8 +159,8 @@ gap> Q16:=F/rel;; QQ16:=GroupRing( Rationals, Q16 );;
 gap> QS4:=GroupRing( Rationals, SymmetricGroup(4) );;
 gap> WedderburnDecomposition(QQ16);
 [ Rationals, Rationals, Rationals, Rationals, ( Rationals^[ 2, 2 ] ), 
-  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with 2 generators 
-    and center=NF(8,[ 1, 7 ])> ]
+  <crossed product over AsField( NF(8,[ 1, 7 ]), CF(8) ), with
+    2 generators and center=NF(8,[ 1, 7 ])> ]
 gap> WedderburnDecomposition( QS4 );  
 [ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
   <crossed product over CF(3), with 2 generators and center=Rationals> ]

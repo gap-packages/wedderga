@@ -63,8 +63,8 @@ gap> FG := GroupRing( CF(5), SymmetricGroup(4) );
 <algebra-with-one over CF(5), with 2 generators>
 gap> WedderburnDecomposition( FG );
 [ CF(5), CF(5), ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ), 
-  <crossed product over AsField( CF(5), CF(15) ), 
-    with 2 generators and center=CF(5)> ]
+  <crossed product over AsField( CF(5), CF(15) ), with
+    2 generators and center=CF(5)> ]
 gap> FG := GroupRing( GF(5), SymmetricGroup(4) ); 
 <algebra-with-one over GF(5), with 2 generators>
 gap> WedderburnDecomposition( FG );
