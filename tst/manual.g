@@ -1,13 +1,27 @@
 #############################################################################
 ##  
-#W  manual.g                 The LAGUNA package                  Viktor Bovdi
-#W                                                        Alexander Konovalov
-#W                                                         Richard Rossmanith
-#W                                                            Csaba Schneider
+#W  manual.g                 The Wedderga package         Alexander Konovalov
 ##
 #H  $Id$
 ##
 #############################################################################
+#
+# This file contains a function WEDDERGATestManual() that tests all examples
+# from xml-files of package documentation, and prints differences in the form
+# (for example)
+# +   [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] ]
+# -   [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
+# where "+" denotes actual output and "-" denotes the output in the manual.
+#
+# This file is a developer tool, and it will not be included in the official
+# Wedderga release. Also, it uses the file "lib/Examples.g" from the GAPDoc
+# development version. So, to test Wedderga under the GAP4 release, you must
+# copy these two files in appropriate places in the release branch.
+#
+# The final message in the form
+# + GAP4stones: 0
+# - GAP4stones: fail
+# should be ingnored.
 
 ReadPackage("GAPDoc","lib/Examples.g");
 
@@ -45,21 +59,12 @@ TstPkgExamples := function ( path, main, files )
   RemoveFile( temp_dir![1] );
   end;
 
-path:=DirectoriesPackageLibrary("wedderga","doc");
-Info(InfoPCI, 1, "********** Testing intro.xml **********\n" );   
-TstPkgExamples(path,"manual", [ "intro.xml" ] ); 
-Info(InfoPCI, 1, "********** Testing decomp.xml **********\n" );   
-TstPkgExamples(path,"manual", [ "decomp.xml" ] ); 
-Info(InfoPCI, 1, "********** Testing SSP.xml **********\n" );   
-TstPkgExamples(path,"manual", [ "SSP.xml" ] );                                                                    
-Info(InfoPCI, 1, "********** Testing idempot.xml **********\n" );   
-TstPkgExamples(path,"manual", [ "idempot.xml" ] );                                                                     
-Info(InfoPCI, 1, "********** Testing crossed.xml **********\n" );   
-TstPkgExamples(path,"manual", [ "crossed.xml" ] );                                                                     
-Info(InfoPCI, 1, "********** Testing auxiliar.xml **********\n" );   
-TstPkgExamples(path,"manual", [ "auxiliar.xml" ] );                                                                    
-Info(InfoPCI, 1, "********** Testing theory.xml **********\n" );   
-TstPkgExamples(path,"manual", [ "theory.xml" ] );       
+SetInfoLevel( InfoPCI, 1 );
+SizeScreen( [ 80 , ] ); 
+path:=DirectoriesPackageLibrary("wedderga","doc");   
+Info(InfoPCI, 1, "Test of ", path );
+TstPkgExamples(path,"manual",[ ] );
+SetInfoLevel( InfoPCI, 1 );       
 end;
 
 
