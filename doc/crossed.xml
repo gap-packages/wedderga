@@ -31,7 +31,7 @@ is correct.
          Ring in the category <C>IsCrossedProduct</C>
    </Returns>
    <Description>
-         Returns the crossed product over <A>G</A> with coefficients 
+         Returns the crossed product <M>RG</M> over <A>G</A> with coefficients 
          in the ring <A>R</A>, action <A>act</A> and twisting <A>twist</A>.
          The resulting crossed product will belong to the category
          <Index Key="IsCrossedProduct"><C>IsCrossedProduct</C></Index>
@@ -44,21 +44,22 @@ is correct.
          <Index Key="LeftActingDomain"><C>LeftActingDomain</C></Index>
          <C>LeftActingDomain</C>.
          The action <A>act</A> must be a function of two arguments,
-	 the first being a ring <A>R</A>, the second being an element
-         of <A>G</A>, and returns a mapping from <A>R</A> to
-         <A>R</A> that can be applied via the "<C>\^</C>" operation. 
-         An example of the trivial action:
+	 the first being the crossed product <A>RG</A>, the second 
+	 being an element of <A>G</A>, and returns a mapping from 
+	 <A>R</A> to <A>R</A> that can be applied via the "<C>\^</C>" 
+	 operation. An example of the trivial action:
 <Log> 
-act := function(R,a)
-    return IdentityMapping(R);
+act := function(RG,a)
+    return IdentityMapping( LeftActingDomain( RG ) );
 end;
 </Log>
-	 <A>twist</A> must be a function of three arguments, that accepts
-	 a pair of elements of <A>G</A> and returns an invertible element
-	 of <A>R</A>. An example of the trivial twisting:
+	 <A>twist</A> must be a function of three arguments, the crossed
+	 product <A>RG</A> and a pair of elements of <A>G</A>. It must
+	 return an invertible element of <A>R</A>. An example of the 
+	 trivial twisting:
 <Log>
-twist := function( R, g, h )
-    return One(R);
+twist := function( RG, g, h )
+    return One( LeftActingDomain (RG) );
 end;
 </Log>	
 	To get the action and twisting that were used for construction of the 
