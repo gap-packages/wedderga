@@ -586,9 +586,9 @@ end);
 ##
 #M IdempotentBySubgroups( FqG, K, H, c ) 
 ##
-## The function SimpleAlgebraByStronglySP verifies if ( H, K ) is a SSP of G and
+## The function SimpleAlgebraByStrongSP verifies if ( H, K ) is a SSP of G and
 ## c is an integer coprime with n=[K:H]. 
-## If the answer is positive then returns SimpleAlgebraByStronglySP(FqG, K, H, C) where
+## If the answer is positive then returns SimpleAlgebraByStrongSP(FqG, K, H, C) where
 ## C is the cyclotomic class of q=|Fq| module n=[K:H] containing c.
 ##
 InstallOtherMethod( IdempotentBySubgroups, 

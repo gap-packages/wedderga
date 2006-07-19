@@ -118,7 +118,7 @@ local
   irr := Filtered(Irr(G),chi->chi[1]>1);
   ratirr := Difference(
               RationalizedMat( irr ),
-              RationalizedMat( List( StronglyShodaPairs( G ), x ->
+              RationalizedMat( List( StrongShodaPairs( G ), x ->
                                      LinCharByKernel( x[1], x[2] )^G ) ) );
   classirr := List(ratirr,x->[]);
   for chi in irr do
@@ -165,7 +165,7 @@ nsub := Size(sub);
 subcounter := nsub-1;
 while Sum(List(primes,Length)) > 0 do
     M:=Representative( sub[ subcounter ] );
-    ssp := StronglyShodaPairs(M);
+    ssp := StrongShodaPairs(M);
     m := Length(ssp);
     sspcounter := 1;
     while sspcounter <= m and Sum(List(primes,Length))> 0 do
