@@ -398,20 +398,20 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
 
 
 <ManSection>
-   <Oper Name="SimpleAlgebraByStronglySP" 
+   <Oper Name="SimpleAlgebraByStrongSP" 
          Arg="QG K H"  
          Comm="The Wedderburn component of the rational group algebra QG 
          realized by (K,H), a strongly Shoda pair of G" />
-   <Oper Name="SimpleAlgebraByStronglySP" 
+   <Oper Name="SimpleAlgebraByStrongSP" 
          Arg="FG K H C"  
          Comm="The Wedderburn component of the semisimple finite group algebra 
          FG given realized by (K,H), a strongly Shoda pair of G, and a 
          q-cyclotomic class" />
-   <Oper Name="SimpleAlgebraByStronglySPNC" 
+   <Oper Name="SimpleAlgebraByStrongSPNC" 
          Arg="QG K H"  
          Comm="Same as the non NC version without checking that (K,H) is a 
          strongly Shoda pair of G" />
-   <Oper Name="SimpleAlgebraByStronglySPNC" 
+   <Oper Name="SimpleAlgebraByStrongSPNC" 
          Arg="FG K H C"  
          Comm="Same as the non NC version without checking that (K,H) is a 
          strongly Shoda pair of G" />
@@ -450,11 +450,11 @@ gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
 gap> K:=Subgroup(G,[a]);; H:=Subgroup(G,[]);;
 gap> QG:=GroupRing( Rationals, G );;
 gap> FG:=GroupRing( GF(7), G );;
-gap> SimpleAlgebraByStronglySP( QG, K, H );
+gap> SimpleAlgebraByStrongSP( QG, K, H );
 <crossed product over CF(16) of a group of size 2>
-gap> SimpleAlgebraByStronglySP( FG, K, H, [1,7] );
+gap> SimpleAlgebraByStrongSP( FG, K, H, [1,7] );
 ( GF(7)^[ 2, 2 ] )
-gap> SimpleAlgebraByStronglySP( FG, K, H, 1 );
+gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 ]]>
 </Example>
@@ -462,18 +462,18 @@ gap> SimpleAlgebraByStronglySP( FG, K, H, 1 );
 <!-- ************************ -->
 
 <ManSection>
-   <Oper Name="SimpleAlgebraByStronglySPInfo" 
+   <Oper Name="SimpleAlgebraByStrongSPInfo" 
          Arg="QG K H"  
-         Comm="The numerical data describing the output of SimpleAlgebraByStronglySP" />
-   <Oper Name="SimpleAlgebraByStronglySPInfo" 
+         Comm="The numerical data describing the output of SimpleAlgebraByStrongSP" />
+   <Oper Name="SimpleAlgebraByStrongSPInfo" 
          Arg="FG K H c"  
-         Comm="The numerical data describing the output of SimpleAlgebraByStronglySP" />
-   <Oper Name="SimpleAlgebraByStronglySPInfoNC" 
+         Comm="The numerical data describing the output of SimpleAlgebraByStrongSP" />
+   <Oper Name="SimpleAlgebraByStrongSPInfoNC" 
          Arg="FG K H c"  
-         Comm="The numerical data describing the output of SimpleAlgebraByStronglySPNC" />         
-   <Oper Name="SimpleAlgebraByStronglySPInfoNC" 
+         Comm="The numerical data describing the output of SimpleAlgebraByStrongSPNC" />         
+   <Oper Name="SimpleAlgebraByStrongSPInfoNC" 
          Arg="QG K H"  
-         Comm="The numerical data describing the output of SimpleAlgebraByStronglySPNC" />
+         Comm="The numerical data describing the output of SimpleAlgebraByStrongSPNC" />
    <Returns>
          numerical description of one simple algebra
    </Returns>
@@ -510,13 +510,13 @@ gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
 gap> K:=Subgroup(G,[a]);; H:=Subgroup(G,[]);; 
 gap> QG:=GroupRing( Rationals, G );;
 gap> FG:=GroupRing( GF(7), G );;
-gap> SimpleAlgebraByStronglySP( QG, K, H );
+gap> SimpleAlgebraByStrongSP( QG, K, H );
 <crossed product over CF(16) of a group of size 2>
-gap> SimpleAlgebraByStronglySPInfo( QG, K, H );
+gap> SimpleAlgebraByStrongSPInfo( QG, K, H );
 [ 1, NF(16,[ 1, 7 ]), 16, [ [ 2, 7, 8 ] ], [  ] ]
-gap> SimpleAlgebraByStronglySPInfo( FG, K, H, [1,7] );
+gap> SimpleAlgebraByStrongSPInfo( FG, K, H, [1,7] );
 [ 2, 7 ]
-gap> SimpleAlgebraByStronglySPInfo( FG, K, H, 1 );
+gap> SimpleAlgebraByStrongSPInfo( FG, K, H, 1 );
 [ 2, 7 ]
 ]]>
 </Example>
