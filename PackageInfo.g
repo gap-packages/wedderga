@@ -16,7 +16,7 @@ Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
                   "of group algebras" ] ),
 Version        := "4.0",
-Date           := "08/05/2006",
+Date           := "19/07/2006",
 ArchiveURL     := "http://.../wedderga-4.0",
 ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
 
@@ -32,10 +32,11 @@ Persons :=
        IsMaintainer  := true,
        Email         := "osnelier@ime.usp.br",
        PostalAddress := Concatenation( [
-                        "Instituto de Matemática\n",
-                        "Universidade de Sao Paulo\n",
-                        "Caixa Postal 66281, Sao Paulo\n", 
-                        "CEP 05315-970, Brazil" ] ),
+                        "Departamento de Matemática\n",
+                        "Instituto de Ciências Exatas\",
+                        "Universidade Federal de Juiz de Fora\n",
+                        "Campus-Cidade Universitária\n"
+                        "36036-900, Juiz de Fora, Brazil ] ),
        Place         := "Sao Paulo",
        Institution   := "Universidade de Sao Paulo"
      ),
@@ -45,13 +46,13 @@ Persons :=
        IsAuthor      := true,
        IsMaintainer  := true,
        Email         := "konovalov@member.ams.org",
-       WWWHome       := "http://ukrgap.exponenta.ru/konoval.htm",
+       WWWHome       := "http://homepages.vub.ac.be/~okonoval/",
        PostalAddress := Concatenation( [
-                        "P.O.Box 1317\n",
-                        "Central Post Office\n", 
-                        "Zaporozhye, 69000 Ukraine" ] ),
-       Place         := "Zaporozhye",
-       Institution   := "Zaporozhye National University"
+                     "Department of Mathematics\n",
+                     "Vrije Universiteit Brussel\n", 
+                     "Pleinlaan 2, Brussels, B-1050 Belgium" ] ),
+       Place         := "Brussels",
+       Institution   := "Vrije Universiteit Brussel"
      ),
     rec(
        LastName      := "Olteanu",
