@@ -11,14 +11,15 @@
 
 <ManSection>
    <Oper Name="PrimitiveCentralIdempotentsByCharacterTable" 
-         Arg="QG" />
+         Arg="FG" />
    <Returns>
          a list of group algebra elements
    </Returns>         
    <Description>
-         Returns the list of primitive central idempotents of a rational
-         group algebra <A>QG</A> of a finite group <M>G</M> using the 
-         method explained in <Ref Sect="Idempotents" />. 
+         The input <A>FG</A> should be a semisimple group algebra. <P/>
+   
+         Returns the list of primitive central idempotents of <A>FG</A> using the character table of <M>G</M> 
+         <Ref Sect="Idempotents" />. 
    </Description>
 </ManSection>
 
@@ -50,14 +51,18 @@ gap> Length(pciFG);
 <Heading>Testing lists of idempotents for completeness</Heading>
 
 <ManSection>
-   <Oper Name="IsCompleteSetOfPCIs" 
+   <Oper Name="IsCompleteSetOfOrthIdemps" 
          Arg="R l" />
    <Description>
-         Returns <K>true</K> if the <A>l</A> is a list of idempotents 
-         of the ring <A>R</A>, and the sum of elements of <A>l</A> is
-         the identity element of the ring <A>R</A>.
-         Note that this function do not check that idempotents are 
-         primitive.
+         The input should be formed by a ring <A>R</A> and a list <A>l</A> of elements of <A>R</A>. <P/>
+   
+         Returns <K>true</K> if the <A>l</A> is a complete list of orthogonal idempotents of <A>R</A>, 
+         that is if the sum of the elements of <A>l</A> is the identity of <A>R</A> and for every <M>e,f \in l</M>
+         one has <M>e^2=e</M> and <M>e*f=0</M> if <M>e</M> and occupies different positions in <A>l</A>. <P/>
+         
+         Note that the if a non-zero element <M>r</M> of <A>R</A> appears in two different positions of <M>l</M> 
+         then the output is <K>false</K>. However the appearance of one or more zeroes in <A>l</A> do not
+         affect the output.
    </Description>
 </ManSection>
 
@@ -65,8 +70,18 @@ gap> Length(pciFG);
 <![CDATA[
 gap> QS5 := GroupRing( Rationals, SymmetricGroup(5) );;
 gap> idemp := PrimitiveCentralIdempotentsByCharacterTable( QS5 );;
-gap> IsCompleteSetOfPCIs( QS5, idemp );
+gap> IsCompleteSetOfOrthIdemps( QS5, idemp );
 true
+gap> IsCompleteSetOfOrthIdemps( QS5, [ Zero( QS5 ) ] );
+false
+gap> IsCompleteSetOfOrthIdemps( QS5, [ One( QS5 ) ] );
+true
+gap> IsCompleteSetOfOrthIdemps( QS5, [ One( QS5 ) , Zero( QS5 ) ] );
+true
+gap> IsCompleteSetOfOrthIdemps( QS5, [ Zero(QS5), One(QS5) , Zero(QS5) ] );
+true
+gap> IsCompleteSetOfOrthIdemps( QS5, [ One(QS5), One(QS5) , Zero(QS5) ] );
+false
 ]]>
 </Example>
 
@@ -86,23 +101,21 @@ true
          a list of group algebra elements
    </Returns>         
    <Description>
-         The input <A>FG</A> should be the group algebra of a finite group 
-         <M>G</M> with coefficients in the field <M>F</M>, where <M>F</M>
-         is either the field of rationals <M>Q</M> or a finite field of 
-         order <M>q</M> such that <M>q</M> is coprime with the order of 
-         the group <M>G</M>. <P/>
+         The input <A>FG</A> should be semisimple group algebra of a finite group <M>G</M> whose coefficient field 
+         <M>F</M> is either a finite field or the field <M>Q</M> of rationals. <P/>
          
          If <M>F=Q</M> then the output is the list of primitive central 
          idempotents of the group algebra <M>FG</M> realizable by strongly 
-         Shoda pairs of <M>G</M> (see <Ref Sect="SSPDef" />). <P/>
+         Shoda pairs <Ref Sect="SSPDef" /> of <M>G</M>. <P/>
          
          If <M>F</M> is a finite field then the output is the list of primitive
          central idempotents of <M>FG</M> realizable by strongly Shoda pairs 
          <M>(K,H)</M> of <M>G</M> and <M>q</M>-cyclotomic classes modulo the 
-         index of <M>H</M> in <M>K</M> (see <Ref Sect="CyclotomicClass" />). <P/>
+         index of <M>H</M> in <M>K</M> <Ref Sect="CyclotomicClass" />. <P/>
          
          If the list of primitive central idempotents given by the output is 
-         not complete then a warning is displayed.
+         not complete (i.e. if the group <M>G</M> is not <E>strongly monomial</E> <Ref Sect="StMon" />  
+         then a warning is displayed.
    </Description>
 </ManSection>
 
@@ -141,12 +154,13 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
          a list of group algebra elements 
    </Returns>         
    <Description>
-         Returns a list containing all the primitive central idempotents
-         of the rational group algebra <A>QG</A> of a finite group 
-         <M>G</M> realizable by Shoda pairs (see <Ref Sect="SPDef" />). <P/>
+        The input should be a rational group algebra of a finite group <M>G</M>. <P/>
+   
+         Returns a list containing all the primitive central idempotents <M>e</M>
+         of the rational group algebra <A>QG</A> such that <M>\chi(e)\ne 0</M> for some irreducible monomial 
+         character <M>\chi</M> of <M>G</M>. <P/>
           
-         The sum of the elements of the output obtained is identity
-         if and only if G is monomial. <P/>
+         The sum of the elements of the output obtained is the identity if and only if G is monomial. <P/>
           
          If the list of primitive central idempotents given by the output is 
          not complete then a warning is displayed.
@@ -180,12 +194,18 @@ gap> pci:=PrimitiveCentralIdempotentsBySP( QG );
     (2,4)+(-1/12)*(1,4,2)+(-1/12)*(1,4,3)+(1/6)*(1,4)(2,3) ]
 gap> IsCompleteSetOfPCIs(QG,pci);
 true
+gap> QS5 := GroupRing( Rationals, SymmetricGroup(5) );;
+gap> pci:=PrimitiveCentralIdempotentsBySP( QS5 );;
+Wedderga: Warning!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input!
+gap> IsCompleteSetOfPCIs( QS5 , pci );
+false
 ]]>
 </Example>
 
 The output of <Ref Func="PrimitiveCentralIdempotentsBySP" /> contains 
 the output of <Ref Func="PrimitiveCentralIdempotentsByStronglySP" />, 
-possibly properly, as this is demonstrated in the next example.
+possibly properly.
 
 <Example>
 <![CDATA[

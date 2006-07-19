@@ -3,12 +3,12 @@
 <!-- ********************crossed******************** -->
 
 <Chapter Label="Crossed">
-<Heading>Crossed products and their properties</Heading>
+<Heading>Crossed products</Heading>
 
 The package &Wedderga; provides functions to construct crossed products
 over a group with coefficients in an associative ring with identity,
 and with the multiplication determined by a given action and twisting 
-(see <Ref Sect="CrossedProducts" /> for definitions). This can be done
+(see <Ref Sect="CrossedProd" /> for definitions). This can be done
 using the function <Ref Func="CrossedProduct" />.<P/>
 
 Note that this function does not check the associativity conditions, 
@@ -235,7 +235,8 @@ gap> List( G, x -> List( G , y -> tw( HZ, x, y ) ) );
 ]]>
 </Example>
   
-Some more examples of crossed products coming from the Wedderburn decompositions of group algebras.  
+Some more examples of crossed products coming from the <E>Wedderburn decomposition</E> <Ref Sect="WedDec" /> 
+of group algebras.  
 
 <Example>
 <![CDATA[
@@ -320,6 +321,80 @@ gap> CenterOfCrossedProduct(R);
 Rationals
 ]]>
 </Example>
+
+Next example shows how one can use <Ref Attr="CrossedProduct" /> to product generalized quaternion
+algebras. 
+
+<Example>
+<![CDATA[
+gap> Quat := function(R,a,b)
+>
+> local G,act,twist;
+>
+> if not(a in R and b in R and a <> Zero(R) and b <> Zero(R) ) then
+> Error("<a>  and <b> must be non zero elements of <R>!!!");
+> fi;
+>
+>
+> G := SmallGroup(4,2);
+>
+> act := function(RG,a)
+>     return IdentityMapping( LeftActingDomain(RG));
+> end;
+>
+>
+> twist := function( RG, g , h )
+> local one,g1,g2;
+> one := One(G);
+> g1 := G.1;
+> g2 := G.2;
+>
+>
+> if   g = one or h = one then
+>   return One(R);
+> elif g = g1 then
+>   if h = g2 then
+>     return One(R);
+>   else
+>     return a;
+>   fi;
+> elif g = g2 then
+>   if h = g1 then
+>     return -One(R);
+>   elif h=g2 then
+>     return b;
+>   else
+>     return -b;
+>   fi;
+> else
+>   if h = g1 then
+>     return -b;
+>   elif h=g2 then
+>     return b;
+>   else
+>     return -a*b;
+>   fi;
+> fi;
+> end;
+>
+> return CrossedProduct(R,G,act,twist);
+>
+> end;
+function( R, a, b ) ... end
+gap>
+gap> HQ := Quat(Rationals,2,3);
+<crossed product over Rationals of a group of size 4>
+gap> G := UnderlyingMagma(HQ);
+<pc group of size 4 with 2 generators>
+gap> tw := TwistingForCrossedProduct( HQ );
+function( RG, g, h ) ... end
+gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
+[ [ 1, 1, 1, 1 ], [ 1, 3, -1, -3 ], [ 1, 1, 2, 2 ], [ 1, 3, -3, -6 ] ]
+]]>
+</Example>
+
+
+
 
 </Section>
 

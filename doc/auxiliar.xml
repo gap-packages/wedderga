@@ -10,22 +10,30 @@
 <Heading>Semisimple group algebras of finite groups</Heading>
 
 <ManSection>
-   <Prop Name="IsZeroCharacteristicGroupAlgebra" 
+   <Prop Name="IsSemisimpleZeroCharacteristicGroupAlgebra" 
          Arg="KG"  
          Comm="Is a group algebra of a finite group over the field of char zero?" />
    <Description>
-         Returns <K>true</K> if <A>KG</A> is the group algebra of a finite 
-         group over the field of characteristic zero, and <K>false</K> otherwise.
+      The input must be a group ring. <P/>
+      
+      Returns <K>true</K> if the input <A>KG</A> is a <E>semisimple group algebra</E> <Ref Sect="Semisimple" /> 
+      over a field of characteristic zero, and <K>false</K> otherwise.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
 gap> CG:=GroupRing( GaussianRationals, DihedralGroup(16) );;
-gap> IsZeroCharacteristicGroupAlgebra( CG );
+gap> IsSemisimpleZeroCharacteristicGroupAlgebra( CG );
 true
 gap> FG:=GroupRing( GF(2), SymmetricGroup(3) );;                    
-gap> IsZeroCharacteristicGroupAlgebra( FG );
+gap> IsSemisimpleZeroCharacteristicGroupAlgebra( FG );
+false
+gap> f := FreeGroup("a");
+<free group on the generators [ a ]>
+gap> Ff:=GroupRing(Rationals,f);
+<algebra-with-one over Rationals, with 2 generators>
+gap> IsSemisimpleZeroCharacteristicGroupAlgebra(Ff);
 false
 ]]>
 </Example>
@@ -36,8 +44,10 @@ false
          Arg="KG"  
          Comm="Is rational group algebra of finite group?" />
    <Description>
-         Returns <K>true</K> if <A>KG</A> is the rational group algebra of a finite 
-         group and <K>false</K> otherwise.
+    The input must be a group ring. <P/>
+      
+    Returns <K>true</K> if <A>KG</A> is a <E>semisimple rational group algebra</E> <Ref Sect="Semisimple" /> and 
+    <K>false</K> otherwise.
    </Description>
 </ManSection>
 
@@ -55,25 +65,6 @@ false
 ]]>
 </Example>
 
-<ManSection>
-   <Prop Name="IsCFGroupAlgebra" 
-         Arg="KG"  
-         Comm="Is a group algebra of a finite group over a cyclotomic extension of the rationals?" />
-   <Description>
-         Returns <K>true</K> if <A>KG</A> is the group algebra of a finite 
-         group over a cyclotomic extension of the rationals and <K>false</K> otherwise.
-   </Description>
-</ManSection>
-
-<Example>
-<![CDATA[
-gap> IsCFGroupAlgebra( GroupRing( GaussianRationals, SmallGroup(28,1) ) );
-true
-gap> IsCFGroupAlgebra( GroupRing( NF(5,[1,4]) , SmallGroup(28,1) ) );
-false
-]]>
-</Example>
-
 
 <ManSection>
    <Prop Name="IsSemisimpleANFGroupAlgebra" 
@@ -81,6 +72,8 @@ false
          Comm="Is a group algebra of a finite group over an abelian number field 
          (a subfield of a cyclotomic extension of the rationals)?" />
    <Description>
+    The input must be a group ring. <P/>
+    
          Returns <K>true</K> if <A>KG</A> is the group algebra of a finite 
          group over a subfield of a cyclotomic extension of the rationals and <K>false</K> 
          otherwise.
@@ -103,7 +96,9 @@ false
          Arg="KG"  
          Comm="Is a semisimple group algebra of a finite group over a finite field?" />
    <Description>
-         Returns <K>true</K> if <A>KG</A> is a semisimple finite group algebra, 
+    The input must be a group ring. <P/>
+    
+         Returns <K>true</K> if <A>KG</A> is a <E>semisimple finite group algebra</E> <Ref Sect="Semisimple" />, 
          that is a group algebra of a finite group <M>G</M> over a field <M>K</M> 
          of order coprime with the order of <M>G</M>, and <K>false</K> otherwisse.
    </Description>
@@ -139,23 +134,32 @@ false
          a subgroup of a group <A>G</A>.
    </Returns>         
    <Description>
-         Returns the centralizer of an element <A>x</A> of a group ring 
-         <M>FH</M> in a subgroup <A>G</A> of the underlying group <M>H</M> 
-         of a group ring <M>FH</M>.<P/>
-         This operation adds the new method to the operation that already 
-         exists in &GAP; 
+      The input should be formed by a finite group <A>G</A> and an element <A>x</A> of a group ring 
+      <M>FH</M> whose underlying group <M>H</M> contains <A>G</A> as a subgroup. <P/>
+   
+         Returns the centralizer of <A>x</A> in <A>G</A>. <P/>
+         This operation adds the new method to the operation that already exists in &GAP; 
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> QG:=GroupRing( Rationals, SymmetricGroup(3) );;
-gap> pci:=PrimitiveCentralIdempotentsByStronglySP( QG );
-[ (1/6)*()+(1/6)*(2,3)+(1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(1/6)*(1,3), 
-  (1/6)*()+(-1/6)*(2,3)+(-1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(-1/6)*(1,3), 
-  (2/3)*()+(-1/3)*(1,2,3)+(-1/3)*(1,3,2) ]
-gap> List( pci, x -> Centralizer( AlternatingGroup(3), x ) ); 
-[ Group([ (1,2,3) ]), Group([ (1,2,3) ]), Group([ (1,2,3) ]) ]
+gap> D16 := DihedralGroup(16);
+<pc group of size 16 with 4 generators>
+gap> QD16 := GroupRing( Rationals, D16 );
+<algebra-with-one over Rationals, with 4 generators>
+gap> a:=QD16.1;b:=QD16.2;
+(1)*f1
+(1)*f2
+gap> e := PrimitiveCentralIdempotentsByStronglySP( QD16)[3];;
+gap> Centralizer( D16, a);
+Group([ f1, f4 ])
+gap> Centralizer( D16, b);
+Group([ f2 ])
+gap> Centralizer( D16, a+b);
+Group([ f4 ])
+gap> Centralizer( D16, e);
+Group([ f1, f2 ])
 ]]>
 </Example>
 
@@ -171,23 +175,29 @@ gap> List( pci, x -> Centralizer( AlternatingGroup(3), x ) );
          an element of a group ring
    </Returns>         
    <Description>
-         Returns the conjugate <M>x^g = g^{-1} x g</M> of <A>x</A> by <A>g</A>, 
-         where <A>a</A> is an element of a group ring <M>FG</M> and <A>g</A> is
-         an element of the underlying group <M>G</M>.
-         Usage of <C>a^g</C> produces the same output.<P/>
-         This operation adds the new method to the operation that already 
-         exists in &GAP;
+      The input should be formed by an element <A>x</A> of a group ring <M>FG</M> and an element
+      <A>g</A> in the underlying group <M>G</M> of <M>FG</M>.<P/>
+   
+      Returns the conjugate <M>x^g = g^{-1} x g</M> of <A>x</A> by <A>g</A>. 
+      Usage of <C>a^g</C> produces the same output.<P/>
+      
+      This operation adds the new method to the operation that already exists in &GAP;
    </Description>
 </ManSection>
 
+The following example is a continuation of the previous example.
+
 <Example>
 <![CDATA[
-gap> QG:=GroupRing( Rationals, SymmetricGroup(3) );;
-gap> pci:=PrimitiveCentralIdempotentsByStronglySP( QG );
-[ (1/6)*()+(1/6)*(2,3)+(1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(1/6)*(1,3), 
-  (1/6)*()+(-1/6)*(2,3)+(-1/6)*(1,2)+(1/6)*(1,2,3)+(1/6)*(1,3,2)+(-1/6)*(1,3), 
-  (2/3)*()+(-1/3)*(1,2,3)+(-1/3)*(1,3,2) ]
-gap> pci = List( pci, x -> x^(1,2,3) );                  
+gap> List(D16,x->a^x=a);
+[ true, true, false, false, true, false, false, true, false, false, false,
+  false, false, false, false, false ]
+gap> List(D16,x->e^x=e);
+[ true, true, true, true, true, true, true, true, true, true, true, true,
+  true, true, true, true ]
+gap> ForAll(D16,x->a^x=a);
+false
+gap> ForAll(D16,x->e^x=e);
 true
 ]]>
 </Example>
@@ -201,23 +211,37 @@ true
          an element of a group ring
    </Returns>         
    <Description>
-         Returns the element of the group ring <A>RG</A> that is equal to the
-         sum of all elements of <A>X</A> divided by the order of <A>X</A>, where
-         <A>X</A> is a finite subset of the underlying group <M>G</M> of 
-         <A>RG</A>. The order of <A>X</A> must be invertible in the ring
-         of coefficients <M>R</M>.
+    The input must be composed of a group ring <A>RG</A> and a finite subset <A>X</A> of the underlying
+    group <M>G</M> of <A>RG</A>. The order of <A>X</A> must be invertible in the coefficient
+    ring <M>R</M> of <A>RG</A>. <P/>
+    
+    Returns the element of the group ring <A>RG</A> that is equal to the
+    sum of all elements of <A>X</A> divided by the order of <A>X</A>.
    </Description>
 </ManSection>
+
+If <A>X</A> is a subgroup of <M>G</M> then the output is an idempotent of <M>RG</M> which is central 
+if and only if <A>X</A> is normal in <M>G</M>. 
 
 <Example>
 <![CDATA[
 gap> G:=DihedralGroup(16);;               
 gap> QG:=GroupRing( Rationals, G );;
 gap> FG:=GroupRing( GF(5), G );;
-gap> AverageSum( QG, DerivedSubgroup(G) );
+gap> e:=AverageSum( QG, DerivedSubgroup(G) );
 (1/4)*<identity> of ...+(1/4)*f3+(1/4)*f4+(1/4)*f3*f4
-gap> AverageSum( FG, DerivedSubgroup(G) ); 
+gap> f:=AverageSum( FG, DerivedSubgroup(G) ); 
 (Z(5)^2)*<identity> of ...+(Z(5)^2)*f3+(Z(5)^2)*f4+(Z(5)^2)*f3*f4
+gap> G=Centralizer(G,e);
+true
+gap> H:=Subgroup(G,[G.1]);
+Group([ f1 ])
+gap> e:=AverageSum( QG, H );
+(1/2)*<identity> of ...+(1/2)*f1
+gap> G=Centralizer(G,e);
+false
+gap> IsNormal(G,H);
+false
 ]]>
 </Example>
 
@@ -235,9 +259,9 @@ gap> AverageSum( FG, DerivedSubgroup(G) );
          a partition of [ 0 .. n ]
    </Returns>          
    <Description>
-         Returns the <A>q</A>-cyclotomic classes modulo <A>n</A>, where <A>q</A>
-         and <A>n</A> are relatively prime positive integers
-         (see <Ref Sect="CyclotomicClass" />).
+   The input should be formed by two relatively prime positive integers. <P/>
+   
+   Returns the <A>q</A>-<E>cyclotomic class</E> <Ref Sect="CyclotomicClass" /> modulo <A>n</A>.
    </Description>
 </ManSection>
 
@@ -258,10 +282,11 @@ gap> CyclotomicClasses( 10, 21 );
          Arg="q n C"  
          Comm="Is Cyclotomic class" />
    <Description>
-      Returns <K>true</K> if <A>C</A> is a <A>q</A>-cyclotomic class modulo
-      <A>n</A> and <K>false</K> otherwise.
-      <A>q</A> and <A>n</A> must be relatively prime integers and <A>C</A> 
-      must be a subset of [0 .. n] (see <Ref Sect="CyclotomicClass" />).
+   The input should be formed by two relatively prime positive integers <A>q</A> and <A>n</A> and
+   a sublist <A>C</A> of <M>[ 0 .. n ]</M>. <P/>
+   
+      Returns <K>true</K> if <A>C</A> is a <A>q</A>-<E>cyclotomic class</E> 
+      <Ref Sect="CyclotomicClass" /> modulo <A>n</A> and <K>false</K> otherwise.
    </Description>
 </ManSection>
 
