@@ -132,11 +132,11 @@ end);
 
 #############################################################################
 ##
-#F IsStronglyShodaPair( G, K, H )
+#F IsStrongShodaPair( G, K, H )
 ##
-## The function IsStronglyShodaPair verifies if (H,K) is a SSP of G
+## The function IsStrongShodaPair verifies if (H,K) is a SSP of G
 ##
-InstallMethod( IsStronglyShodaPair,
+InstallMethod( IsStrongShodaPair,
     "for a group and two subgroups", 
     true,
     [ IsGroup, IsGroup, IsGroup ], 
@@ -434,7 +434,7 @@ if IsFinite(G) then
     elif IsMonomial(G) then 
         QG := GroupRing( Rationals, G );
         return IsCompleteSetOfPCIs( QG , 
-        	StronglyShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
+        	StrongShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
     else
     	return false;
     fi;

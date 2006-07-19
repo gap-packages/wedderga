@@ -33,22 +33,22 @@ DeclareAttribute( "WeddDecomp", IsSemisimpleANFGroupAlgebra );
 DeclareAttribute( "WedderburnDecompositionInfo", IsSemisimpleANFGroupAlgebra );
 DeclareAttribute( "WedderburnDecompositionInfo", IsSemisimpleFiniteGroupAlgebra );
 
-DeclareOperation( "SimpleAlgebraByStronglySP", [ IsGroupRing, 
+DeclareOperation( "SimpleAlgebraByStrongSP", [ IsGroupRing, 
                                        IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraByStronglySPNC", [ IsGroupRing,
+DeclareOperation( "SimpleAlgebraByStrongSPNC", [ IsGroupRing,
                                        IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraByStronglySPInfo", [ IsGroupRing, 
+DeclareOperation( "SimpleAlgebraByStrongSPInfo", [ IsGroupRing, 
                                             IsGroup, IsGroup, IsList ] );
-DeclareOperation( "SimpleAlgebraByStronglySPInfoNC", [ IsGroupRing, 
+DeclareOperation( "SimpleAlgebraByStrongSPInfoNC", [ IsGroupRing, 
                                             IsGroup, IsGroup, IsList ] );
 
-DeclareAttribute( "StronglyShodaPairs", IsGroup and IsFinite );
+DeclareAttribute( "StrongShodaPairs", IsGroup and IsFinite );
 
-DeclareAttribute( "StronglyShodaPairsAndIdempotents", IsGroupRing );
+DeclareAttribute( "StrongShodaPairsAndIdempotents", IsGroupRing );
 DeclareGlobalFunction( "SearchingKForSSP" );
 DeclareOperation( "eGsum",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
 
-DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStronglySP" );
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStrongSP" );
 
 DeclareOperation( "AddCrossedProductBySSP", [ IsGroup, IsGroup, IsGroup]);
 DeclareOperation( "AddCrossedProductBySST", 
@@ -77,7 +77,7 @@ DeclareOperation( "AverageSum", [ IsGroupRing, IsObject ] );
 DeclareOperation("IsCompleteSetOfPCIs",[IsRing,IsList]);
 DeclareOperation("IsCompleteSetOfOrthIdemps",[IsRing,IsList]);
 
-DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
+DeclareOperation( "IsStrongShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 
 DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
 DeclareOperation( "BigPrimitiveRoot", [ IsPosInt ] );
@@ -109,7 +109,7 @@ DeclareOperation( "BWNoStMon", [IsGroup and IsFinite] );
 DeclareOperation( "ReductionModnZ", [IsPosInt, IsPosInt] );
 DeclareOperation( "GalToInt", [IsGroup] );
 DeclareGlobalFunction( "CocycleByData" );
-DeclareOperation( "SimpleAlgebraByStronglySTInfo", 
+DeclareOperation( "SimpleAlgebraByStrongSTInfo", 
                             [IsPosInt , IsPosInt , IsField , IsGroup , IsList] );
 
 #############################################################################
