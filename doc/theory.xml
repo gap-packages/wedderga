@@ -533,7 +533,7 @@ realizable by a Shoda pair of <M>G</M>.
 <!-- ********************************************************* -->
 
 <Section Label="SSPDef">
-<Heading>Strongly Shoda pairs</Heading>
+<Heading>Strong Shoda pairs</Heading>
 
 <Index>strongly Shoda pair</Index>
 A <E>strongly Shoda pair</E> of <M>G</M> is a pair <M>(K,H)</M> of
@@ -612,7 +612,7 @@ such that <M>\chi=\theta^G</M>.<P/>
 The group <M>G</M> is <E>strongly monomial</E> if every irreducible character of <M>G</M> is 
 strongly monomial. <P/>
 
-Strongly Shoda pairs where firstly introduced by Olivieri, del Río and Simón <Cite Key="ORS" /> who proved that 
+Strong Shoda pairs where firstly introduced by Olivieri, del Río and Simón <Cite Key="ORS" /> who proved that 
 every abelian-by-supersolvable is strongly monomial  <Cite Key="ORS" />.
 The algorithm to compute the Wedderburn decomposition of rational group algebras for strongly monomial groups
 was explained in <Cite Key="OR" />. 
@@ -627,7 +627,7 @@ the strongly Shoda pairs of the subgroups of <M>G</M>.
 <!-- ********************************************************* -->
 
 <Section Label="CyclotomicClass">
-<Heading>Cyclotomic Classes and Strongly Shoda Pairs</Heading>
+<Heading>Cyclotomic Classes and Strong Shoda Pairs</Heading>
 
 Let <M>G</M> be a finite group and <M>F</M> a finite field of order <M>q</M>, 
 coprime with the order of <M>G</M>. <P/>

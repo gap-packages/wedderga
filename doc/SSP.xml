@@ -3,13 +3,13 @@
 <!-- ********************SSP******************** -->
 
 <Chapter Label="SSP">
-<Heading>Strongly Shoda pairs</Heading>
+<Heading>Strong Shoda pairs</Heading>
 
 <Section Label="SSPSSP">
 <Heading>Computing strongly Shoda pairs</Heading>
 
 <ManSection>
-   <Attr Name="StronglyShodaPairs" 
+   <Attr Name="StrongShodaPairs" 
          Arg="G"  
          Comm="A list of SSPs representatives realizing Wedderburn components of QG" />
    <Returns>
@@ -25,13 +25,13 @@
 
 <Example>
 <![CDATA[
-gap> StronglyShodaPairs( SymmetricGroup(4) );
+gap> StrongShodaPairs( SymmetricGroup(4) );
 [ [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3), (3,4) ]) ],
   [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3) ]) ],
   [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ],
   [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) ],
   [ Group([ (2,4,3), (1,4)(2,3) ]), Group([ (1,4)(2,3), (1,3)(2,4) ]) ] ]
-gap> StronglyShodaPairs( DihedralGroup(64) );
+gap> StrongShodaPairs( DihedralGroup(64) );
 [ [ <pc group of size 64 with 6 generators>,
       Group([ f6, f5, f4, f3, f1, f2 ]) ],
   [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f1*f2 ])
@@ -52,7 +52,7 @@ gap> StronglyShodaPairs( DihedralGroup(64) );
 <Heading>Properties related with Shoda pairs</Heading>
 
 <ManSection>
-   <Oper Name="IsStronglyShodaPair" 
+   <Oper Name="IsStrongShodaPair" 
          Arg="G K H"  
          Comm="Is (K,H) a strongly Shoda pair of G?" />
    <Description>
@@ -67,13 +67,13 @@ gap> StronglyShodaPairs( DihedralGroup(64) );
 <Example>
 <![CDATA[
 gap> G:=SymmetricGroup(3);; K:=Group([(1,2,3)]);; H:=Group( () );;
-gap> IsStronglyShodaPair( G, K, H );
+gap> IsStrongShodaPair( G, K, H );
 true
-gap> IsStronglyShodaPair( G, G, H );
+gap> IsStrongShodaPair( G, G, H );
 false
-gap> IsStronglyShodaPair( G, K, K );
+gap> IsStrongShodaPair( G, K, K );
 false
-gap> IsStronglyShodaPair( G, G, K );
+gap> IsStrongShodaPair( G, G, K );
 true
 ]]>
 </Example>
@@ -98,7 +98,7 @@ true
 gap> G:=AlternatingGroup(5);;
 gap> K:=AlternatingGroup(4);;
 gap> H := Group( (1,2)(3,4), (1,3)(2,4) );;
-gap> IsStronglyShodaPair( G, K, H );
+gap> IsStrongShodaPair( G, K, H );
 false
 gap> IsShodaPair( G, K, H );
 true

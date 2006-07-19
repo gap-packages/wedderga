@@ -151,7 +151,7 @@ gap> QD16 := GroupRing( Rationals, D16 );
 gap> a:=QD16.1;b:=QD16.2;
 (1)*f1
 (1)*f2
-gap> e := PrimitiveCentralIdempotentsByStronglySP( QD16)[3];;
+gap> e := PrimitiveCentralIdempotentsByStrongSP( QD16)[3];;
 gap> Centralizer( D16, a);
 Group([ f1, f4 ])
 gap> Centralizer( D16, b);
