@@ -33,10 +33,10 @@ Persons :=
        Email         := "osnelier@ime.usp.br",
        PostalAddress := Concatenation( [
                         "Departamento de Matemática\n",
-                        "Instituto de Ciências Exatas\",
+                        "Instituto de Ciências Exatas\n",
                         "Universidade Federal de Juiz de Fora\n",
-                        "Campus-Cidade Universitária\n"
-                        "36036-900, Juiz de Fora, Brazil ] ),
+                        "Campus-Cidade Universitária\n",
+                        "36036-900, Juiz de Fora, Brazil" ] ),
        Place         := "Sao Paulo",
        Institution   := "Universidade de Sao Paulo"
      ),
