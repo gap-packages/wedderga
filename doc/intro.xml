@@ -30,17 +30,18 @@ The main functions of &Wedderga; are
 computes a list of simple algebras such that their direct product is
 isomorphic to the group algebra <M>FG</M>, given as input. 
 Thus the direct product of the entries of the output is
-the Wedderburn decomposition of <M>FG</M>. <P/>
+the <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />) of <M>FG</M>. <P/>
 
 If <M>F</M> is an abelian number field then 
 the entries of the output are given as matrix algebras of cyclotomic algebras 
 (see <Ref Sect="Cyclotomic" />), thus, the entries of the output of 
 <Ref Attr="WedderburnDecomposition" /> 
-are realizations of the Wedderburn components of <M>FG</M> as algebras which are Brauer equivalent 
-to cyclotomic algebras. Recall that the Brauer-Witt Theorem ensures 
-that every simple factor of a semisimple group ring <M>FG</M> is Brauer equivalent
+are realizations of the <E>Wedderburn components</E> (<Ref Sect="WedDec" />) 
+of <M>FG</M> as algebras which are <E>Brauer equivalent</E> <Ref Sect="Brauer" /> 
+to <E>cyclotomic algebras</E> (<Ref Sect="Cyclotomic" />). Recall that the Brauer-Witt Theorem ensures 
+that every simple factor of a semisimple group ring <M>FG</M> is <E>Brauer equivalent</E> <Ref Sect="Brauer" />
 (that is represents the same class in the Brauer group of its centre) 
-to a cyclotomic algebra (<Cite Key="Y"/>, <Cite Key="Olteanu" />). 
+to a cyclotomic algebra (<Cite Key="Y"/>, <Cite Key="O" />). 
 <P/>
 
 The Wedderburn components of <M>FG</M> are also matrix algebras over division rings 
@@ -56,15 +57,15 @@ of the field <M>F</M>.
 <![CDATA[
 gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
 <algebra-with-one over Rationals, with 2 generators>
-gap> WedderburnDecomposition( QG );
-[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ), 
-  <crossed product over CF(3), with 2 generators and center=Rationals> ]
+gap> WedderburnDecomposition(QG);
+[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),
+  <crossed product with center Rationals over CF(3) of a group of size 2> ]
 gap> FG := GroupRing( CF(5), SymmetricGroup(4) );
 <algebra-with-one over CF(5), with 2 generators>
 gap> WedderburnDecomposition( FG );
-[ CF(5), CF(5), ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ), 
-  <crossed product over AsField( CF(5), CF(15) ), with
-    2 generators and center=CF(5)> ]
+[ CF(5), CF(5), ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ),
+  <crossed product with center CF(5) over AsField( CF(5), CF(
+    15) ) of a group of size 2> ]
 gap> FG := GroupRing( GF(5), SymmetricGroup(4) ); 
 <algebra-with-one over GF(5), with 2 generators>
 gap> WedderburnDecomposition( FG );

@@ -16,8 +16,10 @@
          A list of pairs of subgroups of the input group
    </Returns>
    <Description>
-        Computes a list <M>ssp</M> of representatives of the equivalence classes of strongly Shoda pairs 
-        of the finite group <A>G</A> (see <Ref Sect="SSPDef" />). <P/>
+        The input should be a finite group <M>G</M>. <P/>
+   
+        Computes a list of representatives of the equivalence classes of <E>strongly Shoda pairs</E> 
+        <Ref Sect="SSPDef" /> of the finite group <A>G</A>. <P/>
    </Description>
 </ManSection>
 
@@ -54,10 +56,11 @@ gap> StronglyShodaPairs( DihedralGroup(64) );
          Arg="G K H"  
          Comm="Is (K,H) a strongly Shoda pair of G?" />
    <Description>
-         Returns <K>true</K> if (<A>K</A>,<A>H</A>)
-         is a strongly Shoda pair of the group <A>G</A>,
-         and <K>false</K> otherwise (see <Ref Sect="SSPDef" />
-         for the definition).
+         The first input data should be a finite group <A>G</A>, the second a sugroup <A>K</A> of <A>G</A> and 
+         third a subgroup of <A>K</A>. <P/>
+                  
+         Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a <E>strongly Shoda pair</E> <Ref Sect="SSPDef" /> 
+         of <A>G</A>, and <K>false</K> otherwise.
    </Description>
 </ManSection>
 
@@ -81,11 +84,12 @@ true
          Arg="G K H"  
          Comm="Is (K,H) a Shoda pair of G?" />
    <Description>
-        Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a Shoda pair of 
-        the group <A>G</A>, and <K>false</K> otherwise 
-        (see <Ref Sect="SPDef" /> for the definition).
-        Note that every strongly Shoda pair is a Shoda pair,
-        but the converse is not true.
+         The first input data should be a finite group <A>G</A>, the second a sugroup <A>K</A> of <A>G</A> and 
+         third a subgroup of <A>K</A>. <P/>
+         
+        Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a <E>Shoda pair</E> <Ref Sect="SPDef" /> of <M>G</M>.<P/>
+
+        Note that every strongly Shoda pair is a Shoda pair, but the converse is not true.
    </Description>
 </ManSection>
 
@@ -105,20 +109,11 @@ true
 <ManSection>
    <Oper Name="IsStronglyMonomial" 
          Arg="G"  
-         Comm="Is every Wedderburn component realizable by a SSP" />
+         Comm="Is every irreducible character strongly monomial" />
    <Description>
-        Returns <K>true</K> if the finite group <A>G</A> is strongly 
-        monomial, that is if every Wedderburn component of the rational 
-        group algebra is realizable by a strongly Shoda pair 
-        (see <Ref Sect="SSPDef" />).
-        In this case also every Wedderburn component of a semisimple 
-        finite group algebra over <A>G</A> is also realizable by a 
-        strongly Shoda pair together with a cyclotomic class 
-        (see <Ref Sect="CyclotomicClass" />).<P/>
-        Note that every strongly monomial finite group is monomial, and
-        every abelian-by-supersolvable or metabelian finite group is 
-        strongly monomial. Also every monomial group of order less than 
-        1000 is strongly monomial, but not every monomial group is strongly monomial.
+        The input <A>G</A> should be a finite group. <P/>
+   
+        Returns <K>true</K> if <A>G</A> is a <E>strongly monomial</E> <Ref Sect="StMon" /> finite group.
    </Description>
 </ManSection>
 

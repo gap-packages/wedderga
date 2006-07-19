@@ -17,7 +17,8 @@
           <Email>osnelier@ime.usp.br</Email>
           <Address>
             Instituto de Matemática, Universidade de Sao Paulo<Br/>
-            Caixa Postal 66281, Sao Paulo, CEP 05315-970, Brazil
+            Caixa Postal 66281, Sao Paulo, CEP 05315-970, Brazil<Br/>
+            ADDRESS IN LAVRAS
           </Address>
   </Author>
 
@@ -33,8 +34,7 @@
   <Author>Aurora Olivieri
           <Email>olivieri@usb.ve</Email>
           <Address>
-            Departamento de Matemáticas,<Br/> 
-            Universidad Simón Bolívar<Br/>
+            Departamento de Matemáticas, Universidad Simón Bolívar<Br/>
             Apartado Postal 89000, Caracas 1080-A, Venezuela
           </Address> 
   </Author>
@@ -56,13 +56,13 @@
           </Address> 
   </Author>  
     
-  <Date>May 2006</Date>
+  <Date>July 2006</Date>
 
 <Abstract>
 
 <Index Key="Wedderga package">&Wedderga; package</Index> 
-The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of a 
-<B>g</B>roup <B>a</B>lgebras. This is a &GAP; package to compute the simple 
+The title ``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of a 
+<B>G</B>roup <B>A</B>lgebras. This is a &GAP; package to compute the simple 
 components of the Wedderburn decomposition of group algebras of finite 
 groups over abelian number fields of characteristic zero and over finite fields. 
 It also contains functions that produce the primitive central idempotents 
@@ -98,7 +98,7 @@ the referee for careful testing &Wedderga; and useful suggestions. Also we
 acknowledge very much the members of the &GAP; team: Thomas Breuer, 
 Alexander Hulpke, Frank L&#252;beck and many other colleagues 
 for helpful comments and advise. We would like also to thank Thomas Breuer 
-for the code of <C>PrimitiveCentralIdempotentsByCharacterTable</C>. 
+for the code of <C>PrimitiveCentralIdempotentsByCharacterTable</C> for rational group algebras.
 <P/> 
 
 </Acknowledgements>
