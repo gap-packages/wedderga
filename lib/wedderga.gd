@@ -21,7 +21,7 @@ DeclareInfoClass("InfoPCI");
 
 DeclareProperty( "IsSemisimpleRationalGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsSemisimpleFiniteGroupAlgebra", IsGroupRing );
-DeclareProperty( "IsZeroCharacteristicGroupAlgebra", IsGroupRing );
+DeclareProperty( "IsSemisimpleZeroCharacteristicGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsCFGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsSemisimpleANFGroupAlgebra", IsGroupRing );
 
@@ -75,6 +75,7 @@ DeclareOperation( "AverageSum", [ IsGroupRing, IsObject ] );
 #################### auxiliar.gi #####################
 
 DeclareOperation("IsCompleteSetOfPCIs",[IsRing,IsList]);
+DeclareOperation("IsCompleteSetOfOrthIdemps",[IsRing,IsList]);
 
 DeclareOperation( "IsStronglyShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 

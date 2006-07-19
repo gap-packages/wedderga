@@ -912,7 +912,7 @@ function( FG, chi )
         sprod;      	  # (chi_M,psi)
         
 
-# if not IsZeroCharacteristicGroupAlgebra( FG ) then
+# if not IsSemisimpleZeroCharacteristicGroupAlgebra( FG ) then
 #   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
 # fi;   
     
@@ -1342,7 +1342,7 @@ local G,               # underlying group
         genP,       	  # set of generators of P
         sprod;      	  # (chi_M,psi)
 
-# if not IsZeroCharacteristicGroupAlgebra( FG ) then
+# if not IsSemisimpleZeroCharacteristicGroupAlgebra( FG ) then
 #   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
 # fi;   
     

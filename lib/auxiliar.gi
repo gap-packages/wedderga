@@ -25,12 +25,12 @@ R -> IsRationals(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R)));
 
 #############################################################################
 ##
-#P IsZeroCharacteristicGroupAlgebra( FG )
+#P IsSemisimpleZeroCharacteristicGroupAlgebra( FG )
 ##  
 ## The function checks whether a group ring is a group algebra 
 ## of a finite group over the field of characteristic zero
 ##
-InstallImmediateMethod( IsZeroCharacteristicGroupAlgebra,
+InstallImmediateMethod( IsSemisimpleZeroCharacteristicGroupAlgebra,
     IsGroupRing, 
     0,
 R -> Characteristic(LeftActingDomain(R))=0 and IsFinite(UnderlyingMagma(R))); 
@@ -104,6 +104,30 @@ function( R, ListPCIs )
         return Sum( ListPCIs ) = One( R ) and ForAll( ListPCIs, x -> x=x^2 );
     fi;
 end);
+
+#############################################################################
+##
+#M IsCompleteSetOfOrthIdemps( R, List )
+##
+## The function checks if List is a complete set of orthogonal central idempotents of a ring R.
+##
+InstallMethod( IsCompleteSetOfOrthIdemps,
+    "for list of idempotents", 
+    true, 
+    [ IsRing, IsList ], 
+    0,
+function( R, List )
+    if not ForAll( List, x -> x in R ) then
+        Error("Wedderga: An element of <ListPCIs> does not belong to <R>!!!\n");
+    else
+        return Sum( List ) = One( R ) and 
+                    ForAll( [1..Length(List)], i -> List[i]=List[i]^2 and 
+                                                    ForAll ( [(i+1)..Length(List)], j -> List[i]*List[j] = Zero(R) )
+                           ) ;
+    fi;
+end);
+
+
 
 
 #############################################################################
@@ -472,7 +496,7 @@ local G ;
 
 G := UnderlyingMagma(FG);
 
-if not(IsSemisimpleFiniteGroupAlgebra(FG) or IsZeroCharacteristicGroupAlgebra(FG)) then 
+if not(IsSemisimpleFiniteGroupAlgebra(FG) or IsSemisimpleZeroCharacteristicGroupAlgebra(FG)) then 
   Error("Wedderga: The input should be a semisimple group algebra \n",
         "over a finite or a zero characteristic field \n");
 fi;
