@@ -16,7 +16,8 @@
    <Description>
       The input must be a group ring. <P/>
       
-      Returns <K>true</K> if the input <A>KG</A> is a <E>semisimple group algebra</E> <Ref Sect="Semisimple" /> 
+      Returns <K>true</K> if the input <A>KG</A> is a 
+      <E>semisimple group algebra</E> (<Ref Sect="Semisimple" />) 
       over a field of characteristic zero, and <K>false</K> otherwise.
    </Description>
 </ManSection>
@@ -46,8 +47,9 @@ false
    <Description>
     The input must be a group ring. <P/>
       
-    Returns <K>true</K> if <A>KG</A> is a <E>semisimple rational group algebra</E> <Ref Sect="Semisimple" /> and 
-    <K>false</K> otherwise.
+    Returns <K>true</K> if <A>KG</A> is a 
+    <E>semisimple rational group algebra</E> (<Ref Sect="Semisimple" />) 
+    and <K>false</K> otherwise.
    </Description>
 </ManSection>
 
@@ -98,7 +100,8 @@ false
    <Description>
     The input must be a group ring. <P/>
     
-         Returns <K>true</K> if <A>KG</A> is a <E>semisimple finite group algebra</E> <Ref Sect="Semisimple" />, 
+         Returns <K>true</K> if <A>KG</A> is a 
+         <E>semisimple finite group algebra</E> (<Ref Sect="Semisimple" />), 
          that is a group algebra of a finite group <M>G</M> over a field <M>K</M> 
          of order coprime with the order of <M>G</M>, and <K>false</K> otherwisse.
    </Description>
@@ -134,11 +137,13 @@ false
          a subgroup of a group <A>G</A>.
    </Returns>         
    <Description>
-      The input should be formed by a finite group <A>G</A> and an element <A>x</A> of a group ring 
-      <M>FH</M> whose underlying group <M>H</M> contains <A>G</A> as a subgroup. <P/>
+         The input should be formed by a finite group <A>G</A> and an element
+         <A>x</A> of a group ring <M>FH</M> whose underlying group <M>H</M>
+         contains <A>G</A> as a subgroup. <P/>
    
          Returns the centralizer of <A>x</A> in <A>G</A>. <P/>
-         This operation adds the new method to the operation that already exists in &GAP; 
+         This operation adds the new method to the operation that already 
+         exists in &GAP;.
    </Description>
 </ManSection>
 
@@ -175,13 +180,15 @@ Group([ f1, f2 ])
          an element of a group ring
    </Returns>         
    <Description>
-      The input should be formed by an element <A>x</A> of a group ring <M>FG</M> and an element
-      <A>g</A> in the underlying group <M>G</M> of <M>FG</M>.<P/>
+      The input should be formed by an element <A>x</A> of a group ring 
+      <M>FG</M> and an element <A>g</A> in the underlying group 
+      <M>G</M> of <M>FG</M>.<P/>
    
       Returns the conjugate <M>x^g = g^{-1} x g</M> of <A>x</A> by <A>g</A>. 
       Usage of <C>a^g</C> produces the same output.<P/>
       
-      This operation adds the new method to the operation that already exists in &GAP;
+      This operation adds the new method to the operation that already 
+      exists in &GAP;.
    </Description>
 </ManSection>
 
@@ -220,8 +227,8 @@ true
    </Description>
 </ManSection>
 
-If <A>X</A> is a subgroup of <M>G</M> then the output is an idempotent of <M>RG</M> which is central 
-if and only if <A>X</A> is normal in <M>G</M>. 
+If <A>X</A> is a subgroup of <M>G</M> then the output is an idempotent 
+of <M>RG</M> which is central if and only if <A>X</A> is normal in <M>G</M>. 
 
 <Example>
 <![CDATA[
@@ -261,7 +268,8 @@ false
    <Description>
    The input should be formed by two relatively prime positive integers. <P/>
    
-   Returns the <A>q</A>-<E>cyclotomic class</E> <Ref Sect="CyclotomicClass" /> modulo <A>n</A>.
+   Returns the <A>q</A>-<E>cyclotomic class</E> 
+   (<Ref Sect="CyclotomicClass" />) modulo <A>n</A>.
    </Description>
 </ManSection>
 
@@ -282,11 +290,14 @@ gap> CyclotomicClasses( 10, 21 );
          Arg="q n C"  
          Comm="Is Cyclotomic class" />
    <Description>
-   The input should be formed by two relatively prime positive integers <A>q</A> and <A>n</A> and
-   a sublist <A>C</A> of <M>[ 0 .. n ]</M>. <P/>
+         The input should be formed by two relatively prime positive 
+         integers <A>q</A> and <A>n</A> and a sublist <A>C</A> of 
+         <M>[ 0 .. n ]</M>. <P/>
    
-      Returns <K>true</K> if <A>C</A> is a <A>q</A>-<E>cyclotomic class</E> 
-      <Ref Sect="CyclotomicClass" /> modulo <A>n</A> and <K>false</K> otherwise.
+         Returns <K>true</K> if <A>C</A> is a 
+         <A>q</A>-<E>cyclotomic class</E> 
+         (<Ref Sect="CyclotomicClass" />) modulo <A>n</A> and 
+         <K>false</K> otherwise.
    </Description>
 </ManSection>
 

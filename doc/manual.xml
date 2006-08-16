@@ -16,8 +16,8 @@
   <Author>Osnel Broche Cristo 
           <Email>osnelier@ime.usp.br</Email>
           <Address>
-          Departamento de Matemática,
-          Instituto de Ciências Exatas,
+          Departamento de Matemática<Br/>
+          Instituto de Ciências Exatas<Br/>
           Universidade Federal de Juiz de Fora<Br/>
           Campus-Cidade Universitária, 36036-900, Juiz de Fora          
           </Address>
@@ -35,7 +35,8 @@
   <Author>Aurora Olivieri
           <Email>olivieri@usb.ve</Email>
           <Address>
-            Departamento de Matemáticas, Universidad Simón Bolívar<Br/>
+            Departamento de Matemáticas<Br/>
+	    Universidad Simón Bolívar<Br/>
             Apartado Postal 89000, Caracas 1080-A, Venezuela
           </Address> 
   </Author>
@@ -57,12 +58,12 @@
           </Address> 
   </Author>  
     
-  <Date>July 2006</Date>
+  <Date>August 2006</Date>
 
 <Abstract>
 
 <Index Key="Wedderga package">&Wedderga; package</Index> 
-The title ``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of a 
+The title ``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of 
 <B>G</B>roup <B>A</B>lgebras. This is a &GAP; package to compute the simple 
 components of the Wedderburn decomposition of group algebras of finite 
 groups over abelian number fields of characteristic zero and over finite fields. 
@@ -89,7 +90,7 @@ of group algebras of finite groups over the field of rationals and over finite f
 
   O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
-  Version 4.0;</E> 2006 (<URL>http://ukrgap.exponenta.ru/wedderga.htm</URL>).
+  Version 4.0;</E> 2006 (<URL>http://homepages.vub.ac.be/~okonoval/wedderga.htm</URL>).
 </Copyright>
   
 <Acknowledgements>
