@@ -37,22 +37,24 @@ is correct.
          
          * a group <A>G</A>, <P/>
          
-         * a function <A>act(RG,g)</A>, on two arguments: the crossed product <A>RG</A> and an element 
-            <A>g</A> in <M>G</M>.
-            It must returns a mapping from <A>R</A> to <A>R</A> which can be applied via the "<C>\^</C>" operation, 
-            and <P/>
+         * a function <A>act(RG,g)</A>, on two arguments: 
+           the crossed product <A>RG</A> and an element 
+           <A>g</A> in <M>G</M>.
+           It must return a mapping from <A>R</A> to <A>R</A> 
+           which can be applied via the "<C>\^</C>" operation, 
+           and <P/>
             
-         * a function <A>twist(RG,g,h)</A> on three arguments: the crossed product <A>RG</A> and a pair of elements of 
-         <A>G</A>. 
-         It must return an invertible element of <A>R</A>. <P/> <P/>
+         * a function <A>twist(RG,g,h)</A> on three arguments: 
+           the crossed product <A>RG</A> and a pair of elements 
+           of <A>G</A>. 
+           It must return an invertible element of <A>R</A>. <P/> <P/>
          
-         Returns the crossed product of <A>G</A> over the ring <A>R</A> with action <A>act</A> and twisting 
-         <A>twist</A>. <P/>
+         Returns the crossed product of <A>G</A> over the ring <A>R</A> 
+         with action <A>act</A> and twisting <A>twist</A>. <P/>
          
          The resulting crossed product belongs to the category
          <Index Key="IsCrossedProduct"><C>IsCrossedProduct</C></Index>
-         <C>IsCrossedProduct</C>, 
-         which is defined as a subcategory of 
+         <C>IsCrossedProduct</C>, which is defined as a subcategory of 
          <C>IsFLMLORWithOne</C>.
    </Description>
 </ManSection>       
@@ -70,9 +72,10 @@ twist := function( RG , g, h )
 end;
 </Log>	
 
-Let <M>n</M> be a positive integer and <M>\xi_n</M> a complex primitive root of unity. 
-The natural action of the group of units of <M>Z_n</M> the ring of integers module <M>n</M> 
-on <M>Q(\xi_n)</M> can be defined as follows:
+Let <M>n</M> be a positive integer and <M>\xi_n</M> a complex primitive 
+root of unity. The natural action of the group of units of <M>Z_n</M>, 
+the ring of integers modulo <M>n</M>, on <M>Q(\xi_n)</M> can be defined 
+as follows:
 
 <Log> 
 act := function(RG,a)
@@ -80,10 +83,11 @@ act := function(RG,a)
 end;
 </Log>
 
-In the following example one construct the Hamiltonian quaternion algebra over the rationals
-as a crossed products of the group of units of the cyclic group of order 2 over <M>Q(i)=GaussianRationals</M>. 
-One realizes the cyclic group of order 2 as the group of units of <M>Z/4Z</M> and one uses the natural isomorphism
-<M>Z/4Z\rihgtarrow Gal(Q(i)/Q)</M> to describe the action. <P/>
+In the following example one construct the Hamiltonian quaternion algebra 
+over the rationals as a crossed products of the group of units of the cyclic 
+group of order 2 over <M>Q(i)=GaussianRationals</M>. One realizes the cyclic 
+group of order 2 as the group of units of <M>Z/4Z</M> and one uses the natural 
+isomorphism <M>Z/4Z \rightarrow Gal(Q(i)/Q)</M> to describe the action. <P/>
 
 <Example>
 <![CDATA[
@@ -120,7 +124,12 @@ gap> a*b;
 ]]>
 </Example>
 
-Changing the twisting one can construct the generalized quaternion algebra <M>Q(i,j|i^2=-1,j^2=-3,ji=-ij)</M> 
+Changing the twisting one can construct the generalized quaternion algebra 
+
+<Display>
+Q(i,j|i^2=-1,j^2=-3,ji=-ij)
+</Display> 
+
 as crossed products over <M>Q(i)=GaussianRationals</M>. <P/>
 
 
@@ -207,7 +216,8 @@ gap> (a+b)*(a-b);
 ]]>
 </Example>
 
-One can extract the arguments of a crossed product using: <P/>
+One can extract the arguments used for the construction of the
+crossed product using the following attributes: <P/>
 
 * <Index Key="LeftActingDomain"><C>LeftActingDomain</C></Index> <C>LeftActingDomain</C> for the coefficient ring. <P/>
 
@@ -235,7 +245,8 @@ gap> List( G, x -> List( G , y -> tw( HZ, x, y ) ) );
 ]]>
 </Example>
   
-Some more examples of crossed products coming from the <E>Wedderburn decomposition</E> <Ref Sect="WedDec" /> 
+Some more examples of crossed products coming from the 
+<E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />)
 of group algebras.  
 
 <Example>

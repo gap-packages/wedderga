@@ -16,10 +16,11 @@
          a list of group algebra elements
    </Returns>         
    <Description>
-         The input <A>FG</A> should be a semisimple group algebra. <P/>
+         The input <A>FG</A> should be a semisimple group algebra. 
+         <P/>
    
-         Returns the list of primitive central idempotents of <A>FG</A> using the character table of <M>G</M> 
-         <Ref Sect="Idempotents" />. 
+         Returns the list of primitive central idempotents of <A>FG</A> 
+         using the character table of <M>G</M> (<Ref Sect="Idempotents" />). 
    </Description>
 </ManSection>
 
@@ -54,14 +55,20 @@ gap> Length(pciFG);
    <Oper Name="IsCompleteSetOfOrthIdemps" 
          Arg="R l" />
    <Description>
-         The input should be formed by a ring <A>R</A> and a list <A>l</A> of elements of <A>R</A>. <P/>
+         The input should be formed by a ring <A>R</A> 
+         and a list <A>l</A> of elements of <A>R</A>. <P/>
    
-         Returns <K>true</K> if the <A>l</A> is a complete list of orthogonal idempotents of <A>R</A>, 
-         that is if the sum of the elements of <A>l</A> is the identity of <A>R</A> and for every <M>e,f \in l</M>
-         one has <M>e^2=e</M> and <M>e*f=0</M> if <M>e</M> and occupies different positions in <A>l</A>. <P/>
+         Returns <K>true</K> if the <A>l</A> is a complete list 
+         of orthogonal idempotents of <A>R</A>, 
+         that is if the sum of the elements of <A>l</A> is the 
+         identity of <A>R</A> and for every <M>e,f \in l</M>
+         one has <M>e^2=e</M> and <M>e*f=0</M> if <M>e</M> 
+         and occupies different positions in <A>l</A>. <P/>
          
-         Note that the if a non-zero element <M>r</M> of <A>R</A> appears in two different positions of <M>l</M> 
-         then the output is <K>false</K>. However the appearance of one or more zeroes in <A>l</A> do not
+         Note that the if a non-zero element <M>r</M> of <A>R</A> 
+         appears in two different positions of <M>l</M> 
+         then the output is <K>false</K>. However the appearance 
+         of one or more zeroes in <A>l</A> do not
          affect the output.
    </Description>
 </ManSection>
@@ -101,21 +108,22 @@ false
          a list of group algebra elements
    </Returns>         
    <Description>
-         The input <A>FG</A> should be semisimple group algebra of a finite group <M>G</M> whose coefficient field 
+         The input <A>FG</A> should be semisimple group algebra 
+         of a finite group <M>G</M> whose coefficient field 
          <M>F</M> is either a finite field or the field <M>Q</M> of rationals. <P/>
          
          If <M>F=Q</M> then the output is the list of primitive central 
-         idempotents of the group algebra <M>FG</M> realizable by strongly 
-         Shoda pairs <Ref Sect="SSPDef" /> of <M>G</M>. <P/>
+         idempotents of the group algebra <M>FG</M> realizable by strong
+         Shoda pairs (<Ref Sect="SSPDef" />) of <M>G</M>. <P/>
          
          If <M>F</M> is a finite field then the output is the list of primitive
-         central idempotents of <M>FG</M> realizable by strongly Shoda pairs 
+         central idempotents of <M>FG</M> realizable by strong Shoda pairs 
          <M>(K,H)</M> of <M>G</M> and <M>q</M>-cyclotomic classes modulo the 
-         index of <M>H</M> in <M>K</M> <Ref Sect="CyclotomicClass" />. <P/>
+         index of <M>H</M> in <M>K</M> (<Ref Sect="CyclotomicClass" />). <P/>
          
          If the list of primitive central idempotents given by the output is 
-         not complete (i.e. if the group <M>G</M> is not <E>strongly monomial</E> <Ref Sect="StMon" />  
-         then a warning is displayed.
+         not complete (i.e. if the group <M>G</M> is not <E>strongly monomial</E>
+         (<Ref Sect="StMon" />) then a warning is displayed.
    </Description>
 </ManSection>
 
@@ -157,10 +165,11 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
         The input should be a rational group algebra of a finite group <M>G</M>. <P/>
    
          Returns a list containing all the primitive central idempotents <M>e</M>
-         of the rational group algebra <A>QG</A> such that <M>\chi(e)\ne 0</M> for some irreducible monomial 
-         character <M>\chi</M> of <M>G</M>. <P/>
+         of the rational group algebra <A>QG</A> such that <M>\chi(e)\ne 0</M> 
+         for some irreducible monomial character <M>\chi</M> of <M>G</M>. <P/>
           
-         The sum of the elements of the output obtained is the identity if and only if G is monomial. <P/>
+         The sum of the elements of the output is the identity if and only if 
+         G is monomial. <P/>
           
          If the list of primitive central idempotents given by the output is 
          not complete then a warning is displayed.
@@ -353,7 +362,7 @@ The output of <C>CentralElementBySubgroups</C> is central in the
 corresponding group algebra.
 If some additional conditions are satisfied then it is also an 
 idempotent but in general it could be not idempotent. 
-For example this is the case if <M>(K,H)</M> is a strongly
+For example this is the case if <M>(K,H)</M> is a strong
 Shoda pair of <M>G</M>.
 
 -->

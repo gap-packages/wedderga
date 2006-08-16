@@ -6,7 +6,7 @@
 <Heading>Strong Shoda pairs</Heading>
 
 <Section Label="SSPSSP">
-<Heading>Computing strongly Shoda pairs</Heading>
+<Heading>Computing strong Shoda pairs</Heading>
 
 <ManSection>
    <Attr Name="StrongShodaPairs" 
@@ -18,8 +18,9 @@
    <Description>
         The input should be a finite group <M>G</M>. <P/>
    
-        Computes a list of representatives of the equivalence classes of <E>strongly Shoda pairs</E> 
-        <Ref Sect="SSPDef" /> of the finite group <A>G</A>. <P/>
+        Computes a list of representatives of the equivalence classes of 
+        <E>strong Shoda pairs</E> 
+        (<Ref Sect="SSPDef" />) of a finite group <A>G</A>. <P/>
    </Description>
 </ManSection>
 
@@ -54,12 +55,14 @@ gap> StrongShodaPairs( DihedralGroup(64) );
 <ManSection>
    <Oper Name="IsStrongShodaPair" 
          Arg="G K H"  
-         Comm="Is (K,H) a strongly Shoda pair of G?" />
+         Comm="Is (K,H) a strong Shoda pair of G?" />
    <Description>
-         The first input data should be a finite group <A>G</A>, the second a sugroup <A>K</A> of <A>G</A> and 
+         The first argument should be a finite group <A>G</A>, 
+         the second a sugroup <A>K</A> of <A>G</A> and the
          third a subgroup of <A>K</A>. <P/>
                   
-         Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a <E>strongly Shoda pair</E> <Ref Sect="SSPDef" /> 
+         Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a 
+         <E>strong Shoda pair</E> (<Ref Sect="SSPDef" />) 
          of <A>G</A>, and <K>false</K> otherwise.
    </Description>
 </ManSection>
@@ -84,12 +87,15 @@ true
          Arg="G K H"  
          Comm="Is (K,H) a Shoda pair of G?" />
    <Description>
-         The first input data should be a finite group <A>G</A>, the second a sugroup <A>K</A> of <A>G</A> and 
+         The first argument should be a finite group <A>G</A>, 
+         the second a sugroup <A>K</A> of <A>G</A> and the
          third a subgroup of <A>K</A>. <P/>
          
-        Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a <E>Shoda pair</E> <Ref Sect="SPDef" /> of <M>G</M>.<P/>
+         Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a 
+         <E>Shoda pair</E> (<Ref Sect="SPDef" />) of <M>G</M>.<P/>
 
-        Note that every strongly Shoda pair is a Shoda pair, but the converse is not true.
+         Note that every strong Shoda pair is a Shoda pair, 
+         but the converse is not true.
    </Description>
 </ManSection>
 
@@ -105,6 +111,7 @@ true
 ]]>
 </Example>
 
+<Alt Only="LaTeX">\newpage</Alt>
 
 <ManSection>
    <Oper Name="IsStronglyMonomial" 
@@ -113,7 +120,8 @@ true
    <Description>
         The input <A>G</A> should be a finite group. <P/>
    
-        Returns <K>true</K> if <A>G</A> is a <E>strongly monomial</E> <Ref Sect="StMon" /> finite group.
+        Returns <K>true</K> if <A>G</A> is a <E>strongly monomial</E> 
+        (<Ref Sect="StMon" />) finite group.
    </Description>
 </ManSection>
 
