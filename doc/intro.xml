@@ -12,7 +12,9 @@ The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of
 components of the Wedderburn decomposition of semisimple group algebras of finite 
 groups over abelian number fields and over finite fields. 
 It also contains functions that compute the primitive central idempotents 
-of the same kind of group algebras.<P/>
+of the same kind of group algebras and to construct crossed products over
+a group with coefficients in an associative ring with identity and the
+multiplication determined by a given action and twisting.<P/>
 
 </Section>
 

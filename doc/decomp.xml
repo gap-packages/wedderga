@@ -96,10 +96,12 @@ gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,15) ) );
 ]]>
 </Example>
 
-In some cases the output of <Ref Attr="WedderburnDecomposition" /> do not provide
-a full matrix algebra over a <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />), 
-but a "fractional matrix algebra". See <Ref Sect="WedDec" /> for a theoretical 
-explanation of this phenomenon. 
+In some cases some entries of the the output of 
+<Ref Attr="WedderburnDecomposition" /> do not provide
+full matrix algebras over a <E>cyclotomic algebra</E> 
+(<Ref Sect="Cyclotomic" />), but "fractional matrix algebras". 
+See <Ref Sect="WedDec" /> for a theoretical explanation of 
+this phenomenon. In this case a warning message is displayed.
 
 <Example>
 <![CDATA[
@@ -138,14 +140,19 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
          over the field <M>F</M>, where <M>F</M> is either an abelian number field 
          (i.e. a subfield of a finite cyclotomic extension of the rationals) or a 
          finite field of characteristic coprime 
-         with the order of <M>G</M>. <P/> 
+         with the order of <M>G</M>. 
+         <P/> 
          
-         The function returns a list formed by lists of length 2, 4 or 5. <P/> 
+         This function is a numerical counterpart of 
+         <Ref Attr="WedderburnDecomposition" />.
+         <P/>
+                 
+         It returns a list formed by lists of length 2, 4 or 5. <P/> 
          
          The lists of length 2 are of the form 
          <Display>
-          [n,F]
-          </Display>  <P/>
+         [n,F]
+         </Display>
          where <M>n</M> is a positive integer and <M>F</M> is a field. 
          It represents the <M>n\times n</M> matrix algebra <M>M_n(F)</M> 
          over the field <M>F</M>.<P/> 
@@ -155,7 +162,8 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
          [n,F,k,[o,\alpha,\beta]],
          </Display>
          where <M>F</M> is a field and <M>n,k,o,\alpha,\beta</M> are 
-         non negative integers. 
+         non negative integers, satisfying relations in ...
+         
          It represents the <M>n\times n</M> matrix algebra <M>M_n(A)</M> 
          over the cyclic algebra
          <Display>
@@ -178,14 +186,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
           </Display>
           where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity.
          (see <Ref Sect="NumDesc" />).   <P/>
-   
-         This function is a counterpart of <Ref Attr="WedderburnDecomposition" />
-         which uses the same group algebra <A>FG</A> as input and computes the 
-         numerical data 
-         describing the <E>Wedderburn components</E> (<Ref Sect="WedDec" />) 
-         of the group algebra <A>FG</A>, 
-         given by <Ref Attr="WedderburnDecomposition" />.<P/>
-   </Description>
+      </Description>
 </ManSection>
 
 <Example>
@@ -206,7 +207,7 @@ The interpretation of the previous example gives rise to the following
   Q D_{16} = 4 Q \oplus M_2(Q) \oplus M_2(Q(\sqrt{2})).  
   </Display>
   <Display>
-  CF(5) D_{16} = 4 Q(\xi_5) \oplus M_2(Q(\xi_5)) \oplus M_2(Q(\xi_5,\sqrt{2}).  
+  CF(5) D_{16} = 4 Q(\xi_5) \oplus M_2(Q(\xi_5)) \oplus M_2(Q(\xi_5,\sqrt{2})).  
   </Display>
 
 <Example>
@@ -231,17 +232,17 @@ gap> WedderburnDecompositionInfo(QS4);
 </Example>
 
 In the previous example we computed the Wedderburn decomposition of the 
-rational group algebra <M>QQ_{16}</M> of the quaternion group of order <M>16</M> 
-and the rational group algebra <M>QS_{4}</M> of the symmetric group on four letters.
+rational group algebra <M>\Q Q_{16}</M> of the quaternion group of order <M>16</M> 
+and the rational group algebra <M>\Q S_{4}</M> of the symmetric group on four letters.
 For both group algebras we used both <Ref Attr="WedderburnDecomposition" /> and 
 <Ref Attr="WedderburnDecompositionInfo" />. <P/>
 
 The output of <Ref Attr="WedderburnDecomposition" /> shows that 
   <Display>
-  QQ_{16} = 4 \Q \oplus M_2(\Q) \oplus A 
+  \Q Q_{16} = 4 \Q \oplus M_2(\Q) \oplus A 
   </Display>
   <Display>
-  QS_{4} = 2Q \oplus 2 M_2(\Q) \oplus B
+  \Q S_{4} = 2 \Q \oplus 2 M_2(\Q) \oplus B
   </Display>
 where <M>A</M> and <M>B</M> are <E>crossed products</E> (<Ref Sect="CrossedProd" />)
 with coefficients in the 
@@ -252,10 +253,10 @@ information on the structure of algebras <M>A</M> and <M>B</M>. <P/>
 The numerical information displayed by 
 <Ref Attr="WedderburnDecompositionInfo" /> means that 
   <Display>
-  A = Q(\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1]
+  A = \Q(\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1]
   </Display>
   <Display>
-  B = Q(\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1]
+  B = \Q(\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1]
   </Display>
 Both <M>A</M> and <M>B</M> are quaternion algebras over its centre which is
 <M>Q(\xi+\xi^{-1})</M> and the former is equal to <M>Q(\sqrt{2})</M> and <M>Q</M> 
@@ -268,10 +269,12 @@ However the relation <M>g^2=-1</M> in <M>A</M> shows that
   A=Q(\sqrt{2})[i,g|i^2=g^2=-1,ig=-gi]
   </Display>
 and so <M>A</M> is a division algebra with centre <M>Q(\sqrt{2})</M>, which is a 
-subalgebra of the algebra of Hamiltonian quaternions. <P/>
+subalgebra of the algebra of Hamiltonian quaternions. 
+<P/>
 
-Next examples show the output of <C>WedderburnDecompositionInfo</C> 
-for <M>QG</M> where <M>G=SmallGroup(48,28)</M>. You can compare it with the 
+Next example shows the output of <C>WedderburnDecompositionInfo</C> 
+for <M>QG</M> and <M>CF(3)G</M>, where <M>G=SmallGroup(48,28)</M>. 
+You can compare it with the 
 output of <Ref Attr="WedderburnDecomposition" /> for the same group in the 
 previous section. Notice that the last entry of the the 
 <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />)
@@ -295,7 +298,7 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
 
 
 
-In some cases the some of the first entries of the output of <Ref Attr="WedderburnDecompositionInfo" /> are not integers and so the 
+In some cases some of the first entries of the output of <Ref Attr="WedderburnDecompositionInfo" /> are not integers and so the 
 <E>Wedderburn components</E> (<Ref Sect="WedDec" />) are given as 
 "fractional matrix algebra" of <E>cyclotomic algebras</E> 
 (<Ref Sect="Cyclotomic" />). 
@@ -467,7 +470,7 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
         
         Returns the Wedderburn component (<Ref Sect="WedDec" />) 
         of the rational group algebra <A>QG</A> 
-        <M>G</M> realized by a the strong Shoda pair (<A>K</A>,<A>H</A>).
+        realized by a the strong Shoda pair (<A>K</A>,<A>H</A>).
         <P/>
         
         In the four-argument version the first argument is a semisimple 
