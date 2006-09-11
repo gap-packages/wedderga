@@ -107,11 +107,11 @@ end);
 
 #############################################################################
 ##
-#M IsCompleteSetOfOrthIdemps( R, List )
+#M IsCompleteSetOfOrthogonalIdempotents( R, List )
 ##
 ## The function checks if List is a complete set of orthogonal central idempotents of a ring R.
 ##
-InstallMethod( IsCompleteSetOfOrthIdemps,
+InstallMethod( IsCompleteSetOfOrthogonalIdempotents,
     "for list of idempotents", 
     true, 
     [ IsRing, IsList ], 

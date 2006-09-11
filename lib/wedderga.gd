@@ -75,7 +75,7 @@ DeclareOperation( "AverageSum", [ IsGroupRing, IsObject ] );
 #################### auxiliar.gi #####################
 
 DeclareOperation("IsCompleteSetOfPCIs",[IsRing,IsList]);
-DeclareOperation("IsCompleteSetOfOrthIdemps",[IsRing,IsList]);
+DeclareOperation("IsCompleteSetOfOrthogonalIdempotents",[IsRing,IsList]);
 
 DeclareOperation( "IsStrongShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 
