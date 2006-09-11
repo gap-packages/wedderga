@@ -53,22 +53,24 @@ gap> Length(pciFG);
 
 <ManSection>
    <Oper Name="IsCompleteSetOfOrthIdemps" 
-         Arg="R l" />
+         Arg="R r" />
    <Description>
          The input should be formed by a ring <A>R</A> 
-         and a list <A>l</A> of elements of <A>R</A>. <P/>
+         and a list <A>r</A> of elements of <A>R</A>. <P/>
    
-         Returns <K>true</K> if the <A>l</A> is a complete list 
+         Returns <K>true</K> if the list <A>r</A> is a complete list 
          of orthogonal idempotents of <A>R</A>, 
-         that is if the sum of the elements of <A>l</A> is the 
-         identity of <A>R</A> and for every <M>e,f \in l</M>
+         that is if the sum of the elements of <A>r</A> is the 
+         identity of <A>R</A> and for every <M>e,f \in r</M>
          one has <M>e^2=e</M> and <M>e*f=0</M> if <M>e</M> 
-         and occupies different positions in <A>l</A>. <P/>
+         and occupies different positions in <A>r</A>. No claim
+         is made on the idempotents being central or primitive.
+         <P/>
          
          Note that the if a non-zero element <M>r</M> of <A>R</A> 
          appears in two different positions of <M>l</M> 
          then the output is <K>false</K>. However the appearance 
-         of one or more zeroes in <A>l</A> do not
+         of one or more zeroes in <A>r</A> do not
          affect the output.
    </Description>
 </ManSection>
@@ -123,7 +125,7 @@ false
          
          If the list of primitive central idempotents given by the output is 
          not complete (i.e. if the group <M>G</M> is not <E>strongly monomial</E>
-         (<Ref Sect="StMon" />) then a warning is displayed.
+         (<Ref Sect="StMon" />)) then a warning is displayed.
    </Description>
 </ManSection>
 
@@ -162,17 +164,14 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
          a list of group algebra elements 
    </Returns>         
    <Description>
-        The input should be a rational group algebra of a finite group <M>G</M>. <P/>
+         The input should be a rational group algebra of a finite group <M>G</M>. <P/>
    
          Returns a list containing all the primitive central idempotents <M>e</M>
          of the rational group algebra <A>QG</A> such that <M>\chi(e)\ne 0</M> 
          for some irreducible monomial character <M>\chi</M> of <M>G</M>. <P/>
           
-         The sum of the elements of the output is the identity if and only if 
-         G is monomial. <P/>
-          
-         If the list of primitive central idempotents given by the output is 
-         not complete then a warning is displayed.
+         The output is the list of all primitive central idempotents of <A>QG</A>
+         if and only if G is monomial, otherwise a warning message is displayed. 
    </Description>
 </ManSection>
 

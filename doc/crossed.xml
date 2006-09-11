@@ -124,14 +124,12 @@ gap> a*b;
 ]]>
 </Example>
 
-Changing the twisting one can construct the generalized quaternion algebra 
+One can construct the following generalized quaternion algebra 
+with the same action and a different twisting
 
 <Display>
 Q(i,j|i^2=-1,j^2=-3,ji=-ij)
 </Display> 
-
-as crossed products over <M>Q(i)=GaussianRationals</M>. <P/>
-
 
 <Example>
 <![CDATA[

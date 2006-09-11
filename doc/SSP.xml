@@ -58,8 +58,8 @@ gap> StrongShodaPairs( DihedralGroup(64) );
          Comm="Is (K,H) a strong Shoda pair of G?" />
    <Description>
          The first argument should be a finite group <A>G</A>, 
-         the second a sugroup <A>K</A> of <A>G</A> and the
-         third a subgroup of <A>K</A>. <P/>
+         the second one a sugroup <A>K</A> of <A>G</A> and the
+         third one subgroup of <A>K</A>. <P/>
                   
          Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a 
          <E>strong Shoda pair</E> (<Ref Sect="SSPDef" />) 
