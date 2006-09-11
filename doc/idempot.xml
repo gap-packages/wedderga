@@ -52,7 +52,7 @@ gap> Length(pciFG);
 <Heading>Testing lists of idempotents for completeness</Heading>
 
 <ManSection>
-   <Oper Name="IsCompleteSetOfOrthIdemps" 
+   <Oper Name="IsCompleteSetOfOrthogonalIdempotents" 
          Arg="R r" />
    <Description>
          The input should be formed by a ring <A>R</A> 
@@ -79,17 +79,17 @@ gap> Length(pciFG);
 <![CDATA[
 gap> QS5 := GroupRing( Rationals, SymmetricGroup(5) );;
 gap> idemp := PrimitiveCentralIdempotentsByCharacterTable( QS5 );;
-gap> IsCompleteSetOfOrthIdemps( QS5, idemp );
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, idemp );
 true
-gap> IsCompleteSetOfOrthIdemps( QS5, [ Zero( QS5 ) ] );
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ Zero( QS5 ) ] );
 false
-gap> IsCompleteSetOfOrthIdemps( QS5, [ One( QS5 ) ] );
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ) ] );
 true
-gap> IsCompleteSetOfOrthIdemps( QS5, [ One( QS5 ) , Zero( QS5 ) ] );
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ) , Zero( QS5 ) ] );
 true
-gap> IsCompleteSetOfOrthIdemps( QS5, [ Zero(QS5), One(QS5) , Zero(QS5) ] );
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ Zero(QS5), One(QS5) , Zero(QS5) ] );
 true
-gap> IsCompleteSetOfOrthIdemps( QS5, [ One(QS5), One(QS5) , Zero(QS5) ] );
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One(QS5), One(QS5) , Zero(QS5) ] );
 false
 ]]>
 </Example>
