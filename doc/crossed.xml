@@ -73,8 +73,8 @@ end;
 </Log>	
 
 Let <M>n</M> be a positive integer and <M>\xi_n</M> a complex primitive 
-root of unity. The natural action of the group of units of <M>Z_n</M>, 
-the ring of integers modulo <M>n</M>, on <M>Q(\xi_n)</M> can be defined 
+root of unity. The natural action of the group of units of <M>\Z_n</M>, 
+the ring of integers modulo <M>n</M>, on <M>\Q (\xi_n)</M> can be defined 
 as follows:
 
 <Log> 
@@ -85,9 +85,11 @@ end;
 
 In the following example one construct the Hamiltonian quaternion algebra 
 over the rationals as a crossed products of the group of units of the cyclic 
-group of order 2 over <M>Q(i)=GaussianRationals</M>. One realizes the cyclic 
-group of order 2 as the group of units of <M>Z/4Z</M> and one uses the natural 
-isomorphism <M>Z/4Z \rightarrow Gal(Q(i)/Q)</M> to describe the action. <P/>
+group of order 2 over <M>\Q (i)=GaussianRationals</M>. One realizes the cyclic 
+group of order 2 as the group of units of <M>\Z / 4 \Z</M> and one uses the natural 
+isomorphism <M>\Z / 4 \Z \rightarrow Gal( \Q (i)/ \Q )</M> 
+to describe the action. 
+<P/>
 
 <Example>
 <![CDATA[
@@ -128,7 +130,7 @@ One can construct the following generalized quaternion algebra
 with the same action and a different twisting
 
 <Display>
-Q(i,j|i^2=-1,j^2=-3,ji=-ij)
+\Q (i,j|i^2=-1,j^2=-3,ji=-ij)
 </Display> 
 
 <Example>

@@ -187,7 +187,7 @@ where <M>D</M> is a division algebra (which is finite dimensional over <M>K</M> 
 The division algebra <M>D</M> is unique up to <M>K</M>-isomorphisms.
 <P/>
 
-<Index Key="(Brauer) equivalence">(Brauer) equivalence</Index>
+<Index Key="Brauer equivalence">(Brauer) equivalence</Index>
 <Index Key="equivalence (Brauer)">equivalence (Brauer)</Index>
 Two central simple <M>K</M>-algebras <M>A</M> and <M>B</M> are said to be <E>Brauer equivalent</E>, 
 or simple <E>equivalent</E>, if there is a division algebra <M>D</M> and two positive integers <M>m</M> and <M>n</M> 
@@ -210,7 +210,7 @@ Let <M>R</M> a ring and <M>G</M> a group. <P/>
 A <E>crossed product</E> <Cite Key="P" /> of <M>G</M> over <M>R</M> (or with coefficients in <M>R</M>) is a ring <M>R*G</M> with 
 a decomposition into a direct sum of additive subgroups
   <Display>
-  R*G = \oplus_{g \in G} A_g
+  R*G = \bigoplus_{g \in G} A_g
   </Display>
 such that for each <M>g,h</M> in <M>G</M> one has:<P/>
 * <M>A_1=R</M> (here <M>1</M> denotes the identity of <M>G</M>),<P/>
@@ -224,17 +224,20 @@ Let <M>Aut(R)</M> denote the group of automorphisms of <M>R</M> and let <M>R^*</
 
 Let <M>a:G \rightarrow Aut(R)</M> and <M>t:G \times G \rightarrow R</M> 
 be the mappings satisfying the following conditions 
-for every <M>g</M>, <M>h</M> and <M>k</M> in <M>G</M>: <P/>
+for every <M>g</M>, <M>h</M> and <M>k</M> in <M>G</M>: 
+<P/>
 
 (1) <M>a(gh)^{-1} a(g) a(h)</M> is the inner automorphism of <M>R</M> induced by 
 <M>t(g,h)</M> (i.e. the automorphism <M>x\mapsto t(g,h)^{-1} x t(g,h)</M>) and <P/>
 
-(2) <M>t(gh,k) t(g,h)^k = t(g,hk) t(h,k).</M> <P/>
+(2) <M>t(gh,k) t(g,h)^k = t(g,hk) t(h,k)</M>, where for 
+<M>g \in G</M> and <M>x \in R</M> we denote <M>a(g)(x)</M> by <M>x^g</M>.
+<P/>
 
 The <E>crossed product</E> <Cite Key="P" /> of <M>G</M> over <M>R</M> (or with coefficients in <M>R</M>), 
 action <M>a</M> and twisting <M>t</M> is the ring 
   <Display>
-  R*_a^t G = \oplus_{g\in G} u_g R
+  R*_a^t G = \bigoplus_{g\in G} u_g R
   </Display> 
 where <M>\{u_g : g\in G \}</M> is a set of symbols in one-to-one correspondence with <M>G</M>,  with the addition and multiplication defined by 
   <Display> 
@@ -252,7 +255,7 @@ Moreover there is <M>r_0</M> in <M>R^*</M> such that <M>u_1r_0</M> is the identi
 <M>r \mapsto u_1 r_0 r </M> is a ring isomorphism <M>R \rightarrow u_1R </M>. <P/>
 
 <Index Key="Basis of units">Basis of units (for crossed product)</Index>
-Conversely, let <M>R*G=\oplus_{g\in G} A_g</M> be an (intrinsecal) crossed product and select for each <M>g\in G</M> a 
+Conversely, let <M>R*G=\bigoplus_{g\in G} A_g</M> be an (intrinsecal) crossed product and select for each <M>g\in G</M> a 
 unit <M>u_g\in A_g</M> of <M>R*G</M>. 
 This is called a <E>basis of units for the crossed product</E> <M>R*G</M>. 
 Then the maps <M>a:G \rightarrow Aut(R)</M> and <M>G\times G \rightarrow R^*</M> given by 
@@ -280,27 +283,31 @@ It is costumary to select <M>u_1=1</M>. In that case <M>a(1)</M> is the identity
 
 
 <Index Key="Cyclic Crossed Product">Cyclic Crossed Product</Index>
-Let <M>R*G=\oplus_{g \in G} A_g</M> be a <E>crossed product</E> 
+Let <M>R*G=\bigoplus_{g \in G} A_g</M> be a <E>crossed product</E> 
 (<Ref Sect="CrossedProd" />) and assume that <M>G = &lt; g &gt; </M> is cyclic. 
 Then the crossed product can be given using a particularly nice description. <P/>
 
-Select a unit <M>u</M> in <M>A_{g}</M> and take the basis for the crossed product by setting <M>u_{g^k} = u^k</M>,
-where <M>k</M> is an arbitrary integer, if <M>G</M> has infinite order, and <M>0\le k &lt; o</M>, if <M>G</M> is 
-finite of order <M>o</M>.
-* Let <M>a</M> be the automorphism of <M>R</M> given by <M>r^a = u^{-1} r u</M>. 
+Select a unit <M>u</M> in <M>A_{g}</M>, and let <M>a</M> be the automorphism 
+of <M>R</M> given by <M>r^a = u^{-1} r u</M>.  
 <P/>
 
-* If <M>G</M> is finite of order <M>o</M> let <M>b=u^o</M>. <P/>
-
-Then 
+If <M>G</M> is infinite then set <M>u_{g^k} = u^k</M> for every integer <M>k</M>.
+Then   
   <Display>
-  R*G = R[u | ru = u r^a, u^o = b ]
+    R*G = R[ u | ru = u r^a ],
   </Display>
-where the last relation vanish if <M>G</M> has infinite order.<P/>
+a skew polynomial ring. Therefore in this case <M>R*G</M> is determined
+by <M> [ R, a ]</M>.
+<P/>
 
-Therefore <M>R*G</M> is completely determined by the following data:
+If <M>G</M> is finite of order <M>o</M> then set <M>u_{g^k} = u^k</M>
+for <M>0 \le k &lt; o</M>. Then <M> b = u^o \in R </M> and
   <Display>
-  [ R , [ o , a , b ] ]
+    R*G = R[ u | ru = u r^a, u^o = b ].
+  </Display>
+Therefore, <M>R*G</M> is completely determined by the following data:
+  <Display>
+    [ R , [ o , a , b ] ]
   </Display>
   
 </Section>
@@ -314,7 +321,7 @@ Therefore <M>R*G</M> is completely determined by the following data:
 
 
 <Index Key="Abelian Crossed Product">Abelian Crossed Product</Index>
-Let <M>R*G=\oplus_{g \in G} A_g</M> be a <E>crossed product</E> 
+Let <M>R*G=\bigoplus_{g \in G} A_g</M> be a <E>crossed product</E> 
 (<Ref Sect="CrossedProd" />) and assume that <M>G</M> is abelian. 
 Then the crossed product can be given using a simple description. <P/>
 
@@ -426,9 +433,10 @@ of a group algebra is <E>Brauer equivalent</E> (<Ref Sect="Brauer" />)
 
 Let <M>A=(F(\xi_k)/F,t)</M> be a <E>cyclotomic algebra</E> 
 (<Ref Sect="Cyclotomic" />), 
-where <M>\xi=\xi_k</M> is <M>k</M>-th a root of unity. 
+where <M>\xi=\xi_k</M> is a <M>k</M>-th root of unity. 
 Then the Galois group <M>G=Gal(F(\xi)/F)</M> is abelian and therefore one can obtain a simplified form for the
-description of cyclotomic algebras as for generic <E>abelian crossed products</E> (<Ref Sect="AbelianCP" />). <P/>
+description of cyclotomic algebras as for any 
+<E>abelian crossed product</E> (<Ref Sect="AbelianCP" />). <P/>
 
 Then the <M>n</M>-by-<M>n</M> matrix algebra <M>M_n(A)</M> can be described numerically in one of the following forms: <P/>
 
@@ -436,39 +444,45 @@ Then the <M>n</M>-by-<M>n</M> matrix algebra <M>M_n(A)</M> can be described nume
 are the matrix size  <M>n</M> and the field <M>F</M>:
   <Display>
   [n,F]
-  </Display>  <P/>
+  </Display>  
+  <P/>
 
 * If <M>G</M> is cyclic (but not trivial) of order <M>o</M> then <M>A</M> is a cyclic cyclotomic algebra
   <Display>
-  A = F(\xi_k,g|\xi_k^g = \xi_k^\alpha, g^o = \xi_k^\beta )
+  A = F(\xi) [ u | \xi u = u \xi^\alpha, u^o = \xi^\beta ]
   </Display>
-and so the algebra can be described with the following data 
+and so <M>M_n(A)</M> can be described with the following data 
   <Display>
-  [n,F,k,[o,\alpha,\beta]]
-  </Display><P/>
+  [n,F,k,[o,\alpha,\beta]],
+  </Display>
+where the integers <M>k</M>, <M>o</M>, <M>\alpha</M> and <M>\beta</M>
+satisfy the following conditions:
+  <Display>
+  \alpha^o \equiv 1 \text{mod} k, \quad \beta(\alpha-1) \equiv 0 \text{mod} k
+  </Display>
+<P/>
 
-* If <M>G</M> is abelian but not cyclic then the algebra can be described with the following data 
+* If <M>G</M> is abelian but not cyclic then <M>M_n(A)</M> 
+can be described with the following data 
 (see <Ref Sect="AbelianCP" />):
   <Display>
   [n,F,k,[o_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{j,k}]_{1\le i &lt; j \le m} ]
   </Display>
 representing the <M>n</M>-by-<M>n</M> matrix ring over the following algebra:
   <Display>
-  A = F(\xi_k)[g_1,\ldots,g_m \mid 
-  \xi_k^{g_i} = \xi_k^{\alpha_i}, g_i^{o_i}=\xi_k^{\beta_i}, g_jg_i=\xi_k^{\gamma_{ij}} g_i g_j]
+  A = F(\xi)[ u_1, \ldots, u_m \mid 
+  \xi u_i = u_i \xi^{\alpha_i}, 
+  u_i^{o_i}=\xi^{\beta_i}, 
+  u_s u_r = \xi^{\gamma_{rs}} u_r u_s]
   </Display>
-where <P/> 
+where 
+<P/> 
 * <M>\{g_1,\ldots,g_m\}</M> is an independent set of generators of <M>G</M>, <P/>
-* <M>o_i =</M> order of <M>g_i</M>, <P/>
-* <M>\alpha_i</M>, <M>\beta_i</M> and <M>\gamma_{ij}</M> are integers such that 
+* <M>o_i</M> is the order of <M>g_i</M>, <P/>
+* <M>\alpha_i</M>, <M>\beta_i</M> and <M>\gamma_{ij}</M> are integers and
   <Display>
-  \xi^{g_i}= \xi_k^{\alpha_i}, 
+  \xi^{g_i}= \xi_k^{\alpha_i}.
   </Display>
-  <Display>
-  g_i^{o_i}=\xi_k^{\beta_i} 
-  </Display>
-and <M>\xi^{ \gamma_{ij} }</M> is the commutator of the representatives of <M>g_i,g_j \in Gal(F(\xi)/F)</M> 
-in the crossed product structure of <M>A</M>. <P/>
 
 </Section>
 
@@ -478,6 +492,10 @@ in the crossed product structure of <M>A</M>. <P/>
 
 <Section Label="IdempotentsSbgps">
 <Heading>Idempotents given by subgroups</Heading>
+
+<Index><M>\varepsilon(K,H)</M></Index>
+<Index><M>e(G,K,H)</M></Index>
+<Index><M>e_C(G,K,H)</M></Index>
 
 Let <M>G</M> be a finite group and <M>F</M> a field whose characteristic does not 
 divide the order of <M>G</M>. If <M>H</M> is a subgroup of <M>G</M> then set
@@ -506,9 +524,9 @@ different conjugates of <M>\varepsilon(K,H)</M> are orthogonal then
 
 If <M>(K,H)</M> is a Shoda Pair (<Ref Sect="SPDef" />) of <M>G</M> then there is
 a non-zero rational number <M>a</M> such that <M>ae(G,K,H))</M> is a <E>primitive central idempotent</E>  
-(<Ref Sect="Idempotents" />) of the rational group algebra <M>QG</M>. 
+(<Ref Sect="Idempotents" />) of the rational group algebra <M>\Q G</M>. 
 If <M>(K,H)</M> is a strong Shoda pair (<Ref Sect="SSPDef" />) of <M>G</M> then
-<M>e(G,K,H)</M> is a primitive central idempotent of <M>QG</M>. 
+<M>e(G,K,H)</M> is a primitive central idempotent of <M>\Q G</M>. 
 <P/>
 
 Assume now that <M>F</M> is a finite field of order <M>q</M>, 
@@ -540,15 +558,15 @@ if the following conditions hold:<P/>
 <Index>primitive central idempotent realized by a Shoda pair</Index>
 If <M>(K,H)</M> is a Shoda pair and <M>\chi</M> is a linear character of <M>K\le G</M> with kernel <M>H</M> 
 then the <E>primitive central idempotent</E>  (<Ref Sect="Idempotents" />)
-of <M>QG</M> 
+of <M>\Q G</M> 
 associated to the irreducible character <M>\chi^G</M> is of the form 
-<M>e=e_Q(\chi^G)=a e(G,K,H)</M> for some <M>a \in Q</M> <Cite Key="ORS" /> 
+<M>e=e_\Q (\chi^G)=a e(G,K,H)</M> for some <M>a \in \Q </M> <Cite Key="ORS" /> 
 (see <Ref Sect="IdempotentsSbgps" /> for the definition of <M>e(G,K,H)</M>).
 In that case we say that <M>e</M> is the <E>primitive central idempotent realized 
 by the Shoda pair</E> <M>(K,H)</M> of <M>G</M>. <P/>
 
 A group <M>G</M> is monomial, that is every irreducible character of <M>G</M> is 
-monomial, if and only if every primitive central idempotent of <M>QG</M> is 
+monomial, if and only if every primitive central idempotent of <M>\Q G</M> is 
 realizable by a Shoda pair of <M>G</M>.
 <P/>
 
@@ -574,7 +592,7 @@ Then <M>(K,H)</M> is a Shoda pair (<Ref Sect="IdempotentsSbgps" />) of <M>G</M>.
 Thus there is a linear character <M>\theta</M> of <M>K</M> with kernel <M>H</M> 
 such that the induced character <M>\chi=\chi(G,K,H)=\theta^G</M> is irreducible. 
 Moreover the <E>primitive central idempotent</E> (<Ref Sect="Idempotents" />)
-<M>e_{Q}(\chi)</M> of <M>QG</M> 
+<M>e_{\Q }(\chi)</M> of <M>\Q G</M> 
 realized by <M>(K,H)</M> is <M>e(G,K,H)</M>, see <Cite Key="ORS" />. <P/>
 
 <Index>equivalent strong Shoda pairs</Index>
@@ -586,12 +604,12 @@ are said to be <E>equivalent</E> if the characters
 The advantage of strong Shoda pairs with respect to Shoda pairs is that 
 one can describe the simple algebra
 <M>FGe_F(\chi)</M> as a matrix algebra of a <E>cyclotomic algebra</E> 
-(<Ref Sect="Cyclotomic" />, see <Cite Key="ORS" /> for <M>F=Q</M> and 
+(<Ref Sect="Cyclotomic" />, see <Cite Key="ORS" /> for <M>F=\Q </M> and 
 <Cite Key="O" /> for the general case). <P/>
 
-More precisely <M>QGe(G,K,H)</M> is isomorphic to <M>M_n(Q(\xi)*_a^t N/K)</M>, 
+More precisely <M>\Q Ge(G,K,H)</M> is isomorphic to <M>M_n(\Q (\xi)*_a^t N/K)</M>, 
 where <M>\xi</M> is a <M>[K:H]</M>-th root of unity, <M>N</M> is the normalizer of 
-<M>H</M> in <M>G</M>, <M>n=[G:N]</M> and <M>Q(\xi)*_a^t N/K</M> is a <E>crossed product</E> (see <Ref Sect="CrossedProd" />) with action <M>a</M> and twisting <M>t</M> given as follows: <P/>
+<M>H</M> in <M>G</M>, <M>n=[G:N]</M> and <M>\Q (\xi)*_a^t N/K</M> is a <E>crossed product</E> (see <Ref Sect="CrossedProd" />) with action <M>a</M> and twisting <M>t</M> given as follows: <P/>
 Let <M>x</M> be a fixed generator of <M>K/H</M> and 
 <M>\varphi : N/K \rightarrow N/H</M> a fixed left inverse of the canonical projection 
 <M>N/H\rightarrow N/K</M>. Then 
@@ -608,16 +626,16 @@ Notice that the cocycle is the one given by the natural extension
   1 \rightarrow K/H \rightarrow N/H \rightarrow N/K \rightarrow 1 
   </Display>
 where <M>K/H</M> is identify with the multiplicative group generated by <M>\xi</M>. 
-Furthermore the centre of the algebra is <M>Q(\chi)</M>, the field of character values over <M>Q</M>,
-and <M>N/K</M> is isomorphic to <M>Gal(Q(\xi)/Q(\chi))</M>.
+Furthermore the centre of the algebra is <M>\Q (\chi)</M>, the field of character values over <M>\Q </M>,
+and <M>N/K</M> is isomorphic to <M>Gal(\Q (\xi)/\Q (\chi))</M>.
 <P/>
 
 If the rational field is changed by an arbitrary ring <M>F</M> of characteristic <M>0</M> then the Wedderburn 
-component <M>A_F(\chi)</M>, where <M>\chi = \chi(G,K,H)</M> is isomorphic to <M>F(\chi)\otimes_{Q(\chi)}A_Q(\chi)</M>.
-Using the description given above of <M>A_Q(\chi)=QG e(G,K,H)</M> one can easily describe <M>A_F(\chi)</M> as
-<M>M_{nd}(F(\xi)/F(\chi),t')</M>, where <M>d=[\Q(\xi):\Q(\chi)]/[F(\xi):F(\chi)]</M> and 
+component <M>A_F(\chi)</M>, where <M>\chi = \chi(G,K,H)</M> is isomorphic to <M>F(\chi)\otimes_{\Q (\chi)}A_\Q (\chi)</M>.
+Using the description given above of <M>A_\Q (\chi)=\Q G e(G,K,H)</M> one can easily describe <M>A_F(\chi)</M> as
+<M>M_{nd}(F(\xi)/F(\chi),t')</M>, where <M>d=[\Q (\xi): \Q(\chi)]/[F(\xi):F(\chi)]</M> and 
 <M>t'</M> is the restriction to <M>Gal(F(\xi)/F(\chi))</M> of <M>t</M> 
-(a cocycle of <M>N/K = Gal(Q(\xi)/Q(\chi))</M>) <P/>
+(a cocycle of <M>N/K = Gal(\Q (\xi)/\Q  (\chi))</M>) <P/>
 
 </Section>
 
