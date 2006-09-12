@@ -109,21 +109,25 @@ end);
 ##
 #M IsCompleteSetOfOrthogonalIdempotents( R, List )
 ##
-## The function checks if List is a complete set of orthogonal central idempotents of a ring R.
+## The function checks if List is a complete set of orthogonal central 
+## idempotents of a ring R.
 ##
 InstallMethod( IsCompleteSetOfOrthogonalIdempotents,
     "for list of idempotents", 
     true, 
     [ IsRing, IsList ], 
     0,
-function( R, List )
-    if not ForAll( List, x -> x in R ) then
-        Error("Wedderga: An element of <ListPCIs> does not belong to <R>!!!\n");
+function( R, ListPCIs )
+    if not ForAll( ListPCIs, x -> x in R ) then
+        Error("Wedderga: An element of <ListPCIs> does not belong to <R> !!!\n");
+    elif ForAny( ListPCIs, IsZero ) then
+        Error("Wedderga: Zero element in  <ListPCIs> !!!\n");
     else
-        return Sum( List ) = One( R ) and 
-                    ForAll( [1..Length(List)], i -> List[i]=List[i]^2 and 
-                                                    ForAll ( [(i+1)..Length(List)], j -> List[i]*List[j] = Zero(R) )
-                           ) ;
+        return Sum( ListPCIs ) = One( R ) and 
+                    ForAll( [1..Length(ListPCIs)], i -> 
+                        ListPCIs[i]= ListPCIs[i]^2 and 
+                        ForAll ( [(i+1)..Length(ListPCIs)], j -> 
+                            ListPCIs[i]* ListPCIs[j] = Zero(R) ) ) ;
     fi;
 end);
 

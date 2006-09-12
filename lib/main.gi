@@ -39,7 +39,8 @@ InstallMethod( WedderburnDecomposition,
 function( FG )
 
 if not IsCyclGroupAlgebra( FG ) then  #IsCyclotomicAlgebra
-    Print("Wedderga: Warning!!!\nSome of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
+    Print("Wedderga: Warning!!! \n", 
+    "Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
 fi;
 
 return WeddDecomp( FG );
