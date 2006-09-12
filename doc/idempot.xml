@@ -67,11 +67,10 @@ gap> Length(pciFG);
          is made on the idempotents being central or primitive.
          <P/>
          
-         Note that the if a non-zero element <M>r</M> of <A>R</A> 
-         appears in two different positions of <M>l</M> 
-         then the output is <K>false</K>. However the appearance 
-         of one or more zeroes in <A>r</A> do not
-         affect the output.
+         Note that the if a non-zero element <M>t</M> of <A>R</A> 
+         appears in two different positions of <A>r</A> 
+         then the output is <K>false</K>, and that the list <A>r</A>
+         must not contain zeroes.
    </Description>
 </ManSection>
 
@@ -81,16 +80,17 @@ gap> QS5 := GroupRing( Rationals, SymmetricGroup(5) );;
 gap> idemp := PrimitiveCentralIdempotentsByCharacterTable( QS5 );;
 gap> IsCompleteSetOfOrthogonalIdempotents( QS5, idemp );
 true
-gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ Zero( QS5 ) ] );
-false
 gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ) ] );
 true
-gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ) , Zero( QS5 ) ] );
-true
-gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ Zero(QS5), One(QS5) , Zero(QS5) ] );
-true
-gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One(QS5), One(QS5) , Zero(QS5) ] );
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ), One( QS5 ) ] );
 false
+gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ Zero( QS5 ) ] );   
+Error, Wedderga: Zero element in  <ListPCIs> !!!
+ called from
+<function>( <arguments> ) called from read-eval-loop
+Entering break read-eval-print loop ...
+you can 'quit;' to quit to outer loop, or
+you can 'return;' to continue
 ]]>
 </Example>
 
@@ -112,9 +112,10 @@ false
    <Description>
          The input <A>FG</A> should be semisimple group algebra 
          of a finite group <M>G</M> whose coefficient field 
-         <M>F</M> is either a finite field or the field <M>Q</M> of rationals. <P/>
+         <M>F</M> is either a finite field or the field <M>\Q</M> 
+         of rationals. <P/>
          
-         If <M>F=Q</M> then the output is the list of primitive central 
+         If <M> F = \Q </M> then the output is the list of primitive central 
          idempotents of the group algebra <M>FG</M> realizable by strong
          Shoda pairs (<Ref Sect="SSPDef" />) of <M>G</M>. <P/>
          
@@ -265,7 +266,7 @@ false
    </Returns>         
    <Description>
         The versions with three input data computes <M>\varepsilon(K,H)</M>
-        as an element of the rational group algebra <M>QG</M>, where <M>K</M>
+        as an element of the rational group algebra <M>\Q G</M>, where <M>K</M>
         is a subgroup of <M>G</M> and <M>H</M> is a normal subgroup of <M>K</M>. 
         (see Section <Ref Sect="IdempotentsSbgps"/>). <P/>
                  
@@ -314,7 +315,7 @@ The output of <E>IdempotentBySubgroups</E> is an idempotent in the corresponding
    </Returns>         
    <Description>
           The versions with three input data computes <M>e(G,K,H)</M>
-          as an element of the rational group algebra <M>QG</M>, where <M>K</M>
+          as an element of the rational group algebra <M>\Q G</M>, where <M>K</M>
           is a subgroup of <M>G</M> and <M>H</M> is a normal subgroup of <M>K</M>. 
           (see Section <Ref Sect="SPDef"/>). <P/>
                    

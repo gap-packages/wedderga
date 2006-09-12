@@ -186,7 +186,8 @@ Group([ f1, f2 ])
       <M>G</M> of <M>FG</M>.<P/>
    
       Returns the conjugate <M>x^g = g^{-1} x g</M> of <A>x</A> by <A>g</A>. 
-      Usage of <C>a^g</C> produces the same output.<P/>
+      Usage of <C>a&circum;g</C> produces the same output.
+      <P/>
       
       This operation adds the new method to the operation that already 
       exists in &GAP;.
