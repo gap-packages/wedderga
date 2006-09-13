@@ -256,6 +256,8 @@ gap> G := SmallGroup(32,50);
 gap> A := SimpleAlgebraByCharacter( GroupRing(Rationals,G), Irr(G)[17]) ;
 ( <crossed product with center Rationals over GaussianRationals of a group of \
 size 2>^[ 2, 2 ] )
+gap> SimpleAlgebraByCharacterInfo( GroupRing(Rationals,G), Irr(G)[17]) ;
+[ 2, Rationals, 4, [ 2, 3, 2 ] ]
 gap> B := LeftActingDomain(A);
 <crossed product with center Rationals over GaussianRationals of a group of si\
 ze 2>
@@ -263,6 +265,18 @@ gap> L := LeftActingDomain(B);
 GaussianRationals
 gap> H := UnderlyingMagma( B );
 <group of size 2 with 2 generators>
+gap> Elements(H);
+[ ZmodnZObj( 1, 4 ), ZmodnZObj( 3, 4 ) ]
+gap> i:=ElementOfCrossedProduct( fam, 0, [ E(4) ], [One(H)] );
+(ZmodnZObj( 1, 4 ))*(E(4))
+gap> j:=ElementOfCrossedProduct( fam, 0, [ One(L) ], [ZmodnZObj(3,4)] );
+(ZmodnZObj( 3, 4 ))*(1)
+gap> i^2;
+(ZmodnZObj( 1, 4 ))*(-1)
+gap> j^2;
+(ZmodnZObj( 1, 4 ))*(-1)
+gap> i*j+j*i;
+<zero> of ...
 gap> ac := ActionForCrossedProduct( B );
 function( RG, a ) ... end
 gap> tw := TwistingForCrossedProduct( B );

@@ -12,7 +12,7 @@ The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of
 components of the Wedderburn decomposition of semisimple group algebras of finite 
 groups over abelian number fields and over finite fields. 
 It also contains functions that compute the primitive central idempotents 
-of the same kind of group algebras and to construct crossed products over
+of the same kind of group algebras, and to construct crossed products over
 a group with coefficients in an associative ring with identity and the
 multiplication determined by a given action and twisting.<P/>
 
@@ -112,7 +112,7 @@ To use the &Wedderga; online help it is necessary to install the &GAP;4 package
 &Wedderga; is distributed in standard formats
 (<File>zoo</File>, <File>tar.gz</File>, <File>tar.bz2</File>, 
 <File>-win.zip</File>) and can be obtained from 
-<URL>http://homepages.vub.ac.be/~okonoval/wedderga.htm</URL>.
+<URL>http://www.um.es/adelrio/wedderga.htm</URL>.
 To unpack the archive <File>wedderga-4.0.zoo</File> you need the program 
 <File>unzoo</File>, which can be obtained from the &GAP; homepage 
 <URL>http://www.gap-system.org/</URL> (see section `Distribution').
