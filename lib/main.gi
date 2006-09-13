@@ -177,7 +177,8 @@ local   G,      # Group
         sst,    # an element of sst
         chi,    # an irreducible character
         cf,     # character field of chi
-        output;
+        output,
+        x;
         
 G := UnderlyingMagma(FG);
 F:=LeftActingDomain(FG);
@@ -189,6 +190,11 @@ if IsSemisimpleANFGroupAlgebra(FG) then
       A := SimpleAlgebraInfoByData(i);
       Append( output, [ A ] );
     od;  
+
+    if ForAny( output, x -> not IsInt(x) ) then
+        Print("Wedderga: Warning!!! \n", 
+        "Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
+    fi;
     
     return output;
     
@@ -255,6 +261,11 @@ for x in cdata do;
     od;
 od;
 
+if ForAny( output, x -> not IsInt(x) ) then
+    Print("Wedderga: Warning!!! \n", 
+    "Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
+fi;
+    
 return output;
 
 end);
