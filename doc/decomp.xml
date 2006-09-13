@@ -53,7 +53,7 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup(16) ) );
 The previous examples show that if <M>D_{16}</M> denotes the dihedral 
 group of order <M>16</M> then the <E>Wedderburn decomposition</E> 
 (<Ref Sect="WedDec"/>) of <M>GF(5) D_{16}</M>, <M>\Q D_{16}</M> and 
-<M>CF(5)D_{16}</M> are respectively
+<M>\Q (\xi_5) D_{16}</M> are respectively
 
   <Display>
   GF(5) D_{16} = 4 GF(5) \oplus M_2(GF(5)) \oplus M_2(GF(25)),  
@@ -66,7 +66,7 @@ group of order <M>16</M> then the <E>Wedderburn decomposition</E>
 and
 
   <Display>
-  CF(5) D_{16} = 4 CF(5) \oplus M_2(CF(5)) \oplus (F(\xi_{40})/F,t),  
+  \Q (\xi_5) D_{16} = 4 \Q (\xi_5) \oplus M_2( \Q (\xi_5) ) \oplus (F(\xi_{40})/F,t),  
   </Display>
   
 where <M>(K(\xi_8)/K,t)</M> is a <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />)
@@ -159,29 +159,30 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
          
          The lists of length 4 are of the form 
          <Display>
-         [n,F,k,[o,\alpha,\beta]],
+         [n,F,k,[d,\alpha,\beta]],
          </Display>
-         where <M>F</M> is a field and <M>n,k,o,\alpha,\beta</M> are 
-         non negative integers, satisfying relations in ...
+         where <M>F</M> is a field and <M>n,k,d,\alpha,\beta</M> are 
+         non negative integers, satisfying conditions mentioned in the 
+         section <Ref Sect="NumDesc" />.
          
          It represents the <M>n\times n</M> matrix algebra <M>M_n(A)</M> 
          over the cyclic algebra
          <Display>
-         A=F(\xi_k,u | \xi^u = \xi^{\alpha}, \xi^o = \xi^{\beta})
+         A=F(\xi_k,u | \xi^u = \xi^{\alpha}, \xi^d = \xi^{\beta})
          </Display>
          where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity. <P/>
          
          The lists of length 5 are of the form 
            <Display>
-           [n,F,k,[o_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{j,k}]_{1\le i &lt; j \le m} ]
+           [n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{j,k}]_{1\le i &lt; j \le m} ]
            </Display>
-          where <M>F</M> is a field and <M>n,k,o_i,\alpha_i,\beta_i,\gamma_{j,k}</M> 
+          where <M>F</M> is a field and <M>n,k,d_i,\alpha_i,\beta_i,\gamma_{j,k}</M> 
           are non negative integers. 
           It represents the <M>n\times n</M> matrix algebra <M>M_n(A)</M> over 
           the <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />)
           <Display>
           A = F(\xi_k)[g_1,\ldots,g_m \mid 
-          \xi_k^{g_i} = \xi_k^{\alpha_i}, g_i^{o_i}=\xi_k^{\beta_i}, 
+          \xi_k^{g_i} = \xi_k^{\alpha_i}, g_i^{d_i}=\xi_k^{\beta_i}, 
                         g_jg_i=\xi_k^{\gamma_{ij}} g_i g_j]
           </Display>
           where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity.
@@ -207,7 +208,7 @@ The interpretation of the previous example gives rise to the following
   \Q D_{16} = 4 \Q \oplus M_2( \Q ) \oplus M_2( \Q (\sqrt{2})).  
   </Display>
   <Display>
-  CF(5) D_{16} = 4 \Q (\xi_5) \oplus 
+  \Q (\xi_5) D_{16} = 4 \Q (\xi_5) \oplus 
                  M_2( \Q (\xi_5)) \oplus 
                  M_2( \Q (\xi_5,\sqrt{2})).  
   </Display>
@@ -248,7 +249,7 @@ The output of <Ref Attr="WedderburnDecomposition" /> shows that
   </Display>
 where <M>A</M> and <M>B</M> are <E>crossed products</E> (<Ref Sect="CrossedProd" />)
 with coefficients in the 
-cyclotomic fields <M>CF(8)</M> and <M>CF(3)</M> respectively. 
+cyclotomic fields <M>\Q (\xi_8)</M> and <M>\Q (\xi_3)</M> respectively. 
 This output can be used as a &GAP; object, but it does not give clear 
 information on the structure of algebras <M>A</M> and <M>B</M>. <P/>
 
@@ -277,13 +278,13 @@ e.g. <Cite Key="R" />).
 <P/>
 
 Next example shows the output of <C>WedderburnDecompositionInfo</C> 
-for <M>\Q G</M> and <M>CF(3)G</M>, where <M>G=SmallGroup(48,28)</M>. 
+for <M>\Q G</M> and <M>\Q (\xi_3) G</M>, where <M>G=SmallGroup(48,28)</M>. 
 You can compare it with the 
 output of <Ref Attr="WedderburnDecomposition" /> for the same group in the 
 previous section. Notice that the last entry of the the 
 <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />)
 of <M>\Q G</M> is not presented as a matrix algebra of a cyclic algebra but 
-this is not the case for the corresponding entry of <M>CF(3)G</M>.
+this is not the case for the corresponding entry of <M>\Q (\xi_3) G</M>.
 
 <Example>
 <![CDATA[
@@ -304,10 +305,11 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
 
 In some cases some of the first entries of the output of <Ref Attr="WedderburnDecompositionInfo" /> are not integers and so the 
 <E>Wedderburn components</E> (<Ref Sect="WedDec" />) are given as 
-"fractional matrix algebra" of <E>cyclotomic algebras</E> 
+"fractional matrix algebras" of <E>cyclotomic algebras</E> 
 (<Ref Sect="Cyclotomic" />). 
 See <Ref Sect="WedDec" /> for a theoretical explanation of this 
-phenomenon. In that case a warning message is displayed.
+phenomenon. In that case a warning message will be displayed during 
+the first call of <C>WedderburnDecompositionInfo</C>.
 
 
 <Example>
@@ -315,6 +317,9 @@ phenomenon. In that case a warning message is displayed.
 gap> QG:=GroupRing(Rationals,SmallGroup(240,89));
 <algebra-with-one over Rationals, with 2 generators>
 gap> WedderburnDecompositionInfo(QG);
+Wedderga: Warning!!! 
+Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
+
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 10, [ 4, 3, 5 ] ],
   [ 4, Rationals ], [ 4, Rationals ], [ 5, Rationals ], [ 5, Rationals ],
   [ 6, Rationals ],
