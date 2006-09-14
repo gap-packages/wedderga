@@ -649,10 +649,10 @@ ind := Index(G,N);
 if N=K then
     ok := Index( K, H );
     if ind=1 then # G=N
-        Info( InfoPCI, 2, "N_G(H) = K = G, returning CF(", ok, ")");
+        Info( InfoWedderga, 2, "N_G(H) = K = G, returning CF(", ok, ")");
         return CF(ok);
     else
-        Info( InfoPCI, 2, "N_G(H) = K <> G, returning M_", 
+        Info( InfoWedderga, 2, "N_G(H) = K <> G, returning M_", 
               ind, "( CF(", ok, ") )");
         return FullMatrixAlgebra( CF(ok), ind );
     fi;                          
@@ -696,10 +696,10 @@ else # if N_G(H) <> K
     SetOperationRecord( R, rec(ok:=ok, Potk:=Potk, Epi2:=Epi2) );                 
                   
     if ind=1 then
-      Info( InfoPCI, 2, "N_G(H) <> K, returning crossed product");
+      Info( InfoWedderga, 2, "N_G(H) <> K, returning crossed product");
       return R;
     else
-      Info( InfoPCI, 2, 
+      Info( InfoWedderga, 2, 
         "N_G(H) <> K, returning matrix algebra over crossed product");
       return FullMatrixAlgebra( R, ind );
     fi;  
