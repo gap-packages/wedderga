@@ -52,11 +52,11 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup(16) ) );
 
 The previous examples show that if <M>D_{16}</M> denotes the dihedral 
 group of order <M>16</M> then the <E>Wedderburn decomposition</E> 
-(<Ref Sect="WedDec"/>) of <M>GF(5) D_{16}</M>, <M>\Q D_{16}</M> and 
+(<Ref Sect="WedDec"/>) of <M>\F_5 D_{16}</M>, <M>\Q D_{16}</M> and 
 <M>\Q (\xi_5) D_{16}</M> are respectively
 
   <Display>
-  GF(5) D_{16} = 4 GF(5) \oplus M_2(GF(5)) \oplus M_2(GF(25)),  
+  \F_5 D_{16} = 4 \F_5 \oplus M_2( \F_5 ) \oplus M_2( \F_{25} ),  
   </Display>
 
   <Display>
