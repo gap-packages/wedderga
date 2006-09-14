@@ -43,6 +43,8 @@ if not IsCyclGroupAlgebra( FG ) then  #IsCyclotomicAlgebra
     "Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
 fi;
 
+Info( InfoWedderga, 2, "Info version : ", WedderburnDecompositionInfo( FG ) );
+
 return WeddDecomp( FG );
 end);
 
@@ -84,6 +86,7 @@ fi;
 end);
 
 #############################################################################
+##
 #A WedderburnDecomposition( FG )
 ##
 ## The function WeddDecomp computes the Wedderburn components of the semisimple
@@ -146,6 +149,8 @@ for x in cdata do;
         Add(wd, FullMatrixAlgebra(L, x[1][1]));
     od;
 od;
+
+Info( InfoWedderga, 2, "Info version : ", WedderburnDecompositionInfo( FG ) );
 
 return wd;
 
