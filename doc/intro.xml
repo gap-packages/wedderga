@@ -99,7 +99,7 @@ See Section <Ref Sect="NumDesc" /> for theoretical background.
 <Heading>Installation and system requirements</Heading>
 
 &Wedderga; does not use external binaries and, therefore, works without
-restrictions on the type of the operation system. It is designed for &GAP;4.4  
+restrictions on the type of the operating system. It is designed for &GAP;4.4  
 and no compatibility with previous releases of &GAP;4 is guaranteed. 
 <P/>
 
