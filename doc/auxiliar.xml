@@ -322,18 +322,29 @@ true
 <Heading>Other commands</Heading>
 
 <ManSection>
-   <InfoClass Name="InfoPCI"
+   <InfoClass Name="InfoWedderga"
               Comm="Info class for Wedderga algorithms" />
    <Description>
-      <C>InfoPCI</C> is a special Info class for &Wedderga; algorithms.
+      <C>InfoWedderga</C> is a special Info class for &Wedderga; algorithms.
       It has 3 levels: 0, 1 (default) and 2. To change info 
-      level to <C>k</C>, use command <C>SetInfoLevel(InfoPCI, k)</C>. 
+      level to <C>k</C>, use command <C>SetInfoLevel(InfoWedderga, k)</C>. 
+      <P/>
+      
+      In the example below we use this mechanism to see more details about 
+      the Wedderburn components each time when we call 
+      <C>WedderburnDecomposition</C>.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> SetInfoLevel( InfoPCI, 2 );
+gap> SetInfoLevel(InfoWedderga, 2);   
+gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
+#I  Info version : [ [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], 
+  [ 1, CF(5) ], [ 2, CF(5) ], [ 1, NF(40,[ 1, 31 ]), 8, [ 2, 7, 0 ] ] ]
+[ CF(5), CF(5), CF(5), CF(5), ( CF(5)^[ 2, 2 ] ), 
+  <crossed product with center NF(40,[ 1, 31 ]) over AsField( NF(40,
+    [ 1, 31 ]), CF(40) ) of a group of size 2> ]
 ]]>
 </Example>
 
