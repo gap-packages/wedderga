@@ -93,17 +93,17 @@ to describe the action.
 
 <Example>
 <![CDATA[
-gap> R:=GaussianRationals;
+gap> R := GaussianRationals;
 GaussianRationals
-gap> G:=Units( ZmodnZ(4) );
+gap> G := Units( ZmodnZ(4) );
 <group with 1 generators>
 gap>
-gap> act:=function(RG,g)
+gap> act := function(RG,g)
 > return ANFAutomorphism( LeftActingDomain(RG), Int(g) );
 > end;
 function( RG, g ) ... end
 gap>
-gap> twist1:=function(RG,g,h)
+gap> twist1 := function( RG, g, h )
 > if IsOne(g) or IsOne(h) then
 >    return One(LeftActingDomain(RG));
 > else
@@ -111,18 +111,18 @@ gap> twist1:=function(RG,g,h)
 > fi;
 > end;
 function( RG, g, h ) ... end
-gap>
-gap> H1:=CrossedProduct(R,G,act,twist1);
+gap> RG := CrossedProduct( R, G, act, twist1 );
 <crossed product over GaussianRationals of a group of size 2>
-gap>
-gap> a:=Random(H1);
-(ZmodnZObj( 1, 4 ))*(-4+2*E(4))+(ZmodnZObj( 3, 4 ))*(-2/3-1/5*E(4))
-gap> b:=Random(H1);
-(ZmodnZObj( 1, 4 ))*(-2+5/3*E(4))+(ZmodnZObj( 3, 4 ))*(1/3+1/2*E(4))
-gap> a+b;
-(ZmodnZObj( 1, 4 ))*(-6+11/3*E(4))+(ZmodnZObj( 3, 4 ))*(-1/3+3/10*E(4))
-gap> a*b;
-(ZmodnZObj( 1, 4 ))*(449/90-52/5*E(4))+(ZmodnZObj( 3, 4 ))*(4/3-152/45*E(4))
+gap> i := E(4) * One(H)^Embedding(G,RG); 
+(ZmodnZObj( 1, 4 ))*(E(4))
+gap> j := ZmodnZObj(3,4)^Embedding(G,RG); 
+(ZmodnZObj( 3, 4 ))*(1)
+gap> i^2;
+(ZmodnZObj( 1, 4 ))*(-1)
+gap> j^2;
+(ZmodnZObj( 1, 4 ))*(-1)
+gap> i*j+j*i;  
+<zero> of ...
 ]]>
 </Example>
 
@@ -143,16 +143,18 @@ gap> twist2:=function(RG,g,h)
 > fi;
 > end;
 function( RG, g, h ) ... end
-gap> H2:=CrossedProduct(R,G,act,twist2);
+gap> RG := CrossedProduct( R, G, act, twist2 );  
 <crossed product over GaussianRationals of a group of size 2>
-gap> a:=Random(H2);
-(ZmodnZObj( 1, 4 ))*(2-1/4*E(4))+(ZmodnZObj( 3, 4 ))*(1/3-2*E(4))
-gap> b:=Random(H2);
-(ZmodnZObj( 1, 4 ))*(1-E(4))+(ZmodnZObj( 3, 4 ))*(-1-4*E(4))
-gap> a+b;
-(ZmodnZObj( 1, 4 ))*(3-5/4*E(4))+(ZmodnZObj( 3, 4 ))*(-2/3-6*E(4))
-gap> a*b;
-(ZmodnZObj( 1, 4 ))*(-85/4+31/4*E(4))+(ZmodnZObj( 3, 4 ))*(-8/3-127/12*E(4))
+gap> i := E(4) * One(H)^Embedding(H,RG); 
+(ZmodnZObj( 1, 4 ))*(E(4))
+gap> j := ZmodnZObj(3,4)^Embedding(G,RG);  
+(ZmodnZObj( 3, 4 ))*(1)
+gap> i^2;                           
+(ZmodnZObj( 1, 4 ))*(-1)
+gap> j^2;                                
+(ZmodnZObj( 1, 4 ))*(-3)
+gap> i*j+j*i;                       
+<zero> of ...
 ]]>
 </Example>
 
@@ -166,13 +168,10 @@ gap> C2 := CyclicGroup(2);
 <pc group of size 2 with 1 generators>
 gap> G := DirectProduct(C2,C2);
 <pc group of size 4 with 2 generators>
-gap>
 gap> act := function(RG,a)
 >     return IdentityMapping( LeftActingDomain(RG));
 > end;
 function( RG, a ) ... end
-gap>
-gap>
 gap> twist := function( RG, g , h )
 > local one,g1,g2,h1,h2;
 > one := One( C2 );
@@ -191,7 +190,6 @@ gap> twist := function( RG, g , h )
 > fi;
 > end;
 function( RG, g, h ) ... end
-gap>
 gap> HQ := CrossedProduct( Rationals, G, act, twist );
 <crossed product over Rationals of a group of size 4>
 ]]>
@@ -203,7 +201,6 @@ Changing the rationals by the integers as coefficient ring one can construct the
 <![CDATA[
 gap> HZ := CrossedProduct( Integers, G, act, twist );
 <crossed product over Integers of a group of size 4>
-gap>
 gap> a:=Random(HZ);b:=Random(HZ);
 (<identity> of ...)*(1)+(f1)*(3)+(f1*f2)*(1)
 (<identity> of ...)*(4)+(f2)*(2)+(f1*f2)*(-3)
@@ -267,9 +264,9 @@ gap> H := UnderlyingMagma( B );
 <group of size 2 with 2 generators>
 gap> Elements(H);
 [ ZmodnZObj( 1, 4 ), ZmodnZObj( 3, 4 ) ]
-gap> i:=ElementOfCrossedProduct( fam, 0, [ E(4) ], [One(H)] );
+gap> i := E(4) * One(H)^Embedding(H,B);
 (ZmodnZObj( 1, 4 ))*(E(4))
-gap> j:=ElementOfCrossedProduct( fam, 0, [ One(L) ], [ZmodnZObj(3,4)] );
+gap> j := ZmodnZObj(3,4)^Embedding(H,B);
 (ZmodnZObj( 3, 4 ))*(1)
 gap> i^2;
 (ZmodnZObj( 1, 4 ))*(-1)
@@ -360,21 +357,17 @@ gap> Quat := function(R,a,b)
 > Error("<a>  and <b> must be non zero elements of <R>!!!");
 > fi;
 >
->
 > G := SmallGroup(4,2);
 >
 > act := function(RG,a)
 >     return IdentityMapping( LeftActingDomain(RG));
 > end;
 >
->
 > twist := function( RG, g , h )
 > local one,g1,g2;
 > one := One(G);
 > g1 := G.1;
 > g2 := G.2;
->
->
 > if   g = one or h = one then
 >   return One(R);
 > elif g = g1 then
@@ -401,12 +394,9 @@ gap> Quat := function(R,a,b)
 >   fi;
 > fi;
 > end;
->
 > return CrossedProduct(R,G,act,twist);
->
 > end;
 function( R, a, b ) ... end
-gap>
 gap> HQ := Quat(Rationals,2,3);
 <crossed product over Rationals of a group of size 4>
 gap> G := UnderlyingMagma(HQ);
@@ -417,8 +407,6 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
 [ [ 1, 1, 1, 1 ], [ 1, 3, -1, -3 ], [ 1, 1, 2, 2 ], [ 1, 3, -3, -6 ] ]
 ]]>
 </Example>
-
-
 
 
 </Section>
@@ -437,33 +425,52 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
          The output belongs to the crossed product whose elements lie in the 
          family <A>Fam</A>. The zero element of the coefficient ring containing
          <C>ci</C> must be given as <A>zerocoeff</A>, and later can be obtained
-using <Index Key="ZeroCoefficient"><C>ZeroCoefficient</C></Index><C>ZeroCoefficient</C>.
+         using <Index Key="ZeroCoefficient"><C>ZeroCoefficient</C>
+         </Index><C>ZeroCoefficient</C>.
          <P/>  
+         
          The output will be in the category <Index Key="IsElementOfCrossedProduct">
          <C>IsElementOfCrossedProduct</C></Index><C>IsElementOfCrossedProduct</C>, 
          which is a subcategory of <C>IsRingElementWithInverse</C>. It will have the 
-         presentation 
-<Index Key="IsCrossedProductObjDefaultRep"><C>IsCrossedProductObjDefaultRep</C></Index><C>IsCrossedProductObjDefaultRep</C>.<P/>
+         presentation <Index Key="IsCrossedProductObjDefaultRep">
+         <C>IsCrossedProductObjDefaultRep</C></Index>
+         <C>IsCrossedProductObjDefaultRep</C>.
+         <P/>
+         
          Similarly to magma rings, you can obtain the list of coefficients and
-         elements with 
-<Index Key="CoefficientsAndMagmaElements"><C>CoefficientsAndMagmaElements</C></Index><C>CoefficientsAndMagmaElements</C>.
+         elements with c.
+         <P/>
+         
+         Also note from the example below and several other examples in this 
+         chapter that instead of <C>ElementOfCrossedProduct</C>you can use 
+         <Index Key="Embedding"><C>Embedding</C></Index><C>Embedding</C>
+         to embed into the crossed product elements of the coefficient ring 
+         and of the underlying magma.
    </Description>
 </ManSection>
 
 <Example>
 <![CDATA[
-gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );
+gap> QG := GroupRing( Rationals, SmallGroup(24,3) );
 <algebra-with-one over Rationals, with 4 generators>
-gap> R:=WedderburnDecomposition( QG )[4];
+gap> R := WedderburnDecomposition( QG )[4];
 <crossed product with center Rationals over GaussianRationals of a group of si\
 ze 2>
-gap> H:=UnderlyingMagma( R );;
-gap> fam:=ElementsFamily( FamilyObj( R ) );;
-gap> g:=ElementOfCrossedProduct( fam, 0, [ 1, E(4) ], AsList(H) );
+gap> H := UnderlyingMagma( R );;
+gap> fam := ElementsFamily( FamilyObj( R ) );;
+gap> g := ElementOfCrossedProduct( fam, 0, [ 1, E(4) ], AsList(H) );
 (ZmodnZObj( 1, 4 ))*(1)+(ZmodnZObj( 3, 4 ))*(E(4))
-gap> CoefficientsAndMagmaElements(g);    
+gap> CoefficientsAndMagmaElements( g );    
 [ ZmodnZObj( 1, 4 ), 1, ZmodnZObj( 3, 4 ), E(4) ]
-gap> h:=ElementOfCrossedProduct( fam, 0, [ E(4), 1 ], AsList(H) );     
+gap> t := List( H, x -> x^f );
+[ (ZmodnZObj( 1, 4 ))*(1), (ZmodnZObj( 3, 4 ))*(1) ]
+gap> t[1] + t[2]*E(4);  
+(ZmodnZObj( 1, 4 ))*(1)+(ZmodnZObj( 3, 4 ))*(E(4))
+gap> g = t[1] + E(4)*t[2];
+false
+gap> g = t[1] + t[2]*E(4);
+true
+gap> h := ElementOfCrossedProduct( fam, 0, [ E(4), 1 ], AsList(H) );     
 (ZmodnZObj( 1, 4 ))*(E(4))+(ZmodnZObj( 3, 4 ))*(1)
 gap> g+h;
 (ZmodnZObj( 1, 4 ))*(1+E(4))+(ZmodnZObj( 3, 4 ))*(1+E(4))
