@@ -167,7 +167,7 @@ if not ( IsSubgroup( G, K ) and IsSubgroup( K, H ) ) then
 fi;
 
 if not IsNormal( K, H ) then
-    Info(InfoPCI, 2, "Wedderga: IsSSP: <H> is not normal in <K>");
+    Info(InfoWedderga, 2, "Wedderga: IsSSP: <H> is not normal in <K>");
     return false;
 fi;
 
@@ -177,7 +177,7 @@ fi;
 NH:=Normalizer(G,H);
 
 if not(IsNormal( NH, K ) ) then
-    Info(InfoPCI, 2, "Wedderga: IsSSP: <K> is not normal in N_<G>(<H>)");
+    Info(InfoWedderga, 2, "Wedderga: IsSSP: <K> is not normal in N_<G>(<H>)");
     return false;
 fi;
 
@@ -186,12 +186,12 @@ NHH:=Image( Epi, NH ); #It is isomorphic to the factor group NH/H.
 KH:=Image( Epi, K ); #It is isomorphic to the factor group K/H.
 
 if not(IsCyclic(KH)) then
-    Info(InfoPCI, 2, "Wedderga: IsSSP: <K>/<H> is not cyclic");
+    Info(InfoWedderga, 2, "Wedderga: IsSSP: <K>/<H> is not cyclic");
     return false;
 fi;
 
 if Centralizer( NHH, KH ) <> KH then
-    Info(InfoPCI, 2, "Wedderga: IsSSP: <K>/<H> is not maximal ",
+    Info(InfoWedderga, 2, "Wedderga: IsSSP: <K>/<H> is not maximal ",
                      "abelian in N_<G>(<H>)");
     return false;
 fi;
@@ -210,7 +210,7 @@ if NdK<>G then
     for i in [ 2 .. nRTNdK ] do
         g:=RTNdK[i];
         if eGKH1*eGKH1^g <> zero then
-            Info(InfoPCI, 2, 
+            Info(InfoWedderga, 2, 
                  "Wedderga: IsSSP: The conjugates of epsilon are not orthogonal");
             return  false;
         fi;
