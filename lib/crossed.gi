@@ -800,12 +800,11 @@ InstallMethod( TwistingForCrossedProduct,
 #R  IsEmbeddingRingCrossedProduct( <R>, <RM> )
 ##
 DeclareRepresentation( "IsEmbeddingRingCrossedProduct",
-        IsNonSPGeneralMapping
+        IsSPGeneralMapping
     and IsMapping
     and IsInjective
     and RespectsAddition
     and RespectsZero
-    and RespectsOne
     and IsAttributeStoringRep,
     [] );
 
@@ -903,7 +902,6 @@ DeclareRepresentation( "IsEmbeddingMagmaCrossedProduct",
         IsSPGeneralMapping
     and IsMapping
     and IsInjective
-    and RespectsMultiplication
     and IsAttributeStoringRep,
     [] );
 
