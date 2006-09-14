@@ -402,7 +402,7 @@ InstallMethod( \*,
     end );
 
 InstallMethod( \*,
-    "for magma ring element and magma element",
+    "for crossed product element and group element",
     function( FamRM, FamM )
       return IsBound( FamRM!.familyMagma ) and
         IsIdenticalObj( ElementsFamily( FamRM!.familyMagma ), FamM );
@@ -793,3 +793,212 @@ InstallMethod( TwistingForCrossedProduct,
     "for a crossed product",
     [ IsCrossedProduct ],
     RG -> ElementsFamily(FamilyObj(RG))!.twisting );
+    
+    
+#############################################################################
+##
+#R  IsEmbeddingRingCrossedProduct( <R>, <RM> )
+##
+DeclareRepresentation( "IsEmbeddingRingCrossedProduct",
+        IsNonSPGeneralMapping
+    and IsMapping
+    and IsInjective
+    and RespectsAddition
+    and RespectsZero
+    and RespectsOne
+    and IsAttributeStoringRep,
+    [] );
+
+
+#############################################################################
+##
+#M  Embedding( <R>, <RM> )  . . . . . . . . . .  for ring and crossed product
+##
+InstallMethod( Embedding,
+    "for ring and crossed product",
+    IsRingCollsMagmaRingColls,
+    [ IsRing, IsCrossedProduct ],
+    function( R, RM )
+
+    local   emb;
+
+    # Check that this is the right method.
+    if Parent( R ) <> LeftActingDomain( RM ) then
+      TryNextMethod();
+    elif One( UnderlyingMagma( RM ) ) = fail then
+      return fail;
+    fi;
+
+    # Make the mapping object.
+    emb := Objectify( TypeOfDefaultGeneralMapping( R, RM,
+                               IsEmbeddingRingCrossedProduct ),
+                      rec() );
+
+    # Return the embedding.
+    return emb;
+    end );
+
+
+InstallMethod( ImagesElm,
+    "for embedding of ring into crossed product, and ring element",
+    FamSourceEqFamElm,
+    [ IsEmbeddingRingCrossedProduct, IsRingElement ],
+    function ( emb, elm )
+    local F;
+    F:= ElementsFamily( FamilyObj( Range( emb ) ) );
+    return [ ElementOfCrossedProduct( F, Zero( elm ), [ elm ],
+                 [ One( UnderlyingMagma( Range( emb ) ) ) ] ) ];
+    end );
+
+InstallMethod( ImagesRepresentative,
+    "for embedding of ring into crossed product, and ring element",
+    FamSourceEqFamElm,
+    [ IsEmbeddingRingCrossedProduct, IsRingElement ],
+    function ( emb, elm )
+    local F;
+    F:= ElementsFamily( FamilyObj( Range( emb ) ) );
+    return ElementOfCrossedProduct( F, Zero( elm ), [ elm ],
+               [ One( UnderlyingMagma( Range( emb ) ) ) ] );
+    end );
+
+
+InstallMethod( PreImagesElm,
+    "for embedding of ring into crossed product, and crossed product element",
+    FamRangeEqFamElm,
+    [ IsEmbeddingRingCrossedProduct, IsElementOfCrossedProduct ],
+    function ( emb, elm )
+    local R, extrep;
+    R:= Range( emb );
+    extrep:= CoefficientsAndMagmaElements( elm );
+    if     Length( extrep ) = 2
+       and extrep[1] = One( UnderlyingMagma( R ) ) then
+      return [ extrep[2] ];
+    else
+      return [];
+    fi;
+    end );
+
+InstallMethod( PreImagesRepresentative,
+    "for embedding of ring into crossed product, and crossed product element",
+    FamRangeEqFamElm,
+    [ IsEmbeddingRingCrossedProduct, IsElementOfCrossedProduct ],
+    function ( emb, elm )
+    local R, extrep;
+    R:= Range( emb );
+    extrep:= CoefficientsAndMagmaElements( elm );
+    if     Length( extrep ) = 2
+       and extrep[1] = One( UnderlyingMagma( R ) ) then
+      return extrep[2];
+    else
+      return fail;
+    fi;
+    end );
+
+
+#############################################################################
+##
+#R  IsEmbeddingMagmaCrossedProduct( <M>, <RM> )
+##
+DeclareRepresentation( "IsEmbeddingMagmaCrossedProduct",
+        IsSPGeneralMapping
+    and IsMapping
+    and IsInjective
+    and RespectsMultiplication
+    and IsAttributeStoringRep,
+    [] );
+
+
+#############################################################################
+##
+#F  Embedding( <M>, <RM> )  . . . . . . . . . . for magma and crossed product
+##
+InstallMethod( Embedding,
+    "for magma and crossed product",
+    IsMagmaCollsMagmaRingColls,
+    [ IsMagma, IsCrossedProduct ],
+    function( M, RM )
+
+    local   emb;
+
+    # Check that this is the right method.
+    if not IsSubset( UnderlyingMagma( RM ), M ) then
+      TryNextMethod();
+    fi;
+
+    # Make the mapping object.
+    emb := Objectify( TypeOfDefaultGeneralMapping( M, RM,
+                               IsEmbeddingMagmaCrossedProduct ),
+                      rec() );
+
+    if IsMagmaWithInverses( M ) then
+      SetRespectsInverses( emb, true );
+    elif IsMagmaWithOne( M ) then
+      SetRespectsOne( emb, true );
+    fi;
+
+    # Return the embedding.
+    return emb;
+    end );
+
+
+InstallMethod( ImagesElm,
+    "for embedding of magma into crossed product, and mult. element",
+    FamSourceEqFamElm,
+    [ IsEmbeddingMagmaCrossedProduct, IsMultiplicativeElement ],
+    function ( emb, elm )
+    local R, F;
+    R:= Range( emb );
+    F:= ElementsFamily( FamilyObj( R ) );
+    return [ ElementOfCrossedProduct( F, Zero( LeftActingDomain( R ) ),
+                 [ One( LeftActingDomain( R ) ) ], [ elm ] ) ];
+    end );
+
+InstallMethod( ImagesRepresentative,
+    "for embedding of magma into crossed product, and mult. element",
+    FamSourceEqFamElm,
+    [ IsEmbeddingMagmaCrossedProduct, IsMultiplicativeElement ],
+    function ( emb, elm )
+    local R, F;
+    R:= Range( emb );
+    F:= ElementsFamily( FamilyObj( R ) );
+    return ElementOfCrossedProduct( F, Zero( LeftActingDomain( R ) ),
+               [ One( LeftActingDomain( R ) ) ], [ elm ] );
+    end );
+
+
+InstallMethod( PreImagesElm,
+    "for embedding of magma into crossed product, and crossed product element",
+    FamRangeEqFamElm,
+    [ IsEmbeddingMagmaCrossedProduct, IsElementOfCrossedProduct ],
+    function ( emb, elm )
+    local R, extrep;
+    R:= Range( emb );
+    extrep:= CoefficientsAndMagmaElements( elm );
+    if     Length( extrep ) = 2
+       and extrep[2] = One( LeftActingDomain( R ) ) then
+      return [ extrep[1] ];
+    else
+      return [];
+    fi;
+    end );
+
+InstallMethod( PreImagesRepresentative,
+    "for embedding of magma into crossed product, and crossed product element",
+    FamRangeEqFamElm,
+    [ IsEmbeddingMagmaCrossedProduct, IsElementOfCrossedProduct ],
+    function ( emb, elm )
+    local R, extrep;
+    R:= Range( emb );
+    extrep:= CoefficientsAndMagmaElements( elm );
+    if     Length( extrep ) = 2
+       and extrep[2] = One( LeftActingDomain( R ) ) then
+      return extrep[1];
+    else
+      return fail;
+    fi;
+    end );
+    
+#############################################################################
+##
+#E
+##
