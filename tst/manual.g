@@ -59,12 +59,12 @@ TstPkgExamples := function ( path, main, files )
   RemoveFile( temp_dir![1] );
   end;
 
-SetInfoLevel( InfoPCI, 1 );
+SetInfoLevel( InfoWedderga, 1 );
 SizeScreen( [ 80 , ] ); 
 path:=DirectoriesPackageLibrary("wedderga","doc");   
-Info(InfoPCI, 1, "Test of ", path );
+Info(InfoWedderga, 1, "Test of ", path );
 TstPkgExamples(path,"manual",[ ] );
-SetInfoLevel( InfoPCI, 1 );       
+SetInfoLevel( InfoWedderga, 1 );       
 end;
 
 
