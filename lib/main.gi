@@ -191,7 +191,7 @@ if IsSemisimpleANFGroupAlgebra(FG) then
       Append( output, [ A ] );
     od;  
 
-    if ForAny( output, x -> not IsInt(x) ) then
+    if ForAny( output, x -> not IsInt(x[1]) ) then
         Print("Wedderga: Warning!!! \n", 
         "Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
     fi;
@@ -261,7 +261,7 @@ for x in cdata do;
     od;
 od;
 
-if ForAny( output, x -> not IsInt(x) ) then
+if ForAny( output, x -> not IsInt(x[1]) ) then
     Print("Wedderga: Warning!!! \n", 
     "Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!\n\n");
 fi;
