@@ -17,4 +17,4 @@ ReadPackage( "wedderga/lib/crossed.gd" );
 ReadPackage("wedderga/lib/wedderga.g");
 
 # set the default InfoLevel
-SetInfoLevel( InfoPCI, 1 );
+SetInfoLevel( InfoWedderga, 1 );
