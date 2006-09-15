@@ -113,7 +113,7 @@ gap> twist1 := function( RG, g, h )
 function( RG, g, h ) ... end
 gap> RG := CrossedProduct( R, G, act, twist1 );
 <crossed product over GaussianRationals of a group of size 2>
-gap> i := E(4) * One(H)^Embedding(G,RG); 
+gap> i := E(4) * One(G)^Embedding(G,RG); 
 (ZmodnZObj( 1, 4 ))*(E(4))
 gap> j := ZmodnZObj(3,4)^Embedding(G,RG); 
 (ZmodnZObj( 3, 4 ))*(1)
@@ -145,7 +145,7 @@ gap> twist2:=function(RG,g,h)
 function( RG, g, h ) ... end
 gap> RG := CrossedProduct( R, G, act, twist2 );  
 <crossed product over GaussianRationals of a group of size 2>
-gap> i := E(4) * One(H)^Embedding(H,RG); 
+gap> i := E(4) * One(G)^Embedding(G,RG); 
 (ZmodnZObj( 1, 4 ))*(E(4))
 gap> j := ZmodnZObj(3,4)^Embedding(G,RG);  
 (ZmodnZObj( 3, 4 ))*(1)
@@ -173,19 +173,20 @@ gap> act := function(RG,a)
 > end;
 function( RG, a ) ... end
 gap> twist := function( RG, g , h )
-> local one,g1,g2,h1,h2;
+> local one,g1,g2,h1,h2,G;
+> G := UnderlyingMagma( RG );
 > one := One( C2 );
 > g1 := Image( Projection(G,1), g );
 > g2 := Image( Projection(G,2), g );
 > h1 := Image( Projection(G,1), h );
 > h2 := Image( Projection(G,2), h );
-> if   g = One( G ) or h = One( G ) then return 1;
->   elif g1 = One(C2) and g2 <> One(C2) and h1 <> One(C2) and h2 <> One(C2)
->       then return 1;
->   elif g1 <> One(C2) and g2 = One(C2) and h1 = One(C2) and h2 <> One(C2)
->       then return 1;
->   elif g1 <> One(C2) and g2 <> One(C2) and h1 <> One(C2) and h2 = One(C2)
->       then return 1;
+> if g = One( G ) or h = One( G ) then return 1;
+>   elif IsOne(g1) and not IsOne(g2) and not IsOne(h1) and not IsOne(h2)
+>     then return 1;
+>   elif not IsOne(g1) and IsOne(g2) and IsOne(h1) and not IsOne(h2)
+>     then return 1;
+>   elif not IsOne(g1) and not IsOne(g2) and not IsOne(h1) and IsOne(h2)
+>     then return 1;
 >   else return -1;
 > fi;
 > end;
@@ -201,15 +202,16 @@ Changing the rationals by the integers as coefficient ring one can construct the
 <![CDATA[
 gap> HZ := CrossedProduct( Integers, G, act, twist );
 <crossed product over Integers of a group of size 4>
-gap> a:=Random(HZ);b:=Random(HZ);
-(<identity> of ...)*(1)+(f1)*(3)+(f1*f2)*(1)
-(<identity> of ...)*(4)+(f2)*(2)+(f1*f2)*(-3)
-gap> a-b+a*b;
-(<identity> of ...)*(4)+(f1)*(13)+(f2)*(9)+(f1*f2)*(11)
-gap> a^2-b^2;
-(<identity> of ...)*(-12)+(f1)*(6)+(f2)*(-16)+(f1*f2)*(26)
-gap> (a+b)*(a-b);
-(<identity> of ...)*(-12)+(f1)*(10)+(f2)*(-34)+(f1*f2)*(14)
+gap> i := GeneratorsOfGroup(G)[1]^Embedding(G,HZ); 
+(f1)*(1)
+gap> j := GeneratorsOfGroup(G)[2]^Embedding(G,HZ);
+(f2)*(1)
+gap> i^2;
+(<identity> of ...)*(-1)
+gap> j^2; 
+(<identity> of ...)*(-1)
+gap> i*j+j*i;                                      
+<zero> of ...
 ]]>
 </Example>
 
@@ -462,7 +464,7 @@ gap> g := ElementOfCrossedProduct( fam, 0, [ 1, E(4) ], AsList(H) );
 (ZmodnZObj( 1, 4 ))*(1)+(ZmodnZObj( 3, 4 ))*(E(4))
 gap> CoefficientsAndMagmaElements( g );    
 [ ZmodnZObj( 1, 4 ), 1, ZmodnZObj( 3, 4 ), E(4) ]
-gap> t := List( H, x -> x^f );
+gap> t := List( H, x -> x^Embedding( H, R ) );
 [ (ZmodnZObj( 1, 4 ))*(1), (ZmodnZObj( 3, 4 ))*(1) ]
 gap> t[1] + t[2]*E(4);  
 (ZmodnZObj( 1, 4 ))*(1)+(ZmodnZObj( 3, 4 ))*(E(4))
