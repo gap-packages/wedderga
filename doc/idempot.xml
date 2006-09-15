@@ -84,13 +84,6 @@ gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ) ] );
 true
 gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ), One( QS5 ) ] );
 false
-gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ Zero( QS5 ) ] );   
-Error, Wedderga: Zero element in  <ListPCIs> !!!
- called from
-<function>( <arguments> ) called from read-eval-loop
-Entering break read-eval-print loop ...
-you can 'quit;' to quit to outer loop, or
-you can 'return;' to continue
 ]]>
 </Example>
 
