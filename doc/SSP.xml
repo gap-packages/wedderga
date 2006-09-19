@@ -13,10 +13,10 @@
          Arg="G"  
          Comm="A list of SSPs representatives realizing Wedderburn components of QG" />
    <Returns>
-         A list of pairs of subgroups of the input group
+         A list of pairs of subgroups of the input group.
    </Returns>
    <Description>
-        The input should be a finite group <M>G</M>. <P/>
+        The input should be a finite group <A>G</A>. <P/>
    
         Computes a list of representatives of the equivalence classes of 
         <E>strong Shoda pairs</E> 
@@ -88,11 +88,11 @@ true
          Comm="Is (K,H) a Shoda pair of G?" />
    <Description>
          The first argument should be a finite group <A>G</A>, 
-         the second a sugroup <A>K</A> of <A>G</A> and the
-         third a subgroup of <A>K</A>. <P/>
+         the second a subgroup <A>K</A> of <A>G</A> and the
+         third one a subgroup of <A>K</A>. <P/>
          
          Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a 
-         <E>Shoda pair</E> (<Ref Sect="SPDef" />) of <M>G</M>.<P/>
+         <E>Shoda pair</E> (<Ref Sect="SPDef" />) of <A>G</A>.<P/>
 
          Note that every strong Shoda pair is a Shoda pair, 
          but the converse is not true.

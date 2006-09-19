@@ -135,7 +135,7 @@ false
          Arg="G x"  
          Comm="Centralizer of a group ring element in a subgroup of G" />
    <Returns>
-         a subgroup of a group <A>G</A>.
+         A subgroup of a group <A>G</A>.
    </Returns>         
    <Description>
          The input should be formed by a finite group <A>G</A> and an element
@@ -178,7 +178,7 @@ Group([ f1, f2 ])
          Arg="x g"  
          Comm="Conjugate of x by g" />
    <Returns>
-         an element of a group ring
+         An element of a group ring.
    </Returns>         
    <Description>
       The input should be formed by an element <A>x</A> of a group ring 
@@ -218,7 +218,7 @@ true
          Arg="RG X"  
          Comm="(x_1+...+x_n)/n" />
    <Returns>
-         an element of a group ring
+         An element of a group ring.
    </Returns>         
    <Description>
     The input must be composed of a group ring <A>RG</A> and a finite subset <A>X</A> of the underlying
@@ -266,7 +266,7 @@ false
          Arg="q n"  
          Comm="Cyclotomic classes" />
    <Returns>
-         a partition of [ 0 .. n ]
+         A partition of <M>[ 0 .. n ]</M>.
    </Returns>          
    <Description>
    The input should be formed by two relatively prime positive integers. <P/>

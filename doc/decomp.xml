@@ -13,7 +13,7 @@
          Comm="The Wedderburn decomposition of a group algebras given as a list 
          of GAP objects" />
    <Returns>
-         a list of simple algebras
+         A list of simple algebras.
    </Returns>
    <Description>
          The input <A>FG</A> should be a group algebra of a finite group <M>G</M> 
@@ -60,7 +60,7 @@ group of order <M>16</M> then the <E>Wedderburn decomposition</E>
   </Display>
 
   <Display>
-  \Q D_{16} = 4 \Q \oplus M_2( \Q ) \oplus (K(\xi_8)/K,t).  
+  \Q D_{16} = 4 \Q \oplus M_2( \Q ) \oplus (K(\xi_8)/K,t),
   </Display>
 
 and
@@ -96,10 +96,13 @@ gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,15) ) );
 ]]>
 </Example>
 
-In some cases some entries of the the output of 
+In some cases, in characteristic zero, some entries of the output of 
 <Ref Attr="WedderburnDecomposition" /> do not provide
 full matrix algebras over a <E>cyclotomic algebra</E> 
 (<Ref Sect="Cyclotomic" />), but "fractional matrix algebras". 
+That entry is not an algebra that can be used as a &GAP; object.
+Instead is a pair form by a rational giving the "size" of the matrices
+and a crossed product.
 See <Ref Sect="WedDec" /> for a theoretical explanation of 
 this phenomenon. In this case a warning message is displayed.
 
@@ -132,7 +135,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
               given as a list of lists of numerical data 
               describing each Wedderburn component" />
    <Returns>
-         a list of numerical descriptions of <E>cyclotomic algebras</E>
+         A list with each entry a numerical description of a <E>cyclotomic algebras</E>
          (<Ref Sect="Cyclotomic" />).
    </Returns>
    <Description>
@@ -151,7 +154,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
          
          The lists of length 2 are of the form 
          <Display>
-         [n,F]
+         [n,F],
          </Display>
          where <M>n</M> is a positive integer and <M>F</M> is a field. 
          It represents the <M>n\times n</M> matrix algebra <M>M_n(F)</M> 
@@ -162,30 +165,30 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
          [n,F,k,[d,\alpha,\beta]],
          </Display>
          where <M>F</M> is a field and <M>n,k,d,\alpha,\beta</M> are 
-         non negative integers, satisfying conditions mentioned in the 
+         non negative integers, satisfying conditions mentioned in 
          section <Ref Sect="NumDesc" />.
          
          It represents the <M>n\times n</M> matrix algebra <M>M_n(A)</M> 
          over the cyclic algebra
          <Display>
-         A=F(\xi_k,u | \xi^u = \xi^{\alpha}, \xi^d = \xi^{\beta})
+         A=F(\xi_k)[u | \xi_k^u = \xi_k^{\alpha}, u^d = \xi_k^{\beta}),
          </Display>
          where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity. <P/>
          
          The lists of length 5 are of the form 
            <Display>
-           [n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{j,k}]_{1\le i &lt; j \le m} ]
+           [n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i &lt; j \le m} ],
            </Display>
-          where <M>F</M> is a field and <M>n,k,d_i,\alpha_i,\beta_i,\gamma_{j,k}</M> 
+          where <M>F</M> is a field and <M>n,k,d_i,\alpha_i,\beta_i,\gamma_{i,j}</M> 
           are non negative integers. 
           It represents the <M>n\times n</M> matrix algebra <M>M_n(A)</M> over 
           the <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />)
           <Display>
           A = F(\xi_k)[g_1,\ldots,g_m \mid 
           \xi_k^{g_i} = \xi_k^{\alpha_i}, g_i^{d_i}=\xi_k^{\beta_i}, 
-                        g_jg_i=\xi_k^{\gamma_{ij}} g_i g_j]
+                        g_jg_i=\xi_k^{\gamma_{ij}} g_i g_j],
           </Display>
-          where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity.
+          where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity
          (see <Ref Sect="NumDesc" />).   <P/>
       </Description>
 </ManSection>
@@ -202,8 +205,9 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(5), DihedralGroup(16) ) );
 </Example>
 
 The interpretation of the previous example gives rise to the following 
-<E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />), where
-<M>\xi_5</M> is a primitive <M>5</M>-th root of unity.
+<E>Wedderburn decompositions</E> (<Ref Sect="WedDec" />), where <M>D_{16}</M> is 
+the dihedral group of order 16 and <M>\xi_5</M> is a primitive 
+<M>5</M>-th root of unity.
   <Display>
   \Q D_{16} = 4 \Q \oplus M_2( \Q ) \oplus M_2( \Q (\sqrt{2})).  
   </Display>
@@ -237,15 +241,15 @@ gap> WedderburnDecompositionInfo(QS4);
 In the previous example we computed the Wedderburn decomposition of the 
 rational group algebra <M>\Q Q_{16}</M> of the quaternion group of order <M>16</M> 
 and the rational group algebra <M>\Q S_{4}</M> of the symmetric group on four letters.
-For both group algebras we used both <Ref Attr="WedderburnDecomposition" /> and 
+For the two group algebras we used both <Ref Attr="WedderburnDecomposition" /> and 
 <Ref Attr="WedderburnDecompositionInfo" />. <P/>
 
 The output of <Ref Attr="WedderburnDecomposition" /> shows that 
   <Display>
-  \Q Q_{16} = 4 \Q \oplus M_2( \Q ) \oplus A 
+  \Q Q_{16} = 4 \Q \oplus M_2( \Q ) \oplus A,
   </Display>
   <Display>
-  \Q S_{4} = 2 \Q \oplus 2 M_2( \Q ) \oplus B
+  \Q S_{4} = 2 \Q \oplus 2 M_3( \Q ) \oplus B,
   </Display>
 where <M>A</M> and <M>B</M> are <E>crossed products</E> (<Ref Sect="CrossedProd" />)
 with coefficients in the 
@@ -256,10 +260,10 @@ information on the structure of algebras <M>A</M> and <M>B</M>. <P/>
 The numerical information displayed by 
 <Ref Attr="WedderburnDecompositionInfo" /> means that 
   <Display>
-  A = \Q (\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1]
+  A = \Q (\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1],
   </Display>
   <Display>
-  B = \Q (\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1]
+  B = \Q (\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1].
   </Display>
 Both <M>A</M> and <M>B</M> are quaternion algebras over its centre which is
 <M>\Q (\xi+\xi^{-1})</M> and the former is equal to <M>\Q (\sqrt{2})</M> and 
@@ -278,13 +282,13 @@ e.g. <Cite Key="R" />).
 <P/>
 
 Next example shows the output of <C>WedderburnDecompositionInfo</C> 
-for <M>\Q G</M> and <M>\Q (\xi_3) G</M>, where <M>G=SmallGroup(48,28)</M>. 
-You can compare it with the 
+for <M>\Q G</M> and <M>\Q (\xi_3) G</M>, where <M>G=SmallGroup(48,15)</M>. 
+The user can compare it with the 
 output of <Ref Attr="WedderburnDecomposition" /> for the same group in the 
-previous section. Notice that the last entry of the the 
+previous section. Notice that the last entry of the 
 <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />)
-of <M>\Q G</M> is not presented as a matrix algebra of a cyclic algebra but 
-this is not the case for the corresponding entry of <M>\Q (\xi_3) G</M>.
+of <M>\Q G</M> is not given as a matrix algebra of a cyclic algebra. 
+However, the corresponding entry of <M>\Q (\xi_3) G</M> is a matrix algebra of a cyclic algebra.
 
 <Example>
 <![CDATA[
@@ -303,7 +307,8 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
 
 
 
-In some cases some of the first entries of the output of <Ref Attr="WedderburnDecompositionInfo" /> are not integers and so the 
+In some cases some of the first entries of the output of 
+<Ref Attr="WedderburnDecompositionInfo" /> are not integers and so the correspoding
 <E>Wedderburn components</E> (<Ref Sect="WedDec" />) are given as 
 "fractional matrix algebras" of <E>cyclotomic algebras</E> 
 (<Ref Sect="Cyclotomic" />). 
@@ -337,21 +342,21 @@ of <M>\Q G</M> for <M>G</M> the small group <M>[240,89]</M>:
     </Display>
 where 
     <Display>
-    A = \Q (\xi_{10})[u|\xi_{10}^u = \xi^3, u^4 = -1],
+    A = \Q (\xi_{10})[u|\xi_{10}^u = \xi_{10}^3, u^4 = -1],
     </Display>
 <M>B</M> is an algebra of degree <M>(4*2 )/2  = 4 </M> which is 
 <E>Brauer equivalent</E> (<Ref Sect="Brauer" />) to 
     <Display>
-    B_1 = \Q (\xi_{60})[u,v|\xi_{60}^u = \xi^{13}, 
+    B_1 = \Q (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^{13}, 
                           u^4 = \xi_{60}^5, 
-                          \xi^v = \xi^{11}, v^2 = 1, vu=uv],
+                          \xi_{60}^v = \xi_{60}^{11}, v^2 = 1, vu=uv],
     </Display>
 and <M>C</M> is an algebra of degree <M>(4*2)*3/4  = 6 </M> which is 
 <E>Brauer equivalent</E> (<Ref Sect="Brauer" />) to 
     <Display>
-    C_1 = \Q (\xi_{60})[u,v|\xi_{60}^u = \xi^7, 
+    C_1 = \Q (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^7, 
                           u^4 = \xi_{60}^5, 
-                          \xi^v = \xi^{31}, v^2 = 1, vu=uv].
+                          \xi_{60}^v = \xi_{60}^{31}, v^2 = 1, vu=uv].
     </Display>
 The precise description of <M>B</M> and <M>C</M> requires 
 the usage of "ad hoc" arguments.
@@ -409,11 +414,11 @@ gap> SimpleAlgebraByCharacter( GroupRing( Rationals , G ) , Irr(G)[19] );
 
 <ManSection>
    <Oper Name="SimpleAlgebraByCharacterInfo" 
-         Arg="QG chi"  
+         Arg="FG chi"  
          Comm="The numerical data describing the output of
          SimpleAlgebraByCharacter" />
    <Returns>
-         The numerical description of the output of SimpleAlgebraByCharacter
+         The numerical description of the output of <Ref Attr="SimpleAlgebraByCharacter" />.
    </Returns>
    <Description>
         The first input <A>FG</A> is a <E>semisimple group algebra</E> 
@@ -455,21 +460,21 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
          Arg="QG K H"  
          Comm="The Wedderburn component of the rational group algebra QG 
          realized by (K,H), a strong Shoda pair of G" />
+   <Oper Name="SimpleAlgebraByStrongSPNC" 
+         Arg="QG K H"  
+         Comm="Same as the non NC version without checking that (K,H) is a 
+         strong Shoda pair of G" />
    <Oper Name="SimpleAlgebraByStrongSP" 
          Arg="FG K H C"  
          Comm="The Wedderburn component of the semisimple finite group algebra 
          FG given realized by (K,H), a strong Shoda pair of G, and a 
          q-cyclotomic class" />
    <Oper Name="SimpleAlgebraByStrongSPNC" 
-         Arg="QG K H"  
-         Comm="Same as the non NC version without checking that (K,H) is a 
-         strong Shoda pair of G" />
-   <Oper Name="SimpleAlgebraByStrongSPNC" 
          Arg="FG K H C"  
          Comm="Same as the non NC version without checking that (K,H) is a 
          strong Shoda pair of G" />
    <Returns>
-         A simple algebra
+         A simple algebra.
    </Returns>
    <Description>
         In the three-argument version the input must be formed by a 
@@ -481,7 +486,7 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
         The three-argument version
         returns the Wedderburn component (<Ref Sect="WedDec" />) 
         of the rational group algebra <A>QG</A> 
-        realized by a the strong Shoda pair (<A>K</A>,<A>H</A>).
+        realized by the strong Shoda pair (<A>K</A>,<A>H</A>).
         <P/>
         
         In the four-argument version the first argument is a semisimple 
@@ -489,20 +494,22 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
         pair of <M>G</M> and the fourth input data is either 
         a generating <M>q</M>-cyclotomic class modulo [<A>K</A>,<A>H</A>] 
         or a representative of 
-        generating <M>a</M>-cyclotomic class modulo [<A>K</A>,<A>H</A>] 
+        generating <M>q</M>-cyclotomic class modulo [<A>K</A>,<A>H</A>] 
         (see <Ref Sect="CyclotomicClass" />). <P/> 
         
         The four-argument version
         returns the Wedderburn component (<Ref Sect="WedDec" />) of the 
         finite group algebra <A>FG</A> 
-        realized by a the strong Shoda pair (<A>K</A>,<A>H</A>) 
+        realized by the strong Shoda pair (<A>K</A>,<A>H</A>) 
         and the cyclotomic class <A>C</A> 
         (or the cyclotomic class containing <A>C</A>). <P/>
                
         The versions ended in NC does not check if (<A>K</A>,<A>H</A>) is a 
-        strong Shoda pair of <M>G</M> and, in the four-argument version, 
-        if <A>C</A> is either a generating <M>q</M>-cyclotomic class <A>C</A> 
-        modulo <M>[K:H]</M> or an integer coprime with <M>[K:H]</M>.
+        strong Shoda pair of <M>G</M>. 
+        In the four-argument version it is also not checked whether <A>C</A> is 
+        either a generating <M>q</M>-cyclotomic class the index of <A>H</A> in 
+        <A>K</A> or an integer coprime with the index of <A>H</A> in 
+        <A>K</A>.
    </Description>
 </ManSection>
 
@@ -528,49 +535,50 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
    <Oper Name="SimpleAlgebraByStrongSPInfo" 
          Arg="QG K H"  
          Comm="The numerical data describing the output of SimpleAlgebraByStrongSP" />
-   <Oper Name="SimpleAlgebraByStrongSPInfo" 
-         Arg="FG K H c"  
-         Comm="The numerical data describing the output of SimpleAlgebraByStrongSP" />
    <Oper Name="SimpleAlgebraByStrongSPInfoNC" 
          Arg="QG K H"  
          Comm="The numerical data describing the output of SimpleAlgebraByStrongSPNC" />
+   <Oper Name="SimpleAlgebraByStrongSPInfo" 
+         Arg="FG K H C"  
+         Comm="The numerical data describing the output of SimpleAlgebraByStrongSP" />
    <Oper Name="SimpleAlgebraByStrongSPInfoNC" 
-         Arg="FG K H c"  
+         Arg="FG K H C"  
          Comm="The numerical data describing the output of SimpleAlgebraByStrongSPNC" /> 
    <Returns>
-         numerical description of one simple algebra
+         A numerical description of one simple algebra.
    </Returns>
    <Description>
         In the three-argument version the input must be formed by a 
         <E>semisimple rational group algebra</E> 
         (<Ref Sect="Semisimple" />) <A>QG</A> and two subgroups <A>K</A> 
         and <A>H</A> of <M>G</M> which form a <E>strong Shoda pair</E> 
-        (<Ref Sect="SSPDef" />) of <M>G</M>. <P/>
-        
-        The three-argument version
-        returns the numerical information describing the Wedderburn component 
+        (<Ref Sect="SSPDef" />) of <M>G</M>. 
+        It returns the numerical information describing the Wedderburn component 
         (<Ref Sect="NumDesc" />) of the rational group algebra <A>QG</A> 
         realized by a the strong Shoda pair (<A>K</A>,<A>H</A>). <P/>
         
         In the four-argument version the first input is a semisimple finite 
         group algebra <A>FG</A>, <A>(K,H)</A> is a strong Shoda pair of 
         <M>G</M> and the fourth input data is either 
-        a generating <M>q</M>-cyclotomic class modulo [<A>K</A>,<A>H</A>] 
-        or a representative of generating <M>a</M>-cyclotomic class modulo 
-        [<A>K</A>,<A>H</A>] (<Ref Sect="CyclotomicClass" />). <P/> 
-        
-        The four-argument version
-        returns a pair of positive integers <M>[n,r]</M> which represent 
+        a generating <M>q</M>-cyclotomic class modulo the index of <A>H</A> in 
+        <A>K</A>  
+        or a representative of generating <M>q</M>-cyclotomic class modulo 
+        the index of <A>H</A> in 
+        <A>K</A>  (<Ref Sect="CyclotomicClass" />). 
+        It returns a pair of positive integers <M>[n,r]</M> which represent 
         the <M>n\times n</M> matrix algebra over the field of order 
         <M>r</M> which is isomorphic to the Wedderburn component of <A>FG</A> 
         realized by a the strong Shoda pair (<A>K</A>,<A>H</A>) and the 
         cyclotomic class <A>C</A> 
-        (or the cyclotomic class containing <A>C</A>). <P/>
+        (or the cyclotomic class containing the integer <A>C</A>). <P/>
                
         The versions ended in NC does not check if (<A>K</A>,<A>H</A>) is a 
-        strong Shoda pair of <M>G</M> and, in the four-argument version, 
-        if <A>C</A> is either a generating <M>q</M>-cyclotomic class <A>C</A> 
-        modulo <M>[K:H]</M> or an integer coprime with <M>[K:H]</M>.
+        strong Shoda pair of <M>G</M>. 
+        In the four-argument version it is also not checked whether <A>C</A> is 
+        either a generating <M>q</M>-cyclotomic class 
+        modulo the index of <A>H</A> in 
+        <A>K</A>  or an integer coprime with the index of <A>H</A> in 
+        <A>K</A>.   
    </Description>
 </ManSection>
 
