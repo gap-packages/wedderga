@@ -13,7 +13,7 @@
    <Oper Name="PrimitiveCentralIdempotentsByCharacterTable" 
          Arg="FG" />
    <Returns>
-         a list of group algebra elements
+         A list of group algebra elements.
    </Returns>         
    <Description>
          The input <A>FG</A> should be a semisimple group algebra. 
@@ -53,23 +53,29 @@ gap> Length(pciFG);
 
 <ManSection>
    <Oper Name="IsCompleteSetOfOrthogonalIdempotents" 
-         Arg="R r" />
+         Arg="R list" />
    <Description>
-         The input should be formed by a ring <A>R</A> 
-         and a list <A>r</A> of elements of <A>R</A>. <P/>
+         The input should be formed by a unital ring <A>R</A> 
+         and a list <A>list</A> of elements of <A>R</A>. <P/>
    
-         Returns <K>true</K> if the list <A>r</A> is a complete list 
-         of orthogonal idempotents of <A>R</A>, 
-         that is if the sum of the elements of <A>r</A> is the 
-         identity of <A>R</A> and for every <M>e,f \in r</M>
-         one has <M>e^2=e</M> and <M>e*f=0</M> if <M>e</M> 
-         and occupies different positions in <A>r</A>. No claim
-         is made on the idempotents being central or primitive.
+         Returns <K>true</K> if the list <A>list</A> is a complete list 
+         of orthogonal idempotents of <A>R</A>.
+         That is, the output is <K>true</K> provided the following conditions are satisfied:<P/>
+         
+         <M>\cdot</M> The sum of the elements of <A>list</A> is the 
+         identity of <A>R</A>, <P/>
+         
+         <M>\cdot</M> <M>e^2=e</M>, for every <M>e</M> in <A>list</A> and <P/>
+         
+         <M>\cdot</M> <M>e*f=0</M>, if <M>e</M> and <M>f</M> are elements in different 
+         positions of <A>list</A>. <P/>
+         
+         No claim is made on the idempotents being central or primitive.
          <P/>
          
          Note that the if a non-zero element <M>t</M> of <A>R</A> 
-         appears in two different positions of <A>r</A> 
-         then the output is <K>false</K>, and that the list <A>r</A>
+         appears in two different positions of <A>list</A> 
+         then the output is <K>false</K>, and that the list <A>list</A>
          must not contain zeroes.
    </Description>
 </ManSection>
@@ -100,20 +106,20 @@ false
          Arg="FG"  
          Comm="The PCIs realizable by SSPs" />
    <Returns>
-         a list of group algebra elements
+         A list of group algebra elements.
    </Returns>         
    <Description>
-         The input <A>FG</A> should be semisimple group algebra 
+         The input <A>FG</A> should be a semisimple group algebra 
          of a finite group <M>G</M> whose coefficient field 
          <M>F</M> is either a finite field or the field <M>\Q</M> 
          of rationals. <P/>
          
          If <M> F = \Q </M> then the output is the list of primitive central 
-         idempotents of the group algebra <M>FG</M> realizable by strong
+         idempotents of the group algebra <A>FG</A> realizable by strong
          Shoda pairs (<Ref Sect="SSPDef" />) of <M>G</M>. <P/>
          
          If <M>F</M> is a finite field then the output is the list of primitive
-         central idempotents of <M>FG</M> realizable by strong Shoda pairs 
+         central idempotents of <A>FG</A> realizable by strong Shoda pairs 
          <M>(K,H)</M> of <M>G</M> and <M>q</M>-cyclotomic classes modulo the 
          index of <M>H</M> in <M>K</M> (<Ref Sect="CyclotomicClass" />). <P/>
          
@@ -155,7 +161,7 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
          Arg="QG"  
          Comm="The list of PCIs of QG realizable by Shoda pairs" />
    <Returns>
-         a list of group algebra elements 
+         A list of group algebra elements.
    </Returns>         
    <Description>
          The input should be a rational group algebra of a finite group <M>G</M>. <P/>
@@ -255,7 +261,7 @@ false
          Arg="FG K H c"  
          Comm="Epsilon(G,K,H,C)" />
    <Returns>
-         idempotent of a group algebra
+         An idempotent of a group algebra.
    </Returns>         
    <Description>
         The versions with three input data computes <M>\varepsilon(K,H)</M>
@@ -304,7 +310,7 @@ The output of <E>IdempotentBySubgroups</E> is an idempotent in the corresponding
          Arg="FG K H c"  
          Comm="" />
    <Returns>
-         central element of a group algebra
+         A central element of a group algebra.
    </Returns>         
    <Description>
           The versions with three input data computes <M>e(G,K,H)</M>

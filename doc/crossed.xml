@@ -28,7 +28,7 @@ is correct.
          Arg="R G act twist"  
          Comm="" />
    <Returns>
-         Ring in the category <C>IsCrossedProduct</C>
+         Ring in the category <C>IsCrossedProduct</C>.
    </Returns>
    <Description>
          The input should be formed by: <P/>
@@ -37,7 +37,7 @@ is correct.
          
          * a group <A>G</A>, <P/>
          
-         * a function <A>act(RG,g)</A>, on two arguments: 
+         * a function <A>act(RG,g)</A> on two arguments: 
            the crossed product <A>RG</A> and an element 
            <A>g</A> in <M>G</M>.
            It must return a mapping from <A>R</A> to <A>R</A> 
@@ -72,7 +72,7 @@ twist := function( RG , g, h )
 end;
 </Log>	
 
-Let <M>n</M> be a positive integer and <M>\xi_n</M> a complex primitive 
+Let <M>n</M> be a positive integer and <M>\xi_n</M> an <M>n</M>-th complex primitive 
 root of unity. The natural action of the group of units of <M>\Z_n</M>, 
 the ring of integers modulo <M>n</M>, on <M>\Q (\xi_n)</M> can be defined 
 as follows:
@@ -83,7 +83,7 @@ act := function(RG,a)
 end;
 </Log>
 
-In the following example one construct the Hamiltonian quaternion algebra 
+In the following example one constructs the Hamiltonian quaternion algebra 
 over the rationals as a crossed products of the group of units of the cyclic 
 group of order 2 over <M>\Q (i)=GaussianRationals</M>. One realizes the cyclic 
 group of order 2 as the group of units of <M>\Z / 4 \Z</M> and one uses the natural 
@@ -97,12 +97,10 @@ gap> R := GaussianRationals;
 GaussianRationals
 gap> G := Units( ZmodnZ(4) );
 <group with 1 generators>
-gap>
 gap> act := function(RG,g)
 > return ANFAutomorphism( LeftActingDomain(RG), Int(g) );
 > end;
 function( RG, g ) ... end
-gap>
 gap> twist1 := function( RG, g, h )
 > if IsOne(g) or IsOne(h) then
 >    return One(LeftActingDomain(RG));
@@ -439,7 +437,7 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
          <C>IsCrossedProductObjDefaultRep</C>.
          <P/>
          
-         Similarly to magma rings, you can obtain the list of coefficients and
+         Similarly to magma rings, one can obtain the list of coefficients and
          elements with c.
          <P/>
          

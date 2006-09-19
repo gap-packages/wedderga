@@ -65,11 +65,11 @@
 <Index Key="Wedderga package">&Wedderga; package</Index> 
 The title ``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of 
 <B>G</B>roup <B>A</B>lgebras. This is a &GAP; package to compute the simple 
-components of the Wedderburn decomposition of group algebras of finite 
-groups over abelian number fields of characteristic zero and over finite fields. 
+components of the Wedderburn decomposition of semisimple group algebras of finite 
+groups over finite fields and over subfields of finite cyclotomic extensions of the rational. 
 It also contains functions that produce the primitive central idempotents 
 of group algebras of finite groups over the field of rationals and over finite 
-fields, and to construct crossed products over
+fields. Other functions of &Wedderga; allows to construct crossed products over
 a group with coefficients in an associative ring with identity and the
 multiplication determined by a given action and twisting.
 
