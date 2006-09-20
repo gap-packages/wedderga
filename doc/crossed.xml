@@ -344,8 +344,9 @@ Rationals
 ]]>
 </Example>
 
-Next example shows how one can use <Ref Attr="CrossedProduct" /> to product generalized quaternion
-algebras. 
+Next example shows how one can use <Ref Attr="CrossedProduct" /> to produce generalized quaternion
+algebras. Note that one can construct quaternion algebras using &GAP; function <C>QuaternionAlgebra</C>.
+<Index>Quaternion algebra</Index>
 
 <Example>
 <![CDATA[
@@ -419,12 +420,12 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
          Arg="Fam zerocoeff coeffs elts"  
          Comm="" />
    <Description>
-         Returns the element of the crossed product <M>m1*c1 + ... + mn*cn</M>, 
-         where <A>elts = [ m1, m2, ..., mn ]</A> is a list of magma elements,
-         <A>coeffs = [ c1, c2, ..., cn ]</A> is a list of coefficients.
+         Returns the element <M>m_1*c_1 + ... + m_n*c_n</M> of a crossed product, 
+         where <A>elts</A> <M> = [ m_1, m_2, ..., m_n ]</M> is a list of magma elements,
+         <A>coeffs</A> <M> = [ c_1, c_2, ..., c_n ]</M> is a list of coefficients.
          The output belongs to the crossed product whose elements lie in the 
          family <A>Fam</A>. The zero element of the coefficient ring containing
-         <C>ci</C> must be given as <A>zerocoeff</A>, and later can be obtained
+         <M>c_i</M> must be given as <A>zerocoeff</A>, and later can be obtained
          using <Index Key="ZeroCoefficient"><C>ZeroCoefficient</C>
          </Index><C>ZeroCoefficient</C>.
          <P/>  
@@ -438,11 +439,12 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
          <P/>
          
          Similarly to magma rings, one can obtain the list of coefficients and
-         elements with c.
+         elements with <C>CoefficientsAndMagmaElements</C> 
+         <Index>CoefficientsAndMagmaElements</Index>.
          <P/>
          
          Also note from the example below and several other examples in this 
-         chapter that instead of <C>ElementOfCrossedProduct</C>you can use 
+         chapter that instead of <C>ElementOfCrossedProduct</C> one can use 
          <Index Key="Embedding"><C>Embedding</C></Index><C>Embedding</C>
          to embed into the crossed product elements of the coefficient ring 
          and of the underlying magma.

@@ -33,9 +33,9 @@ gap> IsSemisimpleZeroCharacteristicGroupAlgebra( FG );
 false
 gap> f := FreeGroup("a");
 <free group on the generators [ a ]>
-gap> Ff:=GroupRing(Rationals,f);
+gap> Qf:=GroupRing(Rationals,f);
 <algebra-with-one over Rationals, with 2 generators>
-gap> IsSemisimpleZeroCharacteristicGroupAlgebra(Ff);
+gap> IsSemisimpleZeroCharacteristicGroupAlgebra(Qf);
 false
 ]]>
 </Example>
@@ -143,7 +143,7 @@ false
          contains <A>G</A> as a subgroup. <P/>
    
          Returns the centralizer of <A>x</A> in <A>G</A>. <P/>
-         This operation adds the new method to the operation that already 
+         This operation adds a new method to the operation that already 
          exists in &GAP;.
    </Description>
 </ManSection>
@@ -186,7 +186,7 @@ Group([ f1, f2 ])
       <M>G</M> of <M>FG</M>.<P/>
    
       Returns the conjugate <M>x^g = g^{-1} x g</M> of <A>x</A> by <A>g</A>. 
-      Usage of <C>a&circum;g</C> produces the same output.
+      Usage of <C>x&circum;g</C> produces the same output.
       <P/>
       
       This operation adds the new method to the operation that already 
@@ -271,7 +271,7 @@ false
    <Description>
    The input should be formed by two relatively prime positive integers. <P/>
    
-   Returns the <A>q</A>-<E>cyclotomic class</E> 
+   Returns the list <A>q</A>-<E>cyclotomic classes </E> 
    (<Ref Sect="CyclotomicClass" />) modulo <A>n</A>.
    </Description>
 </ManSection>
