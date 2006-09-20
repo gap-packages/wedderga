@@ -89,8 +89,7 @@ In the zero characteristic case each Wedderburn components <M>A</M> is <E>Brauer
 to a <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />) 
 and therefore <M>A</M> is a 
 (possibly fractional) matrix algebras over <E>cyclotomic algebras</E> 
-and can be described numerically in one of the following three forms
-forms:
+and can be described numerically in one of the following three forms:
   <Display>
   [n,K],
   </Display> 
@@ -100,7 +99,7 @@ forms:
   </Display>
   
   <Display>
-  [n,K,k,[d_i,\alpha_i,\beta_i]_{i=1}^n, [\gamma_{j,k}]_{(j,k)\in I_n} ],
+  [n,K,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i &lt; j \le n} ],
   </Display>
 where <M>n</M> is the matrix size, <M>K</M> is the centre of <M>A</M> (a finite field extension of <M>F</M>) 
 and the remaining data are integers whose interpretation is explained in <Ref Sect="NumDesc" />.
@@ -182,8 +181,7 @@ In general one has
 <Section Label="Brauer">
 <Heading>Central simple algebras and Brauer equivalence</Heading>
 
-Let <M>K</M> be a field.<P/>
-
+Let <M>K</M> be a field.
 <Index Key="central simple algebra">central simple algebra</Index>
 A <E>central simple <M>K</M>-algebra</E> is a finite dimensional <M>K</M>-algebra 
 with center <M>K</M> which has not non trivial proper ideals. 
@@ -227,8 +225,8 @@ such that for each <M>g,h</M> in <M>G</M> one has:<P/>
 Let <M>Aut(R)</M> denote the group of automorphisms of <M>R</M> and let <M>R^*</M> denote the group of units of 
 <M>R</M>.<P/>
 
-Let <M>a:G \rightarrow Aut(R)</M> and <M>t:G \times G \rightarrow R</M> 
-be the mappings satisfying the following conditions 
+Let <M>a:G \rightarrow Aut(R)</M> and <M>t:G \times G \rightarrow R^*</M> 
+be mappings satisfying the following conditions 
 for every <M>g</M>, <M>h</M> and <M>k</M> in <M>G</M>: 
 <P/>
 
@@ -256,18 +254,18 @@ The associativity of the product defined is a consequence of conditions (1) and 
 
 Obviously the crossed product of <M>G</M> over <M>R</M> defined using the extrinsecal definition is a crossed product 
 of <M>G</M> over <M>u_1 R</M> in the sense of the first definition. 
-Moreover, there is <M>r_0</M> in <M>R^*</M> such that <M>u_1r_0</M> is the identity of <M>R_a^t G</M> and the map 
+Moreover, there is <M>r_0</M> in <M>R^*</M> such that <M>u_1r_0</M> is the identity of <M>R*_a^t G</M> and the map 
 <M>r \mapsto u_1 r_0 r </M> is a ring isomorphism <M>R \rightarrow u_1R </M>. <P/>
 
 <Index Key="Basis of units">Basis of units (for crossed product)</Index>
 Conversely, let <M>R*G=\bigoplus_{g\in G} A_g</M> be an (intrinsecal) crossed product and select for each <M>g\in G</M> a 
 unit <M>u_g\in A_g</M> of <M>R*G</M>. 
 This is called a <E>basis of units for the crossed product</E> <M>R*G</M>. 
-Then the maps <M>a:G \rightarrow Aut(R)</M> and <M>G\times G \rightarrow R^*</M> given by 
+Then the maps <M>a:G \rightarrow Aut(R)</M> and <M>t:G\times G \rightarrow R^*</M> given by 
   <Display>
-  r^g = u_g^{-1} r u_g, \quad t(g,h) = u_{gh}\inv u_g u_h \quad (g,h \in G, r \in R)
+  r^g = u_g^{-1} r u_g, \quad t(g,h) = u_{gh}^{-1} u_g u_h \quad (g,h \in G, r \in R)
   </Display>
-satisfy conditions (1) and (2) and <M>R*G = R_a^t G</M>. <P/>
+satisfy conditions (1) and (2) and <M>R*G = R*_a^t G</M>. <P/>
 
 The election of a basis of units <M>u_g \in A_g</M> determines the action <M>a</M> and twisting <M>t</M>. 
 If <M>\{u_g \in A_g : g \in G \}</M> and <M>\{v_g \in A_g : g \in G \}</M> are two sets of units of <M>R*G</M>
@@ -342,7 +340,7 @@ Each element <M>g</M> of <M>G</M> has a unique expression
   <Display>
   g = g_1^{k_1} \cdots g_n^{k_n},
   </Display>
-where <M>a_i</M> is an arbitrary integer, if <M>g_i</M> has an infinite order, 
+where <M>k_i</M> is an arbitrary integer, if <M>g_i</M> has an infinite order, 
 and <M>0 \le k_i &lt; d_i</M>, 
 if <M>g_i</M> has finite order <M>d_i</M>.
 Then one selects a basis for the crossed product by taking
@@ -351,7 +349,7 @@ Then one selects a basis for the crossed product by taking
   </Display>
 <P/>
 
-* For each <M>i=1,\dots n</M>, let <M>a_i</M> be the automorphism of <M>R</M> given by 
+* For each <M>i=1,\dots, n</M>, let <M>a_i</M> be the automorphism of <M>R</M> given by 
 <M>r^{a_i} = u_i^{-1} r u_i</M>. 
 <P/>
 
@@ -379,8 +377,8 @@ Therefore <M>R*G</M> is completely determined by the following data:
 
 <Index Key="ClassicalCP">Classical Crossed Product</Index>
 A <E>classical crossed product</E> is a crossed product <M>L*_a^t G</M>, where <M>L/K</M> is a finite Galois 
-extension, <M>G=Gal(L/K)</M> is the Galois group of <M>F/E</M> and 
-<M>a</M> is the natural action of <M>G</M> on <M>F</M>.
+extension, <M>G=Gal(L/K)</M> is the Galois group of <M>L/E</M> and 
+<M>a</M> is the natural action of <M>G</M> on <M>L</M>.
 
 Then <M>t</M> is a <M>2</M>-cocycle and the <E>crossed product</E> 
 (<Ref Sect="CrossedProd" />) <M>L*_a^t G</M> is denoted by <M>(L/K,t)</M>. 
@@ -401,8 +399,9 @@ is a finite cyclic field extension.
 The cyclic algebras have a very simple form. <P/>
 
 Assume that <M>Gal(L/K)</M> is generated by <M>g</M> and has order <M>d</M>.
-Let <M>u=u_g</M> be the basis unit (<Ref Sect="CrossedProd" />) of the crossed product corresponding to <M>g</M> 
-and take the remaining basis units for the crossed product by setting <M>u_{g^i} = u^i</M>, (<M> i = 0, 1, \dots d-1 </M>). 
+Let <M>u=u_g</M> be the basis unit (<Ref Sect="CrossedProd" />) of the crossed product 
+corresponding to <M>g</M> and take the remaining basis units for the crossed 
+product by setting <M>u_{g^i} = u^i</M>, (<M> i = 0, 1, \dots, d-1 </M>). 
 Then <M>a = u^n \in K</M>. The cyclic algebra is usually denoted by <M>(L/K,a)</M> and one has the following 
 description of <M>(L/K,t)</M>
   <Display>
@@ -440,7 +439,7 @@ of a group algebra is <E>Brauer equivalent</E> (<Ref Sect="Brauer" />)
 <Section Label="NumDesc">
 <Heading>Numerical description of cyclotomic algebras</Heading>
 
-Let <M>A=(F(\xi_k)/F,t)</M> be a <E>cyclotomic algebra</E> 
+Let <M>A=(F(\xi)/F,t)</M> be a <E>cyclotomic algebra</E> 
 (<Ref Sect="Cyclotomic" />), 
 where <M>\xi=\xi_k</M> is a <M>k</M>-th root of unity. 
 Then the Galois group <M>G=Gal(F(\xi)/F)</M> is abelian and therefore one can obtain a simplified form for the
@@ -449,7 +448,7 @@ description of cyclotomic algebras as for any
 
 Then the <M>n</M>-by-<M>n</M> matrix algebra <M>M_n(A)</M> can be described numerically in one of the following forms: <P/>
 
-* If <M>F(\xi_k)=F</M>, (i.e. <M>G=1</M>) then <M>A=M_n(F)</M> and thus the only data needed to describe <M>A</M> 
+* If <M>F(\xi)=F</M>, (i.e. <M>G=1</M>) then <M>A=M_n(F)</M> and thus the only data needed to describe <M>A</M> 
 are the matrix size  <M>n</M> and the field <M>F</M>:
   <Display>
   [n,F]
@@ -476,7 +475,7 @@ satisfy the following conditions:
 can be described with the following data 
 (see <Ref Sect="AbelianCP" />):
   <Display>
-  [n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{j,k}]_{1\le i &lt; j \le m} ]
+  [n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i &lt; j \le m} ]
   </Display>
 representing the <M>n</M>-by-<M>n</M> matrix ring over the following algebra:
   <Display>
@@ -493,7 +492,7 @@ where
 * <M>d_i</M> is the order of <M>g_i</M>, <P/>
 * <M>\alpha_i</M>, <M>\beta_i</M> and <M>\gamma_{rs}</M> are integers, and
   <Display> 
-    \xi^{g_i} = \xi_k^{\alpha_i}.
+    \xi^{g_i} = \xi^{\alpha_i}.
   </Display>
 
 </Section>
@@ -519,9 +518,9 @@ The element <M>\widehat{H}</M> is an idempotent of <M>FG</M> which is central in
 
 If <M>H</M> is a proper normal subgroup of a subgroup <M>K</M> of  <M>G</M> then set
 <Display>
-\varepsilon(K,H) = \prod_{L} (\widehat{N}-\widehat{L}).
+\varepsilon(K,H) = \prod_{L} (\widehat{H}-\widehat{L}).
 </Display>
-where <M>L</M> runs on the minimal normal subgroups of <M>K</M> containing <M>N</M> properly. 
+where <M>L</M> runs on the minimal normal subgroups of <M>K</M> containing <M>H</M> properly. 
 By convention, <M>\varepsilon(K,K)=\widehat{K}</M>. 
 The element <M>\varepsilon(K,H)</M> is an idempotent of <M>FG</M>. <P/>
 
@@ -545,7 +544,7 @@ Assume now that <M>F</M> is a finite field of order <M>q</M>,
 <M>(K,H)</M> is a strong Shoda pair of <M>G</M> and 
 <M>C</M> is a cyclotomic class of <M>K/H</M> containing a 
 generator of <M>K/H</M>. Then <M>e_C(G,K,H)</M> is a primitive 
-central idempotent of <M>F</M> (see <Ref Sect="CyclotomicClass" />). 
+central idempotent of <M>FG</M> (see <Ref Sect="CyclotomicClass" />). 
 <P/>
 
 </Section>
@@ -600,7 +599,7 @@ subgroups of <M>G</M> satisfying the following conditions:<P/>
 <P/>
 
 Let <M>(K,H)</M> be a strong Shoda pair of <M>G</M>. 
-Then <M>(K,H)</M> is a Shoda pair (<Ref Sect="IdempotentsSbgps" />) of <M>G</M>. 
+Then <M>(K,H)</M> is a Shoda pair (<Ref Sect="SPDef" />) of <M>G</M>. 
 Thus there is a linear character <M>\theta</M> of <M>K</M> with kernel <M>H</M> 
 such that the induced character <M>\chi=\chi(G,K,H)=\theta^G</M> is irreducible. 
 Moreover the <E>primitive central idempotent</E> (<Ref Sect="Idempotents" />)
@@ -610,7 +609,7 @@ realized by <M>(K,H)</M> is <M>e(G,K,H)</M>, see <Cite Key="ORS" />. <P/>
 <Index>equivalent strong Shoda pairs</Index>
 Two <E>strong Shoda pairs</E> (<Ref Sect="SSPDef"/>) <M>(K_1,H_1)</M> and <M>(K_2,H_2)</M> of <M>G</M> 
 are said to be <E>equivalent</E> if the characters
-<M>\chi(G,K_1,H_2)</M> and <M>\chi(G,K_2,H_2)</M> are Galois conjugate, or equivalently if 
+<M>\chi(G,K_1,H_1)</M> and <M>\chi(G,K_2,H_2)</M> are Galois conjugate, or equivalently if 
 <M>e(G,K_1,H_1)=e(G,K_2,H_2)</M>.<P/>
 
 The advantage of strong Shoda pairs with respect to Shoda pairs is that 
@@ -626,13 +625,13 @@ Let <M>x</M> be a fixed generator of <M>K/H</M> and
 <M>\varphi : N/K \rightarrow N/H</M> a fixed left inverse of the canonical projection 
 <M>N/H\rightarrow N/K</M>. Then 
   <Display>
-  \xi^{a(n)} = \xi^i, \mbox{ if }  x^{\varphi(a)}= x^i
+  \xi^{a(r)} = \xi^i, \mbox{ if }  x^{\varphi(r)}= x^i
   </Display>
 and 
   <Display>
-  t(a,b) = \xi^j, \mbox{ if } \varphi(ab)^{-1} \varphi(a)\varphi(b) = x^j,
+  t(r,s) = \xi^j, \mbox{ if } \varphi(rs)^{-1} \varphi(r)\varphi(s) = x^j,
   </Display>
-for <M>a,b \in N/K</M> and integers <M>i</M> and <M>j</M>, see <Cite Key="ORS" />. 
+for <M>r,s \in N/K</M> and integers <M>i</M> and <M>j</M>, see <Cite Key="ORS" />. 
 Notice that the cocycle is the one given by the natural extension
   <Display>
   1 \rightarrow K/H \rightarrow N/H \rightarrow N/K \rightarrow 1 
@@ -668,7 +667,7 @@ The group <M>G</M> is <E>strongly monomial</E>
 if every irreducible character of <M>G</M> is 
 strongly monomial. <P/>
 
-Strong Shoda pairs where firstly introduced by Olivieri, del Río and Simón <Cite Key="ORS" /> who proved that 
+Strong Shoda pairs where firstly introduced by Olivieri, del Río and Simón who proved that 
 every abelian-by-supersolvable group is strongly monomial  <Cite Key="ORS" />.
 The algorithm to compute the Wedderburn decomposition of rational group algebras for strongly monomial groups
 was explained in <Cite Key="OR" />. 
