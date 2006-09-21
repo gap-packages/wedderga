@@ -70,6 +70,8 @@ represents the factors of <M>FG</M> as matrix algebras over finite extensions
 of the field <M>F</M>.
 <P/>
 
+<Alt Only="LaTeX">\pagebreak</Alt>.
+
 <Example>
 <![CDATA[
 gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
@@ -77,11 +79,6 @@ gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
 gap> WedderburnDecomposition(QG);
 [ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),
   <crossed product with center Rationals over CF(3) of a group of size 2> ]
-]]>
-</Example>
-
-<Example>
-<![CDATA[
 gap> FG := GroupRing( CF(5), SymmetricGroup(4) );
 <algebra-with-one over CF(5), with 2 generators>
 gap> WedderburnDecomposition( FG );
