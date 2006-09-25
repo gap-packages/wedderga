@@ -25,8 +25,7 @@ field  of  characteristic coprime with  the order of G,  or an abelian number
 field (i.e. a subfield of a finite cyclotomic extension of the rationals).
 
 Other functions  of  Wedderga  compute  the primitive  central idempotents of 
-group algebras  of finite groups  over the field of rationals and over finite 
-fields.
+semisimple group algebras.
 
 The package also  provides  functions  to  construct  crossed products over a 
 group  with  coefficients  in  an  associative  ring  with  identity  and the 
