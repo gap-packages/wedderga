@@ -8,9 +8,9 @@
 <Section Label="IntroAims">
 <Heading>General aims of &Wedderga; package</Heading>
 The title ``&Wedderga;'' stands for ``<B>Wedder</B>burn decomposition of 
-<B>g</B>roup <B>a</B>lgebras. This is a &GAP; package to compute the simple 
+<B>g</B>roup <B>a</B>lgebras''. This is a &GAP; package to compute the simple 
 components of the Wedderburn decomposition of semisimple group algebras.
-So the main functions of the packages returns a list of simple algebras
+So the main functions of the package returns a list of simple algebras
 whose direct sum is isomorphic to the group algebra given as input.
 <P/>
 
