@@ -23,8 +23,7 @@ cyclotomic extension of the rationals).
 <P/>
 
 Other functions of &Wedderga; compute the primitive central idempotents 
-of group algebras of finite groups over the field of rationals and over finite 
-fields. 
+of semisimple group algebras. 
 <P/>
 
 The package also provides functions to construct crossed products over

@@ -68,8 +68,8 @@ The title ``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of
 components of the Wedderburn decomposition of semisimple group algebras of finite 
 groups over finite fields and over subfields of finite cyclotomic extensions of the rational. 
 It also contains functions that produce the primitive central idempotents 
-of group algebras of finite groups over the field of rationals and over finite 
-fields. Other functions of &Wedderga; allows to construct crossed products over
+of semisimple group algebras. 
+Other functions of &Wedderga; allows to construct crossed products over
 a group with coefficients in an associative ring with identity and the
 multiplication determined by a given action and twisting.
 
