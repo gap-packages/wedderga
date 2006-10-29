@@ -298,11 +298,11 @@ local
 
 out,        # output, a cocycle of Galcf with coefficients in <E(cond)>
 N,          # Normalizer of H in M
-ok,         # Order of K/H
+ok;         # Order of K/H
 #cond;       # Lcm(Conductor(cf),ok)
 
 ok := Index(K,H);
-cond:=Lcm(Conductor(cf),ok);
+# cond:=Lcm(Conductor(cf),ok);
 
 N := Normalizer(M,H);
 
