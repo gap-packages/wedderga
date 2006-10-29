@@ -299,15 +299,23 @@ local
 out,        # output, a cocycle of Galcf with coefficients in <E(cond)>
 N,          # Normalizer of H in M
 ok,         # Order of K/H
-cond;       # Lcm(Conductor(cf),ok)
+#cond;       # Lcm(Conductor(cf),ok)
 
 ok := Index(K,H);
 cond:=Lcm(Conductor(cf),ok);
 
 N := Normalizer(M,H);
 
+
 if N=K then
-  out:=function(a,b) return 1; end;
+
+### HERE WE MADE A MODIFICATION IN OCTOBER 29, 2006. THIS IS A REAL BUG.
+### IT COMES BECAUSE WE FIRST WERE USING MULTIPLICATIVE COCYCLES AND THEN
+### MOVES TO USE ADDITIVE COCYCLES. 
+### WE FORGOT TO MODIFY THE TRIVIAL PART OF THE COMPUTATION 
+  ok := 1;
+  out:=function(a,b) return 0; end;
+######################################################################
 else # if N_M(H) <> K    
  
   out:=function(a,b) # returns the twisting for the croosed product 
@@ -327,13 +335,13 @@ else # if N_M(H) <> K
     funNdK,     # Embedding of NdK in Uok,
     GalSSP,     # Subgroup(Uok,Image(funNdK))
     cocSSP,     # cocycle in Z^2(GalSSP,<E(ok)>)
-    Ucond,      # Units(ZmodnZ(cond));
-    redu,       # reduction from modulo cond to modulo ok
-    GalSSPcond, # Subgroup(Ucond,PreImage(redu,GalSSP))
-    cocSSPcond, # cocycle in Z^2(GalSSPcond, <E(cond)>)
-    SF,         # AsField(cf,CF(cond)) (Splitting Field)
-    Galcf,      # Subgroup(Ucond,Image(GalToInt(Galcf)));
-    Galcomp,    # Intersection(GalSSPcond,Galcf);
+#    Ucond,      # Units(ZmodnZ(cond));
+#    redu,       # reduction from modulo cond to modulo ok
+#    GalSSPcond, # Subgroup(Ucond,PreImage(redu,GalSSP))
+#    cocSSPcond, # cocycle in Z^2(GalSSPcond, <E(cond)>)
+#    SF,         # AsField(cf,CF(cond)) (Splitting Field)
+    Galcf,      # Subgroup(Uok,Image(GalToInt(Galcf)));
+    Galcomp,    # Intersection(GalSSP,Galcf);
     T;          # Right Transversal of Galcomp in Galcf 
     
     
@@ -380,37 +388,43 @@ coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
                 end;
     
 #########################################################################
+### THIS PART HAS BEEN EXCLUDED IN OCTOBER 29, 2006. 
+### WE DISCOVERED IT WAS NOT NEEDED
+### IT ALSO AFFECT TO THE NEXT PART WHERE GalSSPcond, Uconc and cocSSPcond
+### HAVE BEEN REPLACED BY Galssp, Uok and cocSSP. 
+### THE VARIABLES cond, red AND SF HAVE BEEN ELIMINATED.
+### THE MODIFICATION ALSO AFFECT TO THE OUPUT WHERE cond HAVE BEEN REPLACED BY ok.
 
     # The cocycle in Z^2(GalSSPcond,<E(cond)>)
 
     
-    Ucond := Units(ZmodnZ(cond));
-    redu := ReductionModnZ(cond,ok);
+#    Ucond := Units(ZmodnZ(cond));
+#    redu := ReductionModnZ(cond,ok);
     
-    GalSSPcond := Subgroup(Ucond,PreImage(redu,GalSSP));
+#    GalSSPcond := Subgroup(Ucond,PreImage(redu,GalSSP));
     
-    cocSSPcond := function(a,b)
-                    return cocSSP(a^redu,b^redu);
-                    end;
+#    cocSSPcond := function(a,b)
+#                    return cocSSP(a^redu,b^redu);
+#                    end;
     
  #########################################################################
     
     # The cocycle in Z^2(Galcf,<E(cond)>)
     
-    SF:=AsField(cf,CF(cond)); 
-    Galcf:=Subgroup(Ucond,Image(ReductionModnZ(exp,cond),Gal));
+#    SF:=AsField(cf,[E(ok)]); 
+    Galcf:=Subgroup(Uok,Image(ReductionModnZ(exp,ok),Gal));
     
-    if IsSubset(GalSSPcond,Galcf) then
-      return cocSSPcond(a,b);
+    if IsSubset(GalSSP,Galcf) then
+      return cocSSP(a,b);
     else
-      Galcomp := Intersection(GalSSPcond,Galcf);
+      Galcomp := Intersection(GalSSP,Galcf);
       pow := 1/Index(Galcf,Galcomp) mod div;
       T := 
       List(RightTransversal(Galcf,Galcomp),i->CanonicalRightCosetElement(Galcomp,i));
            
       return
         Sum(T,t-> 
-cocSSPcond(t*a*CanonicalRightCosetElement(Galcomp,t*a)^-1,
+cocSSP(t*a*CanonicalRightCosetElement(Galcomp,t*a)^-1,
         CanonicalRightCosetElement(Galcomp,t*a)*b*
         CanonicalRightCosetElement(Galcomp,t*a*b)^-1)*t^-1
             )*pow;
@@ -418,7 +432,7 @@ cocSSPcond(t*a*CanonicalRightCosetElement(Galcomp,t*a)^-1,
   end;
 fi;
 
-return [cond,out];
+return [ok,out];
 
 end);
 
