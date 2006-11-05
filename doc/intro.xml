@@ -124,14 +124,14 @@ To use the &Wedderga; online help it is necessary to install the &GAP;4 package
 (<File>zoo</File>, <File>tar.gz</File>, <File>tar.bz2</File>, 
 <File>-win.zip</File>) and can be obtained from 
 <URL>http://www.um.es/adelrio/wedderga.htm</URL>.
-To unpack the archive <File>wedderga-4.0.zoo</File> you need the program 
+To unpack the archive <File>wedderga-4.1.zoo</File> you need the program 
 <File>unzoo</File>, which can be obtained from the &GAP; homepage 
 <URL>http://www.gap-system.org/</URL> (see section `Distribution').
 To install &Wedderga;, copy this archive into the <File>pkg</File> subdirectory of your 
 &GAP;4.4 installation. The subdirectory <File>wedderga</File> will be created in 
 the <File>pkg</File> directory after the following command:
 <P/>
-  <C>unzoo -x wedderga-4.0.zoo</C>
+  <C>unzoo -x wedderga-4.1.zoo</C>
 <P/>
 
 </Section>
