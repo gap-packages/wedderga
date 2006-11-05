@@ -15,9 +15,9 @@ PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
                   "of group algebras" ] ),
-Version        := "4.0",
-Date           := "13/09/2006",
-ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.0",
+Version        := "4.1",
+Date           := "05/11/2006",
+ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.1",
 ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
 
 #TextFiles     := ["init.g", ......],
