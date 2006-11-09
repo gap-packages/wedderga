@@ -117,10 +117,10 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 [ Rationals, Rationals, <crossed product with center Rationals over CF(
     5) of a group of size 4>, ( Rationals^[ 4, 4 ] ), ( Rationals^[ 4, 4 ] ),
   ( Rationals^[ 5, 5 ] ), ( Rationals^[ 5, 5 ] ), ( Rationals^[ 6, 6 ] ),
-  [ 1/2, <crossed product with center NF(12,[ 1, 11 ]) over AsField( NF(12,
-        [ 1, 11 ]), CF(60) ) of a group of size 8> ],
-  [ 3/4, <crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
-        [ 1, 7 ]), CF(40) ) of a group of size 8> ] ]
+  <crossed product with center NF(12,[ 1, 11 ]) over AsField( NF(12,
+    [ 1, 11 ]), NF(60,[ 1, 11 ]) ) of a group of size 4>,
+  [ 3/2, <crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
+        [ 1, 7 ]), NF(40,[ 1, 31 ]) ) of a group of size 4> ] ]  
 ]]>
 </Example>
 
@@ -327,9 +327,8 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 10, [ 4, 3, 5 ] ],
   [ 4, Rationals ], [ 4, Rationals ], [ 5, Rationals ], [ 5, Rationals ],
-  [ 6, Rationals ],
-  [ 1/2, NF(12,[ 1, 11 ]), 60, [ [ 4, 13, 5 ], [ 2, 11, 0 ] ], [ [ 0 ] ] ],
-  [ 3/4, NF(8,[ 1, 7 ]), 40, [ [ 4, 7, 5 ], [ 2, 31, 0 ] ], [ [ 0 ] ] ] ]
+  [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ],
+  [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
 ]]>
 </Example>
 
