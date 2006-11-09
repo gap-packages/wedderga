@@ -309,13 +309,9 @@ N := Normalizer(M,H);
 
 if N=K then
 
-### HERE WE MADE A MODIFICATION IN OCTOBER 29, 2006. THIS IS A REAL BUG.
-### IT COMES BECAUSE WE FIRST WERE USING MULTIPLICATIVE COCYCLES AND THEN
-### MOVES TO USE ADDITIVE COCYCLES. 
-### WE FORGOT TO MODIFY THE TRIVIAL PART OF THE COMPUTATION 
   ok := 1;
   out:=function(a,b) return 0; end;
-######################################################################
+
 else # if N_M(H) <> K    
  
   out:=function(a,b) # returns the twisting for the croosed product 
@@ -335,11 +331,6 @@ else # if N_M(H) <> K
     funNdK,     # Embedding of NdK in Uok,
     GalSSP,     # Subgroup(Uok,Image(funNdK))
     cocSSP,     # cocycle in Z^2(GalSSP,<E(ok)>)
-#    Ucond,      # Units(ZmodnZ(cond));
-#    redu,       # reduction from modulo cond to modulo ok
-#    GalSSPcond, # Subgroup(Ucond,PreImage(redu,GalSSP))
-#    cocSSPcond, # cocycle in Z^2(GalSSPcond, <E(cond)>)
-#    SF,         # AsField(cf,CF(cond)) (Splitting Field)
     Galcf,      # Subgroup(Uok,Image(GalToInt(Galcf)));
     Galcomp,    # Intersection(GalSSP,Galcf);
     T;          # Right Transversal of Galcomp in Galcf 
@@ -388,30 +379,9 @@ coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
                 end;
     
 #########################################################################
-### THIS PART HAS BEEN EXCLUDED IN OCTOBER 29, 2006. 
-### WE DISCOVERED IT WAS NOT NEEDED
-### IT ALSO AFFECT TO THE NEXT PART WHERE GalSSPcond, Uconc and cocSSPcond
-### HAVE BEEN REPLACED BY Galssp, Uok and cocSSP. 
-### THE VARIABLES cond, red AND SF HAVE BEEN ELIMINATED.
-### THE MODIFICATION ALSO AFFECT TO THE OUPUT WHERE cond HAVE BEEN REPLACED BY ok.
-
-    # The cocycle in Z^2(GalSSPcond,<E(cond)>)
-
-    
-#    Ucond := Units(ZmodnZ(cond));
-#    redu := ReductionModnZ(cond,ok);
-    
-#    GalSSPcond := Subgroup(Ucond,PreImage(redu,GalSSP));
-    
-#    cocSSPcond := function(a,b)
-#                    return cocSSP(a^redu,b^redu);
-#                    end;
-    
- #########################################################################
     
     # The cocycle in Z^2(Galcf,<E(cond)>)
     
-#    SF:=AsField(cf,[E(ok)]); 
     Galcf:=Subgroup(Uok,Image(ReductionModnZ(exp,ok),Gal));
     
     if IsSubset(GalSSP,Galcf) then
@@ -423,8 +393,7 @@ coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
       List(RightTransversal(Galcf,Galcomp),i->CanonicalRightCosetElement(Galcomp,i));
            
       return
-        Sum(T,t-> 
-cocSSP(t*a*CanonicalRightCosetElement(Galcomp,t*a)^-1,
+        Sum(T,t-> cocSSP(t*a*CanonicalRightCosetElement(Galcomp,t*a)^-1,
         CanonicalRightCosetElement(Galcomp,t*a)*b*
         CanonicalRightCosetElement(Galcomp,t*a*b)^-1)*t^-1
             )*pow;
