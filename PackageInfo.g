@@ -18,7 +18,7 @@ Subtitle       := Concatenation( [
 Version        := "4.1",
 Date           := "09/11/2006",
 ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.1",
-ArchiveFormats := ".zoo .tar.gz .tar.bz2 -win.zip",
+ArchiveFormats := ".tar.gz .tar.bz2 -win.zip",
 
 #TextFiles     := ["init.g", ......],
 #BinaryFiles   := ["doc/manual.dvi", ......],
@@ -97,7 +97,7 @@ Persons :=
      )
 ],
 
-Status := "",
+Status := "deposited",
 CommunicatedBy := "",
 AcceptDate := "",
 
