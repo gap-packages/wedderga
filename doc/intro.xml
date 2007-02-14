@@ -117,7 +117,7 @@ and no compatibility with previous releases of &GAP;4 is guaranteed.
 To use the &Wedderga; online help it is necessary to install the &GAP;4 package 
 &GAPDoc; by Frank L\"ubeck and Max Neunh\"offer, which is available from the 
 &GAP; site or from 
-<URL>http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/</URL>.
+<URL>http://www.math.rwth-aachen.de/&tilde;Frank.Luebeck/GAPDoc/</URL>.
 <P/> 
 
 &Wedderga; is distributed in standard formats

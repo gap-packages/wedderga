@@ -25,10 +25,11 @@
 
   <Author>Alexander Konovalov
           <Email>konovalov@member.ams.org</Email>
-	      <Homepage>http://homepages.vub.ac.be/~okonoval/</Homepage>
+	      <Homepage>http://www.cs.st-andrews.ac.uk/&tilde;alexk/</Homepage>
           <Address>
-          Department of Mathematics, Vrije Universiteit Brussel<Br/>
-          Pleinlaan 2, Brussels, B-1050 Belgium
+          School of Computer Science, University of St Andrews<Br/>
+          Jack Cole Building, North Haugh,<Br/>
+          St Andrews, Fife, KY16 9SX, Scotland
           </Address> 
   </Author>
 
@@ -51,14 +52,14 @@
   
   <Author>Ángel del Río
           <Email>adelrio@um.es</Email>
-	  <Homepage>http://www.um.es/adelrio</Homepage>
+	      <Homepage>http://www.um.es/adelrio</Homepage>
           <Address>
           Departamento de Matemáticas, Universidad de Murcia<Br/>
           30100 Murcia, Spain
           </Address> 
   </Author>  
     
-  <Date>November 2006</Date>
+  <Date>February 2007</Date>
 
 <Abstract>
 
@@ -76,7 +77,7 @@ multiplication determined by a given action and twisting.
 </Abstract>
 
 <Copyright>
-  &copyright; 2006 by Osnel Broche Cristo, Alexander Konovalov, Aurora
+  &copyright; 2006-2007 by Osnel Broche Cristo, Alexander Konovalov, Aurora
   Olivieri, Gabriela Olteanu and Ángel del Río.<P/>
 
   &Wedderga; is free software; you can redistribute it and/or modify it 
@@ -103,7 +104,8 @@ the referee for careful testing &Wedderga; and useful suggestions. Also we
 acknowledge very much the members of the &GAP; team: Thomas Breuer, 
 Alexander Hulpke, Frank L&#252;beck and many other colleagues 
 for helpful comments and advise. We would like also to thank Thomas Breuer 
-for the code of <C>PrimitiveCentralIdempotentsByCharacterTable</C> for rational group algebras.
+for the code of <C>PrimitiveCentralIdempotentsByCharacterTable</C> for 
+rational group algebras.
 <P/> 
 
 </Acknowledgements>
