@@ -46,14 +46,15 @@ Persons :=
        IsAuthor      := true,
        IsMaintainer  := true,
        Email         := "konovalov@member.ams.org",
-       WWWHome       := "http://homepages.vub.ac.be/~okonoval/",
+       WWWHome       := "http://www.cs.st-andrews.ac.uk/~alexk/",
        PostalAddress := Concatenation( [
-                     "Department of Mathematics\n",
-                     "Vrije Universiteit Brussel\n", 
-                     "Pleinlaan 2, Brussels, B-1050 Belgium" ] ),
-       Place         := "Brussels",
-       Institution   := "Vrije Universiteit Brussel"
-     ),
+                        "School of Computer Science\n",
+                        "University of St Andrews\n",
+                        "Jack Cole Building, North Haugh,\n",
+                        "St Andrews, Fife, KY16 9SX, Scotland" ] ),
+       Place         := "St Andrews",
+       Institution   := "University of St Andrews"
+    ),
     rec(
        LastName      := "Olteanu",
        FirstNames    := "Gabriela",
@@ -118,8 +119,8 @@ PackageDoc := rec(
 
 Dependencies := rec(
   GAP                    := ">=4.4",
-  NeededOtherPackages    := [],
-  SuggestedOtherPackages := [["laguna", "3.3.3"]],
+  NeededOtherPackages    := [ ["GAPDoc", ">= 0.99999"] ],
+  SuggestedOtherPackages := [ ["laguna", "3.4"] ],
   ExternalConditions     := []
 ),
 
