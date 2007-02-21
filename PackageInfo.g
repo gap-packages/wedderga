@@ -83,8 +83,8 @@ Persons :=
        Institution   := "Universidad Simón Bolívar"
      ),     
      rec(
-       LastName      := "del Río",
-       FirstNames    := "Ángel",
+       LastName      := "del Rio",
+       FirstNames    := "Angel",
        IsAuthor      := true,
        IsMaintainer  := true,
        Email         := "adelrio@um.es",
