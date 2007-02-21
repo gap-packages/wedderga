@@ -165,7 +165,7 @@ of <M>G</M> (in an algebraic closure of <M>F</M>) onto the set of primitive cent
 
 If the irreducible character <M>\chi</M> of <M>G</M> takes values in <M>F</M> then 
   <Display>
-  e_F(\chi) = e(\chi) = \frac{\chi(1)}{|G|} \sum_{g\in G} \chi(g\inv) g.
+  e_F(\chi) = e(\chi) = \frac{\chi(1)}{|G|} \sum_{g\in G} \chi(g^{-1}) g.
   </Display><P/>  
 In general one has 
   <Display>
@@ -466,8 +466,8 @@ and so <M>M_n(A)</M> can be described with the following data
 where the integers <M>k</M>, <M>d</M>, <M>\alpha</M> and <M>\beta</M>
 satisfy the following conditions:
   <Display>
-  \alpha^d \equiv 1 \; \text{mod} \; k, \quad 
-  \beta(\alpha-1) \equiv 0 \; \text{mod} \; k
+  \alpha^d \equiv 1 \; mod \; k, \quad 
+  \beta(\alpha-1) \equiv 0 \; mod \; k
   </Display>
 <P/>
 
@@ -709,8 +709,7 @@ Fix a primitive <M>n</M>-th root of the unity <M>\xi</M> in some extension of <M
 and an element <M>g</M> of <M>K</M> such that <M>gH</M> is a generator of <M>K/H</M>.
 Let <M>C</M> be a generating <M>q</M>-cyclotomic class modulo <M>n</M>. Then set 
     <Display>
-    \varepsilon_C(K,H) =
-    [K:H]^{-1} \widehat{H} \sum_{i=0}^{n-1}} tr(\xi^{-ci})g^i,
+    \varepsilon_C(K,H) = [K:H]^{-1} \widehat{H} \sum_{i=0}^{n-1} tr(\xi^{-ci})g^i,
     </Display>
 where <M>c</M> is an arbitrary element of <M>C</M> and <M>tr</M> is the trace map 
 of the field extension <M>F(\xi)/F</M>. Then <M>\varepsilon_C(K,H)</M> does not 
