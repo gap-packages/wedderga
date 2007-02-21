@@ -453,19 +453,23 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
 
 <ManSection>
    <Oper Name="SimpleAlgebraByStrongSP" 
+         Label="for rational group algebra"
          Arg="QG K H"  
          Comm="The Wedderburn component of the rational group algebra QG 
          realized by (K,H), a strong Shoda pair of G" />
    <Oper Name="SimpleAlgebraByStrongSPNC" 
+         Label="for rational group algebra"
          Arg="QG K H"  
          Comm="Same as the non NC version without checking that (K,H) is a 
          strong Shoda pair of G" />
    <Oper Name="SimpleAlgebraByStrongSP" 
+         Label="for semisimple finite group algebra"
          Arg="FG K H C"  
          Comm="The Wedderburn component of the semisimple finite group algebra 
          FG given realized by (K,H), a strong Shoda pair of G, and a 
          q-cyclotomic class" />
    <Oper Name="SimpleAlgebraByStrongSPNC" 
+         Label="for semisimple finite group algebra"
          Arg="FG K H C"  
          Comm="Same as the non NC version without checking that (K,H) is a 
          strong Shoda pair of G" />
@@ -529,15 +533,19 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 
 <ManSection>
    <Oper Name="SimpleAlgebraByStrongSPInfo" 
+         Label="for rational group algebra"   
          Arg="QG K H"  
          Comm="The numerical data describing the output of SimpleAlgebraByStrongSP" />
    <Oper Name="SimpleAlgebraByStrongSPInfoNC" 
+         Label="for rational group algebra"
          Arg="QG K H"  
          Comm="The numerical data describing the output of SimpleAlgebraByStrongSPNC" />
    <Oper Name="SimpleAlgebraByStrongSPInfo" 
+         Label="for semisimple finite group algebra"
          Arg="FG K H C"  
          Comm="The numerical data describing the output of SimpleAlgebraByStrongSP" />
    <Oper Name="SimpleAlgebraByStrongSPInfoNC" 
+         Label="for semisimple finite group algebra"
          Arg="FG K H C"  
          Comm="The numerical data describing the output of SimpleAlgebraByStrongSPNC" /> 
    <Returns>
