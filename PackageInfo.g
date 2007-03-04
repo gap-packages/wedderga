@@ -15,9 +15,9 @@ PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
                   "of group algebras" ] ),
-Version        := "4.1",
-Date           := "09/11/2006",
-ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.1",
+Version        := "4.2",
+Date           := "04/03/2007",
+ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.2",
 ArchiveFormats := ".tar.gz .tar.bz2 -win.zip",
 
 #TextFiles     := ["init.g", ......],
@@ -99,12 +99,12 @@ Persons :=
 ],
 
 Status := "deposited",
-CommunicatedBy := "",
-AcceptDate := "",
+# CommunicatedBy := "",
+# AcceptDate := "",
 
 README_URL := "http://www.um.es/adelrio/wedderga/README.wedderga",
 PackageInfoURL := "http://www.um.es/adelrio/wedderga/PackageInfo.g",
-AbstractHTML := "The <span class=\"pkgname\">Wedderga</span> package ...",
+AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rational. It also contains functions that produce the primitive central idempotents of semisimple group algebras. Other functions of <span class=\"pkgname\">Wedderga</span> allows to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.",
 PackageWWWHome := "http://www.um.es/adelrio/wedderga.htm",
                   
 PackageDoc := rec(
