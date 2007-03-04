@@ -11,7 +11,7 @@
 <TitlePage>
   <Title>&Wedderga;</Title>
   <Subtitle>Wedderburn Decomposition of Group Algebras</Subtitle>
-  <Version>Version 4.1</Version>
+  <Version>Version 4.2</Version>
 
   <Author>Osnel Broche Cristo 
           <Email>osnelier@ime.usp.br</Email>
@@ -59,7 +59,7 @@
           </Address> 
   </Author>  
     
-  <Date>February 2007</Date>
+  <Date>March 2007</Date>
 
 <Abstract>
 
@@ -94,11 +94,10 @@ multiplication determined by a given action and twisting.
 
   O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
-  Version 4.1;</E> 2006 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
+  Version 4.2;</E> 2007 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
 </Copyright>
   
 <Acknowledgements>
-
 We all are very grateful to Steve Linton for communicating the package and to
 the referee for careful testing &Wedderga; and useful suggestions. Also we 
 acknowledge very much the members of the &GAP; team: Thomas Breuer, 
@@ -107,6 +106,11 @@ for helpful comments and advise. We would like also to thank Thomas Breuer
 for the code of <C>PrimitiveCentralIdempotentsByCharacterTable</C> for 
 rational group algebras.
 <P/> 
+
+On various stages the development of the Wedderga package was supported by 
+the following institutions:
+<List>  <Item>University of Murcia;</Item>  <Item>Francqui Stichting grant ADSI107;</Item>  <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>  <Item>D.G.I. of Spain;</Item>  <Item>Fundación Séneca of Murcia.</Item>
+</List>We acknowledge with gratitude this support.<P/>
 
 </Acknowledgements>
 
