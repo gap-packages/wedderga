@@ -322,7 +322,7 @@ else # if N_M(H) <> K
     NH,         # NH/H
     KH,         # K/H
     k,          # Generator of K/H
-    bij,bijunit,
+    bij,bijunit, pow,
     i,          # Loop controller
     Epi2,       # NH --> NH/KH
     NdK,        # N/K
