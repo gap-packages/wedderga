@@ -111,10 +111,10 @@ false
    <Description>
          The input <A>FG</A> should be a semisimple group algebra 
          of a finite group <M>G</M> whose coefficient field 
-         <M>F</M> is either a finite field or the field <M>\Q</M> 
+         <M>F</M> is either a finite field or the field <M>&QQ;</M> 
          of rationals. <P/>
          
-         If <M> F = \Q </M> then the output is the list of primitive central 
+         If <M> F = &QQ; </M> then the output is the list of primitive central 
          idempotents of the group algebra <A>FG</A> realizable by strong
          Shoda pairs (<Ref Sect="SSPDef" />) of <M>G</M>. <P/>
          
@@ -265,7 +265,7 @@ false
    </Returns>         
    <Description>
         The versions with three input data computes <M>\varepsilon(K,H)</M>
-        as an element of the rational group algebra <M>\Q G</M>, where <M>K</M>
+        as an element of the rational group algebra <M>&QQ; G</M>, where <M>K</M>
         is a subgroup of <M>G</M> and <M>H</M> is a normal subgroup of <M>K</M>. 
         (see Section <Ref Sect="IdempotentsSbgps"/>). <P/>
                  
@@ -314,7 +314,7 @@ The output of <E>IdempotentBySubgroups</E> is an idempotent in the corresponding
    </Returns>         
    <Description>
           The versions with three input data computes <M>e(G,K,H)</M>
-          as an element of the rational group algebra <M>\Q G</M>, where <M>K</M>
+          as an element of the rational group algebra <M>&QQ; G</M>, where <M>K</M>
           is a subgroup of <M>G</M> and <M>H</M> is a normal subgroup of <M>K</M>. 
           (see Section <Ref Sect="SPDef"/>). <P/>
                    
