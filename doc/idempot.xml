@@ -171,7 +171,7 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
          for some irreducible monomial character <M>\chi</M> of <M>G</M>. <P/>
           
          The output is the list of all primitive central idempotents of <A>QG</A>
-         if and only if G is monomial, otherwise a warning message is displayed. 
+         if and only if <M>G</M> is monomial, otherwise a warning message is displayed. 
    </Description>
 </ManSection>
 

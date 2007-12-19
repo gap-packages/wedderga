@@ -14,10 +14,10 @@ using the function <Ref Func="CrossedProduct" />.<P/>
 Note that this function does not check the associativity conditions, 
 so in fact it is the NC-version of itself, and its output will be always 
 assumed to be associative. For all crossed products that appear in &Wedderga;
-algorithms their associativity follows from theoretical arguments, so
-the usage of NC-method in the package is safe. If the user will try to 
+algorithms the associativity follows from theoretical arguments, so
+the usage of the NC-method in the package is safe. If the user will try to 
 construct a crossed product with his own action and twisting, he/she should 
-check the associativity conditions himself/herself to make it sure that the result 
+check the associativity conditions himself/herself to make sure that the result 
 is correct.
  
 <Section Label="CrossedConstruction">
@@ -37,14 +37,14 @@ is correct.
          
          * a group <A>G</A>, <P/>
          
-         * a function <A>act(RG,g)</A> on two arguments: 
+         * a function <A>act(RG,g)</A> of two arguments: 
            the crossed product <A>RG</A> and an element 
            <A>g</A> in <M>G</M>.
            It must return a mapping from <A>R</A> to <A>R</A> 
            which can be applied via the "<C>\^</C>" operation, 
            and <P/>
             
-         * a function <A>twist(RG,g,h)</A> on three arguments: 
+         * a function <A>twist(RG,g,h)</A> of three arguments: 
            the crossed product <A>RG</A> and a pair of elements 
            of <A>G</A>. 
            It must return an invertible element of <A>R</A>. <P/> <P/>
@@ -84,7 +84,7 @@ end;
 </Log>
 
 In the following example one constructs the Hamiltonian quaternion algebra 
-over the rationals as a crossed products of the group of units of the cyclic 
+over the rationals as a crossed product of the group of units of the cyclic 
 group of order 2 over <M>\Q (i)=GaussianRationals</M>. One realizes the cyclic 
 group of order 2 as the group of units of <M>\Z / 4 \Z</M> and one uses the natural 
 isomorphism <M>\Z / 4 \Z \rightarrow Gal( \Q (i)/ \Q )</M> 
@@ -156,7 +156,7 @@ gap> i*j+j*i;
 ]]>
 </Example>
 
-In the following example one shows how to construct the Hamiltonian quaternion algebra over the rationals
+The following example shows how to construct the Hamiltonian quaternion algebra over the rationals
 using the rationals as coefficient ring and the Klein group as the underlying group.
 
 
@@ -242,7 +242,7 @@ gap> List( G, x -> List( G , y -> tw( HZ, x, y ) ) );
 ]]>
 </Example>
   
-Some more examples of crossed products coming from the 
+Some more examples of crossed products arise from the 
 <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />)
 of group algebras.  
 
@@ -344,8 +344,8 @@ Rationals
 ]]>
 </Example>
 
-Next example shows how one can use <Ref Attr="CrossedProduct" /> to produce generalized quaternion
-algebras. Note that one can construct quaternion algebras using &GAP; function <C>QuaternionAlgebra</C>.
+The next example shows how one can use <Ref Attr="CrossedProduct" /> to produce generalized quaternion
+algebras. Note that one can construct quaternion algebras using the &GAP; function <C>QuaternionAlgebra</C>.
 <Index>Quaternion algebra</Index>
 
 <Example>
@@ -446,8 +446,8 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
          Also note from the example below and several other examples in this 
          chapter that instead of <C>ElementOfCrossedProduct</C> one can use 
          <Index Key="Embedding"><C>Embedding</C></Index><C>Embedding</C>
-         to embed into the crossed product elements of the coefficient ring 
-         and of the underlying magma.
+         to embed elements of the coefficient ring 
+         and of the underlying magma into the crossed product.
    </Description>
 </ManSection>
 
