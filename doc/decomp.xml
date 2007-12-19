@@ -52,26 +52,26 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup(16) ) );
 
 The previous examples show that if <M>D_{16}</M> denotes the dihedral 
 group of order <M>16</M> then the <E>Wedderburn decomposition</E> 
-(<Ref Sect="WedDec"/>) of <M>\F_5 D_{16}</M>, <M>\Q D_{16}</M> and 
-<M>\Q (\xi_5) D_{16}</M> are respectively
+(<Ref Sect="WedDec"/>) of <M>\mathbb F_5 D_{16}</M>, <M>&QQ; D_{16}</M> and 
+<M>&QQ; (\xi_5) D_{16}</M> are respectively
 
   <Display>
-  \F_5 D_{16} = 4 \F_5 \oplus M_2( \F_5 ) \oplus M_2( \F_{25} ),  
+  \mathbb F_5 D_{16} = 4 \mathbb F_5 \oplus M_2( \mathbb F_5 ) \oplus M_2( \mathbb F_{25} ),  
   </Display>
 
   <Display>
-  \Q D_{16} = 4 \Q \oplus M_2( \Q ) \oplus (K(\xi_8)/K,t),
+  &QQ; D_{16} = 4 &QQ; \oplus M_2( &QQ; ) \oplus (K(\xi_8)/K,t),
   </Display>
 
 and
 
   <Display>
-  \Q (\xi_5) D_{16} = 4 \Q (\xi_5) \oplus M_2( \Q (\xi_5) ) \oplus (F(\xi_{40})/F,t),  
+  &QQ; (\xi_5) D_{16} = 4 &QQ; (\xi_5) \oplus M_2( &QQ; (\xi_5) ) \oplus (F(\xi_{40})/F,t),  
   </Display>
   
 where <M>(K(\xi_8)/K,t)</M> is a <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />)
-with the centre <M>K=NF(8,[ 1, 7 ])= \Q (\sqrt{2})</M>, 
-<M>(F(\xi_{40})/F,t) = \Q (\sqrt{2},\xi_5)</M> is a cyclotomic algebra with centre  <M>F=NF(40,[ 1, 31 ])</M> and 
+with the centre <M>K=NF(8,[ 1, 7 ])= &QQ; (\sqrt{2})</M>, 
+<M>(F(\xi_{40})/F,t) = &QQ; (\sqrt{2},\xi_5)</M> is a cyclotomic algebra with centre  <M>F=NF(40,[ 1, 31 ])</M> and 
 <M>\xi_n</M> denotes a <M>n</M>-th root of unity.
 <P/>
 
@@ -209,12 +209,12 @@ The interpretation of the previous example gives rise to the following
 the dihedral group of order 16 and <M>\xi_5</M> is a primitive 
 <M>5</M>-th root of unity.
   <Display>
-  \Q D_{16} = 4 \Q \oplus M_2( \Q ) \oplus M_2( \Q (\sqrt{2})).  
+  &QQ; D_{16} = 4 &QQ; \oplus M_2( &QQ; ) \oplus M_2( &QQ; (\sqrt{2})).  
   </Display>
   <Display>
-  \Q (\xi_5) D_{16} = 4 \Q (\xi_5) \oplus 
-                 M_2( \Q (\xi_5)) \oplus 
-                 M_2( \Q (\xi_5,\sqrt{2})).  
+  &QQ; (\xi_5) D_{16} = 4 &QQ; (\xi_5) \oplus 
+                 M_2( &QQ; (\xi_5)) \oplus 
+                 M_2( &QQ; (\xi_5,\sqrt{2})).  
   </Display>
 
 <Example>
@@ -239,56 +239,56 @@ gap> WedderburnDecompositionInfo(QS4);
 </Example>
 
 In the previous example we computed the Wedderburn decomposition of the 
-rational group algebra <M>\Q Q_{16}</M> of the quaternion group of order <M>16</M> 
-and the rational group algebra <M>\Q S_{4}</M> of the symmetric group on four letters.
+rational group algebra <M>&QQ; Q_{16}</M> of the quaternion group of order <M>16</M> 
+and the rational group algebra <M>&QQ; S_{4}</M> of the symmetric group on four letters.
 For the two group algebras we used both <Ref Attr="WedderburnDecomposition" /> and 
 <Ref Attr="WedderburnDecompositionInfo" />. <P/>
 
 The output of <Ref Attr="WedderburnDecomposition" /> shows that 
   <Display>
-  \Q Q_{16} = 4 \Q \oplus M_2( \Q ) \oplus A,
+  &QQ; Q_{16} = 4 &QQ; \oplus M_2( &QQ; ) \oplus A,
   </Display>
   <Display>
-  \Q S_{4} = 2 \Q \oplus 2 M_3( \Q ) \oplus B,
+  &QQ; S_{4} = 2 &QQ; \oplus 2 M_3( &QQ; ) \oplus B,
   </Display>
 where <M>A</M> and <M>B</M> are <E>crossed products</E> (<Ref Sect="CrossedProd" />)
 with coefficients in the 
-cyclotomic fields <M>\Q (\xi_8)</M> and <M>\Q (\xi_3)</M> respectively. 
+cyclotomic fields <M>&QQ; (\xi_8)</M> and <M>&QQ; (\xi_3)</M> respectively. 
 This output can be used as a &GAP; object, but it does not give clear 
 information on the structure of the algebras <M>A</M> and <M>B</M>. <P/>
 
 The numerical information displayed by 
 <Ref Attr="WedderburnDecompositionInfo" /> means that 
   <Display>
-  A = \Q (\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1],
+  A = &QQ; (\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1],
   </Display>
   <Display>
-  B = \Q (\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1].
+  B = &QQ; (\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1].
   </Display>
 Both <M>A</M> and <M>B</M> are quaternion algebras over its centre which is
-<M>\Q (\xi+\xi^{-1})</M> and the former is equal to <M>\Q (\sqrt{2})</M> and 
-<M>\Q</M> respectively. <P/>  
+<M>&QQ; (\xi+\xi^{-1})</M> and the former is equal to <M>&QQ; (\sqrt{2})</M> and 
+<M>&QQ;</M> respectively. <P/>  
 
 In <M>B</M>, one has <M>(g+1)(g-1)=0</M>, while <M>g</M> is neither <M>1</M> nor 
-<M>-1</M>. This shows that <M>B=M_2( \Q )</M>. 
+<M>-1</M>. This shows that <M>B=M_2( &QQ; )</M>. 
 However the relation <M>g^2=-1</M> in <M>A</M> shows that 
   <Display>
-  A=\Q (\sqrt{2})[i,g|i^2=g^2=-1,ig=-gi]
+  A=&QQ; (\sqrt{2})[i,g|i^2=g^2=-1,ig=-gi]
   </Display>
-and so <M>A</M> is a division algebra with centre <M>\Q (\sqrt{2})</M>, which is a 
+and so <M>A</M> is a division algebra with centre <M>&QQ; (\sqrt{2})</M>, which is a 
 subalgebra of the algebra of Hamiltonian quaternions. 
 This could be deduced also using well known methods on cyclic algebras (see
 e.g. <Cite Key="R" />).
 <P/>
 
 The next example shows the output of <C>WedderburnDecompositionInfo</C> 
-for <M>\Q G</M> and <M>\Q (\xi_3) G</M>, where <M>G=SmallGroup(48,15)</M>. 
+for <M>&QQ; G</M> and <M>&QQ; (\xi_3) G</M>, where <M>G=SmallGroup(48,15)</M>. 
 The user can compare it with the 
 output of <Ref Attr="WedderburnDecomposition" /> for the same group in the 
 previous section. Notice that the last entry of the 
 <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />)
-of <M>\Q G</M> is not given as a matrix algebra of a cyclic algebra. 
-However, the corresponding entry of <M>\Q (\xi_3) G</M> is a matrix algebra of a cyclic algebra.
+of <M>&QQ; G</M> is not given as a matrix algebra of a cyclic algebra. 
+However, the corresponding entry of <M>&QQ; (\xi_3) G</M> is a matrix algebra of a cyclic algebra.
 
 <Example>
 <![CDATA[
@@ -334,26 +334,26 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 The interpretation of the output in the previous example gives rise to 
 the following <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />) 
-of <M>\Q G</M> for <M>G</M> the small group <M>[240,89]</M>:
+of <M>&QQ; G</M> for <M>G</M> the small group <M>[240,89]</M>:
     <Display>
-    \Q G = 2 \Q \oplus 2 M_4( \Q ) \oplus 
-           2 M_5( \Q ) \oplus M_6( \Q ) \oplus A \oplus B \oplus C
+    &QQ; G = 2 &QQ; \oplus 2 M_4( &QQ; ) \oplus 
+           2 M_5( &QQ; ) \oplus M_6( &QQ; ) \oplus A \oplus B \oplus C
     </Display>
 where 
     <Display>
-    A = \Q (\xi_{10})[u|\xi_{10}^u = \xi_{10}^3, u^4 = -1],
+    A = &QQ; (\xi_{10})[u|\xi_{10}^u = \xi_{10}^3, u^4 = -1],
     </Display>
 <M>B</M> is an algebra of degree <M>(4*2 )/2  = 4 </M> which is 
 <E>Brauer equivalent</E> (<Ref Sect="Brauer" />) to 
     <Display>
-    B_1 = \Q (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^{13}, 
+    B_1 = &QQ; (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^{13}, 
                           u^4 = \xi_{60}^5, 
                           \xi_{60}^v = \xi_{60}^{11}, v^2 = 1, vu=uv],
     </Display>
 and <M>C</M> is an algebra of degree <M>(4*2)*3/4  = 6 </M> which is 
 <E>Brauer equivalent</E> (<Ref Sect="Brauer" />) to 
     <Display>
-    C_1 = \Q (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^7, 
+    C_1 = &QQ; (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^7, 
                           u^4 = \xi_{60}^5, 
                           \xi_{60}^v = \xi_{60}^{31}, v^2 = 1, vu=uv].
     </Display>
