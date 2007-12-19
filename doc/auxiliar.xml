@@ -104,7 +104,7 @@ false
          Returns <K>true</K> if <A>KG</A> is a 
          <E>semisimple finite group algebra</E> (<Ref Sect="Semisimple" />), 
          that is a group algebra of a finite group <M>G</M> over a field <M>K</M> 
-         of order coprime with the order of <M>G</M>, and <K>false</K> otherwisse.
+         of order coprime to the order of <M>G</M>, and <K>false</K> otherwisse.
    </Description>
 </ManSection>
 
@@ -127,7 +127,7 @@ false
 
 
 <Section Label="AuxiliarOperations">
-<Heading>Operations over group rings elements</Heading>
+<Heading>Operations with group rings elements</Heading>
 
 
 <ManSection>
@@ -189,7 +189,7 @@ Group([ f1, f2 ])
       Usage of <C>x&circum;g</C> produces the same output.
       <P/>
       
-      This operation adds the new method to the operation that already 
+      This operation adds a new method to the operation that already 
       exists in &GAP;.
    </Description>
 </ManSection>
@@ -326,8 +326,8 @@ true
               Comm="Info class for Wedderga algorithms" />
    <Description>
       <C>InfoWedderga</C> is a special Info class for &Wedderga; algorithms.
-      It has 3 levels: 0, 1 (default) and 2. To change info 
-      level to <C>k</C>, use command <C>SetInfoLevel(InfoWedderga, k)</C>. 
+      It has 3 levels: 0, 1 (default) and 2. To change the info 
+      level to <C>k</C>, use the command <C>SetInfoLevel(InfoWedderga, k)</C>. 
       <P/>
       
       In the example below we use this mechanism to see more details about 
@@ -361,7 +361,7 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
       Since &Wedderga; is distributed together with its manual,
       it is not necessary for the user to use this function. Normally
       it is intended to be used by the developers only. This is the only 
-      function of &Wedderga; which requires UNIX/Linux environment.
+      function of &Wedderga; which requires a UNIX/Linux environment.
    </Description>
 </ManSection>
 

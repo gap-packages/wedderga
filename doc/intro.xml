@@ -15,9 +15,9 @@ whose direct sum is isomorphic to the group algebra given as input.
 <P/>
 
 
-The methods implemented by the package produces the Wedderburn decomposition 
+The method implemented by the package produces the Wedderburn decomposition 
 of a group algebra <M>FG</M> provided <M>G</M> is a finite group and 
-<M>F</M> is either a finite field of characteristic coprime with the 
+<M>F</M> is either a finite field of characteristic coprime to the 
 order of <M>G</M>, or an abelian number field (i.e. a subfield of a finite 
 cyclotomic extension of the rationals). 
 <P/>

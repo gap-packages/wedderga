@@ -25,7 +25,7 @@
          The function returns the list of all <E>Wedderburn components</E>
          (<Ref Sect="WedDec" />) of the group algebra <A>FG</A>. 
          If <M>F</M> is an abelian number field then each Wedderburn component is 
-         given as a matrix algebras
+         given as a matrix algebra
          of a <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />). 
          If <M>F</M> is a finite field then the Wedderburn components are 
          given as matrix algebras over finite fields.         
@@ -101,7 +101,7 @@ In some cases, in characteristic zero, some entries of the output of
 full matrix algebras over a <E>cyclotomic algebra</E> 
 (<Ref Sect="Cyclotomic" />), but "fractional matrix algebras". 
 That entry is not an algebra that can be used as a &GAP; object.
-Instead is a pair form by a rational giving the "size" of the matrices
+Instead it is a pair formed by a rational giving the "size" of the matrices
 and a crossed product.
 See <Ref Sect="WedDec" /> for a theoretical explanation of 
 this phenomenon. In this case a warning message is displayed.
@@ -135,7 +135,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
               given as a list of lists of numerical data 
               describing each Wedderburn component" />
    <Returns>
-         A list with each entry a numerical description of a <E>cyclotomic algebras</E>
+         A list with each entry a numerical description of a <E>cyclotomic algebra</E>
          (<Ref Sect="Cyclotomic" />).
    </Returns>
    <Description>
@@ -143,14 +143,14 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
          over the field <M>F</M>, where <M>F</M> is either an abelian number field 
          (i.e. a subfield of a finite cyclotomic extension of the rationals) or a 
          finite field of characteristic coprime 
-         with the order of <M>G</M>. 
+         to the order of <M>G</M>. 
          <P/> 
          
          This function is a numerical counterpart of 
          <Ref Attr="WedderburnDecomposition" />.
          <P/>
                  
-         It returns a list formed by lists of length 2, 4 or 5. <P/> 
+         It returns a list formed by lists of lengths 2, 4 or 5. <P/> 
          
          The lists of length 2 are of the form 
          <Display>
@@ -165,13 +165,13 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
          [n,F,k,[d,\alpha,\beta]],
          </Display>
          where <M>F</M> is a field and <M>n,k,d,\alpha,\beta</M> are 
-         non negative integers, satisfying conditions mentioned in 
-         section <Ref Sect="NumDesc" />.
+         non-negative integers, satisfying the conditions mentioned in 
+         Section <Ref Sect="NumDesc" />.
          
          It represents the <M>n\times n</M> matrix algebra <M>M_n(A)</M> 
          over the cyclic algebra
          <Display>
-         A=F(\xi_k)[u | \xi_k^u = \xi_k^{\alpha}, u^d = \xi_k^{\beta}),
+         A=F(\xi_k)[u | \xi_k^u = \xi_k^{\alpha}, u^d = \xi_k^{\beta}],
          </Display>
          where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity. <P/>
          
@@ -180,7 +180,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
            [n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i &lt; j \le m} ],
            </Display>
           where <M>F</M> is a field and <M>n,k,d_i,\alpha_i,\beta_i,\gamma_{i,j}</M> 
-          are non negative integers. 
+          are non-negative integers. 
           It represents the <M>n\times n</M> matrix algebra <M>M_n(A)</M> over 
           the <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />)
           <Display>
@@ -255,7 +255,7 @@ where <M>A</M> and <M>B</M> are <E>crossed products</E> (<Ref Sect="CrossedProd"
 with coefficients in the 
 cyclotomic fields <M>\Q (\xi_8)</M> and <M>\Q (\xi_3)</M> respectively. 
 This output can be used as a &GAP; object, but it does not give clear 
-information on the structure of algebras <M>A</M> and <M>B</M>. <P/>
+information on the structure of the algebras <M>A</M> and <M>B</M>. <P/>
 
 The numerical information displayed by 
 <Ref Attr="WedderburnDecompositionInfo" /> means that 
@@ -281,7 +281,7 @@ This could be deduced also using well known methods on cyclic algebras (see
 e.g. <Cite Key="R" />).
 <P/>
 
-Next example shows the output of <C>WedderburnDecompositionInfo</C> 
+The next example shows the output of <C>WedderburnDecompositionInfo</C> 
 for <M>\Q G</M> and <M>\Q (\xi_3) G</M>, where <M>G=SmallGroup(48,15)</M>. 
 The user can compare it with the 
 output of <Ref Attr="WedderburnDecomposition" /> for the same group in the 
@@ -332,7 +332,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 ]]>
 </Example>
 
-The interpretation of the output in the previous example give rise to 
+The interpretation of the output in the previous example gives rise to 
 the following <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />) 
 of <M>\Q G</M> for <M>G</M> the small group <M>[240,89]</M>:
     <Display>
@@ -492,9 +492,11 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
         In the four-argument version the first argument is a semisimple 
         finite group algebra <A>FG</A>, <A>(K,H)</A> is a strong Shoda 
         pair of <M>G</M> and the fourth input data is either 
-        a generating <M>q</M>-cyclotomic class modulo [<A>K</A>,<A>H</A>] 
-        or a representative of 
-        generating <M>q</M>-cyclotomic class modulo [<A>K</A>,<A>H</A>] 
+        a generating <M>q</M>-cyclotomic class 
+        modulo the index of <A>H</A> in <A>K</A>  
+        or a representative of a
+        generating <M>q</M>-cyclotomic class 
+        modulo the index of <A>H</A> in <A>K</A>  
         (see <Ref Sect="CyclotomicClass" />). <P/> 
         
         The four-argument version
@@ -504,11 +506,11 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
         and the cyclotomic class <A>C</A> 
         (or the cyclotomic class containing <A>C</A>). <P/>
                
-        The versions ended in NC does not check if (<A>K</A>,<A>H</A>) is a 
+        The versions ending in NC do not check if (<A>K</A>,<A>H</A>) is a 
         strong Shoda pair of <M>G</M>. 
         In the four-argument version it is also not checked whether <A>C</A> is 
-        either a generating <M>q</M>-cyclotomic class the index of <A>H</A> in 
-        <A>K</A> or an integer coprime with the index of <A>H</A> in 
+        either a generating <M>q</M>-cyclotomic class modulo the index of <A>H</A> in 
+        <A>K</A> or an integer coprime to the index of <A>H</A> in 
         <A>K</A>.
    </Description>
 </ManSection>
@@ -566,7 +568,7 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
         <M>G</M> and the fourth input data is either 
         a generating <M>q</M>-cyclotomic class modulo the index of <A>H</A> in 
         <A>K</A>  
-        or a representative of generating <M>q</M>-cyclotomic class modulo 
+        or a representative of a generating <M>q</M>-cyclotomic class modulo 
         the index of <A>H</A> in 
         <A>K</A>  (<Ref Sect="CyclotomicClass" />). 
         It returns a pair of positive integers <M>[n,r]</M> which represent 
@@ -576,7 +578,7 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
         cyclotomic class <A>C</A> 
         (or the cyclotomic class containing the integer <A>C</A>). <P/>
                
-        The versions ended in NC does not check if (<A>K</A>,<A>H</A>) is a 
+        The versions ending in NC do not check if (<A>K</A>,<A>H</A>) is a 
         strong Shoda pair of <M>G</M>. 
         In the four-argument version it is also not checked whether <A>C</A> is 
         either a generating <M>q</M>-cyclotomic class 
