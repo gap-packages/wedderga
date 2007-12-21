@@ -296,7 +296,7 @@ end);
 InstallMethod( GenWeddDecomp,
 "for semisimple infinite group algebras",
 true,
-[ IsGroupAlgebra ],
+[ IsSemisimpleANFGroupAlgebra ],
 0,
 function(KG)
 local 
