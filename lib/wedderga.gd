@@ -54,7 +54,7 @@ DeclareOperation( "AddCrossedProductBySSP", [ IsGroup, IsGroup, IsGroup]);
 DeclareOperation( "AddCrossedProductBySST", 
                   [ IsInt, IsInt, IsField, IsGroup, IsList ] );
 DeclareAttribute( "WeddDecompData", IsGroup );
-DeclareOperation( "GenWeddDecomp", [ IsGroupAlgebra ] );
+DeclareOperation( "GenWeddDecomp", [ IsGroupRing ] );
 DeclareOperation( "SimpleAlgebraByData", [ IsList ] );
 DeclareOperation( "SimpleAlgebraInfoByData", [ IsList ] );
 DeclareOperation( "SimpleAlgebraByCharacter", [ IsSemisimpleANFGroupAlgebra, IsCharacter ] );
