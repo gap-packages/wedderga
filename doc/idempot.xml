@@ -21,9 +21,7 @@
    
          Returns the list of primitive central idempotents of <A>FG</A> 
          using the character table of <M>G</M> (<Ref Sect="Idempotents" />). 
-   </Description>
-</ManSection>
-
+         
 <Example>
 <![CDATA[
 gap> QS3 := GroupRing( Rationals, SymmetricGroup(3) );;                 
@@ -43,6 +41,9 @@ gap> Length(pciFG);
 7
 ]]>
 </Example>
+         
+   </Description>
+</ManSection>
 
 </Section>
 
@@ -77,8 +78,6 @@ gap> Length(pciFG);
          appears in two different positions of <A>list</A> 
          then the output is <K>false</K>, and that the list <A>list</A>
          must not contain zeroes.
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -92,6 +91,9 @@ gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ), One( QS5 ) ] );
 false
 ]]>
 </Example>
+
+   </Description>
+</ManSection>
 
 </Section>
 
@@ -126,9 +128,7 @@ false
          If the list of primitive central idempotents given by the output is 
          not complete (i.e. if the group <M>G</M> is not <E>strongly monomial</E>
          (<Ref Sect="StMon" />)) then a warning is displayed.
-   </Description>
-</ManSection>
-
+         
 <Example>
 <![CDATA[
 gap> QG:=GroupRing( Rationals, AlternatingGroup(4) );;           
@@ -154,6 +154,9 @@ Wedderga: Warning!!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
 ]]>
 </Example>
+         
+   </Description>
+</ManSection>
 
 
 <ManSection>
@@ -172,8 +175,6 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
           
          The output is the list of all primitive central idempotents of <A>QG</A>
          if and only if <M>G</M> is monomial, otherwise a warning message is displayed. 
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -241,6 +242,9 @@ false
 ]]>
 </Example>
 
+   </Description>
+</ManSection>
+
 </Section>
 
 </Chapter>
@@ -278,8 +282,6 @@ false
         (see Section <Ref Sect="CyclotomicClass"/>).
         The cyclotomic class can be given either by the cyclotomic class itself 
         or by a representative, that is an integer.
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -299,8 +301,11 @@ gap> IdempotentBySubgroups(FG,K,H,[1,3]);
 ]]>
 </Example>
 
-
 The output of <E>IdempotentBySubgroups</E> is an idempotent in the corresponding group algebra.
+
+   </Description>
+</ManSection>
+
 
 <ManSection>
    <Oper Name="CentralElementBySubgroups" 
@@ -327,8 +332,6 @@ The output of <E>IdempotentBySubgroups</E> is an idempotent in the corresponding
           (see Section <Ref Sect="CyclotomicClass"/>). 
           The cyclotomic class can be given either by the cyclotomic class itself 
           or by a representative, that is an integer.
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -363,5 +366,8 @@ If some additional conditions are satisfied then it is also an
 idempotent but in general it could be not idempotent. 
 For example this is the case if <M>(K,H)</M> is a strong
 Shoda pair of <M>G</M>.
+
+   </Description>
+</ManSection>
 
 -->

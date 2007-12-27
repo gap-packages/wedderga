@@ -46,30 +46,37 @@ The main functions of &Wedderga; are
 computes a list of simple algebras such that their direct product is
 isomorphic to the group algebra <M>FG</M>, given as input. 
 Thus, the direct product of the entries of the output is
-the <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />) of <M>FG</M>. <P/>
-
-If <M>F</M> is an abelian number field then 
-the entries of the output are given as matrix algebras over cyclotomic algebras 
-(see <Ref Sect="Cyclotomic" />), thus, the entries of the output of 
-<Ref Attr="WedderburnDecomposition" /> 
-are realizations of the <E>Wedderburn components</E> (<Ref Sect="WedDec" />) 
-of <M>FG</M> as algebras which are <E>Brauer equivalent</E> (<Ref Sect="Brauer"/>) 
-to <E>cyclotomic algebras</E> (<Ref Sect="Cyclotomic" />). Recall that the Brauer-Witt Theorem ensures 
-that every simple factor of a semisimple group ring <M>FG</M> is Brauer equivalent
-(that is represents the same class in the Brauer group of its centre) 
-to a cyclotomic algebra (<Cite Key="Y"/>, <Cite Key="O" />). 
+the <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />) of <M>FG</M>. 
 <P/>
 
-The Wedderburn components of <M>FG</M> are also matrix algebras over division rings 
-which are finite extensions of the field <M>F</M>.
-If <M>F</M> is finite then, by the Wedderburn theorem, these division rings 
-are finite fields. In this case the output of 
-<Ref Attr="WedderburnDecomposition" />
-represents the factors of <M>FG</M> as matrix algebras over finite extensions
-of the field <M>F</M>.
+If <M>F</M> is an abelian number field then the entries of the output are given
+as matrix algebras over cyclotomic algebras (see <Ref Sect="Cyclotomic" />),
+thus, the entries of the output of <Ref Attr="WedderburnDecomposition" /> are
+realizations of the <E>Wedderburn components</E> (<Ref Sect="WedDec" />) of
+<M>FG</M> as algebras which are <E>Brauer equivalent</E> (<Ref Sect="Brauer"/>)
+to <E>cyclotomic algebras</E> (<Ref Sect="Cyclotomic" />). Recall that the
+Brauer-Witt Theorem ensures that every simple factor of a semisimple group ring
+<M>FG</M> is Brauer equivalent (that is represents the same class in the Brauer
+group of its centre) to a cyclotomic algebra (<Cite Key="Y"/>. In this case the
+algorithm is based in a computational oriented proof of the Brauer-Witt Theorem
+due to Olteanu <Cite Key="O" /> which uses previous work by Olivieri, del Río
+and Simón <Cite Key="ORS" /> for rational group algebras of <E>strongly
+monomial groups</E> (<Ref Sect="StMon" />). 
 <P/>
 
-<Alt Only="LaTeX">\pagebreak</Alt>.
+The Wedderburn components of <M>FG</M> are also matrix algebras over division
+rings which are finite extensions of the field <M>F</M>. If <M>F</M> is finite
+then by the Wedderburn theorem these division rings are finite fields. In this
+case the output of <Ref Attr="WedderburnDecomposition" /> represents the
+factors of <M>FG</M> as matrix algebras over finite extensions of the field
+<M>F</M>. 
+<P/>
+
+In theory &Wedderga; could handle the calculation of the Wedderburn
+decomposition of group algebras of groups of arbitrary size but in practice if
+the order of the group is greater than 5000 then the program may crash. The
+way the group is given is relevant for the performance. Usually the program
+works better for groups given as permutation groups or pc groups.
 
 <Example>
 <![CDATA[
@@ -115,25 +122,34 @@ and no compatibility with previous releases of &GAP;4 is guaranteed.
 <P/>
 
 To use the &Wedderga; online help it is necessary to install the &GAP;4 package 
-&GAPDoc; by Frank L\"ubeck and Max Neunh\"offer, which is available from the 
+&GAPDoc; by Frank L&#252;beck  and  Max Neunhöffer, which is available from the 
 &GAP; site or from 
 <URL>http://www.math.rwth-aachen.de/&tilde;Frank.Luebeck/GAPDoc/</URL>.
 <P/> 
 
 &Wedderga; is distributed in standard formats
-(<File>zoo</File>, <File>tar.gz</File>, <File>tar.bz2</File>, 
-<File>-win.zip</File>) and can be obtained from 
-<URL>http://www.um.es/adelrio/wedderga.htm</URL>.
-To unpack the archive <File>wedderga-4.2.zoo</File> you need the program 
+(<File>tar.gz</File>, <File>tar.bz2</File>, <File>-win.zip</File>) 
+and can be obtained from  <URL>http://www.um.es/adelrio/wedderga.htm</URL>, 
+its mirror <URL>http://www.cs.st-andrews.ac.uk/&tilde;alexk/wedderga.htm</URL>
+or the page <URL>http://www.gap-system.org/Packages/wedderga.html</URL>
+at the &GAP; web site. The latter also offers <File>zoo</File>-archive.
+To unpack the archive <File>wedderga-4.3.zoo</File> you need the program 
 <File>unzoo</File>, which can be obtained from the &GAP; homepage 
 <URL>http://www.gap-system.org/</URL> (see section `Distribution').
 To install &Wedderga;, copy this archive into the <File>pkg</File> subdirectory of your 
 &GAP;4.4 installation. The subdirectory <File>wedderga</File> will be created in 
-the <File>pkg</File> directory after the following command:
+the <File>pkg</File> directory after the following command: 
 <P/>
-  <C>unzoo -x wedderga-4.2.zoo</C>
+<C>unzoo -x wedderga-4.3.zoo</C>
 <P/>
-
+When you don't have access to the directory of your main &GAP; 
+installation, you can also install the package 
+<E>outside the &GAP; main directory</E>
+by unpacking it inside a directory <File>MYGAPDIR/pkg</File>. 
+Then to be able to load Wedderga you need to call GAP with the 
+<C>-l ";MYGAPDIR"</C> option.
+<P/>
+Installation using other archive formats is performed in a similar way.
 </Section>
 
 </Chapter>

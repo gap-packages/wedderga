@@ -56,8 +56,7 @@ is correct.
          <Index Key="IsCrossedProduct"><C>IsCrossedProduct</C></Index>
          <C>IsCrossedProduct</C>, which is defined as a subcategory of 
          <C>IsFLMLORWithOne</C>.
-   </Description>
-</ManSection>       
+         <P/>
          
 An example of the trivial action:
 <Log> 
@@ -409,6 +408,9 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
 ]]>
 </Example>
 
+   </Description>
+</ManSection>  
+
 
 </Section>
 
@@ -424,10 +426,11 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
          where <A>elts</A> <M> = [ m_1, m_2, ..., m_n ]</M> is a list of magma elements,
          <A>coeffs</A> <M> = [ c_1, c_2, ..., c_n ]</M> is a list of coefficients.
          The output belongs to the crossed product whose elements lie in the 
-         family <A>Fam</A>. The zero element of the coefficient ring containing
-         <M>c_i</M> must be given as <A>zerocoeff</A>, and later can be obtained
-         using <Index Key="ZeroCoefficient"><C>ZeroCoefficient</C>
-         </Index><C>ZeroCoefficient</C>.
+         family <A>Fam</A>. The second argument <A>zerocoeff</A> must be 
+         the zero element of the coefficient ring containing coefficients
+         <M>c_i</M>, and will be stored in the attribute 
+         <Index Key="ZeroCoefficient"><C>ZeroCoefficient</C></Index><C>ZeroCoefficient</C>
+         of the crossed product element.
          <P/>  
          
          The output will be in the category <Index Key="IsElementOfCrossedProduct">
@@ -448,8 +451,6 @@ gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
          <Index Key="Embedding"><C>Embedding</C></Index><C>Embedding</C>
          to embed elements of the coefficient ring 
          and of the underlying magma into the crossed product.
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -484,6 +485,9 @@ gap> g*h;
 (ZmodnZObj( 1, 4 ))*(2*E(4))
 ]]>
 </Example>
+
+   </Description>
+</ManSection>
 
 </Section>
 

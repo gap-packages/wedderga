@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- $Id$ -->
 
@@ -11,15 +11,15 @@
 <TitlePage>
   <Title>&Wedderga;</Title>
   <Subtitle>Wedderburn Decomposition of Group Algebras</Subtitle>
-  <Version>Version 4.2</Version>
+  <Version>Version 4.3</Version>
 
   <Author>Osnel Broche Cristo 
           <Email>osnelier@ime.usp.br</Email>
           <Address>
-          Departamento de Matemática<Br/>
-          Instituto de Ciências Exatas<Br/>
+          Departamento de MatemÃ¡tica<Br/>
+          Instituto de CiÃªncias Exatas<Br/>
           Universidade Federal de Juiz de Fora<Br/>
-          Campus-Cidade Universitária, 36036-900, Juiz de Fora          
+          Campus-Cidade UniversitÃ¡ria, 36036-900, Juiz de Fora          
           </Address>
   </Author>
 
@@ -36,8 +36,8 @@
   <Author>Aurora Olivieri
           <Email>olivieri@usb.ve</Email>
           <Address>
-          Departamento de Matemáticas<Br/>
-	      Universidad Simón Bolívar<Br/>
+          Departamento de MatemÃ¡ticas<Br/>
+	      Universidad SimÃ³n BolÃ­var<Br/>
           Apartado Postal 89000, Caracas 1080-A, Venezuela
           </Address> 
   </Author>
@@ -45,16 +45,16 @@
   <Author>Gabriela Olteanu
           <Email>golteanu@um.es, olteanu@math.ubbcluj.ro</Email>
           <Address>
-          Departamento de Matemáticas, Universidad de Murcia<Br/>
+          Departamento de MatemÃ¡ticas, Universidad de Murcia<Br/>
           30100 Murcia, Spain
           </Address> 
   </Author>
   
-  <Author>Ángel del Río
+  <Author>Ãngel del RÃ­o
           <Email>adelrio@um.es</Email>
 	      <Homepage>http://www.um.es/adelrio</Homepage>
           <Address>
-          Departamento de Matemáticas, Universidad de Murcia<Br/>
+          Departamento de MatemÃ¡ticas, Universidad de Murcia<Br/>
           30100 Murcia, Spain
           </Address> 
   </Author>  
@@ -78,7 +78,7 @@ multiplication determined by a given action and twisting.
 
 <Copyright>
   &copyright; 2006-2007 by Osnel Broche Cristo, Alexander Konovalov, Aurora
-  Olivieri, Gabriela Olteanu and Ángel del Río.<P/>
+  Olivieri, Gabriela Olteanu and Ãngel del RÃ­o.<P/>
 
   &Wedderga; is free software; you can redistribute it and/or modify it 
   under the terms of the GNU General Public License as published by 
@@ -92,9 +92,9 @@ multiplication determined by a given action and twisting.
   If you publish a result which was partially obtained with the usage of
   &Wedderga;, please cite it in the following form:<P/>
 
-  O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
+  O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Ã. del RÃ­o. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
-  Version 4.2;</E> 2007 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
+  Version 4.3;</E> 2007 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
 </Copyright>
   
 <Acknowledgements>
@@ -109,7 +109,7 @@ rational group algebras.
 
 On various stages the development of the Wedderga package was supported by 
 the following institutions:
-<List>  <Item>University of Murcia;</Item>  <Item>Francqui Stichting grant ADSI107;</Item>  <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>  <Item>D.G.I. of Spain;</Item>  <Item>Fundación Séneca of Murcia.</Item>
+<List>  <Item>University of Murcia;</Item>  <Item>Francqui Stichting grant ADSI107;</Item>  <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>  <Item>D.G.I. of Spain;</Item>  <Item>FundaciÃ³n SÃ©neca of Murcia.</Item>
 </List>We acknowledge with gratitude this support.<P/>
 
 </Acknowledgements>

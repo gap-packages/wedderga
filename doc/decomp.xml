@@ -28,12 +28,8 @@
          given as a matrix algebra
          of a <E>cyclotomic algebra</E> (<Ref Sect="Cyclotomic" />). 
          If <M>F</M> is a finite field then the Wedderburn components are 
-         given as matrix algebras over finite fields.         
-         <P/> 
-   </Description>
-</ManSection>
-
-
+         given as matrix algebras over finite fields. 
+                 
 <Example>
 <![CDATA[
 gap> WedderburnDecomposition( GroupRing( GF(5), DihedralGroup(16) ) );
@@ -49,6 +45,9 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup(16) ) );
     [ 1, 31 ]), CF(40) ) of a group of size 2> ]
 ]]>
 </Example>
+
+   </Description>
+</ManSection>
 
 The previous examples show that if <M>D_{16}</M> denotes the dihedral 
 group of order <M>16</M> then the <E>Wedderburn decomposition</E> 
@@ -189,10 +188,8 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
                         g_jg_i=\xi_k^{\gamma_{ij}} g_i g_j],
           </Display>
           where <M>\xi_k</M> is a primitive <M>k</M>-th root of unity
-         (see <Ref Sect="NumDesc" />).   <P/>
-      </Description>
-</ManSection>
-
+         (see <Ref Sect="NumDesc" />).  
+         
 <Example>
 <![CDATA[
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, DihedralGroup(16) ) );
@@ -203,6 +200,9 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(5), DihedralGroup(16) ) );
   [ 1, NF(40,[ 1, 31 ]), 8, [ 2, 7, 0 ] ] ]
 ]]>
 </Example>
+         
+      </Description>
+</ManSection>
 
 The interpretation of the previous example gives rise to the following 
 <E>Wedderburn decompositions</E> (<Ref Sect="WedDec" />), where <M>D_{16}</M> is 
@@ -306,7 +306,6 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
 </Example>
 
 
-
 In some cases some of the first entries of the output of 
 <Ref Attr="WedderburnDecompositionInfo" /> are not integers and so the correspoding
 <E>Wedderburn components</E> (<Ref Sect="WedDec" />) are given as 
@@ -331,6 +330,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
 ]]>
 </Example>
+
 
 The interpretation of the output in the previous example gives rise to 
 the following <E>Wedderburn decomposition</E> (<Ref Sect="WedDec" />) 
@@ -368,7 +368,6 @@ the usage of "ad hoc" arguments.
 <Heading>Simple quotients</Heading>
 
 
-
 <ManSection>
    <Oper Name="SimpleAlgebraByCharacter" 
          Arg="FG chi"  
@@ -386,9 +385,7 @@ the usage of "ad hoc" arguments.
         (<Ref Sect="Cyclotomic" />) which is isomorphic to the unique
         <E>Wedderburn component</E> (<Ref Sect="WedDec" />) 
         <M>A</M> of <A>FG</A> such that <M>\chi(A)\ne 0</M>.
-   </Description>
-</ManSection>
-
+        
 <Example>
 <![CDATA[
 gap> A5 := AlternatingGroup(5);
@@ -404,7 +401,9 @@ gap> SimpleAlgebraByCharacter( GroupRing( Rationals , G ) , Irr(G)[19] );
 8) ) of a group of size 2>
 ]]>
 </Example>
-
+        
+   </Description>
+</ManSection>
 
 <!-- ************************ -->
 
@@ -430,8 +429,6 @@ gap> SimpleAlgebraByCharacter( GroupRing( Rationals , G ) , Irr(G)[19] );
         
         See <Ref Sect="NumDesc" /> for the interpretation of the numerical 
         information given by the output.
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -447,9 +444,10 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
 ]]>
 </Example>
 
+   </Description>
+</ManSection>
 
 <!-- ************************ -->
-
 
 <ManSection>
    <Oper Name="SimpleAlgebraByStrongSP" 
@@ -512,8 +510,6 @@ gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
         either a generating <M>q</M>-cyclotomic class modulo the index of <A>H</A> in 
         <A>K</A> or an integer coprime to the index of <A>H</A> in 
         <A>K</A>.
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -530,6 +526,9 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 ]]>
 </Example>
+
+   </Description>
+</ManSection>
 
 <!-- ************************ -->
 
@@ -585,8 +584,6 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
         modulo the index of <A>H</A> in 
         <A>K</A>  or an integer coprime with the index of <A>H</A> in 
         <A>K</A>.   
-   </Description>
-</ManSection>
 
 <Example>
 <![CDATA[
@@ -605,6 +602,9 @@ gap> SimpleAlgebraByStrongSPInfo( FG, K, H, 1 );
 [ 2, 7 ]
 ]]>
 </Example>
+
+   </Description>
+</ManSection>
 
 </Section>
 
