@@ -1853,7 +1853,8 @@ else
       fi;
     else 
       idempeGKH:=SearchingKForSSP(QG,H);
-      if idempeGKH<>fail and idempeGKH[2]*SeGKHs=Zero(QG) then 
+#     if idempeGKH<>fail and idempeGKH[2]*SeGKHs=Zero(QG) then # old, slow
+      if idempeGKH<>fail and not (idempeGKH[2] in eGKHs) then # new, fast      
         SeGKHs:= SeGKHs + idempeGKH[2];
         Add(KHs,idempeGKH[1]);
         Add(eGKHs,idempeGKH[2]);
