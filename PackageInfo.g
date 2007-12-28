@@ -16,7 +16,7 @@ Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
                   "of group algebras" ] ),
 Version        := "4.3",
-Date           := "27/12/2007",
+Date           := "28/12/2007",
 ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3",
 ArchiveFormats := ".tar.gz .tar.bz2 -win.zip",
 
@@ -30,15 +30,14 @@ Persons :=
        FirstNames    := "Osnel",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "osnelier@ime.usp.br",
+       Email         := "osnel@ufla.br",
        PostalAddress := Concatenation( [
-                        "Departamento de Matemática\n",
-                        "Instituto de Ciências Exatas\n",
-                        "Universidade Federal de Juiz de Fora\n",
-                        "Campus-Cidade Universitária\n",
-                        "36036-900, Juiz de Fora, Brazil" ] ),
-       Place         := "Sao Paulo",
-       Institution   := "Universidade de Sao Paulo"
+                        "Departamento de Ciências Exatas\n",
+                        "Universidade Federal de Lavras - UFLA\n",
+                        "Campus Universitário - Caixa Postal 3037\n",
+                        "37200-000, Lavras - MG, Brazil" ] ),
+       Place         := "Lavras - MG",
+       Institution   := "Universidade Federal de Lavras - UFLA"
      ),
      rec(
        LastName      := "Konovalov",

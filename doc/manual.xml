@@ -14,12 +14,12 @@
   <Version>Version 4.3</Version>
 
   <Author>Osnel Broche Cristo 
-          <Email>osnelier@ime.usp.br</Email>
+          <Email>osnel@ufla.br</Email>
           <Address>
-          Departamento de Matemática<Br/>
-          Instituto de Ciências Exatas<Br/>
-          Universidade Federal de Juiz de Fora<Br/>
-          Campus-Cidade Universitária, 36036-900, Juiz de Fora          
+          Departamento de Ciências Exatas<Br/>
+          Universidade Federal de Lavras - UFLA<Br/>
+          Campus Universitário - Caixa Postal 3037<Br/>
+          37200-000, Lavras - MG, Brazil          
           </Address>
   </Author>
 
@@ -109,7 +109,8 @@ rational group algebras.
 
 On various stages the development of the Wedderga package was supported by 
 the following institutions:
-<List>  <Item>University of Murcia;</Item>  <Item>Francqui Stichting grant ADSI107;</Item>  <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>  <Item>D.G.I. of Spain;</Item>  <Item>Fundación Séneca of Murcia.</Item>
+<List>  <Item>University of Murcia;</Item>  <Item>Francqui Stichting grant ADSI107;</Item>  <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>  <Item>D.G.I. of Spain;</Item>  <Item>Fundación Séneca of Murcia;</Item>
+  <Item>CAPES and FAPESP of Brazil.</Item>
 </List>We acknowledge with gratitude this support.<P/>
 
 </Acknowledgements>
