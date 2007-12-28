@@ -114,7 +114,8 @@ local   G,          #The group
         H:=Representative(CCS[i]); 
         e:=SearchingKForSP( H ); 
         if e<>fail then
-                if IsZero( SEs*e[2] ) then # if SEs*e <> zero then
+                # if IsZero( SEs*e[2] ) then  # slow
+                if not ( e[2] in Es ) then    # fast
                 SEs:= SEs + e[2];
                 Add(Es,e[2]);
                 Add(SPs,e[1] );
@@ -311,7 +312,8 @@ local G, zero, one, IrrG, LIrrG, eGKHs, SeGKHs, i, eGKH, K, H;
         K:=TestMonomial(IrrG[i]).subgroup;
         H:=TestMonomial(IrrG[i]).kernel;
         eGKH:=PrimitiveCentralIdempotentBySP( QG, K, H );    
-        if eGKH*SeGKHs=zero then 
+        # if eGKH*SeGKHs=zero then    # slow
+        if not( eGKH in eGKHs ) then  # fast
             SeGKHs:= SeGKHs + eGKH;
             Add(eGKHs,eGKH);
         fi;
