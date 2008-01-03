@@ -417,34 +417,33 @@ fi;
 end);
 
 
-
 #############################################################################
 ##
 #P IsStronglyMonomial( G )
-##  
-## The function checks whether a group is strongly monomial
+## ## The function checks whether a group is strongly monomial
 ##
 InstallMethod( IsStronglyMonomial,
-	  "for finite groups", 
-	  true, 
-    [ IsGroup ], 
-    0,
+    "for finite groups",
+    true,
+  [ IsGroup ],
+  0,
 function( G )
 
 local QG ;
-    
-if IsFinite(G) then 
-    if IsSupersolvable(G) or IsAbelian(DerivedSubgroup(G)) then 
-        return true;
-    elif IsMonomial(G) then 
-        QG := GroupRing( Rationals, G );
-        return IsCompleteSetOfPCIs( QG , 
-        	StrongShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
-    else
-    	return false;
-    fi;
+ if IsFinite(G) then
+#  if IsSupersolvable(G) or IsAbelian(DerivedSubgroup(G)) then
+   if IsAbelian(SupersolvableResiduum(G)) then
+      return true;
+  elif IsMonomial(G) then
+      QG := GroupRing( Rationals, G );
+#     return IsCompleteSetOfPCIs( QG ,
+#            StrongShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
+      return Sum( StrongShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents ) = One( QG );
+  else
+      return false;
+  fi;
 else
-    Error("Wedderga: The input should be a finite group\n");
+  Error("Wedderga: The input should be a finite group\n");
 fi;
 end);
 
