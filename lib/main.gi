@@ -2069,7 +2069,7 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
 ## Note that actually it returns a list of the form [ [K,H], eGKH ]
 ##
 InstallMethod( eGsum,
-    "for pairs of subgroups", 
+    "for group algebra and two subgroups of its underlying group", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 
     0,
@@ -2084,10 +2084,8 @@ function(QG,K,H)
         nRTNH,  # Cardinal de RTNH
         eGKH1,  # e(NdK,K,H)
         eGKH1g, # eGKH1^g
-        i,      # counter 
         g,      # element of G
         RTNdK,  # Right transversal of G/NdK
-        nRTNdK, # Cardinal of RTNdK
         zero;   # zero of QG
 
 Eps:=IdempotentBySubgroups(QG,K,H);
@@ -2099,19 +2097,19 @@ if NH=G then
 else
     NdK:=Normalizer(G,K);
     RTNH:=RightTransversal(NdK,NH);
-    eGKH1:=Sum( List( RTNH,g->Eps^g ) );
+    eGKH1:=Sum( List( RTNH,g->Eps^g ) ); 
     eGKH:=eGKH1;
     if NdK<>G then
         RTNdK:=RightTransversal(G,NdK); 
-        nRTNdK:=Length(RTNdK);  
-        for i in [ 2 .. nRTNdK ] do
-            g:=RTNdK[i];
-            eGKH1g:=eGKH1^g;
-            if eGKH1*eGKH1g <> zero then 
-                return  fail;
-            else
-                eGKH:= eGKH + eGKH1g;
-            fi;
+        for g in RTNdK do
+            if not (g in NdK) then 
+                eGKH1g:=eGKH1^g; 
+                if eGKH1*eGKH1g <> zero then 
+                    return fail;
+                else
+                    eGKH:= eGKH + eGKH1g;
+                fi;
+            fi;   
         od;                    
     fi;
     return [ [ K, H ], eGKH ];
