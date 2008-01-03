@@ -17,7 +17,7 @@ Subtitle       := Concatenation( [
                   "Central idempotents and simple components",
                   "of group algebras" ] ),
 Version        := "4.3.1",
-Date           := "28/12/2007",
+Date           := "03/01/2008",
 ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3.1",
 ArchiveFormats := ".tar.gz .tar.bz2 -win.zip",
 
