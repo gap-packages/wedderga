@@ -383,6 +383,11 @@ local G,         # Underlying group of FG
 
  # Computes the Galois orbit sums
   irr := Irr(G);
+  if Size(irr) <> Size(ConjugacyClasses(G)) then
+    Error( "The number of irreducible characters does not equal \n",
+           "to the number of conjugacy classes of the group!!!\n",
+           "Please report this bug to the developers of Wedderga.\n" );
+  fi;
   galmat := GaloisMat(irr).galoisfams;
 
   galirr:=function(chi,F)
@@ -495,6 +500,11 @@ local G,         # Underlying group of FG
 
  # Computes the Galois orbit sums
   irr := Irr(G);
+  if Size(irr) <> Size(ConjugacyClasses(G)) then
+    Error( "The number of irreducible characters does not equal \n",
+           "to the number of conjugacy classes of the group!!!\n",
+           "Please report this bug to the developers of Wedderga.\n" );
+  fi;  
   irrp := List( irr , x -> Character(G , List( x, y -> FrobeniusCharacterValue(  y , p ) ) ) );
   cfs := List( irrp , x -> Field(x) );
   galirr := List( cfs , x -> GaloisGroup( AsField( Intersection( F , x ) , x ) ) );
