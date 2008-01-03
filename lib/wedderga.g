@@ -1,5 +1,19 @@
 #############################################################################
 ##
+#W  wedderga.g            The Wedderga package            Osnel Broche Cristo
+#W                                                        Alexander Konovalov
+#W                                                            Aurora Olivieri
+#W                                                           Gabriela Olteanu
+#W                                                              Ángel del Río
+##
+#H  $Id$
+##
+#############################################################################
+
+
+
+#############################################################################
+##
 ##  WEDDERGABuildManual()
 ##
 WEDDERGABuildManual:=function()
