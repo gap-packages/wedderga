@@ -3,6 +3,7 @@
 #W  crossed.gi             The Wedderga package           Osnel Broche Cristo
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
+#W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
 ##
 #H  $Id$

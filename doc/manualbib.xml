@@ -2,18 +2,6 @@
 
 <!-- $Id$ -->
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%W  manualbib.xml       Wedderga documentation        Osnel Broche Cristo
-%W                                                    Alexander Konovalov
-%W                                                        Aurora Olivieri
-%W                                                       Gabriela Olteanu
-%W                                                          Ángel del Río
-%%
-%%  
-
--->
-
 <entry id="BR"><article>
   <author>
     <name><first>Osnel</first><last>Broche</last></name>
