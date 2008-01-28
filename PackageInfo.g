@@ -14,7 +14,7 @@ SetPackageInfo( rec(
 
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
-                  "Central idempotents and simple components of group algebras" ] ),
+                  "Wedderburn Decomposition of Group Algebras" ] ),
 Version        := "4.3.2",
 Date           := "28/01/2008",
 ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3.2",
