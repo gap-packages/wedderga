@@ -39,19 +39,27 @@ A <E>group algebra</E> is a group ring in which the coefficient ring is a field.
 <Section Label="Semisimple">
 <Heading>Semisimple group algebras</Heading>
 
-<Index>semisimple artinian ring</Index>
-A ring <M>R</M> is <E>semisimple artinian</E> if it is a direct sum of simple left 
-(alternatively right) ideals or equivalently if <M>R</M> is isomorphic to a
-direct product of simple algebras each one isomorphic
-to a matrix ring over a division ring. <P/>
+<Index>semisimple ring</Index>
 
-Let <M>G</M> be a group and <M>F</M> is a field. By Maschke's Theorem if
-<M>G</M> is finite and the characteristic of <M>F</M> does not divide the order
-of <M>G</M> then the group algebra <M>FG</M> is semisimple artinian. The
-converse is also true, more precisely, if the group algebra <M>FG</M> is
-semisimple then <M>G</M> is finite (and hence <M>FG</M> is artinian) and the
-characteristic of the coefficient field <M>F</M> does not divide the order of
-<M>G</M>.
+We say that a ring <M>R</M> is semisimple if it is a direct sum of simple 
+left (alternatively right) ideals or equivalently if <M>R</M> is isomorphic 
+to a direct product of simple algebras each one isomorphic to a matrix ring 
+over a division ring.
+<P/>
+ 
+By Maschke's Theorem, if <M>G</M> is a finite group then the group algebra 
+<M>FG</M> is semisimple if and only the characteristic of the coefficient 
+field <M>F</M> does not divide the order of <M>G</M>.
+<P/>
+
+In fact, an arbitrary group ring <M>RG</M> is semisimple if and only if the 
+coefficient ring <M>R</M> is semisimple, the group <M>G</M> is finite and 
+the order of <M>G</M> is invertible in <M>R</M>.
+<P/>
+
+Some authors use the notion semisimple ring for rings with zero Jacobson 
+radical. To avoid confusion we usually refer to semisimple rings as 
+semisimple artinian rings.
 
 </Section>
 
