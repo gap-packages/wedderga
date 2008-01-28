@@ -14,11 +14,10 @@ SetPackageInfo( rec(
 
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
-                  "Central idempotents and simple components",
-                  "of group algebras" ] ),
-Version        := "4.3.1",
-Date           := "03/01/2008",
-ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3.1",
+                  "Central idempotents and simple components of group algebras" ] ),
+Version        := "4.3.2",
+Date           := "28/01/2008",
+ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3.2",
 ArchiveFormats := ".tar.gz .tar.bz2 -win.zip",
 
 #TextFiles     := ["init.g", ......],
@@ -60,13 +59,13 @@ Persons :=
        FirstNames    := "Gabriela",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "golteanu@um.es",
+       Email         := "golteanu@um.es, olteanu@math.ubbcluj.ro",
        PostalAddress := Concatenation( [
-                        "Departamento de Matemáticas\n",
-                        "Universidad de Murcia\n", 
-                        "30100 Murcia, Spain" ] ),
-       Place         := "Murcia",
-       Institution   := "Universidad de Murcia"
+                        "Department of Mathematics and Computer Science\n",
+                        "North University of Baia Mare\n",
+                        "Victoriei 76, 430122 Baia Mare, Romania" ] ),
+       Place         := "Baia Mare",
+       Institution   := "North University of Baia Mare"
      ),
      rec(
        LastName      := "Olivieri",
@@ -98,9 +97,9 @@ Persons :=
      )
 ],
 
-Status := "deposited",
-# CommunicatedBy := "",
-# AcceptDate := "",
+Status := "accepted",
+CommunicatedBy := "Gerhard Hiss (Aachen)",
+AcceptDate := "01/2008",
 
 README_URL := "http://www.um.es/adelrio/wedderga/README.wedderga",
 PackageInfoURL := "http://www.um.es/adelrio/wedderga/PackageInfo.g",

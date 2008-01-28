@@ -10,15 +10,15 @@
 
 <TitlePage>
   <Title>&Wedderga;</Title>
-  <Subtitle>Wedderburn Decomposition of Group Algebras</Subtitle>
-  <Version>Version 4.3.1</Version>
+  <Subtitle>Central Idempotents and Simple Components of Group Algebras</Subtitle>
+  <Version>Version 4.3.2</Version>
 
   <Author>Osnel Broche Cristo 
           <Email>osnel@ufla.br</Email>
           <Address>
-          Departamento de Ciências Exatas<Br/>
-          Universidade Federal de Lavras - UFLA<Br/>
-          Campus Universitário - Caixa Postal 3037<Br/>
+          Departamento de Ciências Exatas,
+          Universidade Federal de Lavras - UFLA,
+          Campus Universitário - Caixa Postal 3037,
           37200-000, Lavras - MG, Brazil          
           </Address>
   </Author>
@@ -45,8 +45,9 @@
   <Author>Gabriela Olteanu
           <Email>golteanu@um.es, olteanu@math.ubbcluj.ro</Email>
           <Address>
-          Departamento de Matemáticas, Universidad de Murcia<Br/>
-          30100 Murcia, Spain
+          Department of Mathematics and Computer Science<Br/>
+          North University of Baia Mare<Br/>
+          Victoriei 76, 430122 Baia Mare, Romania
           </Address> 
   </Author>
   
@@ -94,7 +95,7 @@ multiplication determined by a given action and twisting.
 
   O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
-  Version 4.3.1;</E> 2008 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
+  Version 4.3.2;</E> 2008 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
 </Copyright>
   
 <Acknowledgements>

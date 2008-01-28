@@ -4,7 +4,7 @@
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
-#W                                                              ¡ngel del RÌo
+#W                                                              √Ångel del R√≠o
 ##
 #H  $Id$
 ##
@@ -39,26 +39,26 @@ restrictions on  the type  of the operating system. It is designed for GAP4.4
 and no compatibility with previous releases of GAP4 is guaranteed.
 
 To use the Wedderga online  help it is necessary  to install the GAP4 package 
-GAPDoc by Frank Lübeck  and  Max Neunhöffer,  which is available from the GAP 
+GAPDoc by Frank L√ºbeck  and  Max Neunh√∂ffer,  which is available from the GAP 
 site or from http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/.
 
 Wedderga is distributed in standard formats  (tar.gz, tar.bz2, -win.zip)  and 
 can  be  obtained  from  http://www.um.es/adelrio/wedderga.htm,  its   mirror
 http://www.cs.st-andrews.ac.uk/~alexk/wedderga.htm      or     the       page
 http://www.gap-system.org/Packages/wedderga.html  at  the  GAP web site.  The 
-latter also offers zoo-archive. To unpac  the archive  wedderga-4.3.1.zoo you 
+latter also offers zoo-archive. To unpac  the archive  wedderga-4.3.2.zoo you 
 need  the  program  unzoo,  which  can  be  obtained  from  the  GAP homepage 
 http://www.gap-system.org (see section `Distribution').  To install Wedderga,  
 copy this  archive  into the  pkg  subdirectory of your GAP 4.4 installation.  
 The subdirectory  wedderga  will  be  created  in the pkg directory after the 
 following command:
 
-unzoo -x wedderga-4.3.1.zoo
+unzoo -x wedderga-4.3.2.zoo
 
-Installation *outside the GAP main directory*:  when you don’t have access to 
+Installation *outside the GAP main directory*:  when you don't have access to 
 the directory of your main GAP installation  you can also install the package 
 by unpacking  inside  a directory  "MYGAPDIR/pkg".  Then  to be  able to load
-Wedderga you need to call GAP with the '-l ";MYGAPDIR"’ option.
+Wedderga you need to call GAP with the '-l ";MYGAPDIR" option.
 
 Installation using other archive formats is performed in a similar way.
 
