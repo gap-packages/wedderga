@@ -47,7 +47,7 @@ R -> Characteristic(LeftActingDomain(R))=0 and IsFinite(UnderlyingMagma(R)));
 InstallImmediateMethod( IsCFGroupAlgebra,
     IsGroupRing, 
     0,
-R -> IsCyclotomicField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
+R ->  IsField(LeftActingDomain(R)) and IsCyclotomicField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
 
 #############################################################################
 ##
@@ -59,7 +59,7 @@ R -> IsCyclotomicField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R)));
 InstallImmediateMethod( IsSemisimpleANFGroupAlgebra,
     IsGroupRing, 
     0,
-R -> IsAbelianNumberField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
+R -> IsField(LeftActingDomain(R)) and IsAbelianNumberField(LeftActingDomain(R)) and IsFinite(UnderlyingMagma(R))); 
 
 
 #############################################################################
