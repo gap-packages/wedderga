@@ -11,7 +11,7 @@
 <TitlePage>
   <Title>&Wedderga;</Title>
   <Subtitle>Wedderburn Decomposition of Group Algebras</Subtitle>
-  <Version>Version 4.3.2</Version>
+  <Version>Version 4.3.3</Version>
 
   <Author>Osnel Broche Cristo 
           <Email>osnel@ufla.br</Email>
@@ -60,7 +60,7 @@
           </Address> 
   </Author>  
     
-  <Date>January 2008</Date>
+  <Date>May 2009</Date>
 
 <Abstract>
 
@@ -95,7 +95,7 @@ multiplication determined by a given action and twisting.
 
   O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
-  Version 4.3.2;</E> 2008 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
+  Version 4.3.3;</E> 2009 (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
 </Copyright>
   
 <Acknowledgements>

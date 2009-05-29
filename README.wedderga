@@ -46,14 +46,14 @@ Wedderga is distributed in standard formats  (tar.gz, tar.bz2, -win.zip)  and
 can  be  obtained  from  http://www.um.es/adelrio/wedderga.htm,  its   mirror
 http://www.cs.st-andrews.ac.uk/~alexk/wedderga.htm      or     the       page
 http://www.gap-system.org/Packages/wedderga.html  at  the  GAP web site.  The 
-latter also offers zoo-archive. To unpac  the archive  wedderga-4.3.2.zoo you 
+latter also offers zoo-archive. To unpac  the archive  wedderga-X.X.X.zoo you 
 need  the  program  unzoo,  which  can  be  obtained  from  the  GAP homepage 
 http://www.gap-system.org (see section `Distribution').  To install Wedderga,  
 copy this  archive  into the  pkg  subdirectory of your GAP 4.4 installation.  
 The subdirectory  wedderga  will  be  created  in the pkg directory after the 
 following command:
 
-unzoo -x wedderga-4.3.2.zoo
+unzoo -x wedderga-X.X.X.zoo
 
 Installation *outside the GAP main directory*:  when you don't have access to 
 the directory of your main GAP installation  you can also install the package 
@@ -68,4 +68,4 @@ gap> LoadPackage("wedderga");
 
 
 
-Wedderga team                                                    January 2008
+Wedderga team                                                        May 2009
