@@ -15,9 +15,9 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.3.2",
-Date           := "28/01/2008",
-ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3.2",
+Version        := "4.3.3",
+Date           := "29/05/2009",
+ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3.3",
 ArchiveFormats := ".tar.gz .tar.bz2 -win.zip",
 
 #TextFiles     := ["init.g", ......],
