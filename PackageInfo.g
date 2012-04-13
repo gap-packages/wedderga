@@ -6,8 +6,6 @@
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
 ##
-#H  $Id$
-##
 #############################################################################
 
 SetPackageInfo( rec(
