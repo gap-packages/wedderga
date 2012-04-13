@@ -2,8 +2,6 @@
 ##  
 #W  manual.g                 The Wedderga package         Alexander Konovalov
 ##
-#H  $Id$
-##
 #############################################################################
 #
 # This file contains a function WEDDERGATestManual() that tests all examples

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- $Id$ -->
-
 <!DOCTYPE Book SYSTEM "gapdoc.dtd"
 
 [<!ENTITY Wedderga "<Package>Wedderga</Package>">] >
@@ -110,9 +108,15 @@ rational group algebras.
 
 On various stages the development of the Wedderga package was supported by 
 the following institutions:
-<List>  <Item>University of Murcia;</Item>  <Item>Francqui Stichting grant ADSI107;</Item>  <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>  <Item>D.G.I. of Spain;</Item>  <Item>Fundación Séneca of Murcia;</Item>
+<List>
+  <Item>University of Murcia;</Item>
+  <Item>Francqui Stichting grant ADSI107;</Item>
+  <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>
+  <Item>D.G.I. of Spain;</Item>
+  <Item>Fundación Séneca of Murcia;</Item>
   <Item>CAPES and FAPESP of Brazil.</Item>
-</List>We acknowledge with gratitude this support.<P/>
+</List>
+We acknowledge with gratitude this support.<P/>
 
 </Acknowledgements>
 
