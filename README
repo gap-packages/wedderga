@@ -4,7 +4,7 @@
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
-#W                                                              Ãngel del RÃ­o
+#W                                                              çngel del R’o
 ##
 #############################################################################
 
@@ -37,21 +37,15 @@ restrictions on  the type  of the operating system. It is designed for GAP4.4
 and no compatibility with previous releases of GAP4 is guaranteed.
 
 To use the Wedderga online  help it is necessary  to install the GAP4 package 
-GAPDoc by Frank LÃ¼beck  and  Max NeunhÃ¶ffer,  which is available from the GAP 
+GAPDoc by Frank LŸbeck and  Max  Neunhšffer,  which is available from the GAP 
 site or from http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/.
 
 Wedderga is distributed in standard formats  (tar.gz, tar.bz2, -win.zip)  and 
 can  be  obtained  from  http://www.um.es/adelrio/wedderga.htm,  its   mirror
 http://www.cs.st-andrews.ac.uk/~alexk/wedderga.htm      or     the       page
-http://www.gap-system.org/Packages/wedderga.html  at  the  GAP web site.  The 
-latter also offers zoo-archive. To unpac  the archive  wedderga-X.X.X.zoo you 
-need  the  program  unzoo,  which  can  be  obtained  from  the  GAP homepage 
-http://www.gap-system.org (see section `Distribution').  To install Wedderga,  
-copy this  archive  into the  pkg  subdirectory of your GAP 4.4 installation.  
-The subdirectory  wedderga  will  be  created  in the pkg directory after the 
-following command:
-
-unzoo -x wedderga-X.X.X.zoo
+http://www.gap-system.org/Packages/wedderga.html  at  the  GAP web site.   To 
+install Wedderga,  unpack its archive  into the pkg subdirectory  of your GAP
+installation.  
 
 Installation *outside the GAP main directory*:  when you don't have access to 
 the directory of your main GAP installation  you can also install the package 
@@ -66,4 +60,4 @@ gap> LoadPackage("wedderga");
 
 
 
-Wedderga team                                                        May 2009
+The Wedderga team                                                  April 2012
