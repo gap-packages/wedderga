@@ -13,13 +13,18 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.3.3",
-Date           := "29/05/2009",
-ArchiveURL     := "http://www.um.es/adelrio/wedderga/wedderga-4.3.3",
-ArchiveFormats := ".tar.gz .tar.bz2 -win.zip",
+Version        := "4.4.0",
+Date           := "13/04/2011",
+##  <#GAPDoc Label="PKGVERSIONDATA">
+##  <!ENTITY VERSION "4.4.0">
+##  <!ENTITY RELEASEDATE "13 April 2012">
+##  <!ENTITY RELEASEYEAR "2012">
+##  <#/GAPDoc>
 
-#TextFiles     := ["init.g", ......],
-#BinaryFiles   := ["doc/manual.dvi", ......],
+PackageWWWHome := "http://www.cs.st-andrews.ac.uk/~alexk/wedderga/",
+
+ArchiveURL := Concatenation( ~.PackageWWWHome, "wedderga-", ~.Version ),
+ArchiveFormats := ".tar.gz",
 
 Persons :=
  [
@@ -42,7 +47,7 @@ Persons :=
        FirstNames    := "Alexander",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "konovalov@member.ams.org",
+       Email         := "alexk@mcs.st-andrews.ac.uk",
        WWWHome       := "http://www.cs.st-andrews.ac.uk/~alexk/",
        PostalAddress := Concatenation( [
                         "School of Computer Science\n",
@@ -99,10 +104,12 @@ Status := "accepted",
 CommunicatedBy := "Gerhard Hiss (Aachen)",
 AcceptDate := "01/2008",
 
-README_URL := "http://www.um.es/adelrio/wedderga/README.wedderga",
-PackageInfoURL := "http://www.um.es/adelrio/wedderga/PackageInfo.g",
+README_URL := 
+  Concatenation( ~.PackageWWWHome, "README" ),
+PackageInfoURL := 
+  Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
+  
 AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rational. It also contains functions that produce the primitive central idempotents of semisimple group algebras. Other functions of <span class=\"pkgname\">Wedderga</span> allows to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.",
-PackageWWWHome := "http://www.um.es/adelrio/wedderga.htm",
                   
 PackageDoc := rec(
   BookName := "Wedderga",
@@ -111,19 +118,19 @@ PackageDoc := rec(
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
   LongTitle := "Wedderga",
-  Autoload := false
+  Autoload := true
 ),
 
 Dependencies := rec(
-  GAP                    := ">=4.4",
-  NeededOtherPackages    := [ ["GAPDoc", ">= 1.1"] ],
+  GAP                    := ">=4.5",
+  NeededOtherPackages    := [ ["GAPDoc", ">= 1.5.1"] ],
   SuggestedOtherPackages := [ ["laguna", "3.4"] ],
   ExternalConditions     := []
 ),
 
 AvailabilityTest := ReturnTrue,
 Autoload         := false,
-#TestFile        := "tst/testall.g",
+TestFile        := "tst/testall.g",
 
 Keywords := ["Wedderburn decomposition", "simple components", 
              "central idempotents", "group algebras"]
