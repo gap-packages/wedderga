@@ -93,7 +93,7 @@ to describe the action.
 gap> R := GaussianRationals;
 GaussianRationals
 gap> G := Units( ZmodnZ(4) );
-<group with 1 generators>
+<group of size 2 with 1 generators>
 gap> act := function(RG,g)
 > return ANFAutomorphism( LeftActingDomain(RG), Int(g) );
 > end;
@@ -222,7 +222,7 @@ crossed product using the following attributes: <P/>
 * <Index Key="TwistingForCrossedProduct"><C>TwistingForCrossedProduct</C></Index> <C>TwistingForCrossedProduct</C> for the twisting.
 
 <Example>
-<![CDATA[  
+<![CDATA[
 gap> LeftActingDomain(HZ);
 Integers
 gap> G:=UnderlyingMagma(HZ);
@@ -348,19 +348,14 @@ algebras. Note that one can construct quaternion algebras using the &GAP; functi
 <Example>
 <![CDATA[
 gap> Quat := function(R,a,b)
->
 > local G,act,twist;
->
 > if not(a in R and b in R and a <> Zero(R) and b <> Zero(R) ) then
 > Error("<a>  and <b> must be non zero elements of <R>!!!");
 > fi;
->
 > G := SmallGroup(4,2);
->
 > act := function(RG,a)
 >     return IdentityMapping( LeftActingDomain(RG));
 > end;
->
 > twist := function( RG, g , h )
 > local one,g1,g2;
 > one := One(G);
