@@ -1844,7 +1844,7 @@ else
     H:=Representative(CCS[j]);        
     if IsSubset( H, DG ) then
       if IsCyclic( FactorGroup( G, H ) ) then 
-        idempeGKH:=eGsum(QG,G,H)[2]; 
+        idempeGKH:=Idempotent_eGsum(QG,G,H)[2]; 
         SeGKHs:= SeGKHs + idempeGKH;
         Add( KHs, [ G, H ] );
         Add( eGKHs, idempeGKH );
@@ -2039,7 +2039,7 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
             if IsAbelian(Cen) then
                 if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
                     K:=PreImages(Epi,Cen);
-                    return eGsum(QG,K,H);
+                    return Idempotent_eGsum(QG,K,H);
                 else 
                     return fail;
                 fi;
@@ -2049,7 +2049,7 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
                     KH:=ClosureSubgroup( L, [X[1]] );
                     if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
                         K:=PreImages(Epi,KH);
-                        return eGsum(QG,K,H);
+                        return Idempotent_eGsum(QG,K,H);
                     fi;
                     X:=Difference(X,KH);
                 od;
@@ -2061,12 +2061,12 @@ InstallGlobalFunction( SearchingKForSSP, function(QG,H)
 
 #############################################################################
 ##
-#M eGsum( QG, K, H )
+#M Idempotent_eGsum( QG, K, H )
 ##
 ## The following function computes e(G,K,H)    
 ## Note that actually it returns a list of the form [ [K,H], eGKH ]
 ##
-InstallMethod( eGsum,
+InstallMethod( Idempotent_eGsum,
     "for group algebra and two subgroups of its underlying group", 
     true, 
     [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ], 

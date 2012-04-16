@@ -45,7 +45,7 @@ DeclareAttribute( "StrongShodaPairs", IsGroup and IsFinite );
 
 DeclareAttribute( "StrongShodaPairsAndIdempotents", IsGroupRing );
 DeclareGlobalFunction( "SearchingKForSSP" );
-DeclareOperation( "eGsum",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
+DeclareOperation( "Idempotent_eGsum",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
 
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStrongSP" );
 
