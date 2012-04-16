@@ -354,38 +354,6 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
    </Description>
 </ManSection>
 
-
-<ManSection>
-   <Func Name="WEDDERGABuildManual" 
-         Arg=""
-	 Comm="requires GAPDoc, UNIX or Linux and TeX;" />
-   <Description>
-      This function is used to build the manual in the following formats:
-      DVI, PDF, PS, HTML and text for online help.
-      We recommend that the user should have a recent and fairly
-      complete &TeX; distribution.
-      Since &Wedderga; is distributed together with its manual,
-      it is not necessary for the user to use this function. Normally
-      it is intended to be used by the developers only. This is the only 
-      function of &Wedderga; which requires a UNIX/Linux environment.
-   </Description>
-</ManSection>
-
-
-<ManSection>
-   <Func Name="WEDDERGABuildManualHTML" 
-         Arg=""
-	 Comm="requires only GAPDoc" />
-   <Description>
-      This fuction is used to build the manual only in HTML format.
-      This does not depend on the availability of the &TeX; installation
-      and works under Windows and MacOS as well.
-      Since &Wedderga; is distributed together with its manual,
-      it is not necessary for the user to use this function. Normally
-      it is intended to be used by the developers only.
-   </Description>
-</ManSection>
-
 </Section>
 
 </Chapter>

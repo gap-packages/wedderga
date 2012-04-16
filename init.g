@@ -12,8 +12,5 @@
 ReadPackage( "wedderga/lib/wedderga.gd" );
 ReadPackage( "wedderga/lib/crossed.gd" );
 
-# read the other part of code
-ReadPackage("wedderga/lib/wedderga.g");
-
 # set the default InfoLevel
 SetInfoLevel( InfoWedderga, 1 );
