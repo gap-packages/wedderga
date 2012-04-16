@@ -42,7 +42,7 @@ rm patternscolor.txt
 rm patternstextbinary.txt
 rm filestowrap.txt
 
-read -n 1 -p "Shall I copy data to the public website ? (y/n)> " ANSWER
+read -n 1 -p "Shall I copy $PKGNAME $PKGVERSION to its public website ? (y/n)> " ANSWER
 echo
 
 if [ $ANSWER = "y" ]; then
