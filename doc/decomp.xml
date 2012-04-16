@@ -294,7 +294,7 @@ gap> WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,15) ) );
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
   [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ],
   [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ],
-  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
+  [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] ]
 gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
 [ [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 2, CF(3) ],
   [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 2, CF(3) ], [ 2, CF(3) ],
@@ -434,11 +434,11 @@ gap> G:=SmallGroup(144,11);
 <pc group of size 144 with 6 generators>
 gap> QG:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 6 generators>
-gap> SimpleAlgebraByCharacter( QG , Irr(G)[48] );
+gap> SimpleAlgebraByCharacter( QG , Irr(G)[40] );
 <crossed product with center NF(36,[ 1, 17 ]) over AsField( NF(36,
 [ 1, 17 ]), CF(36) ) of a group of size 2>
 gap> SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );
-[ 1, NF(36,[ 1, 17 ]), 36, [ 2, 17, 18 ] ]
+[ 1, NF(9,[ 1, 8 ]), 18, [ 2, 17, 9 ] ]
 ]]>
 </Example>
 
