@@ -71,7 +71,7 @@ CopyHTMLStyleFiles( "doc" );
 # package is referring to your package
 GAPDocManualLab( "Wedderga" );; 
  
-ExtractManualExamples( "Wedderga", "manual.xml", WEDDERGAMANUALFILES );
+ExtractManualExamples( "wedderga", "manual.xml", WEDDERGAMANUALFILES );
 
 QUIT;
 ###########################################################################
