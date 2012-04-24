@@ -21,6 +21,7 @@
 -*.svn/*
 -*.DS_Store
 # package root directory
++GPL
 +init.g
 +makedocrel.g
 +PackageInfo.g
