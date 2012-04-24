@@ -2,7 +2,7 @@
 #############################################################################
 
 export PKGNAME="wedderga"
-export PKGVERSION="4.4.1"
+export PKGVERSION="4.4.2"
 export TOOLPATH="/Users/alexk/CVSREPS/GAPDEV/dev/DistributionUpdate/dist45"
 
 cp ${TOOLPATH}/classifyfiles.py /Users/alexk/CVSREPS/GAPDEV/pkg/
