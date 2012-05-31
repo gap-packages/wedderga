@@ -4,17 +4,15 @@
 ##
 ###########################################################################
 
-ExtractManualExamples:=function( pkgname, main, files )
-local path, tst, i, s, name, output;
+ExtractMyManualExamples:=function( pkgname, main, files )
+local path, tst, i, s, name, output, ch, a;
 path:=Directory( 
         Concatenation(PackageInfo(pkgname)[1].InstallationPath, "/doc") );
-Print("===============================================================\n");
-Print("Extracting manual examples for ", pkgname, " package\n" );
-Print("===============================================================\n");
-tst:=ManualExamples( path, main, files, "Chapter" );
+Print("Extracting manual examples for ", pkgname, " package ...\n" );
+tst:=ExtractExamples( path, main, files, "Chapter" );
+Print(Length(tst), " chapters detected\n");
 for i in [ 1 .. Length(tst) ] do 
-  Print( "Processing '", pkgname, 
-         "' chapter number ", i, " of ", Length(tst), "\c" );
+  Print( "Chapter ", i, " : \c" );
   if Length( tst[i] ) > 0 then
     s := String(i);
     if Length(s)=1 then 
@@ -25,22 +23,19 @@ for i in [ 1 .. Length(tst) ] do
               Directory( 
                 Concatenation( PackageInfo(pkgname)[1].InstallationPath, 
                                "/tst" ) ), 
-                Concatenation( pkgname, s, ".tst" ) );
+                Concatenation( LowercaseString(pkgname), s, ".tst" ) );
     output := OutputTextFile( name, false ); # to empty the file first
     SetPrintFormattingStatus( output, false ); # to avoid line breaks
-    PrintTo( output, tst[i] );
-    CloseStream(output);
-    # one superfluous check
-    if tst[i] <> StringFile( name ) then
-      Error("Saved file does not match original examples string!!!\n");  
-    else
-      Print(" - OK! \n" );
-    fi;
+    ch := tst[i];
+    AppendTo(output, "# ", pkgname, ", chapter ",i,"\n");
+    for a in ch do
+      AppendTo(output, "\n# ",a[2], a[1]);
+    od;
+    Print("extracted ", Length(ch), " examples \n");
   else
-    Print(" - no examples to save! \n" );    
+    Print("no examples \n" );    
   fi;  
 od;
-Print("===============================================================\n");
 end;
 
 ###########################################################################
@@ -71,7 +66,7 @@ CopyHTMLStyleFiles( "doc" );
 # package is referring to your package
 GAPDocManualLab( "Wedderga" );; 
  
-ExtractManualExamples( "wedderga", "manual.xml", WEDDERGAMANUALFILES );
+ExtractMyManualExamples( "wedderga", "manual.xml", WEDDERGAMANUALFILES );
 
 QUIT;
 ###########################################################################
