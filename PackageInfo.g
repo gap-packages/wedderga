@@ -13,11 +13,11 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.4.3",
-Date           := "31/05/2012",
+Version        := "4.5.0",
+Date           := "27/11/2012",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "4.4.3">
-##  <!ENTITY RELEASEDATE "31 May 2012">
+##  <!ENTITY VERSION "4.5.0">
+##  <!ENTITY RELEASEDATE "27 November 2012">
 ##  <!ENTITY RELEASEYEAR "2012">
 ##  <#/GAPDoc>
 
