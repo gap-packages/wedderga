@@ -133,6 +133,7 @@ We acknowledge with gratitude this support.<P/>
 <#Include SYSTEM "idempot.xml">
 <#Include SYSTEM "crossed.xml"> 
 <#Include SYSTEM "auxiliar.xml">
+<#Include SYSTEM "div-alg.xml">
 <#Include SYSTEM "theory.xml"> 
 
 </Body>
