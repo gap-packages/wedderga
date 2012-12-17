@@ -13,7 +13,7 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.4.3",
+Version        := "4.5.1",
 Date           := "31/05/2012",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
 ##  <!ENTITY VERSION "4.4.3">
@@ -117,7 +117,7 @@ PackageDoc := rec(
   HTMLStart := "doc/chap0.html",
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
-  LongTitle := "Wedderga",
+  LongTitle := "Wedderga with div-alg",
   Autoload := true
 ),
 
