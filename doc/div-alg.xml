@@ -1,0 +1,596 @@
+<!-- ********************div-alg******************** -->
+
+<Chapter Label="Div-alg">
+<Heading>Functions for identifying the division algebra part of a simple component of a group algebra</Heading>
+
+<Section Label="MainSchurIndexFunctions">
+<Heading>Main Schur Index Functions</Heading>
+
+<ManSection>  
+   <Prop Name="CrossedProductWithDivisionAlgebraPart" 
+         Arg="A"  
+         Comm= "Gives the division algebra part of a simple component of the 
+wedderburn decomposition of a group algebra"/>
+   <Returns>
+         A simple algebra whose division algebra part is identified in terms of its local indices. 
+   </Returns>
+   <Description>
+         The input <A>A</A> should be a crossed product in the form output by 	
+<Ref Attr="WedderburnDecompositionInfo" /> or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  The output is in the form <K>[r,D]</K> where <M>D</M> is a division algebra presented in the form 
+<K>["DivAlg",F,"LocInds=",L]</K>.  <K>"DivAlg"</K> is a label indicating that this is definitely a division algebra.  <M>F</M> is its center, <K>"LocInds="</K> is a label standing for "Local Indices", and <K>L</K> is a list of nontrivial <A>p-</A>local indices in the form <K>[p,m]</K>, where <A>p</A> is a rational prime - possibly infinite, which appears as "infty", and <K>m</K> is the local 
+index of the division algebra at the prime <M>p</M>.  
+
+	 In cases of crossed products over a non-cyclic galois group, the function has to appeal to a library of local indices to determine the division algebra.  This library is currently developed for groups of small order up 	 to 200.  When the function cannot find a match, an "UnableToDetermine" 
+message appears.  The function <Ref Attr="DecomposeYAlgebra"/> may be used to obtain information on cyclic algebra tensor summands of <M>A</M> in these cases. 
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(240,89);
+<permutation group of size 240 with 2 generators>
+gap> A:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 2 generators>
+gap> W:=WedderburnDecompositionInfo(A);
+Wedderga: Warning!!! 
+Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
+
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 10, [ 4, 3, 5 ] ], 
+  [ 4, Rationals ], [ 4, Rationals ], [ 5, Rationals ], [ 5, Rationals ], 
+  [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ], 
+  [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
+gap> CrossedProductWithDivisionAlgebraPart(W[3]); 
+[ 2, [ "DivAlg", Rationals, "LocInds=", [ [ 5, 2 ], [ "infty", 2 ] ] ] ]
+gap> CrossedProductWithDivisionAlgebraPart(W[9]); 
+[ 2, [ "DivAlg", NF(12,[ 1, 11 ]), "LocInds=", [ [ "infty", 2 ] ] ] ]
+gap> CrossedProductWithDivisionAlgebraPart(W[10]);
+[ 3, [ "DivAlg", NF(8,[ 1, 7 ]), "LocInds=", [ [ "infty", 2 ] ] ] ]
+
+gap> G:=SmallGroup(48,15);
+<pc group of size 48 with 5 generators>
+gap> A:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 5 generators>
+gap> W:=WedderburnDecompositionInfo(A);
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
+  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
+gap> CrossedProductWithDivisionAlgebraPart(W[10]);
+[ 2, [ "DivAlg", Rationals, "LocInds=", [ [ 2, 2 ], [ 3, 2 ] ] ] ]
+
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+
+<ManSection>
+   <Prop Name="RationalSchurIndex" 
+         Arg="A"  
+         Comm= "Function that computes the Schur index of a simple algebra."/>
+   <Returns>
+         The rational Schur index of a simple algebra.  
+   </Returns>
+   <Description>
+         The input <A>A</A> can be a quaternion algebra (see <Ref 		
+Sect="QuaternionAlgebra" />), a cyclic algebra (see <Ref 		
+Sect="CyclicAlgebras" />), or a cyclotomic algebra (see <Ref Sect="Cyclotomic" />).  The rational Schur index is the square root of the dimension of the division algebra part of the simple algebra over its center.  The function calculates the local indices of the division algebra part of the simple algebra using an appropriate local index function in wedderga, and returns the least common multiple of these local indices. 
+
+	 In cases where the division algebra part of the simple algebra cannot be 
+determined, errors will result.  The functions for cyclic algebras can be used to identify the division algebra parts of the cyclic algebras involved in some of these situations (see <Ref Sect="CyclicAlgebras"/>).
+      
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(48,15);
+<pc group of size 48 with 5 generators>
+gap> A:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 5 generators>
+gap> W:=WedderburnDecompositionInfo(A);
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
+  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
+gap> RationalSchurIndex(W[10]);
+2
+gap> RationalSchurIndex(W[9]);
+1
+gap> A:=QuaternionAlgebra(Rationals,-3,2);
+<algebra-with-one of dimension 4 over Rationals>
+gap> RationalSchurIndex(A);
+2
+gap> B:=ConvertQuaternionAlgToQuadraticAlg(A);        
+[ Rationals, CF(3), [ 2 ] ]
+gap> RationalSchurIndex(B);                           
+2
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+
+<ManSection>
+   <Oper Name="DivisionAlgebraPartByBrauerCharacters"
+         Arg="F G n"  
+         Comm="Group must be non-nilpotent and p-solvable." />
+   <Oper Name="FinFieldExt" 
+         Arg="n m p "  
+         Comm="Degree of a finite field extension determined by values of irreducible ordinary and Brauer characters." />
+   <Oper Name="PossibleDefectGroups" 
+         Arg="G n p"  
+         Comm="Gives possible defect groups for block determined by an ordinary irreducible characer of G." />
+   <Returns>
+         (i) A simple algebra whose division algebra part is identified in terms of its local indices; (ii) the degree of the finite field extension <M>F_p(chi_n,phi_m)</M> over <M>F_p(chi_n)</M> determined by the ordinary irreducible character <M>chi_n</M> and irreducible <K>p</K>-modular character <M>phi_m</M>; and (iii) possible defect groups for block containing <M>chi_n</M>.
+   </Returns> 
+   <Description>
+         The input of <Ref Attr="DivisionAlgebraPartByBrauerCharacters"/> must be an abelian number field <K>F</K>, a finite group <A>G</A>, and the number <A>n</A> of an ordinary irreducible character <K>Irr(G)[n]</K>, and <a>p</a> a prime divisor of the order of <A>G</A>. <P/>
+      
+         It returns <K>[r,D,W]</K> where <K>r</K> is the matrix degree and <K>D</K> is a division algebra given by the list <K>["DivAlg",F,"LocInds=",L]</K>, where <K>"DivAlg"</K> is a label indicating that it is certain that <K>D</K> is a division algebra, <K>F</K> is its center, a field, "LocInds=" is a label indicating what follows is the list of local indices, and <K>L</K> is the list of nontrivial local indices at primes <K>p</K>, which are given by pairs <K>[p,m]</K>, where <K>m</K> is an integer larger than 1. <K>W</K> is a list of the primes where the defect group is not, or may not, be cyclic, which is required in order for the value indicated by the list <K>L</K> at <K>p</K> to be reliable. In particular, when <K>W=[]</K>, the result given for <K>D</K> is correct. If <K>[p,"fail"]</K> appears in <K>W</K>, the defect group is not cyclic.  If <K>[p,"maybe"]</K> appears, then there is more than one possible defect group for the block, with some choices cyclic and some not cyclic. <P/>
+	
+	 The function uses Benard's theorem, which shows that the local index at <A>p</A> of the simple component of the rational group algebra <A>QG</A> corresponding to the character <A>Irr(G)[n]</A> is the degree of the extension of the residue field of the center given by adjoining an irreducible <K>p</K>-Brauer character <K>IBr(G,p)[m]</K> lying in the same block, provided the defect group of the block is cyclic.  The degree of this finite field extension is calculated by <Ref Attr="FinFieldExt"/>.  In some cases where the defect group is not cyclic, the degree of this extension is too large, and fractional matrix algebras result.  But this is only because the method does not apply in these cases.  The possible conjugacy classes of <A>p</A>-defect groups for <K>Irr(G)[n]</K> are
+calculated using <Ref Attr="PossibleDefectGroups"/>. 
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(80,28);                                 
+<pc group of size 80 with 5 generators>
+gap> Size(Irr(G));
+20
+gap> DivisionAlgebraPartByBrauerCharacters(Rationals,G,20);
+[ 2, [ "DivAlg", GaussianRationals, "LocInds=", [ [ 5, 2 ] ] ], [  ] ]
+
+gap> G:=SmallGroup(72,20);
+<pc group of size 72 with 5 generators>
+gap> DivisionAlgebraPartByBrauerCharacters(Rationals,G,11);
+[ 1, [ "DivAlg", Rationals, "LocInds=", [ [ "infty", 2 ], [ 3, 2 ] ] ], 
+  [ [ 2, "maybe" ], [ 3, "fail" ] ] ]
+gap> SimpleAlgebraByCharacterInfo(GroupRing(Rationals,G),Irr(G)[11]);
+[ 1, Rationals, 6, [ 2, 5, 3 ] ]
+# This simple algebra does have local index 2 at the primes "infty" and 3.
+# Below we see the nature of the possible defect groups.  
+gap> T:=CharacterTable(G);
+CharacterTable( <pc group of size 72 with 5 generators> )
+gap> S:=T mod 3;
+BrauerTable( <pc group of size 72 with 5 generators>, 3 )
+gap> b:=BlocksInfo(S);
+[ rec( defect := 2, modchars := [ 1, 2, 3, 4 ], 
+      ordchars := [ 1, 2, 3, 4, 10, 12, 13, 14, 17 ] ), 
+  rec( defect := 2, modchars := [ 5, 6, 7, 8 ], 
+      ordchars := [ 5, 6, 7, 8, 9, 11, 15, 16, 18 ] ) ]
+gap> FinFieldExt(G,3,11,8);
+2
+gap> D:=PossibleDefectGroups(G,11,3);
+[ Group( [ f4, f5 ] )^G ]
+gap> IsCyclic(Elements(last[1])[1]);
+false
+gap> T:=CharacterTable(G);
+CharacterTable( <pc group of size 72 with 5 generators> )
+gap> S:=T mod 2;
+BrauerTable( <pc group of size 72 with 5 generators>, 2 )
+gap> b:=BlocksInfo(S);
+[ rec( defect := 3, modchars := [ 1 ], ordchars := [ 1, 2, 3, 4, 5, 6, 7, 8 ] 
+     ), rec( defect := 2, modchars := [ 2 ], ordchars := [ 9, 10, 11, 12 ] ), 
+  rec( defect := 2, modchars := [ 3 ], ordchars := [ 13, 14, 15, 16 ] ), 
+  rec( defect := 1, modchars := [ 4 ], ordchars := [ 17, 18 ] ) ]
+gap> PossibleDefectGroups(G,11,2); 
+[ Group( [ f1, f3, f1*f3 ] )^G, Group( [ f2, f3, f2*f3 ] )^G ]
+gap> L:=last;
+[ Group( [ f1, f3, f1*f3 ] )^G, Group( [ f2, f3, f2*f3 ] )^G ]
+gap> IsCyclic(Elements(L[1])[1]);
+false
+gap> IsCyclic(Elements(L[2])[1]);
+true
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+<!-- *******Local Index Functions for Cyclic Cyclotomic Algebras -->
+
+<Section Label="LocIndsOfCyclicCyclotomicAlgs">
+<Heading>Local index functions for Cyclic Cyclotomic Algebras</Heading>
+
+<ManSection>
+   <Oper Name="LocalIndicesOfCyclicCyclotomicAlgebra"
+         Arg="A"  
+         Comm="Computes local indices of a cyclic cyclotomic algebra presented as a list of the form [r,F,n,[m,k,l]]." />
+   <Oper Name="DivAlgPartOfCyclicCyclotomicAlgebra" 
+         Arg="A"  
+         Comm="Identifies the division algebra part of a cyclic cyclotomic algebra presented as a list of the form [r,F,n,[m.k.l]]." />
+   <Returns> 
+	A simple algebra whose division algebra part is identified in terms of local indices. 
+   </Returns>
+   <Description>
+        The input must be a cyclic cyclotomic algebra; that is, an algebra presented in the form of the output of <Ref Attr="WedderburnDecompositionInfo"/>  or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  <P/>
+
+	 <"DivAlgPartOfCyclicCyclotomicAlgebra"> returns a list of the form <K>[r,D]</K> representing an rxr matrix algebra over the division algebra <K>D</K>, which is represented either as a field or as a list <K>["DivAlg",F,"LocInds=",L]</K> representing the division algebra with center <K>F</K> whose nontrivial local indices are indicated by the list <K>L</K>.  <"LocalIndicesOfCyclicCyclotomicAlgebra"> computes this list <K>L</K> using the functions for local indices at various rational primes that appear in this section.  <P/>
+
+
+<Example>
+<![CDATA[
+gap> A:=[1,Rationals,6,[2,5,3]];
+[ 1, Rationals, 6, [ 2, 5, 3 ] ]
+gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
+[ [ 3, 2 ], [ "infty", 2 ] ]
+
+G:=SmallGroup(63,1);                                            
+<pc group of size 63 with 3 generators>
+gap> WedderburnDecompositionInfo(GroupRing(Rationals,G));
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], 
+  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ], 
+  [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
+gap> A:=last[5];
+[ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ]
+gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
+[ [ 7, 3 ] ]
+gap> DivAlgPartOfCyclicCyclotomicAlgebra(A);  
+[ 1, [ "DivAlg", NF(21,[ 1, 4, 16 ]), "LocInds=", [ [ 7, 3 ] ] ] ]
+
+]]>
+</Example>
+   </Description>
+</ManSection>
+
+
+<ManSection>
+   <Oper Name="LocalIndexAtInfty"
+         Arg="A"  
+         Comm="Gives the real Schur index of a cyclic cyclotomic algebra presented as a list of the form [r,F,n,[m,k,l]]." />
+   <Oper Name="LocalIndexAtTwo" 
+         Arg="A"  
+         Comm="Gives the 2-local index of a cyclic cyclotomic algebra presented as a list of the form [r,F,n,[m.k.l]]." />
+   <Oper Name="LocalIndexAtOddP" 
+         Arg="A,p"  
+         Comm="Gives the p-local index for an odd prime p of a cyclic cyclotomic algebra presented as a list of the form [r,F,n,[m.k.l]]." />
+   <Oper Name="PPartOfN" 
+         Arg="n p"  
+         Comm=" " />
+   <Oper Name="PDashPartOfN" 
+         Arg="n p"  
+         Comm=" " />
+   <Returns>
+ 	The first three functions return the local index of a cyclotomic algebra at the prime indicated.  The latter two are standard arithmetic functions required by the first three operations.   
+   </Returns> 
+
+   <Description>
+         The <K>A</K> in the input must be a cyclic cyclotomic algebra; that is, an algebra presented in the form of the output of <Ref Attr="WedderburnDecompositionInfo"/> or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  For <"LocalIndexAtOddP">, <K>p</K> must be an odd prime.  The functions <Ref Attr="PPartOfN"/> and <Ref Attr="PDashPartOfN"/> are self-explanatory arithmetic functions for a positive integer <K>n</K> and prime <K>p</K>, that are called by <Ref Attr="LocalIndexAtOddP"/>.  <P/>
+
+	 These functions determine the local index of a cyclic cyclotomic algebra at the rational primes <K>"infty"</K>, <K>2</K>, or odd primes <K>p</K>, respectively.  As there is no way to determine the relevant character of the group determining the simple component represented by the cyclic crossed product <K>A</K>, the first two functions check for a relationship of <K>A</K> to a nonsplit real or 2-adic quaternion algebra. <Ref Attr="LocalIndexAtOddP"/> calculates the local index at <K>p</K> by counting the number of roots of unity coprime to <K>p</K> present in the p-adic completion.  All three functions are called by <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>. <P/>
+
+	 WARNING: The validity of all three of the above methods is yet to be established in general.  To date, they have been checked for simple components that occur among groups of order up to 200.  <P/>
+
+   </Description>
+</ManSection>
+
+<!-- *******Local Index Functions for Cyclic and Quadratic Algebras -->
+
+<ManSection>
+   <Oper Name="DivAlgPartOfCyclicAlg"
+         Arg="A"  
+         Comm="Gives the division algebra part of a cyclic algebra presented as a list of the form [F,K,[c]]." />
+   <Oper Name="NormMatch" 
+         Arg="K F c"  
+         Comm="Detemines whether the nonzero element c of F lies in a list of easy-to-calculate norms of the extension K/F." />
+   <Returns>
+      	The first function returns, if able to do so, an simple algebra <K>[r,D]</K> isomorphic to <K>A</K> whose division algebra part is identified in terms of local indices.  If it is not able to determine such a division algebra <K>D</K> it returns <K>[1,A]</K>. The second function returns "true" or "false". 
+   </Returns>
+   <Description>
+         The input should be a cyclic algebra <K>A</K>, presented as a list <K>[F,K,[c]]</K>, where <K>K/F</K> is a cyclic Galois extension of abelian number fields, and <K>c</K> is an element of <K>F</K> representing the factor set of the cyclic algebra. The input of <Ref Attr="NormMatch"/> is a triple <K>K,F,c</K>, where <K>K/F</K> is a cyclic extension of number fields and <K>c</K> lies in <K>F</K>.  <P/>
+
+	 <"DivAlgPartOfCyclicAlg"> is a library function giving the local indices for small cyclic algebras that are needed to identify simple components of rational group algebras for groups of order up to 200.  It should only be used in cases when other local index or division algebra functions cannot be applied. <P/>
+
+	<Ref Attr="NormMatch"/> is used to identify cyclic algebras <K>[F,K,[a]]</K> with <K>[F,K,[b]]</K> if <K>c =a^(-1)*b</K> is an easy-to-calculate non-zero norm in the extension <K>K/F</K>.  In general, solving norm equations in number fields is difficult, so this function should be treated as just a shortcut to find easy answers when they are available.  Further investigation may be necessary in cases where a "false" is returned. <P/>
+
+
+<Example>
+<![CDATA[
+gap> A:=[NF(24,[1,11]),CF(24),[-1]];
+[ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ]
+gap> DivAlgPartOfCyclicAlg(A);
+[ 1, [ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ] ]
+gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
+[ 1, NF(24,[ 1, 11 ]), 24, [ 2, 11, 12 ] ]
+gap> CrossedProductWithDivisionAlgebraPart(B);
+[ 2, NF(24,[ 1, 11 ]) ]
+
+gap> A:=[Rationals,CF(6),[-1]];                           
+[ Rationals, CF(3), [ -1 ] ]
+gap> DivAlgPartOfCyclicAlg(A);                   
+[ 1, [ "DivAlg", Rationals, "LocInds=", [ [ "infty", 2 ], [ 3, 2 ] ] ] ]
+]]>
+</Example>
+   </Description>
+</ManSection>
+
+
+<ManSection>
+   <Oper Name="DivAlgPartOfTensorProductOfCyclicAlgs"
+         Arg="A B"  
+         Comm="Input must be a pair of lists of the form [F,K,[c]]." />
+   <Oper Name="LocalIndicesOfTensorProductOfQuadraticAlgs" 
+         Arg="A B"  
+         Comm="Input must be a pair of quadratic algebras represented by lists of the form [F,K,[c]] with K/F a quadratic field extension." />
+   <Returns>
+   	The first function returns a simple algebra <K>[r,D]</K> whose division algebra part is identified in terms of local indices.  The second function returns a list of local indices in cases when the nontrivial local indices are all 2. 
+   </Returns>
+   <Description>
+         The input of <"DivAlgPartOfTensorProductOfCyclicAlgs"> should be a
+	 pair of simple algebras of the form <K>[r,D]</K> whose centers are 
+	 the same abelian number field <K>F</K>, and whose division algebra 
+	 parts are either <K>F</K> or given in terms of local indices. <P/>
+	 The input of  <"LocalIndicesOfTensorProductOfQuadraticAlgs"> 
+	 requires that any nontrivial local indices of the division algebra parts
+	 that occur are 2.  <P/>
+
+	 <"DivAlgPartofTensorProductOfCyclicAlgs"> calculates the local indices 
+	 of the tensor product to the extent possible.  If the local indices at  
+	 the same prime are not equal, the result is their Lcm. If they are both 	  2, the local index of the tensor product is 1.  If they are both equal 
+	 and larger than 2, the local index of the tensor product is a divisor 
+	 which requires knowledge of the local invariants to determine.  The 
+	 latter situation does not occur for groups of order less than 7*81.  
+	 This function returns <K>[p,m,"divisor"]</K> when the local index at 		 <K>p</K> is not definite. <P/>
+
+
+<Example>
+<![CDATA[
+gap> A:=[ 1, NF(9,[ 1, 8 ]), 12, [ [ 2, 5, 3 ], [ 2, 7, 6 ] ], [ [ 3 ] ] ];
+[ 1, NF(9,[ 1, 8 ]), 12, [ [ 2, 5, 3 ], [ 2, 7, 6 ] ], [ [ 3 ] ] ]
+gap> DecomposeYAlgebra(A);                                                
+[ [ NF(9,[ 1, 8 ]), CF(9), [ 2 ] ], 
+  [ NF(9,[ 1, 8 ]), NF(36,[ 1, 17 ]), [ -1 ] ] ]
+gap> A1:=last[1]; A2:=last2[2];
+[ NF(9,[ 1, 8 ]), CF(9), [ 2 ] ]
+[ NF(9,[ 1, 8 ]), NF(36,[ 1, 17 ]), [ -1 ] ]
+gap> B1:=DivAlgPartOfCyclicAlg(A1);
+[ 1, [ "DivAlg", NF(9,[ 1, 8 ]), "LocInds=", [ [ 2, 2 ], [ 3, 2 ] ] ] ]
+gap> B2:=DivAlgPartOfCyclicAlg(A2);
+[ 1, [ "DivAlg", NF(9,[ 1, 8 ]), "LocInds=", [ [ "infty", 2 ], [ 2, 2 ] ] ] ]
+gap> DivAlgPartOfTensorProductOfCyclicAlgs(B1,B2);
+[ 2, [ "DivAlg", NF(9,[ 1, 8 ]), "LocInds=", [ [ 3, 2 ] ] ] ]
+gap> L1:=[[2,2],[3,2]]; L2:=[["infty",2],[2,2]];
+[ [ 2, 2 ], [ 3, 2 ] ]
+[ [ "infty", 2 ], [ 2, 2 ] ]
+gap> LocalIndicesOfTensorProductOfQuadraticAlgs(L1,L2);
+[ [ 3, 2 ], [ "infty", 2 ] ]
+]]>
+</Example>
+	 
+   </Description>
+</ManSection>
+
+
+<ManSection>
+   <Oper Name="ConvertCyclicAlgToCyclicCyclotomicAlg"
+         Arg="A"  
+         Comm="Input must be a list [F,K,[c]] with K a cyclotomic field." />
+   <Oper Name="ConvertQuadraticAlgToQuaternionAlg" 
+         Arg="A"  
+         Comm="Input must be a list of the form [F,K,[c]] with K/F a quadratic field extension." />
+   <Description>
+         The input for the first function must be a cyclic algebra given by a 
+	 list <K>[F,K,[c]]</K>.  For the second function the cyclic algebra 
+	 must be a quadratic algebra, so <K>K</K> must be obtained by adjoining 
+	 the square root of a nonsquare element of <K>F</K>. <P/>
+
+	 These functions can be used to convert cyclic algebras whose local 
+	 indices cannot be determined by the library function 	
+    	 <"DivAlgPartOfCyclicAlg">.  If the factor set for a cyclic algebra is a
+	 norm match for one whose factor set is a root of unity, then
+	 <"ConvertCyclicAlgToCyclicCyclotomicAlg"> will enable its division
+	 algebra part to be determined. <P/>
+
+	 If the center <K>F</K> of the quadratic algebra is the field of rational
+	 numbers, then by converting it to a quaternion algebra the function 
+	 <"LocalIndicesOfRationalQuaternionAlgebra"> can be used to compute its 
+	 local indices. <P/>
+
+<Example>
+<![CDATA[
+gap> A:=[NF(24,[1,11]),CF(24),[-1]];
+[ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ]
+gap> DivAlgPartOfCyclicAlg(A);
+[ 1, [ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ] ]
+gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
+[ 1, NF(24,[ 1, 11 ]), 24, [ 2, 11, 12 ] ]
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+<!-- *******Local Index Functions for Quaternion Algebras -->
+
+<Section Label="LocIndsOfQuaternionAlgs">
+<Heading>Local index functions for Quaternion Algebras</Heading>
+
+<ManSection>
+   <Oper Name="LocalIndicesOfRationalQuaternionAlgebra"
+         Arg="A"  
+         Comm="A must be quaternion algebra over rationals." />
+   <Oper Name="LocalIndicesOfRationalSymbolAlgebra" 
+         Arg="A"  
+         Comm=" " />
+   <Returns> 
+    	A list of local indices for the division algebra part of the simple algebra <K>A</K>.
+   </Returns>
+
+   <Description>
+         The input must be a quaternion algebra over the rationals, output from 
+	 <A>QuaternionAlgebra(Rationals,a,b)</A>.  For the first function, 
+	 <a>a</a> and <a>b</a> can be any pair of integers, and for the 
+	 second rational symbol algebra version, <a>a</a> and <a>b</a> can be 
+	 either -1 or a prime integer. <P/>
+
+	 <"LocalIndicesOfRationalQuaternionAlgebra"> first factors the algebra 
+	 as a tensor product of rational quaternion algebras to which  
+	 <"LocalIndicesOfRationalSymbolAlgebra"> can be applied, then calculates
+	 local indices for all of these using well-known formulas involving the 
+	 Legendre Symbol.  The local indices of the original algebra are then 		 calculated using <"LocalIndicesOfTensorProductOfCyclicAlgebras">. <P/>
+      
+<Example>
+<![CDATA[
+gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
+[ [ "infty", 2 ], [ 2, 2 ] ]
+gap> LocalIndicesOfRationalSymbolAlgebra(3,-1); 
+[ [ 2, 2 ], [ 3, 2 ] ]
+gap> LocalIndicesOfRationalSymbolAlgebra(-3,2);
+[  ]
+gap> LocalIndicesOfRationalSymbolAlgebra(3,7); 
+[ [ 2, 2 ], [ 7, 2 ] ]
+
+gap> A:=QuaternionAlgebra(Rationals,-30,-15);   
+<algebra-with-one of dimension 4 over Rationals>
+gap> LocalIndicesOfRationalQuaternionAlgebra(A);
+[ [ 5, 2 ], [ "infty", 2 ] ]
+
+gap> A:=QuaternionAlgebra(CF(5),3,-2);          
+<algebra-with-one of dimension 4 over CF(5)>
+gap> LocalIndicesOfRationalQuaternionAlgebra(A);
+"fail"
+gap> ConvertQuaternionAlgToCyclicAlg(A);
+[ CF(5), NF(40,[ 1, 11 ]), [ 3 ] ]
+gap> DivAlgPartOfCyclicAlg(last);
+[ 2, CF(5) ]
+
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+
+<ManSection>
+   <Oper Name="ConvertQuaternionAlgToCyclicAlg"
+         Arg="A"  
+         Comm="A must be quaternion algebra over rationals." />
+   
+   <Description>
+         The input must be any quaternion algebra over the rationals, output from 
+	 <A>QuaternionAlgebra(<K>F</K>,<K>a</K>,<K>b</K>)</A>, for an abelian 
+	 number field <K>F</K> and elements <K>a</K>, <K>b</K> in <K>F</K>.  <P/>
+
+	 It returns a cyclic algebra isomorphic to <K>A</K>, presented as the 
+	 list <K>[F,K,[c]]</K> representing the cyclic algebra <K>(K/F,c)</K>.
+	 The center of the algebra is <K>F</K>, its dimension over <K>F</K> is 
+	 <K>[K:F]^2</K>, and <K>c</K> is an element of <K>F</K> representative 
+	 of the factor set for the cyclic algebra.  <P/>
+
+	 This function can be used to convert <K>A</K> into an algebra whose 
+ 	 Schur index can be calculated using the
+	 <"CrossedProductWithDivisionAlgebraPart"> function. 
+	 <P/>
+
+<Example>
+<![CDATA[
+gap> A:=QuaternionAlgebra(CF(5),-3,-1);          
+<algebra-with-one of dimension 4 over CF(5)>
+gap> ConvertQuaternionAlgToCyclicAlg(A);
+[ CF(5), CF(15), [ -3 ] ]
+gap> ConvertCyclicAlgToCyclicCyclotomicAlg(last);
+[ 1, CF(5), 30, [ 2, 11, 15 ] ]
+gap> CrossedProductWithDivisionAlgebraPart(last);
+[ 2, CF(5) ]
+
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="IsRationalQuaternionAlgebraADivisionRing"
+         Arg="A"  
+         Comm="A must be quaternion algebra over rationals." />
+   
+   <Description>
+         The input must be a quaternion algebra over the rationals, output from 
+	 <A>QuaternionAlgebra(Rationals,a,b)</A>. <K>a</K> and <K>b</K> must be rational integers. <P/>
+
+	 It returns <K>true</K> the rational Schur index of the algebra is 2, 
+	 and <K>false</K> if the rational Schur index is 1.  This function 
+	 should be preferred over <"IsDivisionRing"> when dealing with rational 
+	 quaternion algebras.  <P/>
+
+
+<Example>
+<![CDATA[
+gap> A:=QuaternionAlgebra(Rationals,-30,-15);           
+<algebra-with-one of dimension 4 over Rationals>
+gap> IsRationalQuaternionAlgebraADivisionRing(A);
+true
+gap> LocalIndicesOfRationalQuaternionAlgebra(A);
+[ [ 5, 2 ], [ "infty", 2 ] ]
+
+gap> A:=QuaternionAlgebra(Rationals,3,-2);       
+<algebra-with-one of dimension 4 over Rationals>
+gap> IsRationalQuaternionAlgebraADivisionRing(A);
+false
+gap> LocalIndicesOfRationalQuaternionAlgebra(A);
+[  ]
+
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+<!-- *******Functions for noncyclic Cyclotomic Algebras -->
+
+<Section Label="DecomposingYAlgs">
+<Heading>Tensor Decomposition of Noncylic Cyclotomic Algebras</Heading>
+
+<ManSection>
+   <Oper Name="DecomposeYAlgebra"
+         Arg="A"  
+         Comm="A must be list of the form [r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]." />
+   <Description>
+         The input must be a noncyclic cyclotomic algebra of Y-type.  These are 
+	 represented in wedderga as lists of the form 
+	 <K>[r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]</K>.
+
+	 For these algebras, the extension <K>CF(n)/F</K> is the tensor product
+	 of two disjoint extensions <K>K1</K> and <K>K2</K> of <K>F</K>, and the 
+	 program adjusts one of the factor sets (corresponding to <K>l1</K> or 
+	 <K>l2</K>) so that <K>d</K> becomes 0. After this adjustment, the  		 algebra is then the tensor product of cyclic algebras of the form 
+	 <K>[F,K1,[c1]]</K> and <K>[F,K2,[c2]]</K> provided <K>c1</K> and 
+	 <K>c2</K> lie in <K>F</K>.  If the latter condition does not occur, 
+	 the label <K>"fails"</K> appears in the output.  (This does not occur 
+	 for Y-algebras occurring as simple components of group algebras for 
+	 groups of order up to 200. 
+ 
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(192,49);
+<pc group of size 192 with 7 generators>
+gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 1, GaussianRationals ], [ 1, GaussianRationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 2 ] ], 
+  [ 2, CF(3) ], [ 1, Rationals, 6, [ 2, 5, 0 ] ], 
+  [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ]
+    , [ 1, GaussianRationals, 12, [ 2, 5, 0 ] ], 
+  [ 1, NF(12,[ 1, 11 ]), 12, [ 2, 11, 6 ] ], 
+  [ 1, NF(16,[ 1, 7 ]), 16, [ 2, 7, 0 ] ], 
+  [ 1, NF(16,[ 1, 7 ]), 16, [ 2, 7, 8 ] ], 
+  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ], 
+  [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 6 ] ], [ [ 3 ] ] ], 
+  [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 3 ] ], [ [ 9 ] ] ], 
+  [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 0 ], [ 2, 17, 21 ] ], [ [ 15 ] ] ] ]
+gap> DecomposeYAlgebra(W[20]);                              
+[ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], 
+  [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ]
+gap> -2-Sqrt(2);
+-2-E(8)+E(8)^3
+gap> last in NF(8,[1,7]);
+true
+
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+</Section>
+
+</Chapter>
