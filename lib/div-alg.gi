@@ -739,7 +739,7 @@ m1:=Lcm(m1,A[2][4][p][2]);
 od;
 for p in [1..Length(B[2][4])] do 
 AddSet(S,B[2][4][p][1]);
-m2:=Lcm(m2,A[2][4][p][2]);
+m2:=Lcm(m2,B[2][4][p][2]);
 od; 
 for i in [1..Size(S)] do 
 L[i]:=[];
@@ -853,19 +853,70 @@ end;
 ################################
 
 LocalIndexAtOddP:=function(A,q)
-local m,n,b,k,f,g,e,e1,k1,c,F,K,m1,n1;
+local m,n,a,b,c,n1,n2,g,U,i,U1,u,h,e,f,f1,k;
 
 m:=1; 
-b:=A[4][3];
-if b>0 then 
+a:=A[4][1];
+b:=A[4][2];
+c:=A[4][3];
 n:=Lcm(Conductor(A[2]),A[3]);
-c:=Trace(CF(n),A[2],E(n));
-F:=FieldByGenerators([c,E(q-1)]);
-n1:=Conductor([E(n),E(q-1)]);
-K:=CF(n1);
-  if A[3]/q in PositiveIntegers then 
-  e1:=OrderMod(A[4][2],q);
-   if e1>1 then 
+n1:=PDashPartOfN(n,q);
+####################################
+# Cyclotomic reciprocity calculation:
+U:=[1];
+i:=1;
+while not((q^i mod n1) in U) do 
+Add(U,2^i mod n1);
+i:=i+1;
+od;
+U1:=[];
+n2:=PDashPartOfN(A[3],q);
+for u in U do 
+Add(U1,u mod n2);
+od;
+g:=1; 
+while not((b^g mod n2) in U1) do 
+g:=g+1;
+od; 
+h:=OrderMod(b^g,n2);
+e:=OrderMod(b^g,A[3])/h;
+#####################################
+# Now g, h, and e1 are the splitting, 
+# residue degree and ramification of 
+# Q(E(n))/F at q.
+#####################################
+if e>1 and c>0 and A[3]/q in PositiveIntegers then 
+#####################################
+# Compute residue degree f of CF(n) at q
+f:=1; 
+while not((q^f-1)/n1 in PositiveIntegers) do 
+f:=f+1;
+od;
+#########################
+# Now F_q contains E(q^(f/h)-1).  We find the least 
+# power m of E(A[3])^c that lies in the group generated 
+# by E(q^(f/h)-1)^e.
+#########################
+f1:=f/h;
+k:=(q^f1-1)/e;
+while not(k/(Order(E(A[3])^(c*m))) in PositiveIntegers) do 
+  m:=m+1;
+od; 
+fi;
+
+return m;
+end;
+
+##################################
+# First attempt at program for local indices at odd q:
+#
+#c:=Trace(CF(n),A[2],E(n));
+#F:=FieldByGenerators([c,E(q-1)]);
+#n1:=Conductor([E(n),E(q-1)]);
+#K:=CF(n1);
+#  if A[3]/q in PositiveIntegers then 
+#  e1:=OrderMod(A[4][2],q);
+#   if e1>1 then 
 ##################
 #  Replaced cyclotomic reciprocity functions
 #    k:=A[3]/Gcd(A[3],b);
@@ -873,23 +924,22 @@ K:=CF(n1);
 #    g:=SplittingDegreeAtQ(n,q);
 #    e:=Phi(n)/f*g;
 #####################
-m1:=PDashPartOfN(n,q); 
-f:=1; 
-while not((q^f-1)/m1 in Integers) do 
-f:=f+1;
-od;
+# m1:=PDashPartOfN(n,q); 
+# f:=1; 
+#while not((q^f-1)/m1 in Integers) do 
+#f:=f+1;
+#od;
 ####################
-    k:=Trace(K,F,1);
-    k1:=(q^f-1)/k;
-    while not(k1/(Order(E(A[3])^(b*m))) in PositiveIntegers) do 
-      m:=m+1;
-    od; 
-    fi; 
-  fi;
-fi;
-
-return m;
-end;
+#    k:=Trace(K,F,1);
+#    k1:=(q^f-1)/k;
+#    while not(k1/(Order(E(A[3])^(b*m))) in PositiveIntegers) do 
+#      m:=m+1;
+#    od; 
+#    fi; 
+#  fi;
+# fi;
+#return m;
+#end;
 ###############################
 # For the computation of the index of a cyclic 
 # cyclotomic algebra at infinity, we cannot 
@@ -903,12 +953,14 @@ LocalIndexAtInfty:=function(A)
 local m,n,s,n1;
 
 m:=1;
-n:=Lcm(Conductor(A[2]),A[3]);
+n:=A[3];
+#n:=Lcm(Conductor(A[2]),A[3]);
 if n>2 then 
   s:=ANFAutomorphism(A[2],-1);  
   if s=ANFAutomorphism(A[2],1) then 
-    n1:=PPartOfN(A[3],2);
-    if E(n1)^A[4][3]=-1 then 
+#    n1:=PPartOfN(A[3],2);
+#    if E(n1)^A[4][3]=-1 then 
+     if E(n)^A[4][3]=-1 then 
       m:=2;
     fi;
   fi;
@@ -922,30 +974,66 @@ end;
 # over the 2-adics
 ###############################
 LocalIndexAtTwo:=function(A)
-local n,m,n1,n2,b,f; 
+local n,m,b,c,n1,f,h,g,n2,n3,e,e1,i,u,U,U1; 
 
-n:=Lcm(Conductor(A[2]),A[3]);
 m:=1;
+if A[3]/4 in PositiveIntegers then 
+n:=Lcm(Conductor(A[2]),A[3]);
+b:=A[4][2];
+c:=A[4][3];
 n1:=PDashPartOfN(n,2); 
-#f:=ResidueDegreeAtQ(n1,2);
-f:=1; 
-while not((2^f-1)/n1 in Integers) do 
-f:=f+1;
+f:=OrderMod(2,n1);
+n2:=PPartOfN(n,2);
+e:=Phi(n2);
+
+U:=[1];
+i:=1;
+while not((2^i mod n1) in U) do 
+Add(U,2^i mod n1);
+i:=i+1;
+od;
+U1:=[];
+n3:=PDashPartOfN(A[3],2);
+for u in U do 
+Add(U1,u mod n3);
 od;
 
-if IsOddInt(f) then 
-n2:=PPartOfN(A[3],2);
-b:=PPartOfN(A[4][1],2);
-if Phi(n2)/b=1 then
-if E(n2)^A[4][3]=-1 then 
-m:=2;
-fi;
-fi;
+g:=1; 
+while not((b^g mod n3) in U1) do 
+g:=g+1;
+od; 
+h:=OrderMod(b^g,n3);
+e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
+ if e1>1 and IsOddInt(e*f/e1*h) then 
+ n2:=PPartOfN(n,2);
+  if E(n2)^(b^g)=E(n2)^(-1) and E(A[3])^c=-1 then 
+   m:=2;
+  fi;
+ fi;
 fi;
 
 return m;
 end;
 
+###################################
+# First attempt at local index at 2 function: 
+#
+##f:=ResidueDegreeAtQ(n1,2);
+#f:=1; 
+#while not((2^f-1)/n1 in Integers) do 
+#f:=f+1;
+#od;
+#if IsOddInt(f) then 
+#n2:=PPartOfN(A[3],2);
+#b:=PPartOfN(A[4][1],2);
+#if Phi(n2)/b=1 then
+#if E(n2)^A[4][3]=-1 then 
+#m:=2;
+#fi;
+#fi;
+#fi;
+#return m;
+#end;
 ##############################
 # Given a group G and a simple component A whose 
 # WedderburnDecompositionInfo in wedderga has length 4,
