@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<entry id="B"><article>
+  <author>
+    <name><first>Mark</first><last>Benard</last></name>
+  </author>  
+  <title>Schur indices and cyclic defect groups</title>
+  <journal>Ann. of Math. (2) </journal>
+  <year>1976</year>
+  <volume>103</volume>
+  <number>2</number>
+  <pages>283&ndash;304</pages>
+  <issn>0003-486X</issn>
+  <mrnumber>MR0412265 (54 #391)</mrnumber>
+  <mrclass>20C20</mrclass>
+  <mrreviewer>W. Feit</mrreviewer>
+  <other type="fjournal">Annals of Mathematics. Second series.</other>
+</article></entry>
+
+<entry id="BS"><article>
+  <author>
+    <name><first>Mark</first><last>Benard</last></name>
+    <name><first>Murray</first><last>Schacher</last></name>
+  </author>  
+  <title>The Schur subgroup. II.</title>
+  <journal>J. Algebra</journal>
+  <year>1972</year>
+  <volume>22</volume>
+  <number>1</number>
+  <pages>378&ndash;385</pages>
+  <issn>0021-8693</issn>
+  <mrnumber>MR0302747 (46 #1890)</mrnumber>
+  <mrclass>20C05 (16A26)</mrclass>
+  <mrreviewer>T.V. Fossum</mrreviewer>
+  <other type="fjournal">Journal of Algebra</other>
+</article></entry>
+
 <entry id="BR"><article>
   <author>
     <name><first>Osnel</first><last>Broche</last></name>
@@ -18,6 +53,39 @@
   <other type="fjournal">Finite Fields and their Applications</other>
 </article></entry>
 
+<entry id="J"><article>
+  <author>
+    <name><first>Gerald</first><last>Janusz</last></name>
+  </author>  
+  <title>Generators for the Schur group of local and global number fields</title>
+  <journal>Pacific J. Math.</journal>
+  <year>1975</year>
+  <volume>56</volume>
+  <number>2</number>
+  <pages>525&ndash;546</pages>
+  <issn>0030-8730</issn>
+  <mrnumber>MR0389849 (52 #10679)</mrnumber>
+  <mrclass>12A60 (12A65 20C05)</mrclass>
+  <mrreviewer>M. Benard</mrreviewer>
+  <other type="fjournal">Pacific Journal of Mathematics</other>
+</article></entry>
+
+<entry id="N"><book>
+  <author>
+    <name><first>Gabriel</first><last>Navarro</last></name>
+  </author>  
+  <title>Characters and Blocks of Finite Groups</title>
+  <publisher>London Mathematical Society</publisher>
+  <year>1998</year>
+  <volume>250</volume>
+  <series>Lecture Note Series</series>
+  <address>Cambridge, UK</address>
+  <isbn>0-521-59513-4</isbn>
+  <mrnumber>MR1632299 (2000a:20018)</mrnumber>
+  <mrclass>20C20 (20-02 20C15)</mrclass>
+  <mrreviewer>Wolfgang Willems</mrreviewer>
+  <other type="pages">x+287</other>
+</book></entry>
 
 <entry id="OR"><article>
   <author>
@@ -98,6 +166,23 @@
   <other type="pages">xii+468</other>
 </book></entry>
 
+
+<entry id="Pi"><book>
+  <author>
+    <name><first>Richard S.</first><last>Pierce</last></name>
+  </author>  
+  <title>Associative Algebras</title>
+  <publisher>Springer Verlag</publisher>
+  <year>1982</year>
+  <volume>88</volume>
+  <series>Graduate Texts in Mathematics</series>
+  <address>New York - Berlin</address>
+  <isbn>0-387-90693-2</isbn>
+  <mrnumber>MR0674652 (84c:16001)</mrnumber>
+  <mrclass>16-01 (12-01)</mrclass>
+  <mrreviewer>S.S. Page</mrreviewer>
+  <other type="pages">xii+436</other>
+</book></entry>
  
 <entry id="R"><book>
   <author>

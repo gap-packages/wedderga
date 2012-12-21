@@ -257,7 +257,7 @@ gap> DivAlgPartOfCyclicCyclotomicAlgebra(A);
 
 	 These functions determine the local index of a cyclic cyclotomic algebra at the rational primes <K>"infty"</K>, <K>2</K>, or odd primes <K>p</K>, respectively.  As there is no way to determine the relevant character of the group determining the simple component represented by the cyclic crossed product <K>A</K>, the first two functions check for a relationship of <K>A</K> to a nonsplit real or 2-adic quaternion algebra. <Ref Attr="LocalIndexAtOddP"/> calculates the local index at <K>p</K> by counting the number of roots of unity coprime to <K>p</K> present in the p-adic completion.  All three functions are called by <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>. <P/>
 
-	 WARNING: The validity of all three of the above methods is yet to be established in general.  To date, they have been checked for simple components that occur among groups of order up to 200.  <P/>
+	 WARNING (from A.H.): The correctness of all three of the above functions is the subject of an article currently in preparation (as of January 2013). For more on the theoretical approach, see the Theory for Div-alg section.<P/>
 
    </Description>
 </ManSection>
@@ -311,7 +311,7 @@ gap> DivAlgPartOfCyclicAlg(A);
          Arg="A B"  
          Comm="Input must be a pair of quadratic algebras represented by lists of the form [F,K,[c]] with K/F a quadratic field extension." />
    <Returns>
-   	The first function returns a simple algebra <K>[r,D]</K> whose division algebra part is identified in terms of local indices.  The second function returns a list of local indices in cases when the nontrivial local indices are all 2. 
+   	The first function returns a simple algebra <K>[r,D]</K> whose division algebra 	part is identified in terms of local indices.  The second function returns a list 	  of local indices in cases when the nontrivial local indices are all 2. 
    </Returns>
    <Description>
          The input of <"DivAlgPartOfTensorProductOfCyclicAlgs"> should be a
@@ -324,7 +324,8 @@ gap> DivAlgPartOfCyclicAlg(A);
 
 	 <"DivAlgPartofTensorProductOfCyclicAlgs"> calculates the local indices 
 	 of the tensor product to the extent possible.  If the local indices at  
-	 the same prime are not equal, the result is their Lcm. If they are both 	  2, the local index of the tensor product is 1.  If they are both equal 
+	 the same prime are not equal, the result is their Lcm. If they are both 
+         2, the local index of the tensor product is 1.  If they are both equal 
 	 and larger than 2, the local index of the tensor product is a divisor 
 	 which requires knowledge of the local invariants to determine.  The 
 	 latter situation does not occur for groups of order less than 7*81.  
@@ -411,7 +412,8 @@ gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
          Arg="A"  
          Comm=" " />
    <Returns> 
-    	A list of local indices for the division algebra part of the simple algebra <K>A</K>.
+    	A list of local indices for the division algebra part of the simple algebra 
+<K>A</K>.
    </Returns>
 
    <Description>
