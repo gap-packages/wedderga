@@ -10,7 +10,8 @@ testfiles := [
 "wedderga03.tst",
 "wedderga04.tst",
 "wedderga05.tst",
-"wedderga06.tst"
+"wedderga06.tst",
+"wedderga07.tst"
 ];
 
 testresult:=true;

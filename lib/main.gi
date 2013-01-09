@@ -5,6 +5,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
+#W																													Inneke Van Gelder
 ##
 #############################################################################
 
@@ -2135,6 +2136,449 @@ fi;
 
 return StrongShodaPairsAndIdempotents( FG ).PrimitiveCentralIdempotents; 
 end);
+
+
+#############################################################################
+##                                                                         ##
+##            COMPLETE SET OF OTHOGONAL PRIMITIVE IDEMPOTENTS              ##
+##                                                                         ##
+#############################################################################
+
+
+#############################################################################
+##
+#M PrimitiveIdempotentsNilpotent( FG,H,K,C,arg )
+##
+## 
+## The function PrimitiveIdempotentsNilpotent computes a complete set of 
+## orthogonal primitive idempotents of FGe where F is a finite field, G is 
+## a finite nilpotent group such that FG is semisimple and e=e_C(G,H,K) 
+## is a primitive central idempotent of FG (i.e. (H,K) is a strong 
+## Shoda pair of G and and C is the |F|-cyclotomic class modulo n=[H:K] 
+## (w.r.t. the generator gq of H/K)
+## arg = [epi,gq]
+##
+InstallMethod( PrimitiveIdempotentsNilpotent,
+    "for pairs of subgroups, one cyclotomic class, mapping and group element", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList], 
+    0,
+function(FG,H,K,C,arg)
+
+local G,				# underlying group of FG 
+		F,					# underlying field of FG  
+		N,					# Normalizer of K in G
+		epi,				# N -->N/K
+		gq,					# generator of H/K
+		QNK,				# N/K
+		C1,					# Cyclotomic class of q module n in H/K 
+		QEK,				# E/K
+		St,					# Stabilizer of C in H/K
+		E_,					# Set of representatives of St by epi
+		T_E,				# Right transversal of E_ in G
+		e,					# e( G, H, K )
+		eps,				# epsilon( G, H, K ) 
+ 		a,					# representative of generator of H/K
+		E_even,			# 2-part of E
+		E_odd,			# 2'-part of E
+		H_even,			# 2-part of H
+		H_odd,			# 2'-part of H
+		QEK_even,		# E_even/K 
+		QEK_odd,		# E_odd/K
+		QHK_even,		# H_even/K
+		QHK_odd,		# H_odd/K
+		a_even,			# representative of generator of H_even/K
+		a_odd,			# representative of generator of H_odd/K
+		b_odd,			# representative of generator of cyclic complement of <a_odd>/K in E_odd/K
+		T_odd,			# conjugating set which yields the result	
+		T_even,			# conjugating set which yields the result	
+		beta,				# element in FG which yields the result	
+		Compl,			# ComplementClasses of H_even/K in E_even/K
+		b_even,			# representative of a generator of order 2^k of E_even/K
+		c_even,			# representative of a generator of order 2 of E_even/K
+		n,					# Logarithm in base 2 of order of a_even mod K
+		k,					# Logarithm in base 2 of order of b_even mod K
+		QEH_even,		# (E_even/K) / (H_even/K)
+		epi2,				# E_even/K --> (E_even/K) / (H_even/K)
+		I,					# generators of (E_even/K) / (H_even/K) if metacyclic
+		M_even,			# M_even/K is complement of H_even/K in E_even/K
+		counter,		# counter
+		counter1,		# counter
+		counter2,		# counter
+		i,					# parameter in presentation of E_even/K
+		s,					# parameter in presentation of E_even/K
+		r,					# parameter in presentation of E_even/K
+		sum,				# auxiliary variable
+		S,					# list [x,y] such that x^2 + y^2 = -1, y<>0
+		x,					# x in S
+		y,					# y in S
+		L;					# output
+
+### test requirements
+
+G := UnderlyingMagma(FG);
+if Intersection(PrimeDivisors(C[1]),PrimeDivisors(Index(H,K))) <> []
+	then Error("Wedderga: The input cyclotomic class C does not contain faithfull characters","\n");
+fi;
+if not IsNilpotent(G) 
+	then Error("Wedderga: The input group G needs to be nilpotent","\n");
+fi;
+if not IsSemisimpleFiniteGroupAlgebra(FG) 
+	then Error("Wedderga: The input needs to be finite semisimple group algebra","\n"); 
+fi;
+if not IsStrongShodaPair(G,H,K) 
+	then Error("Wedderga: The input (H,K) has to be a SSP of G","\n"); 
+fi;
+
+### setup all needed objects
+
+F := LeftActingDomain(FG);
+N := Normalizer( G, K );
+epi := arg[1];
+gq := arg[2];
+QNK := Image( epi, N );
+C1 := Set( List( C, ii -> gq^ii ) );
+St := Stabilizer( QNK, C1, OnSets );
+E_ := PreImage( epi, St );
+QEK := Image( epi, E_ );
+T_E := RightTransversal( G, E_);
+
+eps := IdempotentBySubgroups( FG, H, K, C, [epi,gq] );
+e := Sum( List( T_E, g -> eps^g ) );
+
+a := gq;
+E_even := SylowSubgroup(E_,2);
+E_odd := [];
+for counter in Set(Filtered(Factors(Size(E_)),IsOddInt)) do
+	E_odd:=Concatenation(E_odd,AsList(SylowSubgroup(E_,counter)));
+od;
+E_odd:=Subgroup(G,E_odd);
+H_even := SylowSubgroup(H,2);
+H_odd := [];
+for counter in Set(Filtered(Factors(Size(H)),IsOddInt)) do
+	H_odd := Concatenation(H_odd,AsList(SylowSubgroup(H,counter)));
+od;
+H_odd := Subgroup(G,H_odd);
+
+QEK_even := Image(epi,E_even);
+QEK_odd := Image(epi,E_odd);
+QHK_even := Image(epi,H_even);
+QHK_odd := Image(epi,H_odd);
+
+if IsEmpty(PreImage(epi,MinimalGeneratingSet(QHK_even))) then
+	a_even := Random(G)^0;
+else 
+	a_even := PreImage(epi,MinimalGeneratingSet(QHK_even))[1];
+fi;
+if IsEmpty(PreImage(epi,MinimalGeneratingSet(QHK_odd))) then
+	a_odd := Random(G)^0;
+else 
+	a_odd := PreImage(epi,MinimalGeneratingSet(QHK_odd))[1];
+fi;
+if a_odd = Random(G)^0 then
+	if IsEmpty(PreImage(epi,MinimalGeneratingSet(QEK_odd))) then
+		b_odd := Random(G)^0;
+	else
+		b_odd := PreImage(epi,MinimalGeneratingSet(QEK_odd))[1];
+	fi;
+else 
+	if Index(QEK_odd,Subgroup(QNK,[Image(epi,a_odd)]))=1 then
+		b_odd := Random(G)^0;
+	else
+		b_odd := PreImage(epi,MinimalGeneratingSet(ComplementClasses(
+													QEK_odd,Subgroup(QNK,[Image(epi,a_odd)]))))[1];
+	fi;
+fi;
+
+T_odd := [];
+for counter in [0..Index(E_odd,H_odd)-1] do
+	Add(T_odd,a_odd^counter);
+od;
+
+Compl := ComplementClassesRepresentatives(QEK_even,QHK_even);
+if IsEmpty(Compl) then
+	n := Log(Order(Image(epi,a_even)),2);
+	k := Log(Size(QEK_even)/(2^n),2)-1;
+
+ epi2 := NaturalHomomorphismByNormalSubgroup(QEK_even, 
+  											Subgroup(QEK_even,[Image(epi,a_even)]) );
+	QEH_even := Image(epi2,QEK_even);
+	
+	# we search for generators b_even and c_even of QEH_even
+	if IsCyclic(QEH_even) then
+		b_even := a_even^0;
+		c_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,MinimalGeneratingSet(QEH_even)[1]));				
+		counter := 1;
+		while Image(epi,c_even)^2 <> Image(epi,a_even)^(2^(n-1)*counter) do
+			counter := counter+2;
+		od;
+		a_even := a_even^counter;
+	else # we know that it is now metacyclic
+		I := IndependentGeneratorsOfAbelianGroup(QEH_even);
+		if Order(I[1]) = 2
+			then 
+				c_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[1]));
+				b_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[2]));
+		else
+			c_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[2]));
+			b_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[1]));
+		fi;
+
+		# replace b_even and c_even if needed in order to obtain the desired presentation
+
+		s := 0;
+		while Image(epi,b_even)^(2^k) <> Image(epi,a_even)^(s) do
+			s := s+1;
+		od;
+		i := 0;
+		while Image(epi,c_even)*Image(epi,b_even) <> Image(epi,a_even)^(i)*
+												Image(epi,b_even)*Image(epi,c_even) do
+			i := i+1;
+		od;	
+		r := 0;
+		while Image(epi,b_even)^(-1)*Image(epi,a_even)*Image(epi,b_even) <> 
+												Image(epi,a_even)^(r) do
+			r := r+1;
+		od;		
+		
+		sum := 0;
+		for counter in [0 .. 2^k-1] do
+			sum := sum + r^counter;
+		od;
+		counter1 := 0;
+		while (counter1 * sum + s) mod 2^n = 0 do
+			counter1 := counter1+1;
+		od;		
+		b_even := PreImagesRepresentative(epi,Image(epi,b_even)*Image(epi,a_even)^counter1);
+
+		counter2 := 0;
+		while counter2*(r-1)+i*r mod 2^n = 0 do 
+			counter2 := counter2+1;
+		od;	
+		c_even := PreImagesRepresentative(epi,Image(epi,a_even)^counter2*Image(epi,c_even));
+		
+	fi;
+
+	S := SolveEquation(F);
+	x := S[1];
+	y := S[2];
+	beta := AverageSum(FG,[b_even])*1/2*ElementOfMagmaRing(FamilyObj(Zero(FG)), 
+												Zero(F), 
+												[One(F),x,y], 
+												[a_even^0,a_even^(2^(n-2)),a_even^(2^(n-2))*c_even]); 
+	T_even := [];
+	for i in [0..2^k-1] do
+		Add(T_even,a_even^i);
+		Add(T_even,c_even*a_even^i);
+	od;	
+else 
+	if Index(QEK_even,QHK_even) = 1 then
+		M_even := Group(Random(G)^0);
+	else
+		M_even := PreImage(epi,Compl[1]);
+	fi;
+	beta := AverageSum(FG,M_even);
+
+	if IsCyclic(Image(epi,M_even)) then
+		n := Log(Order(Image(epi,a_even)),2);
+		k := Log(Size(Image(epi,M_even)),2);
+	else
+		n := Log(Order(Image(epi,a_even)),2);
+		k := Log(Size(Image(epi,M_even)),2)-1;
+	fi;
+
+	T_even := [];
+	if (n<=1 or IsCentral(QEK_even,Group(Image(epi,a_even^(2^(n-2)))))) and 
+								IsCyclic(Image(epi,M_even))
+		then
+			for i in [0..2^k-1] do
+				Add(T_even,a_even^i);
+			od;
+	else 	
+		for i in [0..Index(E_even,H_even)/2-1] do
+			Add(T_even,a_even^i);
+			Add(T_even,a_even^(2^(n-2)+i));
+		od;
+	fi;
+fi;
+
+### Construct the idempotents 
+
+L := List( ProductLists([T_odd,T_even,T_E]) , i -> (AverageSum(FG,[b_odd])*beta*eps)^i);
+
+return L; 
+end);
+
+
+
+#############################################################################
+##
+#M PrimitiveIdempotentsTrivialTwisting( FG,H,K,C,arg )
+##
+## 
+## The function PrimitiveIdempotentsTrivialTwisting computes a complete set of 
+## orthogonal primitive idempotents of FGe where F is a finite field, G is a 
+## finite strongly monomial group such that the twisting of the simple component 
+## FGe is trivial, FG is semisimple and e=e_C(G,H,K) is a primitive central 
+## idempotent of FG (i.e. (H,K) is a strong Shoda pair of G and and C is the 
+## |F|-cyclotomic class modulo n=[H:K] (w.r.t. the generator gq of H/K)
+## arg = [epi,gq]
+##
+InstallMethod( PrimitiveIdempotentsTrivialTwisting,
+    "for pairs of subgroups, one cyclotomic class, mapping and group element", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList], 
+    0,
+function(FG,H,K,C,arg)
+
+local G,					# underlying group of FG
+			F,					# underlying field of FG
+			N,					# Normalizer of K in G
+			epi,				# N -->N/K
+			gq,					# generator of H/K
+			QNK,				# N/K
+			C1,					# Cyclotomic class of q module n in H/K 
+			St,					# Stabilizer of C in H/K
+			E_,					# Set of representatives of St by epi
+			epi2,				# E --> E/H
+			QEH,				# E/H
+			T_2,				# Right transversal of E_ in G
+			T_1,				# Right transversal of H in E_
+			e,					# e( G, H, K )
+			eps,				# epsilon( G, H, K ) 
+			A,					# permutation matrix
+			P,					# some matrix	
+			xi,					# primitive [H:K]-th root of unity in F
+			F_1,				# extension of F with xi
+			F_2,				# subfield of F_1 of degree [E:H] 
+			B,					# normal basis of F_1/F_2
+			FH,					# Group ring FH
+			FHeps,			# simple component FHeps
+			m,					# isomorphism of fields from F_1 to FHeps, sending xi^C[1] to gq*eps
+			twist,			# twisting of crossed product F_1 * E/H
+			act,				# action of crossed product F_1 * E/H
+			D,					# crossed product F_1 * E/H
+			B1,					# F_1-basis of crossed product F_1 * E/H
+			B2,					# F_2-basis of crossed product F_1 * E/H (F_2 is the center of F_1 * E/H)
+			b,					# variable
+			b1,					# variable
+			c,					# variable
+			coef,				# variable
+			B3,					# F_2 basis of matrix algebra (of size [E:H]) over F_2
+			x_e,				# psi^(-1)(PAP^(-1))
+			i,					# counter	
+			j, 					# counter	
+			L;					# output list
+
+G := UnderlyingMagma(FG);
+F := LeftActingDomain(FG);
+
+### test requirements
+
+if Intersection(PrimeDivisors(C[1]),PrimeDivisors(Index(H,K)))<>[]
+	then Error("Wedderga: The input cyclotomic class C does not contain faithfull characters","\n");
+fi;
+if not IsTwistingTrivial(G,H,K) 
+	then Error("Wedderga: The associated twisting is not trivial","\n"); 
+fi;
+if not IsSemisimpleFiniteGroupAlgebra(FG) 
+	then Print("Wedderga: The input needs to be finite semisimple group algebra","\n"); 
+fi;
+if not IsStrongShodaPair(G,H,K) 
+	then Error("Wedderga: (H,K) has to be a SSP of G","\n"); 
+fi;
+if Size(F)^First([1..1000],m->RemInt(Size(F)^m,Index(H,K))=1)>2^16 
+	then Print("Warning: this method might be not applicable since GAP has problems with handeling large finite fields");
+fi;
+
+### setup all needed objects
+
+N := Normalizer( G, K );
+epi := arg[1];
+gq := arg[2];
+QNK := Image( epi, N );
+C1 := Set( List( C, ii -> gq^ii ) );
+St := Stabilizer( QNK, C1, OnSets );
+E_ := PreImage( epi, St );
+epi2 := NaturalHomomorphismByNormalSubgroup(E_,H);
+QEH := Image(epi2,E_);
+T_2 := RightTransversal( G, E_);
+T_1 := RightTransversal( E_, H);
+
+eps := IdempotentBySubgroups( FG, H, K, C, [epi,gq] );
+e := Sum( List( T_2, g -> eps^g ) );
+
+# define field extensions
+xi := PrimRoot(F,Index(H,K));  
+F_1 := GF(F,MinimalPolynomial(F,xi));
+F_2 := Filtered(Subfields(F_1),x->Size(x) = Characteristic(F_1)^(Log(Size(F_1),Characteristic(F_1))/Index(E_,H)))[1]; 
+B := Basis(AsField(F_2,F_1),NormalBase(AsField(F_2,F_1)));
+
+# define FHeps being the image of F_1
+FH := Subalgebra(FG,AsList(Image(Embedding(G,FG),H)));
+FHeps := Subalgebra(FH,Set(Basis(FH),b->b*eps));    
+m := AlgebraHomomorphismByImages(F_1,FHeps,[xi^C[1]],[PreImagesRepresentative(epi,gq)*eps]);
+
+# define the needed matrices A and P
+A := [];
+for i in [1..Index(E_,H)] do
+	Add(A,List([1..Index(E_,H)],i->Zero(F_2)));
+od;
+A[1][Index(E_,H)] := One(F_2);
+for i in [1..Index(E_,H)-1] do
+	A[i+1][i] := One(F_2);
+od;
+
+P := [];
+for i in [1..Index(E_,H)] do
+	Add(P,List([1..Index(E_,H)],i->Zero(F_2)));
+od;
+for i in [1..Index(E_,H)] do
+	P[i][i] := -One(F_2);
+	P[1][i] := One(F_2);
+	P[i][1] := One(F_2);
+od;
+
+# define the crossed product F_1 * E/H
+twist := function(RG,g,h) return One(LeftActingDomain(RG)); end;
+act := function(RG,g) return ReturnGalElement(PreImagesRepresentative(epi2,g),E_,H,K,F_1,xi); end;
+D := CrossedProduct(F_1,QEH,act,twist);
+B1 := Basis(D); # basis over F_1
+B2 := []; # basis over F_2
+for b in B do 
+	for b1 in B1 do
+		c:=CoefficientsAndMagmaElements(b1);
+		Add(B2,ElementOfCrossedProduct(FamilyObj(Zero(D)),Zero(F_2),[b*c[2]],[c[1]]));
+	od;
+od;
+
+# Map the F_2-basis of F_1 * E/H to a F_2-basis of the matrix algebra over F_2
+B3 := List(B2, b-> MakeMatrixWrtBasis(CompositionMapping(
+						LeftMultiplicationBy(CoefficientsAndMagmaElements(b)[2],F_1),
+						ReturnGalElement(PreImagesRepresentative(epi2,CoefficientsAndMagmaElements(b)[1]),E_,H,K,F_1,xi)),B));
+B3 := Basis(MatrixAlgebra(F_2,Index(E_,H)),B3); 
+
+
+### Construct the idempotents 
+
+# The idempotents are conjugates of AverageSum(FG,T_1)*eps by T_2 and powers of x_e,
+# where x_e is the preimage of P*A*P^(-1) under the mapping used in the definition of B3
+# x_e can be constructed as follows: 
+# 1. Compute the coefficients of P*A*P^(-1) in terms of the basis B3
+# 2. The element with exactly these coefficients and corresponding basis elements of B2 is the element of F_1 * E/H mapping to P*A*P^(-1)
+# 3. use the knowledge to write the element of F_1 * E/H as an element in FEeps = FHeps * E/H
+x_e := Zero(FG);
+c := Coefficients(B3,P*A*P^(-1));
+for i in [1..Size(c)] do
+	coef := CoefficientsAndMagmaElements(B2[i]); # we assume that the ordering of B_2 is the same as B_3
+	x_e := x_e + MakeLinearCombination(FG, [PreImagesRepresentative(epi2,coef[1])], [Image(m,coef[2])*Image(m,c[i])]); 
+od;
+
+L := Flat(List( T_2, i -> List(List([0..Index(E_,H)-1],i->x_e^i*(AverageSum(FG,T_1)*eps)*x_e^(Index(E_,H)-i)),j->j^i)));
+
+return L; 
+end);
+
 
 
 #############################################################################
