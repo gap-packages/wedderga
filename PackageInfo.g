@@ -62,13 +62,15 @@ Persons :=
        FirstNames    := "Gabriela",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "golteanu@um.es, olteanu@math.ubbcluj.ro",
+       Email         := "gabriela.olteanu@econ.ubbcluj.ro",
+       WWWHome       := "http://math.ubbcluj.ro/~olteanu",
        PostalAddress := Concatenation( [
-                        "Department of Mathematics and Computer Science\n",
-                        "North University of Baia Mare\n",
-                        "Victoriei 76, 430122 Baia Mare, Romania" ] ),
-       Place         := "Baia Mare",
-       Institution   := "North University of Baia Mare"
+                        "Department of Statistics-Forecasts-Mathematics\n",
+                        "Faculty of Economics and Business Administration\n",
+                        "Babes-Bolyai University\n",
+                        "Str. T. Mihali 58-60, 400591 Cluj-Napoca, Romania" ] ),
+       Place         := "Cluj-Napoca",
+       Institution   := "Babes-Bolyai University"
      ),
      rec(
        LastName      := "Olivieri",
