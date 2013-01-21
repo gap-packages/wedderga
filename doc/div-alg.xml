@@ -54,7 +54,6 @@ gap> CrossedProductWithDivisionAlgebraPart(W[9]);
 [ 2, [ "DivAlg", NF(12,[ 1, 11 ]), "LocInds=", [ [ "infty", 2 ] ] ] ]
 gap> CrossedProductWithDivisionAlgebraPart(W[10]);
 [ 3, [ "DivAlg", NF(8,[ 1, 7 ]), "LocInds=", [ [ "infty", 2 ] ] ] ]
-
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
 gap> A:=GroupRing(Rationals,G);
@@ -116,9 +115,9 @@ gap> A:=QuaternionAlgebra(Rationals,-3,2);
 <algebra-with-one of dimension 4 over Rationals>
 gap> RationalSchurIndex(A);
 2
-gap> B:=ConvertQuaternionAlgToQuadraticAlg(A);        
+gap> B:=ConvertQuaternionAlgToQuadraticAlg(A);
 [ Rationals, CF(3), [ 2 ] ]
-gap> RationalSchurIndex(B);                           
+gap> RationalSchurIndex(B);
 2
 ]]>
 </Example>
@@ -192,7 +191,6 @@ gap> Size(Irr(G));
 20
 gap> DivisionAlgebraPartByBrauerCharacters(Rationals,G,20);
 [ 2, [ "DivAlg", GaussianRationals, "LocInds=", [ [ 5, 2 ] ] ], [  ] ]
-
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
 gap> DivisionAlgebraPartByBrauerCharacters(Rationals,G,11);
@@ -200,8 +198,12 @@ gap> DivisionAlgebraPartByBrauerCharacters(Rationals,G,11);
   [ [ 2, "maybe" ], [ 3, "fail" ] ] ]
 gap> SimpleAlgebraByCharacterInfo(GroupRing(Rationals,G),Irr(G)[11]);
 [ 1, Rationals, 6, [ 2, 5, 3 ] ]
-# This simple algebra does have local index 2 at the primes "infty" and 3.
-# Below we see the nature of the possible defect groups.  
+]]>
+</Example>
+This simple algebra does have local index 2 at the primes "infty" and 3.
+Below we see the nature of the possible defect groups.  
+<Example>
+<![CDATA[
 gap> T:=CharacterTable(G);
 CharacterTable( <pc group of size 72 with 5 generators> )
 gap> S:=T mod 3;
@@ -280,7 +282,7 @@ gap> A:=[1,Rationals,6,[2,5,3]];
 [ 1, Rationals, 6, [ 2, 5, 3 ] ]
 gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
 [ [ 3, 2 ], [ "infty", 2 ] ]
-G:=SmallGroup(63,1);                                            
+gap> G:=SmallGroup(63,1);                                            
 <pc group of size 63 with 3 generators>
 gap> WedderburnDecompositionInfo(GroupRing(Rationals,G));
 [ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], 
@@ -559,12 +561,10 @@ gap> LocalIndicesOfRationalSymbolAlgebra(-3,2);
 [  ]
 gap> LocalIndicesOfRationalSymbolAlgebra(3,7); 
 [ [ 2, 2 ], [ 7, 2 ] ]
-
 gap> A:=QuaternionAlgebra(Rationals,-30,-15);   
 <algebra-with-one of dimension 4 over Rationals>
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [ [ 5, 2 ], [ "infty", 2 ] ]
-
 gap> A:=QuaternionAlgebra(CF(5),3,-2);          
 <algebra-with-one of dimension 4 over CF(5)>
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
@@ -573,7 +573,6 @@ gap> ConvertQuaternionAlgToCyclicAlg(A);
 [ CF(5), NF(40,[ 1, 11 ]), [ 3 ] ]
 gap> DivAlgPartOfCyclicAlg(last);
 [ 2, CF(5) ]
-
 ]]>
 </Example>
 
@@ -612,7 +611,6 @@ gap> ConvertCyclicAlgToCyclicCyclotomicAlg(last);
 [ 1, CF(5), 30, [ 2, 11, 15 ] ]
 gap> CrossedProductWithDivisionAlgebraPart(last);
 [ 2, CF(5) ]
-
 ]]>
 </Example>
 
@@ -649,7 +647,6 @@ gap> IsRationalQuaternionAlgebraADivisionRing(A);
 false
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [  ]
-
 ]]>
 </Example>
 
