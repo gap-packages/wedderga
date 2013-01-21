@@ -757,24 +757,145 @@ characters.
 
 (By Allen Herman, December 2012.) <P/>
 
-The division algebra parts of simple algebras in the Wedderburn Decomposition of the group algebra of a finite group over an abelian number field <M>F</M> correspond to elements of the Schur Subgroup <M>S(F)</M> of the Brauer group of <M>F</M>.  Like all classes in the Brauer group of an algebraic number field <M>F</M>, the division algebra part of a representative of a given Brauer class is determined up to <M>F</M>-algebra isomorphism by its list of local Hasse invariants at all primes (i.e. places) of <M>F</M>.  The local invariant at a prime <M>P</M> of <M>F</M> is a lowest terms fraction <M>r/m_P</M> whose denominator is the local Schur index <M>m_P</M> of the simple algebra at the prime <M>q</M> (see <Cite Key="R" />). For division algebras whose Brauer class lies in the Schur Subgroup of an abelian number field <M>F</>, the local indices at any of the primes <M>P</M> lying over the same rational prime <M>p</M> are equal to the same positive integer <M>m_p</M>, and the numerator of the local invariants among these primes are uniformly distributed among the integers <M>r</M> coprime to <M>m_p</M> <Cite Key="BS"/>. <P/>
+The division algebra parts of simple algebras in the Wedderburn
+Decomposition of the group algebra of a finite group over an abelian number
+field <M>F</M> correspond to elements of the Schur Subgroup <M>S(F)</M> of
+the Brauer group of <M>F</M>. Like all classes in the Brauer group of an
+algebraic number field <M>F</M>, the division algebra part of a
+representative of a given Brauer class is determined up to <M>F</M>-algebra
+isomorphism by its list of local Hasse invariants at all primes (i.e.
+places) of <M>F</M>. The local invariant at a prime <M>P</M> of <M>F</M> is
+a lowest terms fraction <M>r/m_P</M> whose denominator is the local Schur
+index <M>m_P</M> of the simple algebra at the prime <M>q</M> (see <Cite
+Key="R" />). For division algebras whose Brauer class lies in the Schur
+Subgroup of an abelian number field <M>F</M>, the local indices at any of
+the primes <M>P</M> lying over the same rational prime <M>p</M> are equal
+to the same positive integer <M>m_p</M>, and the numerator of the local
+invariants among these primes are uniformly distributed among the integers
+<M>r</M> coprime to <M>m_p</M> <Cite Key="BS"/>. <P/>
 
-The main div-alg functions in wedderga produce a list of the nontrivial local indices of the division algebra part of the simple algebra at all rational primes. The Schur index of the simple algebra over <M>F</M> is the least common multiple <M>m</M> of these local indices, and the dimension of the division algebra part of the simple algebra over <M>F</M> is <M>m^2</M>.  While not sufficient to identify these division algebras up to ring isomorphism in general, this list of local indices does identify the division algebra up to ring isomorphism whenever there is no pair of local indices at odd primes that are greater than 2. (We believe this is the case for groups of order less than 7^2*3^2*13^2.)  So it gives the information desired in most basic situations, and allows one to distinguish almost all pairs of simple components of group algebras.  By using wedderga's Info versions of presentations of crossed products, one can normally see relationships between factor sets of pairs of algebras that can give further information to help distinguish them. <P/>  
+The main div-alg functions in wedderga produce a list of the nontrivial
+local indices of the division algebra part of the simple algebra at all
+rational primes. The Schur index of the simple algebra over <M>F</M> is the
+least common multiple <M>m</M> of these local indices, and the dimension of
+the division algebra part of the simple algebra over <M>F</M> is
+<M>m^2</M>. While not sufficient to identify these division algebras up to
+ring isomorphism in general, this list of local indices does identify the
+division algebra up to ring isomorphism whenever there is no pair of local
+indices at odd primes that are greater than 2. (We believe this is the case
+for groups of order less than 7^2*3^2*13^2.) So it gives the information
+desired in most basic situations, and allows one to distinguish almost all
+pairs of simple components of group algebras. By using wedderga's Info
+versions of presentations of crossed products, one can normally see
+relationships between factor sets of pairs of algebras that can give
+further information to help distinguish them. <P/>
 
-Wedderga's div-alg functions compute local indices for three types of algebras: generalized quaternion algebras, cyclic cyclotomic algebras, and non-cyclic crossed product algebras of Y-type.  There is also a function available that computes the <M>p</M>-local index for an ordinary irreducible character <M>\chi</M> of a <M>p</M>-solvable group using the values of an irreducible Brauer character in the same <M>p</M>-block that is correct when the <M>p</M>-defect group of <M>\chi</M> is cyclic. 
+Wedderga's div-alg functions compute local indices for three types of
+algebras: generalized quaternion algebras, cyclic cyclotomic algebras, and
+non-cyclic crossed product algebras of Y-type. There is also a function
+available that computes the <M>p</M>-local index for an ordinary
+irreducible character <M>\chi</M> of a <M>p</M>-solvable group using the
+values of an irreducible Brauer character in the same <M>p</M>-block that
+is correct when the <M>p</M>-defect group of <M>\chi</M> is cyclic.
 
-Our approach to rational quaternion algebras is the standard one given, for example, in <Cite Key="Pi"/>.  The Legendre symbol operation in GAP is used to determine the local index at odd primes. The local index of the generalized quaternion algebra <M>(a,b)</M> over <M>Q</M> at the infinite prime will be <M>2</M> if both <M>a</M> and <M>b</M> are negative, and otherwise <M>1</M>.   We avoid the complicated case of quadratic reciprocity when working over Q by using the Hasse-Brauer-Albert-Noether Theorem (<Cite Key="R"/>, pg. 276): since we know the other primes of <M>Q</M> where the local index is <M>2</M>, it determines the local index at the prime <M>2</M>.  For generalized quaternion algebras over number fields <M>F</M> other than <M>Q</M>, we have to convert to cyclic or cyclic cyclotomic algebras and use the other two local index functions. <P/>
+Our approach to rational quaternion algebras is the standard one given, for
+example, in <Cite Key="Pi"/>. The Legendre symbol operation in GAP is used
+to determine the local index at odd primes. The local index of the
+generalized quaternion algebra <M>(a,b)</M> over <M>Q</M> at the infinite
+prime will be <M>2</M> if both <M>a</M> and <M>b</M> are negative, and
+otherwise <M>1</M>. We avoid the complicated case of quadratic reciprocity
+when working over Q by using the Hasse-Brauer-Albert-Noether Theorem (<Cite
+Key="R"/>, pg. 276): since we know the other primes of <M>Q</M> where the
+local index is <M>2</M>, it determines the local index at the prime
+<M>2</M>. For generalized quaternion algebras over number fields <M>F</M>
+other than <M>Q</M>, we have to convert to cyclic or cyclic cyclotomic
+algebras and use the other two local index functions. <P/>
 
-There are three subroutines used to compute local indices of cyclic cyclotomic algebras, which wedderga's -Info functions produce in the form <M>[r,F,n,[a,b,c]]</M>.  Since there is no way to connect to a specific character of a group that would make the Frobenius-Schur indicator available, the local index at infinity is calculated by determining if the real completion of the corresponding algebra will produce a real quaternion algebra.  In order to do this, <M>F</M> must be a real subfield, <M>n</M> must be strictly greater than 
-<M>2</M>, and <M>E(n)^c</M> (which has to be a root of unity in <M>F</M>) must be <M>-1</M>.  
+There are three subroutines used to compute local indices of cyclic
+cyclotomic algebras, which wedderga's -Info functions produce in the form
+<M>[r,F,n,[a,b,c]]</M>. Since there is no way to connect to a specific
+character of a group that would make the Frobenius-Schur indicator
+available, the local index at infinity is calculated by determining if the
+real completion of the corresponding algebra will produce a real quaternion
+algebra. In order to do this, <M>F</M> must be a real subfield, <M>n</M>
+must be strictly greater than <M>2</M>, and <M>E(n)^c</M> (which has to be
+a root of unity in <M>F</M>) must be <M>-1</M>.
 
-Calculation of the local indices at a odd primes makes direct use of the following lemma of Janusz:  If <M>E_p/F_p</M> is a Galois extension of <M>p</M>-local fields with ramification index <M>e</M>, and <M>z</M> is a root of unity with order prime to <M>p</M>, then <M>z</M> is a norm in <M>E_p/F_p</M> if and only if it is the <M>e</M>-th power of a root of unity in <M>F</M>. (<Cite Key="J"/>, pg. 535).  It follows that in order to calculate the local index at <M>p</M> of a cyclic cyclotomic algebra <M>[r,F,n,[a,b,c]]</M>, we first determine the splitting degree, residue degree, and ramification index <M>e</M> of the extension <M>F(\zeta_n)/F</M> at <M>p</M> by comparing the behaviour of the Galois automorphism <M>\sigma_b</M> to the behaviour of the Frobenius automorphism at <M>p</M>.  This information allows us to determine the order of the largest root of unity <M>z</M> with order coprime to <M>p</M> in the <M>p</M>-completion <M>F_p</M>.  The local index <M>m_p</M> is then the least power of <M>E(n)^c</M> that lies in the group generated by <M>z^e</M>. <P/>
-   
-Calculation of the local index at the prime <M>2</M> makes use of the following consequence of (<Cite Key="J"/>, Theorem 5): A cyclic cyclotomic algebra <M>[r,F_2,n,[a,b,c]]</M> over a <M>2</M>-local field <M>F_2</M> that is a subfield of a cyclotomic extension of the rational <M>2</M>-local field <M>Q_2</M> has Schur index at most <M>2</M>.  It has Schur index <M>2</M> if and only if <M>4</M> divides <M>n</M>, <M>F_2(\zeta_4)</M> is totally ramified of degree 2,  the Galois automorphism <M>\sigma_b</M> of <M>F_2(\zeta_n)/F_2</M> inverts all <M>2</M>-power roots of unity in <M>F_2(\zeta_n)</M>, <M>E(n)^c</M> has order 2 times an odd number, and <M>(F_2:Q_2)</M> is odd.  The same approach to cyclotomic reciprocity makes it possible to check all of these conditions in the <M>2</M>-local situation.  <P/>
+Calculation of the local indices at a odd primes makes direct use of the
+following lemma of Janusz: If <M>E_p/F_p</M> is a Galois extension of
+<M>p</M>-local fields with ramification index <M>e</M>, and <M>z</M> is a
+root of unity with order prime to <M>p</M>, then <M>z</M> is a norm in
+<M>E_p/F_p</M> if and only if it is the <M>e</M>-th power of a root of
+unity in <M>F</M>. (<Cite Key="J"/>, pg. 535). It follows that in order to
+calculate the local index at <M>p</M> of a cyclic cyclotomic algebra
+<M>[r,F,n,[a,b,c]]</M>, we first determine the splitting degree, residue
+degree, and ramification index <M>e</M> of the extension
+<M>F(\zeta_n)/F</M> at <M>p</M> by comparing the behaviour of the Galois
+automorphism <M>\sigma_b</M> to the behaviour of the Frobenius automorphism
+at <M>p</M>. This information allows us to determine the order of the
+largest root of unity <M>z</M> with order coprime to <M>p</M> in the
+<M>p</M>-completion <M>F_p</M>. The local index <M>m_p</M> is then the
+least power of <M>E(n)^c</M> that lies in the group generated by
+<M>z^e</M>. <P/> Calculation of the local index at the prime <M>2</M> makes
+use of the following consequence of (<Cite Key="J"/>, Theorem 5): A cyclic
+cyclotomic algebra <M>[r,F_2,n,[a,b,c]]</M> over a <M>2</M>-local field
+<M>F_2</M> that is a subfield of a cyclotomic extension of the rational
+<M>2</M>-local field <M>Q_2</M> has Schur index at most <M>2</M>. It has
+Schur index <M>2</M> if and only if <M>4</M> divides <M>n</M>,
+<M>F_2(\zeta_4)</M> is totally ramified of degree 2, the Galois
+automorphism <M>\sigma_b</M> of <M>F_2(\zeta_n)/F_2</M> inverts all
+<M>2</M>-power roots of unity in <M>F_2(\zeta_n)</M>, <M>E(n)^c</M> has
+order 2 times an odd number, and <M>(F_2:Q_2)</M> is odd. The same approach
+to cyclotomic reciprocity makes it possible to check all of these
+conditions in the <M>2</M>-local situation. <P/>
 
-Calculation of local indices of crossed products in wedderga defined over a non-cyclic 
-Galois group of Y-type are those with wedderga -Info presentations in the form <M>[r,F,n,[[a1,b1,c1],[a2,b2,c2]],[[d]]]</M>.  In this case the approach is to decompose the algebra as the tensor product of two cyclic algebras: <M>[F,K1,[a]]</M> and <M>[F,K2,[b]]</M>.  This is accomplished by modifying one of the factor sets (i.e. <M>c1</M> or <M>c2</M>), so that the ensuing commutator (i.e. the <M>d</M>) becomes trivial.  The algorithm provided for doing this has not been proven to be completely reliable.  It generates the required element it needs starting with a primitive element of <M>K1</M> (or <M>K2</M>) that will make the ensuing commutator trivial, but there is no guarantee that the ensuing factor set <M>a</M> (or <M>b</M>) lies in <M>F</M>.  It does check if this happens and returns a warning "fail" label if the factor set it calculates does not lie in <M>F</M>.  (For groups of order up to 200, no such warning is generated!)  If this tensor decomposition does not fail, the local Schur indices of the two cyclic algebras are handled in two steps.  The first is to check if it is easy to see that the <M>a</M> (or the <M>b</M>) is a norm, in which case the Schur index is automatically 1.  In the second step, the function appeals to a library of the cyclic algebras that occur for groups of order up to 200 that has been generated by solving norm equations by hand.  Although done initially by hand, most of its local indices can and have been checked for consistency with the other local index computation methods. Only in very few cases do they rely only on the norm calculations done by hand.  Significant extension of this local index library is a likely feature of future releases of wedderga. The algorithm is then completed by calculating the local indices of the tensor product.  Again this operation could give an indefinite answer, because there is no way to dtermine the local index of the tensor product at <M>p</M> when the local indices of both cyclic algebras at <M>p</M> are greater than <M>2</M>.  <P/>
+Calculation of local indices of crossed products in wedderga defined over a
+non-cyclic Galois group of Y-type are those with wedderga -Info
+presentations in the form <M>[r,F,n,[[a1,b1,c1],[a2,b2,c2]],[[d]]]</M>. In
+this case the approach is to decompose the algebra as the tensor product of
+two cyclic algebras: <M>[F,K1,[a]]</M> and <M>[F,K2,[b]]</M>. This is
+accomplished by modifying one of the factor sets (i.e. <M>c1</M> or
+<M>c2</M>), so that the ensuing commutator (i.e. the <M>d</M>) becomes
+trivial. The algorithm provided for doing this has not been proven to be
+completely reliable. It generates the required element it needs starting
+with a primitive element of <M>K1</M> (or <M>K2</M>) that will make the
+ensuing commutator trivial, but there is no guarantee that the ensuing
+factor set <M>a</M> (or <M>b</M>) lies in <M>F</M>. It does check if this
+happens and returns a warning "fail" label if the factor set it calculates
+does not lie in <M>F</M>. (For groups of order up to 200, no such warning
+is generated!) If this tensor decomposition does not fail, the local Schur
+indices of the two cyclic algebras are handled in two steps. The first is
+to check if it is easy to see that the <M>a</M> (or the <M>b</M>) is a
+norm, in which case the Schur index is automatically 1. In the second step,
+the function appeals to a library of the cyclic algebras that occur for
+groups of order up to 200 that has been generated by solving norm equations
+by hand. Although done initially by hand, most of its local indices can and
+have been checked for consistency with the other local index computation
+methods. Only in very few cases do they rely only on the norm calculations
+done by hand. Significant extension of this local index library is a likely
+feature of future releases of wedderga. The algorithm is then completed by
+calculating the local indices of the tensor product. Again this operation
+could give an indefinite answer, because there is no way to dtermine the
+local index of the tensor product at <M>p</M> when the local indices of
+both cyclic algebras at <M>p</M> are greater than <M>2</M>. <P/>
 
-The wedderga function that computes the <M>p</M>-local index of an ordinary irreducible character <M>\chi</M> of a finite <M>p</M>-solvable group <M>G</M> is based directly on a theorem of Benard <Cite Key="B"/> that applies whenever the <M>p</M>-defect group of <M>\chi</M> is cyclic.  We have to restrict our application of it to small <M>p</M>-solvable groups because GAP's records for irreducible Brauer characters are only available in these cases.  In order to use this approach effectively, it helps to have a function that determines a list of possible <M>p</M>-defect groups for the ordinary character <M>\chi</M>.  This is done by finding the <M>p</M>-subgroups of <M>G</M> that are the intersection of a Sylow <M>p</M>-subgroup <M>Q</M> of <M>G</M> with a conjugate <M>Q^x</M> by some <M>p</M>-regular element <M>x</M> of <M>G</M>.  That defect groups are such intersections is a theorem of Green (see <Cite Key="N"/>, pg. 94).  We are indebted to Michael Geline for suggesting this approach to determining defect groups in GAP.  In most cases, it allows one to determine whether or not the defect group is cyclic - the smallest exception occurs for a group of order 72. 
+The wedderga function that computes the <M>p</M>-local index of an ordinary
+irreducible character <M>\chi</M> of a finite <M>p</M>-solvable group
+<M>G</M> is based directly on a theorem of Benard <Cite Key="B"/> that
+applies whenever the <M>p</M>-defect group of <M>\chi</M> is cyclic. We
+have to restrict our application of it to small <M>p</M>-solvable groups
+because GAP's records for irreducible Brauer characters are only available
+in these cases. In order to use this approach effectively, it helps to have
+a function that determines a list of possible <M>p</M>-defect groups for
+the ordinary character <M>\chi</M>. This is done by finding the
+<M>p</M>-subgroups of <M>G</M> that are the intersection of a Sylow
+<M>p</M>-subgroup <M>Q</M> of <M>G</M> with a conjugate <M>Q^x</M> by some
+<M>p</M>-regular element <M>x</M> of <M>G</M>. That defect groups are such
+intersections is a theorem of Green (see <Cite Key="N"/>, pg. 94). We are
+indebted to Michael Geline for suggesting this approach to determining
+defect groups in GAP. In most cases, it allows one to determine whether or
+not the defect group is cyclic - the smallest exception occurs for a group
+of order 72.
+</Section>
 
 </Chapter>
