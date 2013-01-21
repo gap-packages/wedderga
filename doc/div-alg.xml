@@ -150,7 +150,7 @@ gap> RationalSchurIndex(B);
          The input of <Ref Attr="DivisionAlgebraPartByBrauerCharacters"/> 
          must be an abelian number field <K>F</K>, a finite group <A>G</A>, 
          and the number <A>n</A> of an ordinary irreducible character 
-         <K>Irr(G)[n]</K>, and <a>p</a> a prime divisor of the order of <A>G</A>. 
+         <K>Irr(G)[n]</K>, and <A>p</A> a prime divisor of the order of <A>G</A>. 
          <P/>
       
          It returns <K>[r,D,W]</K> where <K>r</K> is the matrix degree and 
@@ -240,6 +240,8 @@ true
    </Description>
 </ManSection>
 
+</Section>
+
 <!-- *******Local Index Functions for Cyclic Cyclotomic Algebras -->
 
 <Section Label="LocIndsOfCyclicCyclotomicAlgs">
@@ -261,13 +263,13 @@ true
         or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  
         <P/>
 
-	    <"DivAlgPartOfCyclicCyclotomicAlgebra"> returns a list of the form 
+	    <Ref Oper="DivAlgPartOfCyclicCyclotomicAlgebra"/> returns a list of the form 
 	    <K>[r,D]</K> representing an rxr matrix algebra over the division 
 	    algebra <K>D</K>, which is represented either as a field or as a 
 	    list <K>["DivAlg",F,"LocInds=",L]</K> representing the division 
 	    algebra with center <K>F</K> whose nontrivial local indices are 
 	    indicated by the list <K>L</K>.  
-	    <"LocalIndicesOfCyclicCyclotomicAlgebra"> computes this list 
+	    <Ref Oper="LocalIndicesOfCyclicCyclotomicAlgebra"/> computes this list 
 	    <K>L</K> using the functions for local indices at various rational 
 	    primes that appear in this section.  
 	    <P/>
@@ -323,7 +325,7 @@ gap> DivAlgPartOfCyclicCyclotomicAlgebra(A);
          that is, an algebra presented in the form of the output of 
          <Ref Attr="WedderburnDecompositionInfo"/> or 
          <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  
-         For <"LocalIndexAtOddP">, <K>p</K> must be an odd prime.  
+         For <Ref Oper="LocalIndexAtOddP"/>, <K>p</K> must be an odd prime.  
          The functions <Ref Attr="PPartOfN"/> and <Ref Attr="PDashPartOfN"/> 
          are self-explanatory arithmetic functions for a positive integer 
          <K>n</K> and prime <K>p</K>, that are called by 
@@ -378,7 +380,7 @@ gap> DivAlgPartOfCyclicCyclotomicAlgebra(A);
          <K>c</K> lies in <K>F</K>.  
          <P/>
 
-	     <"DivAlgPartOfCyclicAlg"> is a library function giving 
+	     <Ref Oper="DivAlgPartOfCyclicAlg"/> is a library function giving 
 	     the local indices for small cyclic algebras that are needed 
 	     to identify simple components of rational group algebras 
 	     for groups of order up to 200.  It should only be used in 
@@ -429,15 +431,15 @@ gap> DivAlgPartOfCyclicAlg(A);
    	when the nontrivial local indices are all 2. 
    </Returns>
    <Description>
-         The input of <"DivAlgPartOfTensorProductOfCyclicAlgs"> should be a
+         The input of <Ref Oper="DivAlgPartOfTensorProductOfCyclicAlgs"/> should be a
 	 pair of simple algebras of the form <K>[r,D]</K> whose centers are 
 	 the same abelian number field <K>F</K>, and whose division algebra 
 	 parts are either <K>F</K> or given in terms of local indices. <P/>
-	 The input of  <"LocalIndicesOfTensorProductOfQuadraticAlgs"> 
+	 The input of  <Ref Oper="LocalIndicesOfTensorProductOfQuadraticAlgs"/> 
 	 requires that any nontrivial local indices of the division algebra parts
 	 that occur are 2.  <P/>
 
-	 <"DivAlgPartofTensorProductOfCyclicAlgs"> calculates the local indices 
+	 <Ref Oper="DivAlgPartofTensorProductOfCyclicAlgs"/> calculates the local indices 
 	 of the tensor product to the extent possible.  If the local indices at  
 	 the same prime are not equal, the result is their Lcm. If they are both 
          2, the local index of the tensor product is 1.  If they are both equal 
@@ -490,14 +492,14 @@ gap> LocalIndicesOfTensorProductOfQuadraticAlgs(L1,L2);
 
 	 These functions can be used to convert cyclic algebras whose local 
 	 indices cannot be determined by the library function 	
-    	 <"DivAlgPartOfCyclicAlg">.  If the factor set for a cyclic algebra is a
+    	 <Ref Oper="DivAlgPartOfCyclicAlg"/>.  If the factor set for a cyclic algebra is a
 	 norm match for one whose factor set is a root of unity, then
-	 <"ConvertCyclicAlgToCyclicCyclotomicAlg"> will enable its division
+	 <Ref Oper="ConvertCyclicAlgToCyclicCyclotomicAlg"/> will enable its division
 	 algebra part to be determined. <P/>
 
 	 If the center <K>F</K> of the quadratic algebra is the field of rational
 	 numbers, then by converting it to a quaternion algebra the function 
-	 <"LocalIndicesOfRationalQuaternionAlgebra"> can be used to compute its 
+	 <Ref Oper="LocalIndicesOfRationalQuaternionAlgebra"/> can be used to compute its 
 	 local indices. <P/>
 
 <Example>
@@ -513,6 +515,8 @@ gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
 
    </Description>
 </ManSection>
+
+</Section>
 
 <!-- *******Local Index Functions for Quaternion Algebras -->
 
@@ -534,16 +538,16 @@ gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
    <Description>
          The input must be a quaternion algebra over the rationals, output from 
 	 <A>QuaternionAlgebra(Rationals,a,b)</A>.  For the first function, 
-	 <a>a</a> and <a>b</a> can be any pair of integers, and for the 
-	 second rational symbol algebra version, <a>a</a> and <a>b</a> can be 
+	 <M>a</M> and <M>b</M> can be any pair of integers, and for the 
+	 second rational symbol algebra version, <M>a</M> and <M>b</M> can be 
 	 either -1 or a prime integer. <P/>
 
-	 <"LocalIndicesOfRationalQuaternionAlgebra"> first factors the algebra 
+	 <Ref Oper="LocalIndicesOfRationalQuaternionAlgebra"/> first factors the algebra 
 	 as a tensor product of rational quaternion algebras to which  
-	 <"LocalIndicesOfRationalSymbolAlgebra"> can be applied, then calculates
+	 <Ref Oper="LocalIndicesOfRationalSymbolAlgebra"/> can be applied, then calculates
 	 local indices for all of these using well-known formulas involving the 
 	 Legendre Symbol.  The local indices of the original algebra are then 		 
-	 calculated using <"LocalIndicesOfTensorProductOfCyclicAlgebras">. <P/>
+	 calculated using <Ref Oper="LocalIndicesOfTensorProductOfCyclicAlgebras"/>. <P/>
       
 <Example>
 <![CDATA[
@@ -584,18 +588,18 @@ gap> DivAlgPartOfCyclicAlg(last);
    
    <Description>
          The input must be any quaternion algebra over the rationals, output from 
-	 <A>QuaternionAlgebra(<K>F</K>,<K>a</K>,<K>b</K>)</A>, for an abelian 
-	 number field <K>F</K> and elements <K>a</K>, <K>b</K> in <K>F</K>.  <P/>
+	 <C>QuaternionAlgebra( F, a, b )</C>, for an abelian 
+	 number field <M>F</M> and elements <M>a</M>, <M>b</M> in <M>F</M>.  <P/>
 
-	 It returns a cyclic algebra isomorphic to <K>A</K>, presented as the 
-	 list <K>[F,K,[c]]</K> representing the cyclic algebra <K>(K/F,c)</K>.
-	 The center of the algebra is <K>F</K>, its dimension over <K>F</K> is 
-	 <K>[K:F]^2</K>, and <K>c</K> is an element of <K>F</K> representative 
+	 It returns a cyclic algebra isomorphic to <A>A</A>, presented as the 
+	 list <M>[F,K,[c]]</M> representing the cyclic algebra <M>(K/F,c)</M>.
+	 The center of the algebra is <M>F</M>, its dimension over <M>F</M> is 
+	 <M>[K:F]^2</M>, and <M>c</M> is an element of <M>F</M> representative 
 	 of the factor set for the cyclic algebra.  <P/>
 
-	 This function can be used to convert <K>A</K> into an algebra whose 
+	 This function can be used to convert <A>A</A> into an algebra whose 
  	 Schur index can be calculated using the
-	 <"CrossedProductWithDivisionAlgebraPart"> function. 
+	 <Ref Oper="CrossedProductWithDivisionAlgebraPart"/> function. 
 	 <P/>
 
 <Example>
@@ -627,7 +631,7 @@ gap> CrossedProductWithDivisionAlgebraPart(last);
 
 	 It returns <K>true</K> the rational Schur index of the algebra is 2, 
 	 and <K>false</K> if the rational Schur index is 1.  This function 
-	 should be preferred over <"IsDivisionRing"> when dealing with rational 
+	 should be preferred over <Ref Oper="IsDivisionRing"/> when dealing with rational 
 	 quaternion algebras.  <P/>
 
 
@@ -651,6 +655,8 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 
    </Description>
 </ManSection>
+
+</Section>
 
 <!-- *******Functions for noncyclic Cyclotomic Algebras -->
 
