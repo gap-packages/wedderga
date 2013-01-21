@@ -15,14 +15,25 @@ wedderburn decomposition of a group algebra"/>
          A simple algebra whose division algebra part is identified in terms of its local indices. 
    </Returns>
    <Description>
-         The input <A>A</A> should be a crossed product in the form output by 	
-<Ref Attr="WedderburnDecompositionInfo" /> or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  The output is in the form <K>[r,D]</K> where <M>D</M> is a division algebra presented in the form 
-<K>["DivAlg",F,"LocInds=",L]</K>.  <K>"DivAlg"</K> is a label indicating that this is definitely a division algebra.  <M>F</M> is its center, <K>"LocInds="</K> is a label standing for "Local Indices", and <K>L</K> is a list of nontrivial <A>p-</A>local indices in the form <K>[p,m]</K>, where <A>p</A> is a rational prime - possibly infinite, which appears as "infty", and <K>m</K> is the local 
-index of the division algebra at the prime <M>p</M>.  
+         The input <A>A</A> should be a crossed product in the form output 
+         by <Ref Attr="WedderburnDecompositionInfo" /> or <Ref Attr="SimpleAlgebraByCharacterInfo"/>. 
+         The output is in the form <K>[r,D]</K> where <M>D</M> is a division algebra 
+         presented in the form <K>["DivAlg",F,"LocInds=",L]</K>. 
+         <K>"DivAlg"</K> is a label indicating that this is definitely a division algebra. 
+         <M>F</M> is its center, <K>"LocInds="</K> is a label standing for "Local Indices", 
+         and <K>L</K> is a list of nontrivial <A>p-</A>local indices in the form 
+         <K>[p,m]</K>, where <A>p</A> is a rational prime - possibly infinite, 
+         which appears as "infty", and <K>m</K> is the local index of the division 
+         algebra at the prime <M>p</M>. 
 
-	 In cases of crossed products over a non-cyclic galois group, the function has to appeal to a library of local indices to determine the division algebra.  This library is currently developed for groups of small order up 	 to 200.  When the function cannot find a match, an "UnableToDetermine" 
-message appears.  The function <Ref Attr="DecomposeYAlgebra"/> may be used to obtain information on cyclic algebra tensor summands of <M>A</M> in these cases. 
-
+         In cases of crossed products over a non-cyclic galois group, the 
+         function has to appeal to a library of local indices to determine 
+         the division algebra.  This library is currently developed for groups 
+         of small order up to 200.  When the function cannot find a match, 
+         an "UnableToDetermine" message appears.  
+         The function <Ref Attr="DecomposeYAlgebra"/> may be used to obtain 
+         information on cyclic algebra tensor summands of <M>A</M> in these cases. 
+         
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(240,89);
@@ -55,7 +66,6 @@ gap> W:=WedderburnDecompositionInfo(A);
   [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
 gap> CrossedProductWithDivisionAlgebraPart(W[10]);
 [ 2, [ "DivAlg", Rationals, "LocInds=", [ [ 2, 2 ], [ 3, 2 ] ] ] ]
-
 ]]>
 </Example>
 
@@ -71,12 +81,21 @@ gap> CrossedProductWithDivisionAlgebraPart(W[10]);
          The rational Schur index of a simple algebra.  
    </Returns>
    <Description>
-         The input <A>A</A> can be a quaternion algebra (see <Ref 		
-Sect="QuaternionAlgebra" />), a cyclic algebra (see <Ref 		
-Sect="CyclicAlgebras" />), or a cyclotomic algebra (see <Ref Sect="Cyclotomic" />).  The rational Schur index is the square root of the dimension of the division algebra part of the simple algebra over its center.  The function calculates the local indices of the division algebra part of the simple algebra using an appropriate local index function in wedderga, and returns the least common multiple of these local indices. 
+         The input <A>A</A> can be a quaternion algebra 
+         (see <Ref Sect="QuaternionAlgebra" />), a cyclic algebra 
+         (see <Ref Sect="CyclicAlgebras" />), or a cyclotomic algebra 
+         (see <Ref Sect="Cyclotomic" />).  The rational Schur index is 
+         the square root of the dimension of the division algebra part 
+         of the simple algebra over its center.  The function calculates 
+         the local indices of the division algebra part of the simple 
+         algebra using an appropriate local index function in wedderga, 
+         and returns the least common multiple of these local indices. 
 
-	 In cases where the division algebra part of the simple algebra cannot be 
-determined, errors will result.  The functions for cyclic algebras can be used to identify the division algebra parts of the cyclic algebras involved in some of these situations (see <Ref Sect="CyclicAlgebras"/>).
+         In cases where the division algebra part of the simple algebra 
+         cannot be determined, errors will result.  The functions for 
+         cyclic algebras can be used to identify the division algebra 
+         parts of the cyclic algebras involved in some of these situations 
+         (see <Ref Sect="CyclicAlgebras"/>).
       
 <Example>
 <![CDATA[
@@ -119,15 +138,51 @@ gap> RationalSchurIndex(B);
          Arg="G n p"  
          Comm="Gives possible defect groups for block determined by an ordinary irreducible characer of G." />
    <Returns>
-         (i) A simple algebra whose division algebra part is identified in terms of its local indices; (ii) the degree of the finite field extension <M>F_p(chi_n,phi_m)</M> over <M>F_p(chi_n)</M> determined by the ordinary irreducible character <M>chi_n</M> and irreducible <K>p</K>-modular character <M>phi_m</M>; and (iii) possible defect groups for block containing <M>chi_n</M>.
+         (i) A simple algebra whose division algebra part is identified in 
+         terms of its local indices; 
+         (ii) the degree of the finite field extension <M>F_p(chi_n,phi_m)</M> 
+         over <M>F_p(chi_n)</M> determined by the ordinary irreducible 
+         character <M>chi_n</M> and irreducible <K>p</K>-modular 
+         character <M>phi_m</M>; and 
+         (iii) possible defect groups for block containing <M>chi_n</M>.
    </Returns> 
    <Description>
-         The input of <Ref Attr="DivisionAlgebraPartByBrauerCharacters"/> must be an abelian number field <K>F</K>, a finite group <A>G</A>, and the number <A>n</A> of an ordinary irreducible character <K>Irr(G)[n]</K>, and <a>p</a> a prime divisor of the order of <A>G</A>. <P/>
+         The input of <Ref Attr="DivisionAlgebraPartByBrauerCharacters"/> 
+         must be an abelian number field <K>F</K>, a finite group <A>G</A>, 
+         and the number <A>n</A> of an ordinary irreducible character 
+         <K>Irr(G)[n]</K>, and <a>p</a> a prime divisor of the order of <A>G</A>. 
+         <P/>
       
-         It returns <K>[r,D,W]</K> where <K>r</K> is the matrix degree and <K>D</K> is a division algebra given by the list <K>["DivAlg",F,"LocInds=",L]</K>, where <K>"DivAlg"</K> is a label indicating that it is certain that <K>D</K> is a division algebra, <K>F</K> is its center, a field, "LocInds=" is a label indicating what follows is the list of local indices, and <K>L</K> is the list of nontrivial local indices at primes <K>p</K>, which are given by pairs <K>[p,m]</K>, where <K>m</K> is an integer larger than 1. <K>W</K> is a list of the primes where the defect group is not, or may not, be cyclic, which is required in order for the value indicated by the list <K>L</K> at <K>p</K> to be reliable. In particular, when <K>W=[]</K>, the result given for <K>D</K> is correct. If <K>[p,"fail"]</K> appears in <K>W</K>, the defect group is not cyclic.  If <K>[p,"maybe"]</K> appears, then there is more than one possible defect group for the block, with some choices cyclic and some not cyclic. <P/>
+         It returns <K>[r,D,W]</K> where <K>r</K> is the matrix degree and 
+         <K>D</K> is a division algebra given by the list 
+         <K>["DivAlg",F,"LocInds=",L]</K>, where <K>"DivAlg"</K> is a label 
+         indicating that it is certain that <K>D</K> is a division algebra, 
+         <K>F</K> is its center, a field, "LocInds=" is a label indicating 
+         what follows is the list of local indices, and <K>L</K> is the 
+         list of nontrivial local indices at primes <K>p</K>, which are 
+         given by pairs <K>[p,m]</K>, where <K>m</K> is an integer larger 
+         than 1. <K>W</K> is a list of the primes where the defect group 
+         is not, or may not, be cyclic, which is required in order for 
+         the value indicated by the list <K>L</K> at <K>p</K> to be 
+         reliable. In particular, when <K>W=[]</K>, the result given for 
+         <K>D</K> is correct. If <K>[p,"fail"]</K> appears in <K>W</K>, 
+         the defect group is not cyclic.  If <K>[p,"maybe"]</K> appears, 
+         then there is more than one possible defect group for the block, 
+         with some choices cyclic and some not cyclic. <P/>
 	
-	 The function uses Benard's theorem, which shows that the local index at <A>p</A> of the simple component of the rational group algebra <A>QG</A> corresponding to the character <A>Irr(G)[n]</A> is the degree of the extension of the residue field of the center given by adjoining an irreducible <K>p</K>-Brauer character <K>IBr(G,p)[m]</K> lying in the same block, provided the defect group of the block is cyclic.  The degree of this finite field extension is calculated by <Ref Attr="FinFieldExt"/>.  In some cases where the defect group is not cyclic, the degree of this extension is too large, and fractional matrix algebras result.  But this is only because the method does not apply in these cases.  The possible conjugacy classes of <A>p</A>-defect groups for <K>Irr(G)[n]</K> are
-calculated using <Ref Attr="PossibleDefectGroups"/>. 
+         The function uses Benard's theorem, which shows that the local 
+         index at <A>p</A> of the simple component of the rational group 
+         algebra <A>QG</A> corresponding to the character <A>Irr(G)[n]</A> 
+         is the degree of the extension of the residue field of the center 
+         given by adjoining an irreducible <K>p</K>-Brauer character 
+         <K>IBr(G,p)[m]</K> lying in the same block, provided the defect 
+         group of the block is cyclic.  The degree of this finite field 
+         extension is calculated by <Ref Attr="FinFieldExt"/>.  In some 
+         cases where the defect group is not cyclic, the degree of this 
+         extension is too large, and fractional matrix algebras result.  
+         But this is only because the method does not apply in these cases.  
+         The possible conjugacy classes of <A>p</A>-defect groups for 
+         <K>Irr(G)[n]</K> are calculated using <Ref Attr="PossibleDefectGroups"/>. 
 
 <Example>
 <![CDATA[
@@ -201,10 +256,21 @@ true
 	A simple algebra whose division algebra part is identified in terms of local indices. 
    </Returns>
    <Description>
-        The input must be a cyclic cyclotomic algebra; that is, an algebra presented in the form of the output of <Ref Attr="WedderburnDecompositionInfo"/>  or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  <P/>
+        The input must be a cyclic cyclotomic algebra; that is, an algebra 
+        presented in the form of the output of <Ref Attr="WedderburnDecompositionInfo"/>  
+        or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  
+        <P/>
 
-	 <"DivAlgPartOfCyclicCyclotomicAlgebra"> returns a list of the form <K>[r,D]</K> representing an rxr matrix algebra over the division algebra <K>D</K>, which is represented either as a field or as a list <K>["DivAlg",F,"LocInds=",L]</K> representing the division algebra with center <K>F</K> whose nontrivial local indices are indicated by the list <K>L</K>.  <"LocalIndicesOfCyclicCyclotomicAlgebra"> computes this list <K>L</K> using the functions for local indices at various rational primes that appear in this section.  <P/>
-
+	    <"DivAlgPartOfCyclicCyclotomicAlgebra"> returns a list of the form 
+	    <K>[r,D]</K> representing an rxr matrix algebra over the division 
+	    algebra <K>D</K>, which is represented either as a field or as a 
+	    list <K>["DivAlg",F,"LocInds=",L]</K> representing the division 
+	    algebra with center <K>F</K> whose nontrivial local indices are 
+	    indicated by the list <K>L</K>.  
+	    <"LocalIndicesOfCyclicCyclotomicAlgebra"> computes this list 
+	    <K>L</K> using the functions for local indices at various rational 
+	    primes that appear in this section.  
+	    <P/>
 
 <Example>
 <![CDATA[
@@ -212,7 +278,6 @@ gap> A:=[1,Rationals,6,[2,5,3]];
 [ 1, Rationals, 6, [ 2, 5, 3 ] ]
 gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
 [ [ 3, 2 ], [ "infty", 2 ] ]
-
 G:=SmallGroup(63,1);                                            
 <pc group of size 63 with 3 generators>
 gap> WedderburnDecompositionInfo(GroupRing(Rationals,G));
@@ -225,7 +290,6 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
 [ [ 7, 3 ] ]
 gap> DivAlgPartOfCyclicCyclotomicAlgebra(A);  
 [ 1, [ "DivAlg", NF(21,[ 1, 4, 16 ]), "LocInds=", [ [ 7, 3 ] ] ] ]
-
 ]]>
 </Example>
    </Description>
@@ -249,15 +313,41 @@ gap> DivAlgPartOfCyclicCyclotomicAlgebra(A);
          Arg="n p"  
          Comm=" " />
    <Returns>
- 	The first three functions return the local index of a cyclotomic algebra at the prime indicated.  The latter two are standard arithmetic functions required by the first three operations.   
+ 	The first three functions return the local index of a cyclotomic algebra 
+ 	at the prime indicated.  The latter two are standard arithmetic 
+ 	functions required by the first three operations.   
    </Returns> 
 
    <Description>
-         The <K>A</K> in the input must be a cyclic cyclotomic algebra; that is, an algebra presented in the form of the output of <Ref Attr="WedderburnDecompositionInfo"/> or <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  For <"LocalIndexAtOddP">, <K>p</K> must be an odd prime.  The functions <Ref Attr="PPartOfN"/> and <Ref Attr="PDashPartOfN"/> are self-explanatory arithmetic functions for a positive integer <K>n</K> and prime <K>p</K>, that are called by <Ref Attr="LocalIndexAtOddP"/>.  <P/>
+         The <K>A</K> in the input must be a cyclic cyclotomic algebra; 
+         that is, an algebra presented in the form of the output of 
+         <Ref Attr="WedderburnDecompositionInfo"/> or 
+         <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  
+         For <"LocalIndexAtOddP">, <K>p</K> must be an odd prime.  
+         The functions <Ref Attr="PPartOfN"/> and <Ref Attr="PDashPartOfN"/> 
+         are self-explanatory arithmetic functions for a positive integer 
+         <K>n</K> and prime <K>p</K>, that are called by 
+         <Ref Attr="LocalIndexAtOddP"/>.  
+         <P/>
 
-	 These functions determine the local index of a cyclic cyclotomic algebra at the rational primes <K>"infty"</K>, <K>2</K>, or odd primes <K>p</K>, respectively.  As there is no way to determine the relevant character of the group determining the simple component represented by the cyclic crossed product <K>A</K>, the first two functions check for a relationship of <K>A</K> to a nonsplit real or 2-adic quaternion algebra. <Ref Attr="LocalIndexAtOddP"/> calculates the local index at <K>p</K> by counting the number of roots of unity coprime to <K>p</K> present in the p-adic completion.  All three functions are called by <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>. <P/>
+         These functions determine the local index of a cyclic cyclotomic 
+         algebra at the rational primes <K>"infty"</K>, <K>2</K>, or odd 
+         primes <K>p</K>, respectively. As there is no way to determine 
+         the relevant character of the group determining the simple 
+         component represented by the cyclic crossed product <K>A</K>,
+         the first two functions check for a relationship of <K>A</K> 
+         to a nonsplit real or 2-adic quaternion algebra. 
+         <Ref Attr="LocalIndexAtOddP"/> calculates the local index at 
+         <K>p</K> by counting the number of roots of unity coprime to 
+         <K>p</K> present in the p-adic completion.  All three functions 
+         are called by <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>. 
+         <P/>
 
-	 WARNING (from A.H.): The correctness of all three of the above functions is the subject of an article currently in preparation (as of January 2013). For more on the theoretical approach, see the Theory for Div-alg section.<P/>
+         WARNING (from A.H.): The correctness of all three of the above 
+         functions is the subject of an article currently in preparation 
+         (as of January 2013). For more on the theoretical approach, see 
+         the Theory for Div-alg section.
+         <P/>
 
    </Description>
 </ManSection>
@@ -272,15 +362,38 @@ gap> DivAlgPartOfCyclicCyclotomicAlgebra(A);
          Arg="K F c"  
          Comm="Detemines whether the nonzero element c of F lies in a list of easy-to-calculate norms of the extension K/F." />
    <Returns>
-      	The first function returns, if able to do so, an simple algebra <K>[r,D]</K> isomorphic to <K>A</K> whose division algebra part is identified in terms of local indices.  If it is not able to determine such a division algebra <K>D</K> it returns <K>[1,A]</K>. The second function returns "true" or "false". 
+      	The first function returns, if able to do so, an simple algebra 
+      	<K>[r,D]</K> isomorphic to <K>A</K> whose division algebra part 
+      	is identified in terms of local indices.  If it is not able to 
+      	determine such a division algebra <K>D</K> it returns <K>[1,A]</K>. 
+      	The second function returns "true" or "false". 
    </Returns>
    <Description>
-         The input should be a cyclic algebra <K>A</K>, presented as a list <K>[F,K,[c]]</K>, where <K>K/F</K> is a cyclic Galois extension of abelian number fields, and <K>c</K> is an element of <K>F</K> representing the factor set of the cyclic algebra. The input of <Ref Attr="NormMatch"/> is a triple <K>K,F,c</K>, where <K>K/F</K> is a cyclic extension of number fields and <K>c</K> lies in <K>F</K>.  <P/>
+         The input should be a cyclic algebra <K>A</K>, presented as a 
+         list <K>[F,K,[c]]</K>, where <K>K/F</K> is a cyclic Galois 
+         extension of abelian number fields, and <K>c</K> is an element 
+         of <K>F</K> representing the factor set of the cyclic algebra. 
+         The input of <Ref Attr="NormMatch"/> is a triple <K>K,F,c</K>, 
+         where <K>K/F</K> is a cyclic extension of number fields and 
+         <K>c</K> lies in <K>F</K>.  
+         <P/>
 
-	 <"DivAlgPartOfCyclicAlg"> is a library function giving the local indices for small cyclic algebras that are needed to identify simple components of rational group algebras for groups of order up to 200.  It should only be used in cases when other local index or division algebra functions cannot be applied. <P/>
+	     <"DivAlgPartOfCyclicAlg"> is a library function giving 
+	     the local indices for small cyclic algebras that are needed 
+	     to identify simple components of rational group algebras 
+	     for groups of order up to 200.  It should only be used in 
+	     cases when other local index or division algebra functions 
+	     cannot be applied. 
+	     <P/>
 
-	<Ref Attr="NormMatch"/> is used to identify cyclic algebras <K>[F,K,[a]]</K> with <K>[F,K,[b]]</K> if <K>c =a^(-1)*b</K> is an easy-to-calculate non-zero norm in the extension <K>K/F</K>.  In general, solving norm equations in number fields is difficult, so this function should be treated as just a shortcut to find easy answers when they are available.  Further investigation may be necessary in cases where a "false" is returned. <P/>
-
+	     <Ref Attr="NormMatch"/> is used to identify cyclic algebras 
+	     <K>[F,K,[a]]</K> with <K>[F,K,[b]]</K> if <K>c =a^(-1)*b</K> 
+	     is an easy-to-calculate non-zero norm in the extension <K>K/F</K>.  
+	     In general, solving norm equations in number fields is difficult, 
+	     so this function should be treated as just a shortcut to find 
+	     easy answers when they are available.  Further investigation may 
+	     be necessary in cases where a "false" is returned. 
+	     <P/>
 
 <Example>
 <![CDATA[
@@ -292,7 +405,6 @@ gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
 [ 1, NF(24,[ 1, 11 ]), 24, [ 2, 11, 12 ] ]
 gap> CrossedProductWithDivisionAlgebraPart(B);
 [ 2, NF(24,[ 1, 11 ]) ]
-
 gap> A:=[Rationals,CF(6),[-1]];                           
 [ Rationals, CF(3), [ -1 ] ]
 gap> DivAlgPartOfCyclicAlg(A);                   
@@ -311,7 +423,10 @@ gap> DivAlgPartOfCyclicAlg(A);
          Arg="A B"  
          Comm="Input must be a pair of quadratic algebras represented by lists of the form [F,K,[c]] with K/F a quadratic field extension." />
    <Returns>
-   	The first function returns a simple algebra <K>[r,D]</K> whose division algebra 	part is identified in terms of local indices.  The second function returns a list 	  of local indices in cases when the nontrivial local indices are all 2. 
+   	The first function returns a simple algebra <K>[r,D]</K> whose 
+   	division algebra 	part is identified in terms of local indices.  
+   	The second function returns a list 	  of local indices in cases 
+   	when the nontrivial local indices are all 2. 
    </Returns>
    <Description>
          The input of <"DivAlgPartOfTensorProductOfCyclicAlgs"> should be a
@@ -329,8 +444,8 @@ gap> DivAlgPartOfCyclicAlg(A);
 	 and larger than 2, the local index of the tensor product is a divisor 
 	 which requires knowledge of the local invariants to determine.  The 
 	 latter situation does not occur for groups of order less than 7*81.  
-	 This function returns <K>[p,m,"divisor"]</K> when the local index at 		 <K>p</K> is not definite. <P/>
-
+	 This function returns <K>[p,m,"divisor"]</K> when the local index at 		 
+	 <K>p</K> is not definite. <P/>
 
 <Example>
 <![CDATA[
@@ -427,7 +542,8 @@ gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
 	 as a tensor product of rational quaternion algebras to which  
 	 <"LocalIndicesOfRationalSymbolAlgebra"> can be applied, then calculates
 	 local indices for all of these using well-known formulas involving the 
-	 Legendre Symbol.  The local indices of the original algebra are then 		 calculated using <"LocalIndicesOfTensorProductOfCyclicAlgebras">. <P/>
+	 Legendre Symbol.  The local indices of the original algebra are then 		 
+	 calculated using <"LocalIndicesOfTensorProductOfCyclicAlgebras">. <P/>
       
 <Example>
 <![CDATA[
@@ -505,8 +621,9 @@ gap> CrossedProductWithDivisionAlgebraPart(last);
          Comm="A must be quaternion algebra over rationals." />
    
    <Description>
-         The input must be a quaternion algebra over the rationals, output from 
-	 <A>QuaternionAlgebra(Rationals,a,b)</A>. <K>a</K> and <K>b</K> must be rational integers. <P/>
+     The input must be a quaternion algebra over the rationals, output from 
+	 <A>QuaternionAlgebra(Rationals,a,b)</A>. <K>a</K> and <K>b</K> must be 
+	 rational integers. <P/>
 
 	 It returns <K>true</K> the rational Schur index of the algebra is 2, 
 	 and <K>false</K> if the rational Schur index is 1.  This function 
@@ -522,7 +639,6 @@ gap> IsRationalQuaternionAlgebraADivisionRing(A);
 true
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [ [ 5, 2 ], [ "infty", 2 ] ]
-
 gap> A:=QuaternionAlgebra(Rationals,3,-2);       
 <algebra-with-one of dimension 4 over Rationals>
 gap> IsRationalQuaternionAlgebraADivisionRing(A);
@@ -553,7 +669,8 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 	 For these algebras, the extension <K>CF(n)/F</K> is the tensor product
 	 of two disjoint extensions <K>K1</K> and <K>K2</K> of <K>F</K>, and the 
 	 program adjusts one of the factor sets (corresponding to <K>l1</K> or 
-	 <K>l2</K>) so that <K>d</K> becomes 0. After this adjustment, the  		 algebra is then the tensor product of cyclic algebras of the form 
+	 <K>l2</K>) so that <K>d</K> becomes 0. After this adjustment, the  		 
+	 algebra is then the tensor product of cyclic algebras of the form 
 	 <K>[F,K1,[c1]]</K> and <K>[F,K2,[c2]]</K> provided <K>c1</K> and 
 	 <K>c2</K> lie in <K>F</K>.  If the latter condition does not occur, 
 	 the label <K>"fails"</K> appears in the output.  (This does not occur 
@@ -586,7 +703,6 @@ gap> -2-Sqrt(2);
 -2-E(8)+E(8)^3
 gap> last in NF(8,[1,7]);
 true
-
 ]]>
 </Example>
 
