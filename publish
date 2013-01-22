@@ -2,20 +2,23 @@
 #############################################################################
 
 export PKGNAME="wedderga"
-export PKGVERSION="4.4.3"
-export TOOLPATH="/Users/alexk/CVSREPS/GAPDEV/dev/DistributionUpdate/dist45"
+export PKGVERSION="4.5.0"
+export TOOLPATH="/Users/alexk/HGREPS/gap/dev/DistributionUpdate/dist45"
 
-cp ${TOOLPATH}/classifyfiles.py /Users/alexk/CVSREPS/GAPDEV/pkg/
-cp ${TOOLPATH}/patternstextbinary.txt /Users/alexk/CVSREPS/GAPDEV/pkg/
-cp patternscolor.txt /Users/alexk/CVSREPS/GAPDEV/pkg/
+cp ${TOOLPATH}/classifyfiles.py ../
+cp ${TOOLPATH}/patternstextbinary.txt ../
+cp patternscolor.txt ../
 
 echo 'making a list of files to wrap'
 
-cd /Users/alexk/CVSREPS/GAPDEV/pkg/
+cd ..
 
-chmod 644 $PKGNAME/*.*
 chmod 644 $PKGNAME/lib/*.*
 chmod 644 $PKGNAME/doc/*.*
+chmod 644 $PKGNAME/tst/*.*
+chmod 644 $PKGNAME/GPL
+chmod 644 $PKGNAME/README
+chmod 644 $PKGNAME/*.g
 
 python ./classifyfiles.py $PKGNAME
 

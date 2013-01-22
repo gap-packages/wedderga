@@ -14,11 +14,11 @@ PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
 Version        := "4.5.0",
-Date           := "27/11/2012",
+Date           := "22/01/2013",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
 ##  <!ENTITY VERSION "4.5.0">
-##  <!ENTITY RELEASEDATE "27 November 2012">
-##  <!ENTITY RELEASEYEAR "2012">
+##  <!ENTITY RELEASEDATE "22 January 2013">
+##  <!ENTITY RELEASEYEAR "2013">
 ##  <#/GAPDoc>
 
 PackageWWWHome := "http://www.cs.st-andrews.ac.uk/~alexk/wedderga/",
@@ -125,8 +125,8 @@ PackageDoc := rec(
 
 Dependencies := rec(
   GAP                    := ">=4.5",
-  NeededOtherPackages    := [ ["GAPDoc", ">= 1.5.1"] ],
-  SuggestedOtherPackages := [ ["laguna", "3.4"] ],
+  NeededOtherPackages    := [ ["GAPDoc", ">=1.5.1"] ],
+  SuggestedOtherPackages := [ ["laguna", ">=3.4"] ],
   ExternalConditions     := []
 ),
 
