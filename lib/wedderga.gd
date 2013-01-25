@@ -62,7 +62,6 @@ DeclareOperation( "SimpleAlgebraByCharacter", [ IsSemisimpleFiniteGroupAlgebra, 
 DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleANFGroupAlgebra, IsCharacter ] );
 DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleFiniteGroupAlgebra, IsCharacter ] );
 
-
 DeclareOperation( "PrimitiveIdempotentsNilpotent", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList] );
 DeclareOperation( "PrimitiveIdempotentsTrivialTwisting", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList] );
 
@@ -92,18 +91,17 @@ DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
 DeclareAttribute( "IsCyclGroupAlgebra", IsGroupRing );
 DeclareOperation( "SizeOfSplittingField", [IsCharacter, IsPosInt] ); 
 
-DeclareOperation( "SquareRoot", [ IsPosInt, IsPosInt ]); 
-DeclareOperation( "Squares", [IsPosInt] );
-DeclareOperation( "SolveEquation2", [IsPosInt] );
-DeclareOperation( "SolveEquation3", [IsPosInt] );
-DeclareOperation( "SolveEquation", [IsField] );
-DeclareOperation( "ProductLists", [IsList] );
-DeclareOperation( "PrimRoot", [IsField, IsPosInt] );
-DeclareOperation( "MakeMatrixWrtBasis", [ IsMapping, IsBasis] );
+DeclareOperation( "SquareRootMod", [ IsPosInt, IsPosInt ]); 
+DeclareOperation( "SquaresMod", [IsPosInt] );
+DeclareOperation( "SolveEquation2@", [IsPosInt] );
+DeclareOperation( "SolveEquation3@", [IsPosInt] );
+DeclareOperation( "SolveEquation@", [IsField] );
+DeclareOperation( "PrimRootOfUnity", [IsField, IsPosInt] );
+DeclareOperation( "MakeMatrixByBasis", [ IsMapping, IsBasis] );
 DeclareOperation( "ReturnGalElement", [ IsObject , IsGroup, IsGroup, IsGroup, IsField, IsObject] );
 DeclareOperation( "LeftMultiplicationBy", [ IsObject , IsField] );
 DeclareOperation( "MakeLinearCombination", [IsAlgebra, IsList, IsList] );
-
+DeclareOperation( "Product3Lists", [IsList] );
 
 DeclareOperation( "IsTwistingTrivial", [IsGroup, IsGroup, IsGroup] );
 
@@ -121,8 +119,8 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
 DeclareOperation( "PrimitiveCentralIdempotentsByCharacterTable", [ IsSemisimpleANFGroupAlgebra ] );
 DeclareOperation( "PrimitiveCentralIdempotentsByCharacterTable", [ IsSemisimpleFiniteGroupAlgebra ] );
 
-DeclareOperation( "CodeWord", [ IsField, IsSet, IsObject ] );
-DeclareOperation( "Code", [ IsField, IsSet, IsObject ] );
+DeclareOperation( "CodeWordByGroupRingElement", [ IsField, IsSet, IsObject ] );
+DeclareOperation( "CodeByLeftIdeal", [ IsField, IsGroup, IsSet, IsRing ] );
 
 #################### bw.gi #####################
 

@@ -7,7 +7,7 @@
 <Heading>Applications to coding theory</Heading>
 
 <ManSection>
-   <Oper Name="CodeWord" 
+   <Oper Name="CodeWordByGroupRingElement" 
          Arg="F,S,a" />
    <Returns>
          The code word of length the length of <A>S</A> associated to the group ring element <A>a</A>.
@@ -33,7 +33,7 @@ gap> a:=AsList(FG)[27];
 0)*f1*f2+(Z(3)^0)*f2*f3+(Z(3))*f1*f2*f3
 gap> S:=AsSet(G);
 [ <identity> of ..., f1, f2, f3, f1*f2, f1*f3, f2*f3, f1*f2*f3 ]
-gap> CodeWord(F,S,a);
+gap> CodeWordByGroupRingElement(F,S,a);
 [ Z(3)^0, Z(3)^0, Z(3)^0, Z(3)^0, Z(3)^0, 0*Z(3), Z(3)^0, Z(3) ]
 ]]>
 </Example>
@@ -42,10 +42,10 @@ gap> CodeWord(F,S,a);
 </ManSection>
 
 <ManSection>
-   <Oper Name="Code" 
-         Arg="F,S,I" />
+   <Oper Name="CodeByLeftIdeal" 
+         Arg="F,G,S,I" />
    <Returns>
-         All code words of length the length of <A>S</A> associated to the group ring elements in the ideal <A>I</A>.
+         All code words of length the length of <A>S</A> associated to the group ring elements in the ideal <A>I</A> of <A>FG</A>.
    </Returns>         
    <Description>
          The input <A>F</A> should be a finite field. 
@@ -83,7 +83,7 @@ gap> e:=PrimitiveIdempotentsNilpotent(FG,H,K,C,[epi,gq]);
 [ (Z(3)^0)*<identity> of ...+(Z(3))*f3+(Z(3)^0)*f1*f2+(Z(3))*f1*f2*f3, 
   (Z(3)^0)*<identity> of ...+(Z(3))*f3+(Z(3))*f1*f2+(Z(3)^0)*f1*f2*f3 ]
 gap> FGe := LeftIdealByGenerators(FG,[e[1]]);;
-gap> V := VectorSpace(F,Code(F,S,FGe));;
+gap> V := VectorSpace(F,CodeByLeftIdeal(F,G,S,FGe));;
 gap> B := Basis(V);;
 gap> LoadPackage("guava");;
 gap> code := GeneratorMatCode(B,F);

@@ -553,12 +553,12 @@ end);
 
 #############################################################################
 ##
-## SquareRoot( a, q )  
+## SquareRootMod( a, q )  
 ##
-## The function SquareRoot solves the equation x^2 = a (mod q) 
+## The function SquareRootMod solves the equation x^2 = a (mod q) 
 ## using the algorithm of Tonelli-Shanks
 ##
-InstallMethod( SquareRoot,
+InstallMethod( SquareRootMod,
     "for positive integers", 
     true, 
     [ IsPosInt, IsPosInt ], 
@@ -617,12 +617,12 @@ end);
 
 #############################################################################
 ##
-## Squares( q )  
+## SquaresMod( q )  
 ##
-## The function Squares returns an integer a such that both a and -1-a 
+## The function SquaresMod returns an integer a such that both a and -1-a 
 ## are squares modulo q (odd prime power)
 ##
-InstallMethod( Squares,
+InstallMethod( SquaresMod,
     "for a positive integer", 
     true, 
     [ IsPosInt], 
@@ -653,12 +653,12 @@ end);
  
 #############################################################################
 ##
-## SolveEquation2( q )  
+## SolveEquation2@wedderga ( q )  
 ##
-## The function SolveEquation2 returns a in GF(q) satisfying 
+## The function SolveEquation2@wedderga returns a in GF(q) satisfying 
 ## a^((q-1)/2)=-1=-Z(q)^0 when q is odd
 ##
-InstallMethod( SolveEquation2,
+InstallMethod( SolveEquation2@,
     "for a positive integer", 
     true, 
     [ IsPosInt], 
@@ -692,12 +692,12 @@ end);
 
 #############################################################################
 ##
-## SolveEquation3( q )  
+## SolveEquation3@wedderga( q )  
 ##
-## The function SolveEquation3 returns b in GF(q^2) satisfying 
+## The function SolveEquation3@wedderga returns b in GF(q^2) satisfying 
 ## b^((q^2-1)/2)=-1=-Z(q^2)^0 when q is odd
 ##
-InstallMethod( SolveEquation3,
+InstallMethod( SolveEquation3@,
     "for a positive integer", 
     true, 
     [ IsPosInt], 
@@ -729,12 +729,12 @@ end);
 
 #############################################################################
 ##
-## SolveEquation( F )  
+## SolveEquation@wedderga( F )  
 ##
-## The function SolveEquation returns x and y<>0 in a finite field 
+## The function SolveEquation@wedderga returns x and y<>0 in a finite field 
 ## (of odd characteristic q) F satisfying x^2+y^2=-1=-Z(q^m)^0 
 ##
-InstallMethod( SolveEquation,
+InstallMethod( SolveEquation@,
     "for a field", 
     true, 
     [ IsField], 
@@ -760,17 +760,17 @@ fi;
 if (q mod 4) = 1
 	then 
 			x := 0*Z(q^m); 
-			a := SolveEquation2(q);
+			a := SolveEquation2@(q);
 			y := a^((q-1)/4);
 elif (m mod 2) = 0
 	then 
 			x := 0*Z(q^m); 
-			b := SolveEquation3(q);			
+			b := SolveEquation3@(q);			
 			y := b^((q^2-1)/4);
 else
-			a := Squares(q);
-			x := (Z(q^m)^0)*SquareRoot(a,q);
-			y := (Z(q^m)^0)*SquareRoot(-1-a,q);
+			a := SquaresMod(q);
+			x := (Z(q^m)^0)*SquareRootMod(a,q);
+			y := (Z(q^m)^0)*SquareRootMod(-1-a,q);
 fi;
 
 return [x,y];
@@ -781,39 +781,10 @@ end);
 
 #############################################################################
 ##
-## ProductLists( L )  
+## PrimRootOfUnity( F,n )  
 ##
-## The function ProductLists returns the product [a_i*b_j*c_k] of 3 lists 
-## [a_1,a_2,...], [b_1,b_2,...] and [c_1,c_2,...]
-##
-InstallMethod( ProductLists,
-    "for a list", 
-    true, 
-    [ IsList], 
-    0,
-function( L )
-
-local I,i,j,k;
-
-I := [];
-for i in L[1] do
-	for j in L[2] do
-		for k in L[3] do
-			Add(I,i*j*k);
-		od;
-	od;
-od;
-
-return I;
-end);
-
-
-#############################################################################
-##
-## PrimRoot( F,n )  
-##
-## The function PrimRoot returns returns a n-th primitive root in F
-InstallMethod( PrimRoot,
+## The function PrimRootOfUnity returns returns a n-th primitive root of unity in F
+InstallMethod( PrimRootOfUnity,
     "for a field and an positive integer", 
     true, 
     [ IsField, IsPosInt], 
@@ -828,11 +799,11 @@ end);
 
 #############################################################################
 ##
-## MakeMatrixWrtBasis( f,B )  
+## MakeMatrixByBasis( f,B )  
 ##
-## The function MakeMatrixWrtBasis represents a linear mapping f with respect 
+## The function MakeMatrixByBasis represents a linear mapping f with respect 
 ## to a basis B
-InstallMethod( MakeMatrixWrtBasis,
+InstallMethod( MakeMatrixByBasis,
     "for a mapping and a basis", 
     true, 
     [ IsMapping, IsBasis], 
@@ -880,6 +851,7 @@ function( e,E,H,K,F1,xi)
 	return f;
 end);
 
+
 #############################################################################
 ##
 ## LeftMultiplicationBy(x,F1)
@@ -917,6 +889,34 @@ function( FE, coef, supp)
 	return x;
 end);
 
+#############################################################################
+##
+## Product3Lists( L )  
+##
+## The function Product3Lists returns the product [a_i*b_j*c_k] of 3 lists 
+## [a_1,a_2,...], [b_1,b_2,...] and [c_1,c_2,...]
+##
+InstallMethod( Product3Lists,
+    "for a list", 
+    true, 
+    [ IsList], 
+    0,
+function( L )
+
+local I,i,j,k;
+
+I := [];
+for i in L[1] do
+	for j in L[2] do
+		for k in L[3] do
+			Add(I,i*j*k);
+		od;
+	od;
+od;
+
+return I;
+end);
+
 
 #############################################################################
 ##
@@ -940,6 +940,7 @@ function(G,H,K)
 	fi;
 	return true;
 end);
+
 
 #############################################################################
 ##

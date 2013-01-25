@@ -529,18 +529,18 @@ local G,         # Underlying group of FG
               );
   
   return idem;   
-end);		       
+end);	
 
 
 
 #############################################################################
 ##
-#O CodeWord( F,S,a )
+#O CodeWordByGroupRingElement( F,S,a )
 ##
-## The function CodeWord creates a code word from a group ring element a 
+## The function CodeWordByGroupRingElement creates a code word from a group ring element a 
 ## from FG where S is a fixed ordering of the group elements of G
 ##
-InstallMethod( CodeWord, 
+InstallMethod( CodeWordByGroupRingElement, 
 "for a field, a set and an element", 
     true, 
     [ IsField, IsSet, IsObject ], 
@@ -569,28 +569,27 @@ end);
 
 #############################################################################
 ##
-#O Code( F,S,I )
+#O CodeByLeftIdeal( F,G,S,I )
 ##
-## The function Code creates all code words for a left ideal I of FG where 
+## The function CodeByLeftIdeal creates all code words for a left ideal I of FG where 
 ## S is a fixed ordering of the group elements of G
 ##
-InstallMethod( Code, 
+InstallMethod( CodeByLeftIdeal, 
 "for a field, a set and an element", 
     true, 
-    [ IsField, IsSet, IsObject ], 
+    [ IsField, IsGroup, IsSet, IsRing ], 
     0,
-function(F,S,I) 
+function(F,G,S,I) 
 	local code,i;
 
 	code := [];
 
 	for i in I do
-		Add(code,CodeWord(F,S,i));
+		Add(code,CodeWordByGroupRingElement(F,S,i));
 	od;
 
 	return code;
-end);
-
+end);	       
 
 ######################################################################################
 # E   
