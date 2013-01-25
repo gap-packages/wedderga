@@ -5,7 +5,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
-#W																													Inneke Van Gelder
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 
@@ -1655,7 +1655,7 @@ local   G,          # Group
                         RemInt(Position(Potk,gen[i]^Order(Gen[i])),ok) ]),
                  List( [1..Length(Gen)-1], i -> 
                    List( [i+1..Length(Gen)], j -> 
-                     RemInt(Position(Potk,Comm(gen[i],gen[j])),ok))) ];
+                     RemInt(Position(Potk,Comm(gen[j],gen[i])),ok))) ];
     fi;
 end);
 
@@ -2138,11 +2138,13 @@ return StrongShodaPairsAndIdempotents( FG ).PrimitiveCentralIdempotents;
 end);
 
 
+
 #############################################################################
 ##                                                                         ##
 ##            COMPLETE SET OF OTHOGONAL PRIMITIVE IDEMPOTENTS              ##
 ##                                                                         ##
 #############################################################################
+
 
 
 #############################################################################
@@ -2404,7 +2406,7 @@ fi;
 
 ### Construct the idempotents 
 
-L := List( ProductLists([T_odd,T_even,T_E]) , i -> (AverageSum(FG,[b_odd])*beta*eps)^i);
+L := List( Product3Lists([T_odd,T_even,T_E]) , i -> (AverageSum(FG,[b_odd])*beta*eps)^i);
 
 return L; 
 end);
@@ -2509,7 +2511,7 @@ eps := IdempotentBySubgroups( FG, H, K, C, [epi,gq] );
 e := Sum( List( T_2, g -> eps^g ) );
 
 # define field extensions
-xi := PrimRoot(F,Index(H,K));  
+xi := PrimRootOfUnity(F,Index(H,K));  
 F_1 := GF(F,MinimalPolynomial(F,xi));
 F_2 := Filtered(Subfields(F_1),x->Size(x) = Characteristic(F_1)^(Log(Size(F_1),Characteristic(F_1))/Index(E_,H)))[1]; 
 B := Basis(AsField(F_2,F_1),NormalBase(AsField(F_2,F_1)));
@@ -2553,7 +2555,7 @@ for b in B do
 od;
 
 # Map the F_2-basis of F_1 * E/H to a F_2-basis of the matrix algebra over F_2
-B3 := List(B2, b-> MakeMatrixWrtBasis(CompositionMapping(
+B3 := List(B2, b-> MakeMatrixByBasis(CompositionMapping(
 						LeftMultiplicationBy(CoefficientsAndMagmaElements(b)[2],F_1),
 						ReturnGalElement(PreImagesRepresentative(epi2,CoefficientsAndMagmaElements(b)[1]),E_,H,K,F_1,xi)),B));
 B3 := Basis(MatrixAlgebra(F_2,Index(E_,H)),B3); 
@@ -2578,7 +2580,6 @@ L := Flat(List( T_2, i -> List(List([0..Index(E_,H)-1],i->x_e^i*(AverageSum(FG,T
 
 return L; 
 end);
-
 
 
 #############################################################################
