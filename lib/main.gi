@@ -2287,7 +2287,7 @@ else
 	if Index(QEK_odd,Subgroup(QNK,[Image(epi,a_odd)]))=1 then
 		b_odd := Random(G)^0;
 	else
-		b_odd := PreImage(epi,MinimalGeneratingSet(ComplementClasses(
+		b_odd := PreImage(epi,MinimalGeneratingSet(ComplementClassesRepresentatives(
 													QEK_odd,Subgroup(QNK,[Image(epi,a_odd)]))))[1];
 	fi;
 fi;
