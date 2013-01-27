@@ -42,11 +42,13 @@
   </Author>
   
   <Author>Gabriela Olteanu
-          <Email>golteanu@um.es, olteanu@math.ubbcluj.ro</Email>
+          <Email>gabriela.olteanu@econ.ubbcluj.ro</Email>
+          <Homepage>http://math.ubbcluj.ro/&tilde;olteanu</Homepage>
           <Address>
-          Department of Mathematics and Computer Science<Br/>
-          North University of Baia Mare<Br/>
-          Victoriei 76, 430122 Baia Mare, Romania
+          Department of Statistics-Forecasts-Mathematics<Br/>
+          Faculty of Economics and Business Administration<Br/>
+          Babes-Bolyai University<Br/>
+          Str. T. Mihali 58-60, 400591 Cluj-Napoca, Romania
           </Address> 
   </Author>
   
@@ -58,6 +60,16 @@
           30100 Murcia, Spain
           </Address> 
   </Author>  
+  
+  <Author>Inneke Van Gelder
+          <Email>ivgelder@vub.ac.be</Email>
+	      <Homepage>http://homepages.vub.ac.be/~ivgelder</Homepage>
+          <Address>
+          Vrije Universiteit Brussel, Departement Wiskunde <Br/>
+          Pleinlaan 2 <Br/>
+          1050 Brussels, Belgium
+          </Address> 
+  </Author> 
     
   <Date>&RELEASEDATE;</Date>
 
@@ -69,7 +81,8 @@ The title ``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of
 components of the Wedderburn decomposition of semisimple group algebras of finite 
 groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. 
 It also contains functions that produce the primitive central idempotents 
-of semisimple group algebras. 
+of semisimple group algebras and  a  complete  set  of  orthogonal  primitive 
+idempotents.
 Other functions of &Wedderga; allow to construct crossed products over
 a group with coefficients in an associative ring with identity and the
 multiplication determined by a given action and twisting.
@@ -78,7 +91,7 @@ multiplication determined by a given action and twisting.
 
 <Copyright>
   &copyright; 2006-&RELEASEYEAR; by Osnel Broche Cristo, Alexander Konovalov, Aurora
-  Olivieri, Gabriela Olteanu and Ángel del Río.<P/>
+  Olivieri, Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.<P/>
 
   &Wedderga; is free software; you can redistribute it and/or modify it 
   under the terms of the GNU General Public License as published by 
@@ -92,7 +105,7 @@ multiplication determined by a given action and twisting.
   If you publish a result which was partially obtained with the usage of
   &Wedderga;, please cite it in the following form:<P/>
 
-  O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu and Á. del Río. 
+  O. Broche Cristo, A. Konovalov, A. Olivieri, G. Olteanu, Á. del Río and I. Van Gelder. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
   Version &VERSION;;</E> &RELEASEYEAR; (<URL>http://www.um.es/adelrio/wedderga.htm</URL>).
 </Copyright>
@@ -115,7 +128,8 @@ the following institutions:
   <Item>M.E.C. of Romania (CEEX-ET 47/2006);</Item>
   <Item>D.G.I. of Spain;</Item>
   <Item>Fundación Séneca of Murcia;</Item>
-  <Item>CAPES and FAPESP of Brazil.</Item>
+  <Item>CAPES and FAPESP of Brazil;</Item>
+  <Item>Research Foundation Flanders (FWO - Vlaanderen).</Item>
 </List>
 We acknowledge with gratitude this support.<P/>
 
@@ -134,6 +148,7 @@ We acknowledge with gratitude this support.<P/>
 <#Include SYSTEM "crossed.xml"> 
 <#Include SYSTEM "auxiliar.xml">
 <#Include SYSTEM "div-alg.xml">
+<#Include SYSTEM "applications.xml">
 <#Include SYSTEM "theory.xml"> 
 
 </Body>

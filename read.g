@@ -4,7 +4,8 @@
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
-#W                                                              √Ångel del R√≠o
+#W                                                              ¡ngel del RÌ≠o
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 

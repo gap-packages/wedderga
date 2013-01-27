@@ -5,6 +5,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 
@@ -528,7 +529,67 @@ local G,         # Underlying group of FG
               );
   
   return idem;   
-end);		       
+end);	
+
+
+
+#############################################################################
+##
+#O CodeWordByGroupRingElement( F,S,a )
+##
+## The function CodeWordByGroupRingElement creates a code word from a group ring element a 
+## from FG where S is a fixed ordering of the group elements of G
+##
+InstallMethod( CodeWordByGroupRingElement, 
+"for a field, a set and an element", 
+    true, 
+    [ IsField, IsSet, IsObject ], 
+    0,
+function(F,S,a) 
+	local coeffsupp,lsupp,supp,coeff,s,p,codeword;
+
+	coeffsupp := CoefficientsAndMagmaElements(a);
+	lsupp := Size(coeffsupp)/2;
+	supp := List( [ 1 .. lsupp ], i -> coeffsupp [ 2*i-1 ] );
+	coeff := List([ 1 .. lsupp ], i -> coeffsupp[2*i] );
+	codeword := [];
+
+	for s in S do
+		p := Position(supp,s);
+		if p = fail then
+			Add(codeword,Zero(F));
+		else
+			Add(codeword,coeff[p]);
+		fi;
+	od;
+
+	return codeword;
+end);
+
+
+#############################################################################
+##
+#O CodeByLeftIdeal( F,G,S,I )
+##
+## The function CodeByLeftIdeal creates all code words for a left ideal I of FG where 
+## S is a fixed ordering of the group elements of G
+##
+InstallMethod( CodeByLeftIdeal, 
+"for a field, a set and an element", 
+    true, 
+    [ IsField, IsGroup, IsSet, IsRing ], 
+    0,
+function(F,G,S,I) 
+	local code,i;
+
+	code := [];
+
+	for i in I do
+		Add(code,CodeWordByGroupRingElement(F,S,i));
+	od;
+
+	return code;
+end);	       
 
 ######################################################################################
 # E   

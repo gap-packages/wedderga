@@ -5,6 +5,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 
@@ -547,6 +548,397 @@ od;
 
 return p^size;
 
+end);
+
+
+#############################################################################
+##
+## SquareRootMod( a, q )  
+##
+## The function SquareRootMod solves the equation x^2 = a (mod q) 
+## using the algorithm of Tonelli-Shanks
+##
+InstallMethod( SquareRootMod,
+    "for positive integers", 
+    true, 
+    [ IsPosInt, IsPosInt ], 
+    0,
+function( a, q )
+
+local x,Q,z,bool,c,i,t,M,b;
+
+# Initialization  
+if not IsPrimePowerInt(q)
+	then Error("Wedderga: The input needs to be a prime power integer","\n");
+fi;   
+if IsEvenInt(q) 
+	then Error("Wedderga: The input needs to be an odd integer","\n"); 
+fi;
+if Legendre(a,q)<1
+	then Error("Wedderga: The input needs to be a square mod q","\n"); 
+fi;
+
+# Program
+if (q mod 4) = 3
+	then x := a^((q+1)/4) mod q;
+else
+	Q:=Product(Filtered(Factors(q-1),IsOddInt)); #take the odd part of q-1
+	
+	# take integer z such that Jacobi(z,q)=-1
+	bool := false;
+	while bool = false do
+		z:=Random([1..q-1]);
+		if Jacobi(z,q)=-1 then bool:=true; fi;
+	od;
+	c := z^Q mod q;
+
+	x := a^((Q+1)/2) mod q;
+	t := a^Q mod q;
+	M := LogInt((q-1)/Q,2);
+
+	while (t mod q) <> 1 do
+		# find lowest o<i<M such that t^(2^i) moq q = 1
+		i := 1;
+		while (t^(2^i) mod q) <> 1 do
+			i := i+1;			
+		od;
+
+		b := c^(2^(M-i-1)) mod q;
+		x := x*b mod q;
+		t := t*b^2 mod q;
+		c := b^2 mod q;
+		M := i;
+	od;	
+fi;
+
+return x;
+end);
+
+
+#############################################################################
+##
+## SquaresMod( q )  
+##
+## The function SquaresMod returns an integer a such that both a and -1-a 
+## are squares modulo q (odd prime power)
+##
+InstallMethod( SquaresMod,
+    "for a positive integer", 
+    true, 
+    [ IsPosInt], 
+    0,
+function( q )
+
+local a,bool;
+
+# Initialization
+if not IsPrimePowerInt(q)
+	then Error("Wedderga: input needs to be a prime power integer","\n");
+fi;
+if IsEvenInt(q) 
+	then Error("Wedderga: input needs to be odd","\n");
+fi;
+
+# Program 
+bool := false;
+
+while bool = false do
+	a:=Random([1..q-1]);
+	if Jacobi(a,q)=1 and Jacobi(-1-a,q)=1 then bool:=true; fi;
+od;
+
+return a;
+end);
+
+ 
+#############################################################################
+##
+## SolveEquation2@wedderga ( q )  
+##
+## The function SolveEquation2@wedderga returns a in GF(q) satisfying 
+## a^((q-1)/2)=-1=-Z(q)^0 when q is odd
+##
+InstallMethod( SolveEquation2@,
+    "for a positive integer", 
+    true, 
+    [ IsPosInt], 
+    0,
+function( q )
+
+local a,F,bool;
+
+# Initialization
+
+if not IsPrimePowerInt(q) 
+	then Error("Wedderga: input needs to be a prime power integer","\n");
+fi;
+if IsEvenInt(q) 
+	then Error("Wedderga: input needs to be odd","\n"); 
+fi;
+
+# Program
+
+bool := false;
+F:=GF(q);
+
+while bool = false do
+	a:=Random(F);
+	if a^((q-1)/2) = -Z(q)^0 then bool:=true; fi;
+od;
+
+return a;
+end);
+
+
+#############################################################################
+##
+## SolveEquation3@wedderga( q )  
+##
+## The function SolveEquation3@wedderga returns b in GF(q^2) satisfying 
+## b^((q^2-1)/2)=-1=-Z(q^2)^0 when q is odd
+##
+InstallMethod( SolveEquation3@,
+    "for a positive integer", 
+    true, 
+    [ IsPosInt], 
+    0,
+function( q )
+
+local b,F,bool;
+
+# Initialization
+if not IsPrimePowerInt(q)
+	then Error("Wedderga: input needs to be a prime power integer","\n");
+fi;
+if IsEvenInt(q) 
+	then Error("Wedderga: input needs to be odd","\n"); 
+fi;
+
+# Program
+bool := false;
+F:=GF(q^2);
+
+while bool = false do
+	b:=Random(F);
+	if b^((q^2-1)/2) = -Z(q^2)^0 then bool:=true; fi;
+od;
+
+return b;
+end);
+
+
+#############################################################################
+##
+## SolveEquation@wedderga( F )  
+##
+## The function SolveEquation@wedderga returns x and y<>0 in a finite field 
+## (of odd characteristic q) F satisfying x^2+y^2=-1=-Z(q^m)^0 
+##
+InstallMethod( SolveEquation@,
+    "for a field", 
+    true, 
+    [ IsField], 
+    0,
+function( F )
+
+local q,m,x,y,a,b;
+
+# Initialization
+if IsFinite(F) 
+	then Error("Wedderga: input needs to be finite","\n"); 
+fi;
+
+q := Characteristic(F);
+m := LogInt(Size(F),q);
+# F is finite field GF(q^m)
+
+if IsEvenInt(q) 
+	then Error("Wedderga: input needs to be of odd characteristic","\n"); 
+fi;
+
+# Program
+if (q mod 4) = 1
+	then 
+			x := 0*Z(q^m); 
+			a := SolveEquation2@(q);
+			y := a^((q-1)/4);
+elif (m mod 2) = 0
+	then 
+			x := 0*Z(q^m); 
+			b := SolveEquation3@(q);			
+			y := b^((q^2-1)/4);
+else
+			a := SquaresMod(q);
+			x := (Z(q^m)^0)*SquareRootMod(a,q);
+			y := (Z(q^m)^0)*SquareRootMod(-1-a,q);
+fi;
+
+return [x,y];
+
+end);
+
+
+
+#############################################################################
+##
+## PrimRootOfUnity( F,n )  
+##
+## The function PrimRootOfUnity returns returns a n-th primitive root of unity in F
+InstallMethod( PrimRootOfUnity,
+    "for a field and an positive integer", 
+    true, 
+    [ IsField, IsPosInt], 
+    0,
+function( F,n)
+  local m,q;
+	q := Size(F);
+	m := First([1..1000],m->RemInt(q^m,n)=1);
+  return BigPrimitiveRoot(q^m)^((q^m-1)/n);
+end);
+
+
+#############################################################################
+##
+## MakeMatrixByBasis( f,B )  
+##
+## The function MakeMatrixByBasis represents a linear mapping f with respect 
+## to a basis B
+InstallMethod( MakeMatrixByBasis,
+    "for a mapping and a basis", 
+    true, 
+    [ IsMapping, IsBasis], 
+    0,
+function( f,B)
+	local M,b;
+	M:=[];
+	for b in B do
+		Add(M,Coefficients(B,Image(f,b)));
+	od;	
+	return TransposedMat(M);
+end);
+
+
+
+#############################################################################
+##
+## ReturnGalElement( e,E,H,K,F1,xi )  
+##
+## We know that E/H = Gal(F1/F2). And that F1=F(xi).
+## The action is defined by the induced conjugation action of E on H/K.
+## This function returns an element e in E as element in the Galois group.
+InstallMethod( ReturnGalElement,
+    "for subgroups and a field", 
+    true, 
+    [ IsObject , IsGroup, IsGroup, IsGroup, IsField, IsObject], 
+    0,
+function( e,E,H,K,F1,xi)
+	local f,epi,h,hK,xK,i,image;
+
+	epi := NaturalHomomorphismByNormalSubgroup(H,K);
+	hK:=MinimalGeneratingSet(Image(epi,H))[1];
+	for h in H do
+		if Image(epi,h) = hK then break; fi;
+	od;
+	xK := Image(epi,h^e);
+	i:=1;
+	while xK <> hK^i do
+		i:=i+1;			
+	od;	
+	
+	image := [xi^i];
+	f := AlgebraHomomorphismByImages(F1,F1,[xi],image);
+
+	return f;
+end);
+
+
+#############################################################################
+##
+## LeftMultiplicationBy(x,F1)
+##
+## Returns the mapping F1->F1 associated with left multiplication by x
+InstallMethod( LeftMultiplicationBy,
+    "for fields", 
+    true, 
+    [IsObject, IsField], 
+    0,
+function(x,F1)
+	return MappingByFunction(F1,F1,y->x*y);
+end);
+
+
+#############################################################################
+##
+## MakeLinearCombination( FE, coef, supp)
+##
+## Makes the linear combination of coef and supp in FE
+InstallMethod( MakeLinearCombination,
+    "for algebra, a list and a list", 
+    true, 
+    [IsAlgebra, IsList, IsList], 
+    0,
+function( FE, coef, supp)
+	local x,i;
+
+	x := Zero(FE);
+
+	for i in [1..Size(coef)] do
+		x := x+coef[i]*supp[i];
+	od;
+
+	return x;
+end);
+
+#############################################################################
+##
+## Product3Lists( L )  
+##
+## The function Product3Lists returns the product [a_i*b_j*c_k] of 3 lists 
+## [a_1,a_2,...], [b_1,b_2,...] and [c_1,c_2,...]
+##
+InstallMethod( Product3Lists,
+    "for a list", 
+    true, 
+    [ IsList], 
+    0,
+function( L )
+
+local I,i,j,k;
+
+I := [];
+for i in L[1] do
+	for j in L[2] do
+		for k in L[3] do
+			Add(I,i*j*k);
+		od;
+	od;
+od;
+
+return I;
+end);
+
+
+#############################################################################
+##
+## IsTwistingTrivial(G,H,K) 
+##
+## The function IsTwistingTrivial checks if twisting of the simple algebra 
+## associated with the strong Shoda Pair (H,K) is trivial
+## This can be done in the rational group ring QG
+InstallMethod( IsTwistingTrivial,
+    "for subgroups", 
+    true, 
+    [IsGroup, IsGroup, IsGroup], 
+    0,
+function(G,H,K)
+	local A,QG;
+
+	QG:=GroupRing(Rationals,G);
+	A:=SimpleAlgebraByStrongSPInfo(QG,H,K);
+	if Size(A)=4 and A[4][3]<>0 then return false;
+	elif Size(A)=5 and ( not(IsZero(A[5])) or not(IsZero(List(A[4],x->x[3]))) ) then return false;
+	fi;
+	return true;
 end);
 
 
