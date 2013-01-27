@@ -5,6 +5,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 
@@ -498,6 +499,85 @@ od;
 coeff:=Inverse(Size(K)*One(Fq))*coeff;
 return ElementOfMagmaRing( FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp );
 end);
+
+
+#############################################################################
+##
+#M IdempotentBySubgroups( FqG, K, H, C, [epi,gq] ) 
+##
+## The function IdempotentBySubgroups computes epsilon( K, H, C ) for H and K
+## subgroups of G such that H is normal in K and K/H is cyclic group, and C 
+## is the q=|Fq|-cyclotomic class modulo n=[K:H] (w.r.t. the generator gq of K/H)
+InstallOtherMethod( IdempotentBySubgroups, 
+    "for semisimple finite group algebras", 
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ], 
+    0,
+function( FqG, K, H, C, arg )
+local   G,      # Group
+        Fq,     # Field
+        q,      # Order of field Fq
+        N,      # Normalizer of H in G
+        epi,    # N -->N/H
+				gq,			# generator of K/H
+        QKH,    # K/H
+        n,      # Order of K/H
+        g,      # Representative of the preimage of gq by epi
+        cc,     # Set of cyclotomic classes of q module n
+        a,      # Primitive n-th root of 1 in an extension of Fq
+        d,      # Cyclotomic class of q module n
+        tr,     # Trace
+        coeff,  # Coefficients of the output
+        supp,   # Coefficients of the output
+        o;      # The  multiplicative order of q module n
+
+# Initialization
+G := UnderlyingMagma(FqG);
+Fq := LeftActingDomain(FqG);
+q := Size(Fq);
+n := Index(K,H);
+epi := arg[1];
+gq := arg[2];
+
+# First we check that FqG is a finite group algebra over field finite
+# Then we check if K is subgroup of G, H is a normal subgroup of K
+
+if not IsSubgroup( G, K ) then
+    Error("Wedderga: <K> should be a subgroup of the underlying group of <FG>\n");
+elif not( IsSubgroup( K, H ) and IsNormal( K, H ) ) then
+    Error("Wedderga: <H> should be a normal subgroup of <K>\n");
+elif not IsCyclic( FactorGroup( K, H ) )then
+    Error("Wedderga: <K> over <H> should be be cyclic \n");
+elif not IsCyclotomicClass(q,n,C) then
+    Error("Wedderga: \n <C> should be a cyclotomic class module the index of <H> on <K>\n");
+fi; 
+
+
+cc := CyclotomicClasses(q,n);
+
+# Program
+
+if K=H then
+    return AverageSum( FqG, H );
+fi;
+N := Normalizer( G, H );
+QKH := Image( epi, K );
+o := Size( cc[2] );
+a := BigPrimitiveRoot(q^o)^((q^o-1)/n);
+supp := [];
+coeff := []; 
+for d in cc do
+    tr := BigTrace(o, Fq, a^(-C[1]*d[1]) );
+    Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
+    Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
+od;
+coeff:=Inverse(Size(K)*One(Fq))*coeff;
+
+# Output
+return ElementOfMagmaRing(FamilyObj(Zero(FqG)), Zero(Fq), coeff, supp);
+end);
+
+
 
 
 #############################################################################

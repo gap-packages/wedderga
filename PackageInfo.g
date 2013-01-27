@@ -5,6 +5,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 
@@ -13,12 +14,12 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.5.1",
-Date           := "31/05/2012",
+Version        := "4.6.0",
+Date           := "27/01/2013",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "4.4.3">
-##  <!ENTITY RELEASEDATE "31 May 2012">
-##  <!ENTITY RELEASEYEAR "2012">
+##  <!ENTITY VERSION "4.6.0">
+##  <!ENTITY RELEASEDATE "27 January 2013">
+##  <!ENTITY RELEASEYEAR "2013">
 ##  <#/GAPDoc>
 
 PackageWWWHome := "http://www.cs.st-andrews.ac.uk/~alexk/wedderga/",
@@ -62,13 +63,15 @@ Persons :=
        FirstNames    := "Gabriela",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "golteanu@um.es, olteanu@math.ubbcluj.ro",
+       Email         := "gabriela.olteanu@econ.ubbcluj.ro",
+       WWWHome       := "http://math.ubbcluj.ro/~olteanu",
        PostalAddress := Concatenation( [
-                        "Department of Mathematics and Computer Science\n",
-                        "North University of Baia Mare\n",
-                        "Victoriei 76, 430122 Baia Mare, Romania" ] ),
-       Place         := "Baia Mare",
-       Institution   := "North University of Baia Mare"
+                        "Department of Statistics-Forecasts-Mathematics\n",
+                        "Faculty of Economics and Business Administration\n",
+                        "Babes-Bolyai University\n",
+                        "Str. T. Mihali 58-60, 400591 Cluj-Napoca, Romania" ] ),
+       Place         := "Cluj-Napoca",
+       Institution   := "Babes-Bolyai University"
      ),
      rec(
        LastName      := "Olivieri",
@@ -97,6 +100,21 @@ Persons :=
                         "30100 Murcia, Spain" ] ),
        Place         := "Murcia",
        Institution   := "Universidad de Murcia"
+     ),     
+     rec(
+       LastName      := "Van Gelder",
+       FirstNames    := "Inneke",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "ivgelder@vub.ac.be",
+       WWWHome       := "http://homepages.vub.ac.be/~ivgelder",
+       PostalAddress := Concatenation( [
+                        "Vrije Universiteit Brussel\n",
+                        "Departement Wiskunde\n",
+                        "Pleinlaan 2\n", 
+                        "1050 Brussels , Belgium" ] ),
+       Place         := "Brussels",
+       Institution   := "Vrije Universiteit Brussel"
      )
 ],
 
@@ -124,7 +142,7 @@ PackageDoc := rec(
 Dependencies := rec(
   GAP                    := ">=4.5",
   NeededOtherPackages    := [ ["GAPDoc", ">= 1.5.1"] ],
-  SuggestedOtherPackages := [ ["laguna", "3.4"] ],
+  SuggestedOtherPackages := [ ["laguna", ">= 3.4"], ["GUAVA", ">= 3.12"] ],
   ExternalConditions     := []
 ),
 
