@@ -4,7 +4,8 @@
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
-#W                                                              çngel del R’o
+#W                                                              Ángel del Río
+#W																				                                      Inneke Van Gelder
 ##
 #############################################################################
 
@@ -24,11 +25,15 @@ field  of  characteristic coprime with  the order of G,  or an abelian number
 field (i.e. a subfield of a finite cyclotomic extension of the rationals).
 
 Other functions  of  Wedderga  compute  the primitive  central idempotents of 
-semisimple group algebras.
+semisimple  group  algebras  and  a  complete  set  of  orthogonal  primitive 
+idempotents.
 
 The package also  provides  functions  to  construct  crossed products over a 
 group  with  coefficients  in  an  associative  ring  with  identity  and the 
 multiplication determined by a given action and twisting.
+
+Furhermore, the package  provides functions to create code words from a group 
+ring element.
 
 Installation and system requirements:
 
@@ -37,7 +42,7 @@ restrictions on  the type  of the operating system. It is designed for GAP4.5
 and no compatibility with previous releases of GAP4 is guaranteed.
 
 To use the Wedderga online  help it is necessary  to install the GAP4 package 
-GAPDoc by Frank LŸbeck and  Max  Neunhšffer,  which is available from the GAP 
+GAPDoc by Frank Lübeck and  Max  Neunhöffer,  which is available from the GAP 
 site or from http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/.
 
 Wedderga is distributed in standard formats  (tar.gz, tar.bz2, -win.zip)  and 

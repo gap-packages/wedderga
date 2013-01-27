@@ -103,7 +103,7 @@ false
          Returns <K>true</K> if <A>KG</A> is a 
          <E>semisimple finite group algebra</E> (<Ref Sect="Semisimple" />), 
          that is a group algebra of a finite group <M>G</M> over a field <M>K</M> 
-         of order coprime to the order of <M>G</M>, and <K>false</K> otherwisse.
+         of order coprime to the order of <M>G</M>, and <K>false</K> otherwise.
 
 <Example>
 <![CDATA[
@@ -116,6 +116,31 @@ false
 gap> QG:=GroupRing( Rationals, SymmetricGroup(4) );;
 gap> IsSemisimpleFiniteGroupAlgebra( QG );
 false
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+<ManSection>
+   <Prop Name="IsTwistingTrivial" 
+         Arg="G,H,K"  
+         Comm="Is the twisting of the simple algebra of QG associated with the strong Shoda Pair (H,K) trivial" />
+   <Description>
+    The input must be a group and a strong Shoda pair of the group. <P/>
+    
+         Returns <K>true</K> if the simple algebra <M>&QQ;Ge(G,H,K)</M> has a <E>trivial twisting</E> 
+         (<Ref Sect="SSPDef" />), and <K>false</K> otherwise.
+
+<Example>
+<![CDATA[
+gap> G:=DihedralGroup(8);;
+gap> H:=StrongShodaPairs(G)[5][1];
+Group([ f1*f2, f3, f3 ])
+gap> K:=StrongShodaPairs(G)[5][2]; 
+Group([ f1*f2 ])
+gap> IsTwistingTrivial(G,H,K);
+true
 ]]>
 </Example>
 

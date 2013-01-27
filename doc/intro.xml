@@ -20,13 +20,17 @@ order of <M>G</M>, or an abelian number field (i.e. a subfield of a finite
 cyclotomic extension of the rationals). 
 <P/>
 
-Other functions of &Wedderga; compute the primitive central idempotents 
-of semisimple group algebras. 
+Other functions of &Wedderga; compute  the primitive  central idempotents of 
+semisimple  group  algebras  and  a  complete  set  of  orthogonal  primitive 
+idempotents.
 <P/>
 
 The package also provides functions to construct crossed products over
 a group with coefficients in an associative ring with identity and the
 multiplication determined by a given action and twisting.<P/>
+
+Furhermore, the package  provides functions to create code words from a group 
+ring element.<P/>
 
 </Section>
 
@@ -68,12 +72,13 @@ If the package is installed correctly, it should be loaded as follows:
 <![CDATA[
 gap> LoadPackage("wedderga");
 -----------------------------------------------------------------------------
-Loading  Wedderga 4.4.0 (Wedderga)
+Loading  Wedderga 4.4.4 (Wedderga)
 by Osnel Broche Cristo (osnel@ufla.br),
    Alexander Konovalov (http://www.cs.st-andrews.ac.uk/~alexk/),
    Gabriela Olteanu (golteanu@um.es, olteanu@math.ubbcluj.ro),
-   Aurora Olivieri (olivieri@usb.ve), and
-   Angel del Rio (http://www.um.es/adelrio).
+   Aurora Olivieri (olivieri@usb.ve), 
+   Angel del Rio (http://www.um.es/adelrio) and
+   Inneke Van Gelder (ivgelder@vub.ac.be).
 -----------------------------------------------------------------------------
 true
 ]]>
