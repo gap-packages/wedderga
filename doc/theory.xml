@@ -748,4 +748,131 @@ characters.
 
 </Section>
 
+<Section Label="TheoryPI">
+<Heading>A complete set of orthogonal primitive idempotents</Heading>
+
+When <M>R</M> is a semisimple ring, then every left ideal <M>L</M> of <M>R</M> is of the form <M>L=Re</M>, 
+where <M>e</M> is an idempotent of <M>R</M>. Therefore, we can use the idempotents to characterize the decompositions 
+of semisimple rings as a direct sum of minimal left ideals. In particular, let <M>R=\oplus_{i=1}^t L_i</M> be a decomposition 
+of a semisimple ring as a direct sum of minimal left ideals. Then, there exists a family <M>\{e_1,\dots,e_t\}</M> of elements 
+of <M>R</M> such that: each <M>e_i\neq 0</M> is an idempotent element, if <M>i\neq j</M>, then <M>e_ie_j=0</M>, 
+<M>1=e_1+\cdots+e_t</M> and each <M>e_i</M> cannot be written as <M>e_i=e_i'+e_i''</M>, where <M>e_i',e_i''</M> 
+are idempotents such that <M>e_i',e_i''\neq 0</M> and <M>e_i'e_i''=0</M>, <M>1\leq i\leq </M>. 
+Conversely, if there exists a family of idempotents <M>\{e_1,\dots,e_t\}</M> satisfying the previous conditions, 
+then the left ideals <M>L_i=Re_i</M> are minimal and <M>R=\oplus_{i=1}^t L_i</M>. Such a set of idempotents is called 
+a <E>complete set of orthogonal primitive idempotents</E> of the ring <M>R</M>. Such a set is not uniquely determined. 
+<Index>Complete set of orthogonal primitive idempotents</Index> <P/>
+
+Let <M>\mathbb F</M> be a finite field and <M>G</M> a finite nilpotent group such that <M>\mathbb F G</M> is semisimple. 
+Let <M>(H,K)</M> be a strong Shoda pair of <M>G</M>, <M>C\in\mathcal{C}(H/K)</M> and set <M>e_C=e_C(G,H,K)</M>, 
+<M>\varepsilon_C=\varepsilon_C(H,K)</M>, <M>H/K=\langle\overline{a}\rangle</M>, <M>E=E_G(H/K)</M>. 
+Let <M>E_2/K</M> and <M>H_2/K=\langle\overline{a_2}\rangle</M> (respectively <M>E_{2'}/K</M> and 
+<M>H_{2'}/K=\langle\overline{a_{2'}}\rangle</M>) denote the 2-parts (respectively 2'-parts) of <M>E/K</M> and <M>H/K</M> 
+respectively. Then <M>\langle\overline{a_{2'}}\rangle</M> has a cyclic complement <M>\langle\overline{b_{2'}}\rangle</M> 
+in <M>E_{2'}/K</M>.
+Using the description of the primitive central idempotents and the Wedderburn components of a semisimple finite group algebra 
+<M>F G</M> (<Ref Sect="CyclotomicClass" />), a complete set of orthogonal primitive idempotents of <M>\mathbb F Ge_C</M> is described 
+(see <Cite Key="OV" />) as the set of conjugates of <M>\beta_{e_C}=\widetilde{b_{2'}}\beta_2\varepsilon_C</M> by the elements of 
+<M>T_{e_C}=T_{2'}T_2T_E</M>, where <M>T_{2'}=\{1,a_{2'},a_{2'}^2,\dots,a_{2'}^{[E_{2'}:H_{2'}]-1}\}</M>, <M>T_E</M> 
+denotes a right transversal of <M>E</M> in <M>G</M> and <M>\beta_2</M> and <M>T_2</M> are given according to the cases below.
+
+<Enum>
+<Item> If <M>H_2/K</M> has a complement <M>M_2/K</M> in <M>E_2/K</M> then <M>\beta_2=\widetilde{M_2}</M>. Moreover, if <M>M_2/K</M> 
+is cyclic, then there exists <M>b_2\in E_2</M> such that <M>E_2/K</M> is given by the following presentation 
+<Display>\langle \overline{a_2},\overline{b_2}\mid \overline{a_2}\hspace{1pt}^{2^n}=\overline{b_2}\hspace{1pt}^{2^k}=1, 
+     \overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r \rangle,</Display> 
+and if <M>M_2/K</M> is not cyclic, then there exist <M>b_2,c_2\in E_2</M> such that <M>E_2/K</M> is given by the 
+following presentation 
+<Display>\langle \overline{a_2},\overline{b_2},\overline{c_2}\mid \overline{a_2}\hspace{1pt}^{2^n}=
+\overline{b_2}\hspace{1pt}^{2^k}=\overline{c_2}\hspace{1pt}^2=1, 
+\overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r, 
+\overline{a_2}\hspace{1pt}^{\overline{c_2}}=\overline{a_2}\hspace{1pt}^{-1}, [\overline{b_2},\overline{c_2}]=1 \rangle,</Display>
+with <M>r\equiv 1 \mod 4</M> (or equivalently <M>\overline{a_2}\hspace{1pt}^{2^{n-2}}</M> is central in <M>E_2/K</M>). Then
+<Enum>
+<Item> <M>T_2=\{1,a_2,a_2^2,\dots, a_2^{2^k-1}\}</M>, if <M>\overline{a_2}\hspace{1pt}^{2^{n-2}}</M> is central in <M>E_2/K</M> 
+(unless <M>n\leq 1</M>) and <M>M_2/K</M> is cyclic; and </Item>
+<Item> <M>T_2=\{1,a_2,a_2^2,\dots,a_2^{d/2-1},a_2^{2^{n-2}},a_2^{2^{n-2}+1},\dots,a_2^{2^{n-2}+d/2-1}\}</M>, where <M>d=[E_2:H_2]</M>, 
+otherwise. </Item>
+</Enum>
+</Item>
+<Item> If <M>H_2/K</M> has no complement in <M>E_2/K</M>, then there exist <M>b_2,c_2\in E_2</M> such that <M>E_2/K</M> is given by 
+the following presentation
+<Display> \langle \overline{a_2},\overline{b_2},\overline{c_2}\mid \overline{a_2}\hspace{1pt}^{2^n}=
+\overline{b_2}\hspace{1pt}^{2^k}=1, \overline{c_2}\hspace{1pt}^2=\overline{a_2}\hspace{1pt}^{2^{n-1}}, 
+\overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r,\\  
+\overline{a_2}\hspace{1pt}^{\overline{c_2}}=\overline{a_2}\hspace{1pt}^{-1},[\overline{b_2},\overline{c_2}]=1 \rangle, </Display>
+with <M>r\equiv 1 \mod 4</M>. In this case, <M>\beta_2=\widetilde{b_2}\frac{1+xa_2^{2^{n-2}}+ya_2^{2^{n-2}}c_2}{2}</M> and 
+<Display>T_2=\{1,a_2,a_2^2,\dots, a_2^{2^k-1},c_2,c_2a_2,c_2a_2^2,\dots,c_2a_2^{2^k-1}\},</Display> 
+with <M>x,y\in\mathbb F</M>, satisfying <M>x^2+y^2=-1</M> and <M>y\neq 0</M>.
+</Item>
+</Enum>
+
+
+
+When <M>G</M> is not nilpotent, we can still use the following description in some specific cases.
+
+Let <M>G</M> be a finite group and <M>\mathbb F</M> a finite field of order <M>s</M> such that <M>s</M> is coprime to the 
+order of <M>G</M>. Let <M>(H,K)</M> be a strong Shoda pair of <M>G</M> such that <M>\tau(gH,g'H)=1</M> for all 
+<M>g,g'\in E=E_G(H/K)</M>, and let <M>C\in\mathcal{C}(H/K)</M>. Let <M>\varepsilon=\varepsilon_C(H,K)</M> and <M>e=e_C(G,H,K)</M> 
+(<Ref Sect="CyclotomicClass" />). Let <M>w</M> be a normal element of <M>\mathbb F_{s^o}/\mathbb F_{s^{o/[E:H]}}</M> (with <M>o</M> 
+the multiplicative order of <M>s</M> modulo <M>[H:K]</M>) and <M>B</M> the normal basis determined by <M>w</M>. 
+Let <M>\psi</M> be the isomorphism between <M>\mathbb F E \varepsilon</M> and the matrix algebra 
+<M>M_{[E:H]}(\mathbb F_{s^{o/[E:H]}})</M> with respect to the basis <M>B</M> as stated in Corollary 29.8 in <Cite Key="R" />.
+Let <M>P,A\in M_{[E:H]}(\mathbb F_{s^{o/[E:H]}})</M> be the matrices 
+<Display>
+P= \left( \begin{array}{rrrrrr} 
+1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 &amp; 1\\
+1 &amp; -1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; -1 &amp; \cdots &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+1 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 0\\
+1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1\\
+\end{array} \right)
+\quad \text{and} \quad 
+A= \left( \begin{array}{ccccc}
+0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; \cdots &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0\\
+\end{array} \right).
+</Display>
+Then 
+<Display>
+\{x\widehat{T_1}\varepsilon x^{-1} \mid x\in T_2\langle{x_e}\rangle\}
+</Display>
+is a complete set of orthogonal primitive idempotents of <M>\mathbb F G e</M> where <M>x_e=\psi^{-1}(PAP^{-1})</M>, 
+<M>T_1</M> is a transversal of <M>H</M> in <M>E</M> and <M>T_2</M> is a right transversal of <M>E</M> in <M>G</M> 
+(<Cite Key="OV2" />). By <M>\widehat{T_1}</M> we denote the element <M>\frac{1}{|T_1|}\sum_{t\in T_1}{t}</M> in <M>\mathbb F G</M>. 
+
+
+</Section>
+
+<Section Label="codes">
+<Heading>Applications to coding theory</Heading>
+
+<Index>linear code</Index>
+A <E>linear code</E> of length <M>n</M> and rank <M>k</M> is a linear subspace <M>C</M> with dimension <M>k</M> 
+of the vector space <M>\mathbb F_q^n</M>. The standard basis of <M>\mathbb F_q^n</M> is denoted by <M>E=\{e_1,...,e_n\}</M>. 
+The vectors in <M>C</M> are called codewords, the size of a code is the number of codewords and equals <M>q^k</M>. 
+The distance of a code is the minimum distance between distinct codewords, i.e. the number of elements in which they differ. <P/>
+
+<Index>group code</Index>
+For any group <M>G</M>, we denote by <M>\mathbb F_q G</M> the group algebra over <M>G</M> with coefficients in <M>\mathbb F_q</M>. 
+If <M>G</M> is a group of order <M>n</M> and <M>C\subseteq \mathbb F_q^n</M> is a linear code, then we say that <M>C</M> 
+is a left <M>G</M>-code (respectively a <M>G</M>-code) if there is a bijection <M>\phi:E\rightarrow G</M> such that the linear 
+extension of <M>\phi</M> to an isomorphism <M>\phi:\mathbb F_q^n\rightarrow \mathbb F_q G</M> maps <M>C</M> to a left ideal 
+(respectively a two-sided ideal) of <M>\mathbb F_q G</M>. A left <E>group code</E> (respectively a group code) is a linear code which 
+is a left <M>G</M>-code (respectively a <M>G</M>-code) for some group <M>G</M>. <P/>
+
+Since left ideals in <M>\mathbb F_q G</M> are generated by idempotents, there is a one-one relation between (sums of) 
+primitive idempotents of <M>\mathbb F_q G</M> and left <M>G</M>-codes over <M>\mathbb F_q</M>.<P/>
+
+Note that each element <M>c</M> in <M>\mathbb F_q G</M> is of the form <M>c=\sum_{i=1}^n f_i g_i</M>, 
+where we fix an ordering <M>\{g_1,g_2,...,g_n \}</M> of the group elements of <M>G</M> and <M>f_i\in \mathbb F_q</M>. 
+If one looks at <M>c</M> as a codeword, one writes <M>[f_1 f_2 ... f_n]</M>. <P/>
+
+</Section>
+
 </Chapter>

@@ -5,6 +5,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 
@@ -61,6 +62,9 @@ DeclareOperation( "SimpleAlgebraByCharacter", [ IsSemisimpleFiniteGroupAlgebra, 
 DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleANFGroupAlgebra, IsCharacter ] );
 DeclareOperation( "SimpleAlgebraByCharacterInfo", [ IsSemisimpleFiniteGroupAlgebra, IsCharacter ] );
 
+DeclareOperation( "PrimitiveIdempotentsNilpotent", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList] );
+DeclareOperation( "PrimitiveIdempotentsTrivialTwisting", [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList] );
+
 #################### idempot.gi #####################
 
 DeclareOperation( "CentralElementBySubgroups",   
@@ -87,6 +91,20 @@ DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
 DeclareAttribute( "IsCyclGroupAlgebra", IsGroupRing );
 DeclareOperation( "SizeOfSplittingField", [IsCharacter, IsPosInt] ); 
 
+DeclareOperation( "SquareRootMod", [ IsPosInt, IsPosInt ]); 
+DeclareOperation( "SquaresMod", [IsPosInt] );
+DeclareOperation( "SolveEquation2@", [IsPosInt] );
+DeclareOperation( "SolveEquation3@", [IsPosInt] );
+DeclareOperation( "SolveEquation@", [IsField] );
+DeclareOperation( "PrimRootOfUnity", [IsField, IsPosInt] );
+DeclareOperation( "MakeMatrixByBasis", [ IsMapping, IsBasis] );
+DeclareOperation( "ReturnGalElement", [ IsObject , IsGroup, IsGroup, IsGroup, IsField, IsObject] );
+DeclareOperation( "LeftMultiplicationBy", [ IsObject , IsField] );
+DeclareOperation( "MakeLinearCombination", [IsAlgebra, IsList, IsList] );
+DeclareOperation( "Product3Lists", [IsList] );
+
+DeclareOperation( "IsTwistingTrivial", [IsGroup, IsGroup, IsGroup] );
+
 #################### others.gi #####################
 
 DeclareAttribute( "ShodaPairsAndIdempotents", IsGroupRing );
@@ -100,6 +118,9 @@ DeclareGlobalFunction( "PrimitiveCentralIdempotentsUsingConlon" );
 #DeclareGlobalFunction( "PrimitiveCentralIdempotentsByCharacterTable" );
 DeclareOperation( "PrimitiveCentralIdempotentsByCharacterTable", [ IsSemisimpleANFGroupAlgebra ] );
 DeclareOperation( "PrimitiveCentralIdempotentsByCharacterTable", [ IsSemisimpleFiniteGroupAlgebra ] );
+
+DeclareOperation( "CodeWordByGroupRingElement", [ IsField, IsSet, IsObject ] );
+DeclareOperation( "CodeByLeftIdeal", [ IsField, IsGroup, IsSet, IsRing ] );
 
 #################### bw.gi #####################
 

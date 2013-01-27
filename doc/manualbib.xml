@@ -60,7 +60,6 @@
   <other type="fjournal">Communications in Algebra</other>
 </article></entry>
 
-
 <entry id="O"><article>
   <author>
     <name><first>Gabriela</first><last>Olteanu</last></name>
@@ -80,6 +79,27 @@
   <other type="fjournal">Mathematics of Computation</other>
 </article></entry>
 
+<entry id="OV"><article>
+  <author>
+    <name><first>Gabriela</first><last>Olteanu</last></name>
+    <name><first>Inneke</first><last>Van Gelder</last></name>
+  </author>  
+  <title>Finite group algebras of nilpotent groups: A complete set of orthogonal primitive idempotents</title>
+  <journal>Finite Fields Appl.</journal>
+  <year>2011</year>
+  <volume>17</volume>
+  <number>2</number>
+  <pages>157&ndash;165</pages>
+</article></entry>
+
+<entry id="OV2"><article>
+  <author>
+    <name><first>Gabriela</first><last>Olteanu</last></name>
+    <name><first>Inneke</first><last>Van Gelder</last></name>
+  </author>  
+  <title>Construction of minimal non-abelian left group codes</title>
+  <year>preprint</year>
+</article></entry>
 
 <entry id="P"><book>
   <author>
