@@ -1,16 +1,660 @@
+#####################################################
+# Given a simple algebra output by WedderburnDecompositionInfo
+# or SimpleAlgebraByCharacterInfo from wedderga, 
+# this program determines its actual matrix degree and division 
+# algebra part in terms of local indices at all primes.
+#####################################################
+#############################################
+# Necessary arithmetic functions for subroutines
+#############################################
+PPartOfN:=function(n,p)
+local i,a,b;
 
-####################################################################################
-# The following functions are needed for "CrossedProductWithDivisionAlgebraPart",  #
-# which expresses the division algebra part of a simple component output by        # 
-# "WedderburnDecompositionInfo" when the output has 4 terms (cyclic cyclotomic     #
-# algebras) or in special cases when the output has 5 terms (a cyclotomic crossed  #
-# product of Y type) that occurs in a group of order up to 200.  In the latter     #
-# case, the program searches a small library to determine the local indices, so    # 
-# this has limited functionality.  For general Y-type crossed products, the        #
-# function "DecomposeYAlgebra" can be used to decompose the algebra into the direct# 
-# product of two cyclic algebras, whose Schur indices can be computed by solving   #
-# appropriate norm equations.                                                      #
-####################################################################################
+b:=n;
+a:=0;
+while b/p in PositiveIntegers do 
+b:=b/p;
+a:=a+1;
+od;
+
+return p^a;
+end;
+
+###############################
+PDashPartOfN:=function(n,p)
+local m;
+
+m:=n; 
+while m/p in PositiveIntegers do 
+m:=m/p;
+od; 
+
+return m; 
+end;
+################################
+# Given a simple component of a rational group algebra whose 
+# "WedderburnDecompositionInfo" output has 4 terms, the next 
+# three functions compute its indices at odd primes, infinity, 
+# and 2.    
+################################
+
+LocalIndexAtOddP:=function(A,q)
+local m,n,a,b,c,n1,n2,g,U,i,U1,u,h,e,f,f1,e1,k;
+
+m:=1; 
+a:=A[4][1];
+b:=A[4][2];
+c:=A[4][3];
+n:=Lcm(Conductor(A[2]),A[3]);
+n1:=PDashPartOfN(n,q);
+####################################
+# Cyclotomic reciprocity calculation:
+U:=[1];
+i:=1;
+while not(q^i mod n1 = 1) do 
+Add(U,q^i mod n1);
+i:=i+1;
+od;
+U1:=[];
+n2:=PDashPartOfN(A[3],q);
+for u in U do 
+Add(U1,u mod n2);
+od;
+g:=1; 
+while not((b^g mod n2) in U1) do 
+g:=g+1;
+od; 
+h:=OrderMod(b^g,n2);
+e:=OrderMod(b^g,A[3])/h;
+#####################################
+# Now g, h, and e1 are the splitting, 
+# residue degree and ramification of 
+# Q(E(n))/F at q.
+#####################################
+if e>1 and c>0 and A[3]/q in PositiveIntegers then 
+#####################################
+# Compute residue degree f of CF(n) at q
+f:=1; 
+while not((q^f-1)/n1 in PositiveIntegers) do 
+f:=f+1;
+od;
+#########################
+# Now F_q contains E(q^(f/h)-1).  We find the least 
+# power m of E(A[3])^c that lies in the group generated 
+# by E(q^(f/h)-1)^e.
+#########################
+f1:=f/h;
+e1:=Gcd(q^f1-1,e);
+k:=(q^f1-1)/e1;
+while not(k/(Order(E(A[3])^(c*m))) in PositiveIntegers) do 
+  m:=m+1;
+od; 
+fi;
+
+return m;
+end;
+
+
+###############################
+# For the computation of the index of a cyclic 
+# cyclotomic algebra at infinity, we determine the 
+# nature of the algebra as a quadratic algebra
+# over the reals. 
+###############################
+LocalIndexAtInfty:=function(A)
+local m,n,s,n1;
+
+m:=1;
+n:=A[3];
+if n>2 then 
+  s:=ANFAutomorphism(A[2],-1);  
+  if s=ANFAutomorphism(A[2],1) then 
+     if E(n)^A[4][3]=-1 then 
+      m:=2;
+    fi;
+  fi;
+fi;
+
+return m;
+end;
+###############################
+# For the local index at 2, we detect if the cyclic 
+# cyclotomic algebra will be of nonsplit quaternion type  
+# over the 2-adics
+###############################
+LocalIndexAtTwo:=function(A)
+local n,m,b,c,n1,f,h,g,n2,n3,e,e1,i,u,U,U1; 
+
+m:=1;
+if A[3]/4 in PositiveIntegers then 
+n:=Lcm(Conductor(A[2]),A[3]);
+b:=A[4][2];
+c:=A[4][3];
+n1:=PDashPartOfN(n,2); 
+f:=OrderMod(2,n1);
+n2:=PPartOfN(n,2);
+e:=Phi(n2);
+
+U:=[1];
+i:=1;
+while not((2^i mod n1) in U) do 
+Add(U,2^i mod n1);
+i:=i+1;
+od;
+U1:=[];
+n3:=PDashPartOfN(A[3],2);
+for u in U do 
+Add(U1,u mod n3);
+od;
+
+g:=1; 
+while not((b^g mod n3) in U1) do 
+g:=g+1;
+od; 
+h:=OrderMod(b^g,n3);
+e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
+ if e1>1 and IsOddInt(e*f/e1*h) then 
+ n2:=PPartOfN(n,2);
+  if E(n2)^(b^g)=E(n2)^(-1) and E(A[3])^c=-1 then 
+   m:=2;
+  fi;
+ fi;
+fi;
+
+return m;
+end;
+
+##############################
+# Given a group G and a simple component A whose 
+# WedderburnDecompositionInfo in wedderga has length 4,
+# this program gives the list of local indices at 
+# all primes relevant to the rational Schur index
+###############################
+LocalIndicesOfCyclicCyclotomicAlgebra:=function(A)
+local n,S,s,i,L,l,q,L1;
+
+L:=[];
+S:=AsSet(FactorsInt(A[3]));
+s:=Size(S);
+for i in [1..s] do 
+  if S[i]=2 then 
+  l:=LocalIndexAtTwo(A);
+  L[i]:=[]; 
+  L[i][1]:=2;
+  L[i][2]:=l;
+  else 
+  q:=S[i];
+  l:=LocalIndexAtOddP(A,q);
+  L[i]:=[];
+  L[i][1]:=q;
+  L[i][2]:=l;
+  fi;
+od;
+
+l:=LocalIndexAtInfty(A); 
+L[s+1]:=[];
+L[s+1][1]:="infty";
+L[s+1][2]:=l;
+
+L1:=[];
+
+s:=Size(L);
+for i in [1..s] do 
+if L[i][2]>1 then 
+Add(L1,L[i]);
+fi;
+od;
+
+return L1; 
+end;
+#######################################################
+# Finds group over which cyclotomic algebra of length 4 or 5 
+#is faithfully represented.
+#######################################################
+DefiningGroupOfCyclotomicAlgebra:=function(A)
+local l,f,a,b,c,g,g1;
+
+l:=Length(A);
+g1:="fail";
+
+if (l=5 and Length(A[4])=2) then 
+f:=FreeGroup("a","b","c");
+a:=f.1;
+b:=f.2;
+c:=f.3;
+g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),b^(-1)*a*b*a^(-A[4][1][2]),c^(-1)*a*c*a^(-A[4][2][2]),c^(-1)*b^(-1)*c*b*a^(-A[5][1][1])];
+g1:=AsPermGroup(g);
+fi;
+
+if (l=4) then 
+f:=FreeGroup("a","b");
+a:=f.1;
+b:=f.2;
+g:=f/[a^A[3],b^A[4][1]*a^(-A[4][3]),b^(-1)*a*b*a^(-A[4][2])];
+g1:=AsPermGroup(g);
+fi;
+
+return g1;
+end;
+
+#################################################
+DefiningCharacterOfCyclotomicAlgebra:=function(A)
+local g1,d,m,n,i,chi,F,u,V,U;
+
+g1:=DefiningGroupOfCyclotomicAlgebra(A);
+d:=A[1]*A[4][1][1]*A[4][2][1];
+n:=Size(Irr(g1));
+m:=Trace(A[2],Rationals,1);
+U:=[];
+for i in [1..n] do 
+chi:=Irr(g1)[n-i+1];
+V:=ValuesOfClassFunction(chi); 
+F:=FieldByGenerators(V);
+if V[1]=d then 
+if Size(KernelOfCharacter(chi))=1 then 
+if FieldByGenerators(V)=A[2] then 
+	Add(U,n-i+1); 
+fi; 
+fi;
+fi;
+od;
+if Size(U)=m then 
+u:=U[1];
+else
+u:="NotUnique";
+fi;
+
+return u;
+end;
+##########################################
+IsDyadicSchurGroup:=function(G)
+local d,j,P,P1,V0,c,g,g1,z,V1,v1,V2,q,s,n1,r,i,y,p1,x,U,V,P2,L;
+
+d:=false;
+j:=0;
+P:=SylowSubgroup(G,2);
+q:=Size(G)/Size(P);
+if IsPrimeInt(q) then 
+U:=SylowSubgroup(G,q);
+V:=Centralizer(P,U);
+
+# First look for G of type (Q_8,q)
+if IdSmallGroup(V)=[8,4] then 
+ V1:=Centralizer(P,V);
+ L:=UnionSet(Elements(V),Elements(V1));
+ P2:=GroupByGenerators(L);
+ if P=P2 then 
+  d:=true;
+  j:=1;
+ fi;
+else
+# Checks if P is of type (QD,q)
+P1:=DerivedSubgroup(P); 
+ s:=LogInt(Size(P)/Size(P1),2)-1;
+ if s=LogInt(PPartOfN(OrderMod(2,q),2),2) then
+ if not(IsAbelian(V)) then
+ if Size(P)/Size(V)=2^s then
+ d:=true;
+ fi;
+ fi;
+ fi;
+fi;
+
+fi;
+
+return d;
+end;
+##########################################
+LocalIndexAtInftyByCharacter:=function(F,G,n)
+local m,T,v2,a;
+
+m:=1;
+T:=CharacterTable(G);
+v2:=Indicator(T,2)[n];
+a:=PrimitiveElement(F);
+if GaloisCyc(a,-1)=a then 
+if v2=-1 then 
+m:=2;
+fi;
+fi;
+
+return m;
+end;
+#########################################
+LocalIndexAtTwoByCharacter:=function(F,G,n)
+local m,chi,g,chi1,B1,a,B,V,V1,a1,F0,F1,n0,n1,n01,n02,n11,n12,f,f0,f1;
+
+m:=1;
+chi:=Irr(G)[n];
+g:=G;
+chi1:=chi;
+B1:=SimpleAlgebraByCharacterInfo(GroupRing(Rationals,g),chi1);
+if not(Size(KernelOfCharacter(chi1))=1) then 
+g:=DefiningGroupOfCyclotomicAlgebra(B1);
+chi:=DefiningCharacterOfCyclotomicAlgebra(B1);
+fi;
+a:=PrimitiveElement(F);
+a1:=PrimitiveElement(B1[2]);
+B:=B1;
+B[2]:=FieldByGenerators([a,a1]);
+if Length(B)=2 then 
+m:=1;
+fi;
+if Length(B)=4 then 
+m:=LocalIndexAtTwo(B);
+fi;
+
+if Length(B)=5 and Length(B[4])=2 then 
+if IsDyadicSchurGroup(g) then 
+m:=2;
+fi;
+
+if Length(B)=5 and Length(B[4])>2 then 
+m:="fail: use p'-splitting field method";
+fi;
+
+if m=2 then 
+V:=ValuesOfClassFunction(Irr(G)[n]);
+F0:=FieldByGenerators(V);
+a:=PrimitiveElement(B[2]);
+V1:=UnionSet(V,[a]);
+F1:=FieldByGenerators(V1);
+if not(F0=F1) then 
+if E(4) in F1 then 
+m:=1;
+else
+n0:=Conductor(F0);
+n02:=PPartOfN(n0,2);
+n1:=Conductor(F1);
+n12:=PPartOfN(n1,2);
+if not(n02=n12) then 
+m:=1;
+else
+n11:=PDashPartOfN(n1,2);
+f1:=OrderMod(2,n1);
+n01:=PDashPartOfN(n0,2);
+f0:=OrderMod(2,n0);
+f:=f1/f0;
+if (f/2 in PositiveIntegers) then
+m:=1;
+fi;
+fi;
+fi;
+fi;
+fi;
+fi;
+
+return m;
+end;
+###########################################
+
+FinFieldExt:=function(F,G,p,n,n1)
+local T,chi,V,Y,h,a,m1,d1,L,i,z,l,m,K,B,d,M,C,D,b,j,F1,M1,M2,T1,psi,U,k,F2,t;
+
+T:=CharacterTable(G);
+chi:=Irr(G)[n];
+V:=ValuesOfClassFunction(chi);
+Y:=OrdersClassRepresentatives(T);
+h:=Size(Y);
+a:=PrimitiveElement(F);
+m1:=PDashPartOfN(Conductor(a),p);
+for i in [1..m1] do if (p^i-1)/m1 in Integers then d1:=i; break; fi; od; 
+
+L:=[];
+for i in [1..h] do if Gcd(Y[i],p) = 1 then Add(L,V[i]); fi; od; 
+l:=Size(L);
+m:=Conductor(L);
+K:=CF(m);
+B:=Basis(K);
+for i in [1..m] do if (p^i-1)/m in Integers then d:=i; break; fi; od; 
+z:=Z(p^d)^((p^d-1)/m);
+M:=[];
+D:=[];
+for i in [1..Size(B)] do 
+for j in [1..m] do 
+if B[i]=E(m)^j then 
+D[i]:=j; 
+fi; 
+od; 
+od; 
+
+for i in [1..l] do 
+  C:=Coefficients(B,L[i]); 
+  b:=0;
+for j in [1..Size(B)] do 
+  b:=b+C[j]*z^(D[j]);
+od; 
+  M[i]:=b;
+od; 
+M1:=UnionSet(M,[Z(p^d1)]);
+F1:=FieldByGenerators(M1);
+
+T1:=T mod p; 
+psi:=IBr(G,p)[n1];
+U:=ValuesOfClassFunction(psi);
+m:=Conductor(U);
+K:=CF(m);
+B:=Basis(K);
+for i in [1..m] do if (p^i-1)/m in Integers then d:=i; break; fi; od; 
+z:=Z(p^d)^((p^d-1)/m);
+M:=[];
+D:=[];
+for i in [1..Size(B)] do 
+for j in [1..m] do 
+if B[i]=E(m)^j then 
+D[i]:=j; 
+break;
+fi; 
+od; 
+od; 
+
+for i in [1..l] do 
+  C:=Coefficients(B,U[i]); 
+  b:=0;
+for j in [1..Size(B)] do 
+  b:=b+C[j]*z^(D[j]);
+od; 
+  M[i]:=b;
+od; 
+
+M2:=UnionSet(M,M1);
+F2:=FieldByGenerators(M2);
+t:=LogInt(Size(F2),Size(F1));
+
+return t; 
+end;
+##############################################
+PossibleDefectGroups:=function(G,n,p)
+local S,U,Q,Q1,i,j,I,T,b,k,d,H,a;
+
+T:=CharacterTable(G);
+S:=T mod p; 
+b:=BlocksInfo(S);
+for j in [1..Size(b)] do 
+if n in b[j].ordchars then 
+  k:=b[j].modchars[1];
+  d:=b[j].defect;
+  break;
+fi;
+od;
+Q:=SylowSubgroup(G,p);
+U:=[];
+if Size(Q)>p^d then 
+H:=ConjugacyClasses(G);
+for j in [2..Size(H)] do 
+  if Gcd(OrdersClassRepresentatives(T)[j],p)=1 then 
+     a:=Elements(H[j])[1];
+     Q1:=Intersection(Q,Q^a);
+     if Size(Q1)=p^d then 
+        AddSet(U,ConjugacyClassSubgroups(G,Q1)); 
+     fi; 
+  fi;
+od;
+else
+AddSet(U,ConjugacyClassSubgroups(G,Q));
+fi;
+
+return U;
+end;
+
+##########################################
+LocalIndexAtPByBrauerCharacter:=function(F,G,n,p)
+local chi,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2;
+
+chi:=Irr(G)[n];
+V:=ValuesOfClassFunction(chi);
+a:=PrimitiveElement(F);
+V1:=Union(V,[a]);
+C:=FieldByGenerators(V1);
+m1:=[];
+m1[1]:=1;
+m1[2]:="DGisCyclic";
+T:=CharacterTable(G);
+S:=T mod p; 
+b:=BlocksInfo(S);
+for j in [1..Size(b)] do 
+if n in b[j].ordchars then 
+  k:=b[j].modchars[1];
+  break;
+fi;
+od;
+
+U:=PossibleDefectGroups(G,n,p);
+f:=0;
+for u in [1..Size(U)] do 
+ if not(IsCyclic(Elements(U[u])[1])) then 
+   f:=f+1;
+ fi;
+od; 
+if not(f=0) then
+  if f<Size(U) then  
+   m1[2]:="DGmaybeCyclic";
+  else 
+   m1[2]:="DGnotCyclic";
+  fi;
+fi;
+   
+t:=FinFieldExt(C,G,p,n,k);
+if t>1 then 
+m1[1]:=t;
+fi;
+
+m2:=m1;
+if m2[2]="DGisCyclic" then 
+m1:=m2[1];
+fi;
+
+return m1;
+end;
+#############################################
+LocalIndicesOfCyclotomicAlgebra:=function(A)
+local L,F,l,G,n,m2,P,p,l1,i,L1;
+
+L:=[];
+L1:=[];
+F:=A[2];
+l:=Length(A);
+
+if l=5 then 
+G:=DefiningGroupOfCyclotomicAlgebra(A);
+n:=DefiningCharacterOfCyclotomicAlgebra(A);
+P:=AsSet(Factors(Size(G)));
+if P[1]=2 then 
+L1[1]:=["infty",LocalIndexAtInftyByCharacter(F,G,n)];
+m2:=LocalIndexAtPByBrauerCharacter(F,G,n,2);
+if m2 in Integers then 
+L1[2]:=[2,m2];
+else
+L1[2]:=[2,LocalIndexAtTwoByCharacter(F,G,n)];
+fi;
+else
+L1[1]:=["infty",1];
+L1[2]:=[2,1];
+fi;
+
+if Size(P)>1 then 
+for i in [2..Size(P)] do 
+p:=P[i];
+L1[i+1]:=[p,LocalIndexAtPByBrauerCharacter(F,G,n,p)];
+od;
+fi;
+fi;
+
+l1:=Size(L1);
+for i in [1..l1] do 
+ if not(L1[i][2]=1) then
+   Add(L,L1[i]);
+ fi;
+od;
+
+if l=4 then 
+L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
+fi;
+
+if l<4 then 
+L:=[];
+fi;
+
+return L;
+end;
+############################################
+RootOfDimensionOfCyclotomicAlgebra:=function(A)
+local d,i;
+
+if Length(A)<4 then 
+d:=A[1];
+fi;
+
+if Length(A)=4 then 
+d:=A[1]*A[4][1];
+fi;
+
+if Length(A)=5 then 
+d:=A[1];
+for i in [1..Length(A[4])] do 
+d:=d*A[4][i][1];
+od;
+fi;
+
+return d;
+end;
+###########################################
+# Calculates the least common multiple of the list of 
+# local indices
+###########################################
+
+GlobalSchurIndexFromLocalIndices:=function(L)
+local l,m,i;
+
+l:=Length(L);
+m:=1;
+if l>0 then 
+  m:=L[1][2];
+fi;
+if l>1 then 
+for i in [2..l] do 
+  m:=Lcm(m,L[i][2]);
+od;  
+fi;
+
+return m;
+end;
+###########################################
+CyclotomicAlgebraWithDivAlgPart:=function(A)
+local L,m,d,B;
+
+L:=LocalIndicesOfCyclotomicAlgebra(A);
+m:=GlobalSchurIndexFromLocalIndices(L);
+d:=RootOfDimensionOfCyclotomicAlgebra(A);
+if m>1 then
+B:=[d/m,["DivAlg",A[2],"LocInds=",L]]; 
+else
+B:=[d,A[2]];
+fi;
+
+return B;
+end;
+###############################################
 
 #############################
 # Given a Schur algebra output from "wedderga" with 5 terms
@@ -19,7 +663,7 @@
 # tensor decomposition.   
 # #############################
 
-DecomposeYAlgebra:=function(A)
+DecomposeCyclotomicAlgebra:=function(A)
 local B,B1,m1,n,m,d,c,z,r,s,t,u,v,u1,i,j,b,F,w;
 
 B:=[];
@@ -100,19 +744,23 @@ fi;
 
 for i in [1,2] do 
   if not(IsSubset(B[i][2],B[i][1])) then 
-  c:=[];
-  for j in [1,2] do
-  d:=Conductor(B[i][j]);
-  F:=CF(d);
-  if not(IsCyclotomicField(B[i][j])) then 
-    c[j]:=Trace(F,B[i][1],E(d));
-  else
-    c[j]:=E(d); 
+  c:=PrimitiveElement(B[i][1]);
+  d:=PrimitiveElement(B[i][2]);
+  B[i][2]:=FieldByGenerators([c,d]);
   fi;
-  od; 
-  B[i][2]:=FieldByGenerators(c);
-  fi;
-od; 
+od;
+
+#  c:=[];
+#  for j in [1,2] do
+#  d:=Conductor(B[i][j]);
+#  F:=CF(d);
+#  if not(IsCyclotomicField(B[i][j])) then 
+#    c[j]:=Trace(F,B[i][1],E(d));
+#  else
+#    c[j]:=E(d); 
+#  fi;
+#  od; 
+#  B[i][2]:=FieldByGenerators(c);
   
   B1:=B;
   
@@ -175,20 +823,14 @@ fi;
 
 for i in [1,2] do 
   if not(IsSubset(B[i][2],B[i][1])) then 
-  c:=[];
-  for j in [1,2] do
-  d:=Conductor(B[i][j]);
-  F:=CF(d);
-  if not(IsCyclotomicField(B[i][j])) then 
-    c[j]:=Trace(F,B[i][1],E(d));
-  else
-    c[j]:=E(d); 
+  c:=PrimitiveElement(B[i][1]);
+  d:=PrimitiveElement(B[i][2]);
+  B[i][2]:=FieldByGenerators([c,d]);
   fi;
-  od; 
-  B[i][2]:=FieldByGenerators(c);
-  fi;
-od; 
+od;
   
+B1:=B;
+
 else
   B[1][1]:=A[2]; 
   B[1][2]:=NF(n,[1,A[4][2][2]]); 
@@ -196,118 +838,22 @@ else
   B[2][1]:=A[2];
   B[2][2]:=NF(n,[1,A[4][1][2]]);
   B[2][3]:=[E(n)^A[4][2][3]];
+  B1:=B;
 fi;
 fi;
-B1:=B;
-return B1; 
 
+return B1;
 end; 
 ################################################
-# Local Schur indices of cyclic algebras (K/F,a) and (K/F,b) 
-# will match when a^-1*b is a norm in the extension K/F. 
-# Determining this is difficult in general, but it is at 
-# least possible to dispense of easy cases by trying to 
-# match a few known norms. 
-################################################
-NormMatch:=function(K,F,c)
-local a,n,m,k,d,i,N;
-
-N:=[];
-n:=Conductor(K);
-if IsOddInt(n) then n:=2*n; fi;
-d:=DivisorsInt(n);
-a:=PrimitiveElement(K);
-m:=Degree(MinimalPolynomial(F,a));
-if m=2 then 
-for i in d do 
- if Sqrt(i) in K and not(Sqrt(i) in F) then 
-  a:=Sqrt(i);
-  break;
- else
- if Sqrt(-i) in K and not(Sqrt(-i) in F) then 
-  a:=Sqrt(-i);
-  break;
- fi; 
- fi;
-od; 
-fi;
-
-for d in [-n..n] do 
-for k in [0..(m-1)] do
-  AddSet(N,Norm(K,F,d+a^k));
-od;
-od;
-m:=Size(N);
-for i in [1..m] do 
-if not(N[i]=0) then
-for d in [1..m] do 
-  AddSet(N,N[i]^(-1)*N[d]);
-  AddSet(N,N[i]*N[d]);
-od; 
-fi;
-od;
-if c in N then 
-  return true;
-else
-  return false;
-fi;
-end;
-
-######################
-##############
-# The next three functions are used to convert 
-# between the wedderga lists for algebras and 
-# actual quaternion algebras.
-###############################################
-ConvertCyclicAlgToCyclicCyclotomicAlg:=function(A)
-local F,K,n,i,j,M,k,l,m,B;
-
-F:=A[1];
-K:=A[2];
-if IsCyclotomicField(K) then 
-n:=Conductor(K);
-if IsOddInt(n) then n:=2*n; fi;
-for i in [1..n-1] do 
-if Gcd(i,n) = 1 then 
-m:=OrderMod(n,i);
-M:=[];
-for j in [1..m] do 
-AddSet(M,i^j mod n);
-od;
-if F=NF(n,M) then k:=i; break; fi; 
-fi;
-od; 
-
-m:=Order(ANFAutomorphism(K,k));
-l:="fails";
-for i in [0..n] do 
-if NormMatch(K,F,E(n)^(-i)*A[3][1]) then l:=i; break; fi; 
-od; 
-B:=[1,F,n,[m,k,l]];
-else
-B:="fails";
-fi;
-return B;
-end; 
-#####################################################
-
-ConvertCyclicCyclotomicAlgtoQuadraticAlg:=function(A)
-local n,B;
-
-if Length(A)=4 and A[4][1]=2 then 
-n:=A[3];
-B:=[A[2],CF(n),[E(n)^A[4][3]]];
-else
-B:="fails";
-fi;
-return [A[1],B];
-end;
+# The next few functions allow conversions between 
+# cyclic algebras and quaternion algebras. 
 ########################################################
 ConvertQuadraticAlgToQuaternionAlg:=function(A)
 local d,n,i,B;
 
 n:=Conductor(A[2]);
 i:=0;
+if A[4][1][1]=2 then
 for d in [1..n] do 
   if Sqrt(d) in A[2] and not(Sqrt(d) in A[1]) then 
      i:=d;
@@ -318,15 +864,33 @@ for d in [1..n] do
      break; 
   fi; 
 od; 
-  if not(i=0) then 
-     B:=QuaternionAlgebra(A[1],i,A[3][1]);
-  else
-     B:="fails";
-  fi; 
+fi;
+
+if not(i=0) then 
+  B:=QuaternionAlgebra(A[1],i,A[3][1]);
+else
+  B:="fail";
+fi;
+ 
 return B; 
 end;
+
+#####################################################
+ConvertCyclicCyclotomicAlgToCyclicAlg:=function(A)
+local n,a,K,B;
+
+if Length(A)=4 then 
+n:=A[3];
+a:=PrimitiveElement(A[2]);
+K:=FieldByGenerators([a,E(n)]);
+B:=[A[2],K,[E(n)^A[4][3]]];
+else
+B:="fail";
+fi;
+return [A[1],B];
+end;
 #################################################
-ConvertQuaternionAlgToCyclicAlg:=function(A)
+ConvertQuaternionAlgToQuadraticcAlg:=function(A)
 local F,K,B,b,d,d1,i,a;
 
 d:=[];
@@ -366,12 +930,13 @@ return B;
 end;
 
 ##########################################
-# The next function is needed for local indices 
-# rational quaternion algebras.  It computes the
-# local index of the symbol algebra (p,q) over Q 
-# when p and q are -1 or a prime.  Warning: It 
-# will not work when p or q are other integers,
-# and it does not check this fact. 
+# The next few functions allow one to compute the 
+# local indices of rational quaternion algebras, 
+# and determine if it is a division algebra. 
+# The first one computes the local index of the 
+# symbol algebra (p,q) over Q when p and q are -1 
+# or a prime.  Warning: It will not work when p or 
+# q are other integers, and it does not check this fact. 
 ##########################################
 LocalIndicesOfRationalSymbolAlgebra:=function(a,b) 
 local p,q,L;
@@ -449,9 +1014,8 @@ end;
 # The next function computes local indices for 
 # quaternion algebras over the rationals.  For 
 # quaternion algebras over larger number fields, 
-# we convert to quadratic algebra and make use 
-# of "DivAlgPartOfCyclicAlg", which searches a 
-# local index library. 
+# we convert to quadratic algebras and use the 
+# cyclotomic algebra functions.  
 ############################################
 
 LocalIndicesOfRationalQuaternionAlgebra:=function(A)
@@ -526,934 +1090,48 @@ fi;
 return V;
 end;
 
-##########################################
-# Local index library for generalized quaternion 
-# and quadratic algebras that occur for small groups, 
-# including all of those needed for groups of order 
-# up to 200.  
-###########################################
-
-DivAlgPartOfCyclicAlg:=function(A)
-local L,D,d;
-
-D:=A;
-L:=[1,D];
-d:=Trace(A[2],A[1],1);
-if NormMatch(A[2],A[1],A[3][1]) then D:=A[1]; L:=[d,D]; fi; 
-
-if A[1]=Rationals and A[2]=CF(4) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then 
-   D:=["DivAlg",Rationals,"LocInds=",[["infty",2],[2,2]]]; L:=[1,D]; fi;
-
-if A[1]=Rationals and A[2]=CF(3) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then  
-   D:=["DivAlg",Rationals,"LocInds=",[["infty",2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=Rationals and A[2]=CF(3) and NormMatch(A[2],A[1],(-2)^(-1)*A[3][1]) then 
-   D:=["DivAlg",Rationals,"LocInds=",[["infty",2],[2,2]]]; L:=[1,D]; fi;
-
-if A[1]=Rationals and A[2]=CF(3) and NormMatch(A[2],A[1],(2)^(-1)*A[3][1]) then 
-   D:=["DivAlg",Rationals,"LocInds=",[[2,2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=Rationals and A[2]=NF(12,[1,11]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",Rationals,"LocInds=",[[2,2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(5,[1,4]) and A[2]=CF(5) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(5,[1,4]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(5,[1,4]) and A[2]=CF(5) and NormMatch(A[2],A[1],(2)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(5,[1,4]),"LocInds=",[[2,2],[5,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(5,[1,4]) and A[2]=CF(5) and NormMatch(A[2],A[1],(-2)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(5,[1,4]),"LocInds=",[["infty",2],[2,2],[5,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(5,[1,4]) and A[2]=NF(20,[1,9]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(5,[1,4]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(5,[1,4]) and A[2]=NF(15,[1,4]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(5,[1,4]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(8,[1,7]) and A[2]=NF(24,[1,7]) and NormMatch(A[2],A[1],(2-Sqrt(2))^(-1)*A[3][1]) then D:=["DivAlg",NF(8,[1,7]),"LocInds=",[[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(8,[1,7]) and A[2]=NF(24,[1,7]) and NormMatch(A[2],A[1],(2+Sqrt(2))^(-1)*A[3][1]) then D:=["DivAlg",NF(8,[1,7]),"LocInds=",[[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(8,[1,7]) and A[2]=NF(24,[1,7]) and NormMatch(A[2],A[1],(-2+Sqrt(2))^(-1)*A[3][1]) then D:=["DivAlg",NF(8,[1,7]),"LocInds=",[["infty",2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(8,[1,7]) and A[2]=NF(24,[1,7]) and NormMatch(A[2],A[1],(-2-Sqrt(2))^(-1)*A[3][1]) then D:=["DivAlg",NF(8,[1,7]),"LocInds=",[["infty",2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(8,[1,7]) and A[2]=NF(24,[1,7]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(8,[1,7]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(8,[1,7]) and A[2]=CF(8) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then 
-   D:=["DivAlg",NF(8,[1,7]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(8,[1,3]) and A[2]=NF(24,[1,11]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(8,[1,3]); L:=[2,D]; fi;
-
-if A[1]=NF(24,[1,5,7,11]) and A[2]=NF(24,[1,5]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(24,[1,5,7,11]); L:=[2,D]; fi;
-
-if A[1]=NF(24,[1,5,19,23]) and A[2]=NF(24,[1,19]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(24,[1,5,19,23]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(24,[1,5,19,23]) and A[2]=NF(24,[1,5]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(24,[1,5,19,23]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(7,[1,6]) and A[2]=CF(7) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(7,[1,6]),"LocInds=",[["infty",2],[7,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(7,[1,6]) and A[2]=CF(7) and NormMatch(A[2],A[1],(2)^(-1)*A[3][1]) then
-   D:=NF(7,[1,6]); L:=[2,D]; fi;
-
-if A[1]=NF(7,[1,6]) and A[2]=CF(7) and NormMatch(A[2],A[1],(-2)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(7,[1,6]),"LocInds=",[["infty",2],[7,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(7,[1,6]) and A[2]=NF(28,[1,13]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(7,[1,6]),"LocInds=",[["infty",2],[2,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(7,[1,6]) and A[2]=NF(21,[1,13]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(7,[1,6]),"LocInds=",[["infty",2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(9,[1,8]) and A[2]=CF(9) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(9,[1,8]),"LocInds=",[["infty",2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(9,[1,8]) and A[2]=CF(9) and NormMatch(A[2],A[1],(-2)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(9,[1,8]),"LocInds=",[["infty",2],[2,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(9,[1,8]) and A[2]=CF(9) and NormMatch(A[2],A[1],(2)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(9,[1,8]),"LocInds=",[[2,2],[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(9,[1,8]) and A[2]=NF(36,[1,17]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then 
-   D:=["DivAlg",NF(9,[1,8]),"LocInds=",[["infty",2],[2,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(40,[1,9,31,39]) and A[2]=NF(40,[1,31]) and NormMatch(A[2],A[1],(2-E(8)+E(8)^3)^(-1)*A[3][1]) then D:=["DivAlg",NF(40,[1,9,31,39]),"LocInds=",[[5,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(40,[1,9,31,39]) and A[2]=NF(40,[1,31]) and NormMatch(A[2],A[1],(2+E(8)-E(8)^3)^(-1)*A[3][1]) then D:=["DivAlg",NF(40,[1,9,31,39]),"LocInds=",[[5,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(40,[1,9,31,39]) and A[2]=NF(40,[1,31]) and NormMatch(A[2],A[1],(-2+E(8)-E(8)^3)^(-1)*A[3][1]) then 
-   D:=["DivAlg",NF(40,[1,9,31,39]),"LocInds=",[[5,2],["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(40,[1,9,31,39]) and A[2]=NF(40,[1,31]) and NormMatch(A[2],A[1],(-2-E(8)+E(8)^3)^(-1)*A[3][1]) then  
-   D:=["DivAlg",NF(40,[1,9,31,39]),"LocInds=",[[5,2],["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(40,[1,9,31,39]) and A[2]=NF(40,[1,31]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(40,[1,9,31,39]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(40,[1,11,29,39]) and A[2]=NF(40,[1,11]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(40,[1,11,29,39]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(40,[1,11,29,39]) and A[2]=NF(40,[1,29]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(40,[1,11,29,39]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-
-if A[1]=Rationals and A[2]=NF(20,[1,3,7,9]) and NormMatch(A[2],A[1],(2)^(-1)*A[3][1]) then
-   D:=["DivAlg",Rationals,"LocInds=",[[2,2],[5,2]]]; L:=[1,D]; fi;
-
-if A[1]=Rationals and A[2]=NF(20,[1,3,7,9]) and NormMatch(A[2],A[1],(-2)^(-1)*A[3][1]) then
-   D:=["DivAlg",Rationals,"LocInds=",[[5,2],["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=Rationals and A[2]=NF(20,[1,3,7,9]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",Rationals,"LocInds=",[["infty",2],[2,2]]]; L:=[1,D]; fi;
-
-if A[1]=Rationals and A[2]=CF(5) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then 
-   D:=["DivAlg",Rationals,"LocInds=",[[5,2],["infty",2]]]; L:=[2,D]; fi;
-
-if A[1]=NF(40,[1,9,11,19]) and A[2]=NF(40,[1,9]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(40,[1,9,11,19]); L:=[2,D]; fi;
-
-if A[1]=NF(40,[1,9,11,19]) and A[2]=NF(40,[1,11]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(40,[1,9,11,19]); L:=[2,D]; fi;
-
-if A[1]=NF(40,[1,19,29,31]) and A[2]=NF(40,[1,19]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(40,[1,19,29,31]); L:=[2,D]; fi;
-
-if A[1]=NF(40,[1,19,29,31]) and A[2]=NF(40,[1,29]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(40,[1,19,29,31]); L:=[2,D]; fi;
-
-if A[1]=NF(11,[1,10]) and A[2]=CF(11) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(11,[1,10]),"LocInds=",[["infty",2],[11,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(11,[1,10]) and A[2]=NF(44,[1,21]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(11,[1,10]),"LocInds=",[["infty",2],[2,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(11,[1,10]) and A[2]=CF(11) and NormMatch(A[2],A[1],(-2)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(11,[1,10]),"LocInds=",[[2,2],["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(11,[1,10]) and A[2]=CF(11) and NormMatch(A[2],A[1],(2)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(11,[1,10]),"LocInds=",[[2,2],[11,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(16,[1,15]) and A[2]=CF(16) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(16,[1,15]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(16,[1,15]) and A[2]=NF(48,[1,31]) and NormMatch(A[2],A[1],(2+E(16)^3-E(16)^5)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(16,[1,15]),"LocInds=",[[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(16,[1,15]) and A[2]=NF(48,[1,31]) and NormMatch(A[2],A[1],(2-E(16)^3+E(16)^5)^(-1)*A[3][1]) then 
-   D:=["DivAlg",NF(16,[1,15]),"LocInds=",[[3,2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(16,[1,15]) and A[2]=NF(48,[1,31]) and NormMatch(A[2],A[1],(-2+E(16)^3-E(16)^5)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(16,[1,15]),"LocInds=",[[3,2],["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(16,[1,15]) and A[2]=NF(48,[1,31]) and NormMatch(A[2],A[1],(-2+E(16)-E(16)^7)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(16,[1,15]),"LocInds=",[[3,2],["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(16,[1,15]) and A[2]=NF(48,[1,31]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then
-   D:=["DivAlg",NF(16,[1,15]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(48,[1,23,31,41]) and A[2]=NF(48,[1,31]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(48,[1,23,31,41]); L:=[2,D]; fi;
-
-if A[1]=NF(48,[1,23,31,41]) and A[2]=NF(48,[1,23]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=NF(48,[1,23,31,41]); L:=[2,D]; fi;
-
-if A[1]=NF(48,[1,7,41,47]) and A[2]=NF(48,[1,41]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(48,[1,7,41,47]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(48,[1,7,41,47]) and A[2]=NF(48,[1,7]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then D:=["DivAlg",NF(48,[1,7,41,47]),"LocInds=",[["infty",2]]]; L:=[1,D]; fi;
-
-if A[1]=NF(16,[1,7]) and A[2]=CF(16) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then 
-   D:=NF(16,[1,7]); L:=[2,D]; fi;
-
-if A[1]=NF(16,[1,7]) and A[2]=NF(48,[1,7]) and NormMatch(A[2],A[1],(-1)^(-1)*A[3][1]) then  
-   D:=NF(16,[1,7]); L:=[2,D]; fi;
-
-return L;
-end;
-
-############################################
-# This Function returns the local indices of 
-# the central simple algebra that is the tensor   
-# product of two simple algebras presented as 
-# matrix algebras over division algebras by 
-# wedderga's div-alg functions.
-############################################
-
-DivAlgPartOfTensorProductOfCyclicAlgs:=function(A,B)
-local S,p,i,j,l,m,L,D,L1,r1,r2,r,m1,m2;
-
-r1:=A[1]; 
-r2:=B[1];
-
-if IsField(A[2]) then 
-if IsField(B[2]) then 
-if A[2]=B[2] then r:=r1*r2; D:=[r,A[2]]; else D:="TensorProductUndefined"; fi;
-else 
-if A[2]=B[2][2] then r:=r1*r2; D:=[r,B[2]]; else D:="TensorProductUndefined"; fi;
-fi;
-fi;
-
-if not(IsField(A[2])) and IsField(B[2]) then 
-if A[2][2]=B[2] then r:=r1*r2; D:=[r,A[2]]; else D:="TensorProductUndefined"; fi;  
-fi;
-
-if not(IsField(A[2])) and not(IsField(B[2])) then 
-r:=r1*r2;
-S:=[];
-L:=[];
-L1:=[];
-m1:=1;
-m2:=1;
-for p in [1..Length(A[2][4])] do 
-AddSet(S,A[2][4][p][1]);
-m1:=Lcm(m1,A[2][4][p][2]);
-od;
-for p in [1..Length(B[2][4])] do 
-AddSet(S,B[2][4][p][1]);
-m2:=Lcm(m2,B[2][4][p][2]);
-od; 
-for i in [1..Size(S)] do 
-L[i]:=[];
-L[i][1]:=S[i];
-m:=0;
-for p in [1..Length(A[2][4])] do 
-if A[2][4][p][1]=S[i] then 
-  m:=A[2][4][p][2]; 
-fi; 
-od; 
-for p in [1..Length(B[2][4])] do 
-if B[2][4][p][1]=S[i] then
-if not(B[2][4][p][2]=m) then 
-m:=Lcm(B[2][4][p][2],m);
-else
-if (m=2 and B[2][4][p][2]=2) then 
-m:=1;
-else
-m:=["divides",m];
-fi; 
-fi;
-fi;
-od; 
-L[i][2]:=m;
-od;
-
-l:=Length(L);
-if l>0 then 
-for i in [1..l] do 
-if L[i][2]>1 then 
-   Add(L1,L[i]);
-fi;
-od; 
-fi;
-
-l:=Length(L1);
-m:=1;
-if l>0 then
-for j in [1..l] do
-if (L1[j][2] in Integers) then  
-m:=Lcm(m,L1[j][2]);
-fi;
-od;
-fi;
-r:=r*m1*m2/m;
-if L1=[] then 
-  D:=[r,A[2][2]]; 
-else 
-  D:=[r,["DivAlg",A[2][2],"LocInds=",L1]];
-fi;
-
-fi;
-
-return D; 
-end;
-
-#############################################
-# Necessary arithmetic functions for subroutines
-#############################################
-PPartOfN:=function(n,p)
-local i,a,b;
-
-b:=n;
-a:=0;
-while b/p in PositiveIntegers do 
-b:=b/p;
-a:=a+1;
-od;
-
-return p^a;
-end;
-
-###############################
-PDashPartOfN:=function(n,p)
-local m;
-
-m:=n; 
-while m/p in PositiveIntegers do 
-m:=m/p;
-od; 
-
-return m; 
-end;
-######################################
-# Cyclotomic reciprocity functions, not needed anymore.
-######################################
-#ResidueDegreeAtQ:=function(n,q)
-#local f,m;
-#m:=PDashPartOfN(n,q); 
-#f:=1; 
-#while not((q^f-1)/m in Integers) do 
-#f:=f+1;
-#od;
-#return f; 
-#end; 
-################################
-#SplittingDegreeAtQ:=function(n,q)
-#local m,f,g;
-#f:=ResidueDegreeAtQ(n,q);
-#m:=PDashPartOfN(n,q);
-#g:=Phi(m)/f; 
-#return g; 
-#end;
-################################
-
-################################
-# Given a simple component of a rational group algebra whose 
-# "WedderburnDecompositionInfo" output has 4 terms, the next 
-# three functions compute its indices at odd primes, infinity, 
-# and 2.    
-################################
-
-LocalIndexAtOddP:=function(A,q)
-local m,n,a,b,c,n1,n2,g,U,i,U1,u,h,e,f,f1,k;
-
-m:=1; 
-a:=A[4][1];
-b:=A[4][2];
-c:=A[4][3];
-n:=Lcm(Conductor(A[2]),A[3]);
-n1:=PDashPartOfN(n,q);
-####################################
-# Cyclotomic reciprocity calculation:
-U:=[1];
-i:=1;
-while not((q^i mod n1) in U) do 
-Add(U,2^i mod n1);
-i:=i+1;
-od;
-U1:=[];
-n2:=PDashPartOfN(A[3],q);
-for u in U do 
-Add(U1,u mod n2);
-od;
-g:=1; 
-while not((b^g mod n2) in U1) do 
-g:=g+1;
-od; 
-h:=OrderMod(b^g,n2);
-e:=OrderMod(b^g,A[3])/h;
-#####################################
-# Now g, h, and e1 are the splitting, 
-# residue degree and ramification of 
-# Q(E(n))/F at q.
-#####################################
-if e>1 and c>0 and A[3]/q in PositiveIntegers then 
-#####################################
-# Compute residue degree f of CF(n) at q
-f:=1; 
-while not((q^f-1)/n1 in PositiveIntegers) do 
-f:=f+1;
-od;
-#########################
-# Now F_q contains E(q^(f/h)-1).  We find the least 
-# power m of E(A[3])^c that lies in the group generated 
-# by E(q^(f/h)-1)^e.
-#########################
-f1:=f/h;
-k:=(q^f1-1)/e;
-while not(k/(Order(E(A[3])^(c*m))) in PositiveIntegers) do 
-  m:=m+1;
-od; 
-fi;
-
-return m;
-end;
-
-##################################
-# First attempt at program for local indices at odd q:
-#
-#c:=Trace(CF(n),A[2],E(n));
-#F:=FieldByGenerators([c,E(q-1)]);
-#n1:=Conductor([E(n),E(q-1)]);
-#K:=CF(n1);
-#  if A[3]/q in PositiveIntegers then 
-#  e1:=OrderMod(A[4][2],q);
-#   if e1>1 then 
-##################
-#  Replaced cyclotomic reciprocity functions
-#    k:=A[3]/Gcd(A[3],b);
-#   f:=ResidueDegreeAtQ(n,q);
-#    g:=SplittingDegreeAtQ(n,q);
-#    e:=Phi(n)/f*g;
-#####################
-# m1:=PDashPartOfN(n,q); 
-# f:=1; 
-#while not((q^f-1)/m1 in Integers) do 
-#f:=f+1;
-#od;
-####################
-#    k:=Trace(K,F,1);
-#    k1:=(q^f-1)/k;
-#    while not(k1/(Order(E(A[3])^(b*m))) in PositiveIntegers) do 
-#      m:=m+1;
-#    od; 
-#    fi; 
-#  fi;
-# fi;
-#return m;
-#end;
-###############################
-# For the computation of the index of a cyclic 
-# cyclotomic algebra at infinity, we cannot 
-# use the Frobenius-Schur indicator because we 
-# have no way of knowing which group character 
-# is involved.  Instead we determine the 
-# nature of the algebra as a quadratic algebra
-# over the reals. 
-###############################
-LocalIndexAtInfty:=function(A)
-local m,n,s,n1;
-
-m:=1;
-n:=A[3];
-#n:=Lcm(Conductor(A[2]),A[3]);
-if n>2 then 
-  s:=ANFAutomorphism(A[2],-1);  
-  if s=ANFAutomorphism(A[2],1) then 
-#    n1:=PPartOfN(A[3],2);
-#    if E(n1)^A[4][3]=-1 then 
-     if E(n)^A[4][3]=-1 then 
-      m:=2;
-    fi;
-  fi;
-fi;
-
-return m;
-end;
-###############################
-# For the local index at 2, we detect if the cyclic 
-# cyclotomic algebra will be of nonsplit quaternion type  
-# over the 2-adics
-###############################
-LocalIndexAtTwo:=function(A)
-local n,m,b,c,n1,f,h,g,n2,n3,e,e1,i,u,U,U1; 
-
-m:=1;
-if A[3]/4 in PositiveIntegers then 
-n:=Lcm(Conductor(A[2]),A[3]);
-b:=A[4][2];
-c:=A[4][3];
-n1:=PDashPartOfN(n,2); 
-f:=OrderMod(2,n1);
-n2:=PPartOfN(n,2);
-e:=Phi(n2);
-
-U:=[1];
-i:=1;
-while not((2^i mod n1) in U) do 
-Add(U,2^i mod n1);
-i:=i+1;
-od;
-U1:=[];
-n3:=PDashPartOfN(A[3],2);
-for u in U do 
-Add(U1,u mod n3);
-od;
-
-g:=1; 
-while not((b^g mod n3) in U1) do 
-g:=g+1;
-od; 
-h:=OrderMod(b^g,n3);
-e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
- if e1>1 and IsOddInt(e*f/e1*h) then 
- n2:=PPartOfN(n,2);
-  if E(n2)^(b^g)=E(n2)^(-1) and E(A[3])^c=-1 then 
-   m:=2;
-  fi;
+#################################################
+SchurIndex:=function(A)
+ local m,i,l,L,B,C,D;
+
+m:="fail: Unrecognized Algebra";
+if IsAlgebra(A) then 
+ if IsQuaternionCollection(Basis(A)) then 
+ if LeftActingDomain(A)=Rationals then 
+ L:=LocalIndicesOfRationalQuaternionAlgebra(A);
+ l:=Length(L);
+ m:=1;
+ if l>0 then m:=L[1][2]; fi;
+ if l>1 then for i in [2..l] do m:=Lcm(m,L[i][2]); od; fi;
  fi;
-fi;
-
-return m;
-end;
-
-###################################
-# First attempt at local index at 2 function: 
-#
-##f:=ResidueDegreeAtQ(n1,2);
-#f:=1; 
-#while not((2^f-1)/n1 in Integers) do 
-#f:=f+1;
-#od;
-#if IsOddInt(f) then 
-#n2:=PPartOfN(A[3],2);
-#b:=PPartOfN(A[4][1],2);
-#if Phi(n2)/b=1 then
-#if E(n2)^A[4][3]=-1 then 
-#m:=2;
-#fi;
-#fi;
-#fi;
-#return m;
-#end;
-##############################
-# Given a group G and a simple component A whose 
-# WedderburnDecompositionInfo in wedderga has length 4,
-# this program gives the list of local indices at 
-# all primes relevant to the rational Schur index
-###############################
-LocalIndicesOfCyclicCyclotomicAlgebra:=function(A)
-local n,S,s,i,L,l,q,L1;
-
-L:=[];
-S:=AsSet(FactorsInt(A[3]));
-s:=Size(S);
-for i in [1..s] do 
-  if S[i]=2 then 
-  l:=LocalIndexAtTwo(A);
-  L[i]:=[]; 
-  L[i][1]:=2;
-  L[i][2]:=l;
-  else 
-  q:=S[i];
-  l:=LocalIndexAtOddP(A,q);
-  L[i]:=[];
-  L[i][1]:=q;
-  L[i][2]:=l;
-  fi;
-od;
-
-l:=LocalIndexAtInfty(A); 
-L[s+1]:=[];
-L[s+1][1]:="infty";
-L[s+1][2]:=l;
-
-L1:=[];
-
-s:=Size(L);
-for i in [1..s] do 
-if L[i][2]>1 then 
-Add(L1,L[i]);
-fi;
-od;
-
-return L1; 
-end;
-###########################################
-# Program that obtains rational Schur index 
-# of a cyclic cyclotomic algebra from its local 
-# indices.  Algebras given by a list of of length 3 
-# have to be in the form of a quadratic algebra - 
-# this can be used to calculate Schur indices of 
-# quaternion algebras after they are converted. 
-# Algebras given by a list of length 
-# 4 or 5 need to be in the form of an algebra output 
-# by "CrossedProductWithDivisionAlgebraPart". 
-############################################
-
-RationalSchurIndex:=function(A)
-local m,i,l,L,B,C,D;
-
-if IsAlgebra(A) and IsQuaternionCollection(Basis(A)) then 
-if LeftActingDomain(A)=Rationals then 
-L:=LocalIndicesOfRationalQuaternionAlgebra(A);
-l:=Length(L);
-m:=1;
-if l>0 then m:=L[1][2]; fi;
-if l>1 then for i in [2..l] do m:=Lcm(m,L[i][2]); od; fi;
-else
-B:=ConvertQuaternionAlgToCyclicAlg(A);
-D:=DivAlgPartOfCyclicAlg(B);
-L:=D[2][4];
-l:=Length(L);
-m:=1;
-if l>0 then m:=L[1][2]; fi;
-if l>1 then for i in [2..l] do m:=Lcm(m,L[i][2]); od; fi;
-fi;
+ else
+ m:="fail: Quaternion Algebra Over NonRational Field, use another method.";
+ fi;
 fi;
 
 if IsList(A) then 
-if Length(A)<3 then 
-L:=[];
-m:=1; 
+l:=Length(A);
+ if Length(A)=2 and IsField(A[2]) then m:=1; fi;
+ if Length(A)=3 and IsField(A[2]) then m:="fail: Cyclic Algebra, use another method."; 
+ fi;
+ if Length(A)=4 then 
+ L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
+ m:=GlobalSchurIndexFromLocalIndices(L);
+ fi;
+ if Length(A)>5 then 
+ L:=LocalIndicesOfCyclotomicAlgebra(A);
+ m:=GlobalSchurIndexFromLocalIndices(L);
+ fi;
 fi; 
-
-if Length(A)=3 then 
-B:=DivAlgPartOfCyclicAlg(A);
-if Length(B[2])=4 then L:=B[2][4]; fi;
-l:=Length(L);
-m:=1;
-if l>0 then 
-m:=L[1][2];
-fi;
-if l>1 then 
-for i in [2..l] do 
-  m:=Lcm(m,L[i][2]);
-od;  
-fi;
-fi;
-
-if Length(A)=4 then 
-L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
-l:=Length(L);
-m:=1;
-if l>0 then 
-m:=L[1][2];
-fi;
-if l>1 then 
-for i in [2..l] do 
-  m:=Lcm(m,L[i][2]);
-od;  
-fi;
-fi;
-
-if Length(A)=5 then 
-  D:=DecomposeYAlgebra(A); 
-  C:=[DivAlgPartOfCyclicAlg(D[1]),DivAlgPartOfCyclicAlg(D[2])];
-  B:=DivAlgPartOfTensorProductOfCyclicAlgs(C[1],C[2]);
-  L:=B[2][4];
-  l:=Length(L);
-  m:=1;
-if l>0 then 
-  m:=L[1][2];
-fi;
-if l>1 then 
-for i in [2..l] do 
-  m:=Lcm(m,L[i][2]);
-od;  
-fi;
-fi;
-fi;
-
+ 
 return m; 
 end;
+############################################
+SchurIndexByCharacter:=function(G,chi)
+local m,A;
 
-############################### 
-# This function will convert cyclic
-# cyclotomic algebras output by wedderga into matrix algebras 
-# over Schur division algebras with indicated center and specified  
-# local indices at rational primes. 
-###############################
+A:=SimpleAlgebraByCharacterInfo(GroupRing(Rationals,G),chi);
+m:=SchurIndex(A);
 
-DivAlgPartOfCyclicCyclotomicAlgebra:=function(A)
-local L,m,r,D,B;
-
-L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
-m:=RationalSchurIndex(A);
-r:=A[1]*A[4][1]/m;
-if m=1 then 
-B:=[r,A[2]];
-fi;
-if m>1 then
-D:=[];
-D[1]:="DivAlg";
-D[2]:=A[2];
-D[3]:="LocInds=";
-D[4]:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
-B:=[r,D];
-fi;
-
-return B;
-end; 
-
-#####################################################
-# Given a simple algebra output by WedderburnDecompositionInfo
-# or SimpleAlgebraByCharacterInfo from wedderga, 
-# this program determines its actual matrix degree and division 
-# algebra part in terms of local indices at all primes.
-# If it cannot find the division algebra part, it leaves the 
-# simple algebra as it was.
-#####################################################
-
-CrossedProductWithDivisionAlgebraPart:=function(A)
-local l,B,D,C;
-
-l:=Length(A); 
-B:=A;  
-if l=4 then B:=DivAlgPartOfCyclicCyclotomicAlgebra(A); fi;
-if l=5 then 
-  D:=DecomposeYAlgebra(A); 
-  C:=[DivAlgPartOfCyclicAlg(D[1]),DivAlgPartOfCyclicAlg(D[2])];
-  B:=DivAlgPartOfTensorProductOfCyclicAlgs(C[1],C[2]);
-fi;
-
-return B;
+return m;
 end;
-
-#####################################
-# These functions support the main function 
-# "DivisionAlgebraPartByBrauerCharacters" which 
-# is able to accurately compute the local Schur index 
-# of an irreducible character of a finite group G 
-# at infty (using the Frobenius-Schur indicator)
-# and at any prime p for which the defect group at p 
-# of the character is cyclic using Benard's theorem.
-# WARNING: Knowledge of Brauer characters in GAP is 
-# limited, and only available for certain small 
-# p-solvable groups.  Since GAP does not provide the 
-# defect group, only its order, we can be certain the 
-# answer given by this program is correct only when 
-# all p-subgroups of that order are cyclic.  
-# In cases where the defect group is not cyclic, we know 
-# the answers produced by this function are often incorrect.
-######################################
-
-FinFieldExt:=function(G,p,n,n1)
-local T,chi,V,Y,h,L,i,z,l,m,K,B,d,M,C,D,b,j,F1,T1,psi,U,k,F2,t;
-
-T:=CharacterTable(G);
-chi:=Irr(G)[n];
-V:=ValuesOfClassFunction(chi);
-Y:=OrdersClassRepresentatives(T);
-h:=Size(Y);
-L:=[];
-for i in [1..h] do if Gcd(Y[i],p) = 1 then Add(L,V[i]); fi; od; 
-l:=Size(L);
-m:=Conductor(L);
-K:=CF(m);
-B:=Basis(K);
-for i in [1..m] do if (p^i-1)/m in Integers then d:=i; break; fi; od; 
-z:=Z(p^d)^((p^d-1)/m);
-M:=[];
-D:=[];
-for i in [1..Size(B)] do 
-for j in [1..m] do 
-if B[i]=E(m)^j then 
-D[i]:=j; 
-fi; 
-od; 
-od; 
-
-for i in [1..l] do 
-  C:=Coefficients(B,L[i]); 
-  b:=0;
-for j in [1..Size(B)] do 
-  b:=b+C[j]*z^(D[j]);
-od; 
-  M[i]:=b;
-od; 
-#Print(M," ");
-F1:=FieldByGenerators(M);
-
-T1:=T mod p; 
-psi:=IBr(G,p)[n1];
-U:=ValuesOfClassFunction(psi);
-m:=Lcm(m,Conductor(U));
-K:=CF(m);
-B:=Basis(K);
-for i in [1..m] do if (p^i-1)/m in Integers then d:=i; break; fi; od; 
-z:=Z(p^d)^((p^d-1)/m);
-M:=[];
-D:=[];
-for i in [1..Size(B)] do 
-for j in [1..m] do 
-if B[i]=E(m)^j then 
-D[i]:=j; 
-break;
-fi; 
-od; 
-od; 
-
-for i in [1..l] do 
-  C:=Coefficients(B,U[i]); 
-  b:=0;
-for j in [1..Size(B)] do 
-  b:=b+C[j]*z^(D[j]);
-od; 
-  M[i]:=b;
-od; 
-
-F2:=FieldByGenerators(M);
-t:=LogMod(0,Size(F1),Size(F2));
-
-
-return t; 
-end;
-##############################################
-PossibleDefectGroups:=function(G,n,p)
-local S,U,Q,Q1,i,j,I,T,b,k,d,H,a;
-
-T:=CharacterTable(G);
-S:=T mod p; 
-b:=BlocksInfo(S);
-for j in [1..Size(b)] do 
-if n in b[j].ordchars then 
-  k:=b[j].modchars[1];
-  d:=b[j].defect;
-  break;
-fi;
-od;
-Q:=SylowSubgroup(G,p);
-U:=[];
-if Size(Q)>p^d then 
-H:=ConjugacyClasses(G);
-for j in [2..Size(H)] do 
-  if Gcd(OrdersClassRepresentatives(T)[j],p)=1 then 
-     a:=Elements(H[j])[1];
-     Q1:=Intersection(Q,Q^a);
-     if Size(Q1)=p^d then 
-        AddSet(U,ConjugacyClassSubgroups(G,Q1)); 
-     fi; 
-  fi;
-od;
-else
-AddSet(U,ConjugacyClassSubgroups(G,Q));
-fi;
-
-return U;
-end;
-
-##############################################
-# Determines the division algebra part of the simple component 
-# of QG corresponding to the complex character 
-# I:=Irr(G)[n] in terms of its local indices at all primes
-# using the dimension of the field of values of a Brauer character in the same 
-# block over the field of values of I.
-# Warning: This works as long as the character lies in a block 
-# with cyclic defect group.  
-###############################################
-
-DivisionAlgebraPartByBrauerCharacters:=function(F,G,n)
-local W,T,I,V,C,L,P,Q,Q1,q,p,f,i,j,l,d,S,a,b,m,t,k,u,H,U,K,D,B,L1;
-
-T:=CharacterTable(G);
-I:=Irr(G)[n];
-V:=ValuesOfClassFunction(I);
-C:=FieldByGenerators(F,V);
-L:=[];
-W:=[];
-f:=Indicator(T,2)[n]; 
-if f=-1 then 
-L[1]:=["infty",2];
-fi;
-
-P:=AsSet(Factors(Size(G)));
-q:=Size(P);
-if q=1 then 
-B:="failsforPgroups";
-else
-
-for i in [1..q] do 
-p:=P[i];
-S:=T mod p; 
-b:=BlocksInfo(S);
-for j in [1..Size(b)] do 
-if n in b[j].ordchars then 
-  k:=b[j].modchars[1];
-  break;
-fi;
-od;
-
-U:=PossibleDefectGroups(G,n,p);
-f:=0;
-for u in [1..Size(U)] do 
- if not(IsCyclic(Elements(U[u])[1])) then 
-   f:=f+1;
- fi;
-od; 
-if not(f=0) then
-  if f<Size(U) then  
-   AddSet(W,[p,"maybe"]);
-  else 
-   AddSet(W,[p,"fail"]);
-  fi;
-fi;
-   
-t:=FinFieldExt(G,p,n,k);
-if t>1 then 
-Add(L,[p,t]);
-fi;
-od; 
-
-l:=Size(L); 
-if l=0 then 
-B:=[I[1],C];
-else
-m:=L[1][2];
-if l>1 then 
-for i in [2..l] do 
-  m:=Lcm(m,L[i][2]);
-od; 
-fi;
-D:=["DivAlg",C,"LocInds=",L];
-B:=[V[1]/m,D,W];
-fi;
-
-fi;
-
-return B;
-end;
-
-###################################################
-# The next function is useful for converting crossed 
-# algebras presented as a record by 
-# "WedderburnDecompositionInfo" into actual algebras 
-# defined by Structure Constants as in Section 62 of 
-# the GAP manual.   
-# Waiting for new GAP functions in "Algebras with 
-# Finite Presentation" to be developed.
-###################################################
-#ConvertWDInfoToAlgebraBySC:=function(A)
-#local i,j,m,B,M; 
-#if Length(A)=1 then 
-#M:=A[1];
-#fi;
-#if Length(A)=2 then 
-#M:=MatrixAlgebra(A[2],A[1]);
-#fi; 
-#if Length(A)=4 then 
-#if A[4][3]=0 or RationalSchurIndex(A)=1 then
-#M:=MatrixAlgebra(A[2],A[1]*A[4][1]);
-#else
-#M:=A;
-#fi;
-#fi;
-#if Length(A)=5 then
-#if RationalSchurIndex(A)=1 then 
-#M:=MatrixAlgebra(A[2],A[1]*A[4][1][1]*A[4][2][1]);
-#else
-#M:=A;
-#fi; 
-#fi;
-#return M; 
-#end;
-####################################################
-
