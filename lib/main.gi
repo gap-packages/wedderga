@@ -1655,7 +1655,7 @@ local   G,          # Group
                         RemInt(Position(Potk,gen[i]^Order(Gen[i])),ok) ]),
                  List( [1..Length(Gen)-1], i -> 
                    List( [i+1..Length(Gen)], j -> 
-                     RemInt(Position(Potk,Comm(gen[j],gen[i])),ok))) ];
+                     RemInt(Position(Potk,Comm(gen[i],gen[j])),ok))) ];
     fi;
 end);
 
