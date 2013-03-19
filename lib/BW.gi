@@ -290,19 +290,18 @@ end);
 ## the (additive) twisting for a crossed product algebra over 
 ## Gal=Galcf(Q(cond)/cf) associated to the triple (M,K,H) to the div power
 ##
-InstallGlobalFunction(CocycleByData,function( exp, Gal, cf, M, K, H, div)
+InstallGlobalFunction(CocycleByData,function( exp, Gal, cf, M, K, H, div,N,Epi,NH,KH,ok,k)
 
 local   
 
-out,        # output, a cocycle of Galcf with coefficients in <E(cond)>
-N,          # Normalizer of H in M
-ok;         # Order of K/H
+out;        # output, a cocycle of Galcf with coefficients in <E(cond)>
+#ok;         # Order of K/H
 #cond;       # Lcm(Conductor(cf),ok)
 
-ok := Index(K,H);
+#ok := Index(K,H);
 # cond:=Lcm(Conductor(cf),ok);
 
-N := Normalizer(M,H);
+
 
 
 if N=K then
@@ -316,10 +315,6 @@ else # if N_M(H) <> K
                      # algebra over Galcf given by the triple (M,K,H)
   local
   
-    Epi,        # N --> N/H
-    NH,         # NH/H
-    KH,         # K/H
-    k,          # Generator of K/H
     bij,bijunit, pow,
     i,          # Loop controller
     Epi2,       # NH --> NH/KH
@@ -334,12 +329,6 @@ else # if N_M(H) <> K
     T;          # Right Transversal of Galcomp in Galcf 
     
     
-    Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
-    NH  := Image(Epi,N);
-    KH  := Image(Epi,K);
-    repeat
-        k  := Random(KH);
-    until Order(k) = ok;
     Epi2:=NaturalHomomorphismByNormalSubgroup( NH, KH ) ;
     NdK:=Image(Epi2,NH);
     bij := MappingByFunction(ZmodnZ(ok),KH,i->k^Int(i));
