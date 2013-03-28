@@ -11,12 +11,30 @@
          Arg="A"  
          Comm= "Gives the division algebra part of a cyclotomic algebra."/>
    <Returns>
-         A simple algebra whose division algebra part is identified in terms of its local Schur indices. 
+         A simple algebra whose division algebra part is identified in terms of its local 
+         Schur indices. 
    </Returns>
    <Description>
-         The input <A>A</A> should be a cyclotomic algebra; i.e. a crossed product in the form output by <Ref Attr="WedderburnDecompositionInfo" /> or <Ref Attr="SimpleAlgebraByCharacterInfo"/>. The output is in the form <K>[r,D]</K> where <M>D</M> is a division algebra presented in the form <K>["DivAlg",F,"LocInds=",L]</K>. <K>"DivAlg"</K> is a label indicating that this is definitely a division algebra. <M>F</M> is its center, <K>"LocInds="</K> is a label standing for "Local Indices", and <K>L</K> is a list of nontrivial <A>p-</A>local indices in the form <K>[p,m]</K>, where <A>p</A> is a rational prime (possibly an infinite prime, which appears as "infty"), and <K>m</K> is the local index of the division algebra at the prime <M>p</M>. <P>
+         The input <A>A</A> should be a cyclotomic algebra; i.e. a crossed product in the 
+         form output by <Ref Attr="WedderburnDecompositionInfo" /> or 
+         <Ref Attr="SimpleAlgebraByCharacterInfo"/>. The output is in the form <K>[r,D]</K> 
+         where <M>D</M> is a division algebra presented in the form 
+         <K>["DivAlg",F,"LocInds=",L]</K>. <K>"DivAlg"</K> is a label indicating that this 
+         is definitely a division algebra. <M>F</M> is its center, <K>"LocInds="</K> is a 
+         label standing for "Local Indices", and <K>L</K> is a list of nontrivial 
+         <A>p-</A>local indices in the form <K>[p,m]</K>, where <A>p</A> is a rational prime 
+         (possibly an infinite prime, which appears as "infty"), and <K>m</K> is the local 
+         index of the division algebra at the prime <M>p</M>. 
+         <P/>
 
-         Presently the function can only handle cases where the cyclotomic algebra <K>A</K> is list of length 4 or 5 in the form output by wedderga's "-Info" functions.  Lists of length longer than 5 are theoretically possible to occur in wedderga output, but we have yet to encounter any examples of these arising from small groups.  The function utilizes local index calculations that are easier and faster in the length 4 case (see <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>) than in the general length 5 case (see <Ref Attr="LocalIndicesOfCyclotomicAlgebra"/>). </P>
+         Presently the function can only handle cases where the cyclotomic algebra <K>A</K> 
+         is list of length 4 or 5 in the form output by wedderga's "-Info" functions.  
+         Lists of length longer than 5 are theoretically possible to occur in wedderga output, 
+         but we have yet to encounter any examples of these arising from small groups.  
+         The function utilizes local index calculations that are easier and faster in the 
+         length 4 case (see <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>) than in 
+         the general length 5 case (see <Ref Attr="LocalIndicesOfCyclotomicAlgebra"/>). 
+         <P/>
          
 <Example>
 <![CDATA[
@@ -65,12 +83,28 @@ gap> CyclotomicAlgebraWithDivAlgPart(W[10]);
          Arg="F G chi "  
          Comm="Function that computes the Schur index of the simple component of the group algebra FG corresponding to the ordinary irreducible character chi of G." />
    <Returns>
-         The Schur index of a simple algebra over the rationals, which has to be either a cyclotomic algebra (of length 4 or 5 in the form output by wedderga's "-Info" functions) or a generalized quaternion algebra whose center is the Rationals.  
+         The Schur index of a simple algebra over the rationals, which has to be either a 
+         cyclotomic algebra (of length 4 or 5 in the form output by wedderga's "-Info" functions) 
+         or a generalized quaternion algebra whose center is the Rationals.  
    </Returns>
    <Description>
-         For "SchurIndex", the input <A>A</A> can be a rational quaternion algebra (see <Ref Sect="QuaternionAlgebra" />), or a cyclotomic algebra (see <Ref Sect="Cyclotomic" />).  The The Schur index is the square root of the dimension of the division algebra part of the simple algebra over its center.  The function calculates the local indices of the division algebra part of the simple algebra using an appropriate local index function, and returns the least common multiple of these local indices.  If <K>A</K> is a quaternion algebra over a number field other than the Rationals, a "fail" message appears.  (In these cases, the quaternion algebra can be converted to a cyclic algebra and the Schur index can be determined by other methods - currently not implemented in GAP.)
-
-For "SchurIndexByCharacter", the inputs are an abelian number field <K>F</K>, a finite group <K>G</K>, and an irreducible character <K>chi</K> of the group <K>G</K>.  This function uses <Ref Attr="SimpleAlgebraByCharacterInfo"/> to produce the simple component of <K>FG</K> corresponding to <K>chi</K>, then applies "SchurIndex" to it. 
+         For "SchurIndex", the input <A>A</A> can be a rational quaternion algebra 
+         (see <Ref Sect="QuaternionAlgebra" />), or a cyclotomic algebra 
+         (see <Ref Sect="Cyclotomic" />).  The The Schur index is the square root of 
+         the dimension of the division algebra part of the simple algebra over its center.  
+         The function calculates the local indices of the division algebra part of the 
+         simple algebra using an appropriate local index function, and returns the least 
+         common multiple of these local indices.  If <K>A</K> is a quaternion algebra 
+         over a number field other than the Rationals, a "fail" message appears.  
+         (In these cases, the quaternion algebra can be converted to a cyclic algebra 
+         and the Schur index can be determined by other methods - currently not 
+         implemented in GAP.)
+         <P/>
+         
+For "SchurIndexByCharacter", the inputs are an abelian number field <K>F</K>, a finite 
+group <K>G</K>, and an irreducible character <K>chi</K> of the group <K>G</K>.  
+This function uses <Ref Attr="SimpleAlgebraByCharacterInfo"/> to produce the simple 
+component of <K>FG</K> corresponding to <K>chi</K>, then applies "SchurIndex" to it. 
       
 <Example>
 <![CDATA[
@@ -210,9 +244,29 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(W[5]);
          Arg="A"  
          Comm="Computes local indices of a cyclotomic algebra." />
 
-<Returns> It returns the list of nontrivial local indices <K>L</K> of the cyclotomic algebra <K>A</K>, which has to be a cyclotomic algebra of length 2, 4, or 5 in the form output by wedderga's "-Info" functions.
+<Returns> It returns the list of nontrivial local indices <K>L</K> of the cyclotomic 
+algebra <K>A</K>, which has to be a cyclotomic algebra of length 2, 4, or 5 in the form 
+output by wedderga's "-Info" functions.
 </Returns>
-<Description>  A nontrivial local index at a prime <K>p</K> is given by the pair <K>[p,m]</K>, where <K>m</K> is an integer larger than 1.  If the cyclotomic algebra <K>A</K> is of length <K>2</K>, the local indices are all <K>1</K>, so the result is the empty list <K>[ ]</K>.  If the cyclotomic algebra <K>A</K> has length 4, then <K>A</K> is a cyclic cyclotomic algebra, and <Ref Oper="LocalIndicesOfCyclicCyclotomicAlgebra"/> is utilized.  If the cyclotomic algebra has length 5, the function determines the group and character <K>chi</K> that faithfully represent the algebra using <Ref Oper="DefiningGroupOfCyclotomicAlgebra"/> and <Ref Oper="DefiningCharacterOfCyclotomicAlgebra"/>.  It uses the Frobenius-Schur indicator to determine the local index at infinity (see <Ref Oper="LocalIndexAtInftyByCharacter"/>).  For local indices at odd primes and sometimes for the prime 2, the defect group of the block containing <K>chi</K> is cyclic, so the local index can be found using the values of a Brauer character by a theorem of Benard (see <Ref Oper="LocalIndexAtPByBrauerCharacter"/>.)   Sometimes for the prime 2 the defect group is not necessarily cyclic, and we have to make use of the classification of dyadic Schur groups by Schmid and Riese (see <Ref Oper="LocalIndexAtTwoByCharacter"/>).  
+<Description>  
+A nontrivial local index at a prime <K>p</K> is given by the 
+pair <K>[p,m]</K>, where <K>m</K> is an integer larger than 1.  
+If the cyclotomic algebra <K>A</K> is of length <K>2</K>, the local 
+indices are all <K>1</K>, so the result is the empty list <K>[ ]</K>.  
+If the cyclotomic algebra <K>A</K> has length 4, then <K>A</K> is a cyclic 
+cyclotomic algebra, and <Ref Oper="LocalIndicesOfCyclicCyclotomicAlgebra"/> 
+is utilized.  If the cyclotomic algebra has length 5, the function determines 
+the group and character <K>chi</K> that faithfully represent the algebra 
+using <Ref Oper="DefiningGroupOfCyclotomicAlgebra"/> and 
+<Ref Oper="DefiningCharacterOfCyclotomicAlgebra"/>.  It uses the Frobenius-Schur 
+indicator to determine the local index at infinity 
+(see <Ref Oper="LocalIndexAtInftyByCharacter"/>).  For local indices at odd primes 
+and sometimes for the prime 2, the defect group of the block containing <K>chi</K> 
+is cyclic, so the local index can be found using the values of a Brauer character 
+by a theorem of Benard (see <Ref Oper="LocalIndexAtPByBrauerCharacter"/>.)   
+Sometimes for the prime 2 the defect group is not necessarily cyclic, and we have 
+to make use of the classification of dyadic Schur groups by Schmid and Riese 
+(see <Ref Oper="LocalIndexAtTwoByCharacter"/>).  
 </Description>
 
 </ManSection>
@@ -224,7 +278,8 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(W[5]);
    <Oper Name="DefiningCharacterOfCyclotomicAlgebra"
          Arg="A"  
          Comm="Determines the identifying number of a character in Irr(G) that faithfully represents a cyclotomic algebra, where G is the defining group of the cyclotomic algebra." />
-   <Returns> These functions return a group <K>G</K> (of permutations) and a positive integer <K>n</K> for which the simple component of a group algebra over <K>G</K> over the center of <K>A</K> corresponding to the character <K>Irr(G)[n]</K> is isomorphic to <K>A</K>. 
+   <Returns> These functions return a group <K>G</K> (of permutations) and a 
+   positive integer <K>n</K> for which the simple component of a group algebra over <K>G</K> over the center of <K>A</K> corresponding to the character <K>Irr(G)[n]</K> is isomorphic to <K>A</K>. 
   </Returns> 
 
 </ManSection>
@@ -233,10 +288,13 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(W[5]);
    <Oper Name="LocalIndexAtInftyByCharacter"
          Arg="F G n"  
          Comm="Determines the local index at an infinite prime of F of the irreducible character Irr(G)[n] of the finite group G" />
-<Returns>  Computes the local index at an infinite prime of the field <K>F</K> of the irreducible character <K>Irr(G)[n]</K> of the finite group <K>G</K>.
+<Returns>  Computes the local index at an infinite prime of the field <K>F</K> 
+of the irreducible character <K>Irr(G)[n]</K> of the finite group <K>G</K>.
 </Returns>
 
-<Description> This function finds the Frobenius-Schur indicator of the irreducible character <K>Irr(G)[n]</K>, and uses it to calculate the local index at infinity of the corresponding simple component of <K>FG</K>. </Description>
+<Description> This function finds the Frobenius-Schur indicator of the irreducible 
+character <K>Irr(G)[n]</K>, and uses it to calculate the local index at infinity of 
+the corresponding simple component of <K>FG</K>. </Description>
 </ManSection>
 
 <ManSection>
@@ -265,9 +323,26 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(W[5]);
          <K>Irr(G)[n]</K>, and <A>p</A> a prime divisor of the order of <A>G</A>. 
          <P/>
       
-         It returns the local index at the finite rational prime <K>p</K> of the simple component of <K>FG</K> corresponding to the character <K>IrrG)[n]</K>.  Since this function is intended to be used for faithful characters of groups that are the defining groups of simple components of group algebras, it is anticipated that the defect group will be cyclic in those cases for odd primes <K>p</K>, and occasionally cyclic for the prime <K>2</K> in those cases.  If the function is applied for arbitrary characters, it will detect situations where the defect group may not be cyclic, and return a warning label. <P/>
+         It returns the local index at the finite rational prime <K>p</K> of the simple 
+         component of <K>FG</K> corresponding to the character <K>IrrG)[n]</K>.  Since this 
+         function is intended to be used for faithful characters of groups that are the
+         defining groups of simple components of group algebras, it is anticipated that 
+         the defect group will be cyclic in those cases for odd primes <K>p</K>, and 
+         occasionally cyclic for the prime <K>2</K> in those cases.  If the function 
+         is applied for arbitrary characters, it will detect situations where the defect 
+         group may not be cyclic, and return a warning label. <P/>
 	
-         The function uses Benard's theorem, which shows that the local index at <A>p</A> of the simple component of the rational group algebra <A>QG</A> corresponding to the character <A>Irr(G)[n]</A> is the degree of the extension of the residue field of the center given by adjoining an irreducible <K>p</K>-Brauer character <K>IBr(G,p)[m]</K> lying in the same block, provided the defect group of the block is cyclic.  The degree of this finite field extension is calculated by <Ref Attr="FinFieldExt"/>.  In some cases where the defect group is not cyclic, the degree of this extension is too large, and fractional matrix algebras result.  But this is only because the method does not apply in these cases.  The possible conjugacy classes of <A>p</A>-defect groups for <K>Irr(G)[n]</K> are calculated using <Ref Attr="PossibleDefectGroups"/>. 
+         The function uses Benard's theorem, which shows that the local index at <A>p</A> 
+         of the simple component of the rational group algebra <A>QG</A> corresponding to
+         the character <A>Irr(G)[n]</A> is the degree of the extension of the residue field 
+         of the center given by adjoining an irreducible <K>p</K>-Brauer character 
+         <K>IBr(G,p)[m]</K> lying in the same block, provided the defect group of the 
+         block is cyclic.  The degree of this finite field extension is calculated by 
+         <Ref Attr="FinFieldExt"/>.  In some cases where the defect group is not cyclic, 
+         the degree of this extension is too large, and fractional matrix algebras result.  
+         But this is only because the method does not apply in these cases.  The possible 
+         conjugacy classes of <A>p</A>-defect groups for <K>Irr(G)[n]</K> are calculated 
+         using <Ref Attr="PossibleDefectGroups"/>. 
 
 <Example>
 <![CDATA[
@@ -340,14 +415,29 @@ true
          Comm="Checks if quasi-elementary 2-group has a faithful irreducible character with 2-local index 2." />
 
 <Returns> 
-The first function determines the local index at 2 of the simple component of <K>FG</K> corresponding to the irreducible character <K>Irr(G)[n]</K>.  In some cases, it makes use of the second function, which checks if a quasi-elementary 2-group <K>G</K> has a faithful irreducible character with 2-local index 2.   
+The first function determines the local index at 2 of the simple component of <K>FG</K> 
+corresponding to the irreducible character <K>Irr(G)[n]</K>.  In some cases, it makes 
+use of the second function, which checks if a quasi-elementary 2-group <K>G</K> has a 
+faithful irreducible character with 2-local index 2.   
 </Returns>
 
 <Description> 
-"LocalIndexAtTwoByCharacter" first uses <Ref Oper="SimpleAlgebraByCharacterInfo"/> to determine a cyclotomic algebra isomorphic to the simple component of <K>FG</K> corresponding to the character <K>Irr(G)[n]</K>.  If this is a matrix algebra over a field or a cyclic cyclotomic algebra, it uses <Ref Oper="LocalIndexAtTwo"/> to find the local index at <K>2</K>.  Otherwise, it uses <Ref Oper="DefiningGroupOfCyclcotomicAlgebra"/> and <Ref Oper="DefiningCharacterOfCyclotomicAlgebra"/> to reduce to a faithful character of a possibly smaller group.  If this is still not an easy case, then it checks if this is a faithful character of a dyadic Schur group using <Ref Oper="IsDyadicSchurGroup"/>.  If that is the case, then it checks if the field <K>F</K> splits the algebra, and returns a <K>2</K> if it does not.    
+"LocalIndexAtTwoByCharacter" first uses <Ref Oper="SimpleAlgebraByCharacterInfo"/> 
+to determine a cyclotomic algebra isomorphic to the simple component of <K>FG</K> 
+corresponding to the character <K>Irr(G)[n]</K>.  If this is a matrix algebra over 
+a field or a cyclic cyclotomic algebra, it uses <Ref Oper="LocalIndexAtTwo"/> to 
+find the local index at <K>2</K>.  Otherwise, it uses 
+<Ref Oper="DefiningGroupOfCyclcotomicAlgebra"/> and 
+<Ref Oper="DefiningCharacterOfCyclotomicAlgebra"/> to reduce to a faithful character 
+of a possibly smaller group.  If this is still not an easy case, then it checks if 
+this is a faithful character of a dyadic Schur group using <Ref Oper="IsDyadicSchurGroup"/>.  
+If that is the case, then it checks if the field <K>F</K> splits the algebra, and returns 
+a <K>2</K> if it does not.    
 
-These functions are designed for faithful characters of groups that faithfully represent cyclotomic algebras, and so should be used with caution in other situations.   
+These functions are designed for faithful characters of groups that faithfully represent 
+cyclotomic algebras, and so should be used with caution in other situations.   
 </Description> 
+</ManSection>
 
 <!-- *******Local Index Functions for Quaternion Algebras -->
 
@@ -381,7 +471,10 @@ These functions are designed for faithful characters of groups that faithfully r
 	 <Ref Oper="LocalIndicesOfRationalSymbolAlgebra"/> can be applied, then calculates
 	 local indices for all of these using well-known formulas involving the 
 	 Legendre Symbol.  The local indices of the original algebra are then 		 
-	 calculated using <Ref Oper="LocalIndicesOfTensorProductOfQuadraticAlgebras"/>, which takes a pair of lists of local indices of quadratic algebras - for which the maximum local index at any prime <K>p</K> is <K>2</K>, and finds the list of local indices of the tensor product of two algebras with these local indices. 
+	 calculated using <Ref Oper="LocalIndicesOfTensorProductOfQuadraticAlgebras"/>, 
+	 which takes a pair of lists of local indices of quadratic algebras - for which 
+	 the maximum local index at any prime <K>p</K> is <K>2</K>, and finds the list of 
+	 local indices of the tensor product of two algebras with these local indices. 
 
 <P/>
       
@@ -421,7 +514,8 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 
 	 It returns <K>true</K> the rational Schur index of the algebra is 2, 
 	 and <K>false</K> if the rational Schur index is 1.  This function 
-	 should be preferred over <Ref Oper="IsDivisionRing"/> when dealing with rational quaternion algebras.  <P/>
+	 should be preferred over <Ref Oper="IsDivisionRing"/> when dealing with 
+	 rational quaternion algebras.  <P/>
 
 
 <Example>
@@ -449,18 +543,37 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 <Section Label="Cyclic">
 <Heading>Functions involving Cyclic Algebras</Heading>
 
-	 Cyclic algebras are represented as lists of length 3, in the form <K>[F,K,[c]]</K>, representing a cyclic crossed product algebra of the form <K>(K/F,c)</K>, with <K>K/F</K> a cyclic galois extension of abelian number fields, and <K>c</K> an element of <K>F</K> determining the factor set.  Schur indices of cyclic algebras can be determined through the solution of inverse norm equations in general.  Though currently algorithms for this are not available in GAP, algorithms have been implemented in some computational number theory software systems.  
+	 Cyclic algebras are represented as lists of length 3, in the form <K>[F,K,[c]]</K>, 
+	 representing a cyclic crossed product algebra of the form <K>(K/F,c)</K>, 
+	 with <K>K/F</K> a cyclic galois extension of abelian number fields, and 
+	 <K>c</K> an element of <K>F</K> determining the factor set.  Schur indices of 
+	 cyclic algebras can be determined through the solution of inverse norm equations 
+	 in general.  Though currently algorithms for this are not available in GAP, 
+	 algorithms have been implemented in some computational number theory software systems.  
 
-	The functions in this section allow one to convert cyclotomic algebras into cyclic algebras (possibly as tensor products of two cyclic algebras), to convert generalized quaternion algebras into quadratic algebras (i.e. cyclic algebras for a galois extension of degree 2), to convert quadratic algebras into generalized quaternion algebras, and to convert cyclic algebras into cyclic cyclotomic algebras, whenever possible.  
+	The functions in this section allow one to convert cyclotomic algebras into cyclic 
+	algebras (possibly as tensor products of two cyclic algebras), to convert generalized 
+	quaternion algebras into quadratic algebras (i.e. cyclic algebras for a galois 
+	extension of degree 2), to convert quadratic algebras into generalized quaternion 
+	algebras, and to convert cyclic algebras into cyclic cyclotomic algebras, whenever 
+	possible.  
 
 <ManSection>
    <Oper Name="DecomposeCyclotomicAlgebra"
          Arg="A"  
          Comm="A must be list of the form [r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]." />
    <Description>
-         The input must be a cyclotomic algebra of length 5, in the form represented in wedderga as lists of the form <K>[r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]</K>.
+         The input must be a cyclotomic algebra of length 5, in the form represented in 
+         wedderga as lists of the form <K>[r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]</K>.
 
-	 For these algebras, the extension <K>CF(n)/F</K> is the tensor product of two disjoint extensions <K>K1</K> and <K>K2</K> of <K>F</K>, and the program adjusts one of the factor sets (corresponding to <K>l1</K> or <K>l2</K>) so that <K>d</K> becomes 0. After this adjustment, the algebra is then the tensor product of cyclic algebras of the form <K>[F,K1,[c1]]</K> and <K>[F,K2,[c2]]</K> provided <K>c1</K> and <K>c2</K> lie in <K>F</K>.  If the latter condition does not occur, the label <K>"fails"</K> appears in the output.  (We do not encounter this problem among small groups of order up to 250.) 
+	 For these algebras, the extension <K>CF(n)/F</K> is the tensor product of two 
+	 disjoint extensions <K>K1</K> and <K>K2</K> of <K>F</K>, and the program adjusts 
+	 one of the factor sets (corresponding to <K>l1</K> or <K>l2</K>) so that <K>d</K> 
+	 becomes 0. After this adjustment, the algebra is then the tensor product of cyclic 
+	 algebras of the form <K>[F,K1,[c1]]</K> and <K>[F,K2,[c2]]</K> provided <K>c1</K> 
+	 and <K>c2</K> lie in <K>F</K>.  If the latter condition does not occur, the label 
+	 <K>"fails"</K> appears in the output.  (We do not encounter this problem among small 
+	 groups of order up to 250.) 
 
 <Example>
 <![CDATA[
@@ -571,5 +684,5 @@ gap> CrossedProductWithDivisionAlgebraPart(last);
 </ManSection>
 
 </Section>
-</ManSection>
+
 </Chapter>
