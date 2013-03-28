@@ -937,7 +937,7 @@ following presentation
 \overline{b_2}\hspace{1pt}^{2^k}=\overline{c_2}\hspace{1pt}^2=1, 
 \overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r, 
 \overline{a_2}\hspace{1pt}^{\overline{c_2}}=\overline{a_2}\hspace{1pt}^{-1}, [\overline{b_2},\overline{c_2}]=1 \rangle,</Display>
-with <M>r\equiv 1 \mod 4</M> (or equivalently <M>\overline{a_2}\hspace{1pt}^{2^{n-2}}</M> is central in <M>E_2/K</M>). Then
+with <M>r \equiv 1 {\rm \,mod\,} 4</M> (or equivalently <M>\overline{a_2}\hspace{1pt}^{2^{n-2}}</M> is central in <M>E_2/K</M>). Then
 <Enum>
 <Item> <M>T_2=\{1,a_2,a_2^2,\dots, a_2^{2^k-1}\}</M>, if <M>\overline{a_2}\hspace{1pt}^{2^{n-2}}</M> is central in <M>E_2/K</M> 
 (unless <M>n\leq 1</M>) and <M>M_2/K</M> is cyclic; and </Item>
@@ -951,7 +951,7 @@ the following presentation
 \overline{b_2}\hspace{1pt}^{2^k}=1, \overline{c_2}\hspace{1pt}^2=\overline{a_2}\hspace{1pt}^{2^{n-1}}, 
 \overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r,\\  
 \overline{a_2}\hspace{1pt}^{\overline{c_2}}=\overline{a_2}\hspace{1pt}^{-1},[\overline{b_2},\overline{c_2}]=1 \rangle, </Display>
-with <M>r\equiv 1 \mod 4</M>. In this case, <M>\beta_2=\widetilde{b_2}\frac{1+xa_2^{2^{n-2}}+ya_2^{2^{n-2}}c_2}{2}</M> and 
+with <M>r\equiv 1 {\rm \,mod\,} 4</M>. In this case, <M>\beta_2=\widetilde{b_2}\frac{1+xa_2^{2^{n-2}}+ya_2^{2^{n-2}}c_2}{2}</M> and 
 <Display>T_2=\{1,a_2,a_2^2,\dots, a_2^{2^k-1},c_2,c_2a_2,c_2a_2^2,\dots,c_2a_2^{2^k-1}\},</Display> 
 with <M>x,y\in\mathbb F</M>, satisfying <M>x^2+y^2=-1</M> and <M>y\neq 0</M>.
 </Item>
@@ -978,7 +978,7 @@ P= \left( \begin{array}{rrrrrr}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 0\\
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1\\
 \end{array} \right)
-\quad \text{and} \quad 
+\quad {\rm and } \quad 
 A= \left( \begin{array}{ccccc}
 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1\\
 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0\\
