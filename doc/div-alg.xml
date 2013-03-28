@@ -132,9 +132,11 @@ gap> SchurIndex(A);
    </Description>
 </ManSection>
 
+</Section>
+
 <!-- *******Local Index Functions for Cyclic Cyclotomic Algebras -->
 
-<Section Label="LocIndsOfCyclicCyclotomicAlgs"/>
+<Section Label="LocIndsOfCyclicCyclotomicAlgs">
 <Heading>Local index functions for Cyclic Cyclotomic Algebras</Heading>
 
 <ManSection>
@@ -232,11 +234,12 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(W[5]);
 
    </Description>
 </ManSection>
+
 </Section>
 
 <!-- *******Local Index Functions for Non-Cyclic Cyclotomic Algebras -->
 
-<Section Label="LocIndsOfCyclotomicAlgs"/>
+<Section Label="LocIndsOfCyclotomicAlgs">
 <Heading>Local index functions for Non-Cyclic Cyclotomic Algebras</Heading>
 
 <ManSection>
@@ -439,9 +442,11 @@ cyclotomic algebras, and so should be used with caution in other situations.
 </Description> 
 </ManSection>
 
+</Section>
+
 <!-- *******Local Index Functions for Quaternion Algebras -->
 
-<Section Label="LocalIndicesOfRationalQuaternionAlgebra"/>
+<Section Label="LocalIndicesOfRationalQuaternionAlgebra">
 <Heading>Local index functions for Rational Quaternion Algebras</Heading>
 
 <ManSection>
@@ -537,6 +542,8 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 
    </Description>
 </ManSection>
+
+</Section>
 
 <!-- *******Functions involving Cyclic Algebras -->
 
