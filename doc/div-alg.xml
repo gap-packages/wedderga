@@ -671,7 +671,7 @@ gap> B:=ConvertCyclicAlgToCyclicCyclotomicAlg(A);
 
 	 This function can be used to convert <A>A</A> into an algebra whose 
  	 Schur index can be calculated using the
-	 <Ref Oper="CrossedProductWithDivisionAlgebraPart"/> function. 
+	 <Ref Oper="CyclotomicAlgebraWithDivAlgPart"/> function. 
 	 <P/>
 
 <Example>
@@ -682,7 +682,7 @@ gap> ConvertQuaternionAlgToCyclicAlg(A);
 [ CF(5), CF(15), [ -3 ] ]
 gap> ConvertCyclicAlgToCyclicCyclotomicAlg(last);
 [ 1, CF(5), 30, [ 2, 11, 15 ] ]
-gap> CrossedProductWithDivisionAlgebraPart(last);
+gap> CyclotomicAlgebraWithDivAlgPart(last);
 [ 2, CF(5) ]
 ]]>
 </Example>
