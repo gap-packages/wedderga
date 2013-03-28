@@ -301,7 +301,7 @@ the corresponding simple component of <K>FG</K>. </Description>
 </ManSection>
 
 <ManSection>
-   <Oper Name="LocalIndexAtPByBrauerCharacters"
+   <Oper Name="LocalIndexAtPByBrauerCharacter"
          Arg="F G n"  
          Comm="Group must be non-nilpotent and p-solvable." />
    <Oper Name="FinFieldExt" 
@@ -320,7 +320,7 @@ the corresponding simple component of <K>FG</K>. </Description>
          (iii) possible defect groups for block containing <M>chi_n</M>.
    </Returns> 
    <Description>
-         The input of <Ref Attr="LocalIndexAtPByBrauerCharacters"/> 
+         The input of <Ref Attr="LocalIndexAtPByBrauerCharacter"/> 
          must be an abelian number field <K>F</K>, a finite group <A>G</A>, 
          and the number <A>n</A> of an ordinary irreducible character 
          <K>Irr(G)[n]</K>, and <A>p</A> a prime divisor of the order of <A>G</A>. 
@@ -358,9 +358,9 @@ gap> LocalIndexAtPByBrauerCharacter(Rationals,G,20,5);
 
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
-gap> LocalIndexAtPbyBrauerCharacters(Rationals,G,11,3);
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,11,3);
 [ 3, [2, "DGnotCyclic" ] ]
-gap> LocalIndexAtPbyBrauerCharacters(Rationals,G,11,2);
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,11,2);
 [ 2, [1, "DGmaybeCyclic" ] ]
 gap> SimpleAlgebraByCharacterInfo(GroupRing(Rationals,G),Irr(G)[11]);
 [ 1, Rationals, 6, [ 2, 5, 3 ] ]
@@ -430,7 +430,7 @@ to determine a cyclotomic algebra isomorphic to the simple component of <K>FG</K
 corresponding to the character <K>Irr(G)[n]</K>.  If this is a matrix algebra over 
 a field or a cyclic cyclotomic algebra, it uses <Ref Oper="LocalIndexAtTwo"/> to 
 find the local index at <K>2</K>.  Otherwise, it uses 
-<Ref Oper="DefiningGroupOfCyclcotomicAlgebra"/> and 
+<Ref Oper="DefiningGroupOfCyclotomicAlgebra"/> and 
 <Ref Oper="DefiningCharacterOfCyclotomicAlgebra"/> to reduce to a faithful character 
 of a possibly smaller group.  If this is still not an easy case, then it checks if 
 this is a faithful character of a dyadic Schur group using <Ref Oper="IsDyadicSchurGroup"/>.  
@@ -476,7 +476,7 @@ cyclotomic algebras, and so should be used with caution in other situations.
 	 <Ref Oper="LocalIndicesOfRationalSymbolAlgebra"/> can be applied, then calculates
 	 local indices for all of these using well-known formulas involving the 
 	 Legendre Symbol.  The local indices of the original algebra are then 		 
-	 calculated using <Ref Oper="LocalIndicesOfTensorProductOfQuadraticAlgebras"/>, 
+	 calculated using <Ref Oper="LocalIndicesOfTensorProductOfQuadraticAlgs"/>, 
 	 which takes a pair of lists of local indices of quadratic algebras - for which 
 	 the maximum local index at any prime <K>p</K> is <K>2</K>, and finds the list of 
 	 local indices of the tensor product of two algebras with these local indices. 
