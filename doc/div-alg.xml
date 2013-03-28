@@ -89,7 +89,7 @@ gap> CyclotomicAlgebraWithDivAlgPart(W[10]);
    </Returns>
    <Description>
          For "SchurIndex", the input <A>A</A> can be a rational quaternion algebra 
-         (see <Ref Sect="QuaternionAlgebra" />), or a cyclotomic algebra 
+         (see <Ref Func="QuaternionAlgebra" BookName="ref" />), or a cyclotomic algebra 
          (see <Ref Sect="Cyclotomic" />).  The The Schur index is the square root of 
          the dimension of the division algebra part of the simple algebra over its center.  
          The function calculates the local indices of the division algebra part of the 
@@ -519,7 +519,7 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 
 	 It returns <K>true</K> the rational Schur index of the algebra is 2, 
 	 and <K>false</K> if the rational Schur index is 1.  This function 
-	 should be preferred over <Ref Oper="IsDivisionRing"/> when dealing with 
+	 should be preferred over <Ref Filt="IsDivisionRing" BookName="ref"/> when dealing with 
 	 rational quaternion algebras.  <P/>
 
 
