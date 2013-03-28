@@ -15,10 +15,10 @@ PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
 Version        := "4.6.0",
-Date           := "27/01/2013",
+Date           := "28/03/2013",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
 ##  <!ENTITY VERSION "4.6.0">
-##  <!ENTITY RELEASEDATE "27 January 2013">
+##  <!ENTITY RELEASEDATE "28 March 2013">
 ##  <!ENTITY RELEASEYEAR "2013">
 ##  <#/GAPDoc>
 

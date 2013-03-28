@@ -467,6 +467,7 @@ true,
 0,
 function( exp, n, cf , Gal , LSST )
 local
+	N,Epi,NH,KH,k,ok,
   Galnum,       # Numeric version of Gal(Q(exp)/cf)
   pp,           # Maximum prime power divisors of n = Degree of the character
   LC,           # List of cocycles
@@ -492,7 +493,16 @@ local
   for x in LSST do
     primes := x[4];
     a:= Product(primes,p->p^pp[Position(pp,p)+1]);
-    Add( LC, CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a) );
+		ok := Index(x[2],x[3]);
+		N := Normalizer(x[1],x[3]);
+		Epi := NaturalHomomorphismByNormalSubgroup( N, x[3] ) ;
+    NH  := Image(Epi,N);
+    KH  := Image(Epi,x[2]);
+    repeat
+        k  := Random(KH);
+    until Order(k) = ok;
+
+    Add( LC, CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a,N,Epi,NH,KH,ok,k) );
   od;
   
   Cond := Lcm(List(LC,x->x[1]));
