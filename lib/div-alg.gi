@@ -37,7 +37,6 @@ end;
 # three functions compute its indices at odd primes, infinity, 
 # and 2.    
 ################################
-
 LocalIndexAtOddP:=function(A,q)
 local m,n,a,b,c,n1,n2,g,U,i,U1,u,h,e,f,f1,e1,k;
 
@@ -50,11 +49,13 @@ n1:=PDashPartOfN(n,q);
 ####################################
 # Cyclotomic reciprocity calculation:
 U:=[1];
+if n1 > 1 then 
 i:=1;
 while not(q^i mod n1 = 1) do 
 Add(U,q^i mod n1);
 i:=i+1;
 od;
+fi;
 U1:=[];
 n2:=PDashPartOfN(A[3],q);
 for u in U do 
@@ -67,7 +68,7 @@ od;
 h:=OrderMod(b^g,n2);
 e:=OrderMod(b^g,A[3])/h;
 #####################################
-# Now g, h, and e1 are the splitting, 
+# Now g, h, and e are the splitting, 
 # residue degree and ramification of 
 # Q(E(n))/F at q.
 #####################################
@@ -174,6 +175,9 @@ LocalIndicesOfCyclicCyclotomicAlgebra:=function(A)
 local n,S,s,i,L,l,q,L1;
 
 L:=[];
+if A[4][3]=0 then
+L1:=[];
+else 
 S:=AsSet(FactorsInt(A[3]));
 s:=Size(S);
 for i in [1..s] do 
@@ -204,15 +208,16 @@ if L[i][2]>1 then
 Add(L1,L[i]);
 fi;
 od;
+fi;
 
 return L1; 
 end;
 #######################################################
 # Finds group over which cyclotomic algebra of length 4 or 5 
-#is faithfully represented.
+# is faithfully represented.
 #######################################################
 DefiningGroupOfCyclotomicAlgebra:=function(A)
-local l,f,a,b,c,g,g1;
+local l,f,a,b,c,d,g,I,g1;
 
 l:=Length(A);
 g1:="fail";
@@ -223,7 +228,15 @@ a:=f.1;
 b:=f.2;
 c:=f.3;
 g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),b^(-1)*a*b*a^(-A[4][1][2]),c^(-1)*a*c*a^(-A[4][2][2]),c^(-1)*b^(-1)*c*b*a^(-A[5][1][1])];
-g1:=AsPermGroup(g);
+fi;
+
+if (l=5 and Length(A[4])=3) then 
+f:=FreeGroup("a","b","c","d");
+a:=f.1;
+b:=f.2;
+c:=f.3;
+d:=f.4;
+g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),d^A[4][3][1]*a^(-A[4][3][3]), b^(-1)*a*b*a^(-A[4][1][2]),c^(-1)*a*c*a^(-A[4][2][2]), d^(-1)*a*d*a^(-A[4][3][2]),    c^(-1)*b^(-1)*c*b*a^(-A[5][1][1]), d^(-1)*b^(-1)*d*b*a^(-A[5][1][2]),d^(-1)*c^(-1)*d*c*a^(-A[5][2][1])];
 fi;
 
 if (l=4) then 
@@ -231,8 +244,10 @@ f:=FreeGroup("a","b");
 a:=f.1;
 b:=f.2;
 g:=f/[a^A[3],b^A[4][1]*a^(-A[4][3]),b^(-1)*a*b*a^(-A[4][2])];
-g1:=AsPermGroup(g);
 fi;
+
+I:=IsomorphismPermGroup(g);
+g1:=Image(I);
 
 return g1;
 end;
@@ -242,15 +257,18 @@ DefiningCharacterOfCyclotomicAlgebra:=function(A)
 local g1,d,m,n,i,chi,F,u,V,U;
 
 g1:=DefiningGroupOfCyclotomicAlgebra(A);
-d:=A[1]*A[4][1][1]*A[4][2][1];
-n:=Size(Irr(g1));
+if Length(A)=2 then d:=1; fi;
+if Length(A)=4 then d:=A[4][1]; fi; 
+if (Length(A)=5 and Length(A[4])=2) then d:=A[4][1][1]*A[4][2][1]; fi;
+if (Length(A)=5 and Length(A[4])=3) then d:=A[4][1][1]*A[4][2][1]*A[4][3][1]; fi;
+n:=Size(Irr(g1)) ;
 m:=Trace(A[2],Rationals,1);
 U:=[];
 for i in [1..n] do 
 chi:=Irr(g1)[n-i+1];
 V:=ValuesOfClassFunction(chi); 
 F:=FieldByGenerators(V);
-if V[1]=d then 
+if V[1]/d in PositiveIntegers then 
 if Size(KernelOfCharacter(chi))=1 then 
 if FieldByGenerators(V)=A[2] then 
 	Add(U,n-i+1); 
@@ -261,11 +279,30 @@ od;
 if Size(U)=m then 
 u:=U[1];
 else
-u:="NotUnique";
+u:=U;
 fi;
 
 return u;
 end;
+##########################################
+SimpleComponentOfGroupRingByCharacter:=function(F,G,n)
+local R,W,t,s,w,K,m;
+
+R:=GroupRing(F,G);
+W:=WedderburnDecompositionInfo(GroupRing(F,G));
+t:=0;
+s:=1;
+w:=Size(W);
+while not(s > n) do  
+t:=t+1;
+K:=W[t][2];
+m:=Trace(K,F,1);
+s:=s+m;
+od; 
+
+return W[t];
+end;
+
 ##########################################
 IsDyadicSchurGroup:=function(G)
 local d,j,P,P1,V0,c,g,g1,z,V1,v1,V2,q,s,n1,r,i,y,p1,x,U,V,P2,L;
@@ -321,71 +358,49 @@ fi;
 return m;
 end;
 #########################################
-LocalIndexAtTwoByCharacter:=function(F,G,n)
-local m,chi,g,chi1,B1,a,B,V,V1,a1,F0,F1,n0,n1,n01,n02,n11,n12,f,f0,f1;
+PSplitSubextension:=function(F,m,p)
+local a,n,L,i,n1,n0,f,L0,L1,L2,b,F1;
 
-m:=1;
-chi:=Irr(G)[n];
-g:=G;
-chi1:=chi;
-B1:=SimpleAlgebraByCharacterInfo(GroupRing(Rationals,g),chi1);
-if not(Size(KernelOfCharacter(chi1))=1) then 
-g:=DefiningGroupOfCyclotomicAlgebra(B1);
-chi:=DefiningCharacterOfCyclotomicAlgebra(B1);
-fi;
 a:=PrimitiveElement(F);
-a1:=PrimitiveElement(B1[2]);
-B:=B1;
-B[2]:=FieldByGenerators([a,a1]);
-if Length(B)=2 then 
-m:=1;
-fi;
-if Length(B)=4 then 
-m:=LocalIndexAtTwo(B);
-fi;
+n:=Conductor([a,E(m)]);
+L:=[];
+for i in [1..n] do 
+  if Gcd(i,n)=1 and GaloisCyc(a,i)=a then 
+    Add(L,i);
+  fi;
+od; 
 
-if Length(B)=5 and Length(B[4])=2 then 
-if IsDyadicSchurGroup(g) then 
-m:=2;
-fi;
+n1:=PDashPartOfN(m,p);
+n0:=PPartOfN(m,p);
 
-if Length(B)=5 and Length(B[4])>2 then 
-m:="fail: use p'-splitting field method";
-fi;
+L0:=[];
+for b in L do 
+if b mod n1 = 1 then 
+AddSet(L0,b); 
+fi; 
+od;
 
-if m=2 then 
-V:=ValuesOfClassFunction(Irr(G)[n]);
-F0:=FieldByGenerators(V);
-a:=PrimitiveElement(B[2]);
-V1:=UnionSet(V,[a]);
-F1:=FieldByGenerators(V1);
-if not(F0=F1) then 
-if E(4) in F1 then 
-m:=1;
-else
-n0:=Conductor(F0);
-n02:=PPartOfN(n0,2);
-n1:=Conductor(F1);
-n12:=PPartOfN(n1,2);
-if not(n02=n12) then 
-m:=1;
-else
-n11:=PDashPartOfN(n1,2);
-f1:=OrderMod(2,n1);
-n01:=PDashPartOfN(n0,2);
-f0:=OrderMod(2,n0);
-f:=f1/f0;
-if (f/2 in PositiveIntegers) then
-m:=1;
-fi;
-fi;
-fi;
-fi;
-fi;
-fi;
+f:=1;
+while not(p^f mod n1 = 1) do 
+f:=f+1;
+od;
 
-return m;
+L1:=[];
+for i in [1..f] do 
+for b in L do 
+if b mod n0 = 1 and b mod n1 = p^i mod n1 then 
+AddSet(L1,b); 
+fi; 
+od; 
+od;
+
+L2:=UnionSet(L0,L1); 
+F1:=NF(n,L2);
+
+return F1;
 end;
+#########################################
+
 ###########################################
 
 FinFieldExt:=function(F,G,p,n,n1)
@@ -465,7 +480,7 @@ return t;
 end;
 ##############################################
 PossibleDefectGroups:=function(G,n,p)
-local S,U,Q,Q1,i,j,I,T,b,k,d,H,a;
+local S,U,U0,U1,Q,Q1,Q2,i,j,I,T,b,k,d,H,a;
 
 T:=CharacterTable(G);
 S:=T mod p; 
@@ -479,6 +494,8 @@ fi;
 od;
 Q:=SylowSubgroup(G,p);
 U:=[];
+U0:=[];
+U1:=[];
 if Size(Q)>p^d then 
 H:=ConjugacyClasses(G);
 for j in [2..Size(H)] do 
@@ -486,10 +503,15 @@ for j in [2..Size(H)] do
      a:=Elements(H[j])[1];
      Q1:=Intersection(Q,Q^a);
      if Size(Q1)=p^d then 
-        AddSet(U,ConjugacyClassSubgroups(G,Q1)); 
+        AddSet(U0,ConjugacyClassSubgroups(G,Q1)); 
+     fi; 
+     Q2:=SylowSubgroup(Centralizer(G,a),p); 
+     if Size(Q2)=p^d then 
+        AddSet(U1,ConjugacyClassSubgroups(G,Q2));
      fi; 
   fi;
 od;
+U:=Intersection(U0,U1);
 else
 AddSet(U,ConjugacyClassSubgroups(G,Q));
 fi;
@@ -546,9 +568,94 @@ fi;
 
 return m1;
 end;
+###########################################
+LocalIndexAtOddPByCharacter:=function(F,G,n,p)
+local m,B,K,B1,g,n1; 
+
+m:=1;
+B:=SimpleComponentOfGroupRingByCharacter(F,G,n); 
+
+if Length(B)=2 then 
+m:=1;
+fi;
+if Length(B)=4 then 
+m:=LocalIndexAtOddP(B,p);
+fi;
+
+if Length(B)=5 then
+K:=PSplitSubextension(F,B[3],p);
+B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
+g:=DefiningGroupOfCyclotomicAlgebra(B1);
+n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
+m:=LocalIndexAtPByBrauerCharacter(K,g,n1,p);
+fi;
+
+return m;
+end;
+
+###########################################
+LocalIndexAtTwoByCharacter:=function(F,G,n)
+local m,chi,g,g1,chi1,B1,W,i,a,B,K,V,V1,a1,F0,F1,n0,n1,n01,n02,n11,n12,f,f0,f1,m2;
+
+m2:=1;
+m:=0;
+B:=SimpleComponentOfGroupRingByCharacter(F,G,n); 
+
+if Length(B)=2 then 
+m2:=1;
+fi;
+if Length(B)=4 then 
+m2:=LocalIndexAtTwo(B);
+fi;
+
+if Length(B)=5 then
+K:=PSplitSubextension(F,B[3],2);
+B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
+g:=DefiningGroupOfCyclotomicAlgebra(B1);
+n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
+
+m2:=LocalIndexAtPByBrauerCharacter(F,g,n1,2);
+if not(m2 in Integers) then 
+
+if IsDyadicSchurGroup(g) then 
+m:=2;
+V:=ValuesOfClassFunction(Irr(G)[n]);
+F0:=FieldByGenerators(V);
+F1:=B1[2];
+if not(F0=F1) then 
+if E(4) in F1 then 
+m:=1;
+else
+n0:=Conductor(F0);
+n02:=PPartOfN(n0,2);
+n1:=Conductor(F1);
+n12:=PPartOfN(n1,2);
+if not(n02=n12) then 
+m:=1;
+else
+n11:=PDashPartOfN(n1,2);
+f1:=OrderMod(2,n1);
+n01:=PDashPartOfN(n0,2);
+f0:=OrderMod(2,n0);
+f:=f1/f0;
+if (f/2 in PositiveIntegers) then
+m:=1;
+fi;
+fi;
+fi;
+fi;
+fi;
+else m:=1;
+fi; 
+fi;
+
+if m>0 then m2:=m; fi;
+
+return m2;
+end;
 #############################################
 LocalIndicesOfCyclotomicAlgebra:=function(A)
-local L,F,l,G,n,m2,P,p,l1,i,L1;
+local L,F,l,G,n,m0,m2,m,P,p,l1,i,L1;
 
 L:=[];
 L1:=[];
@@ -558,26 +665,22 @@ l:=Length(A);
 if l=5 then 
 G:=DefiningGroupOfCyclotomicAlgebra(A);
 n:=DefiningCharacterOfCyclotomicAlgebra(A);
+m0:=LocalIndexAtInftyByCharacter(F,G,n);
+Add(L1,["infty",m0]);
+
 P:=AsSet(Factors(Size(G)));
 if P[1]=2 then 
-L1[1]:=["infty",LocalIndexAtInftyByCharacter(F,G,n)];
-m2:=LocalIndexAtPByBrauerCharacter(F,G,n,2);
-if m2 in Integers then 
-L1[2]:=[2,m2];
-else
-L1[2]:=[2,LocalIndexAtTwoByCharacter(F,G,n)];
-fi;
-else
-L1[1]:=["infty",1];
-L1[2]:=[2,1];
+m2:=LocalIndexAtTwoByCharacter(F,G,n);
+Add(L1,[2,m2]);
 fi;
 
-if Size(P)>1 then 
-for i in [2..Size(P)] do 
+P:=Difference(P,[2]);
+if Size(P)>0 then 
+for i in [1..Size(P)] do 
 p:=P[i];
-L1[i+1]:=[p,LocalIndexAtPByBrauerCharacter(F,G,n,p)];
+m:=LocalIndexAtOddPByCharacter(F,G,n,p);
+Add(L1,[p,m]);
 od;
-fi;
 fi;
 
 l1:=Size(L1);
@@ -586,13 +689,10 @@ for i in [1..l1] do
    Add(L,L1[i]);
  fi;
 od;
-
-if l=4 then 
-L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
 fi;
 
-if l<4 then 
-L:=[];
+if (l=4 and not(A[4][3]=0)) then 
+L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
 fi;
 
 return L;
@@ -849,11 +949,13 @@ end;
 # cyclic algebras and quaternion algebras. 
 ########################################################
 ConvertQuadraticAlgToQuaternionAlg:=function(A)
-local d,n,i,B;
+local d,t,n,i,B;
 
 n:=Conductor(A[2]);
 i:=0;
-if A[4][1][1]=2 then
+t:=Trace(A[2],A[1],1);
+
+if t=2 then
 for d in [1..n] do 
   if Sqrt(d) in A[2] and not(Sqrt(d) in A[1]) then 
      i:=d;
@@ -889,8 +991,47 @@ B:="fail";
 fi;
 return [A[1],B];
 end;
+###############################################
+ConvertCyclicAlgToCyclicCyclotomicAlg:=function(A)
+local F,K,n,i,j,M,k,l,m,B;
+
+F:=A[1];
+K:=A[2];
+B:="fails";
+if IsCyclotomicField(K) then 
+n:=Conductor(K);
+if IsOddInt(n) then n:=2*n; fi;
+if A[3][1]^n=1 then 
+
+k:=0;
+for i in [1..n-1] do 
+if Gcd(i,n) = 1 then 
+m:=OrderMod(n,i);
+M:=[];
+for j in [1..m] do 
+AddSet(M,i^j mod n);
+od;
+if F=NF(n,M) then k:=i; break; fi; 
+fi;
+od; 
+
+if k>0 then 
+m:=Order(ANFAutomorphism(K,k));
+for i in [0..n] do 
+if E(n)^i=A[3][1] then l:=i; break; fi; 
+od; 
+B:=[1,F,n,[m,k,l]];
+fi;
+
+fi;
+fi;
+
+return B;
+end; 
+#####################################################
+
 #################################################
-ConvertQuaternionAlgToQuadraticcAlg:=function(A)
+ConvertQuaternionAlgToQuadraticAlg:=function(A)
 local F,K,B,b,d,d1,i,a;
 
 d:=[];
@@ -1118,7 +1259,7 @@ l:=Length(A);
  L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
  m:=GlobalSchurIndexFromLocalIndices(L);
  fi;
- if Length(A)>5 then 
+ if Length(A)=5 then 
  L:=LocalIndicesOfCyclotomicAlgebra(A);
  m:=GlobalSchurIndexFromLocalIndices(L);
  fi;
@@ -1127,11 +1268,12 @@ fi;
 return m; 
 end;
 ############################################
-SchurIndexByCharacter:=function(G,chi)
+SchurIndexByCharacter:=function(F,G,n)
 local m,A;
 
-A:=SimpleAlgebraByCharacterInfo(GroupRing(Rationals,G),chi);
+A:=SimpleComponentOfGroupRingByCharacter(F,G,n); 
 m:=SchurIndex(A);
 
 return m;
 end;
+
