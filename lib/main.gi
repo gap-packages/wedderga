@@ -913,7 +913,7 @@ function( FG, chi )
                         # Wedderburn component of QG
         sylow,      	  # the list of Sylow subgroups of Gal
         i,          	  # counter
-        cf,         	  # character field of chi
+        cf,         	  # character field of chi, 
         Gal,        	  # Gal(L/cf)
         d,          	  # integer
         pr,         	  # prime divisors of d
@@ -943,8 +943,8 @@ function( FG, chi )
 # fi;   
     
   G := UnderlyingMagma(FG);      
-  cf := Field( chi );
-  L := CF(Exponent(G));  
+  cf := Field( chi );                          
+  L := CF(Exponent(G));   
   sspsub:=[];
   Gal := GaloisGroup(AsField(cf,L));
   d:=Gcd(Size(Gal),chi[1]);
@@ -1336,6 +1336,7 @@ true,
 0,
 function( FG, chi )
 
+
 local G,               # underlying group 
        ratchi,          # rationalized of chi
        L,          	    # Splitting Field of G
@@ -1453,7 +1454,6 @@ local G,               # underlying group
   fi;  
   
 end);
-
 
 #############################################################################
 ##
