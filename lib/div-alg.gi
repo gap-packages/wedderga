@@ -246,7 +246,7 @@ b:=f.2;
 g:=f/[a^A[3],b^A[4][1]*a^(-A[4][3]),b^(-1)*a*b*a^(-A[4][2])];
 fi;
 
-I:=IsomorphismPermGroup(g);
+I:=IsomorphismSpecialPcGroup(g);
 g1:=Image(I);
 
 return g1;
@@ -399,10 +399,7 @@ F1:=NF(n,L2);
 
 return F1;
 end;
-#########################################
-
 ###########################################
-
 FinFieldExt:=function(F,G,p,n,n1)
 local T,chi,V,Y,h,a,m1,d1,L,i,z,l,m,K,B,d,M,C,D,b,j,F1,M1,M2,T1,psi,U,k,F2,t;
 
@@ -518,7 +515,6 @@ fi;
 
 return U;
 end;
-
 ##########################################
 LocalIndexAtPByBrauerCharacter:=function(F,G,n,p)
 local chi,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2;
@@ -613,39 +609,37 @@ K:=PSplitSubextension(F,B[3],2);
 B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
 g:=DefiningGroupOfCyclotomicAlgebra(B1);
 n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
-
 m2:=LocalIndexAtPByBrauerCharacter(F,g,n1,2);
 if not(m2 in Integers) then 
-
-if IsDyadicSchurGroup(g) then 
-m:=2;
-V:=ValuesOfClassFunction(Irr(G)[n]);
-F0:=FieldByGenerators(V);
-F1:=B1[2];
-if not(F0=F1) then 
-if E(4) in F1 then 
 m:=1;
-else
-n0:=Conductor(F0);
-n02:=PPartOfN(n0,2);
-n1:=Conductor(F1);
-n12:=PPartOfN(n1,2);
-if not(n02=n12) then 
-m:=1;
-else
-n11:=PDashPartOfN(n1,2);
-f1:=OrderMod(2,n1);
-n01:=PDashPartOfN(n0,2);
-f0:=OrderMod(2,n0);
-f:=f1/f0;
-if (f/2 in PositiveIntegers) then
-m:=1;
-fi;
-fi;
-fi;
-fi;
-fi;
-else m:=1;
+  if IsDyadicSchurGroup(g) then 
+  m:=2;
+  V:=ValuesOfClassFunction(Irr(G)[n]);
+  F0:=FieldByGenerators(V);
+  F1:=B1[2];
+    if not(F0=F1) then 
+      if E(4) in F1 then 
+        m:=1;
+      else
+        n0:=Conductor(F0);
+        n02:=PPartOfN(n0,2);
+        n1:=Conductor(F1);
+        n12:=PPartOfN(n1,2);
+          if not(n02=n12) then 
+            m:=1;
+          else
+            n11:=PDashPartOfN(n1,2);
+            f1:=OrderMod(2,n1);
+            n01:=PDashPartOfN(n0,2);
+            f0:=OrderMod(2,n0);
+            f:=f1/f0;
+              if (f/2 in PositiveIntegers) then
+                m:=1;
+              fi;
+          fi;
+       fi;
+    fi;
+  fi;
 fi; 
 fi;
 
