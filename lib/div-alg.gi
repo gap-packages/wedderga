@@ -285,22 +285,18 @@ fi;
 return u;
 end;
 ##########################################
+#  The next function was created to replace SimpleAlgebraByCharacterInfo
+#  before it was fixed to work over larger fields. 
+##########################################
+
 SimpleComponentOfGroupRingByCharacter:=function(F,G,n)
-local R,W,t,s,w,K,m;
+local R,chi,B;
 
 R:=GroupRing(F,G);
-W:=WedderburnDecompositionInfo(GroupRing(F,G));
-t:=0;
-s:=1;
-w:=Size(W);
-while not(s > n) do  
-t:=t+1;
-K:=W[t][2];
-m:=Trace(K,F,1);
-s:=s+m;
-od; 
+chi:=Irr(G)[n];
+B:=SimpleAlgebraByCharacterInfo(R,chi);
 
-return W[t];
+return B;
 end;
 
 ##########################################
