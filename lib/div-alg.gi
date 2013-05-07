@@ -32,6 +32,113 @@ od;
 return m; 
 end;
 ################################
+######################################### 
+# Cyclotomic reciprocity functions for the extension
+# F(E(n))/F at the primie p.  These calculate the 
+# splitting degree g(F(E(n))/F,p), 
+# residue degree f(F(E(n))/F,p), and 
+# ramification index e(F(E(n))/F,p).  Using 
+# suitable quotients of these, one can obtain 
+# the e, f, and g for any extension K/F of 
+# abelian number fields. 
+#########################################
+PSplitSubextension:=function(F,n,p)
+local a,L,i,n1,n0,f,L1,b,F1;
+
+a:=PrimitiveElement(F);
+L:=[];
+for i in [1..n] do 
+  if Gcd(i,n)=1 and GaloisCyc(a,i)=a then 
+    Add(L,i);
+  fi;
+od; 
+
+n1:=PDashPartOfN(n,p);
+f:=1;
+if n1>1 then
+while not(p^f mod n1 = 1) do 
+f:=f+1;
+od;
+fi;
+
+n0:=PPartOfN(n,p);
+L1:=[];
+for b in L do 
+if GaloisCyc(E(n1),b)=E(n1) then  
+AddSet(L1,b); 
+else
+for i in [1..f] do 
+if b mod n1 = p^i mod n1 then 
+AddSet(L1,b);
+fi;
+od; 
+fi;
+od;  
+
+F1:=NF(n,L1);
+
+return F1;
+end;
+###################################
+SplittingDegreeAtP:=function(F,n,p)
+local K,g;
+
+K:=PSplitSubextension(F,n,p);
+g:=Trace(K,F,1);
+
+return g;
+end;
+###################################
+
+ResidueDegreeAtP:=function(F,n,p)
+local a,n0,n1,K,b,U,i,f;
+
+a:=PrimitiveElement(F);
+n0:=Conductor([a,E(n)]);
+n1:=PDashPartOfN(n0,p);
+K:=PSplitSubextension(F,n,p);
+b:=PrimitiveElement(K);
+U:=[];
+for i in [1..n1] do 
+  if Gcd(i,n1)=1 and GaloisCyc(b,i)=b then 
+    Add(U,i);
+  fi;
+od; 
+f:=Size(U);
+
+return f;
+end;
+#################################
+RamificationIndexAtP:=function(F,n,p)
+local n0,n1,a,U,i,U1,e;
+
+a:=PrimitiveElement(F);
+n0:=Conductor([a,E(n)]);
+U:=[];
+for i in [1..n0] do 
+  if Gcd(i,n0)=1 and GaloisCyc(a,i)=a then 
+   Add(U,i);
+  fi; 
+od; 
+n1:=PDashPartOfN(n0,p);
+U1:=[];
+for i in U do 
+  if GaloisCyc(E(n1),i)=E(n1) then 
+   Add(U1,i);
+  fi;
+od;
+e:=Size(U1);
+
+return e; 
+end;
+###########################################
+
+
+
+
+
+
+################################
 # Given a simple component of a rational group algebra whose 
 # "WedderburnDecompositionInfo" output has 4 terms, the next 
 # three functions compute its indices at odd primes, infinity, 
@@ -124,7 +231,7 @@ end;
 # over the 2-adics
 ###############################
 LocalIndexAtTwo:=function(A)
-local n,m,b,c,n1,f,h,g,n2,n3,e,e1,i,u,U,U1; 
+local n,m,b,c,n1,f,h,g,n2,n3,n4,e,e1,i,u,U,U1; 
 
 m:=1;
 if A[3]/4 in PositiveIntegers then 
@@ -144,6 +251,7 @@ i:=i+1;
 od;
 U1:=[];
 n3:=PDashPartOfN(A[3],2);
+n4:=PPartOfN(A[3],2);
 for u in U do 
 Add(U1,u mod n3);
 od;
@@ -156,7 +264,7 @@ h:=OrderMod(b^g,n3);
 e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
  if e1>1 and IsOddInt(e*f/e1*h) then 
  n2:=PPartOfN(n,2);
-  if E(n2)^(b^g)=E(n2)^(-1) and E(A[3])^c=-1 then 
+  if E(n2)^(b^g)=E(n2)^(-1) and E(n4)^c=-1 then 
    m:=2;
   fi;
  fi;
@@ -353,48 +461,7 @@ fi;
 
 return m;
 end;
-#########################################
-PSplitSubextension:=function(F,m,p)
-local a,n,L,i,n1,n0,f,L0,L1,L2,b,F1;
 
-a:=PrimitiveElement(F);
-n:=Conductor([a,E(m)]);
-L:=[];
-for i in [1..n] do 
-  if Gcd(i,n)=1 and GaloisCyc(a,i)=a then 
-    Add(L,i);
-  fi;
-od; 
-
-n1:=PDashPartOfN(m,p);
-n0:=PPartOfN(m,p);
-
-L0:=[];
-for b in L do 
-if b mod n1 = 1 then 
-AddSet(L0,b); 
-fi; 
-od;
-
-f:=1;
-while not(p^f mod n1 = 1) do 
-f:=f+1;
-od;
-
-L1:=[];
-for i in [1..f] do 
-for b in L do 
-if b mod n0 = 1 and b mod n1 = p^i mod n1 then 
-AddSet(L1,b); 
-fi; 
-od; 
-od;
-
-L2:=UnionSet(L0,L1); 
-F1:=NF(n,L2);
-
-return F1;
-end;
 ###########################################
 FinFieldExt:=function(F,G,p,n,n1)
 local T,chi,V,Y,h,a,m1,d1,L,i,z,l,m,K,B,d,M,C,D,b,j,F1,M1,M2,T1,psi,U,k,F2,t;
@@ -513,13 +580,14 @@ return U;
 end;
 ##########################################
 LocalIndexAtPByBrauerCharacter:=function(F,G,n,p)
-local chi,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2;
+local chi,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2,n0,K0,d0,F1,K1,d1;
 
 chi:=Irr(G)[n];
 V:=ValuesOfClassFunction(chi);
 a:=PrimitiveElement(F);
 V1:=Union(V,[a]);
-C:=FieldByGenerators(V1);
+F1:=FieldByGenerators(V1);
+C:=FieldByGenerators(V);
 m1:=[];
 m1[1]:=1;
 m1[2]:="DGisCyclic";
@@ -556,6 +624,15 @@ fi;
 m2:=m1;
 if m2[2]="DGisCyclic" then 
 m1:=m2[1];
+a:=PrimitiveElement(F);
+V1:=Union(V,[a]);
+n0:=Conductor(V1);
+K0:=PSplitSubextension(C,n0,p);
+d0:=Trace(CF(n0),K0,1);
+F1:=FieldByGenerators(V1);
+K1:=PSplitSubextension(F1,n0,p);
+d1:=Trace(CF(n0),K1,1);
+m1:=m1/Gcd(m1,d0/d1);
 fi;
 
 return m1;
@@ -745,6 +822,28 @@ fi;
 return B;
 end;
 ###############################################
+# Main function for obtaining the Wedderburn decomposition
+# for R = GroupRing(F,G) with division algebra parts identified
+# in terms of local indices
+###############################################
+WedderburnDecompositionWithDivAlgParts:=function(R)
+local W,w,i,W1;
+
+W:=WedderburnDecompositionInfo(R);
+w:=Size(W);
+W1:=[];
+for i in [1..w] do 
+if Length(W[i]) < 4 then
+  Add(W1,W[i]);
+else
+W1[i]:=CyclotomicAlgebraWithDivAlgPart(W[i]);
+fi;
+od;
+
+return W1;
+end; 
+###############################################
+
 
 #############################
 # Given a Schur algebra output from "wedderga" with 5 terms
