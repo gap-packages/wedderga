@@ -7,6 +7,32 @@
 <Heading>Main Schur Index and Division Algebra Functions</Heading>
 
 <ManSection>  
+   <Prop Name="WedderburnDecompositionWithDivAlgParts" 
+         Arg="A"  
+         Comm="Gives the complete Wedderburn decomposition of the group algebra of a finite group over an abelian number field in terms of the direct sum of rings of matrices over division algebras."/>
+   <Returns>
+         A list of terms <K>[r,D],</K> each representing a ring of <K> r x r </K> matrices over a field or division algebra <K>D.</K> 
+   </Returns>
+   <Description>
+         The input <A>A</A> should be a group ring of a finite group over an abelian number field.  The function will give the same result as <Ref Attr="WedderburnDecompositionInfo" /> if the field of coefficients for the group ring is finite.  The output is a list of matrix rings over fields or division algebras representing the simple components of the group algebra.  The division algebras are presented in the form <K>["DivAlg",F,"LocInds=",L].</K> <K>"DivAlg"</K> is a label indicating that this is definitely a division algebra. <M>F</M> is its center, <K>"LocInds="</K> is a label standing for "Local Indices", and <K>L</K> is a list of nontrivial <A>p-</A>local indices in the form <K>[p,m]</K>, where <A>p</A> is a rational prime (possibly an infinite prime, which appears as "infty"), and <K>m</K> is the local index of the division algebra at the prime <M>p.</M> 
+         <P/>
+         
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(48,15);
+<pc group of size 48 with 5 generators>
+gap> WedderburnDecompositionWithDivAlgParts(GroupRing(Rationals,G));
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, CF(3) ], [ 2, Rationals ], 
+  [ 2, NF(8,[ 1, 7 ]) ], 
+  [ 2, [ "DivAlg", Rationals, "LocInds=", [ [ 2, 2 ], [ 3, 2 ] ] ] ] ]
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+<ManSection>  
    <Prop Name="CyclotomicAlgebraWithDivAlgPart" 
          Arg="A"  
          Comm="Gives the division algebra part of a cyclotomic algebra."/>
@@ -18,7 +44,7 @@
          The input <A>A</A> should be a cyclotomic algebra; i.e. a crossed product in the form such as in the output by <Ref Attr="WedderburnDecompositionInfo" />.  The output is in the form <K>[r,D]</K> where <M>D</M> is a division algebra presented in the form     <K>["DivAlg",F,"LocInds=",L]</K>. <K>"DivAlg"</K> is a label indicating that this is definitely a division algebra. <M>F</M> is its center, <K>"LocInds="</K> is a label standing for "Local Indices", and <K>L</K> is a list of nontrivial <A>p-</A>local indices in the form <K>[p,m]</K>, where <A>p</A> is a rational prime (possibly an infinite prime, which appears as "infty"), and <K>m</K> is the local ndex of the division algebra at the prime <M>p</M>. 
          <P/>
 
-         Presently the function can only handle cases where the cyclotomic algebra <K>A</K> is list of length 2, 4 or 5, in the form output by wedderga's "-Info" functions.  The function utilizes local index calculations that are easier and faster in the length 4 case (see <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>) than in the general length 5 case (see <Ref Attr="LocalIndicesOfCyclotomicAlgebra"/>). 
+         Presently the function can only handle cases where the cyclotomic algebra <K>A</K> is list of length 2, 4 or 5, in the form output by wedderga's "-Info" functions.  The function utilizes local index calclations that are easier and faster in the length 4 case (see <Ref Attr="LocalIndicesOfCyclicCyclotomicAlgebra"/>) than in the general length 5 case (see <Ref Attr="LocalIndicesOfCyclotomicAlgebra"/>). 
          <P/>
          
 <Example>
@@ -73,13 +99,14 @@ gap> CyclotomicAlgebraWithDivAlgPart(W[10]);
 
 
    <Returns>
-         The first of these returns the rational Schur index of the simple algebra <K>A</K>, which must be either a cyclotomic algebra in the form output by <Oper="WedderburnDecompositionInfo">, or a Quaternion Algebra whose center is <K>Rationals</K>.   
+         The first of these returns the rational Schur index of the simple algebra <K>A</K>, which must be either a cyclotomic algebra in the form output by <Ref Attr="WedderburnDecompositionInfo" />, or a Quaternion Algebra whose center is <K>Rationals</K>.   
          The second of these returns the Schur index of the simple component of the group ring <K>FG</K> corresponding to the irreducible character <K>Irr(G)[n]</K> of <K>G</K>.  The field <K>F</K> has to be an abelian number field, <K>G</K> a finite group with at least <K>n</K> ordinary irreducible characters.  
    </Returns> 
-   <Description> These are the main functions for computing Schur indices.  The first can be used to find the rational Schur index of a simple component of the group ring of a finite group over an abelian number field, or a quaternion algebra in GAP (see <Ref Func="QuaternionAlgebra" BookName="ref" />) whose center is the field of rational numbers. If <K>A</K> is a quaternion algebra over a number field other than the Rationals, a "fail" message appears.  In these cases, the quaternion algebra can be converted to a cyclic algebra using <ref Oper="ConvertQuaternionAlgToQuadraticAlg"> and the Schur index of the cyclic algebra can be determined through solution of norm equations - currently not implemented in GAP, but available in number theory packages such as PARI/GP.
 
-The second function computes the Schur index of the cyclotomic algebra that would occur as the simple component of the group ring <K>FG</K> that corresponds to the irreducible character <K>Irr(G)[n]</K>.  The function uses <Oper="SimpleComponentOfGroupRingByCharacter">, which identifies the simple component of <K>GroupRing(F,G)</K> in the output of <Oper="WedderburnDecompositionInfo"> that corresponds to <K>Irr(G)[n]</K> by a simple dimension count.  Because of this, it is important that users use the same presentation of <K>G</K> identify <K>Irr(G)[n]</K>, the n-th character in the list <K>Irr(G)</K>. 
-</P>  
+   <Description> These are the main functions for computing Schur indices.  The first can be used to find the rational Schur index of a simple component of the group ring of a finite group over an abelian number field, or a quaternion algebra in GAP (see <Ref Func="QuaternionAlgebra" BookName="ref" />) whose center is the field of rational numbers. If <K>A</K> is a quaternion algebra over a number field other than the Rationals, a "fail" message appears.  In these cases, the quaternion algebra can be converted to a cyclic algebra using <ref Oper="ConvertQuaternionAlgToQuadraticAlg"/> and the Schur index of the cyclic algebra can be determined through solution of norm equations - currently not implemented in GAP, but available in number theory packages such as PARI/GP.
+
+The second function computes the Schur index of the cyclotomic algebra that would occur as the simple component of the group ring <K>FG</K> that corresponds to the irreducible character <K>Irr(G)[n]</K>.  The function uses <Ref Attr="SimpleComponentOfGroupRingByCharacter" />, which identifies the simple component of <K>GroupRing(F,G)</K> in the output of <Ref Attr="WedderburnDecompositionInfo"/> that corresponds to <K>Irr(G)[n]</K> by a simple dimension count.  Because of this, it is important that users use the same presentation of <K>G</K> identify <K>Irr(G)[n]</K>, the n-th character in the list <K>Irr(G)</K>. 
+<P/>
 
 <Example>
 <![CDATA[
@@ -113,6 +140,40 @@ gap> SchurIndex(A);
    </Description>
 </ManSection>
 
+</Section>
+
+<!-- *******Cyclotomic Reciprocity Functions -->
+
+<Section Label="Cyclotomic Reciprocity Functions">
+<Heading>Cyclotomic Reciprocity Functions </Heading>
+
+<Oper Name="PPartOfN" 
+         Arg="n p"  
+         Comm=" " />
+<Oper Name="PDashPartOfN" 
+         Arg="n p"  
+         Comm=" " />
+   <Returns>
+ 	These are standard arithmetic functions required by several subroutines for the cyclotomic reciprocity and Schur index functions in wedderga.    
+   </Returns> 
+
+<Oper Name="PSplitSubextension"
+         Arg="F,n,p"  
+         Comm="Determines the maximal subestension K of the cyclotomic extension F(E(n)) for which K/F splits completely over the prime p" />
+   <Returns> This function returns the maximal subextension <K>K</K> of the cyclotomic extension <K>F(E(n))</K> for which <K>K/F</K> splits completely at the prime <K>p</K>, i.e. both the ramification index and residue degree over any prime lying over <K>p</K> are <K>1</K>.  This function is useful in reducing complications in calculating the local index of a cyclotomic algebra at <K>p</K>.  The first of three cyclotomic reciprocity functions. 
+  </Returns> 
+
+<Oper Name="ResidueDegreeAtP"
+         Arg="F,n,p"  
+         Comm="Determines the residue degree of the extension F(E(n))/F at the prime p" />
+   <Returns> This function calculates the residue degree of the extension <K>F(E(n))/F</K> at the prime <K>p</K> for an abelian number field <K>F</K>.  A cyclotomic reciprocity function. 
+</Returns> 
+
+<Oper Name="RamificationIndexAtP"
+         Arg="F,n,p"  
+         Comm="Determines the ramification index of the extension F(E(n))/F at the prime p" />
+<Returns> This function calculates the ramification index of the extension <K>F(E(n))/F</K> at the prime <K>p</K> for an abelian number field <K>F</K>.  A cyclotomic reciprocity function. 
+</Returns> 
 </Section>
 
 <!-- *******Local Index Functions for Cyclic Cyclotomic Algebras -->
@@ -170,16 +231,9 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(W[5]);
    <Oper Name="LocalIndexAtOddP" 
          Arg="A,p"  
          Comm="Gives the p-local index for an odd prime p of a cyclic cyclotomic algebra presented as a list of the form [r,F,n,[m.k.l]]." />
-   <Oper Name="PPartOfN" 
-         Arg="n p"  
-         Comm=" " />
-   <Oper Name="PDashPartOfN" 
-         Arg="n p"  
-         Comm=" " />
+   
    <Returns>
- 	The first three functions return the local index of a cyclotomic algebra 
- 	at the prime indicated.  The latter two are standard arithmetic 
- 	functions required by the first three operations.   
+ 	These return the <K>p</K>-local index of the cyclotomic algebra <K>A</K>.
    </Returns> 
 
    <Description>
@@ -245,7 +299,7 @@ by a theorem of Benard (see <Ref Oper="LocalIndexAtPByBrauerCharacter"/>.)
 Sometimes for the prime 2 the defect group is not necessarily cyclic, and we have 
 to make use of the classification of dyadic Schur groups by Schmid and Riese 
 (see <Ref Oper="LocalIndexAtTwoByCharacter"/>).  
-</P>
+<P/>
 
 <Example>
 <![CDATA[
@@ -307,16 +361,10 @@ gap> LocalIndicesOfCyclotomicAlgebra(W[27]);
    positive integer <K>n</K> for which the simple component of a group algebra over <K>G</K> over the center of <K>A</K> corresponding to the character <K>Irr(G)[n]</K> is isomorphic to <K>A</K>. 
   </Returns> 
 
-<Oper Name="PSplitSubextension"
-         Arg="F,m,p"  
-         Comm="Determines the maximal subestension K of the cyclotomic extension F(E(n)) for which K/F splits completely over the prime p" />
-   <Returns> This function returns the maximal subextension <K>K</K> of the cyclotomic extension <K>F(E(m))</K> for which <K>K/F</K> splits completely at the prime <K>p</K>, i.e. both the ramification index and residue degree over any prime lying over <K>p</K> are <K>1</K>.  This function is useful in reducing complications in calculating the local index of a cyclotomic algebra at <K>p</K>. 
-  </Returns> 
-
 <Oper Name="SimpleComponentOfGroupRingByCharacter"
          Arg="F,G,n"  
          Comm="Determines the simple component of GroupRing(F,G) corresponding to the irreducible character Irr(G)[n]. " />
-   <Returns> This function returns the simple component of <ref Oper="WedderburnDecompositionInfo(GroupRing(F,G))"> that corresponds to the irreducible character <K>Irr(G)[n]</K> of <K>G</K>.  It is used when we need to work over a field larger than the field of character values in a local index calculation.  
+   <Returns> This function returns the simple component of <ref Oper="WedderburnDecompositionInfo(GroupRing(F,G))"/> that corresponds to the irreducible character <K>Irr(G)[n]</K> of <K>G</K>.  It is used when we need to work over a field larger than the field of character values in a local index calculation.  
   </Returns> 
 </ManSection>
 
@@ -457,11 +505,9 @@ true
 The first function determines the local index at 2 of the simple component of <K>FG</K> 
 corresponding to the irreducible character <K>Irr(G)[n]</K>.  
 </Returns>
-<Description> This function first determines the simple component of <K>FG</K> corresponding to the character <K>Irr(G)[n]</K>, and uses the "DefiningGroup..." functions to reduce to a faithful character of a possibly smaller group.  If the simple component has length 2 or 4, it will give the result of the <ref Oper="LocalIndexAtTwo"> function for cyclic cyclotomic case.     If the simple component over <K>F</K> has length 5, it extends the field <K>F</K> to <K>K</K>, where <K>K/F</K> is totally split at the prime 2.  Recalculating the simple component over <K>K</K> allows one to often reduce to a faithful character of a quasi-elementary group.   It then checks if the 2-defect group of the irreducible character is cyclic.  If this is definitely so, it uses <ref Oper="LocalIndexAtPByBrauerCharacter"> to calculate its 2-local index.  Otherwise, it makes use of <ref Oper="IsDyadicSchurGroup">, which checks if a quasi-elementary group has a faithful irreducible character with 2-local index 2, then verifies that <K>K</K> does not split the simple component generated by this character.  
-</Description>
+<Description> This function first determines the simple component of <K>FG</K> corresponding to the character <K>Irr(G)[n]</K>, and uses the "DefiningGroup..." functions to reduce to a faithful character of a possibly smaller group.  If the simple component has length 2 or 4, it will give the result of the <ref Oper="LocalIndexAtTwo"/> function for cyclic cyclotomic case.     If the simple component over <K>F</K> has length 5, it extends the field <K>F</K> to <K>K</K>, where <K>K/F</K> is totally split at the prime 2.  Recalculating the simple component over <K>K</K> allows one to often reduce to a faithful character of a quasi-elementary group.   It then checks if the 2-defect group of the irreducible character is cyclic.  If this is definitely so, it uses <ref Oper="LocalIndexAtPByBrauerCharacter"/> to calculate its 2-local index.  Otherwise, it makes use of <ref Oper="IsDyadicSchurGroup"/>, which checks if a quasi-elementary group has a faithful irreducible character with 2-local index 2, then verifies that <K>K</K> does not split the simple component generated by this character.  
 
-These functions are designed for faithful characters of groups that faithfully represent 
-cyclotomic algebras, and so should be used with caution in other situations.   
+These functions are designed for faithful characters of groups that faithfully represent cyclotomic algebras, and so should be used with caution in other situations.   
 </Description> 
 
 </ManSection>
