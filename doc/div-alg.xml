@@ -154,7 +154,7 @@ gap> CyclotomicAlgebraWithDivAlgPart(W[10]);
    is the field of rational numbers. If <K>A</K> is a quaternion algebra 
    over a number field other than the Rationals, a "fail" message appears.  
    In these cases, the quaternion algebra can be converted to a cyclic 
-   algebra using <ref Oper="ConvertQuaternionAlgToQuadraticAlg"/> and 
+   algebra using <Ref Oper="ConvertQuaternionAlgToQuadraticAlg"/> and 
    the Schur index of the cyclic algebra can be determined through 
    solution of norm equations - currently not implemented in GAP, 
    but available in number theory packages such as PARI/GP.
