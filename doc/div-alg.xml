@@ -210,6 +210,7 @@ gap> SchurIndex(A);
 <Section Label="Cyclotomic Reciprocity Functions">
 <Heading>Cyclotomic Reciprocity Functions </Heading>
 
+<ManSection>
 <Oper Name="PPartOfN" 
          Arg="n p"  
          Comm=" " />
@@ -221,7 +222,9 @@ gap> SchurIndex(A);
  	subroutines for the cyclotomic reciprocity and Schur index 
  	functions in wedderga.    
    </Returns> 
+</ManSection>
 
+<ManSection>
 <Oper Name="PSplitSubextension"
          Arg="F,n,p"  
          Comm="Determines the maximal subestension K of the cyclotomic extension F(E(n)) for which K/F splits completely over the prime p" />
@@ -233,7 +236,9 @@ gap> SchurIndex(A);
    in calculating the local index of a cyclotomic algebra at <K>p</K>.  
    The first of three cyclotomic reciprocity functions. 
   </Returns> 
+</ManSection>
 
+<ManSection>
 <Oper Name="ResidueDegreeAtP"
          Arg="F,n,p"  
          Comm="Determines the residue degree of the extension F(E(n))/F at the prime p" />
@@ -241,7 +246,9 @@ gap> SchurIndex(A);
    extension <K>F(E(n))/F</K> at the prime <K>p</K> for an abelian 
    number field <K>F</K>.  A cyclotomic reciprocity function. 
 </Returns> 
+</ManSection>
 
+<ManSection>
 <Oper Name="RamificationIndexAtP"
          Arg="F,n,p"  
          Comm="Determines the ramification index of the extension F(E(n))/F at the prime p" />
@@ -249,6 +256,8 @@ gap> SchurIndex(A);
 extension <K>F(E(n))/F</K> at the prime <K>p</K> for an abelian 
 number field <K>F</K>.  A cyclotomic reciprocity function. 
 </Returns> 
+</ManSection>
+
 </Section>
 
 <!-- *******Local Index Functions for Cyclic Cyclotomic Algebras -->
