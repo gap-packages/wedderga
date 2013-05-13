@@ -801,7 +801,6 @@ true
    </Description>
 </ManSection>
 
-
 <ManSection>
    <Oper Name="ConvertCyclicAlgToCyclicCyclotomicAlg"
          Arg="A"  
@@ -853,9 +852,9 @@ gap> b[2]*b[3]+b[3]*b[2];
    <Oper Name="ConvertQuaternionAlgToQuadraticAlg"
          Arg="A"  
          Comm="A must be quaternion algebra over rationals." />
-<Oper Name="ConvertCyclicAlgToCyclicCyclotomicAlg"
+<Oper Name="ConvertCyclicCyclotomicAlgToCyclicAlg"
          Arg="A"  
-         Comm="A must be a cyclic algebra whose factor set consists of roots of unity." />
+         Comm="A must be a cyclic cyclotomic algebra in the form [r,F,n,[a,b,c]]." />
    
    <Description>
          The input of the first function must be a quaternion algebra whose 
@@ -866,24 +865,33 @@ gap> b[2]*b[3]+b[3]*b[2];
          the cyclic algebra <M>(K/F,c)</M>, which is regarded as a 
          quadratic algebra since <K>[K:F] = 2</K>.  
 
-The input of the second function should be a cyclic algebra presented in 
-the form <K>[F,K,[c]]</K>, where <K>c</K> is an element of <K>F</K> - 
-the function does not check whether or not <K>c</K> lies in <K>F</K>.  
-It returns a simple algebra <K>[1,F,n,[m,l,k]</K> in the style of 
-wedderga's "-Info" functions.  This can be used to calculate Schur 
-indices for cyclic algebras and quaternion algebras in some cases.  
+The input of the second function should be a cyclic cyclotomic algebra presented 
+in the form <K>[r,F,n,[a,b,c]]</K> of the output of wedderga's -Info functions.  
+It returns the algebra <K>[r,[F,F(E(n)),[E(n)^c]]]</K>.  This function can be 
+helpful if one wishes to check Schur index calculations for cyclotomic algebras 
+using norm equations or calculations of Schur indices of rational quaternion algebras.
 <P/>
 
 <Example>
 <![CDATA[
-gap> A:=QuaternionAlgebra(CF(5),-3,-1);          
+gap> A:=QuaternionAlgebra(CF(5),-3,-1);
 <algebra-with-one of dimension 4 over CF(5)>
 gap> ConvertQuaternionAlgToQuadraticAlg(A);
-[ CF(5), CF(15), [ -3 ] ]
+[ CF(5), CF(15), [ -1 ] ]
 gap> ConvertCyclicAlgToCyclicCyclotomicAlg(last);
 [ 1, CF(5), 30, [ 2, 11, 15 ] ]
-gap> CyclotomicAlgebraWithDivAlgPart(last);
-[ 2, CF(5) ]
+gap> SchurIndex(last);
+1
+gap> ConvertCyclicCyclotomicAlgToCyclicAlg(last2);
+[ 1, [ CF(5), CF(15), [ -1 ] ] ]
+gap> ConvertQuadraticAlgToQuaternionAlg(last[2]);
+<algebra-with-one of dimension 4 over CF(5)>
+gap> b:=Basis(last); b[1]^2; b[2]^2; b[3]^2; b[4]^2;
+Basis( <algebra-with-one of dimension 4 over CF(5)>, ... )
+e
+(-3)*e
+(-1)*e
+(-3)*e
 ]]>
 </Example>
 

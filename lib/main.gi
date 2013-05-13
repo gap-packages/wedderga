@@ -1014,7 +1014,7 @@ function( FG, chi )
 	a1:=PrimitiveElement(F1);
 	b1:=PrimitiveElement(cf);
 	F2:=Field([a1,b1]);
-    return  [ sspsub[1][1], F2 ] ;
+    return  SimpleAlgebraByData( [ sspsub[1][1], F2 ] );
     
   elif Size(sspsub[4])=1 then
     return [ sspsub[1][1], F2 ]; # sspsub[3] ];   
