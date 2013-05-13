@@ -865,11 +865,24 @@ gap> b[2]*b[3]+b[3]*b[2];
          the cyclic algebra <M>(K/F,c)</M>, which is regarded as a 
          quadratic algebra since <K>[K:F] = 2</K>.  
 
+<<<<<<< local
+<<<<<<< local
+The input of the second function should be a cyclic cyclotomic algebra presented in the form <K>[r,F,n,[a,b,c]]</K> of the output of wedderga's -Info functions.  It returns the algebra <K>[r,[F,F(E(n)),[E(n)^c]]]</K>.  This function can be helpful if one wishes to check Schur index calculations for cyclotomic algebras using norm equations or calculations of Schur indices of rational quaternion algebras.
+=======
+The input of the second function should be a cyclic algebra presented in 
+the form <K>[F,K,[c]]</K>, where <K>c</K> is an element of <K>F</K> - 
+the function does not check whether or not <K>c</K> lies in <K>F</K>.  
+It returns a simple algebra <K>[1,F,n,[m,l,k]</K> in the style of 
+wedderga's "-Info" functions.  This can be used to calculate Schur 
+indices for cyclic algebras and quaternion algebras in some cases.  
+>>>>>>> other
+=======
 The input of the second function should be a cyclic cyclotomic algebra presented 
 in the form <K>[r,F,n,[a,b,c]]</K> of the output of wedderga's -Info functions.  
 It returns the algebra <K>[r,[F,F(E(n)),[E(n)^c]]]</K>.  This function can be 
 helpful if one wishes to check Schur index calculations for cyclotomic algebras 
 using norm equations or calculations of Schur indices of rational quaternion algebras.
+>>>>>>> other
 <P/>
 
 <Example>
