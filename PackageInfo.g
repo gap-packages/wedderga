@@ -43,6 +43,20 @@ Persons :=
        Place         := "Lavras - MG",
        Institution   := "Universidade Federal de Lavras - UFLA"
      ),
+rec(
+       LastName      := "Herman",
+       FirstNames    := "Allen",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "aherman@math.uregina.ca",
+       PostalAddress := Concatenation( [
+                        "Department of Mathematics and Statistics\n",
+                        "University of Regina\n",
+                        "3737 Wascana Parkway\n",
+                        "Regina, SK, S0G 0E0 Canada"] ),
+       Place         := "Regina",
+       Institution   := "University of Regina"
+     ),
      rec(
        LastName      := "Konovalov",
        FirstNames    := "Alexander",
@@ -127,7 +141,7 @@ README_URL :=
 PackageInfoURL := 
   Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
   
-AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rational. It also contains functions that produce the primitive central idempotents of semisimple group algebras. Other functions of <span class=\"pkgname\">Wedderga</span> allows to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.",
+AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class=\"pkgname\">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.",
                   
 PackageDoc := rec(
   BookName := "Wedderga",
@@ -135,7 +149,7 @@ PackageDoc := rec(
   HTMLStart := "doc/chap0.html",
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
-  LongTitle := "Wedderga with div-alg",
+  LongTitle := "Wedderga",
   Autoload := true
 ),
 
