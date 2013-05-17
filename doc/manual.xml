@@ -21,6 +21,16 @@
           37200-000, Lavras - MG, Brazil          
           </Address>
   </Author>
+  <Author>Allen Herman
+          <Email>aherman@math.uregina.ca</Email>
+	      <Homepage>http://www.math.uregina.ca/&tilde;aherman/</Homepage>
+          <Address>
+          Department of Mathematics and Statistics, <br/>
+          University of Regina, <br/> 
+          3737 Wascana Parkway, <br/>
+          Regina, SK, S0G 0E0, Canada 
+         </Address> 
+  </Author>
 
   <Author>Alexander Konovalov
           <Email>alexk@mcs.st-andrews.ac.uk</Email>
