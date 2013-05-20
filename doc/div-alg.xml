@@ -451,7 +451,11 @@ gap> LocalIndicesOfCyclotomicAlgebra(W[27]);
 <Oper Name="SimpleComponentOfGroupRingByCharacter"
          Arg="F,G,n"  
          Comm="Determines the simple component of GroupRing(F,G) corresponding to the irreducible character Irr(G)[n]. " />
-   <Returns> This function returns the simple component of <Ref Oper="WedderburnDecompositionInfo(GroupRing(F,G))"/> that corresponds to the irreducible character <K>Irr(G)[n]</K> of <K>G</K>.  It is used when we need to work over a field larger than the field of character values in a local index calculation.  
+   <Returns> This function returns the simple component of 
+   <Ref Oper="WedderburnDecompositionInfo"/> 
+   that corresponds to the irreducible character <K>Irr(G)[n]</K> of <K>G</K>.  
+   It is used when we need to work over a field larger than the field of 
+   character values in a local index calculation.  
   </Returns> 
 </ManSection>
 
@@ -622,7 +626,7 @@ caution in other situations.
 
 <!-- *******Local Index Functions for Quaternion Algebras -->
 
-<Section Label="LocalIndicesOfRationalQuaternionAlgebra">
+<Section Label="LocalIndicesOfRationalQuaternionAlgebras">
 <Heading>Local index functions for Rational Quaternion Algebras</Heading>
 
 <ManSection>
