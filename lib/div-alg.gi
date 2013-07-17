@@ -91,20 +91,23 @@ end;
 ###################################
 
 ResidueDegreeAtP:=function(F,n,p)
-local a,n0,n1,K,b,U,i,f;
+local K,a,n1,L,f;
 
-a:=PrimitiveElement(F);
-n0:=Conductor([a,E(n)]);
-n1:=PDashPartOfN(n0,p);
 K:=PSplitSubextension(F,n,p);
-b:=PrimitiveElement(K);
-U:=[];
-for i in [1..n1] do 
-  if Gcd(i,n1)=1 and GaloisCyc(b,i)=b then 
-    Add(U,i);
-  fi;
-od; 
-f:=Size(U);
+a:=PrimitiveElement(K);
+#n0:=Conductor([a,E(n)]);
+n1:=PDashPartOfN(n,p);
+L:=Field([a,E(n1)]);
+f:=Trace(L,K,1);
+#K:=PSplitSubextension(F,n,p);
+#b:=PrimitiveElement(K);
+#U:=[];
+#for i in [1..n1] do 
+#  if Gcd(i,n1)=1 and GaloisCyc(b,i)=b then 
+#    Add(U,i);
+#  fi;
+#od; 
+#f:=Size(U);
 
 return f;
 end;
