@@ -180,14 +180,14 @@ gap> A:=GroupRing(Rationals,G);
 gap> W:=WedderburnDecompositionInfo(A);
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
   [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ],  
-  [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] ]
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
+  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
 gap> SchurIndex(W[10]);
 2
 gap> Size(Irr(G));
 12
 gap> A:=SimpleComponentOfGroupRingByCharacter(Rationals,G,12);
-[ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
+[ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ]
 gap> SchurIndexByCharacter(Rationals,G,12);
 2
 gap> SchurIndexByCharacter(CF(12),G,12);
@@ -297,7 +297,7 @@ gap> G:=SmallGroup(63,1);
 gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));
 [ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], 
   [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ], 
-  [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
+  [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 14 ] ] ]
 gap> LocalIndicesOfCyclicCyclotomicAlgebra(W[5]);
 [ [ 7, 3 ] ]
 ]]>
@@ -401,7 +401,7 @@ gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));
   [ 1, NF(5,[ 1, 4 ]), 10, [ 2, 9, 0 ] ], [ 2, Rationals, 6, [ 2, 5, 0 ] ], 
   [ 2, NF(5,[ 1, 4 ]), 10, [ 2, 9, 0 ] ], 
   [ 1, NF(5,[ 1, 4 ]), 15, [ [ 2, 4, 0 ], [ 2, 11, 0 ] ], [ [ 0 ] ] ], 
-  [ 1, NF(24,[ 1, 5, 7, 11 ]), 24, [ [ 2, 5, 18 ], [ 2, 7, 12 ] ], [ [ 6 ] ] ]
+  [ 1, NF(24,[ 1, 5, 7, 11 ]), 24, [ [ 2, 5, 6 ], [ 2, 7, 12 ] ], [ [ 18 ] ] ]
     , [ 2, NF(15,[ 1, 14 ]), 30, [ 2, 29, 0 ] ], 
   [ 1, NF(5,[ 1, 4 ]), 30, [ [ 2, 11, 0 ], [ 2, 19, 0 ] ], [ [ 0 ] ] ], 
   [ 1, NF(40,[ 1, 11, 29, 39 ]), 40, [ [ 2, 11, 20 ], [ 2, 29, 10 ] ], 
@@ -415,7 +415,7 @@ gap> W[16];
 gap> LocalIndicesOfCyclotomicAlgebra(W[16]);
 [ [ 2, 2 ], [ "infty", 2 ] ]
 gap> W[23];
-[ 1, NF(24,[ 1, 5, 7, 11 ]), 24, [ [ 2, 5, 18 ], [ 2, 7, 12 ] ], [ [ 6 ] ] ]
+[ 1, NF(24,[ 1, 5, 7, 11 ]), 24, [ [ 2, 5, 6 ], [ 2, 7, 12 ] ], [ [ 18 ] ] ]
 gap> LocalIndicesOfCyclotomicAlgebra(W[23]);
 [  ]
 gap> W[26];                                 
@@ -451,7 +451,11 @@ gap> LocalIndicesOfCyclotomicAlgebra(W[27]);
 <Oper Name="SimpleComponentOfGroupRingByCharacter"
          Arg="F,G,n"  
          Comm="Determines the simple component of GroupRing(F,G) corresponding to the irreducible character Irr(G)[n]. " />
-   <Returns> This function returns the simple component of <Ref Oper="WedderburnDecompositionInfo(GroupRing(F,G))"/> that corresponds to the irreducible character <K>Irr(G)[n]</K> of <K>G</K>.  It is used when we need to work over a field larger than the field of character values in a local index calculation.  
+   <Returns> This function returns the simple component of 
+   <Ref Oper="WedderburnDecompositionInfo"/> 
+   that corresponds to the irreducible character <K>Irr(G)[n]</K> of <K>G</K>.  
+   It is used when we need to work over a field larger than the field of 
+   character values in a local index calculation.  
   </Returns> 
 </ManSection>
 
@@ -622,7 +626,7 @@ caution in other situations.
 
 <!-- *******Local Index Functions for Quaternion Algebras -->
 
-<Section Label="LocalIndicesOfRationalQuaternionAlgebra">
+<Section Label="LocalIndicesOfRationalQuaternionAlgebras">
 <Heading>Local index functions for Rational Quaternion Algebras</Heading>
 
 <ManSection>
@@ -783,8 +787,8 @@ gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));
   [ 1, NF(12,[ 1, 11 ]), 12, [ 2, 11, 6 ] ], 
   [ 1, NF(16,[ 1, 7 ]), 16, [ 2, 7, 0 ] ], 
   [ 1, NF(16,[ 1, 7 ]), 16, [ 2, 7, 8 ] ], 
-  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ], 
-  [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 6 ] ], [ [ 3 ] ] ], 
+  [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ], 
+  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 6 ] ], [ [ 9 ] ] ], 
   [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 3 ] ], [ [ 9 ] ] ], 
   [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 0 ], [ 2, 17, 21 ] ], [ [ 15 ] ] ] ]
 gap> DecomposeCyclotomicAlgebra(W[20]);                              
