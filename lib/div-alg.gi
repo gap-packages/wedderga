@@ -136,11 +136,6 @@ return e;
 end;
 ###########################################
 
-
-
-
-
-
 ################################
 # Given a simple component of a rational group algebra whose 
 # "WedderburnDecompositionInfo" output has 4 terms, the next 
@@ -308,7 +303,7 @@ od;
 
 l:=LocalIndexAtInfty(A); 
 L[s+1]:=[];
-L[s+1][1]:="infty";
+L[s+1][1]:= infinity;
 L[s+1][2]:=l;
 
 L1:=[];
@@ -736,7 +731,7 @@ if l=5 then
 G:=DefiningGroupOfCyclotomicAlgebra(A);
 n:=DefiningCharacterOfCyclotomicAlgebra(A);
 m0:=LocalIndexAtInftyByCharacter(F,G,n);
-Add(L1,["infty",m0]);
+Add(L1,[infinity,m0]);
 
 P:=AsSet(Factors(Size(G)));
 if P[1]=2 then 
@@ -811,13 +806,14 @@ return m;
 end;
 ###########################################
 CyclotomicAlgebraWithDivAlgPart:=function(A)
-local L,m,d,B;
+local L,m,d,B,D;
 
 L:=LocalIndicesOfCyclotomicAlgebra(A);
 m:=GlobalSchurIndexFromLocalIndices(L);
 d:=RootOfDimensionOfCyclotomicAlgebra(A);
 if m>1 then
-B:=[d/m,["DivAlg",A[2],"LocInds=",L]]; 
+D:=rec(DivAlg:=true, Center:=A[2], SchurIndex:=m, LocalIndices:=L);
+B:=[d/m,D]; 
 else
 B:=[d,A[2]];
 fi;
@@ -1182,7 +1178,7 @@ if p < q then
   q:=a;
 fi;
 
-if p=-1 then L:=[["infty",2],[2,2]]; fi;
+if p=-1 then L:=[[infinity,2],[2,2]]; fi;
 if p=2 then L:=[]; fi;  
 if p>2 then 
   if q=-1 then 
@@ -1254,7 +1250,7 @@ end;
 LocalIndicesOfRationalQuaternionAlgebra:=function(A)
 local b,D1,D2,p,i,j,M,F,F1,L;
 
-L:="fail";
+L:=fail;
 if LeftActingDomain(A)=Rationals then 
 D1:=[];
 D2:=[];
@@ -1342,10 +1338,13 @@ if IsAlgebra(A) then
  fi;
 fi;
 
+if IsRecord(A) then m:=A.SchurIndex; fi; 
+
 if IsList(A) then 
 l:=Length(A);
  if Length(A)=2 and IsField(A[2]) then m:=1; fi;
- if Length(A)=3 and IsField(A[2]) then m:="fail: Cyclic Algebra, use another method."; 
+ if Length(A)=2 and IsRecord(A[2]) then m:=A[2].SchurIndex; fi; 
+ if Length(A)=3 and IsField(A[1]) and IsField(A[2]) then m:="fail: Cyclic Algebra, use another method."; 
  fi;
  if Length(A)=4 then 
  L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
