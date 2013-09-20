@@ -744,7 +744,7 @@ function( F )
 local q,m,x,y,a,b;
 
 # Initialization
-if IsFinite(F) 
+if not IsFinite(F) 
 	then Error("Wedderga: input needs to be finite","\n"); 
 fi;
 
@@ -770,7 +770,7 @@ elif (m mod 2) = 0
 else
 			a := SquaresMod(q);
 			x := (Z(q^m)^0)*SquareRootMod(a,q);
-			y := (Z(q^m)^0)*SquareRootMod(-1-a,q);
+			y := (Z(q^m)^0)*SquareRootMod((-1-a) mod q,q);
 fi;
 
 return [x,y];
