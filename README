@@ -1,11 +1,12 @@
 #############################################################################
 ##
 #W  README.wedderga       The Wedderga package            Osnel Broche Cristo
+#W                                                               Allen Herman
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
-#W																				                                      Inneke Van Gelder
+#W															Inneke Van Gelder
 ##
 #############################################################################
 
@@ -65,4 +66,4 @@ gap> LoadPackage("wedderga");
 
 
 
-The Wedderga team                                                January 2013
+The Wedderga team                                              September 2013
