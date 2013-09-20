@@ -245,7 +245,7 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
 gap> A:=[1,Rationals,6,[2,5,3]];
 [ 1, Rationals, 6, [ 2, 5, 3 ] ]
 gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
-[ [ 3, 2 ], [ "infty", 2 ] ]
+[ [ 3, 2 ], [ infinity, 2 ] ]
 ]]>
 </Example>
    </Description>
@@ -324,7 +324,7 @@ gap> W[27];
 [ [ 1, NF(5,[ 1, 4 ]), 60, [ [ 2, 11, 0 ], [ 2, 19, 30 ], [ 2, 31, 30 ] ], 
       [ [ 0, 45 ], [ 15 ] ] ] ]
 gap> LocalIndicesOfCyclotomicAlgebra(W[27]);
-[ [ "infty", 2 ] ]
+[ [ infinity, 2 ] ]
 ]]>
 </Example>
   </Description> 
@@ -577,7 +577,7 @@ gap> LocalIndexAtTwoByCharacter(CF(3),G,12);
 <Example>
 <![CDATA[
 gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
-[ [ "infty", 2 ], [ 2, 2 ] ]
+[ [ infinity, 2 ], [ 2, 2 ] ]
 gap> LocalIndicesOfRationalSymbolAlgebra(3,-1); 
 [ [ 2, 2 ], [ 3, 2 ] ]
 gap> LocalIndicesOfRationalSymbolAlgebra(-3,2);
@@ -587,7 +587,7 @@ gap> LocalIndicesOfRationalSymbolAlgebra(3,7);
 gap> A:=QuaternionAlgebra(Rationals,-30,-15);   
 <algebra-with-one of dimension 4 over Rationals>
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
-[ [ 5, 2 ], [ "infty", 2 ] ]
+[ [ 5, 2 ], [ infinity, 2 ] ]
 gap> A:=QuaternionAlgebra(CF(5),3,-2);          
 <algebra-with-one of dimension 4 over CF(5)>
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
@@ -617,7 +617,7 @@ gap> A:=QuaternionAlgebra(Rationals,-30,-15);
 gap> IsRationalQuaternionAlgebraADivisionRing(A);
 true
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
-[ [ 5, 2 ], [ "infty", 2 ] ]
+[ [ 5, 2 ], [ infinity, 2 ] ]
 gap> A:=QuaternionAlgebra(Rationals,3,-2);       
 <algebra-with-one of dimension 4 over Rationals>
 gap> IsRationalQuaternionAlgebraADivisionRing(A);
