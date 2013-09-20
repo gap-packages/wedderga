@@ -383,7 +383,7 @@ gap> IdSmallGroup(g);
 gap> DefiningCharacterOfCyclotomicAlgebra(A);
 12
 gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,12)
-> ; </algebra-with-one>#Note:this cyclotomic algebra is isomorphic to the other by a change of basis. 
+> ;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis. 
 [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ]
 ]]>
 </Example>
