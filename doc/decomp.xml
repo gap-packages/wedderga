@@ -3,7 +3,7 @@
 <Heading>Wedderburn decomposition</Heading>
 
 <Section Label="DecompDecomp">
-<Heading>Wedderburn decomposition</Heading>
+<Heading>Wedderburn decomposition of a group algebra</Heading>
 
 <ManSection>
    <Attr Name="WedderburnDecomposition" 
