@@ -1,7 +1,7 @@
 <!-- ********************crossed******************** -->
 
 <Chapter Label="Crossed">
-<Heading>Crossed products</Heading>
+<Heading>Crossed products and their elements</Heading>
 
 The package &Wedderga; provides functions to construct crossed products
 over a group with coefficients in an associative ring with identity,

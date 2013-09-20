@@ -66,7 +66,7 @@ semisimple artinian rings.
 
 
 <Section Label="WedDec">
-<Heading>Wedderburn decomposition</Heading>
+<Heading>Wedderburn components</Heading>
 
 <Index>Wedderburn decomposition</Index>
 <Index>Wedderburn components</Index>
@@ -563,7 +563,7 @@ central idempotent of <M>FG</M> (see <Ref Sect="CyclotomicClass" />).
 <!-- ********************************************************* -->
 
 <Section Label="SPDef">
-<Heading>Shoda pairs</Heading>
+<Heading>Shoda pairs of a group</Heading>
 
 Let <M>G</M> be a finite group.
 <Index>Shoda pair</Index>
@@ -597,7 +597,7 @@ realizable by a Shoda pair of <M>G</M>.
 <!-- ********************************************************* -->
 
 <Section Label="SSPDef">
-<Heading>Strong Shoda pairs</Heading>
+<Heading>Strong Shoda pairs of a group</Heading>
 
 <Index>strong Shoda pair</Index>
 A <E>strong Shoda pair</E> of <M>G</M> is a pair <M>(K,H)</M> of

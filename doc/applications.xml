@@ -4,7 +4,7 @@
 <Heading>Applications of the Wedderga package</Heading>
 
 <Section Label="CodingTheory">
-<Heading>Applications to coding theory</Heading>
+<Heading>Coding theory applications</Heading>
 
 <ManSection>
    <Oper Name="CodeWordByGroupRingElement" 
