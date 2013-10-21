@@ -4,7 +4,7 @@
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
-#W                                                              Ángel del Río
+#W                                                              Ãngel del RÃ­o
 #W                                                          Inneke Van Gelder
 ##
 #############################################################################
@@ -36,9 +36,9 @@ Persons :=
        IsMaintainer  := true,
        Email         := "osnel@ufla.br",
        PostalAddress := Concatenation( [
-                        "Departamento de Ciências Exatas\n",
+                        "Departamento de CiÃªncias Exatas\n",
                         "Universidade Federal de Lavras - UFLA\n",
-                        "Campus Universitário - Caixa Postal 3037\n",
+                        "Campus UniversitÃ¡rio - Caixa Postal 3037\n",
                         "37200-000, Lavras - MG, Brazil" ] ),
        Place         := "Lavras - MG",
        Institution   := "Universidade Federal de Lavras - UFLA"
@@ -94,12 +94,12 @@ rec(
        IsMaintainer  := true,
        Email         := "olivieri@usb.ve",
        PostalAddress := Concatenation( [
-                        "Departamento de Matemáticas\n",
-                        "Universidad Simón Bolívar\n",
+                        "Departamento de MatemÃ¡ticas\n",
+                        "Universidad SimÃ³n BolÃ­var\n",
                         "Apartado Postal 89000\n", 
                         "Caracas 1080-A, Venezuela" ] ),
        Place         := "Caracas",
-       Institution   := "Universidad Simón Bolívar"
+       Institution   := "Universidad SimÃ³n BolÃ­var"
      ),     
      rec(
        LastName      := "del Rio",
@@ -109,7 +109,7 @@ rec(
        Email         := "adelrio@um.es",
        WWWHome       := "http://www.um.es/adelrio",
        PostalAddress := Concatenation( [
-                        "Departamento de Matemáticas\n",
+                        "Departamento de MatemÃ¡ticas\n",
                         "Universidad de Murcia\n", 
                         "30100 Murcia, Spain" ] ),
        Place         := "Murcia",
