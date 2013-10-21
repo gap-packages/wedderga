@@ -4,7 +4,7 @@
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
-#W                                                              ¡ngel del RÌo
+#W                                                              √Ångel del R√≠o
 ##
 #############################################################################
 
