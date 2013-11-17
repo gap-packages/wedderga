@@ -12,6 +12,7 @@
 # read Wedderga declarations
 ReadPackage( "wedderga/lib/wedderga.gd" );
 ReadPackage( "wedderga/lib/crossed.gd" );
+ReadPackage( "wedderga/lib/div-alg.gd" );
 
 # set the default InfoLevel
 SetInfoLevel( InfoWedderga, 1 );
