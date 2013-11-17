@@ -658,7 +658,7 @@ gap> G:=SmallGroup(192,49);
 <pc group of size 192 with 7 generators>
 gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
 gap> Size(W);
-20
+21
 gap> A:=W[20];
 [ [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 0 ], [ 2, 17, 21 ] ], [ [ 15 ] ] ] ]
 gap> DecomposeCyclotomicAlgebra(A);                              

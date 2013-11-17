@@ -6,7 +6,7 @@
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
-#W															Inneke Van Gelder
+#W                                                          Inneke Van Gelder
 ##
 #############################################################################
 
@@ -66,4 +66,4 @@ gap> LoadPackage("wedderga");
 
 
 
-The Wedderga team                                              September 2013
+The Wedderga team                                               November 2013
