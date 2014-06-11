@@ -7,7 +7,7 @@
 #############################################
 # Necessary arithmetic functions for subroutines
 #############################################
-InstallGlobalFunction( PPartOfN, function(n,p)
+PPartOfN:=function(n,p)
 local i,a,b;
 
 b:=n;
@@ -18,10 +18,10 @@ a:=a+1;
 od;
 
 return p^a;
-end);
+end;
 
 ###############################
-InstallGlobalFunction( PDashPartOfN, function(n,p)
+PDashPartOfN:=function(n,p)
 local m;
 
 m:=n; 
@@ -30,8 +30,8 @@ m:=m/p;
 od; 
 
 return m; 
-end);
-
+end;
+################################
 ######################################### 
 # Cyclotomic reciprocity functions for the extension
 # F(E(n))/F at the primie p.  These calculate the 
@@ -42,7 +42,7 @@ end);
 # the e, f, and g for any extension K/F of 
 # abelian number fields. 
 #########################################
-InstallGlobalFunction( PSplitSubextension, function(F,n,p)
+PSplitSubextension:=function(F,n,p)
 local a,L,i,n1,n0,f,L1,b,F1;
 
 a:=PrimitiveElement(F);
@@ -78,20 +78,19 @@ od;
 F1:=NF(n,L1);
 
 return F1;
-end);
-
+end;
 ###################################
-InstallGlobalFunction( SplittingDegreeAtP, function(F,n,p)
+SplittingDegreeAtP:=function(F,n,p)
 local K,g;
 
 K:=PSplitSubextension(F,n,p);
 g:=Trace(K,F,1);
 
 return g;
-end);
-
+end;
 ###################################
-InstallGlobalFunction( ResidueDegreeAtP, function(F,n,p)
+
+ResidueDegreeAtP:=function(F,n,p)
 local K,a,n1,L,f;
 
 K:=PSplitSubextension(F,n,p);
@@ -111,10 +110,9 @@ f:=Trace(L,K,1);
 #f:=Size(U);
 
 return f;
-end);
-
+end;
 #################################
-InstallGlobalFunction( RamificationIndexAtP, function(F,n,p)
+RamificationIndexAtP:=function(F,n,p)
 local n0,n1,a,U,i,U1,e;
 
 a:=PrimitiveElement(F);
@@ -135,7 +133,8 @@ od;
 e:=Size(U1);
 
 return e; 
-end);
+end;
+###########################################
 
 ################################
 # Given a simple component of a rational group algebra whose 
@@ -143,7 +142,7 @@ end);
 # three functions compute its indices at odd primes, infinity, 
 # and 2.    
 ################################
-InstallGlobalFunction( LocalIndexAtOddP, function(A,q)
+LocalIndexAtOddP:=function(A,q)
 local m,n,a,b,c,n1,n2,g,U,i,U1,u,h,e,f,f1,e1,k;
 
 m:=1; 
@@ -199,7 +198,7 @@ od;
 fi;
 
 return m;
-end);
+end;
 
 
 ###############################
@@ -208,7 +207,7 @@ end);
 # nature of the algebra as a quadratic algebra
 # over the reals. 
 ###############################
-InstallGlobalFunction( LocalIndexAtInfty, function(A)
+LocalIndexAtInfty:=function(A)
 local m,n,s,n1;
 
 m:=1;
@@ -223,14 +222,13 @@ if n>2 then
 fi;
 
 return m;
-end);
-
+end;
 ###############################
 # For the local index at 2, we detect if the cyclic 
 # cyclotomic algebra will be of nonsplit quaternion type  
 # over the 2-adics
 ###############################
-InstallGlobalFunction( LocalIndexAtTwo, function(A)
+LocalIndexAtTwo:=function(A)
 local n,m,b,c,n1,f,h,g,n2,n3,n4,e,e1,i,u,U,U1; 
 
 m:=1;
@@ -271,7 +269,7 @@ e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
 fi;
 
 return m;
-end);
+end;
 
 ##############################
 # Given a group G and a simple component A whose 
@@ -279,7 +277,7 @@ end);
 # this program gives the list of local indices at 
 # all primes relevant to the rational Schur index
 ###############################
-InstallGlobalFunction( LocalIndicesOfCyclicCyclotomicAlgebra, function(A)
+LocalIndicesOfCyclicCyclotomicAlgebra:=function(A)
 local n,S,s,i,L,l,q,L1;
 
 L:=[];
@@ -319,13 +317,12 @@ od;
 fi;
 
 return L1; 
-end);
-
+end;
 #######################################################
 # Finds group over which cyclotomic algebra of length 4 or 5 
 # is faithfully represented.
 #######################################################
-InstallGlobalFunction( DefiningGroupOfCyclotomicAlgebra, function(A)
+DefiningGroupOfCyclotomicAlgebra:=function(A)
 local l,f,a,b,c,d,g,I,g1;
 
 l:=Length(A);
@@ -359,19 +356,26 @@ I:=IsomorphismSpecialPcGroup(g);
 g1:=Image(I);
 
 return g1;
-end);
+end;
 
 #################################################
-InstallGlobalFunction( DefiningCharacterOfCyclotomicAlgebra, function(A)
-local g1,d,m,n,i,chi,F,u,V,U;
+DefiningCharacterOfCyclotomicAlgebra:=function(A)
+local g1,d,m,n,i,chi,F,u,V,U,F1;
 
 g1:=DefiningGroupOfCyclotomicAlgebra(A);
 if Length(A)=2 then d:=1; fi;
-if Length(A)=4 then d:=A[4][1]; fi; 
-if (Length(A)=5 and Length(A[4])=2) then d:=A[4][1][1]*A[4][2][1]; fi;
-if (Length(A)=5 and Length(A[4])=3) then d:=A[4][1][1]*A[4][2][1]*A[4][3][1]; fi;
+if Length(A)=4 then d:=A[4][1]; F1:=NF(A[3],[A[4][2]]); fi; 
+if (Length(A)=5 and Length(A[4])=2) then 
+   d:=A[4][1][1]*A[4][2][1]; 
+   F1:=NF(A[3],[A[4][1][2],A[4][2][2]]); 
+fi;
+if (Length(A)=5 and Length(A[4])=3) then 
+   d:=A[4][1][1]*A[4][2][1]*A[4][3][1]; 
+   F1:=NF(A[3],[A[4][1][2],A[4][2][2],A[4][3][2]]); 
+fi;
+
 n:=Size(Irr(g1)) ;
-m:=Trace(A[2],Rationals,1);
+m:=Trace(F1,Rationals,1);
 U:=[];
 for i in [1..n] do 
 chi:=Irr(g1)[n-i+1];
@@ -379,7 +383,7 @@ V:=ValuesOfClassFunction(chi);
 F:=FieldByGenerators(V);
 if V[1]/d in PositiveIntegers then 
 if Size(KernelOfCharacter(chi))=1 then 
-if FieldByGenerators(V)=A[2] then 
+if FieldByGenerators(V)=F1 then 
 	Add(U,n-i+1); 
 fi; 
 fi;
@@ -392,13 +396,13 @@ u:=U;
 fi;
 
 return u;
-end);
-
+end;
 ##########################################
 #  The next function was created to replace SimpleAlgebraByCharacterInfo
 #  before it was fixed to work over larger fields. 
 ##########################################
-InstallGlobalFunction( SimpleComponentOfGroupRingByCharacter, function(F,G,n)
+
+SimpleComponentOfGroupRingByCharacter:=function(F,G,n)
 local R,chi,B;
 
 R:=GroupRing(F,G);
@@ -406,10 +410,10 @@ chi:=Irr(G)[n];
 B:=SimpleAlgebraByCharacterInfo(R,chi);
 
 return B;
-end);
+end;
 
 ##########################################
-InstallGlobalFunction( IsDyadicSchurGroup, function(G)
+IsDyadicSchurGroup:=function(G)
 local d,j,P,P1,V0,c,g,g1,z,V1,v1,V2,q,s,n1,r,i,y,p1,x,U,V,P2,L;
 
 d:=false;
@@ -445,10 +449,9 @@ fi;
 fi;
 
 return d;
-end);
-
+end;
 ##########################################
-InstallGlobalFunction( LocalIndexAtInftyByCharacter, function(F,G,n)
+LocalIndexAtInftyByCharacter:=function(F,G,n)
 local m,T,v2,a;
 
 m:=1;
@@ -462,10 +465,10 @@ fi;
 fi;
 
 return m;
-end);
+end;
 
 ###########################################
-InstallGlobalFunction( FinFieldExt, function(F,G,p,n,n1)
+FinFieldExt:=function(F,G,p,n,n1)
 local T,chi,V,Y,h,a,m1,d1,L,i,z,l,m,K,B,d,M,C,D,b,j,F1,M1,M2,T1,psi,U,k,F2,t;
 
 T:=CharacterTable(G);
@@ -539,10 +542,9 @@ F2:=FieldByGenerators(M2);
 t:=LogInt(Size(F2),Size(F1));
 
 return t; 
-end);
-
+end;
 ##############################################
-InstallGlobalFunction( PossibleDefectGroups, function(G,n,p)
+PossibleDefectGroups:=function(G,n,p)
 local S,U,U0,U1,Q,Q1,Q2,i,j,I,T,b,k,d,H,a;
 
 T:=CharacterTable(G);
@@ -580,10 +582,9 @@ AddSet(U,ConjugacyClassSubgroups(G,Q));
 fi;
 
 return U;
-end);
-
+end;
 ##########################################
-InstallGlobalFunction( LocalIndexAtPByBrauerCharacter, function(F,G,n,p)
+LocalIndexAtPByBrauerCharacter:=function(F,G,n,p)
 local chi,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2,n0,K0,d0,F1,K1,d1;
 
 chi:=Irr(G)[n];
@@ -640,10 +641,9 @@ m1:=m1/Gcd(m1,d0/d1);
 fi;
 
 return m1;
-end);
-
+end;
 ###########################################
-InstallGlobalFunction( LocalIndexAtOddPByCharacter, function(F,G,n,p)
+LocalIndexAtOddPByCharacter:=function(F,G,n,p)
 local m,B,K,B1,g,n1; 
 
 m:=1;
@@ -665,10 +665,10 @@ m:=LocalIndexAtPByBrauerCharacter(K,g,n1,p);
 fi;
 
 return m;
-end);
+end;
 
 ###########################################
-InstallGlobalFunction( LocalIndexAtTwoByCharacter, function(F,G,n)
+LocalIndexAtTwoByCharacter:=function(F,G,n)
 local m,chi,g,g1,chi1,B1,W,i,a,B,K,V,V1,a1,F0,F1,n0,n1,n01,n02,n11,n12,f,f0,f1,m2;
 
 m2:=1;
@@ -724,10 +724,9 @@ fi;
 if m>0 then m2:=m; fi;
 
 return m2;
-end);
-
+end;
 #############################################
-InstallGlobalFunction( LocalIndicesOfCyclotomicAlgebra, function(A)
+LocalIndicesOfCyclotomicAlgebra:=function(A)
 local L,F,l,G,n,m0,m2,m,P,p,l1,i,L1;
 
 L:=[];
@@ -769,10 +768,9 @@ L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
 fi;
 
 return L;
-end);
-
+end;
 ############################################
-InstallGlobalFunction( RootOfDimensionOfCyclotomicAlgebra, function(A)
+RootOfDimensionOfCyclotomicAlgebra:=function(A)
 local d,i;
 
 if Length(A)<4 then 
@@ -791,14 +789,13 @@ od;
 fi;
 
 return d;
-end);
-
+end;
 ###########################################
 # Calculates the least common multiple of the list of 
 # local indices
 ###########################################
 
-InstallGlobalFunction( GlobalSchurIndexFromLocalIndices, function(L)
+GlobalSchurIndexFromLocalIndices:=function(L)
 local l,m,i;
 
 l:=Length(L);
@@ -813,10 +810,9 @@ od;
 fi;
 
 return m;
-end);
-
+end;
 ###########################################
-InstallGlobalFunction( CyclotomicAlgebraWithDivAlgPart, function(A)
+CyclotomicAlgebraWithDivAlgPart:=function(A)
 local L,m,d,B,D;
 
 L:=LocalIndicesOfCyclotomicAlgebra(A);
@@ -830,14 +826,13 @@ B:=[d,A[2]];
 fi;
 
 return B;
-end);
-
+end;
 ###############################################
 # Main function for obtaining the Wedderburn decomposition
 # for R = GroupRing(F,G) with division algebra parts identified
 # in terms of local indices
 ###############################################
-InstallGlobalFunction( WedderburnDecompositionWithDivAlgParts, function(R)
+WedderburnDecompositionWithDivAlgParts:=function(R)
 local W,w,i,W1;
 
 W:=WedderburnDecompositionInfo(R);
@@ -852,7 +847,9 @@ fi;
 od;
 
 return W1;
-end);
+end; 
+###############################################
+
 
 #############################
 # Given a Schur algebra output from "wedderga" with 5 terms
@@ -860,7 +857,8 @@ end);
 # quaternion algebras, the first function determines this 
 # tensor decomposition.   
 # #############################
-InstallGlobalFunction( DecomposeCyclotomicAlgebra, function(A)
+
+DecomposeCyclotomicAlgebra:=function(A)
 local B,B1,m1,n,m,d,c,z,r,s,t,u,v,u1,i,j,b,F,w;
 
 B:=[];
@@ -1040,13 +1038,12 @@ fi;
 fi;
 
 return B1;
-end);
-
+end; 
 ################################################
 # The next few functions allow conversions between 
 # cyclic algebras and quaternion algebras. 
 ########################################################
-InstallGlobalFunction( ConvertQuadraticAlgToQuaternionAlg, function(A)
+ConvertQuadraticAlgToQuaternionAlg:=function(A)
 local d,t,n,i,B;
 
 n:=Conductor(A[2]);
@@ -1073,10 +1070,10 @@ else
 fi;
  
 return B; 
-end);
+end;
 
 #####################################################
-InstallGlobalFunction( ConvertCyclicCyclotomicAlgToCyclicAlg, function(A)
+ConvertCyclicCyclotomicAlgToCyclicAlg:=function(A)
 local n,a,K,B;
 
 if Length(A)=4 then 
@@ -1088,10 +1085,9 @@ else
 B:="fail";
 fi;
 return [A[1],B];
-end);
-
+end;
 ###############################################
-InstallGlobalFunction( ConvertCyclicAlgToCyclicCyclotomicAlg, function(A)
+ConvertCyclicAlgToCyclicCyclotomicAlg:=function(A)
 local F,K,n,i,j,M,k,l,m,B;
 
 F:=A[1];
@@ -1126,12 +1122,11 @@ fi;
 fi;
 
 return B;
-end);
-
+end; 
 #####################################################
 
 #################################################
-InstallGlobalFunction( ConvertQuaternionAlgToQuadraticAlg, function(A)
+ConvertQuaternionAlgToQuadraticAlg:=function(A)
 local F,K,B,b,d,d1,i,a;
 
 d:=[];
@@ -1168,7 +1163,7 @@ fi;
 fi;
 
 return B;
-end);
+end;
 
 ##########################################
 # The next few functions allow one to compute the 
@@ -1179,7 +1174,7 @@ end);
 # or a prime.  Warning: It will not work when p or 
 # q are other integers, and it does not check this fact. 
 ##########################################
-InstallGlobalFunction( LocalIndicesOfRationalSymbolAlgebra, function(a,b) 
+LocalIndicesOfRationalSymbolAlgebra:=function(a,b) 
 local p,q,L;
 
 p:=a;
@@ -1211,10 +1206,10 @@ if p>2 then
   fi;
 fi;
 return L; 
-end);
+end;
 
 ##################################################
-InstallGlobalFunction( LocalIndicesOfTensorProductOfQuadraticAlgs, function(L,M)
+LocalIndicesOfTensorProductOfQuadraticAlgs:=function(L,M)
 local i,j,m,S,L1;
  
 S:=[];
@@ -1250,8 +1245,7 @@ od;
 fi;
 fi;
 return L1;
-end);
-
+end;
 ##########################################
 # The next function computes local indices for 
 # quaternion algebras over the rationals.  For 
@@ -1259,7 +1253,8 @@ end);
 # we convert to quadratic algebras and use the 
 # cyclotomic algebra functions.  
 ############################################
-InstallGlobalFunction( LocalIndicesOfRationalQuaternionAlgebra, function(A)
+
+LocalIndicesOfRationalQuaternionAlgebra:=function(A)
 local b,D1,D2,p,i,j,M,F,F1,L;
 
 L:=fail;
@@ -1311,13 +1306,14 @@ od;
 fi;
 
 return L;
-end);
+end;
 
 ##############################################
 # The next function checks if a Rational Quaternion Algebra
 # is a division ring.
 ##############################################
-InstallGlobalFunction( IsRationalQuaternionAlgebraADivisionRing, function(A)
+
+IsRationalQuaternionAlgebraADivisionRing:=function(A)
 local L,V;
 
 L:=LocalIndicesOfRationalQuaternionAlgebra(A);
@@ -1328,10 +1324,10 @@ V:=true;
 fi;
 
 return V;
-end);
+end;
 
 #################################################
-InstallGlobalFunction( SchurIndex, function(A)
+SchurIndex:=function(A)
  local m,i,l,L,B,C,D;
 
 m:="fail: Unrecognized Algebra";
@@ -1368,15 +1364,14 @@ l:=Length(A);
 fi; 
  
 return m; 
-end);
-
+end;
 ############################################
-InstallGlobalFunction( SchurIndexByCharacter, function(F,G,n)
+SchurIndexByCharacter:=function(F,G,n)
 local m,A;
 
 A:=SimpleComponentOfGroupRingByCharacter(F,G,n); 
 m:=SchurIndex(A);
 
 return m;
-end);
+end;
 
