@@ -660,7 +660,7 @@ gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
 gap> Size(W);
 21
 gap> A:=W[20];
-[ [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 0 ], [ 2, 17, 21 ] ], [ [ 15 ] ] ] ]
+[ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 0 ], [ 2, 17, 21 ] ], [ [ 15 ] ] ]
 gap> DecomposeCyclotomicAlgebra(A);                              
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], 
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ]
