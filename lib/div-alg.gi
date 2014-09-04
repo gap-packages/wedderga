@@ -363,15 +363,22 @@ end);
 
 #################################################
 InstallGlobalFunction( DefiningCharacterOfCyclotomicAlgebra, function(A)
-local g1,d,m,n,i,chi,F,u,V,U;
+local g1,d,m,n,i,chi,F,u,V,U,F1;
 
 g1:=DefiningGroupOfCyclotomicAlgebra(A);
 if Length(A)=2 then d:=1; fi;
-if Length(A)=4 then d:=A[4][1]; fi; 
-if (Length(A)=5 and Length(A[4])=2) then d:=A[4][1][1]*A[4][2][1]; fi;
-if (Length(A)=5 and Length(A[4])=3) then d:=A[4][1][1]*A[4][2][1]*A[4][3][1]; fi;
+if Length(A)=4 then d:=A[4][1]; F1:=NF(A[3],[A[4][2]]); fi; 
+if (Length(A)=5 and Length(A[4])=2) then 
+   d:=A[4][1][1]*A[4][2][1]; 
+   F1:=NF(A[3],[A[4][1][2],A[4][2][2]]); 
+fi;
+if (Length(A)=5 and Length(A[4])=3) then 
+   d:=A[4][1][1]*A[4][2][1]*A[4][3][1]; 
+   F1:=NF(A[3],[A[4][1][2],A[4][2][2],A[4][3][2]]); 
+fi;
+
 n:=Size(Irr(g1)) ;
-m:=Trace(A[2],Rationals,1);
+m:=Trace(F1,Rationals,1);
 U:=[];
 for i in [1..n] do 
 chi:=Irr(g1)[n-i+1];
@@ -379,7 +386,7 @@ V:=ValuesOfClassFunction(chi);
 F:=FieldByGenerators(V);
 if V[1]/d in PositiveIntegers then 
 if Size(KernelOfCharacter(chi))=1 then 
-if FieldByGenerators(V)=A[2] then 
+if FieldByGenerators(V)=F1 then 
 	Add(U,n-i+1); 
 fi; 
 fi;
