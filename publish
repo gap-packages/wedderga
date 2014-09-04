@@ -1,0 +1,66 @@
+#!/bin/sh
+#############################################################################
+
+export PKGNAME="wedderga"
+export PKGVERSION="4.6.2"
+export TOOLPATH="/Users/alexk/HGREPS/gap/dev/DistributionUpdate/dist45"
+
+cp ${TOOLPATH}/classifyfiles.py ../
+cp ${TOOLPATH}/patternstextbinary.txt ../
+cp patternscolor.txt ../
+
+echo 'making a list of files to wrap'
+
+cd ..
+
+chmod 644 $PKGNAME/lib/*.*
+chmod 644 $PKGNAME/doc/*.*
+chmod 644 $PKGNAME/tst/*.*
+chmod 644 $PKGNAME/GPL
+chmod 644 $PKGNAME/README
+chmod 644 $PKGNAME/*.g
+
+python ./classifyfiles.py $PKGNAME
+
+echo '======================================================================'
+echo 'list of text files to include'
+cat listtextfiles.txt
+echo '======================================================================'
+echo 'list of binary files to include'
+cat listbinaryfiles.txt
+echo '======================================================================'
+echo 'list of ignored files'
+cat listignoredfiles.txt
+echo '======================================================================'
+
+cat listtextfiles.txt listbinaryfiles.txt > filestowrap.txt
+
+rm -rf $PKGNAME-$PKGVERSION.tar.gz
+
+tar -cvzf $PKGNAME-$PKGVERSION.tar.gz -T filestowrap.txt
+
+rm listtextfiles.txt
+rm listbinaryfiles.txt
+rm listignoredfiles.txt
+rm listtextfilesfortools.txt
+rm listbinaryfilesfortools.txt
+rm classifyfiles.py
+rm patternscolor.txt
+rm patternstextbinary.txt
+rm filestowrap.txt
+
+read -n 1 -p "Shall I copy $PKGNAME $PKGVERSION to its public website ? (y/n)> " ANSWER
+echo
+
+if [ $ANSWER = "y" ]; then
+echo "Ok, I'll publish the data ..."
+scp -p $PKGNAME-$PKGVERSION.tar.gz alexk@alexk.host.cs.st-andrews.ac.uk:~/public_html/$PKGNAME/
+cd $PKGNAME
+scp -p PackageInfo.g alexk@alexk.host.cs.st-andrews.ac.uk:~/public_html/$PKGNAME/
+scp -p README alexk@alexk.host.cs.st-andrews.ac.uk:~/public_html/$PKGNAME/ 
+cd doc
+scp -p * alexk@alexk.host.cs.st-andrews.ac.uk:~/public_html/$PKGNAME/doc   
+else
+  echo "Don't publish, bye."
+fi
+
