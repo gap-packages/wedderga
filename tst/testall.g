@@ -12,7 +12,8 @@ testfiles := [
 "wedderga05.tst",
 "wedderga06.tst",
 "wedderga07.tst",
-"wedderga08.tst"
+"wedderga08.tst",
+"bugfix.tst"
 ];
 
 testresult:=true;
