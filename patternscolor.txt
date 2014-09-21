@@ -20,6 +20,7 @@
 -*.git/*
 -*.svn/*
 -*.DS_Store
+-*._*
 # package root directory
 +GPL
 +init.g
