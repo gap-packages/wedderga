@@ -2,7 +2,7 @@
 #############################################################################
 
 export PKGNAME="wedderga"
-export PKGVERSION="4.6.2"
+export PKGVERSION="4.6.3"
 export TOOLPATH="/Users/alexk/HGREPS/gap/dev/DistributionUpdate/dist45"
 
 cp ${TOOLPATH}/classifyfiles.py ../
