@@ -59,4 +59,4 @@ gap> WedderburnDecompositionWithDivAlgParts(GroupRing(Rationals, SmallGroup(432,
   [ 2, 
       rec( Center := NF(27,[ 1, 26 ]), DivAlg := true, 
           LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ] ]
-gap> LogTo();
+
