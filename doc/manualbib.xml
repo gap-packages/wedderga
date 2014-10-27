@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entry id="B"><article>
+  <author>
+    <name><first>Mark</first><last>Benard</last></name>
+  </author>  
+  <title>Schur indices and cyclic defect groups</title>
+  <journal>Ann. of Math. (2) </journal>
+  <year>1976</year>
+  <volume>103</volume>
+  <number>2</number>
+  <pages>283&ndash;304</pages>
+  <issn>0003-486X</issn>
+  <mrnumber>MR0412265 (54 #391)</mrnumber>
+  <mrclass>20C20</mrclass>
+  <mrreviewer>W. Feit</mrreviewer>
+  <other type="fjournal">Annals of Mathematics. Second series.</other>
+</article></entry>
+
+<entry id="BS"><article>
+  <author>
+    <name><first>Mark</first><last>Benard</last></name>
+    <name><first>Murray</first><last>Schacher</last></name>
+  </author>  
+  <title>The Schur subgroup. II.</title>
+  <journal>J. Algebra</journal>
+  <year>1972</year>
+  <volume>22</volume>
+  <number>1</number>
+  <pages>378&ndash;385</pages>
+  <issn>0021-8693</issn>
+  <mrnumber>MR0302747 (46 #1890)</mrnumber>
+  <mrclass>20C05 (16A26)</mrclass>
+  <mrreviewer>T.V. Fossum</mrreviewer>
+  <other type="fjournal">Journal of Algebra</other>
+</article></entry>
+
+<entry id="BR"><article>
+  <author>
+    <name><first>Osnel</first><last>Broche</last></name>
+    <name><first>Ángel</first><last>del Río</last></name>
+  </author>  
+  <title>Wedderburn decomposition of finite group algebras</title>
+  <journal>Finite Fields Appl.</journal>
+  <year>2007</year>
+  <volume>13</volume>
+  <number>1</number>
+  <pages>71&ndash;79</pages>
+  <issn>1071-5797</issn>
+  <mrnumber>MR2284667 (2007m:16027)</mrnumber>
+  <mrclass>16S34</mrclass>
+  <mrreviewer>E. Jespers</mrreviewer>
+  <other type="fjournal">Finite Fields and their Applications</other>
+</article></entry>
+
+<entry id="J"><article>
+  <author>
+    <name><first>Gerald</first><last>Janusz</last></name>
+  </author>  
+  <title>Generators for the Schur group of local and global number fields</title>
+  <journal>Pacific J. Math.</journal>
+  <year>1975</year>
+  <volume>56</volume>
+  <number>2</number>
+  <pages>525&ndash;546</pages>
+  <issn>0030-8730</issn>
+  <mrnumber>MR0389849 (52 #10679)</mrnumber>
+  <mrclass>12A60 (12A65 20C05)</mrclass>
+  <mrreviewer>M. Benard</mrreviewer>
+  <other type="fjournal">Pacific Journal of Mathematics</other>
+</article></entry>
+
+<entry id="N"><book>
+  <author>
+    <name><first>Gabriel</first><last>Navarro</last></name>
+  </author>  
+  <title>Characters and Blocks of Finite Groups</title>
+  <publisher>London Mathematical Society</publisher>
+  <year>1998</year>
+  <volume>250</volume>
+  <series>Lecture Note Series</series>
+  <address>Cambridge, UK</address>
+  <isbn>0-521-59513-4</isbn>
+  <mrnumber>MR1632299 (2000a:20018)</mrnumber>
+  <mrclass>20C20 (20-02 20C15)</mrclass>
+  <mrreviewer>Wolfgang Willems</mrreviewer>
+  <other type="pages">x+287</other>
+</book></entry>
+
+<entry id="OR"><article>
+  <author>
+    <name><first>Aurora</first><last>Olivieri</last></name>
+    <name><first>Ángel</first><last>del Río</last></name>
+  </author>  
+  <title>An algorithm to compute the primitive central idempotents and
+  the <C>W</C>edderburn decomposition of a rational group algebra</title>
+  <journal>J. Symbolic Comput.</journal>
+  <year>2003</year>
+  <volume>35</volume>
+  <number>6</number>
+  <pages>673&ndash;687</pages>
+  <issn>0747-7171</issn>
+  <mrnumber>MR1981041 (2004k:16073)</mrnumber>
+  <mrclass>16S34 (68W30)</mrclass>
+  <mrreviewer>E. Jespers</mrreviewer>
+  <other type="fjournal">Journal of Symbolic Computation</other>
+</article></entry>
+
+
+<entry id="ORS"><article>
+  <author>
+    <name><first>Aurora</first><last>Olivieri</last></name>
+    <name><first>Ángel</first><last>del Río</last></name>
+    <name><first>Juan Jacobo</first><last>Simón</last></name>
+  </author>  
+  <title>On monomial characters and central idempotents of rational
+              group algebras</title>
+  <journal>Comm. Algebra</journal>
+  <year>2004</year>
+  <volume>32</volume>
+  <number>4</number>
+  <pages>1531&ndash;1550</pages>
+  <issn>0092-7872</issn>
+  <mrnumber>MR2100373 (2005i:16054)</mrnumber>
+  <mrclass>16S34 (16U99 20C05)</mrclass>
+  <mrreviewer>E. Jespers</mrreviewer>
+  <other type="coden">COALDM</other>
+  <other type="fjournal">Communications in Algebra</other>
+</article></entry>
+
+<entry id="O"><article>
+  <author>
+    <name><first>Gabriela</first><last>Olteanu</last></name>
+  </author>  
+  <title>Computing the <C>W</C>edderburn decomposition of group algebras by
+              the <C>B</C>rauer-<C>W</C>itt theorem</title>
+  <journal>Math. Comp.</journal>
+  <year>2007</year>
+  <volume>76</volume>
+  <number>258</number>
+  <pages>1073&ndash;1087 (electronic)</pages>
+  <issn>0025-5718</issn>
+  <mrnumber>MR2291851</mrnumber>
+  <mrclass>16S34 (20C15)</mrclass>
+  <mrreviewer>E. Jespers</mrreviewer>
+  <other type="coden">MCMPAF</other>
+  <other type="fjournal">Mathematics of Computation</other>
+</article></entry>
+
+<entry id="OV"><article>
+  <author>
+    <name><first>Gabriela</first><last>Olteanu</last></name>
+    <name><first>Inneke</first><last>Van Gelder</last></name>
+  </author>  
+  <title>Finite group algebras of nilpotent groups: A complete set of orthogonal primitive idempotents</title>
+  <journal>Finite Fields Appl.</journal>
+  <year>2011</year>
+  <volume>17</volume>
+  <number>2</number>
+  <pages>157&ndash;165</pages>
+</article></entry>
+
+<entry id="OV2"><article>
+  <author>
+    <name><first>Gabriela</first><last>Olteanu</last></name>
+    <name><first>Inneke</first><last>Van Gelder</last></name>
+  </author>  
+  <title>Construction of minimal non-abelian left group codes</title>
+  <year>preprint</year>
+</article></entry>
+
+<entry id="P"><book>
+  <author>
+    <name><first>Donald S.</first><last>Passman</last></name>
+  </author>  
+  <title>Infinite crossed products</title>
+  <publisher>Academic Press Inc.</publisher>
+  <year>1989</year>
+  <volume>135</volume>
+  <series>Pure and Applied Mathematics</series>
+  <address>Boston, MA</address>
+  <isbn>0-12-546390-1</isbn>
+  <mrnumber>MR979094 (90g:16002)</mrnumber>
+  <mrclass>16-02 (16A03 16A27 20C07)</mrclass>
+  <mrreviewer>Martin Lorenz</mrreviewer>
+  <other type="pages">xii+468</other>
+</book></entry>
+
+
+<entry id="Pi"><book>
+  <author>
+    <name><first>Richard S.</first><last>Pierce</last></name>
+  </author>  
+  <title>Associative Algebras</title>
+  <publisher>Springer Verlag</publisher>
+  <year>1982</year>
+  <volume>88</volume>
+  <series>Graduate Texts in Mathematics</series>
+  <address>New York - Berlin</address>
+  <isbn>0-387-90693-2</isbn>
+  <mrnumber>MR0674652 (84c:16001)</mrnumber>
+  <mrclass>16-01 (12-01)</mrclass>
+  <mrreviewer>S.S. Page</mrreviewer>
+  <other type="pages">xii+436</other>
+</book></entry>
+ 
+<entry id="R"><book>
+  <author>
+    <name><first>I.</first><last>Reiner</last></name>
+  </author>  
+  <title>Maximal orders</title>
+  <publisher>The Clarendon Press Oxford University Press</publisher>
+  <year>2003</year>
+  <volume>28</volume>
+  <series>London Mathematical Society Monographs. New Series</series>
+  <address>Oxford</address>
+  <note>Corrected reprint of the 1975 original,
+              With a foreword by M. J.  Taylor</note>
+  <isbn>0-19-852673-3</isbn>
+  <mrnumber>MR1972204 (2004c:16026)</mrnumber>
+  <mrclass>16H05 (11R54 16K20)</mrclass>
+  <other type="pages">xiv+395</other>
+</book></entry>
+
+
+<entry id="RSch"><article>
+  <author>
+    <name><first>Udo</first><last>Riese</last></name>
+    <name><first>Peter</first><last>Schmid</last></name>
+  </author>  
+  <title>Schur indices and Schur groups, II </title>
+  <journal>J. Algebra</journal>
+  <year>1996</year>
+  <volume>182</volume>
+  <number>1</number>
+  <pages>183&ndash;200</pages>
+  <issn>0021-8693</issn>
+  <mrnumber>MR1388863 (97e:20009)</mrnumber>
+  <mrclass>20C15 (20C11)</mrclass>
+  <mrreviewer>Alexandre Turull</mrreviewer>
+  <other type="fjournal">Journal of Algebra</other>
+</article></entry>
+
+<entry id="Sch"><article>
+  <author>
+    <name><first>Peter</first><last>Schmid</last></name>
+  </author>  
+  <title>Schur indices and Schur groups </title>
+  <journal>J. Algebra</journal>
+  <year>1994</year>
+  <volume>169</volume>
+  <number>15</number>
+  <pages>226&ndash;247</pages>
+  <issn>0021-8693</issn>
+  <mrnumber>MR1296591 (95i:20012)</mrnumber>
+  <mrclass>20C15 </mrclass>
+  <mrreviewer>W. Feit</mrreviewer>
+  <other type="fjournal">Journal of Algebra</other>
+
+</article></entry>
+
+<entry id="S"><article>
+  <author>
+    <name><first>Kenjiro</first><last>Shoda</last></name>
+  </author>  
+  <title>&#220;ber die monomialen <C>D</C>arstellungen einer endlichen <C>G</C>ruppe</title>
+  <journal>Proc. Phys.-Math. Soc. Japan</journal>
+  <year>1933</year>
+  <volume>III</volume>
+  <number>15</number>
+  <pages>249&ndash;257</pages>
+</article></entry>
+
+
+<entry id="Y"><book>
+  <author>
+    <name><first>Toshihiko</first><last>Yamada</last></name>
+  </author>  
+  <title>The <C>S</C>chur subgroup of the <C>B</C>rauer group</title>
+  <publisher>Springer-Verlag</publisher>
+  <year>1974</year>
+  <address>Berlin</address>
+  <note>Lecture Notes in Mathematics, Vol. 397</note>
+  <mrnumber>MR0347957 (50 #456)</mrnumber>
+  <mrclass>20C05 (12A60)</mrclass>
+  <mrreviewer>P. Fong</mrreviewer>
+  <other type="pages">v+159</other>
+</book></entry>
