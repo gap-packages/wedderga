@@ -549,45 +549,121 @@ return t;
 end);
 
 ##############################################
-InstallGlobalFunction( PossibleDefectGroups, function(G,n,p)
-local S,U,U0,U1,Q,Q1,Q2,i,j,I,T,b,k,d,H,a;
+# Oct 2014 New Defect Group Functions
+##############################################
+InstallGlobalFunction( DefectGroupOfConjugacyClassAtP, function(G,c,p)
+local C,g1,H,D;
+
+C:=ConjugacyClasses(G);
+g1:=Representative(C[c]);
+H:=Centralizer(G,g1);
+D:=SylowSubgroup(H,p);
+
+return D; 
+end);
+#############################
+InstallGlobalFunction( DefectGroupsOfPBlock, function(G,n,p)
+local D1,D2,r,U,U1,T,chi,C,c,i,m,h1,a1,a2,b1,A1,D; 
 
 T:=CharacterTable(G);
-S:=T mod p; 
-b:=BlocksInfo(S);
-for j in [1..Size(b)] do 
-if n in b[j].ordchars then 
-  k:=b[j].modchars[1];
-  d:=b[j].defect;
-  break;
-fi;
-od;
-Q:=SylowSubgroup(G,p);
+C:=ConjugacyClasses(G);
+c:=Size(C);
 U:=[];
-U0:=[];
 U1:=[];
-if Size(Q)>p^d then 
-H:=ConjugacyClasses(G);
-for j in [2..Size(H)] do 
-  if Gcd(OrdersClassRepresentatives(T)[j],p)=1 then 
-     a:=Elements(H[j])[1];
-     Q1:=Intersection(Q,Q^a);
-     if Size(Q1)=p^d then 
-        AddSet(U0,ConjugacyClassSubgroups(G,Q1)); 
-     fi; 
-     Q2:=SylowSubgroup(Centralizer(G,a),p); 
-     if Size(Q2)=p^d then 
-        AddSet(U1,ConjugacyClassSubgroups(G,Q2));
-     fi; 
+for i in [1..c] do 
+  m:=OrdersClassRepresentatives(T)[i]; 
+  if not(m mod p = 0 mod p) then 
+    AddSet(U,i);
+    AddSet(U1,i);
   fi;
-od;
-U:=Intersection(U0,U1);
+od; 
+
+chi:=Irr(G)[n];
+for i in U1 do 
+  h1:=Size(C[i]);
+  a1:=chi[i];
+  b1:=chi[1];
+  A1:=(h1*a1)/b1; 
+  r:=PDashPartOfN(Size(G),p);
+  a2:=Norm(r*A1);
+  if not(a2 in Integers) or (a2/p in Integers) then  
+     RemoveSet(U,i); 
+  fi;  
+od; 
+
+D2:=[];
+for i in U do 
+  D:=DefectGroupOfConjugacyClassAtP(G,i,p);
+  AddSet(D2,D);
+od; 
+
+if Length(D2)>1 then 
+  D1:=D2[1];
+for i in [2..Size(D2)] do 
+  if Size(D2[i])<Size(D1) then 
+    D1:=D2[i]; 
+  fi; 
+od; 
 else
-AddSet(U,ConjugacyClassSubgroups(G,Q));
+D1:=D2[1];
 fi;
 
-return U;
+D:=ConjugacyClassSubgroups(G,D1);
+
+return D;
+end); 
+####################  
+InstallGlobalFunction( DefectOfCharacterAtP, function(G,n,p)
+local D1,D,q,d;
+
+D1:=DefectGroupsOfPBlock(G,n,p);
+D:=Representative(D1); 
+q:=Size(D);
+d:=LogInt(q,p);
+
+return d;
 end);
+
+###################################################
+#InstallGlobalFunction( PossibleDefectGroups, function(G,n,p)
+#local S,U,U0,U1,Q,Q1,Q2,i,j,I,T,b,k,d,H,a;
+#
+#T:=CharacterTable(G);
+#S:=T mod p; 
+#b:=BlocksInfo(S);
+#for j in [1..Size(b)] do 
+#if n in b[j].ordchars then 
+#  k:=b[j].modchars[1];
+#  d:=b[j].defect;
+#  break;
+#fi;
+#od;
+#Q:=SylowSubgroup(G,p);
+#U:=[];
+#U0:=[];
+#U1:=[];
+#if Size(Q)>p^d then 
+#H:=ConjugacyClasses(G);
+#for j in [2..Size(H)] do 
+#  if Gcd(OrdersClassRepresentatives(T)[j],p)=1 then 
+#     a:=Elements(H[j])[1];
+#     Q1:=Intersection(Q,Q^a);
+#     if Size(Q1)=p^d then 
+#        AddSet(U0,ConjugacyClassSubgroups(G,Q1)); 
+#     fi; 
+#     Q2:=SylowSubgroup(Centralizer(G,a),p); 
+#     if Size(Q2)=p^d then 
+#        AddSet(U1,ConjugacyClassSubgroups(G,Q2));
+#     fi; 
+#  fi;
+#od;
+#U:=Intersection(U0,U1);
+#else
+#AddSet(U,ConjugacyClassSubgroups(G,Q));
+#fi;
+#
+#return U;
+#end);
 
 ##########################################
 InstallGlobalFunction( LocalIndexAtPByBrauerCharacter, function(F,G,n,p)
@@ -611,21 +687,29 @@ if n in b[j].ordchars then
   break;
 fi;
 od;
-
-U:=PossibleDefectGroups(G,n,p);
-f:=0;
-for u in [1..Size(U)] do 
- if not(IsCyclic(Elements(U[u])[1])) then 
-   f:=f+1;
- fi;
-od; 
-if not(f=0) then
-  if f<Size(U) then  
-   m1[2]:="DGmaybeCyclic";
-  else 
-   m1[2]:="DGnotCyclic";
-  fi;
+#####################
+# Adapted to new defect group function
+#####################
+#U:=PossibleDefectGroups(G,n,p);
+#f:=0;
+#for u in [1..Size(U)] do 
+# if not(IsCyclic(Elements(U[u])[1])) then 
+#   f:=f+1;
+# fi;
+#od; 
+#if not(f=0) then
+#  if f<Size(U) then  
+#   m1[2]:="DGmaybeCyclic";
+#  else 
+#   m1[2]:="DGnotCyclic";
+#  fi;
+#fi;
+U:=DefectGroupsOfPBlock(G,n,p);
+if not(IsCyclic(Representative(U))) then 
+  m1[2]:="DGnotCyclic";
 fi;
+
+####################################
    
 t:=FinFieldExt(C,G,p,n,k);
 if t>1 then 

@@ -417,86 +417,101 @@ gap> LocalIndexAtInftyByCharacter(CF(3),G,12);
 </ManSection>
 
 <ManSection>
+   <Oper Name="DefectGroupOfConjugacyClassAtP"
+         Arg="G c p" />
+   <Oper Name="DefectGroupsOfPBlock" 
+         Arg="G n p"  />
+   <Oper Name="DefectOfCharacterAtP"
+         Arg="G n p" />
+<Returns>
+      The first of these functions returns a defect group of the <C>c</C>-th conjugacy class of the finite group <C>G</C> at the prime <C>p</C>.  The second returns the conjugacy class of <C>p</C>-subgroups of <C>G</C> that consists of defect groups for the <C>p</C>-block containing the ordinary irreducible character <C>Irr(G)[n]</C>.  The last of these functions returns the nonnegative integer <C>d</C> for which <C>p^d</C> is the order of a <C>p</C>-defect group for <C>Irr(G)[n]</C>. 
+</Returns>
+<Description>
+	The <C>p</C>-defect group of a given conjugacy class of <C>G</C> is a <C>p</C>-Sylow subgroup of the centralizer in <C>G</C> of any representative of the class.  
+A defect group for a <C>p</C>-block of <C>G</C> is a minimal <C>p</C>-subgroup that is a defect group for a defect class of the block.  By Brauer's Min-Max theorem, this will occur for at least one <C>p</C>-regular class of <C>G</C>.  The function <Ref Attr="DefectGroupsOfPBlock"> identifies the defect classes for the block containing <C>Irr(G)[n]</C>, finds the one whose defect group has minimal order, and returns the conjugacy class of the defect group of this class.  The function <Ref Attr="DefectOfCharacterAtP"> gives the logarithm base <C>p</C> of the order of a defect group of the <C>p</C>-block containing the character <C>Irr(G)[n]</C>. 
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(72,21);
+<pc group of size 72 with 5 generators>
+gap> D:=DefectGroupOfConjugacyClassAtP(G,18,3);
+Group([ f4, f5 ])
+gap> IsCyclic(last);
+false
+gap> D:=DefectGroupsOfPBlock(G,18,3);
+Group( [ f4, f5 ] )^G
+gap> IsCyclic(Representative(D));    
+false
+gap> DefectOfCharacterAtP(G,18,3);
+2
+]]>
+</Example>
+   </Description>
+</ManSection>
+
+
+
+<ManSection>
    <Oper Name="LocalIndexAtPByBrauerCharacter"
          Arg="F G n p"  />
    <Oper Name="FinFieldExt" 
          Arg="F G p n m"  />
-   <Oper Name="PossibleDefectGroups" 
-         Arg="G n p"  />
+   
    <Returns>
-      The first returns the local index at the rational prime <M>p</M> of the simple component of the group ring <C>FG</C> that corresponds to <C>Irr(G)[n]</C>.  The second returns the degree of a certain extension of finite fields of <C>p</C>-power order. The third returns a list of conjugacy classes of <M>p</M>-subgroups of <C>G</C>.  
+      The first returns the local index at the rational prime <M>p</M> of the simple component of the group ring <C>FG</C> that corresponds to <C>Irr(G)[n]</C>.  The second returns the degree of a certain extension of finite fields of <C>p</C>-power order. 
     </Returns> 
 
    <Description>
          The input of <Ref Attr="LocalIndexAtPByBrauerCharacter"/> must be an abelian number field <A>F</A>, a finite group <A>G</A>, and the number <A>n</A> of an ordinary irreducible character <C>Irr(G)[n]</C>, and <A>p</A> a prime divisor of the order of <A>G</A>. Since this 
 function is intended to be used for faithful characters of groups that are the defining groups of non-cyclic cyclotomic algebras that result from <Package>Wedderga</Package>'s Info functions, it is expected that <C>G</C> is a non-nilpotent cyclic-by-abelian group, and <C>Irr(G)[n]</C> is a faithful character.  The Brauer character table records of such groups can be accessed in <K>GAP</K> (provided <C>G</C> is sufficiently small).   <P/>
 
-The local index calculation uses Benard's theorem, which shows that the local index at <A>p</A> of the simple component of the rational group algebra <A>QG</A> corresponding to the character <C>Irr(G)[n]</C> is the degree of the extension of the residue field of the center given by adjoining an irreducible <A>p</A>-Brauer character <C>IBr(G,p)[m]</C> lying in the same block, provided the defect group of the block is cyclic. The degree of this finite field extension is calculated by <Ref Attr="FinFieldExt"/>.  It determines the local index relative to the field <C>F</C> by dividing the local index at <M>p</M> over the rationals by a constant determied using a theorem of Yamada. <P/>
-
-The possible conjugacy classes of <A>p</A>-defect groups for <C>Irr(G)[n]</C> are calculated using the command <Ref Attr="PossibleDefectGroups"/>.  This function determines the <C>G</C>-conjugacy classes of those <M>p</M>-subgroups of <C>G</C> that are simultaneously the intersection of two Sylow subgroups of <C>G</C> and the Sylow subgroups of centralizers of <M>p</M>-regular elements of <C>G</C>. If the function is applied for arbitrary characters, it will detect situations where the defect          group may not be cyclic, and the output includes a warning string.
+The local index calculation uses Benard's theorem, which shows that the local index at <A>p</A> of the simple component of the rational group algebra <A>QG</A> corresponding to the character <C>Irr(G)[n]</C> is the degree of the extension of the residue field of the center given by adjoining an irreducible <A>p</A>-Brauer character <C>IBr(G,p)[m]</C> lying in the same block, provided the defect group of the block is cyclic.  If the defect group of the block is not cyclic, the resulting calculation is unreliable, and the function will output a list whose second term is the warning label <C>"DGnotCyclic"</C>.  The degree of this finite field extension is calculated by <Ref Attr="FinFieldExt"/>.  It determines the local index relative to the field <C>F</C> by dividing the local index at <M>p</M> over the rationals by a constant determied using a theorem of Yamada. <P/>
 
 <Example>
 <![CDATA[
-gap> G:=SmallGroup(80,28);                                 
+gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
-gap> Size(Irr(G));
-20
+gap> T:=CharacterTable(G);;                                         
+gap> S:=T mod 5;
+BrauerTable( <pc group of size 80 with 5 generators>, 5 )
+gap> BlocksInfo(S);
+[ rec( defect := 1, modchars := [ 1, 3, 7, 8 ], 
+      ordchars := [ 1, 3, 7, 8, 18 ] ), 
+  rec( defect := 1, modchars := [ 2, 4, 5, 6 ], 
+      ordchars := [ 2, 4, 5, 6, 17 ] ), 
+  rec( defect := 1, modchars := [ 9, 12, 14, 15 ], 
+      ordchars := [ 9, 12, 14, 15, 19 ] ), 
+  rec( defect := 1, modchars := [ 10, 11, 13, 16 ], 
+      ordchars := [ 10, 11, 13, 16, 20 ] ) ]
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,20,5);
-2 
-
-gap> G:=SmallGroup(72,21);
-<pc group of size 72 with 5 generators>
-gap> Size(Irr(G));                                            
-18
-gap> B:=SimpleComponentOfGroupRingByCharacter(Rationals,G,18);
-[ 2, Rationals, 6, [ 2, 5, 0 ] ]
-gap> LocalIndexAtPByBrauerCharacter(Rationals,G,18,3);
-[ 2, "DGnotCyclic" ]
-gap> LocalIndexAtOddPByCharacter(Rationals,G,18,3);
+2
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,10,5);
 1
-
+gap> FinFieldExt(Rationals,G,5,20,10);
+2
+gap> FinFieldExt(Rationals,G,5,10,10);                
+1
+gap> ValuesOfClassFunction(Irr(G)[20]);  
+[ 4, 0, 4*E(4), 0, -4, -1, 0, 0, 0, 0, -4*E(4), -E(4), 0, 1, 0, 0, 0, 0, 
+  E(4), 0 ]
+gap> ValuesOfClassFunction(Irr(G)[10]);  
+[ 1, -E(8)^3, E(4), -E(4), -1, 1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), E(4), 
+  -1, -E(8)^3, -E(8), E(8), -1, -E(4), E(8)^3 ]
+gap> ValuesOfClassFunction(IBr(G,5)[10]);
+[ 1, -E(8)^3, E(4), -E(4), -1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), -E(8)^3, 
+  -E(8), E(8), -1, E(8)^3 ]
 ]]>
 </Example>
-Below we determine the nature of the possible defect groups for the 
-case of <C>Irr(G)[16]</C> when <C>G</C> is <C>SmallGroup(72,20)</C>:  
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
-gap> T:=CharacterTable(G);
-CharacterTable( <pc group of size 72 with 5 generators> )
-gap> S:=T mod 3;
-BrauerTable( <pc group of size 72 with 5 generators>, 3 )
-gap> b:=BlocksInfo(S);
-[ rec( defect := 2, modchars := [ 1, 2, 3, 4 ], 
-      ordchars := [ 1, 2, 3, 4, 10, 12, 13, 14, 17 ] ), 
-  rec( defect := 2, modchars := [ 5, 6, 7, 8 ], 
-      ordchars := [ 5, 6, 7, 8, 9, 11, 15, 16, 18 ] ) ]
-gap> FinFieldExt(Rationals,G,3,11,8);
-2
-gap> D:=PossibleDefectGroups(G,16,3);
-[ Group( [ f4, f5 ] )^G ]
-gap> IsCyclic(Elements(D[1])[1]);
-false
-gap> S:=T mod 2;                     
-BrauerTable( <pc group of size 72 with 5 generators>, 2 )
-gap> b:=BlocksInfo(S);
-[ rec( defect := 3, modchars := [ 1 ], 
-      ordchars := [ 1, 2, 3, 4, 5, 6, 7, 8 ] ), 
-  rec( defect := 2, modchars := [ 2 ], ordchars := [ 9, 10, 11, 12 ] ), 
-  rec( defect := 2, modchars := [ 3 ], ordchars := [ 13, 14, 15, 16 ] ), 
-  rec( defect := 1, modchars := [ 4 ], ordchars := [ 17, 18 ] ) ]
-gap> FinFieldExt(Rationals,G,3,16,3);
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,11,3);
+[ 1, "DGnotCyclic" ]
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,11,2);
 1
-gap> D:=PossibleDefectGroups(G,16,2);
-[ Group( [ f1, f3, f1*f3 ] )^G, Group( [ f2, f3, f2*f3 ] )^G ]
-gap> IsCyclic(Elements(D[1])[1]);
-false
-gap> IsCyclic(Elements(D[2])[1]);
-true
 ]]>
 </Example>
-
    </Description>
 </ManSection>
 
