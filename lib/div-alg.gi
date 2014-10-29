@@ -34,7 +34,7 @@ end);
 
 ######################################### 
 # Cyclotomic reciprocity functions for the extension
-# F(E(n))/F at the primie p.  These calculate the 
+# F(E(n))/F at the prime p.  These calculate the 
 # splitting degree g(F(E(n))/F,p), 
 # residue degree f(F(E(n))/F,p), and 
 # ramification index e(F(E(n))/F,p).  Using 
@@ -1470,4 +1470,59 @@ m:=SchurIndex(A);
 
 return m;
 end);
+#############################################
+InstallGlobalFunction( SimpleComponentByCharacterAsSCAlgebra, function(F,G,n)
+local chi,F0,y0,y,F1,I,g,a,A;
 
+chi:=Irr(G)[n]; 
+F0:=Field(chi);
+y0:=PrimitiveElement(F0);
+y:=PrimitiveElement(F);
+F1:=Field([y,y0]);
+I:=IrreducibleRepresentationsDixon(G,chi);
+g:=Image(I);
+a:=Algebra(F1,GeneratorsOfGroup(g));
+A:=Image(IsomorphismSCAlgebra(a));
+
+return A;
+end);
+############################
+InstallGlobalFunction( CyclotomicAlgebraAsSCAlgebra, function(A)
+local g,m,F,a;
+
+g:=DefiningGroupOfCyclotomicAlgebra(A);
+m:=DefiningCharacterOfCyclotomicAlgebra(A);
+F:=A[2];
+a:=SimpleComponentByCharacterAsSCAlgebra(F,g,m);
+
+return a; 
+end);
+###########################
+InstallGlobalFunction( WedderburnDecompositionAsSCAlgebras, function(R)
+local W,l,W1,A,i;
+
+W:=WedderburnDecompositionInfo(R);
+l:=Size(W);
+W1:=[];
+for i in [1..l] do 
+  if Size(W[i])=2 then   
+  if W[i][1]=1 then 
+     W1[i]:=W[i][2];
+  else
+     W1[i]:=MatrixAlgebra(W[i][2],W[i][1]); 
+  fi; 
+  fi; 
+  if Size(W[i])>2 then 
+  if W[i][1]=1 then  
+    W1[i]:=CyclotomicAlgebraAsSCAlgebra(W[i]);
+  else
+    A:=CyclotomicAlgebraAsSCAlgebra(W[i]);
+    W1[i]:=MatrixAlgebra(A,W[i][1]); 
+  fi; 
+  fi;
+od; 
+
+return W1; 
+end); 
+
+##########################

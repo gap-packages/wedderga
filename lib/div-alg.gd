@@ -49,4 +49,7 @@ DeclareGlobalFunction("LocalIndicesOfRationalQuaternionAlgebra");
 DeclareGlobalFunction("IsRationalQuaternionAlgebraADivisionRing");
 DeclareGlobalFunction("SchurIndex");
 DeclareGlobalFunction("SchurIndexByCharacter");
+DeclareGlobalFunction("SimpleComponentByCharacterAsSCAlgebra");
+DeclareGlobalFunction("CyclotomicAlgebraAsSCAlgebra");
+DeclareGlobalFunction("WedderburnDecompositionAsSCAlgebras");
 
