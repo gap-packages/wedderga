@@ -139,6 +139,56 @@ gap> SchurIndexByCharacter(CF(5),G,16);
    </Description>
 </ManSection>
 
+
+
+<ManSection>
+   <Oper Name="WedderburnDecompositionAsSCAlgebras" 
+         Arg="R"  />
+   <Oper Name="CyclotomicAlgebraAsSCAlgebra"
+         Arg="A" /> 
+   <Oper Name="SimpleComponentByCharacterAsSCAlgebra"
+         Arg="F G n " /> 
+
+   <Returns>
+         The first of these returns the Wedderburn decomposition of the group ring <C>R</C> with each simple component presented as an algebra with structure constants in GAP (see <Ref Name="Algebras With Structure Constants"> in the main GAP manual).  The second converts a list <C>A</C> that is output from <Ref Name="WedderburnDecompositionInfo"> into an algebra with structure constants in GAP.  The third determines an algebra with structure constants that is isomorphic to the simple component of the group ring of the finite group <C>G</C> over the field <C>F</C> that corresponds to the irreducible character <C>Irr(G)[n]</C>.   
+   </Returns> 
+
+   <Description> 
+These functions are an option for obtaining a Wedderburn decomposition or simple component of the group ring <C>FG</C> in which the output is in the form of an algebra with structure constants, which is more compatible with GAP's built-in operations for finite-dimensional algebras. 
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(63,1);                                  
+<pc group of size 63 with 3 generators>
+gap> R:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 3 generators>
+gap> W:=WedderburnDecompositionInfo(R);
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], 
+  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ], 
+  [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
+gap> WedderburnDecompositionWithDivAlgParts(R);
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ], 
+  [ 1, 
+      rec( Center := NF(21,[ 1, 4, 16 ]), DivAlg := true, 
+          LocalIndices := [ [ 7, 3 ] ], SchurIndex := 3 ) ] ]
+gap> WedderburnDecompositionAsSCAlgebras(R);
+[ Rationals, CF(3), CF(9), <algebra of dimension 9 over NF(7,[ 1, 2, 4 ])>, 
+  <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])> ]
+gap> CyclotomicAlgebraAsSCAlgebra(W[5]);
+<algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
+gap> Size(Irr(G));                                         
+15
+gap> SimpleComponentByCharacterAsSCAlgebra(Rationals,G,15);
+<algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
+
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+
+
 </Section>
 
 <!-- *******Cyclotomic Reciprocity Functions -->
