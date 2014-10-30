@@ -56,8 +56,8 @@ od;
 n1:=PDashPartOfN(n,p);
 f:=1;
 if n1>1 then
-while not(p^f mod n1 = 1) do 
-f:=f+1;
+while not(PowerMod(p,f,n1)= 1) do 
+f:=f+1; 
 od;
 fi;
 
@@ -68,7 +68,7 @@ if GaloisCyc(E(n1),b)=E(n1) then
 AddSet(L1,b); 
 else
 for i in [1..f] do 
-if b mod n1 = p^i mod n1 then 
+if b mod n1 = PowerMod(p,i,n1) then 
 AddSet(L1,b);
 fi;
 od; 
@@ -96,19 +96,9 @@ local K,a,n1,L,f;
 
 K:=PSplitSubextension(F,n,p);
 a:=PrimitiveElement(K);
-#n0:=Conductor([a,E(n)]);
 n1:=PDashPartOfN(n,p);
 L:=Field([a,E(n1)]);
 f:=Trace(L,K,1);
-#K:=PSplitSubextension(F,n,p);
-#b:=PrimitiveElement(K);
-#U:=[];
-#for i in [1..n1] do 
-#  if Gcd(i,n1)=1 and GaloisCyc(b,i)=b then 
-#    Add(U,i);
-#  fi;
-#od; 
-#f:=Size(U);
 
 return f;
 end);
@@ -157,8 +147,8 @@ n1:=PDashPartOfN(n,q);
 U:=[1];
 if n1 > 1 then 
 i:=1;
-while not(q^i mod n1 = 1) do 
-Add(U,q^i mod n1);
+while not(PowerMod(q,i,n1)=1) do 
+Add(U,PowerMod(q,i,n1));
 i:=i+1;
 od;
 fi;
@@ -168,7 +158,7 @@ for u in U do
 Add(U1,u mod n2);
 od;
 g:=1; 
-while not((b^g mod n2) in U1) do 
+while not(PowerMod(b,g,n2) in U1) do 
 g:=g+1;
 od; 
 h:=OrderMod(b^g,n2);
@@ -182,7 +172,7 @@ if e>1 and c>0 and A[3]/q in PositiveIntegers then
 #####################################
 # Compute residue degree f of CF(n) at q
 f:=1; 
-while not((q^f-1)/n1 in PositiveIntegers) do 
+while not(PowerMod(q,f,n1)=1 or n1=1) do 
 f:=f+1;
 od;
 #########################
@@ -245,8 +235,8 @@ e:=Phi(n2);
 
 U:=[1];
 i:=1;
-while not((2^i mod n1) in U) do 
-Add(U,2^i mod n1);
+while not(PowerMod(2,i,n1) in U) do 
+Add(U,PowerMod(2,i,n1));
 i:=i+1;
 od;
 U1:=[];
@@ -257,7 +247,7 @@ Add(U1,u mod n3);
 od;
 
 g:=1; 
-while not((b^g mod n3) in U1) do 
+while not(PowerMod(b,g,n3) in U1) do 
 g:=g+1;
 od; 
 h:=OrderMod(b^g,n3);
@@ -482,7 +472,7 @@ Y:=OrdersClassRepresentatives(T);
 h:=Size(Y);
 a:=PrimitiveElement(F);
 m1:=PDashPartOfN(Conductor(a),p);
-for i in [1..m1] do if (p^i-1)/m1 in Integers then d1:=i; break; fi; od; 
+for i in [1..m1] do if PowerMod(p,i,m1)=1 or m1=1 then d1:=i; break; fi; od; 
 
 L:=[];
 for i in [1..h] do if Gcd(Y[i],p) = 1 then Add(L,V[i]); fi; od; 
@@ -490,7 +480,7 @@ l:=Size(L);
 m:=Conductor(L);
 K:=CF(m);
 B:=Basis(K);
-for i in [1..m] do if (p^i-1)/m in Integers then d:=i; break; fi; od; 
+for i in [1..m] do if PowerMod(p,i,m)=1 or m=1 then d:=i; break; fi; od; 
 z:=Z(p^d)^((p^d-1)/m);
 M:=[];
 D:=[];
@@ -519,7 +509,7 @@ U:=ValuesOfClassFunction(psi);
 m:=Conductor(U);
 K:=CF(m);
 B:=Basis(K);
-for i in [1..m] do if (p^i-1)/m in Integers then d:=i; break; fi; od; 
+for i in [1..m] do if PowerMod(p,i,m)=1 or m=1 then d:=i; break; fi; od; 
 z:=Z(p^d)^((p^d-1)/m);
 M:=[];
 D:=[];
