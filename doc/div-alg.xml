@@ -150,7 +150,7 @@ gap> SchurIndexByCharacter(CF(5),G,16);
          Arg="F G n " /> 
 
    <Returns>
-         The first of these returns the Wedderburn decomposition of the group ring <C>R</C> with each simple component presented as an algebra with structure constants in GAP (see <Ref Name="Algebras With Structure Constants"> in the main GAP manual).  The second converts a list <C>A</C> that is output from <Ref Name="WedderburnDecompositionInfo"> into an algebra with structure constants in GAP.  The third determines an algebra with structure constants that is isomorphic to the simple component of the group ring of the finite group <C>G</C> over the field <C>F</C> that corresponds to the irreducible character <C>Irr(G)[n]</C>.   
+         The first of these returns the Wedderburn decomposition of the group ring <C>R</C> with each simple component presented as an algebra with structure constants in GAP (see <Ref Sect="Constructing Algebras by Structure Constants" BookName="ref"/> in the main GAP manual).  The second converts a list <C>A</C> that is output from <Ref Attr="WedderburnDecompositionInfo"/> into an algebra with structure constants in GAP.  The third determines an algebra with structure constants that is isomorphic to the simple component of the group ring of the finite group <C>G</C> over the field <C>F</C> that corresponds to the irreducible character <C>Irr(G)[n]</C>.   
    </Returns> 
 
    <Description> 
@@ -478,7 +478,7 @@ gap> LocalIndexAtInftyByCharacter(CF(3),G,12);
 </Returns>
 <Description>
 	The <C>p</C>-defect group of a given conjugacy class of <C>G</C> is a <C>p</C>-Sylow subgroup of the centralizer in <C>G</C> of any representative of the class.  
-A defect group for a <C>p</C>-block of <C>G</C> is a minimal <C>p</C>-subgroup that is a defect group for a defect class of the block.  By Brauer's Min-Max theorem, this will occur for at least one <C>p</C>-regular class of <C>G</C>.  The function <Ref Attr="DefectGroupsOfPBlock"> identifies the defect classes for the block containing <C>Irr(G)[n]</C>, finds the one whose defect group has minimal order, and returns the conjugacy class of the defect group of this class.  The function <Ref Attr="DefectOfCharacterAtP"> gives the logarithm base <C>p</C> of the order of a defect group of the <C>p</C>-block containing the character <C>Irr(G)[n]</C>. 
+A defect group for a <C>p</C>-block of <C>G</C> is a minimal <C>p</C>-subgroup that is a defect group for a defect class of the block.  By Brauer's Min-Max theorem, this will occur for at least one <C>p</C>-regular class of <C>G</C>.  The function <Ref Attr="DefectGroupsOfPBlock"/> identifies the defect classes for the block containing <C>Irr(G)[n]</C>, finds the one whose defect group has minimal order, and returns the conjugacy class of the defect group of this class.  The function <Ref Attr="DefectOfCharacterAtP"/> gives the logarithm base <C>p</C> of the order of a defect group of the <C>p</C>-block containing the character <C>Irr(G)[n]</C>. 
 
 <Example>
 <![CDATA[
