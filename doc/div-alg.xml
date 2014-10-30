@@ -557,8 +557,8 @@ gap> ValuesOfClassFunction(IBr(G,5)[10]);
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,11,3);
-[ 1, "DGnotCyclic" ]
-gap> LocalIndexAtPByBrauerCharacter(Rationals,G,11,2);
+[ 2, "DGnotCyclic" ]
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,13,2);
 1
 ]]>
 </Example>
@@ -719,19 +719,18 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 
 <Example>
 <![CDATA[
-gap> G:=SmallGroup(192,49);
-<pc group of size 192 with 7 generators>
+gap> G:=SmallGroup(96,35);
+<pc group of size 96 with 6 generators>
 gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
 gap> Size(W);
-21
-gap> A:=W[20];
+12
+gap> A:=W[12];
 [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 9 ] ], [ [ 3 ] ] ]
-gap> DecomposeCyclotomicAlgebra(A);                              
+gap> DecomposeCyclotomicAlgebra(A);
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], 
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ]
 ]]>
 </Example>
-
    </Description>
 </ManSection>
 
