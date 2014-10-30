@@ -409,7 +409,17 @@ InstallGlobalFunction( SimpleComponentOfGroupRingByCharacter, function(F,G,n)
 local R,chi,B;
 
 R:=GroupRing(F,G);
-chi:=Irr(G)[n];
+if IsPosInt(n) then
+  if HasOrdinaryCharacterTable(G) then
+    chi:=Irr(G)[n];
+  else
+    Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n) then
+  chi:=n;
+else
+  Error("The third argument must be a character or its number\n");
+fi;      
 B:=SimpleAlgebraByCharacterInfo(R,chi);
 
 return B;
@@ -456,11 +466,23 @@ end);
 
 ##########################################
 InstallGlobalFunction( LocalIndexAtInftyByCharacter, function(F,G,n)
-local m,T,v2,a;
+local m,T,v2,a,pos;
+
+if IsPosInt(n) then
+  if HasOrdinaryCharacterTable(G) then
+    pos:=n;
+  else
+    Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n) then
+  pos := Position( Irr(G), n );
+else
+  Error("The fourth argument must be a character or its number\n");
+fi;
 
 m:=1;
 T:=CharacterTable(G);
-v2:=Indicator(T,2)[n];
+v2:=Indicator(T,2)[pos];
 a:=PrimitiveElement(F);
 if GaloisCyc(a,-1)=a then 
 if v2=-1 then 
@@ -473,12 +495,34 @@ end);
 
 ###########################################
 InstallGlobalFunction( FinFieldExt, function(F,G,p,n,n1)
-local T,chi,V,Y,h,a,m1,d1,L,i,z,l,m,K,B,d,M,C,D,b,j,F1,M1,M2,T1,psi,U,k,F2,t;
+local chi,V,Y,h,a,m1,d1,L,i,z,l,m,K,B,d,M,C,D,b,j,F1,M1,M2,psi,U,k,F2,t;
 
-T:=CharacterTable(G);
-chi:=Irr(G)[n];
+if IsPosInt(n) then
+  if HasOrdinaryCharacterTable(G) then
+    chi:=Irr(G)[n];
+  else
+    Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n) then
+  chi:=n;
+else
+  Error("The fourth argument must be a character or its number\n");
+fi;
+
+if IsPosInt(n1) then
+  if HasOrdinaryCharacterTable(G) and IsBound( ComputedBrauerTables( CharacterTable(G) )[p] ) then
+    psi:=Irr( BrauerTable(G,p) )[n1];
+  else
+    Error("The group has no Brauer character table for p=", p, " yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n1) and n1 in Irr( BrauerTable(G,p) ) then
+  psi:=n1;
+else
+  Error("The fifth argument must be a Brauer character at ", p, " or its number\n");
+fi;
+
 V:=ValuesOfClassFunction(chi);
-Y:=OrdersClassRepresentatives(T);
+Y:=OrdersClassRepresentatives( CharacterTable(G) );
 h:=Size(Y);
 a:=PrimitiveElement(F);
 m1:=PDashPartOfN(Conductor(a),p);
@@ -513,8 +557,6 @@ od;
 M1:=UnionSet(M,[Z(p^d1)]);
 F1:=FieldByGenerators(M1);
 
-T1:=T mod p; 
-psi:=IBr(G,p)[n1];
 U:=ValuesOfClassFunction(psi);
 m:=Conductor(U);
 K:=CF(m);
@@ -565,6 +607,18 @@ end);
 InstallGlobalFunction( DefectGroupsOfPBlock, function(G,n,p)
 local D1,D2,r,U,U1,T,chi,C,c,i,m,h1,a1,a2,b1,A1,D; 
 
+if IsPosInt(n) then
+  if HasOrdinaryCharacterTable(G) then
+    chi:=Irr(G)[n];
+  else
+    Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n) then
+  chi:=n;
+else
+  Error("The third argument must be a character or its number\n");
+fi;      
+
 T:=CharacterTable(G);
 C:=ConjugacyClasses(G);
 c:=Size(C);
@@ -578,7 +632,6 @@ for i in [1..c] do
   fi;
 od; 
 
-chi:=Irr(G)[n];
 for i in U1 do 
   h1:=Size(C[i]);
   a1:=chi[i];
@@ -669,7 +722,18 @@ end);
 InstallGlobalFunction( LocalIndexAtPByBrauerCharacter, function(F,G,n,p)
 local chi,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2,n0,K0,d0,F1,K1,d1;
 
-chi:=Irr(G)[n];
+if IsPosInt(n) then
+  if HasOrdinaryCharacterTable(G) then
+    chi:=Irr(G)[n];
+  else
+    Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n) then
+  chi:=n;
+else
+  Error("The third argument must be a character or its number\n");
+fi;      
+
 V:=ValuesOfClassFunction(chi);
 a:=PrimitiveElement(F);
 V1:=Union(V,[a]);
@@ -760,7 +824,19 @@ end);
 
 ###########################################
 InstallGlobalFunction( LocalIndexAtTwoByCharacter, function(F,G,n)
-local m,chi,g,g1,chi1,B1,W,i,a,B,K,V,V1,a1,F0,F1,n0,n1,n01,n02,n11,n12,f,f0,f1,m2;
+local m,chi,g,g1,B1,W,i,a,B,K,V,V1,a1,F0,F1,n0,n1,n01,n02,n11,n12,f,f0,f1,m2;
+
+if IsPosInt(n) then
+  if HasOrdinaryCharacterTable(G) then
+    chi:=Irr(G)[n];
+  else
+    Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n) then
+  chi:=n;
+else
+  Error("The third argument must be a character or its number\n");
+fi;      
 
 m2:=1;
 m:=0;
@@ -783,7 +859,7 @@ if not(m2 in Integers) then
 m:=1;
   if IsDyadicSchurGroup(g) then 
   m:=2;
-  V:=ValuesOfClassFunction(Irr(G)[n]);
+  V:=ValuesOfClassFunction(chi);
   F0:=FieldByGenerators(V);
   F1:=B1[2];
     if not(F0=F1) then 
@@ -1474,7 +1550,18 @@ end);
 InstallGlobalFunction( SimpleComponentByCharacterAsSCAlgebra, function(F,G,n)
 local chi,F0,y0,y,F1,I,g,a,A;
 
-chi:=Irr(G)[n]; 
+if IsPosInt(n) then
+  if HasOrdinaryCharacterTable(G) then
+    chi:=Irr(G)[n];
+  else
+    Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
+  fi;
+elif IsCharacter(n) then
+  chi:=n;
+else
+  Error("The third argument must be a character or its number\n");
+fi;      
+
 F0:=Field(chi);
 y0:=PrimitiveElement(F0);
 y:=PrimitiveElement(F);
