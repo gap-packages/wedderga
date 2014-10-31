@@ -315,6 +315,81 @@ end);
 # Finds group over which cyclotomic algebra of length 4 or 5 
 # is faithfully represented.
 #######################################################
+InstallGlobalFunction( DefiningGroupAndCharacterOfCyclotAlg, function(A)
+local l,f,a,b,c,d,g,I,g1,S,m,n,i,chi,F,u,V,U,F1;;
+
+l:=Length(A);
+g1:="fail";
+
+if (l=5 and Length(A[4])=2) then 
+f:=FreeGroup("a","b","c");
+a:=f.1;
+b:=f.2;
+c:=f.3;
+g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),b^(-1)*a*b*a^(-A[4][1][2]),c^(-1)*a*c*a^(-A[4][2][2]),c^(-1)*b^(-1)*c*b*a^(-A[5][1][1])];
+fi;
+
+if (l=5 and Length(A[4])=3) then 
+f:=FreeGroup("a","b","c","d");
+a:=f.1;
+b:=f.2;
+c:=f.3;
+d:=f.4;
+g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),d^A[4][3][1]*a^(-A[4][3][3]), b^(-1)*a*b*a^(-A[4][1][2]),c^(-1)*a*c*a^(-A[4][2][2]), d^(-1)*a*d*a^(-A[4][3][2]),    c^(-1)*b^(-1)*c*b*a^(-A[5][1][1]), d^(-1)*b^(-1)*d*b*a^(-A[5][1][2]),d^(-1)*c^(-1)*d*c*a^(-A[5][2][1])];
+fi;
+
+if (l=4) then 
+f:=FreeGroup("a","b");
+a:=f.1;
+b:=f.2;
+g:=f/[a^A[3],b^A[4][1]*a^(-A[4][3]),b^(-1)*a*b*a^(-A[4][2])];
+fi;
+
+I:=IsomorphismSpecialPcGroup(g);
+g1:=Image(I);
+
+S:=[];
+S[1]:=g1;
+
+if Length(A)=2 then d:=1; fi;
+if Length(A)=4 then d:=A[4][1]; F1:=NF(A[3],[A[4][2]]); fi; 
+if (Length(A)=5 and Length(A[4])=2) then 
+   d:=A[4][1][1]*A[4][2][1]; 
+   F1:=NF(A[3],[A[4][1][2],A[4][2][2]]); 
+fi;
+if (Length(A)=5 and Length(A[4])=3) then 
+   d:=A[4][1][1]*A[4][2][1]*A[4][3][1]; 
+   F1:=NF(A[3],[A[4][1][2],A[4][2][2],A[4][3][2]]); 
+fi;
+
+n:=Size(Irr(g1)) ;
+m:=Trace(F1,Rationals,1);
+U:=[];
+for i in [1..n] do 
+chi:=Irr(g1)[n-i+1];
+V:=ValuesOfClassFunction(chi); 
+F:=FieldByGenerators(V);
+if V[1]/d in PositiveIntegers then 
+if Size(KernelOfCharacter(chi))=1 then 
+if FieldByGenerators(V)=F1 then 
+	Add(U,n-i+1); 
+fi; 
+fi;
+fi;
+od;
+if Size(U)=m then 
+u:=U[1];
+chi:=Irr(g1)[u];
+else
+chi:=U;
+fi;
+
+S[2]:=chi;
+
+return S;
+end);
+
+#######################################################
 InstallGlobalFunction( DefiningGroupOfCyclotomicAlgebra, function(A)
 local l,f,a,b,c,d,g,I,g1;
 
@@ -710,16 +785,18 @@ end);
 
 ##########################################
 InstallGlobalFunction( LocalIndexAtPByBrauerCharacter, function(F,G,n,p)
-local chi,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2,n0,K0,d0,F1,K1,d1;
+local chi,n1,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2,n0,K0,d0,F1,K1,d1;
 
 if IsPosInt(n) then
   if HasOrdinaryCharacterTable(G) then
     chi:=Irr(G)[n];
+    n1:=n;
   else
     Error("The group has no ordinary character table yet. To avoid randomisation errors, you should compute it first\n");
   fi;
 elif IsCharacter(n) then
   chi:=n;
+  n1:=Position(Irr(G),chi);
 else
   Error("The third argument must be a character or its number\n");
 fi;      
@@ -736,7 +813,7 @@ T:=CharacterTable(G);
 S:=T mod p; 
 b:=BlocksInfo(S);
 for j in [1..Size(b)] do 
-if n in b[j].ordchars then 
+if n1 in b[j].ordchars then 
   k:=b[j].modchars[1];
   break;
 fi;
@@ -804,9 +881,11 @@ fi;
 if Length(B)=5 then
 K:=PSplitSubextension(F,B[3],p);
 B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
-g:=DefiningGroupOfCyclotomicAlgebra(B1);
-n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
-m:=LocalIndexAtPByBrauerCharacter(K,g,n1,p);
+g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
+m:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],p);
+#g:=DefiningGroupOfCyclotomicAlgebra(B1);
+#n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
+#m:=LocalIndexAtPByBrauerCharacter(K,g,n1,p);
 fi;
 
 return m;
@@ -842,12 +921,14 @@ fi;
 if Length(B)=5 then
 K:=PSplitSubextension(F,B[3],2);
 B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
-g:=DefiningGroupOfCyclotomicAlgebra(B1);
-n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
-m2:=LocalIndexAtPByBrauerCharacter(F,g,n1,2);
+g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
+m2:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],2); 
+#g:=DefiningGroupOfCyclotomicAlgebra(B1);
+#n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
+#m2:=LocalIndexAtPByBrauerCharacter(F,g,n1,2);
 if not(m2 in Integers) then 
 m:=1;
-  if IsDyadicSchurGroup(g) then 
+  if IsDyadicSchurGroup(g[1]) then 
   m:=2;
   V:=ValuesOfClassFunction(chi);
   F0:=FieldByGenerators(V);
@@ -885,7 +966,7 @@ end);
 
 #############################################
 InstallGlobalFunction( LocalIndicesOfCyclotomicAlgebra, function(A)
-local L,F,l,G,n,m0,m2,m,P,p,l1,i,L1;
+local L,F,l,d,G,n,m0,m2,m,P,p,l1,i,L1;
 
 L:=[];
 L1:=[];
@@ -893,8 +974,11 @@ F:=A[2];
 l:=Length(A);
 
 if l=5 then 
-G:=DefiningGroupOfCyclotomicAlgebra(A);
-n:=DefiningCharacterOfCyclotomicAlgebra(A);
+d:=DefiningGroupAndCharacterOfCyclotAlg(A); 
+G:=d[1];
+n:=d[2];
+#G:=DefiningGroupOfCyclotomicAlgebra(A);
+#n:=DefiningCharacterOfCyclotomicAlgebra(A);
 m0:=LocalIndexAtInftyByCharacter(F,G,n);
 Add(L1,[infinity,m0]);
 
@@ -1567,10 +1651,12 @@ end);
 InstallGlobalFunction( CyclotomicAlgebraAsSCAlgebra, function(A)
 local g,m,F,a;
 
-g:=DefiningGroupOfCyclotomicAlgebra(A);
-m:=DefiningCharacterOfCyclotomicAlgebra(A);
+g:=DefiningGroupAndCharacterOfCyclotAlg(A);
+#g:=DefiningGroupOfCyclotomicAlgebra(A);
+#m:=DefiningCharacterOfCyclotomicAlgebra(A);
 F:=A[2];
-a:=SimpleComponentByCharacterAsSCAlgebra(F,g,m);
+a:=SimpleComponentByCharacterAsSCAlgebra(F,g[1],g[2]);
+#a:=SimpleComponentByCharacterAsSCAlgebra(F,g,m);
 
 return a; 
 end);
