@@ -748,14 +748,14 @@ characters.
 
 </Section>
 
-<!-- ********************theory for div-alg functions*************************** -->
+<!-- ****************theory for div-alg functions******************** -->
 
 <Alt Only="LaTeX">\pagebreak</Alt>.
 
 <Section Label="DivAlgTheory">
 <Heading>Theory for Local Schur Index and Division Algebra Part Calculations</Heading>
 
-(By Allen Herman, May 2013.) <P/>
+(By Allen Herman, May 2013. Updated October 2014.) <P/>
 
 The division algebra parts of simple algebras in the Wedderburn
 Decomposition of the group algebra of a finite group over an abelian number
@@ -787,19 +787,21 @@ for groups of order less than 3^2*7*13.) So it gives the information
 desired in most basic situations, and allows one to distinguish almost all
 pairs of simple components of group algebras.  <P/>
 
-Wedderga's functions compute local indices for generalized quaternion algebras 
-defined over the rationals and cyclotomic algebras defined over any abelian 
-number field.  Special shortcut functions are available for cyclic cyclotomic 
-algebras.  There are also versions of the functions that compute the local and 
-global Schur index of a character of a finite group over a given abelian number 
-field.  The steps in the general character-theoretic method involve 1) a 
-Brauer-Witt reduction to a cyclic-by-abelian group, 2) use of the Frobenius-Schur 
-indicator to compute the local index at infinity, 3) computing the <M>p</M>-local 
-index for an ordinary irreducible character <M>\chi</M> of a <M>p</M>-solvable 
-group using the values of an irreducible Brauer character in the same <M>p</M>-block 
-in cases where  the <M>p</M>-defect group of <M>\chi</M> is cyclic, and 4) use of 
-Riese and Schmid's characterization of dyadic Schur groups (<Cite Key="Sch"/> and 
-<Cite Key="RSch"/>) to handle the exceptional cases where step 3) is not available. 
+Wedderga's functions compute local indices for generalized quaternion
+algebras defined over the rationals and cyclotomic algebras defined over
+any abelian number field.  Special shortcut functions are available for
+cyclic cyclotomic algebras.  There are also versions of the functions that
+compute the local and global Schur index of a character of a finite group
+over a given abelian number field.  The steps in the general character-
+theoretic method involve 1) a Brauer-Witt reduction to a cyclic-by-abelian
+group, 2) use of the Frobenius-Schur indicator to compute the local index
+at infinity, 3) computing the <M>p</M>-local index for an ordinary
+irreducible character <M>\chi</M> of a <M>p</M>-solvable group using the
+values of an irreducible Brauer character in the same <M>p</M>-block 
+in cases where  the <M>p</M>-defect group of <M>\chi</M> is cyclic, and 
+4) use of Riese and Schmid's characterization of dyadic Schur groups 
+(<Cite Key="Sch"/> and <Cite Key="RSch"/>) to handle the exceptional cases
+where step 3) is not available. 
 
 Our approach to rational quaternion algebras is the standard one given, for
 example, in <Cite Key="Pi"/>. The Legendre symbol operation in GAP is used
@@ -818,56 +820,61 @@ theory system outside of GAP that can solve norm equations. <P/>
 There are three shortcut functions used to compute local indices of cyclic
 cyclotomic algebras, which wedderga's -Info functions produce in the form
 <M>[r,F,n,[a,b,c]]</M>. The local index at infinity is calculated by 
-determining if the real completion of the corresponding algebra will produce 
-a real quaternion algebra. In order to do this, <M>F</M> must be a real 
-subfield, <M>n</M> must be strictly greater than <M>2</M>, and <M>E(n)^c</M> 
-(which has to be a root of unity in <M>F</M>) must be <M>-1</M>.  These facts 
-can be checked directly, so this is faster than calculating the character table 
-of the group and checking the value of a Frobenius-Schur indicator.  
+determining if the real completion of the corresponding algebra will produce a real quaternion algebra. In order to do this, <M>F</M> must be a
+real subfield, <M>n</M> must be strictly greater than <M>2</M>, and 
+<M>E(n)^c</M> (which has to be a root of unity in <M>F</M>) must be 
+<M>-1</M>.  These facts can be checked directly, so this is faster than
+calculating the character table of the group and checking the value of a
+Frobenius-Schur indicator.  
 
 The shortcut to calculate the local index of a cyclic cyclotomic algebra at 
-an odd prime makes direct use of the following lemma of Janusz: If <M>E_p/F_p</M> 
-is a Galois extension of <M>p</M>-local fields with ramification index <M>e</M>, 
-and <M>z</M> is a root of unity with order prime to <M>p</M>, then <M>z</M> is a 
-norm in <M>E_p/F_p</M> if and only if it is the <M>e</M>-th power of a root of
-unity in <M>F</M>. (<Cite Key="J"/>, pg. 535). It follows that in order to
-calculate the local index at <M>p</M> of a cyclic cyclotomic algebra
-<M>[r,F,n,[a,b,c]]</M>, we first determine the splitting degree, residue
-degree, and ramification index <M>e</M> of the extension
-<M>F(\zeta_n)/F</M> at <M>p</M>.  Comparing the behaviour of the Galois
-automorphism <M>\sigma_b</M> to the behaviour of the Frobenius automorphism
-at <M>p</M> allows us to determine the order of the largest root of unity 
-<M>z</M> with order coprime to <M>p</M> in the <M>p</M>-completion <M>F_p</M>. 
-The local index <M>m_p</M> is then the least power of <M>E(n)^c</M> that lies in 
-the group generated by <M>z^e</M>. <P/> Calculation of the local index at the 
-prime <M>2</M> makes use of the following consequence of (<Cite Key="J"/>, T
-heorem 5): A cyclic cyclotomic algebra <M>[r,F_2,n,[a,b,c]]</M> over a 
-<M>2</M>-local field <M>F_2</M> that is a subfield of a cyclotomic extension of 
-the rational <M>2</M>-local field <M>Q_2</M> has Schur index at most <M>2</M>. It 
-has Schur index <M>2</M> if and only if <M>4</M> divides <M>n</M>,
-<M>F_2(\zeta_4)</M> is totally ramified of degree 2, the Galois
-automorphism <M>\sigma_b</M> of <M>F_2(\zeta_n)/F_2</M> inverts all
-<M>2</M>-power roots of unity in <M>F_2(\zeta_n)</M>, <M>E(n)^c</M> has
-order 2 times an odd number, and <M>(F_2:Q_2)</M> is odd. The same approach
-to cyclotomic reciprocity makes it possible to check all of these
-conditions in the <M>2</M>-local situation. <P/>
+an odd prime makes direct use of the following lemma of Janusz: If 
+<M>E_p/F_p</M> is a Galois extension of <M>p</M>-local fields with
+ramification index <M>e</M>, and <M>z</M> is a root of unity with order
+prime to <M>p</M>, then <M>z</M> is a norm in <M>E_p/F_p</M> if and only 
+if it is the <M>e</M>-th power of a root of unity in <M>F</M>. 
+(<Cite Key="J"/>, pg. 535). It follows that in order to calculate the local
+index at <M>p</M> of a cyclic cyclotomic algebra <M>[r,F,n,[a,b,c]]</M>, we
+first determine the splitting degree, residue degree, and ramification
+index <M>e</M> of the extension <M>F(\zeta_n)/F</M> at <M>p</M>.  Comparing
+the behaviour of the Galois automorphism <M>\sigma_b</M> to the behaviour
+of the Frobenius automorphism at <M>p</M> allows us to determine the order
+of the largest root of unity <M>z</M> with order coprime to <M>p</M> in the
+<M>p</M>-completion <M>F_p</M>.  The local index <M>m_p</M> is then the
+least power of <M>E(n)^c</M> that lies in the group generated by 
+<M>z^e</M>. <P/> Calculation of the local index at the prime <M>2</M> makes
+use of the following consequence of (<Cite Key="J"/>, Theorem 5): A cyclic
+cyclotomic algebra <M>[r,F_2,n,[a,b,c]]</M> over a <M>2</M>-local field
+<M>F_2</M> that is a subfield of a cyclotomic extension of the rational
+<M>2</M>-local field <M>Q_2</M> has Schur index at most <M>2</M>. It has
+Schur index <M>2</M> if and only if <M>4</M> divides <M>n</M>,
+<M>F_2(\zeta_4)</M> is totally ramified of degree 2, the Galois automorphism <M>\sigma_b</M> of <M>F_2(\zeta_n)/F_2</M> inverts all 
+<M>2</M>-power roots of unity in <M>F_2(\zeta_n)</M>, the order of 
+<M>E(n)^c</M> is 2 times an odd number, and <M>(F_2:Q_2)</M> is odd. The
+same approach to cyclotomic reciprocity makes it possible to check all of
+these conditions in the <M>2</M>-local situation. <P/>
 
 The wedderga function that computes the <M>p</M>-local index of an ordinary
-irreducible character <M>\chi</M> of a finite non-nilpotent cyclic-by-abelian 
-group <M>G</M> is based directly on a theorem of Benard <Cite Key="B"/> that
-applies whenever the <M>p</M>-defect group of <M>\chi</M> is cyclic. We
-have to restrict our application of it to groups whose orders are small
-because GAP's records for irreducible Brauer characters are only available
-in these cases. In order to use this approach effectively, it helps to have
-a function that determines a list of possible <M>p</M>-defect groups for
-the ordinary character <M>\chi</M>. This is done by finding the
-<M>p</M>-subgroups of <M>G</M> that are both the intersection of a Sylow
-<M>p</M>-subgroup <M>Q</M> of <M>G</M> with a conjugate <M>Q^x</M> by some
-<M>p</M>-regular element <M>x</M> of <M>G</M>, and the Sylow <M>p</M>-subgroups
-of the centralizers of <M>p</M>-regular elements of <M>G</M> (see 
-<Cite Key="N"/>, pg. 94). We are indebted to Michael Geline for suggesting this 
-approach to determining defect groups in GAP. 
+irreducible character <M>\chi</M> of a finite non-nilpotent cyclic-by-
+abelian group <M>G</M> is based directly on a theorem of Benard 
+<Cite Key="B"/> that applies whenever the <M>p</M>-defect group of 
+<M>\chi</M> is cyclic.  We have to restrict our application of it to groups
+whose orders are small because the &GAP; records for irreducible Brauer characters are only available in these cases. In order to use this approach effectively, we developed a function that computes the defect group of the block containing a given ordinary irreducible character <M>\chi</M>.  This function makes use of the Min half of Brauer's Min-Max theorem (see Theorem 4.4 of <Cite Key="N"/>), and thus is able to find the defect group directly from the ordinary character table. It is thus available for nonsolvable groups, even in cases where &GAP;'s Brauer character records are not available.  We are indebted to Michael Geline and Friederich Ladisch for discussions concerning the calculation of defect groups in &GAP;. The current algorithm we use is based on an approach suggested by Ladisch. 
 </Section>
+
+
+<!-- *Realizing simple components as algebras with structure constants* -->
+
+<Section Label="SCAlgebras"> 
+<Heading> Obtaining Algebras with structure constants as terms of the Wedderburn decomposition </Heading>
+Some users may find it desirable to have an alternative description for 
+the components of the Wedderburn decomposition of a group ring as algebras with structure constants, because the operations for algebras in &GAP; are designed for algebras with structure constants.  We have provided such an algorithm that converts the output of 
+<Ref Oper="WedderburnDecompositionInfo"> into algebras with structure constants.  Matrix rings over fields are converted directly.  For components that are cyclotomic algebras, it calculates their defining group and defining character using those &Wedderga; operations, then uses 
+<Ref Oper="IrreducibleRepresentationsDixon"> to obtain matrix generators of an algebra isomorphic to the simple component corresponding to the character over a suitable field.  An algebra with structure constants version of this is finally obtained by applying 
+<Ref Oper="IsomorphismSCAlgebra"> to this algebra. 
+</Section>
+
+<!-- ********************************************************* -->
 
 <Section Label="TheoryPI">
 <Heading>A complete set of orthogonal primitive idempotents</Heading>
