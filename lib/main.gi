@@ -935,7 +935,7 @@ function( FG, chi )
         genP,       	  # set of generators of P
         x,                # 5-tuples, output of AddCrossedProductBySST
         sprod,      	  # (chi_M,psi)
-        F1,n,ok,Gal1,coc,F2,F3,a1,b1,Fxi,d1,condK,redmok,redmcondK,gal,x1; # For bugfix
+        F1,n,alg,ok,Gal1,coc,F2,F3,a1,b1,Fxi,d1,condK,redmok,redmcondK,gal,x1; # For bugfix
 
 
 # if not IsSemisimpleZeroCharacteristicGroupAlgebra( FG ) then
@@ -1024,7 +1024,16 @@ function( FG, chi )
                               sspsub[2], 
                               sspsub[4], 
                               sspsub[3]); 
+    alg:=SimpleAlgebraByData(x);
 # Field adjustment 
+    if IsFLMLOR(alg) then 
+        F1:=LeftActingDomain(FG);
+	a1:=PrimitiveElement(F1);
+        b1:=PrimitiveElement(cf);
+        F2 :=  Field([a1,b1]);
+        
+        return FullMatrixAlgebra(F2,sspsub[1][1]);
+    else 
 	F1:=LeftActingDomain(FG);
 	a1:=PrimitiveElement(F1);
         b1:=PrimitiveElement(cf);
@@ -1036,6 +1045,7 @@ function( FG, chi )
 	ok := x[3];
         Gal1 := x[4];
         coc := x[5];
+        b1:=PrimitiveElement(cf);
         F2 :=  Field([a1,b1]);
 	F3 :=  Field([a1,b1,E(ok)]);  
         #a := Dimension(z)*Dimension(K)/Dimension(F); #a not needed, only one component
@@ -1077,7 +1087,7 @@ function( FG, chi )
      return SimpleAlgebraByData(x1);  
  fi;
 fi;
-
+fi;
  
 end);
 
@@ -1424,7 +1434,7 @@ local G,               # underlying group
         P,          	  # p-Sylow subgroup of GalList[controlcounter]
         genP,       	  # set of generators of P
         sprod,      	  # (chi_M,psi)
-	x,F1,n,ok,Gal1,coc,F2,F3,a1,b1,Fxi,d1,condK,redmok,redmcondK,gal,x1; # For bugfix
+	x,F1,alg,n,ok,Gal1,coc,F2,F3,a1,b1,Fxi,d1,condK,redmok,redmcondK,gal,x1; # For bugfix
 
 # if not IsSemisimpleZeroCharacteristicGroupAlgebra( FG ) then
 #   Error("<FG> must be a zero-characteristic semisimple group algebra !!!");       
@@ -1512,9 +1522,14 @@ local G,               # underlying group
                               sspsub[4], 
                               sspsub[3]); 
 # Field adjustment 
+    alg:=SimpleAlgebraInfoByData(x);
+    if Length(alg)=2 then  
 	F1:=LeftActingDomain(FG);
 	a1:=PrimitiveElement(F1);
         b1:=PrimitiveElement(cf);
+        F2:=Field([a1,b1]);
+        return [alg[1],F2]; 
+    else
      if (a1 in cf) then 
         return SimpleAlgebraInfoByData(x);
      else
@@ -1550,7 +1565,8 @@ local G,               # underlying group
       return SimpleAlgebraInfoByData( x1 );    
       fi; 
   fi;  
-  
+  fi;
+
 end);
 
 #############################################################################
