@@ -16,6 +16,7 @@ DeclareGlobalFunction("LocalIndexAtOddP");
 DeclareGlobalFunction("LocalIndexAtInfty");
 DeclareGlobalFunction("LocalIndexAtTwo");
 DeclareGlobalFunction("LocalIndicesOfCyclicCyclotomicAlgebra");
+DeclareGlobalFunction("DefiningGroupAndCharacterOfCyclotAlg");
 DeclareGlobalFunction("DefiningGroupOfCyclotomicAlgebra");
 DeclareGlobalFunction("DefiningCharacterOfCyclotomicAlgebra");
 DeclareGlobalFunction("SimpleComponentOfGroupRingByCharacter");

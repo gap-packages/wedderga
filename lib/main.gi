@@ -1530,6 +1530,9 @@ local G,               # underlying group
         F2:=Field([a1,b1]);
         return [alg[1],F2]; 
     else
+	F1:=LeftActingDomain(FG);
+	a1:=PrimitiveElement(F1);
+        b1:=PrimitiveElement(cf);
      if (a1 in cf) then 
         return SimpleAlgebraInfoByData(x);
      else
