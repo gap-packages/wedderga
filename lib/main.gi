@@ -1025,10 +1025,10 @@ function( FG, chi )
                               sspsub[4], 
                               sspsub[3]); 
     alg:=SimpleAlgebraByData(x);
-# Field adjustment 
-    if IsFLMLOR(alg) then 
+# Field adjustment
+    if IsField(alg) or ( IsMatrixFLMLOR(alg) and IsField(LeftActingDomain(alg)) ) then
         F1:=LeftActingDomain(FG);
-	a1:=PrimitiveElement(F1);
+	    a1:=PrimitiveElement(F1);
         b1:=PrimitiveElement(cf);
         F2 :=  Field([a1,b1]);
         
@@ -1522,10 +1522,10 @@ local G,               # underlying group
                               sspsub[4], 
                               sspsub[3]); 
 # Field adjustment 
-    alg:=SimpleAlgebraInfoByData(x);
-    if Length(alg)=2 then  
-	F1:=LeftActingDomain(FG);
-	a1:=PrimitiveElement(F1);
+    alg:=SimpleAlgebraByData(x);
+    if IsField(alg) or ( IsMatrixFLMLOR(alg) and IsField(LeftActingDomain(alg)) ) then
+	    F1:=LeftActingDomain(FG);
+	    a1:=PrimitiveElement(F1);
         b1:=PrimitiveElement(cf);
         F2:=Field([a1,b1]);
         return [alg[1],F2]; 
