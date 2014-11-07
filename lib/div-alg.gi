@@ -134,52 +134,20 @@ end);
 # and 2.    
 ################################
 InstallGlobalFunction( LocalIndexAtOddP, function(A,q)
-local m,n,a,b,c,n1,n2,g,U,i,U1,u,h,e,f,f1,e1,k;
+local m,F,n,a,b,c,n1,e,f,h,f1,e1,k;
 
 m:=1; 
+F:=A[2];
 a:=A[4][1];
 b:=A[4][2];
 c:=A[4][3];
-n:=Lcm(Conductor(A[2]),A[3]);
+n:=Lcm(Conductor(F),A[3]);
 n1:=PDashPartOfN(n,q);
-####################################
-# Cyclotomic reciprocity calculation:
-U:=[1];
-if n1 > 1 then 
-i:=1;
-while not(PowerMod(q,i,n1)=1) do 
-Add(U,PowerMod(q,i,n1));
-i:=i+1;
-od;
-fi;
-U1:=[];
-n2:=PDashPartOfN(A[3],q);
-for u in U do 
-Add(U1,u mod n2);
-od;
-g:=1; 
-while not(PowerMod(b,g,n2) in U1) do 
-g:=g+1;
-od; 
-h:=OrderMod(b^g,n2);
-e:=OrderMod(b^g,A[3])/h;
-#####################################
-# Now g, h, and e are the splitting, 
-# residue degree and ramification of 
-# Q(E(n))/F at q.
-#####################################
+##########################
+e:=RamificationIndexAtP(F,n,q);
 if e>1 and c>0 and A[3]/q in PositiveIntegers then 
-#####################################
-# Compute residue degree f of CF(n) at q
-f:=1; 
-while not(n1=1 or PowerMod(q,f,n1)=1) do 
-f:=f+1;
-od;
-#########################
-# Now F_q contains E(q^(f/h)-1).  We find the least 
-# power m of E(A[3])^c that lies in the group generated 
-# by E(q^(f/h)-1)^e.
-#########################
+f:=ResidueDegreeAtP(Rationals,n,q);
+h:=ResidueDegreeAtP(F,n,q);
 f1:=f/h;
 e1:=Gcd(q^f1-1,e);
 k:=(q^f1-1)/e1;
@@ -190,6 +158,58 @@ fi;
 
 return m;
 end);
+
+
+
+
+####################################
+# Cyclotomic reciprocity calculation:
+#U:=[1];
+#if n1 > 1 then 
+#i:=1;
+#while not(PowerMod(q,i,n1)=1) do 
+#Add(U,PowerMod(q,i,n1));
+#i:=i+1;
+#od;
+#fi;
+#U1:=[];
+#n2:=PDashPartOfN(A[3],q);
+#for u in U do 
+#Add(U1,u mod n2);
+#od;
+#g:=1; 
+#while not(PowerMod(b,g,n2) in U1) do 
+#g:=g+1;
+#od; 
+#h:=OrderMod(b^g,n2);
+#e:=OrderMod(b^g,A[3])/h;
+#####################################
+# Now g, h, and e are the splitting, 
+# residue degree and ramification of 
+# Q(E(n))/F at q.
+#####################################
+#if e>1 and c>0 and A[3]/q in PositiveIntegers then 
+#####################################
+# Compute residue degree f of CF(n) at q
+#f:=1; 
+#while not(n1=1 or PowerMod(q,f,n1)=1) do 
+#f:=f+1;
+#od;
+#########################
+# Now F_q contains E(q^(f/h)-1).  We find the least 
+# power m of E(A[3])^c that lies in the group generated 
+# by E(q^(f/h)-1)^e.
+#########################
+#f1:=f/h;
+#e1:=Gcd(q^f1-1,e);
+#k:=(q^f1-1)/e1;
+#while not(k/(Order(E(A[3])^(c*m))) in PositiveIntegers) do 
+#  m:=m+1;
+#od; 
+#fi;
+
+#return m;
+#end);
 
 
 ###############################
