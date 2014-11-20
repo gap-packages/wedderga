@@ -241,48 +241,61 @@ end);
 # over the 2-adics
 ###############################
 InstallGlobalFunction( LocalIndexAtTwo, function(A)
-local n,m,b,c,n1,f,h,g,n2,n3,n4,e,e1,i,u,U,U1; 
+local n,m,K,b,c,n1,f,h,g,n2,n3,n4,e,e1,i,u,U,U1; 
 
 m:=1;
 if A[3]/4 in PositiveIntegers then 
 n:=Lcm(Conductor(A[2]),A[3]);
+K:=PSplitSubextension(A[2],n,2);
+if IsOddInt(Trace(K,A[2],1)) then 
 b:=A[4][2];
 c:=A[4][3];
-n1:=PDashPartOfN(n,2); 
-f:=OrderMod(2,n1);
 n2:=PPartOfN(n,2);
-e:=Phi(n2);
-
-U:=[1];
-i:=1;
-while not(PowerMod(2,i,n1) in U) do 
-Add(U,PowerMod(2,i,n1));
-i:=i+1;
-od;
-U1:=[];
-n3:=PDashPartOfN(A[3],2);
-n4:=PPartOfN(A[3],2);
-for u in U do 
-Add(U1,u mod n3);
-od;
-
-g:=1; 
-while not(PowerMod(b,g,n3) in U1) do 
-g:=g+1;
-od; 
-h:=OrderMod(b^g,n3);
-e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
- if e1>1 and IsOddInt(e*f/e1*h) then 
- n2:=PPartOfN(n,2);
-  if E(n2)^(b^g)=E(n2)^(-1) and E(n4)^c=-1 then 
+n4:=PPartOfN(A[3],2); 
+  if E(n2)^b=E(n2)^(-1) and E(n4)^c=-1 then 
    m:=2;
   fi;
- fi;
-fi;
+fi; 
+fi; 
 
-return m;
-end);
+return m; 
+end); 
 
+#################################
+#n1:=PDashPartOfN(n,2); 
+#f:=OrderMod(2,n1);
+#n2:=PPartOfN(n,2);
+#e:=Phi(n2);
+
+#U:=[1];
+#i:=1;
+#while not(PowerMod(2,i,n1) in U) do 
+#Add(U,PowerMod(2,i,n1));
+#i:=i+1;
+#od;
+#U1:=[];
+#n3:=PDashPartOfN(A[3],2);
+#n4:=PPartOfN(A[3],2);
+#for u in U do 
+#Add(U1,u mod n3);
+#od;
+
+#g:=1; 
+#while not(PowerMod(b,g,n3) in U1) do 
+#g:=g+1;
+#od; 
+#h:=OrderMod(b^g,n3);
+#e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
+# if e1>1 and IsOddInt(e*f/e1*h) then 
+# n2:=PPartOfN(n,2);
+#  if E(n2)^(b^g)=E(n2)^(-1) and E(n4)^c=-1 then 
+#   m:=2;
+#  fi;
+# fi;
+#fi;
+#
+#return m;
+#end);
 ##############################
 # Given a group G and a simple component A whose 
 # WedderburnDecompositionInfo in wedderga has length 4,
