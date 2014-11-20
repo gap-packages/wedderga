@@ -1,18 +1,8 @@
-#############################################################################
-##
-#W  README.wedderga       The Wedderga package            Osnel Broche Cristo
-#W                                                               Allen Herman
-#W                                                        Alexander Konovalov
-#W                                                            Aurora Olivieri
-#W                                                           Gabriela Olteanu
-#W                                                              Ángel del Río
-#W                                                          Inneke Van Gelder
-##
-#############################################################################
-
-
                            The Wedderga Package
                            --------------------
+Osnel Broche Cristo, Allen Herman, Alexander Konovalov, Aurora Olivieri,
+Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.
+
 
 The title "Wedderga" stands for "Wedderburn decomposition of group algebras". 
 This is a  GAP package  to compute  the simple components  of the  Wedderburn 
@@ -47,8 +37,7 @@ GAPDoc by Frank Lübeck and  Max  Neunhöffer,  which is available from the GAP
 site or from http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/.
 
 Wedderga is distributed in standard formats  (tar.gz, tar.bz2, -win.zip)  and 
-can  be  obtained  from  http://www.um.es/adelrio/wedderga.htm,  its   mirror
-http://www.cs.st-andrews.ac.uk/~alexk/wedderga/       or      the        page
+can  be  obtained  from  http://www.cs.st-andrews.ac.uk/~alexk/wedderga/   or 
 http://www.gap-system.org/Packages/wedderga.html  at  the  GAP web site.   To 
 install Wedderga,  unpack its archive  into the pkg subdirectory  of your GAP
 installation.  
@@ -66,4 +55,6 @@ gap> LoadPackage("wedderga");
 
 
 
-The Wedderga team                                               November 2013
+The Wedderga team                                               
+
+November 2014
