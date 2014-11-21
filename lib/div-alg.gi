@@ -241,13 +241,19 @@ end);
 # over the 2-adics
 ###############################
 InstallGlobalFunction( LocalIndexAtTwo, function(A)
-local n,m,K,b,c,n1,f,h,g,n2,n3,n4,e,e1,i,u,U,U1; 
+local n,m,a,K,b,c,f1,f,e1,e,h,g,n2,n3,n4,i,u,U,U1; 
 
 m:=1;
-if A[3]/4 in PositiveIntegers then 
+a:=A[4][1];
+if A[3]/4 in PositiveIntegers and IsEvenInt(a) then 
 n:=Lcm(Conductor(A[2]),A[3]);
-K:=PSplitSubextension(A[2],n,2);
-if IsOddInt(Trace(K,A[2],1)) then 
+f1:=ResidueDegreeAtP(A[2],n,2);
+f:=ResidueDegreeAtP(Rationals,n,2);
+e1:=RamificationIndexAtP(A[2],n,2);
+e:=RamificationIndexAtP(Rationals,n,2);
+if IsOddInt(f/f1) and IsOddInt(e/e1) then 
+#K:=PSplitSubextension(A[2],n,2);
+#if IsOddInt(Trace(K,A[2],1)) then 
 b:=A[4][2];
 c:=A[4][3];
 n2:=PPartOfN(n,2);
