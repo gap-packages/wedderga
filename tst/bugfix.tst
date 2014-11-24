@@ -18,7 +18,6 @@ gap> W:=WedderburnDecompositionWithDivAlgParts(R);
   [ 1, rec( Center := NF(39,[ 1, 2, 4, 5, 8, 10, 11, 16, 20, 22, 25, 32 ]), 
           DivAlg := true, LocalIndices := [ [ 2, 2 ] ], SchurIndex := 2 ) ] ]
 
-
 # Andreas Bachle and Inneke van Gelder reported a problem when there is 
 # a simple component that is a division algebra with index 2 whose local
 # index at infinity is 1, caused by "DefiningCharacterOfCyclotomicAlgebra" 
@@ -81,3 +80,11 @@ gap> WedderburnDecompositionWithDivAlgParts(GroupRing(Rationals, SmallGroup(432,
       rec( Center := NF(27,[ 1, 26 ]), DivAlg := true, 
           LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ] ]
 
+# Fix for a bug reported by çngel del Rio on 14/11/2014
+gap> G:=SmallGroup(16,7);;
+gap> QG:=GroupRing(Rationals,G);;
+gap> pci := PrimitiveCentralIdempotentsByCharacterTable(QG);;
+gap> Length(pci);
+6
+gap> Length(pci)=Length(RationalClasses(G));
+true
