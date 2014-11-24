@@ -401,16 +401,20 @@ local G,         # Underlying group of FG
 
 cong := function(l,gal)
 
-  local gn,cond,remainder,length,pos,x,pospar;
-  
-  gn := Group(List(gal,x->x^GalToInt(gal)));
+  local gn,cond,remainder,length,pos,x,pospar,u,gall;
   cond := Conductor(Source(One(gal)));
+  gall:=[];
+  for u in Filtered([1..cond-1],x->Gcd(x,cond)=1) do
+    if ANFAutomorphism(Source(One(gal)),u) in gal then 
+      Add(gall,ZmodnZObj(u,cond)); 
+    fi;
+  od;
   remainder := l[2];
   length := Length(l[2]);
   pos := [];
   while remainder<>[] do
     x:=remainder[1];
-    pospar := Filtered([1..length],y->ZmodnZObj(x,cond)*ZmodnZObj(l[2][y],cond)^-1 in gn);
+    pospar := Filtered([1..length],y->ZmodnZObj(x,cond)*ZmodnZObj(l[2][y],cond)^-1 in gall);
     Add(pos,pospar);
     remainder := Difference(remainder,List(pospar,i->l[2][i]));
   od;
