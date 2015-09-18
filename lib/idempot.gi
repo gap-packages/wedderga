@@ -467,7 +467,7 @@ InstallMethod( IdempotentBySubgroups,
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList, IsList ],
 #     IsMapping, IsMultiplicativeElementWithInverse ], 
     0,
-function( FqG, K, H, c, ltrace, arg6 )
+function( FqG, K, H, c, ltrace, args )
 local   Fq,     # Field
         q,      # Order of field Fq
         n,      # Order of K/H
@@ -483,8 +483,8 @@ local   Fq,     # Field
 # is used as local function of PCIs
 
 # Program
-epi:=arg6[1];
-gq:=arg6[2];
+epi:=args[1];
+gq:=args[2];
 Fq := LeftActingDomain( FqG );
 q := Size( Fq );
 n := Index( K, H );
@@ -513,7 +513,7 @@ InstallOtherMethod( IdempotentBySubgroups,
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList ], 
     0,
-function( FqG, K, H, C, arg )
+function( FqG, K, H, C, args )
 local   G,      # Group
         Fq,     # Field
         q,      # Order of field Fq
@@ -536,8 +536,8 @@ G := UnderlyingMagma(FqG);
 Fq := LeftActingDomain(FqG);
 q := Size(Fq);
 n := Index(K,H);
-epi := arg[1];
-gq := arg[2];
+epi := args[1];
+gq := args[2];
 
 # First we check that FqG is a finite group algebra over field finite
 # Then we check if K is subgroup of G, H is a normal subgroup of K

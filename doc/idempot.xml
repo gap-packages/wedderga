@@ -251,7 +251,7 @@ false
 
 <ManSection>
    <Oper Name="PrimitiveIdempotentsNilpotent" 
-         Arg="FG,H,K,C,arg"  
+         Arg="FG,H,K,C,args"  
          Comm="The PIs realized by a SSP and a cyclotomic class for a nilpotent group G" />
    <Returns>
          A list of orthogonal primitive idempotents.
@@ -261,7 +261,7 @@ false
          of a finite nilpotent group <M>G</M> whose coefficient field 
          <M>F</M> is a finite field. 
          <A>H</A> and <A>K</A> should form a strong Shoda pair <M>(H,K)</M> of <M>G</M>.
-         <A>arg</A> is a list containing an epimorphism map <A>epi</A> from <M>N_G(K)</M> to <M>N_G(K)/K</M>
+         <A>args</A> is a list containing an epimorphism map <A>epi</A> from <M>N_G(K)</M> to <M>N_G(K)/K</M>
          and a generator <A>gq</A> of <M>H/K</M>.
          <M>C</M> is the <M>|F|</M>-cyclotomic class modulo <M>[H:K]</M> 
          (w.r.t. the generator <M>gq</M> of <M>H/K</M>) <P/>
@@ -300,7 +300,7 @@ gap> PrimitiveIdempotentsNilpotent(FG,H,K,C,[epi,gq]);
 
 <ManSection>
    <Oper Name="PrimitiveIdempotentsTrivialTwisting" 
-         Arg="FG,H,K,C,arg"  
+         Arg="FG,H,K,C,args"  
          Comm="The PIs realized by a SSP and a cyclotomic class for a simple component with trivial twisting" />
    <Returns>
          A list of orthogonal primitive idempotents.
@@ -310,7 +310,7 @@ gap> PrimitiveIdempotentsNilpotent(FG,H,K,C,[epi,gq]);
          of a finite group <M>G</M> whose coefficient field 
          <M>F</M> is a finite field.
          <A>H</A> and <A>K</A> should form a strong Shoda pair <M>(H,K)</M> of <M>G</M>.
-         <A>arg</A> is a list containing an epimorphism map <A>epi</A> from <M>N_G(K)</M> to <M>N_G(K)/K</M>
+         <A>args</A> is a list containing an epimorphism map <A>epi</A> from <M>N_G(K)</M> to <M>N_G(K)/K</M>
          and a generator <A>gq</A> of <M>H/K</M>.
          <M>C</M> is the <M>|F|</M>-cyclotomic class modulo <M>[H:K]</M> 
          (w.r.t. the generator <M>gq</M> of <M>H/K</M>).
