@@ -2276,7 +2276,7 @@ end);
 
 #############################################################################
 ##
-#M PrimitiveIdempotentsNilpotent( FG,H,K,C,arg )
+#M PrimitiveIdempotentsNilpotent( FG,H,K,C,args )
 ##
 ## 
 ## The function PrimitiveIdempotentsNilpotent computes a complete set of 
@@ -2285,14 +2285,14 @@ end);
 ## is a primitive central idempotent of FG (i.e. (H,K) is a strong 
 ## Shoda pair of G and and C is the |F|-cyclotomic class modulo n=[H:K] 
 ## (w.r.t. the generator gq of H/K)
-## arg = [epi,gq]
+## args = [epi,gq]
 ##
 InstallMethod( PrimitiveIdempotentsNilpotent,
     "for pairs of subgroups, one cyclotomic class, mapping and group element", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList], 
     0,
-function(FG,H,K,C,arg)
+function(FG,H,K,C,args)
 
 local G,				# underlying group of FG 
 		F,					# underlying field of FG  
@@ -2363,8 +2363,8 @@ fi;
 
 F := LeftActingDomain(FG);
 N := Normalizer( G, K );
-epi := arg[1];
-gq := arg[2];
+epi := args[1];
+gq := args[2];
 QNK := Image( epi, N );
 C1 := Set( List( C, ii -> gq^ii ) );
 St := Stabilizer( QNK, C1, OnSets );
@@ -2542,7 +2542,7 @@ end);
 
 #############################################################################
 ##
-#M PrimitiveIdempotentsTrivialTwisting( FG,H,K,C,arg )
+#M PrimitiveIdempotentsTrivialTwisting( FG,H,K,C,args )
 ##
 ## 
 ## The function PrimitiveIdempotentsTrivialTwisting computes a complete set of 
@@ -2551,14 +2551,14 @@ end);
 ## FGe is trivial, FG is semisimple and e=e_C(G,H,K) is a primitive central 
 ## idempotent of FG (i.e. (H,K) is a strong Shoda pair of G and and C is the 
 ## |F|-cyclotomic class modulo n=[H:K] (w.r.t. the generator gq of H/K)
-## arg = [epi,gq]
+## args = [epi,gq]
 ##
 InstallMethod( PrimitiveIdempotentsTrivialTwisting,
     "for pairs of subgroups, one cyclotomic class, mapping and group element", 
     true, 
     [ IsSemisimpleFiniteGroupAlgebra, IsGroup, IsGroup, IsList, IsList], 
     0,
-function(FG,H,K,C,arg)
+function(FG,H,K,C,args)
 
 local G,					# underlying group of FG
 			F,					# underlying field of FG
@@ -2623,8 +2623,8 @@ fi;
 ### setup all needed objects
 
 N := Normalizer( G, K );
-epi := arg[1];
-gq := arg[2];
+epi := args[1];
+gq := args[2];
 QNK := Image( epi, N );
 C1 := Set( List( C, ii -> gq^ii ) );
 St := Stabilizer( QNK, C1, OnSets );
