@@ -140,7 +140,11 @@ README_URL :=
   Concatenation( ~.PackageWWWHome, "README" ),
 PackageInfoURL := 
   Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-  
+SourceRepository := rec( 
+  Type := "hg", 
+  URL := "https://bitbucket.org/gap-system/wedderga"
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),  
 AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class=\"pkgname\">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.",
                   
 PackageDoc := rec(
