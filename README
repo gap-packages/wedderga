@@ -26,6 +26,8 @@ multiplication determined by a given action and twisting.
 Furhermore, the package  provides functions to create code words from a group 
 ring element.
 
+TO DO: ADD THE CONTRIBUTION FROM ALLEN!!!
+
 Installation and system requirements:
 
 Wedderga  does  not  use  external  binaries and,  therefore,  works  without 
