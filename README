@@ -23,7 +23,7 @@ The package also  provides  functions  to  construct  crossed products over a
 group  with  coefficients  in  an  associative  ring  with  identity  and the 
 multiplication determined by a given action and twisting.
 
-Furhermore, the package  provides functions to create code words from a group 
+Furthermore, the package  provides functions to create code words from a group 
 ring element.
 
 Installation and system requirements:
