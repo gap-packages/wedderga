@@ -2713,3 +2713,32 @@ end);
 ##
 #E
 ##
+
+IsMaximal:=function(N,A,D)
+The function IsMaximal checks whether A/D is maximal abelian subgroup of N/D 
+
+----------------------------
+
+IsMaximal:=function(N,A,D)
+local X0, X, Y0, Y, Z, x, W, y;
+X0:=RightTransversal(N,D);
+X:=Filtered(X0,x->not x in A);
+Y0:=RightTransversal(A,D);
+Y:=Filtered(Y0,x->not x in D);
+Z:=[];                                
+for x in X do
+ W:=[];                               
+ for y in Y do
+    if not Comm(x,y) in D then Add(W,y);
+    fi;
+    if Size(W)>1 then break;         
+    fi;
+ od;
+ if Size(W)=0 then Add(Z,x);
+ fi;
+od;
+if Size(Z)>0 then 
+return false;
+else return true;
+fi;
+end;
