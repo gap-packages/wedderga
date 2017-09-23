@@ -1,48 +1,67 @@
-name: GitHubPagesForGAP
-version: 0.2
-date: 04/02/2017
+name: Wedderga
+version: 4.8.0
+date: 23/09/2017
 description: |
-    A GitHub Pages generator for GAP packages
+    Wedderburn Decomposition of Group Algebras
 
 authors:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: A. U. Thor
+    - name: Osnel Broche Cristo
+      url: mailto:osnel@ufla.br
+    - name: Allen Herman
+      url: mailto:aherman@math.uregina.ca
+    - name: Alexander Konovalov
+      url: https://alexk.host.cs.st-andrews.ac.uk
+    - name: Gabriela Olteanu
+      url: http://math.ubbcluj.ro/~olteanu
+    - name: Aurora Olivieri
+      url: mailto:olivieri@usb.ve
+    - name: Angel del Rio
+      url: http://www.um.es/adelrio
+    - name: Inneke Van Gelder
+      url: http://homepages.vub.ac.be/~ivgelder
 
 maintainers:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: Jan Itor
+    - name: Osnel Broche Cristo
+      url: mailto:osnel@ufla.br
+    - name: Allen Herman
+      url: mailto:aherman@math.uregina.ca
+    - name: Alexander Konovalov
+      url: https://alexk.host.cs.st-andrews.ac.uk
+    - name: Gabriela Olteanu
+      url: http://math.ubbcluj.ro/~olteanu
+    - name: Aurora Olivieri
+      url: mailto:olivieri@usb.ve
+    - name: Angel del Rio
+      url: http://www.um.es/adelrio
+    - name: Inneke Van Gelder
+      url: http://homepages.vub.ac.be/~ivgelder
 
-GAP: ">=4.8.1"
+GAP: ">=4.8"
 
 needed-pkgs:
     - name: "GAPDoc"
-      version: ">= 1.2"
+      version: ">= 1.5.1"
       url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
-    - name: "IO"
-      version: ">= 4.1"
-      url: "https://gap-packages.github.io/io"
 
 suggested-pkgs:
-    - name: "orb"
-      version: ">= 4.2"
-      url: "https://gap-packages.github.io/orb"
+    - name: "laguna"
+      version: ">= 3.4"
+      url: "http://www.cs.st-andrews.ac.uk/~alexk/laguna/"
+    - name: "GUAVA"
+      version: ">= 3.12"
+      url: "http://osj1961.github.io/guava/"
 
-www: https://gap-system.github.io/GitHubPagesForGAP/
+www: https://gap-packages.github.io/wedderga
 readme: README.md
-packageinfo: https://gap-system.github.io/GitHubPagesForGAP/PackageInfo.g
-github: https://github.com/gap-system/GitHubPagesForGAP
+packageinfo: https://gap-packages.github.io/wedderga/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.gz
-    - name: .tar.bz2
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.bz2
+      url: https://github.com/gap-packages/wedderga/releases/download/v4.8.0/wedderga-4.8.0.tar.gz
 
 abstract: |
-    This is a pseudo package that contains no actual  <span class="pkgname">GAP</span> code. Instead, it is a template for other  GAP packages that allows to quickly setup GitHub Pages.
+    <span class="pkgname">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class="pkgname">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.
 
-status: other
+status: accepted
 doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf

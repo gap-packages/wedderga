@@ -1,0 +1,910 @@
+  
+  [1X9 [33X[0;0YThe basic theory behind [5XWedderga[105X[101X[1X[133X[101X
+  
+  [33X[0;0YIn this chapter we describe the theory that is behind the algorithms used by
+  [5XWedderga[105X.[133X
+  
+  [33X[0;0YAll  the  rings  considered  in  this  chapter  are  associative and have an
+  identity.[133X
+  
+  [33X[0;0YWe  use the following notation: [22Xℚ[122X denotes the field of rationals and [22XF_q[122X the
+  finite  field  of order [22Xq[122X. For every positive integer [22Xk[122X, we denote a complex
+  [22Xk[122X-th  primitive  root  of  unity by [22Xξ_k[122X and so [22Xℚ(ξ_k)[122X is the [22Xk[122X-th cyclotomic
+  extension of [22Xℚ[122X.[133X
+  
+  
+  [1X9.1 [33X[0;0YGroup rings and group algebras[133X[101X
+  
+  [33X[0;0YGiven  a  group  [22XG[122X  and  a  ring  [22XR[122X, the [13Xgroup ring[113X [22XRG[122X over the group [22XG[122X with
+  coefficients  in  [22XR[122X  is  the ring whose underlying additive group is a right
+  [22XR-[122Xmodule with basis [22XG[122X such that the product is defined by the following rule[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y(gr)(hs)=(gh)(rs)[133X [124X[133X
+  
+  
+  [33X[0;0Yfor [22Xr,s ∈ R[122X and [22Xg, h ∈ G[122X, and extended to [22XRG[122X by linearity.[133X
+  
+  [33X[0;0YA [13Xgroup algebra[113X is a group ring in which the coefficient ring is a field.[133X
+  
+  
+  [1X9.2 [33X[0;0YSemisimple group algebras[133X[101X
+  
+  [33X[0;0YWe  say  that  a  ring  [22XR[122X is semisimple if it is a direct sum of simple left
+  (alternatively  right) ideals or equivalently if [22XR[122X is isomorphic to a direct
+  product  of  simple  algebras  each  one  isomorphic to a matrix ring over a
+  division ring.[133X
+  
+  [33X[0;0YBy  Maschke's  Theorem,  if [22XG[122X is a finite group then the group algebra [22XFG[122X is
+  semisimple  if  and  only the characteristic of the coefficient field [22XF[122X does
+  not divide the order of [22XG[122X.[133X
+  
+  [33X[0;0YIn  fact,  an  arbitrary  group  ring  [22XRG[122X  is  semisimple if and only if the
+  coefficient  ring  [22XR[122X is semisimple, the group [22XG[122X is finite and the order of [22XG[122X
+  is invertible in [22XR[122X.[133X
+  
+  [33X[0;0YSome  authors  use  the  notion semisimple ring for rings with zero Jacobson
+  radical.  To  avoid  confusion  we  usually  refer  to  semisimple  rings as
+  semisimple artinian rings.[133X
+  
+  
+  [1X9.3 [33X[0;0YWedderburn components[133X[101X
+  
+  [33X[0;0YIf  [22XR[122X  is  a [13Xsemisimple ring[113X ([14X9.2[114X) then the [13XWedderburn decomposition[113X of [22XR[122X is
+  the  decomposition  of [22XR[122X as a direct product of simple algebras. The factors
+  of this Wedderburn decomposition are called [13XWedderburn components[113X of [22XR[122X. Each
+  Wedderburn  component  of  [22XR[122X  is  of  the  form [22XRe[122X for [22Xe[122X a [13Xprimitive central
+  idempotent[113X ([14X9.4[114X) of [22XR[122X.[133X
+  
+  [33X[0;0YLet   [22XFG[122X   be   a   [13Xsemisimple  group  algebra[113X  ([14X9.2[114X).  If  [22XF[122X  has  positive
+  characteristic,  then  the  Wedderburn  components of [22XFG[122X are matrix algebras
+  over  finite  extensions  of  [22XF[122X.  If  [22XF[122X  has zero characteristic then by the
+  [13XBrauer-Witt  Theorem[113X  [Yam74],  the  [13XWedderburn  components[113X of [22XFG[122X are [13XBrauer
+  equivalent[113X ([14X9.5[114X) to [13Xcyclotomic algebras[113X ([14X9.11[114X).[133X
+  
+  [33X[0;0YThe  main  functions  of  [5XWedderga[105X  compute  the  Wedderburn components of a
+  semisimple  group  algebra  [22XFG[122X, such that the coefficient field is either an
+  abelian  number  field  (i.e. a subfield of a finite cyclotomic extension of
+  the  rationals)  or  a  finite  field.  In  the  finite case, the Wedderburn
+  components are matrix algebras over finite fields and so can be described by
+  the size of the matrices and the size of the finite field.[133X
+  
+  [33X[0;0YIn  the  zero  characteristic  case  each  Wedderburn  component [22XA[122X is [13XBrauer
+  equivalent[113X  ([14X9.5[114X)  to  a  [13Xcyclotomic  algebra[113X  ([14X9.11[114X)  and  therefore [22XA[122X is a
+  (possibly  fractional)  matrix  algebra  over  [13Xcyclotomic algebra[113X and can be
+  described numerically in one of the following three forms:[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[n,K],[133X [124X[133X
+  
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[n,K,k,[d,\alpha,\beta]],[133X [124X[133X
+  
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[n,K,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i < j \le
+        n} ],[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere  [22Xn[122X  is the matrix size, [22XK[122X is the centre of [22XA[122X (a finite field extension
+  of  [22XF[122X) and the remaining data are integers whose interpretation is explained
+  in [14X9.12[114X.[133X
+  
+  [33X[0;0YIn  some cases (for the zero characteristic coefficient field) the size [22Xn[122X of
+  the  matrix  algebras  is  not  a  positive  integer but a positive rational
+  number.  This  is  a  consequence  of  the fact that the [13XBrauer-Witt Theorem[113X
+  [Yam74]  only  ensures  that each [13XWedderburn component[113X ([14X9.3[114X) of a semisimple
+  group algebra is Brauer equivalent ([14X9.5[114X) to a [13Xcyclotomic algebra[113X ([14X9.11[114X), but
+  not necessarily isomorphic to a full matrix algebra of a cyclotomic algebra.
+  For  example,  a Wedderburn component [22XD[122X of a group algebra can be a division
+  algebra  but  not  a cyclotomic algebra. In this case [22XM_n(D)[122X is a cyclotomic
+  algebra  [22XC[122X for some [22Xn[122X and therefore [22XD[122X can be described as [22XM_1/n(C)[122X (see last
+  Example in [2XWedderburnDecomposition[102X ([14X2.1-1[114X)).[133X
+  
+  [33X[0;0YThe main algorithm of [5XWedderga[105X is based on a computational oriented proof of
+  the  Brauer-Witt  Theorem due to Olteanu [Olt07] which uses previous work by
+  Olivieri,  del Río and Simón [ORS04] for rational group algebras of [13Xstrongly
+  monomial groups[113X ([14X9.16[114X).[133X
+  
+  
+  [1X9.4 [33X[0;0YCharacters and primitive central idempotents[133X[101X
+  
+  [33X[0;0YA  [13Xprimitive central idempotent[113X of a ring [22XR[122X is a non-zero central idempotent
+  [22Xe[122X  which cannot be written as the sum of two non-zero central idempotents of
+  [22XRe[122X,  or  equivalently, such that [22XRe[122X is indecomposable as a direct product of
+  two non-trivial two-sided ideals.[133X
+  
+  [33X[0;0YThe  [13XWedderburn components[113X ([14X9.3[114X) of a semisimple ring [22XR[122X are the rings of the
+  form [22XRe[122X for [22Xe[122X running over the set of primitive central idempotents of [22XR[122X.[133X
+  
+  [33X[0;0YLet [22XFG[122X be a [13Xsemisimple group algebra[113X ([14X9.2[114X) and [22Xχ[122X an irreducible character of
+  [22XG[122X  (in  an  algebraic  closure  of  [22XF[122X).  Then  there  is a unique Wedderburn
+  component  [22XA=A_F(χ)[122X  of  [22XFG[122X such that [22Xχ(A)ne 0[122X. Let [22Xe_F(χ)[122X denote the unique
+  primitive  central  idempotent  of  [22XFG[122X  in  [22XA_F(χ)[122X,  that is the identity of
+  [22XA_F(χ)[122X, i.e.[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YA_F(\chi)=FGe_F(\chi).[133X [124X[133X
+  
+  
+  [33X[0;0YThe centre of [22XA_F(χ)[122X is [22XF(χ)=F(χ(g):g ∈ G)[122X, the [13Xfield of character values[113X of
+  [22Xχ[122X over [22XF[122X.[133X
+  
+  [33X[0;0YThe  map  [22Xχ  ↦  A_F(χ)[122X  defines a surjective map from the set of irreducible
+  characters  of  [22XG[122X  (in an algebraic closure of [22XF[122X) onto the set of Wedderburn
+  components of [22XFG[122X.[133X
+  
+  [33X[0;0YEquivalently,  the  map  [22Xχ ↦ e_F(χ)[122X defines a surjective map from the set of
+  irreducible  characters  of [22XG[122X (in an algebraic closure of [22XF[122X) onto the set of
+  primitive central idempontents of [22XFG[122X.[133X
+  
+  [33X[0;0YIf the irreducible character [22Xχ[122X of [22XG[122X takes values in [22XF[122X then[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Ye_F(\chi) = e(\chi) = \frac{\chi(1)}{|G|} \sum_{g\in G} \chi(g^{-1})
+        g.[133X [124X[133X
+  
+  
+  [33X[0;0YIn general one has[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Ye_F(\chi) = \sum_{\sigma \in Gal(F(\chi)/F)} e(\sigma \circ \chi).[133X [124X[133X
+  
+  
+  
+  [1X9.5 [33X[0;0YCentral simple algebras and Brauer equivalence[133X[101X
+  
+  [33X[0;0YLet  [22XK[122X  be  a  field.  A  [13Xcentral  simple  [22XK[122X-algebra[113X is a finite dimensional
+  [22XK[122X-algebra  with  center  [22XK[122X  which  has  no  non-trivial proper ideals. Every
+  central simple [22XK[122X-algebra is isomorphic to a matrix algebra [22XM_n(D)[122X where [22XD[122X is
+  a  division  algebra  (which is finite-dimensional over [22XK[122X and has centre [22XK[122X).
+  The division algebra [22XD[122X is unique up to [22XK[122X-isomorphisms.[133X
+  
+  [33X[0;0YTwo  central  simple [22XK[122X-algebras [22XA[122X and [22XB[122X are said to be [13XBrauer equivalent[113X, or
+  simply  [13Xequivalent[113X,  if  there  is  a  division  algebra  [22XD[122X and two positive
+  integers  [22Xm[122X and [22Xn[122X such that [22XA[122X is isomorphic to [22XM_m(D)[122X and [22XB[122X is isomorphic to
+  [22XM_n(D)[122X.[133X
+  
+  
+  [1X9.6 [33X[0;0YCrossed Products[133X[101X
+  
+  [33X[0;0YLet [22XR[122X be a ring and [22XG[122X a group.[133X
+  
+  [33X[0;0Y[12XIntrinsic  definition[112X.  A  [13Xcrossed  product[113X  [Pas89]  of  [22XG[122X  over [22XR[122X (or with
+  coefficients  in  [22XR[122X) is a ring [22XR*G[122X with a decomposition into a direct sum of
+  additive subgroups[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YR*G = \bigoplus_{g \in G} A_g[133X [124X[133X
+  
+  
+  [33X[0;0Ysuch that for each [22Xg,h[122X in [22XG[122X one has:[133X
+  
+  [33X[0;0Y* [22XA_1=R[122X (here [22X1[122X denotes the identity of [22XG[122X),[133X
+  
+  [33X[0;0Y* [22XA_g A_h = A_gh[122X and[133X
+  
+  [33X[0;0Y* [22XA_g[122X has a unit of [22XR*G[122X.[133X
+  
+  [33X[0;0Y[12XExtrinsic  definition[112X. Let [22XAut(R)[122X denote the group of automorphisms of [22XR[122X and
+  let [22XR^*[122X denote the group of units of [22XR[122X.[133X
+  
+  [33X[0;0YLet  [22Xa:G  →  Aut(R)[122X  and  [22Xt:G × G → R^*[122X be mappings satisfying the following
+  conditions for every [22Xg[122X, [22Xh[122X and [22Xk[122X in [22XG[122X:[133X
+  
+  [33X[0;0Y(1)  [22Xa(gh)^-1  a(g)  a(h)[122X  is  the inner automorphism of [22XR[122X induced by [22Xt(g,h)[122X
+  (i.e. the automorphism [22Xx↦ t(g,h)^-1 x t(g,h)[122X) and[133X
+  
+  [33X[0;0Y(2)  [22Xt(gh,k)  t(g,h)^k = t(g,hk) t(h,k)[122X, where for [22Xg ∈ G[122X and [22Xx ∈ R[122X we denote
+  [22Xa(g)(x)[122X by [22Xx^g[122X.[133X
+  
+  [33X[0;0YThe  [13Xcrossed product[113X [Pas89] of [22XG[122X over [22XR[122X (or with coefficients in [22XR[122X), action
+  [22Xa[122X and twisting [22Xt[122X is the ring[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YR*_a^t G = \bigoplus_{g\in G} u_g R[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere [22X{u_g : g∈ G }[122X is a set of symbols in one-to-one correspondence with [22XG[122X,
+  with addition and multiplication defined by[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y(u_g r) + (u_g s) = u_g(r+s), \quad (u_g r)(u_h s) = u_{gh} t(g,h) r^h
+        s[133X [124X[133X
+  
+  
+  [33X[0;0Yfor [22Xg,h ∈ G[122X and [22Xr,s∈ R[122X, and extended to [22XR*_a^t G[122X by linearity.[133X
+  
+  [33X[0;0YThe  associativity of the product defined is a consequence of conditions (1)
+  and (2) [Pas89].[133X
+  
+  [33X[0;0Y[12XEquivalence  of the two definitions[112X. Obviously the crossed product of [22XG[122X over
+  [22XR[122X  defined using the extrinsic definition is a crossed product of [22XG[122X over [22Xu_1
+  R[122X  in  the sense of the first definition. Moreover, there is [22Xr_0[122X in [22XR^*[122X such
+  that  [22Xu_1r_0[122X is the identity of [22XR*_a^t G[122X and the map [22Xr ↦ u_1 r_0 r[122X is a ring
+  isomorphism [22XR → u_1R[122X.[133X
+  
+  [33X[0;0YConversely,  let [22XR*G=⨁_g∈ G A_g[122X be an (intrinsic) crossed product and select
+  for  each  [22Xg∈  G[122X a unit [22Xu_g∈ A_g[122X of [22XR*G[122X. This is called a [13Xbasis of units for
+  the  crossed  product[113X [22XR*G[122X. Then the maps [22Xa:G → Aut(R)[122X and [22Xt:G× G → R^*[122X given
+  by[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Yr^g = u_g^{-1} r u_g, \quad t(g,h) = u_{gh}^{-1} u_g u_h \quad (g,h
+        \in G, r \in R)[133X [124X[133X
+  
+  
+  [33X[0;0Ysatisfy conditions (1) and (2) and [22XR*G = R*_a^t G[122X.[133X
+  
+  [33X[0;0YThe  choice  of  a  basis  of  units  [22Xu_g  ∈ A_g[122X determines the action [22Xa[122X and
+  twisting [22Xt[122X. If [22X{u_g ∈ A_g : g ∈ G }[122X and [22X{v_g ∈ A_g : g ∈ G }[122X are two sets of
+  units  of [22XR*G[122X then [22Xv_g = u_g r_g[122X for some units [22Xr_g[122X of [22XR[122X. Changing the basis
+  of  units  results in a change of the action and the twisting and so changes
+  the  extrinsic  definition of the crossed product but it does not change the
+  intrinsic crossed product.[133X
+  
+  [33X[0;0YIt  is customary to select [22Xu_1=1[122X. In that case [22Xa(1)[122X is the identity map of [22XR[122X
+  and [22Xt(1,g)=t(g,1)=1[122X for each [22Xg[122X in [22XG[122X.[133X
+  
+  
+  [1X9.7 [33X[0;0YCyclic Crossed Products[133X[101X
+  
+  [33X[0;0YLet  [22XR*G=⨁_g ∈ G A_g[122X be a [13Xcrossed product[113X ([14X9.6[114X) and assume that [22XG = ⟨ g ⟩[122X is
+  cyclic.  Then  the  crossed  product  can be given using a particularly nice
+  description.[133X
+  
+  [33X[0;0YSelect  a  unit  [22Xu[122X in [22XA_g[122X, and let [22Xa[122X be the automorphism of [22XR[122X given by [22Xr^a =
+  u^-1 r u[122X.[133X
+  
+  [33X[0;0YIf [22XG[122X is infinite then set [22Xu_g^k = u^k[122X for every integer [22Xk[122X. Then[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YR*G = R[ u | ru = u r^a ],[133X [124X[133X
+  
+  
+  [33X[0;0Ya skew polynomial ring. Therefore in this case [22XR*G[122X is determined by[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[ R, a ].[133X [124X[133X
+  
+  
+  [33X[0;0YIf  [22XG[122X is finite of order [22Xd[122X then set [22Xu_g^k = u^k[122X for [22X0 le k < d[122X. Then [22Xb = u^d
+  ∈ R[122X and[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YR*G = R[ u | ru = u r^a, u^d = b ][133X [124X[133X
+  
+  
+  [33X[0;0YTherefore, [22XR*G[122X is completely determined by the following data:[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[ R , [ d , a , b ] ][133X [124X[133X
+  
+  
+  
+  [1X9.8 [33X[0;0YAbelian Crossed Products[133X[101X
+  
+  [33X[0;0YLet [22XR*G=⨁_g ∈ G A_g[122X be a [13Xcrossed product[113X ([14X9.6[114X) and assume that [22XG[122X is abelian.
+  Then the crossed product can be given using a simple description.[133X
+  
+  [33X[0;0YExpress [22XG[122X as a direct sum of cyclic groups:[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YG = \langle g_1 \rangle \times \cdots \times \langle g_n \rangle[133X [124X[133X
+  
+  
+  [33X[0;0Yand for each [22Xi=1,dots,n[122X select a unit [22Xu_i[122X in [22XA_g_i[122X.[133X
+  
+  [33X[0;0YEach element [22Xg[122X of [22XG[122X has a unique expression[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Yg = g_1^{k_1} \cdots g_n^{k_n},[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere [22Xk_i[122X is an arbitrary integer, if [22Xg_i[122X has infinite order, and [22X0 le k_i <
+  d_i[122X,  if  [22Xg_i[122X has finite order [22Xd_i[122X. Then one selects a basis for the crossed
+  product by taking[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Yu_g = u_{g_1^{k_1} \cdots g_n^{k_n}} = u_1^{k_1} \cdots u_n^{k_n}.[133X [124X[133X
+  
+  
+  [33X[0;0Y*  For  each  [22Xi=1,dots, n[122X, let [22Xa_i[122X be the automorphism of [22XR[122X given by [22Xr^a_i =
+  u_i^-1 r u_i[122X.[133X
+  
+  [33X[0;0Y* For each [22X1 le i < j le n[122X, let [22Xt_i,j = u_j^-1 u_i^-1 u_j u_i ∈ R[122X.[133X
+  
+  [33X[0;0Y* If [22Xg_i[122X has finite order [22Xd_i[122X, let [22Xb_i=u_i^d_i ∈ R[122X.[133X
+  
+  [33X[0;0YThen[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YR*G = R[u_1,\dots,u_n | ru_i = u_i r^{a_i}, u_j u_i = t_{ij} u_i u_j,
+        u_i^{d_i} = b_i (1 \le i < j \le n) ],[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere the last relation vanishes if [22Xg_i[122X has infinite order.[133X
+  
+  [33X[0;0YTherefore [22XR*G[122X is completely determined by the following data:[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[ R , [ d_i , a_i , b_i ]_{i=1}^n, [ t_{i,j} ]_{1 \le i < j \le n} ].[133X
+        [124X[133X
+  
+  
+  
+  [1X9.9 [33X[0;0YClassical crossed products[133X[101X
+  
+  [33X[0;0YA  [13Xclassical  crossed  product[113X is a crossed product [22XL*_a^t G[122X, where [22XL/K[122X is a
+  finite  Galois extension, [22XG=Gal(L/K)[122X is the Galois group of [22XL/K[122X and [22Xa[122X is the
+  natural  action  of  [22XG[122X  on  [22XL[122X. Then [22Xt[122X is a [22X2[122X-cocycle and the [13Xcrossed product[113X
+  ([14X9.6[114X)  [22XL*_a^t  G[122X is denoted by [22X(L/K,t)[122X. The crossed product [22X(L/K,t)[122X is known
+  to be a central simple [22XK[122X-algebra [Rei03].[133X
+  
+  
+  [1X9.10 [33X[0;0YCyclic Algebras[133X[101X
+  
+  [33X[0;0YA [13Xcyclic algebra[113X is a [13Xclassical crossed product[113X ([14X9.9[114X) [22X(L/K,t)[122X where [22XL/K[122X is a
+  finite cyclic field extension. The cyclic algebras have a very simple form.[133X
+  
+  [33X[0;0YAssume  that  [22XGal(L/K)[122X  is  generated by [22Xg[122X and has order [22Xd[122X. Let [22Xu=u_g[122X be the
+  basis  unit  ([14X9.6[114X)  of  the  crossed product corresponding to [22Xg[122X and take the
+  remaining  basis  units for the crossed product by setting [22Xu_g^i = u^i[122X, ([22Xi =
+  0, 1, dots, d-1[122X). Then [22Xa = u^n ∈ K[122X. The cyclic algebra is usually denoted by
+  [22X(L/K,a)[122X and one has the following description of [22X(L/K,t)[122X[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y(L/K,t) = (L/K,a) = L[u| r u = u r^g, u^d = a ].[133X [124X[133X
+  
+  
+  
+  [1X9.11 [33X[0;0YCyclotomic algebras[133X[101X
+  
+  [33X[0;0YA [13Xcyclotomic algebra[113X over [22XF[122X is a [13Xclassical crossed product[113X ([14X9.9[114X) [22X(F(ξ)/F,t)[122X,
+  where  [22XF[122X is a field, [22Xξ[122X is a root of unity in an extension of [22XF[122X and [22Xt(g,h)[122X is
+  a root of unity for every [22Xg[122X and [22Xh[122X in [22XGal(F(ξ)/F)[122X.[133X
+  
+  [33X[0;0YThe  [13XBrauer-Witt  Theorem[113X  [Yam74]  asserts  that every [13XWedderburn component[113X
+  ([14X9.3[114X)  of  a group algebra is [13XBrauer equivalent[113X ([14X9.5[114X) (over its centre) to a
+  cyclotomic algebra.[133X
+  
+  
+  [1X9.12 [33X[0;0YNumerical description of cyclotomic algebras[133X[101X
+  
+  [33X[0;0YLet  [22XA=(F(ξ)/F,t)[122X be a [13Xcyclotomic algebra[113X ([14X9.11[114X), where [22Xξ=ξ_k[122X is a [22Xk[122X-th root
+  of  unity.  Then the Galois group [22XG=Gal(F(ξ)/F)[122X is abelian and therefore one
+  can  obtain  a simplified form for the description of cyclotomic algebras as
+  for any [13Xabelian crossed product[113X ([14X9.8[114X).[133X
+  
+  [33X[0;0YThen  the [22Xn × n[122X matrix algebra [22XM_n(A)[122X can be described numerically in one of
+  the following forms:[133X
+  
+  [33X[0;0Y*  If  [22XF(ξ)=F[122X,  (i.e.  [22XG=1[122X)  then  [22XA=M_n(F)[122X and thus the only data needed to
+  describe [22XA[122X are the matrix size [22Xn[122X and the field [22XF[122X:[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[n,F][133X [124X[133X
+  
+  
+  [33X[0;0Y*  If [22XG[122X is cyclic (but not trivial) of order [22Xd[122X then [22XA[122X is a cyclic cyclotomic
+  algebra[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YA = F(\xi) [ u | \xi u = u \xi^\alpha, u^d = \xi^\beta ][133X [124X[133X
+  
+  
+  [33X[0;0Yand so [22XM_n(A)[122X can be described with the following data[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[n,F,k,[d,\alpha,\beta]],[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere the integers [22Xk[122X, [22Xd[122X, [22Xα[122X and [22Xβ[122X satisfy the following conditions:[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\alpha^d \equiv 1 \; mod \; k, \quad \beta(\alpha-1) \equiv 0 \; mod
+        \; k.[133X [124X[133X
+  
+  
+  [33X[0;0Y*  If  [22XG[122X  is  abelian  but  not cyclic then [22XM_n(A)[122X can be described with the
+  following data (see [14X9.8[114X):[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y[n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i < j \le
+        m} ][133X [124X[133X
+  
+  
+  [33X[0;0Yrepresenting the [22Xn × n[122X matrix ring over the following algebra:[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YA = F(\xi)[ u_1, \ldots, u_m \mid \xi u_i = u_i \xi^{\alpha_i}, \quad
+        u_i^{d_i}=\xi^{\beta_i}, \quad u_s u_r = \xi^{\gamma_{rs}} u_r u_s,
+        \quad i = 1, \ldots, m, \quad 0 \le r < s \le m ][133X [124X[133X
+  
+  
+  [33X[0;0Ywhere[133X
+  
+  [33X[0;0Y* [22X{g_1,...,g_m}[122X is an independent set of generators of [22XG[122X,[133X
+  
+  [33X[0;0Y* [22Xd_i[122X is the order of [22Xg_i[122X,[133X
+  
+  [33X[0;0Y* [22Xα_i[122X, [22Xβ_i[122X and [22Xγ_rs[122X are integers, and[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\xi^{g_i} = \xi^{\alpha_i}.[133X [124X[133X
+  
+  
+  
+  [1X9.13 [33X[0;0YIdempotents given by subgroups[133X[101X
+  
+  [33X[0;0YLet  [22XG[122X  be a finite group and [22XF[122X a field whose characteristic does not divide
+  the order of [22XG[122X. If [22XH[122X is a subgroup of [22XG[122X then set[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\widehat{H} = |H|^{-1}\sum_{x \in H} x.[133X [124X[133X
+  
+  
+  [33X[0;0YThe  element  [22XwidehatH[122X  is an idempotent of [22XFG[122X which is central in [22XFG[122X if and
+  only if [22XH[122X is normal in [22XG[122X.[133X
+  
+  [33X[0;0YIf [22XH[122X is a proper normal subgroup of a subgroup [22XK[122X of [22XG[122X then set[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\varepsilon(K,H) = \prod_{L} (\widehat{N}-\widehat{L})[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere [22XL[122X runs on the normal subgroups of [22XK[122X which are minimal among the normal
+  subgroups  of  [22XK[122X  containing [22XN[122X properly. By convention, [22Xε(K,K)=widehatK[122X. The
+  element [22Xε(K,H)[122X is an idempotent of [22XFG[122X.[133X
+  
+  [33X[0;0YIf  [22XH[122X  and  [22XK[122X  are  subgroups  of [22XG[122X such that [22XH[122X is normal in [22XK[122X then [22Xe(G,K,H)[122X
+  denotes  the  sum  of  all  different  [22XG[122X-conjugates  of  [22Xε(K,H)[122X. The element
+  [22Xe(G,K,H)[122X  is  central  in  [22XFG[122X. In general it is not an idempotent but if the
+  different  conjugates  of  [22Xε(K,H)[122X  are orthogonal then [22Xe(G,K,H)[122X is a central
+  idempotent of [22XFG[122X.[133X
+  
+  [33X[0;0YIf  [22X(K,H)[122X  is  a  Shoda  Pair  ([14X9.14[114X) of [22XG[122X then there is a non-zero rational
+  number [22Xa[122X such that [22Xae(G,K,H))[122X is a [13Xprimitive central idempotent[113X ([14X9.4[114X) of the
+  rational group algebra [22Xℚ G[122X. If [22X(K,H)[122X is a strong Shoda pair ([14X9.15[114X) of [22XG[122X then
+  [22Xe(G,K,H)[122X is a primitive central idempotent of [22Xℚ G[122X.[133X
+  
+  [33X[0;0YAssume now that [22XF[122X is a finite field of order [22Xq[122X, [22X(K,H)[122X is a strong Shoda pair
+  of  [22XG[122X and [22XC[122X is a cyclotomic class of [22XK/H[122X containing a generator of [22XK/H[122X. Then
+  [22Xe_C(G,K,H)[122X is a primitive central idempotent of [22XFG[122X (see [14X9.17[114X).[133X
+  
+  
+  [1X9.14 [33X[0;0YShoda pairs of a group[133X[101X
+  
+  [33X[0;0YLet [22XG[122X be a finite group. A [13XShoda pair[113X of [22XG[122X is a pair [22X(K,H)[122X of subgroups of [22XG[122X
+  for  which  there  is  a linear character [22Xχ[122X of [22XK[122X with kernel [22XH[122X such that the
+  induced character [22Xχ^G[122X in [22XG[122X is irreducible. By [Sho33] or [ORS04], [22X(K,H)[122X is a
+  Shoda pair if and only if the following conditions hold:[133X
+  
+  [33X[0;0Y* [22XH[122X is normal in [22XK[122X,[133X
+  
+  [33X[0;0Y* [22XK/H[122X is cyclic and[133X
+  
+  [33X[0;0Y* if [22XK^g ∩ K ⊆ H[122X for some [22Xg ∈ G[122X then [22Xg ∈ K[122X.[133X
+  
+  [33X[0;0YIf  [22X(K,H)[122X is a Shoda pair and [22Xχ[122X is a linear character of [22XKle G[122X with kernel [22XH[122X
+  then  the  [13Xprimitive  central  idempotent[113X  ([14X9.4[114X)  of  [22Xℚ  G[122X associated to the
+  irreducible character [22Xχ^G[122X is of the form [22Xe=e_ℚ (χ^G)=a e(G,K,H)[122X for some [22Xa ∈
+  ℚ[122X  [ORS04]  (see  [14X9.13[114X  for the definition of [22Xe(G,K,H)[122X). In that case we say
+  that  [22Xe[122X is the [13Xprimitive central idempotent realized by the Shoda pair[113X [22X(K,H)[122X
+  of [22XG[122X.[133X
+  
+  [33X[0;0YA group [22XG[122X is monomial, that is every irreducible character of [22XG[122X is monomial,
+  if  and only if every primitive central idempotent of [22Xℚ G[122X is realizable by a
+  Shoda pair of [22XG[122X.[133X
+  
+  
+  [1X9.15 [33X[0;0YStrong Shoda pairs of a group[133X[101X
+  
+  [33X[0;0YA  [13Xstrong  Shoda  pair[113X of [22XG[122X is a pair [22X(K,H)[122X of subgroups of [22XG[122X satisfying the
+  following conditions:[133X
+  
+  [33X[0;0Y* [22XH[122X is normal in [22XK[122X and [22XK[122X is normal in the normalizer [22XN[122X of [22XH[122X in [22XG[122X,[133X
+  
+  [33X[0;0Y* [22XK/H[122X is cyclic and a maximal abelian subgroup of [22XN/H[122X and[133X
+  
+  [33X[0;0Y*  for  every  [22Xg  ∈ G∖ N[122X , [22Xε(K,H)ε(K,H)^g=0[122X. (See [14X9.13[114X for the definition of
+  [22Xε(K,H)[122X).[133X
+  
+  [33X[0;0YLet  [22X(K,H)[122X be a strong Shoda pair of [22XG[122X. Then [22X(K,H)[122X is a Shoda pair ([14X9.14[114X) of
+  [22XG[122X.  Thus  there  is  a  linear  character [22Xθ[122X of [22XK[122X with kernel [22XH[122X such that the
+  induced  character  [22Xχ=χ(G,K,H)=θ^G[122X  is  irreducible.  Moreover the [13Xprimitive
+  central  idempotent[113X  ([14X9.4[114X) [22Xe_ℚ (χ)[122X of [22Xℚ G[122X realized by [22X(K,H)[122X is [22Xe(G,K,H)[122X, see
+  [ORS04].[133X
+  
+  [33X[0;0YTwo  [13Xstrong  Shoda  pairs[113X ([14X9.15[114X) [22X(K_1,H_1)[122X and [22X(K_2,H_2)[122X of [22XG[122X are said to be
+  [13Xequivalent[113X  if  the  characters  [22Xχ(G,K_1,H_1)[122X  and  [22Xχ(G,K_2,H_2)[122X  are Galois
+  conjugate, or equivalently if [22Xe(G,K_1,H_1)=e(G,K_2,H_2)[122X.[133X
+  
+  [33X[0;0YThe  advantage  of  strong  Shoda  pairs  over  Shoda  pairs is that one can
+  describe  the  simple  algebra  [22XFGe_F(χ)[122X as a matrix algebra of a [13Xcyclotomic
+  algebra[113X ([14X9.11[114X, see [ORS04] for [22XF=ℚ[122X and [Olt07] for the general case).[133X
+  
+  [33X[0;0YMore precisely, [22Xℚ Ge(G,K,H)[122X is isomorphic to [22XM_n(ℚ (ξ)*_a^t N/K)[122X, where [22Xξ[122X is
+  a  [22X[K:H][122X-th  root  of  unity,  [22XN[122X  is the normalizer of [22XH[122X in [22XG[122X, [22Xn=[G:N][122X and [22Xℚ
+  (ξ)*_a^t  N/K[122X  is  a  [13Xcrossed product[113X (see [14X9.6[114X) with action [22Xa[122X and twisting [22Xt[122X
+  given as follows:[133X
+  
+  [33X[0;0YLet  [22Xx[122X be a fixed generator of [22XK/H[122X and [22Xφ : N/K → N/H[122X a fixed left inverse of
+  the canonical projection [22XN/H→ N/K[122X. Then[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\xi^{a(r)} = \xi^i, \mbox{ if } x^{\varphi(r)}= x^i[133X [124X[133X
+  
+  
+  [33X[0;0Yand[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Yt(r,s) = \xi^j, \mbox{ if } \varphi(rs)^{-1} \varphi(r)\varphi(s) =
+        x^j,[133X [124X[133X
+  
+  
+  [33X[0;0Yfor  [22Xr,s ∈ N/K[122X and integers [22Xi[122X and [22Xj[122X, see [ORS04]. Notice that the cocycle is
+  the one given by the natural extension[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y1 \rightarrow K/H \rightarrow N/H \rightarrow N/K \rightarrow 1[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere  [22XK/H[122X  is  identified  with  the  multiplicative  group generated by [22Xξ[122X.
+  Furthermore  the  centre  of  the  algebra  is [22Xℚ (χ)[122X, the field of character
+  values over [22Xℚ[122X, and [22XN/K[122X is isomorphic to [22XGal(ℚ (ξ)/ℚ (χ))[122X.[133X
+  
+  [33X[0;0YIf  the rational field is changed to an arbitrary ring [22XF[122X of characteristic [22X0[122X
+  then  the  Wedderburn  component [22XA_F(χ)[122X, where [22Xχ = χ(G,K,H)[122X is isomorphic to
+  [22XF(χ)⊗_ℚ  (χ)A_ℚ  (χ)[122X.  Using  the  description  given  above  of [22XA_ℚ (χ)=ℚ G
+  e(G,K,H)[122X  one  can  easily describe [22XA_F(χ)[122X as [22XM_nd(F(ξ)/F(χ),t')[122X, where [22Xd=[ℚ
+  (ξ):  ℚ(χ)]/[F(ξ):F(χ)][122X  and [22Xt'[122X is the restriction to [22XGal(F(ξ)/F(χ))[122X of [22Xt[122X (a
+  cocycle of [22XN/K = Gal(ℚ (ξ)/ℚ (χ))[122X).[133X
+  
+  
+  [1X9.16 [33X[0;0YStrongly monomial characters and strongly monomial groups[133X[101X
+  
+  [33X[0;0YLet [22XG[122X be a finite group an [22Xχ[122X an irreducible character of [22XG[122X.[133X
+  
+  [33X[0;0YOne  says that [22Xχ[122X is [13Xstrongly monomial[113X if there is a [13Xstrong Shoda pair[113X ([14X9.15[114X)
+  [22X(K,H)[122X of [22XG[122X and a linear character [22Xθ[122X of [22XK[122X of [22XG[122X with kernel [22XH[122X such that [22Xχ=θ^G[122X.[133X
+  
+  [33X[0;0YThe  group  [22XG[122X  is  [13Xstrongly  monomial[113X if every irreducible character of [22XG[122X is
+  strongly monomial.[133X
+  
+  [33X[0;0YStrong  Shoda  pairs where firstly introduced by Olivieri, del Río and Simón
+  who  proved  that  every abelian-by-supersolvable group is strongly monomial
+  [ORS04].  The  algorithm to compute the Wedderburn decomposition of rational
+  group  algebras  for  strongly monomial groups was explained in [OR03]. This
+  method  was  extended  for semisimple finite group algebras by Broche Cristo
+  and del Río in [BR07] (see Section [14X9.17[114X). Finally, Olteanu [Olt07] shows how
+  to  compute  the  [13XWedderburn  decomposition[113X ([14X9.3[114X) of an arbitrary semisimple
+  group  ring  by  making use of not only the strong Shoda pairs of [22XG[122X but also
+  the strong Shoda pairs of the subgroups of [22XG[122X.[133X
+  
+  [33X[0;0Y.[133X
+  
+  
+  [1X9.17 [33X[0;0YCyclotomic Classes and Strong Shoda Pairs[133X[101X
+  
+  [33X[0;0YLet  [22XG[122X  be  a  finite  group and [22XF[122X a finite field of order [22Xq[122X, coprime to the
+  order of [22XG[122X.[133X
+  
+  [33X[0;0YGiven  a positive integer [22Xn[122X, coprime to [22Xq[122X, the [22Xq[122X-[13Xcyclotomic classes[113X modulo [22Xn[122X
+  are the set of residue classes module [22Xn[122X of the form[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\{i,iq,iq^2,iq^3, \dots \}[133X [124X[133X
+  
+  
+  [33X[0;0YThe  [22Xq[122X-cyclotomic  classes  module  [22Xn[122X form a partition of the set of residue
+  classes module [22Xn[122X.[133X
+  
+  [33X[0;0YA  [13Xgenerating  cyclotomic class [113X module [22Xn[122X is a cyclotomic class containing a
+  generator of the additive group of residue classes module [22Xn[122X, or equivalently
+  formed by integers coprime to [22Xn[122X.[133X
+  
+  [33X[0;0YLet  [22X(K,H)[122X  be  a  strong  Shoda  pair  ([14X9.15[114X)  of  [22XG[122X and set [22Xn=[K:H][122X. Fix a
+  primitive  [22Xn[122X-th root of unity [22Xξ[122X in some extension of [22XF[122X and an element [22Xg[122X of [22XK[122X
+  such that [22XgH[122X is a generator of [22XK/H[122X. Let [22XC[122X be a generating [22Xq[122X-cyclotomic class
+  modulo [22Xn[122X. Then set[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\varepsilon_C(K,H) = [K:H]^{-1} \widehat{H} \sum_{i=0}^{n-1}
+        tr(\xi^{-ci})g^i,[133X [124X[133X
+  
+  
+  [33X[0;0Ywhere  [22Xc[122X  is  an arbitrary element of [22XC[122X and [22Xtr[122X is the trace map of the field
+  extension  [22XF(ξ)/F[122X.  Then [22Xε_C(K,H)[122X does not depend on the choice of [22Xc ∈ C[122X and
+  is a [13Xprimitive central idempotent[113X ([14X9.4[114X) of [22XFK[122X.[133X
+  
+  [33X[0;0YFinally,  let  [22Xe_C(G,K,H)[122X  denote  the  sum of the different [22XG[122X-conjugates of
+  [22Xε_C(K,H)[122X.  Then  [22Xe_C(G,K,H)[122X  is  a  [13Xprimitive central idempotent[113X ([14X9.4[114X) of [22XFG[122X
+  [BR07].  We say that [22Xe_C(G,K,H)[122X is the primitive central idempotent realized
+  by the strong Shoda pair [22X(K,H)[122X of the group [22XG[122X and the cyclotomic class [22XC[122X.[133X
+  
+  [33X[0;0YIf  [22XG[122X is [13Xstrongly monomial[113X ([14X9.16[114X) then every primitive central idempotent of
+  [22XFG[122X  is  realizable by some [13Xstrong Shoda pair[113X ([14X9.15[114X) of [22XG[122X and some cyclotomic
+  class  [22XC[122X  [BR07].  As  in  the zero characteristic case, this explain how to
+  compute  the  [13XWedderburn  decomposition[113X  ([14X9.3[114X) of [22XFG[122X for a finite semisimple
+  algebra  of  a  strongly  monomial  group  (see [BR07] for details). For non
+  strongly   monomial   groups   the   algorithm  to  compute  the  Wedderburn
+  decomposition just uses the Brauer characters.[133X
+  
+  [33X[0;0Y.[133X
+  
+  
+  [1X9.18 [33X[0;0YTheory for Local Schur Index and Division Algebra Part Calculations[133X[101X
+  
+  [33X[0;0Y(By Allen Herman, May 2013. Updated October 2014.)[133X
+  
+  [33X[0;0YThe   division   algebra   parts   of  simple  algebras  in  the  Wedderburn
+  Decomposition  of the group algebra of a finite group over an abelian number
+  field  [22XF[122X  correspond  to  elements  of the Schur Subgroup [22XS(F)[122X of the Brauer
+  group  of  [22XF[122X.  Like  all  classes in the Brauer group of an algebraic number
+  field  [22XF[122X,  the  division  algebra part of a representative of a given Brauer
+  class  is  determined up to [22XF[122X-algebra isomorphism by its list of local Hasse
+  invariants  at all primes (i.e. places) of [22XF[122X. The local invariant at a prime
+  [22XP[122X of [22XF[122X is a lowest terms fraction [22Xr/m_P[122X whose denominator is the local Schur
+  index  [22Xm_P[122X  of the simple algebra at the prime [22Xq[122X (see [Rei03]). For division
+  algebras  whose Brauer class lies in the Schur Subgroup of an abelian number
+  field  [22XF[122X,  the  local  indices  at  any  of the primes [22XP[122X lying over the same
+  rational  prime  [22Xp[122X  are  equal  to  the  same  positive integer [22Xm_p[122X, and the
+  numerator   of  the  local  invariants  among  these  primes  are  uniformly
+  distributed among the integers [22Xr[122X coprime to [22Xm_p[122X [BS72].[133X
+  
+  [33X[0;0YThe local Schur index functions in wedderga produce a list of the nontrivial
+  local  indices  of  the  division  algebra part of the simple algebra at all
+  rational  primes.  The Schur index of the simple algebra over [22XF[122X is the least
+  common  multiple [22Xm[122X of these local indices, and the dimension of the division
+  algebra  part  of  the simple algebra over [22XF[122X is [22Xm^2[122X. While not sufficient to
+  identify  these  division  algebras  up to ring isomorphism in general, this
+  list  of  local  indices  does  identify  the  division  algebra  up to ring
+  isomorphism  whenever  there  is no pair of local indices at odd primes that
+  are greater than 2. (This is at least the case for groups of order less than
+  3^2*7*13.) So it gives the information desired in most basic situations, and
+  allows  one  to  distinguish  almost all pairs of simple components of group
+  algebras.[133X
+  
+  [33X[0;0YWedderga's  functions  compute  local  indices  for  generalized  quaternion
+  algebras defined over the rationals and cyclotomic algebras defined over any
+  abelian  number  field.  Special shortcut functions are available for cyclic
+  cyclotomic  algebras.  There are also versions of the functions that compute
+  the  local  and  global  Schur index of a character of a finite group over a
+  given  abelian  number  field. The steps in the general character- theoretic
+  method  involve  1) a Brauer-Witt reduction to a cyclic-by-abelian group, 2)
+  use of the Frobenius-Schur indicator to compute the local index at infinity,
+  3)  computing the [22Xp[122X-local index for an ordinary irreducible character [22Xχ[122X of a
+  [22Xp[122X-solvable  group using the values of an irreducible Brauer character in the
+  same [22Xp[122X-block in cases where the [22Xp[122X-defect group of [22Xχ[122X is cyclic, and 4) use of
+  Riese  and  Schmid's  characterization  of  dyadic Schur groups ([Sch94] and
+  [RS96])  to handle the exceptional cases where step 3) is not available. Our
+  approach  to  rational  quaternion  algebras  is the standard one given, for
+  example,  in  [Pie82].  The  Legendre  symbol  operation  in  GAP is used to
+  determine  the local index at odd primes. The local index of the generalized
+  quaternion  algebra  [22X(a,b)[122X  over [22XQ[122X at the infinite prime will be [22X2[122X if both [22Xa[122X
+  and  [22Xb[122X  are  negative,  and  otherwise  [22X1[122X.  We avoid the complicated case of
+  quadratic    reciprocity    when    working    over    Q    by   using   the
+  Hasse-Brauer-Albert-Noether  Theorem  ([Rei03],  pg. 276): since we know the
+  other  primes of [22XQ[122X where the local index is [22X2[122X, it determines the local index
+  at  the  prime  [22X2[122X.  For generalized quaternion algebras over number fields [22XF[122X
+  other than [22XQ[122X, we have to convert to cyclic or cyclic cyclotomic algebras and
+  use  the  other  local  index functions, or appeal to a number theory system
+  outside of GAP that can solve norm equations.[133X
+  
+  [33X[0;0YThere  are  three shortcut functions used to compute local indices of cyclic
+  cyclotomic  algebras,  which  wedderga's -Info functions produce in the form
+  [22X[r,F,n,[a,b,c]][122X. The local index at infinity is calculated by determining if
+  the  real  completion  of  the  corresponding  algebra  will  produce a real
+  quaternion  algebra.  In order to do this, [22XF[122X must be a real subfield, [22Xn[122X must
+  be  strictly  greater than [22X2[122X, and [22XE(n)^c[122X (which has to be a root of unity in
+  [22XF[122X)  must  be [22X-1[122X. These facts can be checked directly, so this is faster than
+  calculating  the  character  table  of the group and checking the value of a
+  Frobenius-Schur  indicator.  The  shortcut to calculate the local index of a
+  cyclic  cyclotomic algebra at an odd prime makes direct use of the following
+  lemma  of  Janusz:  If  [22XE_p/F_p[122X is a Galois extension of [22Xp[122X-local fields with
+  ramification index [22Xe[122X, and [22Xz[122X is a root of unity with order prime to [22Xp[122X, then [22Xz[122X
+  is  a norm in [22XE_p/F_p[122X if and only if it is the [22Xe[122X-th power of a root of unity
+  in  [22XF[122X.  ([Jan75],  pg. 535). It follows that in order to calculate the local
+  index  at  [22Xp[122X  of  a  cyclic  cyclotomic  algebra  [22X[r,F,n,[a,b,c]][122X,  we first
+  determine  the splitting degree, residue degree, and ramification index [22Xe[122X of
+  the  extension  [22XF(ζ_n)/F[122X  at  [22Xp[122X.  Comparing  the  behaviour  of  the  Galois
+  automorphism  [22Xσ_b[122X to the behaviour of the Frobenius automorphism at [22Xp[122X allows
+  us  to determine the order of the largest root of unity [22Xz[122X with order coprime
+  to [22Xp[122X in the [22Xp[122X-completion [22XF_p[122X. The local index [22Xm_p[122X is then the least power of
+  [22XE(n)^c[122X that lies in the group generated by [22Xz^e[122X.[133X
+  
+  [33X[0;0YCalculation  of  the  local  index at the prime [22X2[122X makes use of the following
+  consequence   of   ([Jan75],   Theorem   5):  A  cyclic  cyclotomic  algebra
+  [22X[r,F_2,n,[a,b,c]][122X  over  a  [22X2[122X-local  field  [22XF_2[122X  that  is  a  subfield  of a
+  cyclotomic  extension  of  the rational [22X2[122X-local field [22XQ_2[122X has Schur index at
+  most [22X2[122X. It has Schur index [22X2[122X if and only if [22X4[122X divides [22Xn[122X, [22XF_2(ζ_4)[122X is totally
+  ramified  of  degree  2, the Galois automorphism [22Xσ_b[122X of [22XF_2(ζ_n)/F_2[122X inverts
+  all  [22X2[122X-power  roots  of unity in [22XF_2(ζ_n)[122X, the order of [22XE(n)^c[122X is 2 times an
+  odd   number,  and  [22X(F_2:Q_2)[122X  is  odd.  The  same  approach  to  cyclotomic
+  reciprocity  makes  it  possible  to  check  all  of these conditions in the
+  [22X2[122X-local situation.[133X
+  
+  [33X[0;0YThe  wedderga  function  that  computes  the  [22Xp[122X-local  index  of an ordinary
+  irreducible character [22Xχ[122X of a finite non-nilpotent cyclic-by- abelian group [22XG[122X
+  is  based  directly on a theorem of Benard [Ben76] that applies whenever the
+  [22Xp[122X-defect  group of [22Xχ[122X is cyclic. We have to restrict our application of it to
+  groups whose orders are small because the [5XGAP[105X records for irreducible Brauer
+  characters  are only available in these cases. In order to use this approach
+  effectively,  we  developed a function that computes the defect group of the
+  block  containing  a  given  ordinary irreducible character [22Xχ[122X. This function
+  makes  use  of  the Min half of Brauer's Min-Max theorem (see Theorem 4.4 of
+  [Nav98]),  and  thus  is  able  to  find  the defect group directly from the
+  ordinary  character table. It is thus available for nonsolvable groups, even
+  in  cases  where  [5XGAP[105X's  Brauer  character records are not available. We are
+  indebted to Michael Geline and Friederich Ladisch for discussions concerning
+  the  calculation  of  defect  groups in [5XGAP[105X. The current algorithm we use is
+  based on an approach suggested by Ladisch.[133X
+  
+  
+  [1X9.19  [33X[0;0YObtaining Algebras with structure constants as terms of the Wedderburn[101X
+  [1Xdecomposition[133X[101X
+  
+  [33X[0;0YSome  users may find it desirable to have an alternative description for the
+  components  of the Wedderburn decomposition of a group ring as algebras with
+  structure constants, because the operations for algebras in [5XGAP[105X are designed
+  for  algebras  with  structure constants. We have provided such an algorithm
+  that   converts  the  output  of  [2XWedderburnDecompositionInfo[102X  ([14X2.1-2[114X)  into
+  algebras  with  structure  constants. Matrix rings over fields are converted
+  directly.  For  components that are cyclotomic algebras, it calculates their
+  defining  group and defining character using those [5XWedderga[105X operations, then
+  uses               [2XIrreducibleRepresentationsDixon[102X               ([14XReference:
+  IrreducibleRepresentationsDixon[114X)  to  obtain matrix generators of an algebra
+  isomorphic  to  the  simple  component corresponding to the character over a
+  suitable  field.  An  algebra  with  structure  constants version of this is
+  finally    obtained    by    applying    [2XIsomorphismSCAlgebra[102X    ([14XReference:
+  IsomorphismSCAlgebra (w.r.t. a given basis)[114X) to this algebra.[133X
+  
+  
+  [1X9.20 [33X[0;0YA complete set of orthogonal primitive idempotents[133X[101X
+  
+  [33X[0;0YWhen  [22XR[122X  is  a  semisimple ring, then every left ideal [22XL[122X of [22XR[122X is of the form
+  [22XL=Re[122X,  where  [22Xe[122X is an idempotent of [22XR[122X. Therefore, we can use the idempotents
+  to  characterize  the  decompositions of semisimple rings as a direct sum of
+  minimal  left ideals. In particular, let [22XR=⊕_i=1^t L_i[122X be a decomposition of
+  a semisimple ring as a direct sum of minimal left ideals. Then, there exists
+  a  family  [22X{e_1,dots,e_t}[122X  of  elements  of  [22XR[122X  such that: each [22Xe_i≠ 0[122X is an
+  idempotent  element, if [22Xi≠ j[122X, then [22Xe_ie_j=0[122X, [22X1=e_1+⋯+e_t[122X and each [22Xe_i[122X cannot
+  be  written  as  [22Xe_i=e_i'+e_i''[122X,  where [22Xe_i',e_i''[122X are idempotents such that
+  [22Xe_i',e_i''≠  0[122X  and [22Xe_i'e_i''=0[122X, [22X1≤ i≤[122X. Conversely, if there exists a family
+  of  idempotents  [22X{e_1,dots,e_t}[122X satisfying the previous conditions, then the
+  left  ideals  [22XL_i=Re_i[122X  are  minimal  and  [22XR=⊕_i=1^t  L_i[122X.  Such  a  set  of
+  idempotents  is called a [13Xcomplete set of orthogonal primitive idempotents[113X of
+  the ring [22XR[122X. Such a set is not uniquely determined.[133X
+  
+  [33X[0;0YLet  [22XF[122X  be  a  finite  field and [22XG[122X a finite nilpotent group such that [22XF G[122X is
+  semisimple.  Let  [22X(H,K)[122X be a strong Shoda pair of [22XG[122X, [22XC∈mathcalC(H/K)[122X and set
+  [22Xe_C=e_C(G,H,K)[122X,  [22Xε_C=ε_C(H,K)[122X,  [22XH/K=⟨overlinea⟩[122X,  [22XE=E_G(H/K)[122X.  Let [22XE_2/K[122X and
+  [22XH_2/K=⟨overlinea_2⟩[122X  (respectively [22XE_2'/K[122X and [22XH_2'/K=⟨overlinea_2'}⟩[122X) denote
+  the  2-parts  (respectively  2'-parts)  of  [22XE/K[122X  and  [22XH/K[122X respectively. Then
+  [22X⟨overlinea_2'}⟩[122X has a cyclic complement [22X⟨overlineb_2'}⟩[122X in [22XE_2'/K[122X. Using the
+  description   of  the  primitive  central  idempotents  and  the  Wedderburn
+  components  of  a semisimple finite group algebra [22XF G[122X ([14X9.17[114X), a complete set
+  of  orthogonal  primitive idempotents of [22XF Ge_C[122X is described (see [OG11]) as
+  the  set  of  conjugates  of  [22Xβ_e_C=widetildeb_2'}β_2ε_C[122X  by the elements of
+  [22XT_e_C=T_2'T_2T_E[122X,  where  [22XT_2'={1,a_2',a_2'^2,dots,a_2'^[E_2':H_2']-1}[122X,  [22XT_E[122X
+  denotes a right transversal of [22XE[122X in [22XG[122X and [22Xβ_2[122X and [22XT_2[122X are given according to
+  the cases below.[133X
+  
+  [31X1[131X   [33X[0;6YIf  [22XH_2/K[122X  has  a  complement  [22XM_2/K[122X  in  [22XE_2/K[122X then [22Xβ_2=widetildeM_2[122X.
+        Moreover,  if  [22XM_2/K[122X  is  cyclic, then there exists [22Xb_2∈ E_2[122X such that
+        [22XE_2/K[122X is given by the following presentation[133X
+  
+  
+              [33X[1;12Y[24X [33X[0;6Y\langle \overline{a_2},\overline{b_2}\mid
+              \overline{a_2}\hspace{1pt}^{2^n}=\overline{b_2}\hspace{1pt}^{2^k}=1,
+              \overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r
+              \rangle,[133X [124X[133X
+  
+  
+        [33X[0;6Yand  if  [22XM_2/K[122X  is not cyclic, then there exist [22Xb_2,c_2∈ E_2[122X such that
+        [22XE_2/K[122X is given by the following presentation[133X
+  
+  
+              [33X[1;12Y[24X [33X[0;6Y\langle \overline{a_2},\overline{b_2},\overline{c_2}\mid
+              \overline{a_2}\hspace{1pt}^{2^n}=
+              \overline{b_2}\hspace{1pt}^{2^k}=\overline{c_2}\hspace{1pt}^2=1,
+              \overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r,
+              \overline{a_2}\hspace{1pt}^{\overline{c_2}}=\overline{a_2}\hspace{1pt}^{-1},
+              [\overline{b_2},\overline{c_2}]=1 \rangle,[133X [124X[133X
+  
+  
+        [33X[0;6Ywith  [22Xr  ≡  1  mod  4[122X  (or equivalently [22Xoverlinea_2hspace1pt^2^n-2}[122X is
+        central in [22XE_2/K[122X). Then[133X
+  
+        [31X1[131X   [33X[0;12Y[22XT_2={1,a_2,a_2^2,dots,               a_2^2^k-1}[122X,              if
+              [22Xoverlinea_2hspace1pt^2^n-2}[122X  is  central  in [22XE_2/K[122X (unless [22Xn≤ 1[122X)
+              and [22XM_2/K[122X is cyclic; and[133X
+  
+        [31X2[131X   [33X[0;12Y[22XT_2={1,a_2,a_2^2,dots,a_2^d/2-1,a_2^2^n-2},a_2^2^n-2+1,dots,a_2^2^n-2+d/2-1}[122X,
+              where [22Xd=[E_2:H_2][122X, otherwise.[133X
+  
+  [31X2[131X   [33X[0;6YIf  [22XH_2/K[122X  has  no  complement in [22XE_2/K[122X, then there exist [22Xb_2,c_2∈ E_2[122X
+        such that [22XE_2/K[122X is given by the following presentation[133X
+  
+  
+              [33X[1;12Y[24X [33X[0;6Y\langle \overline{a_2},\overline{b_2},\overline{c_2}\mid
+              \overline{a_2}\hspace{1pt}^{2^n}=
+              \overline{b_2}\hspace{1pt}^{2^k}=1,
+              \overline{c_2}\hspace{1pt}^2=\overline{a_2}\hspace{1pt}^{2^{n-1}},
+              \overline{a_2}\hspace{1pt}^{\overline{b_2}}=\overline{a_2}\hspace{1pt}^r,\\
+              \overline{a_2}\hspace{1pt}^{\overline{c_2}}=\overline{a_2}\hspace{1pt}^{-1},[\overline{b_2},\overline{c_2}]=1
+              \rangle,[133X [124X[133X
+  
+  
+        [33X[0;6Ywith       [22Xr≡       1       mod       4[122X.       In      this      case,
+        [22Xβ_2=widetildeb_2frac1+xa_2^2^n-2}+ya_2^2^n-2}c_22[122X and[133X
+  
+  
+              [33X[1;12Y[24X [33X[0;6YT_2=\{1,a_2,a_2^2,\dots,
+              a_2^{2^k-1},c_2,c_2a_2,c_2a_2^2,\dots,c_2a_2^{2^k-1}\},[133X [124X[133X
+  
+  
+        [33X[0;6Ywith [22Xx,y∈ F[122X, satisfying [22Xx^2+y^2=-1[122X and [22Xy≠ 0[122X.[133X
+  
+  [33X[0;0YWhen  [22XG[122X is not nilpotent, we can still use the following description in some
+  specific cases. Let [22XG[122X be a finite group and [22XF[122X a finite field of order [22Xs[122X such
+  that  [22Xs[122X  is coprime to the order of [22XG[122X. Let [22X(H,K)[122X be a strong Shoda pair of [22XG[122X
+  such that [22Xτ(gH,g'H)=1[122X for all [22Xg,g'∈ E=E_G(H/K)[122X, and let [22XC∈mathcalC(H/K)[122X. Let
+  [22Xε=ε_C(H,K)[122X  and  [22Xe=e_C(G,H,K)[122X  ([14X9.17[114X).  Let  [22Xw[122X be a normal element of [22XF_s^o/
+  F_s^o/[E:H]}[122X  (with  [22Xo[122X the multiplicative order of [22Xs[122X modulo [22X[H:K][122X) and [22XB[122X the
+  normal basis determined by [22Xw[122X. Let [22Xψ[122X be the isomorphism between [22XF E ε[122X and the
+  matrix  algebra [22XM_[E:H]( F_s^o/[E:H]})[122X with respect to the basis [22XB[122X as stated
+  in  Corollary  29.8  in  [Rei03].  Let  [22XP,A∈  M_[E:H](  F_s^o/[E:H]})[122X be the
+  matrices[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0YP= \left( \begin{array}{rrrrrr} 1 & 1 & 1 & \cdots & 1 & 1\\ 1 & -1 &
+        0 & \cdots & 0 & 0\\ 1 & 0 & -1 & \cdots & 0 & 0\\ \vdots & \vdots &
+        \vdots & \ddots & \vdots & \vdots\\ 1 & 0 & 0 & \cdots & -1 & 0\\ 1 &
+        0 & 0 & \cdots & 0 & -1\\ \end{array} \right) \quad {\rm and } \quad
+        A= \left( \begin{array}{ccccc} 0 & 0 & \cdots & 0 & 1\\ 1 & 0 & \cdots
+        & 0 & 0\\ 0 & 1 & \cdots & 0 & 0\\ \vdots & \vdots & \ddots & \vdots &
+        \vdots\\ 0 & 0 & \cdots & 0 & 0\\ 0 & 0 & \cdots & 1 & 0\\ \end{array}
+        \right).[133X [124X[133X
+  
+  
+  [33X[0;0YThen[133X
+  
+  
+        [33X[1;6Y[24X[33X[0;0Y\{x\widehat{T_1}\varepsilon x^{-1} \mid x\in T_2\langle{x_e}\rangle\}[133X
+        [124X[133X
+  
+  
+  [33X[0;0Yis  a  complete  set  of  orthogonal  primitive  idempotents  of [22XF G e[122X where
+  [22Xx_e=ψ^-1(PAP^-1)[122X,  [22XT_1[122X  is  a  transversal  of  [22XH[122X  in  [22XE[122X  and [22XT_2[122X is a right
+  transversal  of  [22XE[122X  in  [22XG[122X  ([OGnt]).  By  [22XwidehatT_1[122X  we  denote the element
+  [22Xfrac1|T_1|∑_t∈ T_1t[122X in [22XF G[122X.[133X
+  
+  
+  [1X9.21 [33X[0;0YApplications to coding theory[133X[101X
+  
+  [33X[0;0YA [13Xlinear code[113X of length [22Xn[122X and rank [22Xk[122X is a linear subspace [22XC[122X with dimension [22Xk[122X
+  of  the  vector  space  [22XF_q^n[122X.  The  standard  basis  of [22XF_q^n[122X is denoted by
+  [22XE={e_1,...,e_n}[122X.  The  vectors in [22XC[122X are called codewords, the size of a code
+  is  the  number  of  codewords and equals [22Xq^k[122X. The distance of a code is the
+  minimum  distance between distinct codewords, i.e. the number of elements in
+  which they differ.[133X
+  
+  [33X[0;0YFor  any  group  [22XG[122X,  we  denote  by  [22XF_q  G[122X  the  group  algebra over [22XG[122X with
+  coefficients  in  [22XF_q[122X.  If  [22XG[122X is a group of order [22Xn[122X and [22XC⊆ F_q^n[122X is a linear
+  code,  then  we say that [22XC[122X is a left [22XG[122X-code (respectively a [22XG[122X-code) if there
+  is  a bijection [22Xϕ:E→ G[122X such that the linear extension of [22Xϕ[122X to an isomorphism
+  [22Xϕ:  F_q^n→  F_q G[122X maps [22XC[122X to a left ideal (respectively a two-sided ideal) of
+  [22XF_q  G[122X. A left [13Xgroup code[113X (respectively a group code) is a linear code which
+  is a left [22XG[122X-code (respectively a [22XG[122X-code) for some group [22XG[122X.[133X
+  
+  [33X[0;0YSince  left ideals in [22XF_q G[122X are generated by idempotents, there is a one-one
+  relation  between  (sums of) primitive idempotents of [22XF_q G[122X and left [22XG[122X-codes
+  over [22XF_q[122X.[133X
+  
+  [33X[0;0YNote that each element [22Xc[122X in [22XF_q G[122X is of the form [22Xc=∑_i=1^n f_i g_i[122X, where we
+  fix  an ordering [22X{g_1,g_2,...,g_n }[122X of the group elements of [22XG[122X and [22Xf_i∈ F_q[122X.
+  If one looks at [22Xc[122X as a codeword, one writes [22X[f_1 f_2 ... f_n][122X.[133X
+  

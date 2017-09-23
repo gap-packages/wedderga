@@ -1,0 +1,130 @@
+  
+  
+  [1XIndex[101X
+  
+  [2X\^[102X  6.2-2
+  Abelian Crossed Product  9.8
+  [10XActionForCrossedProduct[110X  5.1-1
+  [2XAverageSum[102X  6.2-3
+  Basis of units (for crossed product)  9.6
+  (Brauer) equivalence  9.5
+  central simple algebra  9.5
+  [2XCentralizer[102X  6.2-1
+  Classical Crossed Product  9.9
+  [2XCodeByLeftIdeal[102X  8.1-2
+  [2XCodeWordByGroupRingElement[102X  8.1-1
+  CoefficientsAndMagmaElements  5.2-1
+  Complete set of orthogonal primitive idempotents  9.20
+  [2XConvertCyclicAlgToCyclicCyclotomicAlg[102X  7.6-2
+  [2XConvertCyclicCyclotomicAlgToCyclicAlg[102X  7.6-3
+  [2XConvertQuadraticAlgToQuaternionAlg[102X  7.6-2
+  [2XConvertQuaternionAlgToQuadraticAlg[102X  7.6-3
+  Crossed Product  9.6
+  [2XCrossedProduct[102X  5.1-1
+  Cyclic Algebra  9.10
+  Cyclic Crossed Product  9.7
+  Cyclotomic algebra  9.11
+  cyclotomic class  9.17
+  [2XCyclotomicAlgebraAsSCAlgebra[102X  7.1-4
+  [2XCyclotomicAlgebraWithDivAlgPart[102X  7.1-2
+  [2XCyclotomicClasses[102X  6.3-1
+  [2XDecomposeCyclotomicAlgebra[102X  7.6-1
+  [2XDefectGroupOfConjugacyClassAtP[102X  7.4-5
+  [2XDefectGroupsOfPBlock[102X  7.4-5
+  [2XDefectOfCharacterAtP[102X  7.4-5
+  [2XDefiningCharacterOfCyclotomicAlgebra[102X  7.4-3
+  [2XDefiningGroupOfCyclotomicAlgebra[102X  7.4-3
+  [22Xe(G,K,H)[122X  9.13
+  [22Xe_C(G,K,H)[122X  9.13
+  [2XElementOfCrossedProduct[102X  5.2-1
+  [10XEmbedding[110X  5.2-1
+  equivalence (Brauer)  9.5
+  equivalent strong Shoda pairs  9.15
+  field of character values  9.4
+  [2XFinFieldExt[102X  7.4-6
+  generating cyclotomic class  9.17
+  [2XGlobalSchurIndexFromLocalIndices[102X  7.5-1
+  group algebra  9.1
+  group code  9.21
+  group ring  9.1
+  [2XInfoWedderga[102X  6.4-1
+  [2XIsCompleteSetOfOrthogonalIdempotents[102X  4.2-1
+  [10XIsCrossedProduct[110X  5.1-1
+  [10XIsCrossedProductObjDefaultRep[110X  5.2-1
+  [2XIsCyclotomicClass[102X  6.3-2
+  [2XIsDyadicSchurGroup[102X  7.4-7
+  [10XIsElementOfCrossedProduct[110X  5.2-1
+  [2XIsRationalQuaternionAlgebraADivisionRing[102X  7.5-2
+  [2XIsSemisimpleANFGroupAlgebra[102X  6.1-3
+  [2XIsSemisimpleFiniteGroupAlgebra[102X  6.1-4
+  [2XIsSemisimpleRationalGroupAlgebra[102X  6.1-2
+  [2XIsSemisimpleZeroCharacteristicGroupAlgebra[102X  6.1-1
+  [2XIsShodaPair[102X  3.2-2
+  [2XIsStronglyMonomial[102X  3.2-3
+  [2XIsStrongShodaPair[102X  3.2-1
+  [2XIsTwistingTrivial[102X  6.1-5
+  [10XLeftActingDomain[110X  5.1-1
+  linear code  9.21
+  [2XLocalIndexAtInfty[102X  7.3-2
+  [2XLocalIndexAtInftyByCharacter[102X  7.4-4
+  [2XLocalIndexAtOddP[102X  7.3-2
+  [2XLocalIndexAtOddPByCharacter[102X  7.4-7
+  [2XLocalIndexAtPByBrauerCharacter[102X  7.4-6
+  [2XLocalIndexAtTwo[102X  7.3-2
+  [2XLocalIndexAtTwoByCharacter[102X  7.4-7
+  [2XLocalIndicesOfCyclicCyclotomicAlgebra[102X  7.3-1
+  [2XLocalIndicesOfCyclotomicAlgebra[102X  7.4-1
+  [2XLocalIndicesOfRationalQuaternionAlgebra[102X  7.5-1
+  [2XLocalIndicesOfRationalSymbolAlgebra[102X  7.5-1
+  [2XLocalIndicesOfTensorProductOfQuadraticAlgs[102X  7.5-1
+  [2XOnPoints[102X  6.2-2
+  [2XPDashPartOfN[102X  7.2-1
+  [2XPPartOfN[102X  7.2-1
+  primitive central idempotent  9.4
+  primitive central idempotent realized by a Shoda pair  9.14
+  primitive central idempotent realized by a strong Shoda pair and a cyclotomic class  9.17
+  [2XPrimitiveCentralIdempotentsByCharacterTable[102X  4.1-1
+  [2XPrimitiveCentralIdempotentsBySP[102X  4.3-2
+  [2XPrimitiveCentralIdempotentsByStrongSP[102X  4.3-1
+  [2XPrimitiveIdempotentsNilpotent[102X  4.4-1
+  [2XPrimitiveIdempotentsTrivialTwisting[102X  4.4-2
+  [2XPSplitSubextension[102X  7.2-2
+  Quaternion algebra  5.1-1
+  [2XRamificationIndexAtP[102X  7.2-3
+  [2XResidueDegreeAtP[102X  7.2-3
+  [2XRootOfDimensionOfCyclotomicAlgebra[102X  7.4-2
+  [2XSchurIndex[102X  7.1-3
+  [2XSchurIndexByCharacter[102X  7.1-3
+  semisimple ring  9.2
+  Shoda pair  9.14
+  [2XSimpleAlgebraByCharacter[102X  2.2-1
+  [2XSimpleAlgebraByCharacterInfo[102X  2.2-2
+  [2XSimpleAlgebraByStrongSP[102X (for rational group algebra)  2.2-3
+  [2XSimpleAlgebraByStrongSP[102X (for semisimple finite group algebra)  2.2-3
+  [2XSimpleAlgebraByStrongSPInfo[102X (for rational group algebra)  2.2-4
+  [2XSimpleAlgebraByStrongSPInfo[102X (for semisimple finite group algebra)  2.2-4
+  [2XSimpleAlgebraByStrongSPInfoNC[102X (for rational group algebra)  2.2-4
+  [2XSimpleAlgebraByStrongSPInfoNC[102X (for semisimple finite group algebra)  2.2-4
+  [2XSimpleAlgebraByStrongSPNC[102X (for rational group algebra)  2.2-3
+  [2XSimpleAlgebraByStrongSPNC[102X (for semisimple finite group algebra)  2.2-3
+  [2XSimpleComponentByCharacterAsSCAlgebra[102X  7.1-4
+  [2XSimpleComponentOfGroupRingByCharacter[102X  7.4-3
+  strongly monomial character  9.16
+  strongly monomial group  9.16
+  [2XSplittingDegreeAtP[102X  7.2-3
+  strong Shoda pair  9.15
+  [2XStrongShodaPairs[102X  3.1-1
+  [10XTwistingForCrossedProduct[110X  5.1-1
+  [10XUnderlyingMagma[110X  5.1-1
+  Wedderburn components  9.3
+  Wedderburn decomposition  9.3
+  [2XWedderburnDecomposition[102X  2.1-1
+  [2XWedderburnDecompositionAsSCAlgebras[102X  7.1-4
+  [2XWedderburnDecompositionInfo[102X  2.1-2
+  [2XWedderburnDecompositionWithDivAlgParts[102X  7.1-1
+  [5XWedderga[105X package  .-1
+  [10XZeroCoefficient[110X  5.2-1
+  [22Xε(K,H)[122X  9.13
+  
+  
+  -------------------------------------------------------

@@ -1,0 +1,65 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XBen76[120X] [16XBenard, M.[116X, [17XSchur indices and cyclic defect groups[117X, [18XAnn. of Math. (2) [118X,
+  [19X103[119X, 2 (1976), 283–304.
+  
+  [[20XBS72[120X]  [16XBenard, M. and Schacher, M.[116X, [17XThe Schur subgroup. II.[117X, [18XJ. Algebra[118X, [19X22[119X, 1
+  (1972), 378–385.
+  
+  [[20XBR07[120X]  [16XBroche,  O.  and  del Río, Á.[116X, [17XWedderburn decomposition of finite group
+  algebras[117X, [18XFinite Fields Appl.[118X, [19X13[119X, 1 (2007), 71–79.
+  
+  [[20XJan75[120X]  [16XJanusz,  G.[116X, [17XGenerators for the Schur group of local and global number
+  fields[117X, [18XPacific J. Math.[118X, [19X56[119X, 2 (1975), 525–546.
+  
+  [[20XNav98[120X]   [16XNavarro,   G.[116X,   [17XCharacters  and  Blocks  of  Finite  Groups[117X,  London
+  Mathematical  Society,  Lecture  Note  Series, [19X250[119X, Cambridge, UK (1998), x+287
+  pages.
+  
+  [[20XOR03[120X]  [16XOlivieri,  A.  and  del  Río, Á.[116X, [17XAn algorithm to compute the primitive
+  central  idempotents  and  the  Wedderburn  decomposition  of  a rational group
+  algebra[117X, [18XJ. Symbolic Comput.[118X, [19X35[119X, 6 (2003), 673–687.
+  
+  [[20XORS04[120X]  [16XOlivieri, A., del Río, Á. and Simón, J. J.[116X, [17XOn monomial characters and
+  central  idempotents  of  rational group algebras[117X, [18XComm. Algebra[118X, [19X32[119X, 4 (2004),
+  1531–1550.
+  
+  [[20XOlt07[120X]  [16XOlteanu,  G.[116X, [17XComputing the Wedderburn decomposition of group algebras
+  by   the   Brauer-Witt   theorem[117X,   [18XMath.  Comp.[118X,  [19X76[119X,  258  (2007),  1073–1087
+  (electronic).
+  
+  [[20XOG11[120X]  [16XOlteanu,  G.  and  Van  Gelder,  I.[116X, [17XFinite group algebras of nilpotent
+  groups:  A  complete  set  of  orthogonal  primitive idempotents[117X, [18XFinite Fields
+  Appl.[118X, [19X17[119X, 2 (2011), 157–165.
+  
+  [[20XOGnt[120X] [16XOlteanu, G. and Van Gelder, I.[116X, [17XConstruction of minimal non-abelian left
+  group codes[117X (preprint).
+  
+  [[20XPas89[120X]  [16XPassman,  D.  S.[116X, [17XInfinite crossed products[117X, Academic Press Inc., Pure
+  and Applied Mathematics, [19X135[119X, Boston, MA (1989), xii+468 pages.
+  
+  [[20XPie82[120X] [16XPierce, R. S.[116X, [17XAssociative Algebras[117X, Springer Verlag, Graduate Texts in
+  Mathematics, [19X88[119X, New York - Berlin (1982), xii+436 pages.
+  
+  [[20XRei03[120X]  [16XReiner,  I.[116X,  [17XMaximal  orders[117X,  The  Clarendon Press Oxford University
+  Press,  London  Mathematical Society Monographs. New Series, [19X28[119X, Oxford (2003),
+  xiv+395  pages, ((Corrected reprint of the 1975 original, With a foreword by M.
+  J. Taylor)).
+  
+  [[20XRS96[120X]  [16XRiese,  U.  and  Schmid,  P.[116X,  [17XSchur  indices and Schur groups, II [117X, [18XJ.
+  Algebra[118X, [19X182[119X, 1 (1996), 183–200.
+  
+  [[20XSch94[120X]  [16XSchmid,  P.[116X,  [17XSchur  indices  and  Schur  groups [117X, [18XJ. Algebra[118X, [19X169[119X, 15
+  (1994), 226–247.
+  
+  [[20XSho33[120X]  [16XShoda,  K.[116X,  [17XÜber die monomialen Darstellungen einer endlichen Gruppe[117X,
+  [18XProc. Phys.-Math. Soc. Japan[118X, [19XIII[119X, 15 (1933), 249–257.
+  
+  [[20XYam74[120X]  [16XYamada,  T.[116X,  [17XThe Schur subgroup of the Brauer group[117X, Springer-Verlag,
+  Berlin (1974), v+159 pages, ((Lecture Notes in Mathematics, Vol. 397)).
+  
+  
+  
+  [32X
