@@ -5,7 +5,7 @@
 ###########################################################################
 
 ExtractMyManualExamples:=function( pkgname, main, files )
-local path, tst, i, s, name, output, ch, a;
+local path, tst, i, s, basename, name, output, ch, a;
 path:=Directory( 
         Concatenation(PackageInfo(pkgname)[1].InstallationPath, "/doc") );
 Print("Extracting manual examples for ", pkgname, " package ...\n" );
@@ -19,18 +19,20 @@ for i in [ 1 .. Length(tst) ] do
       # works for <100 chapters
       s:=Concatenation("0",s); 
     fi;
+    basename:=Concatenation( LowercaseString(pkgname), s, ".tst" );
     name := Filename( 
               Directory( 
                 Concatenation( PackageInfo(pkgname)[1].InstallationPath, 
-                               "/tst" ) ), 
-                Concatenation( LowercaseString(pkgname), s, ".tst" ) );
+                               "/tst" ) ), basename );
     output := OutputTextFile( name, false ); # to empty the file first
     SetPrintFormattingStatus( output, false ); # to avoid line breaks
     ch := tst[i];
     AppendTo(output, "# ", pkgname, ", chapter ",i,"\n");
+    AppendTo(output, "gap> START_TEST( \"", basename, "\");\n\n");
     for a in ch do
       AppendTo(output, "# ",a[2], a[1]);
     od;
+    AppendTo(output, "gap> STOP_TEST(\"", basename, "\", 1 );\n");
     Print("extracted ", Length(ch), " examples \n");
   else
     Print("no examples \n" );    
