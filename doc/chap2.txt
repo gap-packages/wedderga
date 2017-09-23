@@ -41,20 +41,23 @@
   D_16[122X are respectively[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Y\mathbb F_5 D_{16} = 4 \mathbb F_5 \oplus M_2( \mathbb F_5 ) \oplus
-        M_2( \mathbb F_{25} ),[133X [124X[133X
+  [24X[33X[0;6Y\mathbb  F_5  D_{16}  =  4 \mathbb F_5 \oplus M_2( \mathbb F_5 ) \oplus M_2(
+  \mathbb F_{25} ),[133X
+  
+  [124X
   
   
+  [24X[33X[0;6Yℚ D_{16} = 4 ℚ \oplus M_2( ℚ ) \oplus (K(\xi_8)/K,t),[133X
   
-        [33X[1;6Y[24X[33X[0;0Yℚ D_{16} = 4 ℚ \oplus M_2( ℚ ) \oplus (K(\xi_8)/K,t),[133X [124X[133X
-  
+  [124X
   
   [33X[0;0Yand[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Yℚ (\xi_5) D_{16} = 4 ℚ (\xi_5) \oplus M_2( ℚ (\xi_5) ) \oplus
-        (F(\xi_{40})/F,t),[133X [124X[133X
+  [24X[33X[0;6Yℚ   (\xi_5)   D_{16}   =  4  ℚ  (\xi_5)  \oplus  M_2(  ℚ  (\xi_5)  )  \oplus
+  (F(\xi_{40})/F,t),[133X
   
+  [124X
   
   [33X[0;0Ywhere  [22X(K(ξ_8)/K,t)[122X  is a [13Xcyclotomic algebra[113X ([14X9.11[114X) with the centre [22XK=NF(8,[
   1,  7  ])=  ℚ (sqrt2)[122X, [22X(F(ξ_40)/F,t) = ℚ (sqrt2,ξ_5)[122X is a cyclotomic algebra
@@ -125,8 +128,9 @@
   [33X[0;0YThe lists of length 2 are of the form[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Y[n,F],[133X [124X[133X
+  [24X[33X[0;6Y[n,F],[133X
   
+  [124X
   
   [33X[0;0Ywhere  [22Xn[122X  is  a  positive  integer  and [22XF[122X is a field. It represents the [22Xn× n[122X
   matrix algebra [22XM_n(F)[122X over the field [22XF[122X.[133X
@@ -134,33 +138,36 @@
   [33X[0;0YThe lists of length 4 are of the form[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Y[n,F,k,[d,\alpha,\beta]],[133X [124X[133X
+  [24X[33X[0;6Y[n,F,k,[d,\alpha,\beta]],[133X
   
+  [124X
   
   [33X[0;0Ywhere  [22XF[122X  is a field and [22Xn,k,d,α,β[122X are non-negative integers, satisfying the
   conditions  mentioned in Section [14X9.12[114X. It represents the [22Xn× n[122X matrix algebra
   [22XM_n(A)[122X over the cyclic algebra[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YA=F(\xi_k)[u | \xi_k^u = \xi_k^{\alpha}, u^d = \xi_k^{\beta}],[133X [124X[133X
+  [24X[33X[0;6YA=F(\xi_k)[u | \xi_k^u = \xi_k^{\alpha}, u^d = \xi_k^{\beta}],[133X
   
+  [124X
   
   [33X[0;0Ywhere [22Xξ_k[122X is a primitive [22Xk[122X-th root of unity.[133X
   
   [33X[0;0YThe lists of length 5 are of the form[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Y[n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i < j \le
-        m} ],[133X [124X[133X
+  [24X[33X[0;6Y[n,F,k,[d_i,\alpha_i,\beta_i]_{i=1}^m, [\gamma_{i,j}]_{1\le i < j \le m} ],[133X
   
+  [124X
   
   [33X[0;0Ywhere  [22XF[122X  is a field and [22Xn,k,d_i,α_i,β_i,γ_i,j[122X are non-negative integers. It
   represents the [22Xn× n[122X matrix algebra [22XM_n(A)[122X over the [13Xcyclotomic algebra[113X ([14X9.11[114X)[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YA = F(\xi_k)[g_1,\ldots,g_m \mid \xi_k^{g_i} = \xi_k^{\alpha_i},
-        g_i^{d_i}=\xi_k^{\beta_i}, g_jg_i=\xi_k^{\gamma_{ij}} g_i g_j],[133X [124X[133X
+  [24X[33X[0;6YA   =   F(\xi_k)[g_1,\ldots,g_m   \mid   \xi_k^{g_i}   =   \xi_k^{\alpha_i},
+  g_i^{d_i}=\xi_k^{\beta_i}, g_jg_i=\xi_k^{\gamma_{ij}} g_i g_j],[133X
   
+  [124X
   
   [33X[0;0Ywhere [22Xξ_k[122X is a primitive [22Xk[122X-th root of unity (see [14X9.12[114X).[133X
   
@@ -180,13 +187,15 @@
   16 and [22Xξ_5[122X is a primitive [22X5[122X-th root of unity.[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Yℚ D_{16} = 4 ℚ \oplus M_2( ℚ ) \oplus M_2( ℚ (\sqrt{2})).[133X [124X[133X
+  [24X[33X[0;6Yℚ D_{16} = 4 ℚ \oplus M_2( ℚ ) \oplus M_2( ℚ (\sqrt{2})).[133X
+  
+  [124X
   
   
+  [24X[33X[0;6Yℚ  (\xi_5)  D_{16}  =  4  ℚ  (\xi_5)  \oplus  M_2(  ℚ (\xi_5)) \oplus M_2( ℚ
+  (\xi_5,\sqrt{2})).[133X
   
-        [33X[1;6Y[24X[33X[0;0Yℚ (\xi_5) D_{16} = 4 ℚ (\xi_5) \oplus M_2( ℚ (\xi_5)) \oplus M_2( ℚ
-        (\xi_5,\sqrt{2})).[133X [124X[133X
-  
+  [124X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -218,12 +227,14 @@
   [33X[0;0YThe output of [2XWedderburnDecomposition[102X ([14X2.1-1[114X) shows that[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Yℚ Q_{16} = 4 ℚ \oplus M_2( ℚ ) \oplus A,[133X [124X[133X
+  [24X[33X[0;6Yℚ Q_{16} = 4 ℚ \oplus M_2( ℚ ) \oplus A,[133X
+  
+  [124X
   
   
+  [24X[33X[0;6Yℚ S_{4} = 2 ℚ \oplus 2 M_3( ℚ ) \oplus B,[133X
   
-        [33X[1;6Y[24X[33X[0;0Yℚ S_{4} = 2 ℚ \oplus 2 M_3( ℚ ) \oplus B,[133X [124X[133X
-  
+  [124X
   
   [33X[0;0Ywhere [22XA[122X and [22XB[122X are [13Xcrossed products[113X ([14X9.6[114X) with coefficients in the cyclotomic
   fields  [22Xℚ  (ξ_8)[122X  and [22Xℚ (ξ_3)[122X respectively. This output can be used as a [5XGAP[105X
@@ -234,12 +245,14 @@
   that[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YA = ℚ (\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1],[133X [124X[133X
+  [24X[33X[0;6YA = ℚ (\xi|\xi^8=1)[g | \xi^g = \xi^7 = \xi^{-1}, g^2 = \xi^4 = -1],[133X
+  
+  [124X
   
   
+  [24X[33X[0;6YB = ℚ (\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1].[133X
   
-        [33X[1;6Y[24X[33X[0;0YB = ℚ (\xi|\xi^3=1)[g | \xi^g = \xi^2 = \xi^{-1}, g^2 = 1].[133X [124X[133X
-  
+  [124X
   
   [33X[0;0YBoth [22XA[122X and [22XB[122X are quaternion algebras over its centre which is [22Xℚ (ξ+ξ^-1)[122X and
   the former is equal to [22Xℚ (sqrt2)[122X and [22Xℚ[122X respectively.[133X
@@ -248,8 +261,9 @@
   [22XB=M_2( ℚ )[122X. However the relation [22Xg^2=-1[122X in [22XA[122X shows that[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YA=ℚ (\sqrt{2})[i,g|i^2=g^2=-1,ig=-gi][133X [124X[133X
+  [24X[33X[0;6YA=ℚ (\sqrt{2})[i,g|i^2=g^2=-1,ig=-gi][133X
   
+  [124X
   
   [33X[0;0Yand  so [22XA[122X is a division algebra with centre [22Xℚ (sqrt2)[122X, which is a subalgebra
   of  the algebra of Hamiltonian quaternions. This could be deduced also using
@@ -304,30 +318,34 @@
   [22X[240,89][122X:[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Yℚ G = 2 ℚ \oplus 2 M_4( ℚ ) \oplus 2 M_5( ℚ ) \oplus M_6( ℚ ) \oplus A
-        \oplus B \oplus C[133X [124X[133X
+  [24X[33X[0;6Yℚ  G  =  2  ℚ  \oplus  2 M_4( ℚ ) \oplus 2 M_5( ℚ ) \oplus M_6( ℚ ) \oplus A
+  \oplus B \oplus C[133X
   
+  [124X
   
   [33X[0;0Ywhere[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YA = ℚ (\xi_{10})[u|\xi_{10}^u = \xi_{10}^3, u^4 = -1],[133X [124X[133X
+  [24X[33X[0;6YA = ℚ (\xi_{10})[u|\xi_{10}^u = \xi_{10}^3, u^4 = -1],[133X
   
+  [124X
   
   [33X[0;0Y[22XB[122X is an algebra of degree [22X(4*2 )/2 = 4[122X which is [13XBrauer equivalent[113X ([14X9.5[114X) to[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YB_1 = ℚ (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^{13}, u^4 = \xi_{60}^5,
-        \xi_{60}^v = \xi_{60}^{11}, v^2 = 1, vu=uv],[133X [124X[133X
+  [24X[33X[0;6YB_1  =  ℚ  (\xi_{60})[u,v|\xi_{60}^u  =  \xi_{60}^{13},  u^4  =  \xi_{60}^5,
+  \xi_{60}^v = \xi_{60}^{11}, v^2 = 1, vu=uv],[133X
   
+  [124X
   
   [33X[0;0Yand [22XC[122X is an algebra of degree [22X(4*2)*3/4 = 6[122X which is [13XBrauer equivalent[113X ([14X9.5[114X)
   to[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YC_1 = ℚ (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^7, u^4 = \xi_{60}^5,
-        \xi_{60}^v = \xi_{60}^{31}, v^2 = 1, vu=uv].[133X [124X[133X
+  [24X[33X[0;6YC_1 = ℚ (\xi_{60})[u,v|\xi_{60}^u = \xi_{60}^7, u^4 = \xi_{60}^5, \xi_{60}^v
+  = \xi_{60}^{31}, v^2 = 1, vu=uv].[133X
   
+  [124X
   
   [33X[0;0YThe precise description of [22XB[122X and [22XC[122X requires the usage of "ad hoc" arguments.[133X
   

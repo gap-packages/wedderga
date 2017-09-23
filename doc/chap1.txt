@@ -90,7 +90,7 @@
   centre)  to  a  cyclotomic  algebra  ([Yam74]. In this case the algorithm is
   based  in  a  computational oriented proof of the Brauer-Witt Theorem due to
   Olteanu  [Olt07]  which  uses  previous  work by Olivieri, del Río and Simón
-  [ORS04] for rational group algebras of [13Xstrongly monomial groups[113X ([14X9.16[114X).[133X
+  [OdRS04] for rational group algebras of [13Xstrongly monomial groups[113X ([14X9.16[114X).[133X
   
   [33X[0;0YThe Wedderburn components of [22XFG[122X are also matrix algebras over division rings
   which  are  finite  extensions  of  the  field [22XF[122X. If [22XF[122X is finite then by the

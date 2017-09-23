@@ -5,9 +5,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<script type="text/javascript"
-  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 <title>GAP (Wedderga) - Chapter 5: Crossed products and their elements</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
@@ -18,28 +15,28 @@
 <body class="chap5"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chap6_mj.html">6</a>  <a href="chap7_mj.html">7</a>  <a href="chap8_mj.html">8</a>  <a href="chap9_mj.html">9</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chap7.html">7</a>  <a href="chap8.html">8</a>  <a href="chap9.html">9</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
-<div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6_mj.html">[Next Chapter]</a>&nbsp;  </div>
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6.html">[Next Chapter]</a>&nbsp;  </div>
 
-<p id="mathjaxlink" class="pcenter"><a href="chap5.html">[MathJax off]</a></p>
+<p id="mathjaxlink" class="pcenter"><a href="chap5_mj.html">[MathJax on]</a></p>
 <p><a id="X812A5A097EADEB5E" name="X812A5A097EADEB5E"></a></p>
-<div class="ChapSects"><a href="chap5_mj.html#X812A5A097EADEB5E">5 <span class="Heading">Crossed products and their elements</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5_mj.html#X79122C7F877430A7">5.1 <span class="Heading">Construction of crossed products</span></a>
+<div class="ChapSects"><a href="chap5.html#X812A5A097EADEB5E">5 <span class="Heading">Crossed products and their elements</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5.html#X79122C7F877430A7">5.1 <span class="Heading">Construction of crossed products</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5_mj.html#X797F31EF7B51A4DF">5.1-1 CrossedProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X797F31EF7B51A4DF">5.1-1 CrossedProduct</a></span>
 </div></div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5_mj.html#X8560A2F37B608A9F">5.2 <span class="Heading">Crossed product elements and their properties</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5.html#X8560A2F37B608A9F">5.2 <span class="Heading">Crossed product elements and their properties</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5_mj.html#X7D2313AA82F1D5CC">5.2-1 ElementOfCrossedProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7D2313AA82F1D5CC">5.2-1 ElementOfCrossedProduct</a></span>
 </div></div>
 </div>
 
 <h3>5 <span class="Heading">Crossed products and their elements</span></h3>
 
-<p>The package <strong class="pkg">Wedderga</strong> provides functions to construct crossed products over a group with coefficients in an associative ring with identity, and with the multiplication determined by a given action and twisting (see <a href="chap9_mj.html#X7FB21779832CE1CB"><span class="RefLink">9.6</span></a> for definitions). This can be done using the function <code class="func">CrossedProduct</code> (<a href="chap5_mj.html#X797F31EF7B51A4DF"><span class="RefLink">5.1-1</span></a>).</p>
+<p>The package <strong class="pkg">Wedderga</strong> provides functions to construct crossed products over a group with coefficients in an associative ring with identity, and with the multiplication determined by a given action and twisting (see <a href="chap9.html#X7FB21779832CE1CB"><span class="RefLink">9.6</span></a> for definitions). This can be done using the function <code class="func">CrossedProduct</code> (<a href="chap5.html#X797F31EF7B51A4DF"><span class="RefLink">5.1-1</span></a>).</p>
 
 <p>Note that this function does not check the associativity conditions, so in fact it is the NC-version of itself, and its output will be always assumed to be associative. For all crossed products that appear in <strong class="pkg">Wedderga</strong> algorithms the associativity follows from theoretical arguments, so the usage of the NC-method in the package is safe. If the user will try to construct a crossed product with his own action and twisting, he/she should check the associativity conditions himself/herself to make sure that the result is correct.</p>
 
@@ -60,7 +57,7 @@
 
 <p>* a group <var class="Arg">G</var>,</p>
 
-<p>* a function <var class="Arg">act(RG,g)</var> of two arguments: the crossed product <var class="Arg">RG</var> and an element <var class="Arg">g</var> in <span class="SimpleMath">\(G\)</span>. It must return a mapping from <var class="Arg">R</var> to <var class="Arg">R</var> which can be applied via the "<code class="code">\^</code>" operation, and</p>
+<p>* a function <var class="Arg">act(RG,g)</var> of two arguments: the crossed product <var class="Arg">RG</var> and an element <var class="Arg">g</var> in <span class="SimpleMath">G</span>. It must return a mapping from <var class="Arg">R</var> to <var class="Arg">R</var> which can be applied via the "<code class="code">\^</code>" operation, and</p>
 
 <p>* a function <var class="Arg">twist(RG,g,h)</var> of three arguments: the crossed product <var class="Arg">RG</var> and a pair of elements of <var class="Arg">G</var>. It must return an invertible element of <var class="Arg">R</var>.</p>
 
@@ -86,7 +83,7 @@ twist := function( RG , g, h )
 end;
 </pre></div>
 
-<p>Let <span class="SimpleMath">\(n\)</span> be a positive integer and <span class="SimpleMath">\(\xi_n\)</span> an <span class="SimpleMath">\(n\)</span>-th complex primitive root of unity. The natural action of the group of units of <span class="SimpleMath">\(ℤ_n\)</span>, the ring of integers modulo <span class="SimpleMath">\(n\)</span>, on <span class="SimpleMath">\(ℚ (\xi_n)\)</span> can be defined as follows:</p>
+<p>Let <span class="SimpleMath">n</span> be a positive integer and <span class="SimpleMath">ξ_n</span> an <span class="SimpleMath">n</span>-th complex primitive root of unity. The natural action of the group of units of <span class="SimpleMath">ℤ_n</span>, the ring of integers modulo <span class="SimpleMath">n</span>, on <span class="SimpleMath">ℚ (ξ_n)</span> can be defined as follows:</p>
 
 
 <div class="example"><pre> 
@@ -95,7 +92,7 @@ act := function(RG,a)
 end;
 </pre></div>
 
-<p>In the following example one constructs the Hamiltonian quaternion algebra over the rationals as a crossed product of the group of units of the cyclic group of order 2 over <span class="SimpleMath">\(ℚ (i)=GaussianRationals\)</span>. One realizes the cyclic group of order 2 as the group of units of <span class="SimpleMath">\(ℤ / 4 ℤ\)</span> and one uses the natural isomorphism <span class="SimpleMath">\(ℤ / 4 ℤ \rightarrow Gal( ℚ (i)/ ℚ )\)</span> to describe the action.</p>
+<p>In the following example one constructs the Hamiltonian quaternion algebra over the rationals as a crossed product of the group of units of the cyclic group of order 2 over <span class="SimpleMath">ℚ (i)=GaussianRationals</span>. One realizes the cyclic group of order 2 as the group of units of <span class="SimpleMath">ℤ / 4 ℤ</span> and one uses the natural isomorphism <span class="SimpleMath">ℤ / 4 ℤ → Gal( ℚ (i)/ ℚ )</span> to describe the action.</p>
 
 
 <div class="example"><pre>
@@ -133,9 +130,9 @@ function( RG, g, h ) ... end
 
 <p>One can construct the following generalized quaternion algebra with the same action and a different twisting</p>
 
-<p class="center">\[
+<p class="pcenter">
 ℚ (i,j|i^2=-1,j^2=-3,ji=-ij)
-\]</p>
+</p>
 
 
 <div class="example"><pre>
@@ -249,7 +246,7 @@ function( RG, g, h ) ... end
 
 </pre></div>
 
-<p>Some more examples of crossed products arise from the <em>Wedderburn decomposition</em> (<a href="chap9_mj.html#X84BB4A6081EAE905"><span class="RefLink">9.3</span></a>) of group algebras.</p>
+<p>Some more examples of crossed products arise from the <em>Wedderburn decomposition</em> (<a href="chap9.html#X84BB4A6081EAE905"><span class="RefLink">9.3</span></a>) of group algebras.</p>
 
 
 <div class="example"><pre>
@@ -418,7 +415,7 @@ function( RG, g, h ) ... end
 <h5>5.2-1 ElementOfCrossedProduct</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ElementOfCrossedProduct</code>( <var class="Arg">Fam</var>, <var class="Arg">zerocoeff</var>, <var class="Arg">coeffs</var>, <var class="Arg">elts</var> )</td><td class="tdright">( property )</td></tr></table></div>
-<p>Returns the element <span class="SimpleMath">\(m_1*c_1 + ... + m_n*c_n\)</span> of a crossed product, where <var class="Arg">elts</var> <span class="SimpleMath">\( = [ m_1, m_2, ..., m_n ]\)</span> is a list of magma elements, <var class="Arg">coeffs</var> <span class="SimpleMath">\( = [ c_1, c_2, ..., c_n ]\)</span> is a list of coefficients. The output belongs to the crossed product whose elements lie in the family <var class="Arg">Fam</var>. The second argument <var class="Arg">zerocoeff</var> must be the zero element of the coefficient ring containing coefficients <span class="SimpleMath">\(c_i\)</span>, and will be stored in the attribute <code class="code">ZeroCoefficient</code> of the crossed product element.</p>
+<p>Returns the element <span class="SimpleMath">m_1*c_1 + ... + m_n*c_n</span> of a crossed product, where <var class="Arg">elts</var> <span class="SimpleMath">= [ m_1, m_2, ..., m_n ]</span> is a list of magma elements, <var class="Arg">coeffs</var> <span class="SimpleMath">= [ c_1, c_2, ..., c_n ]</span> is a list of coefficients. The output belongs to the crossed product whose elements lie in the family <var class="Arg">Fam</var>. The second argument <var class="Arg">zerocoeff</var> must be the zero element of the coefficient ring containing coefficients <span class="SimpleMath">c_i</span>, and will be stored in the attribute <code class="code">ZeroCoefficient</code> of the crossed product element.</p>
 
 <p>The output will be in the category <code class="code">IsElementOfCrossedProduct</code>, which is a subcategory of <code class="code">IsRingElementWithInverse</code>. It will have the presentation <code class="code">IsCrossedProductObjDefaultRep</code>.</p>
 
@@ -462,10 +459,10 @@ true
 </pre></div>
 
 
-<div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6_mj.html">[Next Chapter]</a>&nbsp;  </div>
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chap6_mj.html">6</a>  <a href="chap7_mj.html">7</a>  <a href="chap8_mj.html">8</a>  <a href="chap9_mj.html">9</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chap7.html">7</a>  <a href="chap8.html">8</a>  <a href="chap9.html">9</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
 <p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>

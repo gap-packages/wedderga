@@ -111,8 +111,9 @@
   action and a different twisting[133X
   
   
-        [33X[1;6Y[24X[33X[0;0Yℚ (i,j|i^2=-1,j^2=-3,ji=-ij)[133X [124X[133X
+  [24X[33X[0;6Yℚ (i,j|i^2=-1,j^2=-3,ji=-ij)[133X
   
+  [124X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
