@@ -22,7 +22,7 @@ cyclotomic extension of the rationals).
 
 Other functions of &Wedderga; compute  the primitive  central idempotents of 
 semisimple  group  algebras  and  a  complete  set  of  orthogonal  primitive 
-idempotents.
+idempotents, and calculate Schur indices of simple algebras.
 <P/>
 
 The package also provides functions to construct crossed products over

@@ -1,8 +1,4 @@
-                           The Wedderga Package
-                           --------------------
-Osnel Broche Cristo, Allen Herman, Alexander Konovalov, Aurora Olivieri,
-Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.
-
+# GAP package Wedderga
 
 The title "Wedderga" stands for "Wedderburn decomposition of group algebras". 
 This is a  GAP package  to compute  the simple components  of the  Wedderburn 
@@ -17,7 +13,7 @@ field (i.e. a subfield of a finite cyclotomic extension of the rationals).
 
 Other functions  of  Wedderga  compute  the primitive  central idempotents of 
 semisimple  group  algebras  and  a  complete  set  of  orthogonal  primitive 
-idempotents.
+idempotents, and calculate Schur indices of simple algebras.
 
 The package also  provides  functions  to  construct  crossed products over a 
 group  with  coefficients  in  an  associative  ring  with  identity  and the 
@@ -26,35 +22,13 @@ multiplication determined by a given action and twisting.
 Furthermore, the package  provides functions to create code words from a group 
 ring element.
 
-TO DO: ADD THE CONTRIBUTION FROM ALLEN!!!
-
-Installation and system requirements:
-
 Wedderga  does  not  use  external  binaries and,  therefore,  works  without 
-restrictions on  the type  of the operating system. It is designed for GAP4.5 
-and no compatibility with previous releases of GAP4 is guaranteed.
+restrictions on  the type  of the operating system.  It is redistributed with
+GAP, but is not loaded by default. Therefore, to use Wedderga, first you need
+to load it using the following command:
 
-To use the Wedderga online  help it is necessary  to install the GAP4 package 
-GAPDoc by Frank Lübeck and  Max  Neunhöffer,  which is available from the GAP 
-site or from http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/.
-
-Wedderga is distributed in standard formats  (tar.gz, tar.bz2, -win.zip)  and 
-can  be  obtained  from  http://www.cs.st-andrews.ac.uk/~alexk/wedderga/   or 
-http://www.gap-system.org/Packages/wedderga.html  at  the  GAP web site.   To 
-install Wedderga,  unpack its archive  into the pkg subdirectory  of your GAP
-installation.  
-
-Installation *outside the GAP main directory*:  when you don't have access to 
-the directory of your main GAP installation  you can also install the package 
-by unpacking  inside  a directory  "MYGAPDIR/pkg".  Then  to be  able to load
-Wedderga you need to call GAP with the '-l ";MYGAPDIR" option.
-
-Installation using other archive formats is performed in a similar way.
-
-Now you can start GAP and load the Wedderga package using the command:
-
-gap> LoadPackage("wedderga");
+    gap> LoadPackage("wedderga");
 
 
-
-The Wedderga team                                               
+Osnel Broche Cristo, Allen Herman, Alexander Konovalov, Aurora Olivieri,
+Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.
