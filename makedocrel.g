@@ -29,7 +29,7 @@ for i in [ 1 .. Length(tst) ] do
     ch := tst[i];
     AppendTo(output, "# ", pkgname, ", chapter ",i,"\n");
     for a in ch do
-      AppendTo(output, "\n# ",a[2], a[1]);
+      AppendTo(output, "# ",a[2], a[1]);
     od;
     Print("extracted ", Length(ch), " examples \n");
   else
