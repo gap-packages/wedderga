@@ -14,17 +14,26 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.7.3",
-Date           := "18/09/2015",
+Version        := "4.8.0",
+Date           := "23/09/2017",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "4.7.3">
-##  <!ENTITY RELEASEDATE "18 September 2015">
-##  <!ENTITY RELEASEYEAR "2015">
+##  <!ENTITY VERSION "4.8.0">
+##  <!ENTITY RELEASEDATE "23 September 2017">
+##  <!ENTITY RELEASEYEAR "2017">
 ##  <#/GAPDoc>
 
-PackageWWWHome := "http://www.cs.st-andrews.ac.uk/~alexk/wedderga/",
+SourceRepository := rec(
+    Type := "git",
+    URL := Concatenation( "https://github.com/gap-packages/", LowercaseString(~.PackageName) ),
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+PackageWWWHome  := Concatenation( "https://gap-packages.github.io/", LowercaseString(~.PackageName) ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/", LowercaseString(~.PackageName), "-", ~.Version ),
 
-ArchiveURL := Concatenation( ~.PackageWWWHome, "wedderga-", ~.Version ),
 ArchiveFormats := ".tar.gz",
 
 Persons :=
@@ -62,8 +71,8 @@ rec(
        FirstNames    := "Alexander",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "alexk@mcs.st-andrews.ac.uk",
-       WWWHome       := "http://www.cs.st-andrews.ac.uk/~alexk/",
+       Email         := "alexander.konovalov@st-andrews.ac.uk",
+       WWWHome       := "https://alexk.host.cs.st-andrews.ac.uk",
        PostalAddress := Concatenation( [
                         "School of Computer Science\n",
                         "University of St Andrews\n",
@@ -136,15 +145,6 @@ Status := "accepted",
 CommunicatedBy := "Gerhard Hiss (Aachen)",
 AcceptDate := "01/2008",
 
-README_URL := 
-  Concatenation( ~.PackageWWWHome, "README" ),
-PackageInfoURL := 
-  Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-SourceRepository := rec( 
-  Type := "hg", 
-  URL := "https://bitbucket.org/gap-system/wedderga"
-),
-IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),  
 AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class=\"pkgname\">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.",
                   
 PackageDoc := rec(
@@ -158,14 +158,13 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-  GAP                    := ">=4.7",
+  GAP                    := ">=4.8",
   NeededOtherPackages    := [ ["GAPDoc", ">= 1.5.1"] ],
   SuggestedOtherPackages := [ ["laguna", ">= 3.4"], ["GUAVA", ">= 3.12"] ],
   ExternalConditions     := []
 ),
 
 AvailabilityTest := ReturnTrue,
-Autoload         := false,
 TestFile        := "tst/testall.g",
 
 Keywords := ["Wedderburn decomposition", "simple components", 
