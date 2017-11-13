@@ -7,7 +7,9 @@ cd $GAPROOT
 ./autogen.sh
 ./configure
 make -j4 V=1
-make bootstrap-pkg-minimal
+make bootstrap-pkg-full
+
+GAPROOT="$(cd .. && pwd)"
 
 if [[ $ABI == 32 ]]
 then
@@ -17,17 +19,18 @@ fi
 # build some packages...
 cd pkg
 
-# install latest version of io
-git clone https://github.com/gap-packages/io
-cd io
+cd guava-*
+./configure
+make
+cd ..
+
+cd io-*
 ./autogen.sh
 ./configure $CONFIGFLAGS
 make -j4 V=1
 cd ..
 
-# install latest version of profiling
-git clone https://github.com/gap-packages/profiling
-cd profiling
+cd profiling-*
 ./autogen.sh
 # HACK to workaround problems when building with clang
 if [[ $CC = clang ]]
