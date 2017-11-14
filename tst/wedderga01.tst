@@ -1,7 +1,7 @@
 # wedderga, chapter 1
 gap> START_TEST( "wedderga01.tst");
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/intro.xml", 135, 159 ]
+# wedderga/doc/intro.xml:135-159
 
 gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
 <algebra-with-one over Rationals, with 2 generators>

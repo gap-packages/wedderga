@@ -1,7 +1,7 @@
 # wedderga, chapter 8
 gap> START_TEST( "wedderga08.tst");
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/applications.xml", 26, 39 ]
+# wedderga/doc/applications.xml:26-39
 
 gap> G:=DihedralGroup(8);;
 gap> F:=GF(3);;          
@@ -14,7 +14,7 @@ gap> S:=AsSet(G);
 gap> CodeWordByGroupRingElement(F,S,a);
 [ Z(3)^0, Z(3)^0, Z(3)^0, Z(3)^0, Z(3)^0, 0*Z(3), Z(3)^0, Z(3) ]
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/applications.xml", 61, 94 ]
+# wedderga/doc/applications.xml:61-94
 
 gap> G:=DihedralGroup(8);;
 gap> F:=GF(3);;          
