@@ -497,10 +497,16 @@ local
 		Epi := NaturalHomomorphismByNormalSubgroup( N, x[3] ) ;
     NH  := Image(Epi,N);
     KH  := Image(Epi,x[2]);
-    repeat
-        k  := Random(KH);
-    until Order(k) = ok;
-
+	if Size(KH)=1 then
+  		k:=One(KH);
+	else
+  		if IsCyclic(KH) then
+    		k := MinimalGeneratingSet(KH)[1];
+  		else
+    		Error("One of the entries of the fifth input is not a strong Shoda triple!");
+  		fi;
+	fi;
+	
     Add( LC, CocycleByData(exp,Galnum,cf,x[1],x[2],x[3],a,N,Epi,NH,KH,ok,k) );
   od;
   
@@ -654,8 +660,8 @@ local   G,          # Underlying group
 G := UnderlyingMagma( QG );
 N   := Normalizer(G,H);
 ind := Index(G,N);
+ok := Index( K, H );
 if N=K then
-    ok := Index( K, H );
     if ind=1 then # G=N
         Info( InfoWedderga, 2, "N_G(H) = K = G, returning CF(", ok, ")");
         return CF(ok);
@@ -668,10 +674,17 @@ else # if N_G(H) <> K
     Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
     NH  := Image(Epi,N);
     KH  := Image(Epi,K);
-    repeat
-        k  := Random(KH);
-        ok := Order(k);
-    until ok = Size(KH);
+	if Size(KH)=1 then
+  		k:=One(KH);
+	else
+  		if IsCyclic(KH) then
+    		k := MinimalGeneratingSet(KH)[1];
+  		else
+    		Error("Second input modulo the third one must be a cyclic group!");
+  		fi;
+	fi;
+
+	
     Potk:= [ k ];
     for i in [ 2 .. ok ] do
         Potk[i] := Potk[i-1]*k; 
@@ -770,9 +783,16 @@ else # if N_G(H) <> K
     Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
     NH  := Image(Epi,N);
     KH  := Image(Epi,K);
-    repeat
-        k  := Random(KH);
-    until Order(k) = ok;
+	if Size(KH)=1 then
+  		k:=One(KH);
+	else
+  		if IsCyclic(KH) then
+    		k := MinimalGeneratingSet(KH)[1];
+  		else
+    		Error("Second input modulo the third one must be a cyclic group!");
+  		fi;
+	fi;
+	
     Epi2:=NaturalHomomorphismByNormalSubgroup( NH, KH ) ;
     NdK:=Image(Epi2,NH);
     bij := MappingByFunction(ZmodnZ(ok),KH,i->k^Int(i));
@@ -1826,9 +1846,16 @@ epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QNH := Image( epi, N );
 QKH := Image( epi, K );
 # We guarantee that QKH is cyclic so we can randomly obtain its generator
-repeat
-  gq := Random(QKH);
-until Order(gq) = Size(QKH);
+	if Size(QKH)=1 then
+  		gq:=One(QKH);
+	else
+  		if IsCyclic(QKH) then
+    		gq := MinimalGeneratingSet(QKH)[1];
+  		else
+    		Error("Second input modulo the third one must be a cyclic group!");
+  		fi;
+	fi;
+
 C1 := Set( List( C, ii -> gq^ii ) );
 St := Stabilizer( QNH, C1, OnSets );
 E := PreImage( epi, St );
@@ -2078,9 +2105,9 @@ for p in [ 2 .. Size(SSPsG) ] do
     N := Normalizer( G, H );
     epi := NaturalHomomorphismByNormalSubgroup( N, H );
     QKH := Image( epi, K );
-    repeat
-        gq := Random(QKH);
-    until Order(gq) = n;
+	IsCyclic(QKH);
+    gq := MinimalGeneratingSet(QKH)[1];
+
     if n in setind then
         # If n is in setind then we just take Cyclotomic Classes and traces 
         # from lcc and lltrace
