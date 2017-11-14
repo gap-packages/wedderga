@@ -497,6 +497,7 @@ local
 		Epi := NaturalHomomorphismByNormalSubgroup( N, x[3] ) ;
     NH  := Image(Epi,N);
     KH  := Image(Epi,x[2]);
+    Reset(GlobalMersenneTwister);
     repeat
         k  := Random(KH);
     until Order(k) = ok;
@@ -668,6 +669,7 @@ else # if N_G(H) <> K
     Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
     NH  := Image(Epi,N);
     KH  := Image(Epi,K);
+    Reset(GlobalMersenneTwister);
     repeat
         k  := Random(KH);
         ok := Order(k);
@@ -770,6 +772,7 @@ else # if N_G(H) <> K
     Epi := NaturalHomomorphismByNormalSubgroup( N, H ) ;
     NH  := Image(Epi,N);
     KH  := Image(Epi,K);
+    Reset(GlobalMersenneTwister);
     repeat
         k  := Random(KH);
     until Order(k) = ok;
@@ -1826,6 +1829,7 @@ epi := NaturalHomomorphismByNormalSubgroup( N, H );
 QNH := Image( epi, N );
 QKH := Image( epi, K );
 # We guarantee that QKH is cyclic so we can randomly obtain its generator
+Reset(GlobalMersenneTwister);
 repeat
   gq := Random(QKH);
 until Order(gq) = Size(QKH);
@@ -2078,6 +2082,7 @@ for p in [ 2 .. Size(SSPsG) ] do
     N := Normalizer( G, H );
     epi := NaturalHomomorphismByNormalSubgroup( N, H );
     QKH := Image( epi, K );
+    Reset(GlobalMersenneTwister);
     repeat
         gq := Random(QKH);
     until Order(gq) = n;
