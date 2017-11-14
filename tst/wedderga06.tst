@@ -1,7 +1,7 @@
 # wedderga, chapter 6
 gap> START_TEST( "wedderga06.tst");
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 21, 36 ]
+# wedderga/doc/auxiliar.xml:21-36
 
 gap> CG:=GroupRing( GaussianRationals, DihedralGroup(16) );;
 gap> IsSemisimpleZeroCharacteristicGroupAlgebra( CG );
@@ -16,7 +16,7 @@ gap> Qf:=GroupRing(Rationals,f);
 gap> IsSemisimpleZeroCharacteristicGroupAlgebra(Qf);
 false
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 53, 65 ]
+# wedderga/doc/auxiliar.xml:53-65
 
 gap> QG:=GroupRing( Rationals, SymmetricGroup(4) );;       
 gap> IsSemisimpleRationalGroupAlgebra( QG );       
@@ -28,14 +28,14 @@ gap> FG:=GroupRing( GF(2), SymmetricGroup(3) );;
 gap> IsSemisimpleRationalGroupAlgebra( FG );
 false
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 83, 90 ]
+# wedderga/doc/auxiliar.xml:83-90
 
 gap> IsSemisimpleANFGroupAlgebra( GroupRing( NF(5,[4]) , CyclicGroup(28) ) );
 true
 gap> IsSemisimpleANFGroupAlgebra( GroupRing( GF(11) , CyclicGroup(28) ) );
 false
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 108, 120 ]
+# wedderga/doc/auxiliar.xml:108-120
 
 gap> FG:=GroupRing( GF(5), SymmetricGroup(3) );;
 gap> IsSemisimpleFiniteGroupAlgebra( FG );
@@ -47,7 +47,7 @@ gap> QG:=GroupRing( Rationals, SymmetricGroup(4) );;
 gap> IsSemisimpleFiniteGroupAlgebra( QG );
 false
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 135, 145 ]
+# wedderga/doc/auxiliar.xml:135-145
 
 gap> G:=DihedralGroup(8);;
 gap> H:=StrongShodaPairs(G)[5][1];
@@ -57,7 +57,7 @@ Group([ f1*f2 ])
 gap> IsTwistingTrivial(G,H,K);
 true
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 172, 191 ]
+# wedderga/doc/auxiliar.xml:172-191
 
 gap> D16 := DihedralGroup(16);
 <pc group of size 16 with 4 generators>
@@ -76,7 +76,7 @@ Group([ f4 ])
 gap> Centralizer( D16, e);
 Group([ f1, f2 ])
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 223, 236 ]
+# wedderga/doc/auxiliar.xml:223-236
 
 gap> List(D16,x->a^x=a);
 [ true, true, false, false, true, false, false, true, false, false, false,
@@ -89,7 +89,7 @@ false
 gap> ForAll(D16,x->e^x=e);
 true
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 261, 281 ]
+# wedderga/doc/auxiliar.xml:261-281
 
 gap> G:=DihedralGroup(16);;               
 gap> QG:=GroupRing( Rationals, G );;
@@ -109,7 +109,7 @@ false
 gap> IsNormal(G,H);
 false
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 305, 314 ]
+# wedderga/doc/auxiliar.xml:305-314
 
 gap> CyclotomicClasses( 2, 21 );
 [ [ 0 ], [ 1, 2, 4, 8, 16, 11 ], [ 3, 6, 12 ], [ 5, 10, 20, 19, 17, 13 ],
@@ -118,7 +118,7 @@ gap> CyclotomicClasses( 10, 21 );
 [ [ 0 ], [ 1, 10, 16, 13, 4, 19 ], [ 2, 20, 11, 5, 8, 17 ],
   [ 3, 9, 6, 18, 12, 15 ], [ 7 ], [ 14 ] ]
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 334, 343 ]
+# wedderga/doc/auxiliar.xml:334-343
 
 gap> IsCyclotomicClass( 2, 7, [1,2,4] );
 true
@@ -127,7 +127,7 @@ false
 gap> IsCyclotomicClass( 2, 21, [3,6,12] );
 true
 
-# [ "/Users/alexk/GITREPS/gap-stable/pkg/wedderga/doc/auxiliar.xml", 367, 377 ]
+# wedderga/doc/auxiliar.xml:367-377
 
 gap> SetInfoLevel(InfoWedderga, 2);   
 gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
