@@ -392,11 +392,18 @@ gap> SimpleAlgebraByCharacter( GroupRing( Rationals , A5 ) , Irr( A5 ) [3] );
 ( NF(5,[ 1, 4 ])^[ 3, 3 ] )
 gap> SimpleAlgebraByCharacter( GroupRing( GF(7) , A5 ) , Irr( A5 ) [3] );
 ( GF(7^2)^[ 3, 3 ] )
-gap> G:=SmallGroup(128,100);
+gap> G:=SmallGroup(128,100);               
 <pc group of size 128 with 7 generators>
-gap> SimpleAlgebraByCharacter( GroupRing( Rationals , G ) , Irr(G)[19] );
-<crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,[ 1, 3 ]), CF(
-8) ) of a group of size 2>
+gap> chi4:=Filtered(Irr(G),x->Degree(x)=4);;
+gap> List(chi4,x->SimpleAlgebraByCharacter(GroupRing(Rationals,G),x));
+[ ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ), 
+  ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ), 
+  ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ), 
+  ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ) ]
 ]]>
 </Example>
         
