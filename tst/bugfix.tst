@@ -3,6 +3,7 @@
 # Allen Herman provided a bugfix November 21, 2014 that will be included in 
 # Wedderga 4.7.2. 
 
+gap> START_TEST("bugfix.tst" );
 gap> F:=Field([ER(-39)]);
 NF(39,[ 1, 2, 4, 5, 8, 10, 11, 16, 20, 22, 25, 32 ])
 gap> G:=SmallGroup(8,4);        
@@ -89,3 +90,4 @@ gap> Length(pci);
 6
 gap> Length(pci)=Length(RationalClasses(G));
 true
+gap> STOP_TEST("bugfix.tst" );
