@@ -252,7 +252,7 @@ gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[11],3);
 [ 2, "DGnotCyclic" ]
-gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[13],2);
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,First(Irr(G),x->Degree(x)=4),2);
 1
 
 # wedderga/doc/div-alg.xml:720-733
