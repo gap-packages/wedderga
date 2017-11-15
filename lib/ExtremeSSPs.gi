@@ -1,24 +1,26 @@
 ###########################################################################
-## IsMaximalAbelianFactorGroup:=function(N,A,D)
+## IsCyclicMaximalAbelianFactorGroup:=function(N,A,D)
 ##
-## The function IsMaximalAbelianFactorGroup checks whether A/D is maximal 
-## abelian subgroup of N/D, assuming A/D is cyclic and N/D is non-abelian.
+## The function IsCyclicMaximalAbelianFactorGroup checks whether A/D is cyclic 
+## maximal abelian subgroup of N/D.
 ##
-IsMaximalAbelianFactorGroup:= function(N,A,D) 
+IsCyclicMaximalAbelianFactorGroup:= function(N,A,D) 
 
-local  RTND,  # right transversal of D in N
-       RTND0, # elements of RTND which are not in A 
-       RTAD,  # right transversal of D in A
-       RTAD0, # elements of RTAD which are not in D
-       x,     # x in RTND0
-       y;     # y in RTAD0
+local  ND,  # N/D       
+	   AD,   # A/D
+	   epi,  # N--->N/D
+	   a, # Generator of AD
+       x;     # x in ND
 
-RTND:=RightTransversal(N,D);
-RTND0:=Filtered(RTND,x->not x in A);
-RTAD:=RightTransversal(A,D);
-RTAD0:=Filtered(RTAD,x->not x in D);
-for x in RTND0 do
-  if ForAll(RTAD0,y->Comm(x,y) in D) then
+epi := NaturalHomomorphismByNormalSubgroup(N,D);
+ND := Image(epi);
+AD := Image(epi,A);
+if not IsCyclic(AD) then
+	return 	fail;
+fi;
+a := MinimalGeneratingSet(AD)[1];
+for x in Difference(ND,AD) do
+  if Comm(x,a) = One(ND) then
      return false;
   fi;
 od; 
@@ -109,7 +111,7 @@ while SumDim < Size(G) do
     if Size(AbN)>0 then 
      AN:=AbN[1];
       if IsCyclic(AN/N) then 
-        if IsMaximalAbelianFactorGroup(G,AN,N) then
+        if IsCyclicMaximalAbelianFactorGroup(G,AN,N) then
          Add(ESSP,[AN,N]);
          SumDim:=SumDim+Phi(Size(AN)/Size(N))*(Size(G)/Size(AN));
         fi;
@@ -135,7 +137,7 @@ while SumDim < Size(G) do
       while CoreN <> [] do
        D:=CoreN[1];
        NzD:=Normalizer(G,D);
-        if IsMaximalAbelianFactorGroup(NzD,A,D) then 
+        if IsCyclicMaximalAbelianFactorGroup(NzD,A,D) then 
          Add(ESSP,[A,D]); 
          SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(A)/Size(D)))*(Size(NzD)/Size(A)));
         fi;
