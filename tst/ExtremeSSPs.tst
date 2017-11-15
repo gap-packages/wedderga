@@ -27,4 +27,14 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 Warning! The output is not complete list of pcis of the input! 
 Wedderga: Warning!!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+
+# Checking IsNormallyMonomial
+gap> ForAll( [1..NrSmallGroups(32)], n -> IsNormallyMonomial(SmallGroup(32,n) ) );
+true
+
+# Among the groups of odd order up to 2000, the only groups which are not 
+# normally monomial are below (https://doi.org/10.1016/j.jsc.2015.12.002)
+gap> ForAll( [ [375,2], [1029,12], [1053,51], [1125,3], [1125,7], [1215,68],
+> [1875,18], [1875,19] ], id-> not IsNormallyMonomial(SmallGroup(id) ) );
+true
 gap> STOP_TEST( "ExtremeSSPs.tst");
