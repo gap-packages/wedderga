@@ -6,25 +6,24 @@
 ##
 IsCyclicMaximalAbelianFactorGroup:= function(N,A,D) 
 
-local  ND,  # N/D       
+local  ND,   # N/D       
 	   AD,   # A/D
 	   epi,  # N--->N/D
-	   a, # Generator of AD
-       x;     # x in ND
+	   a,    # Generator of AD
+       x;    # x in ND
 
 epi := NaturalHomomorphismByNormalSubgroup(N,D);
 ND := Image(epi);
 AD := Image(epi,A);
 if not IsCyclic(AD) then
-	return 	fail;
+  return false;
 fi;
 a := MinimalGeneratingSet(AD)[1];
 for x in Difference(ND,AD) do
   if Comm(x,a) = One(ND) then
-     return false;
+    return false;
   fi;
 od; 
-
 return true;
 end;
 
@@ -45,112 +44,101 @@ end;
 ExtSSPAndDim:=function(G)
 local ESSP,   # set of representatives of extremely strong Shoda pairs of G
       SumDim, # sum of the Q-dimensions of simple algebras associated elements of ESSP
-      PNS,    # proper normal subgroups of G
-      ND,     # normal subgroups of G in non-increasing order 
+      ND,     # proper normal subgroups of G in non-increasing order 
       DG,     # derived subgroup of G
-      NonAb,  # list of normal subgroups N such that G/N is not abelian
-      N,      # N in ND, a normal subgroup of G   
-      CenQuotientCyclic, #elements N of NonAb such that centre of quotient by N is cyclic
-      AbN,    # Set of those normal subgroups A of G which contain N and A/N is abelian.
-      An,     # An in ND, possible element of AbN  
+      N,      # N in ND, a normal subgroup of G 
       AN,     # a normal subgroup of G, containing N such that AN/N is abelian normal 
-              # subgroup of maximal order in of G/N 
-      PAN,    # List of Pairs [AN,N] so that G such that AN/N is not cyclic
-      PAN0,      # variable list, initially PAN
-      A,      # AN of first pair [AN,N] in the list PAN0
-      NA,     # normal subgroups of A 
-      NAC,    # normal subgroups D of A, such that A/D is cyclic 
-      PA,     # pairs [H,K] in PAN0 with H=A, K a normal subgroup of G
-      P,      # P in PA 
-      CoreN,  # subgroups D from NAC satisfying Core(D)=P[2]=N, a normal subgroup of G
-      D,      # D in  CoreN
-      RTD,    # right transversal of D in G
+              # subgroup of maximal order in G/N 
+      ANs,    # list of AN 
+      NA,     # Normal subgroups of AN
+      NAC,    # normal subgroups D of AN, such that AN/D is cyclic 
+      RNAC,   # representatives of G-conjugates in NAC 
+      RNACS,  # list of RNAC 
+      cont,   # loop controller
+      i,j,    # counters  
+      D,      # an element of NAC  
       NzD;    # Normalizer of D in G     
-          
+        
 # INITIALIZATION 
 
 ESSP:=[[G,G]];
 SumDim:=1;
-PNS:=Difference(NormalSubgroups(G),[G]);
-ND:= ShallowCopy(PNS);
-Sort(ND,function(a,b) return Size(a)>=Size(b); end);
-
-DG:=DerivedSubgroup(G);
-NonAb:=[];
-
-while SumDim < Size(G) do
-# main loop running on the normal subgroups of G
-  for N in ND do
-  # we first collect the extremely strong Shoda pairs of the form (G,N)
-    if IsSubgroup(N,DG) then
-      if IsCyclic(G/N) then
-       Add(ESSP,[G,N]);
-       SumDim:=SumDim+Phi(Size(G)/Size(N));
-      fi;
-    else 
-     Add(NonAb,N);  # normal subgroups N such that G/N is not abelian are collected.
-    fi;
-  od;
-  CenQuotientCyclic:=Filtered(NonAb,x->IsCyclic(Centre(G/x)));
-  # for the remaining normal subgroups, AN (which is clearly not G), is found. If AN/N 
-  # is cyclic, then [AN,N] is an extremely strong Shoda pair, else we put the pair [AN,N]
-  # in another list PAN.
-  PAN:=[];
-  for N in CenQuotientCyclic do;
-   AbN:=[];
-    for An in ND do 
-      if (not An=N and IsSubgroup(An,N)) then
-        if IsAbelian(FactorGroup(An,N)) then
-         Add(AbN,An);
-        fi;
-      fi;
-      if Size(AbN)=1 then 
-        break;
-      fi;
-    od;
-    if Size(AbN)>0 then 
-     AN:=AbN[1];
-      if IsCyclic(AN/N) then 
-        if IsCyclicMaximalAbelianFactorGroup(G,AN,N) then
-         Add(ESSP,[AN,N]);
-         SumDim:=SumDim+Phi(Size(AN)/Size(N))*(Size(G)/Size(AN));
-        fi;
-      else 
-       Add(PAN,[AN,N]);
-      fi;
-    fi;
-  od;
-  # We next work with pairs [AN,N] with AN/N non-cyclic, to find pairs of the form 
-  # [AN,D], with Core(G,D)=N.
-  PAN0:=PAN;
-  while Size(PAN0)>0 do
-   A:=PAN0[1][1]; 
-   NA:=NormalSubgroups(A);
-   NAC:=Filtered(NA,x->IsCyclic(A/x));
-    # all pairs [AN,N] in PAN0 with same AN are put in a list PA.
-   PA:=Filtered(PAN0,x->(x[1]=A));
-    for P in PA do
-     N:=P[2];
-     CoreN:=Filtered(NAC,x->(Core(G,x)=N));
-     # this gives normal subgroups D of A with A/D cyclic and Core(D)=N
-     # we next choose a set of non-conjugate subgroups from CoreN                                     
-      while CoreN <> [] do
-       D:=CoreN[1];
-       NzD:=Normalizer(G,D);
-        if IsCyclicMaximalAbelianFactorGroup(NzD,A,D) then 
-         Add(ESSP,[A,D]); 
-         SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(A)/Size(D)))*(Size(NzD)/Size(A)));
-        fi;
-        RTD:=RightTransversal(G,D);
-        CoreN:=Difference(CoreN,List(RTD,t->D^t));
-      od;    
-    od;
-    PAN0:=Difference(PAN0,PA);
-  od;  
+if SumDim=Size(G) then
   return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
+fi;  
+ND:=Difference(NormalSubgroups(G),[G]);
+Sort(ND,function(a,b) return Size(a)>=Size(b); end);
+DG:=DerivedSubgroup(G);
+ANs:=[];
+RANCs:=[];
+# main loop running on the normal subgroups of G
+for N in ND do
+  # we first check if (G,N) is an extremely strong Shoda pair.
+  if IsSubgroup(N,DG) then
+    if IsCyclic(G/N) then
+      Add(ESSP,[G,N]);
+      SumDim:=SumDim+Phi(Size(G)/Size(N));
+      if SumDim=Size(G) then
+        return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
+      fi;  
+    fi;
+  elif IsCyclic(Centre(G)/N) then 
+    cont:=true;
+    i:=0;
+    while cont do
+      i:=i+1;
+      AN:=ND[i];
+      if Size(AN)=Size(N) then
+        cont:=false;
+      elif IsSubgroup(AN,N) and IsAbelian(AN/N) then
+        cont:=false;
+        if not AN in ANs then
+          Add(ANs,AN);
+          NA:=NormalSubgroups(AN);
+          NAC:=Filtered(NA,x->IsCyclic(AN/x));
+          RNAC:=[];
+          while NAC<>[] do
+            D:=NAC[1]; 
+            NAC:=Difference(NAC,ConjugateSubgroups(G,D));  
+            if not Core(G,D)=N then
+              Add(RNAC,D);
+            else  
+              NzD:=Normalizer(G,D);
+              if IsCyclicMaximalAbelianFactorGroup(NzD,AN,D) then
+                Add(ESSP,[AN,D]); 
+                SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
+                if SumDim=Size(G) then
+                  return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
+                fi;  
+              fi;
+            fi;
+          od;
+          Add(RNACs,RNAC); 
+        else 
+          j:=Position(ANs,AN);
+          RNAC:=RNACs[j];
+          for D in RNAC do
+            if Core(G,D)=N then
+              Remove(RNACs[j],D);
+              NzD:=Normalizer(G,D);
+              if IsCyclicMaximalAbelianFactorGroup(NzD,AN,D) then
+                Add(ESSP,[AN,D]); 
+                SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
+                if SumDim=Size(G) then
+                  return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
+                fi;  
+              fi;
+            fi;
+          od; 
+        fi;   
+      fi;     
+    od;
+  fi;          
 od;
-end;
 
+return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
+
+end;              
 
 
 #############################################################################
