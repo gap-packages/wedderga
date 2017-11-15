@@ -25,3 +25,4 @@ ReadPackage( "wedderga", "lib/BW.gi" );
 
 ReadPackage( "wedderga", "lib/div-alg.gi" );
 
+ReadPackage( "wedderga", "lib/ExtremeSSPs.gi" );
