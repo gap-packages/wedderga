@@ -123,38 +123,18 @@ gap> List(chi4,x->SimpleAlgebraByCharacter(GroupRing(Rationals,G),x));
   ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
     [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ) ]
 
-# wedderga/doc/decomp.xml:438-469
+# wedderga/doc/decomp.xml:438-449
 
-gap> G:=SmallGroup(144,11);
-<pc group of size 144 with 6 generators>
+gap> G:=SmallGroup(128,100);
+<pc group of size 128 with 7 generators>
 gap> QG:=GroupRing(Rationals,G);
-<algebra-with-one over Rationals, with 6 generators>
-gap> chi := Character( G, [ 2, 0, 2*E(4), -2, -2, E(9)^4+E(9)^5, -1, 0, 0, 0, 
-> -2*E(4), -2*E(4), E(36)^25+E(36)^29, -E(4), 2, -E(9)^4-E(9)^5, 1, 
-> -E(9)^4-E(9)^5, 1, -E(9)^2-E(9)^4-E(9)^5-E(9)^7, 0, 0, 0, 2*E(4), 
-> -E(36)^25-E(36)^29, E(4), -E(36)^25-E(36)^29, E(4),
-> -E(36)-E(36)^17-E(36)^25-E(36)^29, E(9)^4+E(9)^5, -1, 
-> E(9)^2+E(9)^4+E(9)^5+E(9)^7, E(9)^2+E(9)^4+E(9)^5+E(9)^7, E(9)^2+E(9)^7, 
-> 0, E(36)^25+E(36)^29, -E(4), E(36)+E(36)^17+E(36)^25+E(36)^29, 
-> E(36)+E(36)^17+E(36)^25+E(36)^29, E(36)+E(36)^17, -E(9)^2-E(9)^4-E(9)^5-E(9)^7,
-> -E(9)^2-E(9)^7, -E(9)^2-E(9)^7, -E(36)-E(36)^17-E(36)^25-E(36)^29, 
-> -E(36)-E(36)^17, -E(36)-E(36)^17, E(9)^2+E(9)^7, E(36)+E(36)^17 ] );;
-gap> SimpleAlgebraByCharacter( QG , chi );
-<crossed product with center NF(36,[ 1, 17 ]) over AsField( NF(36,
-[ 1, 17 ]), CF(36) ) of a group of size 2>
-gap> chi := Character( G, [ 2, 0, -2, -2, 2, E(9)^2+E(9)^7, -1, 0, 0, 0, 2, -2, 
-> -E(9)^2-E(9)^7, 1, -2, -E(9)^2-E(9)^7, 1, E(9)^2+E(9)^7, -1, E(9)^4+E(9)^5, 
-> 0, 0, 0, 2, E(9)^2+E(9)^7, -1, -E(9)^2-E(9)^7, 1, -E(9)^4-E(9)^5,
-> -E(9)^2-E(9)^7, 1, -E(9)^4-E(9)^5, E(9)^4+E(9)^5, -E(9)^2-E(9)^4-E(9)^5-E(9)^7, 
-> 0, E(9)^2+E(9)^7, -1, E(9)^4+E(9)^5, -E(9)^4-E(9)^5, 
-> E(9)^2+E(9)^4+E(9)^5+E(9)^7, -E(9)^4-E(9)^5, E(9)^2+E(9)^4+E(9)^5+E(9)^7,
-> -E(9)^2-E(9)^4-E(9)^5-E(9)^7, E(9)^4+E(9)^5, -E(9)^2-E(9)^4-E(9)^5-E(9)^7,
-> E(9)^2+E(9)^4+E(9)^5+E(9)^7, E(9)^2+E(9)^4+E(9)^5+E(9)^7,
-> -E(9)^2-E(9)^4-E(9)^5-E(9)^7 ] );;
-gap> SimpleAlgebraByCharacterInfo( QG , chi );
-[ 1, NF(9,[ 1, 8 ]), 18, [ 2, 17, 9 ] ]
+<algebra-with-one over Rationals, with 7 generators>
+gap> chi4:=Filtered(Irr(G),x->Degree(x)=4);;
+gap> List(chi4,x->SimpleAlgebraByCharacterInfo(QG,x));
+[ [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], 
+  [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ] ]
 
-# wedderga/doc/decomp.xml:538-552
+# wedderga/doc/decomp.xml:518-532
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
@@ -168,7 +148,7 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, [1,7] );
 gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 
-# wedderga/doc/decomp.xml:612-628
+# wedderga/doc/decomp.xml:592-608
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
