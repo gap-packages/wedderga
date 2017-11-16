@@ -80,7 +80,7 @@ for N in ND do
         return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
       fi;  
     fi;
-  elif IsCyclic(Centre(G/N)) then 
+  elif IsCyclic(Centre(G/N)) then   
     cont:=true;
     i:=0;
     while cont do
@@ -90,7 +90,15 @@ for N in ND do
         cont:=false;
       elif IsSubgroup(AN,N) and IsAbelian(AN/N) then
         cont:=false;
-        if not AN in ANs then
+        if IsCyclic(AN/N) then 
+          if IsMaximalAbelianFactorGroup(G,AN,N) then
+            Add(ESSP,[AN,N]); 
+            SumDim:=SumDim+Phi(Size(AN)/Size(N))*(Size(G)/Size(AN));
+            if SumDim=Size(G) then
+              return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
+            fi;    
+          fi;  
+        elif not AN in ANs then
           Add(ANs,AN);
           NA:=NormalSubgroups(AN);
           NAC:=Filtered(NA,x->IsCyclic(AN/x));
