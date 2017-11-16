@@ -3,6 +3,8 @@
 ##
 ## The function IsCyclicMaximalAbelianFactorGroup checks whether A/D is cyclic 
 ## maximal abelian subgroup of N/D.
+## 
+## D should be normal in N.
 ##
 IsCyclicMaximalAbelianFactorGroup:= function(N,A,D) 
 
@@ -12,7 +14,9 @@ local  ND,   # N/D
 	   a,    # Generator of AD
        x;    # x in ND
 
-epi := NaturalHomomorphismByNormalSubgroup(N,D);
+# we use NC-version because N is a normaliser of D
+# so it is guaranteed that D is normal in N
+epi := NaturalHomomorphismByNormalSubgroupNC(N,D);
 ND := Image(epi);
 AD := Image(epi,A);
 if not IsCyclic(AD) then
