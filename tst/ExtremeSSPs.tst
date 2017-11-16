@@ -4,7 +4,7 @@ gap> for n in [1..NrSmallGroups(32)] do
 >  QG:= GroupRing(Rationals,G);
 >  if not IsEqualSet( PrimitiveCentralIdempotentsByStSP(QG),
 >                     PrimitiveCentralIdempotentsByStrongSP(QG) ) or
->     not IsEqualSet( PrimitiveCentralIdempotentsByExtSSP(QG),
+>     not IsEqualSet( PrimitiveCentralIdempotentsByESSP(QG),
 >                     PrimitiveCentralIdempotentsByStrongSP(QG) ) then
 >    Print("Error! Different PCIs for [32,", n, "]\n");
 >  fi;
