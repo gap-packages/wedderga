@@ -198,7 +198,7 @@ for P in ESSP.ExtremelyStrongShodaPairs do
  IdP:=Idempotent_eGsum(QG,P[1],P[2])[2]; #idempotent of QG associated to P
  Add(PCIs,IdP);
 od;
-if not ESSP(G).SumDimension = Size(G) then 
+if not ESSP.SumDimension = Size(G) then 
  Print("Warning! The output is not complete list of pcis of the input! \n");
 fi;
 return PCIs;
