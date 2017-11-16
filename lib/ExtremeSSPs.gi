@@ -1,32 +1,25 @@
 ###########################################################################
-## IsCyclicMaximalAbelianFactorGroup:=function(N,A,D)
+## IsMaximalAbelianFactorGroup:=function(N,A,D)
 ##
-## The function IsCyclicMaximalAbelianFactorGroup checks whether A/D is cyclic 
-## maximal abelian subgroup of N/D.
-## 
-## D should be normal in N.
+## The function IsMaximalAbelianFactorGroup checks whether A/D
+## is a maximal abelian subgroup of N/D.
 ##
-IsCyclicMaximalAbelianFactorGroup:= function(N,A,D) 
+IsMaximalAbelianFactorGroup:= function(N,A,D) 
 
-local  ND,   # N/D       
-	   AD,   # A/D
-	   epi,  # N--->N/D
-	   a,    # Generator of AD
-       x;    # x in ND
+local  RTND,  # right transversal of D in N
+       RTND0, # elements of RTND which are not in A 
+       RTAD,  # right transversal of D in A
+       RTAD0, # elements of RTAD which are not in D
+       x,     # x in RTND0
+       y;     # y in RTAD0
 
-# we use NC-version because N is a normaliser of D
-# so it is guaranteed that D is normal in N
-epi := NaturalHomomorphismByNormalSubgroupNC(N,D);
-ND := Image(epi);
-AD := Image(epi,A);
-#if not IsCyclic(AD) then
- # return false;
-#fi;
-a := GeneratorsOfGroup(AD);
-
-for x in Difference(ND,AD) do
-  if ForAll(a,y-> Comm(x,y) = One(ND)) then
-    return false;
+RTND:=RightTransversal(N,D);
+RTND0:=Filtered(RTND,x->not x in A);
+RTAD:=RightTransversal(A,D);
+RTAD0:=Filtered(RTAD,x->not x in D);
+for x in RTND0 do
+  if ForAll(RTAD0,y->Comm(x,y) in D) then
+     return false;
   fi;
 od; 
 return true;
@@ -109,7 +102,7 @@ for N in ND do
               Add(RNAC,D);
             else  
               NzD:=Normalizer(G,D);
-              if IsCyclicMaximalAbelianFactorGroup(NzD,AN,D) then
+              if IsMaximalAbelianFactorGroup(NzD,AN,D) then
                 Add(ESSP,[AN,D]); 
                 SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
                 if SumDim=Size(G) then
@@ -126,7 +119,7 @@ for N in ND do
             if Core(G,D)=N then
               Difference(RNACs[j],[D]);
               NzD:=Normalizer(G,D);
-              if IsCyclicMaximalAbelianFactorGroup(NzD,AN,D) then
+              if IsMaximalAbelianFactorGroup(NzD,AN,D) then
                 Add(ESSP,[AN,D]); 
                 SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
                 if SumDim=Size(G) then
