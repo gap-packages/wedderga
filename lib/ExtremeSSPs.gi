@@ -101,7 +101,7 @@ for N in ND do
         elif not AN in ANs then
           Add(ANs,AN);
           NA:=NormalSubgroups(AN);
-          NAC:=Filtered(NA,x->IsCyclic(AN/x));
+          NAC:=Filtered(NA,x->IsCyclic(FactorGroupNC(AN,x))); # x is normal in AN
           RNAC:=[];
           while NAC<>[] do
             D:=NAC[1]; 
