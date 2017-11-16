@@ -29,7 +29,7 @@ end;
 #############################################################################
 ## ExtSSPAndDim:=function(G)
 ##
-## The attribute ExtSSPAndDim of the G returns a record with components 
+## The attribute ExtSSPAndDim of G returns a record with components 
 ## ExtremelyStrongShodaPairs and SumDimension where
 ## 
 ##  ExtremelyStrongShodaPairs = list of extremely strong Shoda pairs of G 
@@ -148,13 +148,13 @@ end;
 
 
 #############################################################################
-## ExtStrongShodaPairs:=function(G)
+## ExtremelyStrongShodaPairs:=function(G)
 ##
-## The function ExtStrongShodaPairs computes a list of extremely strong Shoda pairs
-## of the group G that covers the complete set of primitive central idempotents of 
-## the rational group algebra QG realizable by extremely strong Shoda pairs.
+## The function ExtremelyStrongShodaPairs computes a non-redundant list of extremely 
+## strong Shoda pairs of group G that covers the components of the rational group 
+## algebra QG realizable by extremely strong Shoda pairs.
 ##
-ExtStrongShodaPairs:=function(G)
+ExtremelyStrongShodaPairs:=function(G)
 return ExtSSPAndDim(G).ExtremelyStrongShodaPairs;
 end;
 
@@ -178,28 +178,29 @@ end;
 
 
 #############################################################################
-## PrimitiveCentralIdempotentsByExtSSP( QG )
+## PrimitiveCentralIdempotentsByESSP( QG )
 ##
-## The function PrimitiveCentralIdempotentsByExtSSP computes the set of 
+## The function PrimitiveCentralIdempotentsByESSP computes the set of 
 ## primitive central idempotents of the group algebra QG, realizable by
 ## extremely strong Shoda pairs of G.
 ##
-PrimitiveCentralIdempotentsByExtSSP:=function(QG)
+PrimitiveCentralIdempotentsByESSP:=function(QG)
 local  G,    # underlying group of QG 
        PCIs, # the list of primitive central idempotents of QG
-       ESSP, # output of the function ExtSSPAndDim(G)
-       P,    # P in ESSP, an extremely strong Shoda pair of G
+       ESSPD,# a complete and non-redundant list of extremely strong Shoda pairs of G
+             # and Sum of the dimensions of simple components corresponding to them.
+       P,    # an extremely strong Shoda pair of G from ESSPD
        IdP;  # the primitive central idempotents of QG associated to P
 
 PCIs:=[];
 G:=UnderlyingMagma(QG);
-ESSP:=ExtSSPAndDim(G);
-for P in ESSP.ExtremelyStrongShodaPairs do 
+ESSPD:=ExtSSPAndDim(G);
+for P in ESSPD.ExtremelyStrongShodaPairs do 
  IdP:=Idempotent_eGsum(QG,P[1],P[2])[2]; #idempotent of QG associated to P
  Add(PCIs,IdP);
 od;
-if not ESSP.SumDimension = Size(G) then 
- Print("Warning! The output is not complete list of pcis of the input! \n");
+if not ESSPD.SumDimension = Size(G) then 
+  Print("Warning! The output is not complete list of pcis of the input! \n");
 fi;
 return PCIs;
 end;
