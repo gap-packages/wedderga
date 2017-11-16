@@ -18,9 +18,8 @@ AD := Image(epi,A);
 if not IsCyclic(AD) then
   return false;
 fi;
-a := MinimalGeneratingSet(AD)[1];
 for x in Difference(ND,AD) do
-  if Comm(x,a) = One(ND) then
+  if ForAll(a,y-> Comm(x,y) = One(ND)) then
     return false;
   fi;
 od; 
