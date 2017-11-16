@@ -53,7 +53,7 @@ local ESSP,   # set of representatives of extremely strong Shoda pairs of G
       NA,     # Normal subgroups of AN
       NAC,    # normal subgroups D of AN, such that AN/D is cyclic 
       RNAC,   # representatives of G-conjugates in NAC 
-      RNACS,  # list of RNAC 
+      RNACs,  # list of RNAC 
       cont,   # loop controller
       i,j,    # counters  
       D,      # an element of NAC  
@@ -70,7 +70,7 @@ ND:=Difference(NormalSubgroups(G),[G]);
 Sort(ND,function(a,b) return Size(a)>=Size(b); end);
 DG:=DerivedSubgroup(G);
 ANs:=[];
-RANCs:=[];
+RNACs:=[];
 # main loop running on the normal subgroups of G
 for N in ND do
   # we first check if (G,N) is an extremely strong Shoda pair.
@@ -82,7 +82,7 @@ for N in ND do
         return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
       fi;  
     fi;
-  elif IsCyclic(Centre(G)/N) then 
+  elif IsCyclic(Centre(G/N)) then 
     cont:=true;
     i:=0;
     while cont do
@@ -119,7 +119,7 @@ for N in ND do
           RNAC:=RNACs[j];
           for D in RNAC do
             if Core(G,D)=N then
-              Remove(RNACs[j],D);
+              Difference(RNACs[j],[D]);
               NzD:=Normalizer(G,D);
               if IsCyclicMaximalAbelianFactorGroup(NzD,AN,D) then
                 Add(ESSP,[AN,D]); 
