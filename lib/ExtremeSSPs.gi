@@ -238,7 +238,7 @@ end;
 ## that (K,H) is a strong Shoda Pair of G and returns [ [ K, H ], e( G, K, H ) ] 
 ## or returns fail, if such K doesn't exist.
 ##
-SearchingNNKForSSP:=function(QG,H)
+InstallGlobalFunction( SearchingNNKForSSP, function(QG,H)
 local  G,   # underlying group of QG
        NH,  # Normalizer of H in G
        Epi, # NH --> NH/H      
@@ -280,7 +280,7 @@ if IsCyclic(L) then
   fi;
 fi;
 return fail;
-end;
+end);
 
 
 #############################################################################
@@ -297,7 +297,12 @@ end;
 ## PCIsByNonESSPs = set of primitive central idempotents of QG realizable by strong
 ## Shoda pairs in NonExtremelyStrongShodaPairs.
 ##
-SSPNonESSPAndTheirIdempotents:=function(QG)
+InstallMethod( SSPNonESSPAndTheirIdempotents, 
+    "for rational group algebra", 
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra ], 
+    0,
+function(QG)
 local  G,      # underlying group of QG
        ESSPD,  # output of the function ExtSSPAndDim(G)
        SumDim, # sum of the dimensions of simple algebras covered by strong Shoda pairs
@@ -354,7 +359,7 @@ Con1:=Filtered(Con,x->Size(x)>1);
 SetIsStronglyMonomial( G , false );      
  return rec(NonExtremelyStrongShodaPairs:=NESSPs, PCIsByNonESSPs:=IdsNESSP); 
       
- end;
+ end);
 
 
 #############################################################################
