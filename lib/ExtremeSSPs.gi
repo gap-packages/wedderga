@@ -77,6 +77,8 @@ for N in ND do
       Add(ESSP,[G,N]);
       SumDim:=SumDim+Phi(Size(G)/Size(N));
       if SumDim=Size(G) then
+    ###Set    SetIsNormallyMonomial( G , true );
+        SetIsStronglyMonomial( G , true );
         return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
       fi;  
     fi;
@@ -95,6 +97,8 @@ for N in ND do
             Add(ESSP,[AN,N]); 
             SumDim:=SumDim+Phi(Size(AN)/Size(N))*(Size(G)/Size(AN));
             if SumDim=Size(G) then
+            ###Set    SetIsNormallyMonomial( G , true );
+            SetIsStronglyMonomial( G , true );
               return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
             fi;    
           fi;  
@@ -114,6 +118,8 @@ for N in ND do
                 Add(ESSP,[AN,D]); 
                 SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
                 if SumDim=Size(G) then
+                ###Set    SetIsNormallyMonomial( G , true );
+                SetIsStronglyMonomial( G , true );
                   return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
                 fi;  
               fi;
@@ -131,6 +137,8 @@ for N in ND do
                 Add(ESSP,[AN,D]); 
                 SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
                 if SumDim=Size(G) then
+                ###Set    SetIsNormallyMonomial( G , true );
+                SetIsStronglyMonomial( G , true );
                   return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
                 fi;  
               fi;
@@ -141,7 +149,7 @@ for N in ND do
     od;
   fi;          
 od;
-
+###Set    SetIsNormallyMonomial( G , false );
 return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
 
 end;              
@@ -176,15 +184,14 @@ else
 fi;
 end;
 
-
 #############################################################################
-## PrimitiveCentralIdempotentsByESSP( QG )
+## PrimitiveCentralIdempotentsByExtSSP( QG )
 ##
-## The function PrimitiveCentralIdempotentsByESSP computes the set of 
+## The function PrimitiveCentralIdempotentsByExtSSP computes the set of 
 ## primitive central idempotents of the group algebra QG, realizable by
 ## extremely strong Shoda pairs of G.
 ##
-PrimitiveCentralIdempotentsByESSP:=function(QG)
+PrimitiveCentralIdempotentsByExtSSP:=function(QG)
 local  G,    # underlying group of QG 
        PCIs, # the list of primitive central idempotents of QG
        ESSPD,# a complete and non-redundant list of extremely strong Shoda pairs of G
@@ -196,13 +203,31 @@ PCIs:=[];
 G:=UnderlyingMagma(QG);
 ESSPD:=ExtSSPAndDim(G);
 for P in ESSPD.ExtremelyStrongShodaPairs do 
- IdP:=Idempotent_eGsum(QG,P[1],P[2])[2]; #idempotent of QG associated to P
- Add(PCIs,IdP);
+  IdP:=Idempotent_eGsum(QG,P[1],P[2])[2]; #idempotent of QG associated to P
+  Add(PCIs,IdP);
 od;
-if not ESSPD.SumDimension = Size(G) then 
+
+return PCIs;
+
+end;
+
+
+
+
+#############################################################################
+## PrimitiveCentralIdempotentsByESSP( QG )
+##
+## The function PrimitiveCentralIdempotentsByESSP computes the set of 
+## primitive central idempotents of the group algebra QG, realizable by
+## extremely strong Shoda pairs of G.
+##
+PrimitiveCentralIdempotentsByESSP:=function(QG)
+local  G;
+G:=UnderlyingMagma(QG);
+if not IsNormallyMonomial(G) then 
   Print("Warning! The output is not complete list of pcis of the input! \n");
 fi;
-return PCIs;
+return PrimitiveCentralIdempotentsByExtSSP(QG);
 end;
 
 
@@ -259,79 +284,77 @@ end;
 
 
 #############################################################################
-## StSP(QG)
+## SSPNonESSPAndTheirIdempotents(QG)
 ##
-## The attribute StSP of the rational group algebra QG returns a record of 
-## extremely strong Shoda pairs of G, if G is normally monomial. Otherwise, 
-## this attribute returns a record of 3 components namely SSP, SId and SumDim
-## where 
+## The attribute SSPNonESSPAndTheirIdempotents of the rational group algebra QG 
+## returns a record of 2 components namely NonExtremelyStrongShodaPairs and 
+## PCIsByNonESSPs, where
 ##
-## SSP = list of strong Shoda pairs of G that cover the complete set of primitive
-## central idempotents of QG realizable by strong Shoda pairs, 
+## NonExtremelyStrongShodaPairs = list of non-equivalent strong Shoda pairs of G
+## which cover the simple components of QG, not covered by extremely strong Shoda 
+## pairs of G.
 ##
-## SId = set of primitive central idempotents of QG realizable by strong Shoda pairs,
-## and
-## SumDim = Sum of the Q-dimensions of simple components corresponding to strong 
-## Shoda pairs of G.
+## PCIsByNonESSPs = set of primitive central idempotents of QG realizable by strong
+## Shoda pairs in NonExtremelyStrongShodaPairs.
 ##
-StSP:=function(QG)
+SSPNonESSPAndTheirIdempotents:=function(QG)
 local  G,      # underlying group of QG
-       ESSP,   # output of the function ExtSSPAndDim(G)
-       SSP,    # set of representatives of strong Shoda pairs of G    
-       SumDim, # sum of the Q-dimensions of simple algebras associated elements of SSP
-       SId,    # set of idempotents associated to strong Shoda pairs in SSP
-       P,      # P in SSP, a strong Shoda pair of G
-       IdP,    # the primitive central idempotents of QG associated to P 
+       ESSPD,  # output of the function ExtSSPAndDim(G)
+       SumDim, # sum of the dimensions of simple algebras covered by strong Shoda pairs
+       IdsESSP, # set of idempotents associated to extremely strong Shoda pairs of G
+       IdsNESSP,# set of idempotents associated to other strong Shoda pairs of G
+       NESSPs, # set of representatives of strong Shoda pairs of G which are not 
+               # extremely strong
        Con,    # conjugacy classes of G;
        Con1,   # conjugacy classes of G of Size greater than 1;
-       c,      # c in Con1
-       r,      # representative of c
-       Cr,     # Core of r in G
-       K,      # non-normal subgroup of G corresponding to r
-       NZ;     # normalizer 
+       C,      # C in Con1 
+       H,      # representative of C
+       HKId,   # strong Shoda pair (H,K) and its idempotent 
+       SSP,    # SSP in NESSPs      
+       IdSSP,  # the primitive central idempotents of QG associated toSSPP 
+       Nz;     # normalizer of K in G 
 
 #Initialization
 G:=UnderlyingMagma(QG); 
-ESSP:=ExtSSPAndDim(G); 
-SSP:=ESSP.ExtremelyStrongShodaPairs; 
-SumDim:=ESSP.SumDimension;
+ESSPD:=ExtSSPAndDim(G); 
+SumDim:=ESSPD.SumDimension;
 
 if SumDim=Size(G) then 
-  return [SSP];       #if G is normally monomial, then set of strong Shoda pairs of G
-                      #is set of extremely strong Shoda pairs of G
-else 
- SId:=[];
-  for P in SSP do
-   IdP:=Idempotent_eGsum(QG,P[1],P[2])[2]; 
-   Add(SId,IdP); #pcis associated with extremely strong Shoda pairs are added to SId
-  od;  
-   Con:=ConjugacyClassesSubgroups(G);
-   Con1:=Filtered(Con,x->Size(x)>1);
+  SetIsStronglyMonomial( G , true );
+  return rec(NonExtremelyStrongShodaPairs:=[], PCIsByNonESSPs:=[]);
+fi;  
+
+IdsESSP:=PrimitiveCentralIdempotentsByExtSSP(QG);
+IdsNESSP:=[];
+NESSPs:=[]; 
+Con:=ConjugacyClassesSubgroups(G);
+Con1:=Filtered(Con,x->Size(x)>1);
 #here, we pick a non-abelian subgroup from different conjugacy class
-     for c in Con1 do
-      r:=Representative(c);
-      Cr:=Core(G,r);
-       if IsCyclic(Centre(G/Cr)) then
-        K:=SearchingNNKForSSP(QG,r);
-         if not K=fail then
-          P:=K[1]; 
-          IdP:=K[2];
-           if not IdP in SId then 
-            Add(SId,IdP); 
-            Add(SSP,P);
-            NZ:=Normalizer(G,P[2]);
+     for C in Con1 do
+      H:=Representative(C);
+       if IsCyclic(Centre(G/Core(G,H))) then
+        HKId:=SearchingNNKForSSP(QG,H);
+         if not HKId=fail then
+          SSP:=HKId[1]; 
+          IdSSP:=HKId[2];
+           if not IdSSP in Union(IdsESSP,IdsNESSP) then 
+            Add(IdsNESSP,IdSSP); 
+            Add(NESSPs,SSP);
+            Nz:=Normalizer(G,SSP[2]);
             SumDim:=SumDim+
-            ((Size(G)/Size(NZ))^2)*((Phi(Size(P[1])/Size(P[2])))*(Size(NZ)/Size(P[1])));
-           fi;
+            ((Size(G)/Size(Nz))^2)*((Phi(Size(SSP[1])/Size(SSP[2])))*(Size(Nz)/Size(SSP[1])));
+             if SumDim=Size(G) then 
+               SetIsStronglyMonomial( G , true );
+               return rec(NonExtremelyStrongShodaPairs:=NESSPs, PCIsByNonESSPs:=IdsNESSP);         
+             fi;
+           fi;  
          fi;
-       fi;  
-       if SumDim=Size(G) then 
-        break;
-       fi;
-     od;
- return [SSP,SId,SumDim];
-fi;
-end;
+       fi; 
+     od;  
+SetIsStronglyMonomial( G , false );      
+ return rec(NonExtremelyStrongShodaPairs:=NESSPs, PCIsByNonESSPs:=IdsNESSP); 
+      
+ end;
 
 
 #############################################################################
@@ -342,7 +365,12 @@ end;
 ## rational group algebra QG realizable by strong Shoda pairs.
 ##
 StShodaPairs:=function(G)
-return StSP(GroupRing(Rationals,G))[1];
+local ESPD,SSPD,QG;
+
+QG:=GroupRing(Rationals,G);
+ESSPD:=ExtSSPAndDim(G).ExtremelyStrongShodaPairs; 
+SSPD:=SSPNonESSPAndTheirIdempotents(QG).NonExtremelyStrongShodaPairs; 
+return Concatenation(ESSPD,SSPD);
 end;
 
 
@@ -354,28 +382,16 @@ end;
 ## of G.
 ##
 PrimitiveCentralIdempotentsByStSP:=function(QG)
-local  G,    # underlying group of QG 
-       S,  # Output of StSP(QG) 
-       PCIs, # the set of primitive central idempotents of QG
-       P,    # P in SSP[1], a strong Shoda pair of G
-       IdP;  # the primitive central idempotents of QG associated to P
-       
-G:=UnderlyingMagma(QG);
-S:=StSP(QG);
-if Size(S)=1 then 
- PCIs:=[];
-  for P in S[1] do 
-   IdP:=Idempotent_eGsum(QG,P[1],P[2])[2]; 
-   Add(PCIs,IdP);      
-  od; 
-  return PCIs; 
-else 
- PCIs:=S[2];
-  if not S[3] = Size(G) then 
-   Print("Warning! The output is not complete list of pcis of the input! \n"); 
-  fi;
-  return PCIs; 
-fi;  
+local  IdsESSP, IdsSSP; 
+
+IdsESSP:=PrimitiveCentralIdempotentsByExtSSP(QG); 
+IdsSSP:=SSPNonESSPAndTheirIdempotents(QG).PCIsByNonESSPs; 
+
+if not IsStronglyMonomial(G) then 
+  Print("Warning! The output is not complete list of pcis of the input! \n");
+fi;
+
+return Concatenation(IdsESSP,IdsSSP);  
 end;
 
 ###########################################################################
