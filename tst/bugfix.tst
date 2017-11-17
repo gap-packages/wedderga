@@ -49,9 +49,9 @@ gap> w2 := SortedList( Filtered( w, t -> IsRecord(t[2]) ) );
       rec( Center := Rationals, DivAlg := true, 
           LocalIndices := [ [ 3, 2 ], [ infinity, 2 ] ], SchurIndex := 2 ) ] ]
 gap> WedderburnDecompositionWithDivAlgParts(GroupRing(Rationals, SmallGroup(336,118)));
-[ [ 1, Rationals ], [ 1, Rationals ], [ 3, Rationals ], [ 3, Rationals ], 
-  [ 2, Rationals ], [ 2, NF(7,[ 1, 6 ]) ], [ 2, NF(21,[ 1, 20 ]) ], 
-  [ 6, NF(7,[ 1, 6 ]) ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 2, Rationals ], [ 2, NF(7,[ 1, 6 ]) ],
+  [ 2, NF(21,[ 1, 20 ]) ], [ 6, NF(7,[ 1, 6 ]) ], [ 3, Rationals ], 
+  [ 3, Rationals ], 
   [ 1, 
       rec( Center := NF(8,[ 1, 7 ]), DivAlg := true, 
           LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ], 
@@ -65,9 +65,9 @@ gap> WedderburnDecompositionWithDivAlgParts(GroupRing(Rationals, SmallGroup(336,
       rec( Center := NF(21,[ 1, 20 ]), DivAlg := true, 
           LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ] ]
 gap> WedderburnDecompositionWithDivAlgParts(GroupRing(Rationals, SmallGroup(432,37))); 
-[ [ 1, Rationals ], [ 1, Rationals ], [ 3, Rationals ], [ 3, Rationals ], 
-  [ 2, Rationals ], [ 2, NF(9,[ 1, 8 ]) ], [ 6, Rationals ], 
-  [ 2, NF(27,[ 1, 26 ]) ], [ 6, NF(9,[ 1, 8 ]) ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 2, Rationals ], [ 2, NF(9,[ 1, 8 ]) ],
+  [ 2, NF(27,[ 1, 26 ]) ], [ 6, Rationals ], [ 6, NF(9,[ 1, 8 ]) ], 
+  [ 3, Rationals ], [ 3, Rationals ], 
   [ 1, 
       rec( Center := NF(8,[ 1, 7 ]), DivAlg := true, 
           LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ], 
