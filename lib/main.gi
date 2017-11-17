@@ -1924,14 +1924,7 @@ InstallMethod( StrongShodaPairs,
     true, 
     [ IsGroup and IsFinite ], 
     0,
-function( G )
-local   QG;     # Rational Group Algebra
-       
-QG := GroupRing( Rationals, G ); 
-        
-return StrongShodaPairsAndIdempotents(QG).StrongShodaPairs;
-
-end);
+    StShodaPairs);
 
 
 #############################################################################

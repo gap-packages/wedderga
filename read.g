@@ -11,6 +11,8 @@
 
 # read the actual Wedderga code
 
+ReadPackage( "wedderga", "lib/ExtremeSSPs.gi" );
+
 ReadPackage( "wedderga", "lib/main.gi" );
 
 ReadPackage( "wedderga", "lib/idempot.gi" );
@@ -24,5 +26,3 @@ ReadPackage( "wedderga", "lib/crossed.gi" );
 ReadPackage( "wedderga", "lib/BW.gi" );
 
 ReadPackage( "wedderga", "lib/div-alg.gi" );
-
-ReadPackage( "wedderga", "lib/ExtremeSSPs.gi" );
