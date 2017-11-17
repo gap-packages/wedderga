@@ -2,9 +2,7 @@ gap> START_TEST( "ExtremeSSPs.tst");
 gap> for n in [1..NrSmallGroups(32)] do
 >  G := SmallGroup(32,n);
 >  QG:= GroupRing(Rationals,G);
->  if not IsEqualSet( PrimitiveCentralIdempotentsByStSP(QG),
->                     PrimitiveCentralIdempotentsByStrongSP(QG) ) or
->     not IsEqualSet( PrimitiveCentralIdempotentsByESSP(QG),
+>  if not IsEqualSet( PrimitiveCentralIdempotentsByESSP(QG),
 >                     PrimitiveCentralIdempotentsByStrongSP(QG) ) then
 >    Print("Error! Different PCIs for [32,", n, "]\n");
 >  fi;
@@ -18,15 +16,17 @@ gap> ids:=[[24,3],[24,12],[40,3],[54,8],[60,5],[72,41],[128,134],
 gap> for id in ids do
 > G := SmallGroup(id);
 > QG:= GroupRing(Rationals,G);
-> if not IsEqualSet( PrimitiveCentralIdempotentsByStSP(QG),
+> if not IsEqualSet( PrimitiveCentralIdempotentsByESSP(QG),
 >                    PrimitiveCentralIdempotentsByStrongSP(QG) ) then
->   Print("different PCIs for n=", n, "\n");
+>   Print("different PCIs for n=", id, "\n");
 > fi;
 > od;
-Warning! The output is not complete list of pcis of the input! 
 Wedderga: Warning!!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
-Warning! The output is not complete list of pcis of the input! 
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
 Wedderga: Warning!!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
 
