@@ -419,7 +419,7 @@ end);
 #############################################################################
 ##
 #P IsStronglyMonomial( G )
-## ## The function checks whether a group is strongly monomial
+## ## The property checks whether a group is strongly monomial
 ##
 InstallMethod( IsStronglyMonomial,
     "for finite groups",

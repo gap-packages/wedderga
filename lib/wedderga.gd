@@ -87,6 +87,7 @@ DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
 DeclareOperation( "BigPrimitiveRoot", [ IsPosInt ] );
 DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] ); 
 DeclareProperty( "IsStronglyMonomial", IsGroup );
+DeclareProperty( "IsNormallyMonomial", IsGroup );
 
 DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
 DeclareAttribute( "IsCyclGroupAlgebra", IsGroupRing );

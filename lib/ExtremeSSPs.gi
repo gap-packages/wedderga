@@ -170,9 +170,14 @@ end;
 #############################################################################
 ## IsNormallyMonomial(G)
 ##
-## The function IsNormallyMonomial checks whether a group is normally monomial or not.
+## The property IsNormallyMonomial checks whether a group is normally monomial or not.
 ##
-IsNormallyMonomial:=function(G)
+InstallMethod( IsNormallyMonomial,
+    "for finite groups",
+    true,
+  [ IsGroup ],
+  0,
+function( G )
 if IsAbelian(G) then 
   return true;
 elif IsAbelian(DerivedSubgroup(G)) then 
@@ -182,7 +187,9 @@ elif ExtSSPAndDim(G).SumDimension=Size(G) then
 else   
   return false;
 fi;
-end;
+end);
+
+InstallTrueMethod( IsStronglyMonomial, IsNormallyMonomial );
 
 #############################################################################
 ## PrimitiveCentralIdempotentsByExtSSP( QG )
