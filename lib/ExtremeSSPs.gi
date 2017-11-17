@@ -4,7 +4,7 @@
 ## The function IsMaximalAbelianFactorGroup checks whether A/D
 ## is a maximal abelian subgroup of N/D.
 ##
-IsMaximalAbelianFactorGroup:= function(N,A,D) 
+InstallGlobalFunction( IsMaximalAbelianFactorGroup, function(N,A,D) 
 
 local  RTND,  # right transversal of D in N
        RTND0, # elements of RTND which are not in A 
@@ -23,7 +23,7 @@ for x in RTND0 do
   fi;
 od; 
 return true;
-end;
+end);
 
 
 #############################################################################
@@ -39,7 +39,12 @@ end;
 ##  SumDimension = Sum of the Q-SumDimensions of simple components corresponding
 ##  to extremely strong Shoda pairs of G.
 ##
-ExtSSPAndDim:=function(G)
+InstallMethod( ExtSSPAndDim,
+    "for a finite group",
+    true,
+  [ IsGroup and IsFinite ],
+  0,
+function(G)
 local ESSP,   # set of representatives of extremely strong Shoda pairs of G
       SumDim, # sum of the Q-dimensions of simple algebras associated elements of ESSP
       ND,     # proper normal subgroups of G in non-increasing order 
@@ -152,7 +157,7 @@ od;
 ###Set    SetIsNormallyMonomial( G , false );
 return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
 
-end;              
+end);              
 
 
 #############################################################################
@@ -162,9 +167,9 @@ end;
 ## strong Shoda pairs of group G that covers the components of the rational group 
 ## algebra QG realizable by extremely strong Shoda pairs.
 ##
-ExtremelyStrongShodaPairs:=function(G)
+InstallGlobalFunction( ExtremelyStrongShodaPairs, function(G)
 return ExtSSPAndDim(G).ExtremelyStrongShodaPairs;
-end;
+end);
 
 
 #############################################################################
@@ -198,7 +203,12 @@ InstallTrueMethod( IsStronglyMonomial, IsNormallyMonomial );
 ## primitive central idempotents of the group algebra QG, realizable by
 ## extremely strong Shoda pairs of G.
 ##
-PrimitiveCentralIdempotentsByExtSSP:=function(QG)
+InstallMethod( PrimitiveCentralIdempotentsByExtSSP,
+    "for a rational group algebra",
+    true,
+  [ IsSemisimpleRationalGroupAlgebra ],
+  0,
+function(QG)
 local  G,    # underlying group of QG 
        PCIs, # the list of primitive central idempotents of QG
        ESSPD,# a complete and non-redundant list of extremely strong Shoda pairs of G
@@ -216,7 +226,7 @@ od;
 
 return PCIs;
 
-end;
+end);
 
 
 
@@ -228,14 +238,14 @@ end;
 ## primitive central idempotents of the group algebra QG, realizable by
 ## extremely strong Shoda pairs of G.
 ##
-PrimitiveCentralIdempotentsByESSP:=function(QG)
+InstallGlobalFunction( PrimitiveCentralIdempotentsByESSP, function(QG)
 local  G;
 G:=UnderlyingMagma(QG);
 if not IsNormallyMonomial(G) then 
   Print("Wedderga: Warning!!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
 fi;
 return PrimitiveCentralIdempotentsByExtSSP(QG);
-end;
+end);
 
 
 #############################################################################
@@ -370,30 +380,19 @@ SetIsStronglyMonomial( G , false );
 
 
 #############################################################################
-## StShodaPairs(G)
 ##
-## The function StShodaPairs computes a list of strongly Shoda pairs of the
-## group G that covers the complete set of primitive central idempotents of the 
-## rational group algebra QG realizable by strong Shoda pairs.
+## PrimitiveCentralIdempotentsByStrongSP(QG)
 ##
-StShodaPairs:=function(G)
-local ESSPD,SSPD,QG;
-
-QG:=GroupRing(Rationals,G);
-ESSPD:=ExtSSPAndDim(G).ExtremelyStrongShodaPairs; 
-SSPD:=SSPNonESSPAndTheirIdempotents(QG).NonExtremelyStrongShodaPairs; 
-return Concatenation(ESSPD,SSPD);
-end;
-
-
-#############################################################################
-####PrimitiveCentralIdempotentsByStSP(QG)
-##
-## The function PrimitiveCentralIdempotentsByStSP computes the set of primitive
+## The function PrimitiveCentralIdempotentsByStrongSP computes the set of primitive
 ## central idempotents of the group algebra QG, realizable by strong Shoda pairs 
 ## of G.
 ##
-PrimitiveCentralIdempotentsByStSP:=function(QG)
+InstallMethod( PrimitiveCentralIdempotentsByStrongSP,
+    "for rational group algebra",
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra ], 
+    0,
+    function(QG)
 local  IdsESSP, IdsSSP, G; 
 
 IdsESSP:=PrimitiveCentralIdempotentsByExtSSP(QG); 
@@ -405,15 +404,7 @@ if not IsStronglyMonomial(G) then
 fi;
 
 return Concatenation(IdsESSP,IdsSSP);  
-end;
-
-
-InstallMethod( PrimitiveCentralIdempotentsByStrongSP,
-    "for rational group algebra",
-    true, 
-    [ IsSemisimpleRationalGroupAlgebra ], 
-    0,
-    PrimitiveCentralIdempotentsByStSP);
+end);
 
 ###########################################################################
 ## E

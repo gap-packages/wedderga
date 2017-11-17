@@ -1924,7 +1924,14 @@ InstallMethod( StrongShodaPairs,
     true, 
     [ IsGroup and IsFinite ], 
     0,
-    StShodaPairs);
+function(G)
+local ESSPD,SSPD,QG;
+
+QG:=GroupRing(Rationals,G);
+ESSPD:=ExtSSPAndDim(G).ExtremelyStrongShodaPairs; 
+SSPD:=SSPNonESSPAndTheirIdempotents(QG).NonExtremelyStrongShodaPairs; 
+return Concatenation(ESSPD,SSPD);
+end);
 
   
 #############################################################################

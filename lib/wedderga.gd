@@ -25,6 +25,16 @@ DeclareProperty( "IsSemisimpleZeroCharacteristicGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsCFGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsSemisimpleANFGroupAlgebra", IsGroupRing );
 
+#################### ExtremeSSPs.gi #####################
+
+DeclareGlobalFunction( "IsMaximalAbelianFactorGroup" );
+DeclareGlobalFunction( "SearchingNNKForSSP" );
+DeclareAttribute( "ExtSSPAndDim", IsGroup and IsFinite );
+DeclareGlobalFunction( "ExtremelyStrongShodaPairs" );
+DeclareProperty( "IsNormallyMonomial", IsGroup );
+DeclareAttribute( "PrimitiveCentralIdempotentsByExtSSP", IsGroupRing );
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsByESSP");
+
 #################### main.gi #####################
 
 DeclareOperation( "WedderburnDecomposition", [IsSemisimpleANFGroupAlgebra] );
@@ -46,7 +56,6 @@ DeclareAttribute( "StrongShodaPairs", IsGroup and IsFinite );
 
 DeclareAttribute( "StrongShodaPairsAndIdempotents", IsGroupRing );
 DeclareAttribute( "SSPNonESSPAndTheirIdempotents", IsGroupRing );
-DeclareGlobalFunction( "SearchingNNKForSSP" );
 DeclareOperation( "Idempotent_eGsum",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
 
 DeclareAttribute( "PrimitiveCentralIdempotentsByStrongSP", IsGroupRing );
@@ -87,7 +96,6 @@ DeclareOperation( "CyclotomicClasses", [ IsPosInt, IsPosInt ] );
 DeclareOperation( "BigPrimitiveRoot", [ IsPosInt ] );
 DeclareOperation( "BigTrace", [ IsPosInt, IsField, IsObject ] ); 
 DeclareProperty( "IsStronglyMonomial", IsGroup );
-DeclareProperty( "IsNormallyMonomial", IsGroup );
 
 DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
 DeclareAttribute( "IsCyclGroupAlgebra", IsGroupRing );
