@@ -2267,11 +2267,15 @@ end);
 ##
 #O PrimitiveCentralIdempotentsByStrongSP( FG )
 ##
-## The function PrimitiveCentralIdempotentsByStrongSP computes the set of 
+## The attribute PrimitiveCentralIdempotentsByStrongSP computes the set of 
 ## primitive central idempotents of the group algebra FG, realizable by 
 ## strongly Shoda pairs, where FG is either a rational or finite group algebra
 ##
-InstallGlobalFunction( PrimitiveCentralIdempotentsByStrongSP, 
+InstallMethod( PrimitiveCentralIdempotentsByStrongSP,
+    "for finite group algebra",
+    true, 
+    [ IsSemisimpleFiniteGroupAlgebra ], 
+    0,
 function( FG )
 
 local G;

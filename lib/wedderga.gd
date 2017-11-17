@@ -48,7 +48,7 @@ DeclareAttribute( "StrongShodaPairsAndIdempotents", IsGroupRing );
 DeclareGlobalFunction( "SearchingKForSSP" );
 DeclareOperation( "Idempotent_eGsum",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
 
-DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStrongSP" );
+DeclareAttribute( "PrimitiveCentralIdempotentsByStrongSP", IsGroupRing );
 
 DeclareOperation( "AddCrossedProductBySSP", [ IsGroup, IsGroup, IsGroup]);
 DeclareOperation( "AddCrossedProductBySST", 

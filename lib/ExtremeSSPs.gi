@@ -225,7 +225,7 @@ PrimitiveCentralIdempotentsByESSP:=function(QG)
 local  G;
 G:=UnderlyingMagma(QG);
 if not IsNormallyMonomial(G) then 
-  Print("Warning! The output is not complete list of pcis of the input! \n");
+  Print("Wedderga: Warning!!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
 fi;
 return PrimitiveCentralIdempotentsByExtSSP(QG);
 end;
@@ -365,7 +365,7 @@ SetIsStronglyMonomial( G , false );
 ## rational group algebra QG realizable by strong Shoda pairs.
 ##
 StShodaPairs:=function(G)
-local ESPD,SSPD,QG;
+local ESSPD,SSPD,QG;
 
 QG:=GroupRing(Rationals,G);
 ESSPD:=ExtSSPAndDim(G).ExtremelyStrongShodaPairs; 
@@ -382,17 +382,26 @@ end;
 ## of G.
 ##
 PrimitiveCentralIdempotentsByStSP:=function(QG)
-local  IdsESSP, IdsSSP; 
+local  IdsESSP, IdsSSP, G; 
 
 IdsESSP:=PrimitiveCentralIdempotentsByExtSSP(QG); 
 IdsSSP:=SSPNonESSPAndTheirIdempotents(QG).PCIsByNonESSPs; 
 
+G:=UnderlyingMagma(QG);
 if not IsStronglyMonomial(G) then 
-  Print("Warning! The output is not complete list of pcis of the input! \n");
+  Print("Wedderga: Warning!!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
 fi;
 
 return Concatenation(IdsESSP,IdsSSP);  
 end;
+
+
+InstallMethod( PrimitiveCentralIdempotentsByStrongSP,
+    "for rational group algebra",
+    true, 
+    [ IsSemisimpleRationalGroupAlgebra ], 
+    0,
+    PrimitiveCentralIdempotentsByStSP);
 
 ###########################################################################
 ## E
