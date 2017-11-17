@@ -33,17 +33,25 @@ gap> G:=SmallGroup(48,15);
 gap> R:=GroupRing(Rationals,G);       
 <algebra-with-one over Rationals, with 5 generators>
 gap> WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
-  [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
+ationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\
+ 0 ] ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \
+2, 7, 0 ] ], 
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\
+ ], [ [ 3 ] ] ] 
+ ]
 gap> WedderburnDecompositionWithDivAlgParts(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 2, Rationals ], [ 2, Rationals ], [ 2, CF(3) ], [ 2, Rationals ], 
-  [ 2, NF(8,[ 1, 7 ]) ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
+ationals ], 
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, N\
+F(8,[ 1, 7 ]) ],
+  [ 2, CF(3) ], 
   [ 2, 
       rec( Center := Rationals, DivAlg := true, 
-          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ]
+          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex :\
+= 2 ) ] ]
 ]]>
 </Example>
 
