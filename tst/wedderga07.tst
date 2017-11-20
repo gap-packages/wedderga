@@ -1,26 +1,34 @@
 # wedderga, chapter 7
 gap> START_TEST( "wedderga07.tst");
 
-# wedderga/doc/div-alg.xml:29-48
+# wedderga/doc/div-alg.xml:29-56
 
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
 gap> R:=GroupRing(Rationals,G);       
 <algebra-with-one over Rationals, with 5 generators>
 gap> WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
-  [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
+ationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\
+ 0 ] ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \
+2, 7, 0 ] ], 
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\
+ ], [ [ 3 ] ] ] 
+ ]
 gap> WedderburnDecompositionWithDivAlgParts(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 2, Rationals ], [ 2, Rationals ], [ 2, CF(3) ], [ 2, Rationals ], 
-  [ 2, NF(8,[ 1, 7 ]) ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
+ationals ], 
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, N\
+F(8,[ 1, 7 ]) ],
+  [ 2, CF(3) ], 
   [ 2, 
       rec( Center := Rationals, DivAlg := true, 
-          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ]
+          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex :\
+= 2 ) ] ]
 
-# wedderga/doc/div-alg.xml:70-94
+# wedderga/doc/div-alg.xml:78-102
 
 gap> G:=SmallGroup(240,89);
 <permutation group of size 240 with 2 generators>
@@ -44,7 +52,7 @@ gap> CyclotomicAlgebraWithDivAlgPart(W[10]);
 [ 3, rec( Center := NF(8,[ 1, 7 ]), DivAlg := true, 
       LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ]
 
-# wedderga/doc/div-alg.xml:135-157
+# wedderga/doc/div-alg.xml:143-165
 
 gap> G:=SmallGroup(63,1);  
 <pc group of size 63 with 3 generators>
@@ -66,7 +74,7 @@ gap> SchurIndexByCharacter(GaussianRationals,G,16);
 gap> SchurIndexByCharacter(CF(5),G,16);         
 1
 
-# wedderga/doc/div-alg.xml:188-214
+# wedderga/doc/div-alg.xml:196-222
 
 gap> G:=SmallGroup(63,1);                                  
 <pc group of size 63 with 3 generators>
@@ -92,21 +100,21 @@ gap> SimpleComponentByCharacterAsSCAlgebra(Rationals,G,15);
 <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
 
 
-# wedderga/doc/div-alg.xml:238-245
+# wedderga/doc/div-alg.xml:246-253
 
 gap> PPartOfN(2275,5);
 25
 gap> PDashPartOfN(2275,5);
 91
 
-# wedderga/doc/div-alg.xml:262-269
+# wedderga/doc/div-alg.xml:270-277
 
 gap> PSplitSubextension(Rationals,60,5);  
 GaussianRationals
 gap> PSplitSubextension(NF(5,[1,4]),70,2);
 NF(35,[ 1, 4, 9, 11, 16, 29 ])
 
-# wedderga/doc/div-alg.xml:292-312
+# wedderga/doc/div-alg.xml:300-320
 
 gap> F:=CF(12);
 CF(12)
@@ -126,14 +134,14 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
 1
 2
 
-# wedderga/doc/div-alg.xml:338-345
+# wedderga/doc/div-alg.xml:346-353
 
 gap> A:=[1,Rationals,6,[2,5,3]];
 [ 1, Rationals, 6, [ 2, 5, 3 ] ]
 gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
 [ [ 3, 2 ], [ infinity, 2 ] ]
 
-# wedderga/doc/div-alg.xml:383-398
+# wedderga/doc/div-alg.xml:391-406
 
 gap> A:=[1,CF(4),20,[4,13,15]];
 [ 1, GaussianRationals, 20, [ 4, 13, 15 ] ]
@@ -148,7 +156,7 @@ gap> A:=[1,CF(7),28,[2,15,14]];
 gap> LocalIndexAtTwo(A);     
 2
 
-# wedderga/doc/div-alg.xml:438-451
+# wedderga/doc/div-alg.xml:446-459
 
 gap> G:=SmallGroup(480,600);
 <pc group of size 480 with 7 generators>
@@ -161,14 +169,14 @@ gap> W[27];
 gap> LocalIndicesOfCyclotomicAlgebra(W[27]);
 [ [ infinity, 2 ] ]
 
-# wedderga/doc/div-alg.xml:464-471
+# wedderga/doc/div-alg.xml:472-479
 
 gap> A:=[3,Rationals,12,[[2,5,3],[2,7,0]],[[3]]];
 [ 3, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 gap> RootOfDimensionOfCyclotomicAlgebra(A);      
 12
 
-# wedderga/doc/div-alg.xml:498-516
+# wedderga/doc/div-alg.xml:506-524
 
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
@@ -186,7 +194,7 @@ gap> DefiningCharacterOfCyclotomicAlgebra(A);
 gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,12);
 [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 
-# wedderga/doc/div-alg.xml:531-542
+# wedderga/doc/div-alg.xml:539-550
 
 gap> G:=SmallGroup(48,16);
 <pc group of size 48 with 5 generators>
@@ -197,7 +205,7 @@ gap> LocalIndexAtInftyByCharacter(Rationals,G,12);
 gap> LocalIndexAtInftyByCharacter(CF(3),G,12);    
 1
 
-# wedderga/doc/div-alg.xml:575-590
+# wedderga/doc/div-alg.xml:583-598
 
 gap> G:=SmallGroup(72,21);
 <pc group of size 72 with 5 generators>
@@ -212,7 +220,7 @@ false
 gap> DefectOfCharacterAtP(G,Irr(G)[18],3);
 2
 
-# wedderga/doc/div-alg.xml:632-666
+# wedderga/doc/div-alg.xml:640-674
 
 gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
@@ -246,7 +254,7 @@ gap> ValuesOfClassFunction(IBr(G,5)[10]);
 [ 1, -E(8)^3, E(4), -E(4), -1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), -E(8)^3, 
   -E(8), E(8), -1, E(8)^3 ]
 
-# wedderga/doc/div-alg.xml:667-676
+# wedderga/doc/div-alg.xml:675-684
 
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
@@ -255,7 +263,7 @@ gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[11],3);
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,First(Irr(G),x->Degree(x)=4),2);
 1
 
-# wedderga/doc/div-alg.xml:720-733
+# wedderga/doc/div-alg.xml:728-741
 
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
@@ -268,7 +276,7 @@ gap> LocalIndexAtTwoByCharacter(Rationals,G,12);
 gap> LocalIndexAtTwoByCharacter(CF(3),G,12);    
 1
 
-# wedderga/doc/div-alg.xml:788-807
+# wedderga/doc/div-alg.xml:796-815
 
 gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
 [ [ infinity, 2 ], [ 2, 2 ] ]
@@ -287,7 +295,7 @@ gap> A:=QuaternionAlgebra(CF(5),3,-2);
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 fail
 
-# wedderga/doc/div-alg.xml:833-848
+# wedderga/doc/div-alg.xml:841-856
 
 gap> A:=QuaternionAlgebra(Rationals,-30,-15);           
 <algebra-with-one of dimension 4 over Rationals>
@@ -302,7 +310,7 @@ false
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [  ]
 
-# wedderga/doc/div-alg.xml:899-912
+# wedderga/doc/div-alg.xml:907-920
 
 gap> G:=SmallGroup(96,35);
 <pc group of size 96 with 6 generators>
@@ -315,7 +323,7 @@ gap> DecomposeCyclotomicAlgebra(A);
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], 
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ]
 
-# wedderga/doc/div-alg.xml:936-956
+# wedderga/doc/div-alg.xml:944-964
 
 gap> A:=[NF(24,[1,11]),CF(24),[-1]];
 [ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ]
@@ -335,7 +343,7 @@ e
 gap> b[2]*b[3]+b[3]*b[2];
 0*e
 
-# wedderga/doc/div-alg.xml:983-1004
+# wedderga/doc/div-alg.xml:991-1012
 
 gap> A:=QuaternionAlgebra(CF(5),-3,-1);
 <algebra-with-one of dimension 4 over CF(5)>

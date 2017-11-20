@@ -22,7 +22,7 @@ gap> FG:=GroupRing(F,G);;
 gap> S:=AsSet(G);
 [ <identity> of ..., f1, f2, f3, f1*f2, f1*f3, f2*f3, f1*f2*f3 ]
 gap> H:=StrongShodaPairs(G)[5][1];
-Group([ f1*f2, f3, f3 ])
+Group([ f1*f2*f3, f3 ])
 gap> K:=StrongShodaPairs(G)[5][2];
 Group([ f1*f2 ])
 gap> N:=Normalizer(G,K);
@@ -30,7 +30,7 @@ Group([ f1*f2*f3, f3 ])
 gap> epi:=NaturalHomomorphismByNormalSubgroup(N,K);
 [ f1*f2*f3, f3 ] -> [ f1, f1 ]
 gap> QHK:=Image(epi,H);
-Group([ <identity> of ..., f1, f1 ])
+Group([ f1, f1 ])
 gap> gq:=MinimalGeneratingSet(QHK)[1];
 f1
 gap> C:=CyclotomicClasses(Size(F),Index(H,K))[2];

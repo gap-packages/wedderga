@@ -419,7 +419,7 @@ end);
 #############################################################################
 ##
 #P IsStronglyMonomial( G )
-## ## The function checks whether a group is strongly monomial
+## ## The property checks whether a group is strongly monomial
 ##
 InstallMethod( IsStronglyMonomial,
     "for finite groups",
@@ -435,9 +435,9 @@ local QG ;
       return true;
   elif IsMonomial(G) then
       QG := GroupRing( Rationals, G );
-#     return IsCompleteSetOfPCIs( QG ,
-#            StrongShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents );
-      return Sum( StrongShodaPairsAndIdempotents( QG ).PrimitiveCentralIdempotents ) = One( QG );
+      # enforce setting of IsStronglyMonomial
+      SSPNonESSPAndTheirIdempotents( QG );
+      return IsStronglyMonomial(G);
   else
       return false;
   fi;

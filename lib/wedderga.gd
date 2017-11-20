@@ -25,6 +25,16 @@ DeclareProperty( "IsSemisimpleZeroCharacteristicGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsCFGroupAlgebra", IsGroupRing );
 DeclareProperty( "IsSemisimpleANFGroupAlgebra", IsGroupRing );
 
+#################### ExtremeSSPs.gi #####################
+
+DeclareGlobalFunction( "IsMaximalAbelianFactorGroup" );
+DeclareGlobalFunction( "SearchingNNKForSSP" );
+DeclareAttribute( "ExtSSPAndDim", IsGroup and IsFinite );
+DeclareGlobalFunction( "ExtremelyStrongShodaPairs" );
+DeclareProperty( "IsNormallyMonomial", IsGroup );
+DeclareAttribute( "PrimitiveCentralIdempotentsByExtSSP", IsGroupRing );
+DeclareGlobalFunction( "PrimitiveCentralIdempotentsByESSP");
+
 #################### main.gi #####################
 
 DeclareOperation( "WedderburnDecomposition", [IsSemisimpleANFGroupAlgebra] );
@@ -45,10 +55,10 @@ DeclareOperation( "SimpleAlgebraByStrongSPInfoNC", [ IsGroupRing,
 DeclareAttribute( "StrongShodaPairs", IsGroup and IsFinite );
 
 DeclareAttribute( "StrongShodaPairsAndIdempotents", IsGroupRing );
-DeclareGlobalFunction( "SearchingKForSSP" );
+DeclareAttribute( "SSPNonESSPAndTheirIdempotents", IsGroupRing );
 DeclareOperation( "Idempotent_eGsum",   [ IsSemisimpleRationalGroupAlgebra, IsGroup, IsGroup ] ); 
 
-DeclareGlobalFunction( "PrimitiveCentralIdempotentsByStrongSP" );
+DeclareAttribute( "PrimitiveCentralIdempotentsByStrongSP", IsGroupRing );
 
 DeclareOperation( "AddCrossedProductBySSP", [ IsGroup, IsGroup, IsGroup]);
 DeclareOperation( "AddCrossedProductBySST", 
