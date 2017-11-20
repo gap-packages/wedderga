@@ -2592,5 +2592,48 @@ end);
 
 #############################################################################
 ##
+## IsMaximalAbelianInFactorGroup:=function(N,A,D)
+##
+## The function IsMaximalAbelianInFactorGroup checks whether A/D is maximal 
+## abelian subgroup of N/D, assuming N/D is non-abelian.
+##
+IsMaximalAbelianInFactorGroup:=function(N,A,D)
+local   RTND,      #right transversal of D in N
+        RTND0,     #elements of RTND which are not in A 
+        RTAD,      #right transversal of D in A
+        RTAD0,     #elements of RTND which are not in D
+        AB,        #set of elements x which make the factor group <A,x>/D abelian 
+        x,         #x in RTND0
+        y,         #y in RTAD0
+        NCx;       #set of elements in RTAD0 which do not commute with x
+
+
+RTND:=RightTransversal(N,D);
+RTND0:=Filtered(RTND,x->not x in A);
+RTAD:=RightTransversal(A,D);
+RTAD0:=Filtered(RTAD,x->not x in D);
+AB:=[];                                
+for x in RTND0 do
+  NCx:=[];                               
+  for y in RTAD0 do
+    if not Comm(x,y) in D then  #collect those elements y in RTAD0 which do not commute with x.
+      Add(NCx,y);
+    fi;
+    if Size(NCx)>1 then  #Factor group <A,x>/D is not abelian.
+      break;         
+    fi;
+  od;
+  if Size(NCx)=0 then  #Factor group <A,x>/D is abelian and hence A/D is not maximal abelian.
+    Add(AB,x);
+    return false;
+  fi;
+od;
+if Size(AB)=0 then 
+  return true;
+fi;
+end;
+
+#############################################################################
+##
 #E
 ##
