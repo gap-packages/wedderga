@@ -406,6 +406,28 @@ fi;
 return Concatenation(IdsESSP,IdsSSP);  
 end);
 
+
+#############################################################################
+##
+#F IsExtremelyStrongShodaPair( G, H, K )
+##
+## The function IsExtremelyStrongShodaPair verifies if (H,K) is an extremely
+## strong Shoda pair of G
+##
+InstallMethod( IsExtremelyStrongShodaPair,
+    "for a group and two subgroups", 
+    true,
+    [ IsGroup, IsGroup, IsGroup ], 
+    0,
+function( G, H, K )
+if IsNormal(G,H) then
+  return IsStrongShodaPair( G, H, K );
+else
+  Info(InfoWedderga, 2, "Wedderga: IsSSP: <H> is not normal in <G>");
+  return false;
+fi;
+end);
+
 ###########################################################################
 ## E
 ###########################################################################

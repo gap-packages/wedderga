@@ -60,6 +60,38 @@ gap> StrongShodaPairs( DihedralGroup(64) );
 <Heading>Properties related with Shoda pairs</Heading>
 
 <ManSection>
+   <Oper Name="IsExtremelyStrongShodaPair" 
+         Arg="G K H"  
+         Comm="Is (K,H) an extremely strong Shoda pair of G?" />
+   <Description>
+         The first argument should be a finite group <A>G</A>, 
+         the second one a normal sugroup <A>K</A> of <A>G</A> and the
+         third one a subgroup of <A>K</A>. <P/>
+                  
+         Returns <K>true</K> if (<A>K</A>,<A>H</A>) is an 
+         <E>extremely strong Shoda pair</E> (<Ref Sect="ESSPDef" />) 
+         of <A>G</A>, and <K>false</K> otherwise.
+
+<Example>
+<![CDATA[
+gap> G:=SymmetricGroup(4);; K:=Group( (1,3,2,4), (3,4) );;
+gap> H1:=Group( (2,4,3), (1,4)(2,3), (1,3)(2,4) );;
+gap> H2:=Group( (3,4), (1,2)(3,4) );;
+gap> IsExtremelyStrongShodaPair( G, G, H1 );
+true
+gap> IsExtremelyStrongShodaPair( G, K, H2 );
+false
+gap> IsExtremelyStrongShodaPair( G, G, H2 );
+false
+gap> IsExtremelyStrongShodaPair( G, G, K );
+false
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+<ManSection>
    <Oper Name="IsStrongShodaPair" 
          Arg="G K H"  
          Comm="Is (K,H) a strong Shoda pair of G?" />
@@ -70,19 +102,24 @@ gap> StrongShodaPairs( DihedralGroup(64) );
                   
          Returns <K>true</K> if (<A>K</A>,<A>H</A>) is a 
          <E>strong Shoda pair</E> (<Ref Sect="SSPDef" />) 
-         of <A>G</A>, and <K>false</K> otherwise.
+         of <A>G</A>, and <K>false</K> otherwise. <P/>
+
+         Note that every extremely strong Shoda pair is a strong Shoda pair, 
+         but the converse is not true.
 
 <Example>
 <![CDATA[
-gap> G:=SymmetricGroup(3);; K:=Group([(1,2,3)]);; H:=Group( () );;
-gap> IsStrongShodaPair( G, K, H );
+gap> G:=SymmetricGroup(4);; K:=Group( (1,3,2,4), (3,4) );;
+gap> H1:=Group( (2,4,3), (1,4)(2,3), (1,3)(2,4) );;
+gap> H2:=Group( (3,4), (1,2)(3,4) );;
+gap> IsStrongShodaPair( G, G, H1 );
 true
-gap> IsStrongShodaPair( G, G, H );
+gap> IsExtremelyStrongShodaPair( G, K, H2 );
 false
-gap> IsStrongShodaPair( G, K, K );
-false
+gap> IsStrongShodaPair( G, K, H2 );
+true
 gap> IsStrongShodaPair( G, G, K );
-true
+false
 ]]>
 </Example>
 

@@ -34,6 +34,7 @@ DeclareGlobalFunction( "ExtremelyStrongShodaPairs" );
 DeclareProperty( "IsNormallyMonomial", IsGroup );
 DeclareAttribute( "PrimitiveCentralIdempotentsByExtSSP", IsGroupRing );
 DeclareGlobalFunction( "PrimitiveCentralIdempotentsByESSP");
+DeclareOperation( "IsExtremelyStrongShodaPair", [ IsGroup, IsGroup, IsGroup ] );
 
 #################### main.gi #####################
 
