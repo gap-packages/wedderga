@@ -43,7 +43,7 @@ false
 gap> IsExtremelyStrongShodaPair( G, G, K );
 false
 
-# wedderga/doc/SSP.xml:107-121
+# wedderga/doc/SSP.xml:110-124
 
 gap> G:=SymmetricGroup(4);; K:=Group( (1,3,2,4), (3,4) );;
 gap> H1:=Group( (2,4,3), (1,4)(2,3), (1,3)(2,4) );;
@@ -57,7 +57,7 @@ true
 gap> IsStrongShodaPair( G, G, K );
 false
 
-# wedderga/doc/SSP.xml:141-151
+# wedderga/doc/SSP.xml:144-154
 
 gap> G:=AlternatingGroup(5);;
 gap> K:=AlternatingGroup(4);;
@@ -67,7 +67,7 @@ false
 gap> IsShodaPair( G, K, H );
 true
 
-# wedderga/doc/SSP.xml:168-184
+# wedderga/doc/SSP.xml:171-187
 
 gap> S4:=SymmetricGroup(4);;
 gap> IsStronglyMonomial(S4);

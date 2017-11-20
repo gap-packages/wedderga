@@ -621,7 +621,8 @@ realized by <M>(K,H)</M> is <M>e(G,K,H)</M>, see <Cite Key="ORS" />. <P/>
 Two <E>strong Shoda pairs</E> (<Ref Sect="SSPDef"/>) <M>(K_1,H_1)</M> and <M>(K_2,H_2)</M> of <M>G</M> 
 are said to be <E>equivalent</E> if the characters
 <M>\chi(G,K_1,H_1)</M> and <M>\chi(G,K_2,H_2)</M> are Galois conjugate, or equivalently if 
-<M>e(G,K_1,H_1)=e(G,K_2,H_2)</M>.<P/>
+<M>e(G,K_1,H_1)=e(G,K_2,H_2)</M>. A set of representatives of strong Shoda pairs of 
+ <M>G</M> is termed as a complete irredundant set of strong Shoda pairs of <M>G</M>. <P/>
 
 The advantage of strong Shoda pairs over Shoda pairs is that 
 one can describe the simple algebra
@@ -663,6 +664,46 @@ Using the description given above of <M>A_&QQ; (\chi)=&QQ; G e(G,K,H)</M> one ca
 
 <!-- ********************************************************* -->
 
+<Section Label="ESSPDef">
+<Heading>Extremely strong Shoda pairs of a group</Heading>
+
+<Index> extremely strong Shoda pair</Index>
+An <E> extremely strong Shoda pair</E> of <M>G</M> is a pair <M>(K,H)</M> of
+subgroups of <M>G</M> satisfying the following conditions:<P/>
+* <M>K</M> is normal in <M>G</M>, <P/>
+* <M>K/H</M> is cyclic and a maximal abelian subgroup of <M>N/H</M>, where 
+<M>N</M> is the normalizer of <M>H</M> in <M>G</M>.
+<P/>
+Let <M>(K,H)</M> be an extremely strong Shoda pair of <M>G</M>. 
+Then <M>(K,H)</M> is a strong Shoda pair (<Ref Sect="SSPDef" />) of <M>G</M>, with 
+<M>K</M> normal in <M>G</M> <Cite Key="BM14" />, so that there is a linear character <M>\theta</M> of 
+<M>K</M> with kernel <M>H</M> such that the induced character 
+<M>\chi=\chi(G,K,H)=\theta^G</M> is irreducible. 
+Moreover, the <E>primitive central idempotent</E> 
+<M>e_{&QQ; }(\chi)</M> of <M>&QQ; G</M> 
+realized by <M>(K,H)</M> is <M>e(G,K,H)</M> (<Ref Sect="Idempotents" />)
+and one can describe the associated simple algebra (<Ref Sect="SSPDef" />).
+
+<Index>equivalent extremely strong Shoda pairs</Index>
+Two <E>extremely strong Shoda pairs</E> 
+of <M>G</M> are said to be <E>equivalent</E> if they are equivalent
+ as strong Shoda pairs (<Ref Sect="SSPDef"/>). A set of representatives of extremely
+  strong Shoda pairs of <M>G</M> is called a <E>complete irredundant set</E> of extremely 
+  strong Shoda pairs of <M>G</M> <Cite Key="BM14" />. <P/>
+  
+  If <M>G</M> is a normally monomial group (<Ref Sect="NorMon" />), then the set of 
+  primitive central idempotents of the rational group algebra realized by strong
+  Shoda pairs of <M>G</M> is same as the one realized by extremely strong 
+  Shoda pairs of <M>G</M> <Cite Key="BM14" />. The algorithm to compute a
+  complete irredundant set of extremely strong Shoda pairs of <M>G</M> has been
+explained in <Cite Key="BM16" />. 
+
+
+
+</Section>
+
+<!-- ********************************************************* -->
+
 <Section Label="StMon">
 <Heading>Strongly monomial characters and strongly monomial groups</Heading>
 
@@ -689,6 +730,28 @@ of an arbitrary semisimple group ring by making use of not only the strong Shoda
 the strong Shoda pairs of the subgroups of <M>G</M>. 
 
 </Section>
+
+<Section Label="NorMon">
+<Heading>Normally monomial characters and normally monomial groups</Heading>
+
+<Index Key="NMCh">normally monomial character</Index>
+Let <M>G</M> be a finite group and <M>\chi</M> be an irreducible character of <M>G</M>.<P/>
+
+One says that <M>\chi</M> is <E>normally monomial</E> if there is a normal subgroup
+<M>K</M> of <M>G</M> such that <M>\chi</M> is induced from a linear character of 
+<M>K</M>.<P/>
+
+<Index Key="NMG">normally monomial group</Index>  
+The group <M>G</M> is <E>normally monomial</E> 
+if every irreducible character of <M>G</M> is 
+normally monomial. Bakshi and Maheshwary proved that if <M>G</M> is a normally monomial 
+group, then for every irreducible character <M>\chi</M> of <M>G</M>, there exists an extremely strong Shoda pair
+ <M>(K,H)</M> of <M>G</M> (<Ref Sect="ESSPDef"/>) such that <M>\chi=\theta^G</M>, where
+  <M>\theta</M> is a linear character of <M>K</M> with kernel <M>H</M> <Cite Key="BM14" />.<P/>
+
+</Section>
+
+
 
 <!-- ********************************************************* -->
 

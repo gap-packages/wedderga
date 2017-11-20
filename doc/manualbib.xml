@@ -87,6 +87,45 @@
   <other type="pages">x+287</other>
 </book></entry>
 
+
+
+<entry id="BM14"><article>
+  <author>
+    <name><first>Gurmeet Kaur</first><last>Bakshi</last></name>
+    <name><first>Sugandha</first><last>Maheshwary</last></name>
+  </author>  
+  <title>The rational group algebra of a normally monomial group</title>
+  <journal>J. Pure Appl. Algebra</journal>
+  <year>2014</year>
+  <volume>218</volume>
+  <number>9</number>
+  <pages>1583&ndash;1593</pages>
+  <issn>0022-4049</issn>
+  <mrnumber>MR3188857 </mrnumber>
+  <mrclass>16S34 (20C05)</mrclass>
+  <mrreviewer>Adalbert Bovdi</mrreviewer>
+  <other type="fjournal">Journal of Pure and Applied Algebra</other>
+</article></entry>
+﻿
+<entry id="BM16"><article>
+  <author>
+    <name><first>Gurmeet Kaur</first><last>Bakshi</last></name>
+    <name><first>Sugandha</first><last>Maheshwary</last></name>
+  </author>  
+  <title>Extremely strong <C>S</C>hoda pairs with <C>GAP</C></title>
+  <journal>J. Symbolic Comput.</journal>
+  <year>2016</year>
+  <volume>76</volume>
+  <number>9</number>
+  <pages>97&ndash;106</pages>
+  <issn>0747-7171</issn>
+  <mrnumber>3461261 </mrnumber>
+  <mrclass>20C05 (68W30)</mrclass>
+  <mrreviewer>Kaoru Motose</mrreviewer>
+  <other type="fjournal">Journal of Symbolic Computation</other>
+</article></entry>
+	
+	 
 <entry id="OR"><article>
   <author>
     <name><first>Aurora</first><last>Olivieri</last></name>
