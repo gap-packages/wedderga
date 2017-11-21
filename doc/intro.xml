@@ -52,10 +52,8 @@ To use the &Wedderga; online help it is necessary to install the &GAP;4 package
 
 &Wedderga; is distributed in standard formats
 (<File>tar.gz</File>, <File>tar.bz2</File>, <File>-win.zip</File>) 
-and can be obtained from  <URL>http://www.um.es/adelrio/wedderga.htm</URL>, 
-its mirror <URL>http://www.cs.st-andrews.ac.uk/&tilde;alexk/wedderga/</URL>
-or the page <URL>http://www.gap-system.org/Packages/wedderga.html</URL>
-at the &GAP; web site. To install &Wedderga;, unpack its archive into the 
+and can be obtained from <URL>https://gap-packages.github.io/wedderga/</URL>.
+To install &Wedderga;, unpack its archive into the 
 <File>pkg</File> subdirectory of your &GAP; installation.
 <P/>
 When you don't have access to the directory of your main &GAP; 
