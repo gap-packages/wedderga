@@ -15,35 +15,26 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup(16) ) );
   <crossed product with center NF(40,[ 1, 31 ]) over AsField( NF(40,
     [ 1, 31 ]), CF(40) ) of a group of size 2> ]
 
-# wedderga/doc/decomp.xml:77-105
+# wedderga/doc/decomp.xml:77-96
 
 gap> WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,15) ) );
 [ Rationals, Rationals, Rationals, Rationals, 
-  <crossed product with center Rationals over CF(3) of a group\
- of size 2>, 
-  <crossed product with center Rationals over GaussianRational\
-s of a group of \
-size 2>, <crossed product with center Rationals over CF(3) of \
-a group of size 
-    2>, <crossed product with center NF(8,[ 1, 7 ]) over AsFie\
-ld( NF(8,
-    [ 1, 7 ]), CF(8) ) of a group of size 2>, ( CF(3)^[ 2, 2 ]\
- ), 
-  <crossed product with center Rationals over CF(12) of a grou\
-p of size 4> ]
+  <crossed product with center Rationals over CF(3) of a group of size 2>, 
+  <crossed product with center Rationals over GaussianRationals of a group of \
+size 2>, <crossed product with center Rationals over CF(3) of a group of size 
+    2>, <crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
+    [ 1, 7 ]), CF(8) ) of a group of size 2>, ( CF(3)^[ 2, 2 ] ), 
+  <crossed product with center Rationals over CF(12) of a group of size 4> ]
 gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,15) ) );
 [ CF(3), CF(3), CF(3), CF(3), ( CF(3)^[ 2, 2 ] ), 
   <crossed product with center CF(3) over AsField( CF(3), CF(
     12) ) of a group of size 2>, ( CF(3)^[ 2, 2 ] ), 
-  <crossed product with center NF(24,[ 1, 7 ]) over AsField( N\
-F(24,
-    [ 1, 7 ]), CF(24) ) of a group of size 2>, ( CF(3)^[ 2, 2 \
-] ), 
-  ( CF(3)^[ 2, 2 ] ), ( <crossed product with center CF(3) ove\
-r AsField( CF(
+  <crossed product with center NF(24,[ 1, 7 ]) over AsField( NF(24,
+    [ 1, 7 ]), CF(24) ) of a group of size 2>, ( CF(3)^[ 2, 2 ] ), 
+  ( CF(3)^[ 2, 2 ] ), ( <crossed product with center CF(3) over AsField( CF(
     3), CF(12) ) of a group of size 2>^[ 2, 2 ] ) ]
 
-# wedderga/doc/decomp.xml:117-133
+# wedderga/doc/decomp.xml:108-124
 
 gap> QG:=GroupRing(Rationals,SmallGroup(240,89));
 <algebra-with-one over Rationals, with 2 generators>
@@ -59,7 +50,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 3/2, <crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
         [ 1, 7 ]), NF(40,[ 1, 31 ]) ) of a group of size 4> ] ]  
 
-# wedderga/doc/decomp.xml:202-211
+# wedderga/doc/decomp.xml:193-202
 
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, DihedralGroup(16) ) );
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
@@ -68,7 +59,7 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(5), DihedralGroup(16) ) );
 [ [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 2, CF(5) ],
   [ 1, NF(40,[ 1, 31 ]), 8, [ 2, 7, 0 ] ] ]
 
-# wedderga/doc/decomp.xml:229-251
+# wedderga/doc/decomp.xml:220-239
 
 gap> F:=FreeGroup("a","b");;a:=F.1;;b:=F.2;;rel:=[a^8,a^4*b^2,b^-1*a*b*a];;
 gap> Q16:=F/rel;; QQ16:=GroupRing( Rationals, Q16 );;
@@ -78,38 +69,30 @@ gap> WedderburnDecomposition(QQ16);
   <crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
     [ 1, 7 ]), CF(8) ) of a group of size 2> ]
 gap> WedderburnDecomposition( QS4 );
-[ Rationals, Rationals, <crossed product with center Rationals\
- over CF(
-    3) of a group of size 2>, ( Rationals^[ 3, 3 ] ), ( Ration\
-als^[ 3, 3 ] ) ]
+[ Rationals, Rationals, <crossed product with center Rationals over CF(
+    3) of a group of size 2>, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ) ]
 gap> WedderburnDecompositionInfo(QQ16);
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
   [ 2, Rationals ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ] ]
 gap> WedderburnDecompositionInfo(QS4);  
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 3, [ 2, \
-2, 0 ] ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], 
   [ 3, Rationals ], [ 3, Rationals ] ]
 
-# wedderga/doc/decomp.xml:305-324
+# wedderga/doc/decomp.xml:293-307
 
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,15) ) );
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
-ationals ], 
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\
- 0 ] ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \
-2, 7, 0 ] ], 
-  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\
- ], [ [ 3 ] ] ] 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] 
  ]
 gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
 [ [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], 
   [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 1, CF(3), 4, [ 2, 3, 0 ] ], 
-  [ 2, CF(3), 6, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, \
-7, 0 ] ], 
+  [ 2, CF(3), 6, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
   [ 2, CF(3) ], [ 2, CF(3) ], [ 2, CF(3), 12, [ 2, 7, 0 ] ] ]
 
-# wedderga/doc/decomp.xml:337-350
+# wedderga/doc/decomp.xml:320-333
 
 gap> QG:=GroupRing(Rationals,SmallGroup(240,89));
 <algebra-with-one over Rationals, with 2 generators>
@@ -122,7 +105,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ],
   [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
 
-# wedderga/doc/decomp.xml:407-428
+# wedderga/doc/decomp.xml:390-411
 
 gap> A5 := AlternatingGroup(5);
 Alt( [ 1 .. 5 ] )
@@ -143,7 +126,7 @@ gap> List(chi4,x->SimpleAlgebraByCharacter(GroupRing(Rationals,G),x));
   ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
     [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ) ]
 
-# wedderga/doc/decomp.xml:458-469
+# wedderga/doc/decomp.xml:444-455
 
 gap> G:=SmallGroup(128,100);
 <pc group of size 128 with 7 generators>
@@ -154,7 +137,7 @@ gap> List(chi4,x->SimpleAlgebraByCharacterInfo(QG,x));
 [ [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], 
   [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ] ]
 
-# wedderga/doc/decomp.xml:538-552
+# wedderga/doc/decomp.xml:524-538
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
@@ -168,7 +151,7 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, [1,7] );
 gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 
-# wedderga/doc/decomp.xml:592-608
+# wedderga/doc/decomp.xml:598-614
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;

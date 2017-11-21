@@ -52,10 +52,8 @@ To use the &Wedderga; online help it is necessary to install the &GAP;4 package
 
 &Wedderga; is distributed in standard formats
 (<File>tar.gz</File>, <File>tar.bz2</File>, <File>-win.zip</File>) 
-and can be obtained from  <URL>http://www.um.es/adelrio/wedderga.htm</URL>, 
-its mirror <URL>http://www.cs.st-andrews.ac.uk/&tilde;alexk/wedderga/</URL>
-or the page <URL>http://www.gap-system.org/Packages/wedderga.html</URL>
-at the &GAP; web site. To install &Wedderga;, unpack its archive into the 
+and can be obtained from <URL>https://gap-packages.github.io/wedderga/</URL>.
+To install &Wedderga;, unpack its archive into the 
 <File>pkg</File> subdirectory of your &GAP; installation.
 <P/>
 When you don't have access to the directory of your main &GAP; 
@@ -72,13 +70,17 @@ If the package is installed correctly, it should be loaded as follows:
 <![CDATA[
 gap> LoadPackage("wedderga");
 -----------------------------------------------------------------------------
-Loading  Wedderga 4.4.4 (Wedderga)
-by Osnel Broche Cristo (osnel@ufla.br),
-   Alexander Konovalov (http://www.cs.st-andrews.ac.uk/~alexk/),
-   Gabriela Olteanu (golteanu@um.es, olteanu@math.ubbcluj.ro),
-   Aurora Olivieri (olivieri@usb.ve), 
-   Angel del Rio (http://www.um.es/adelrio) and
-   Inneke Van Gelder (ivgelder@vub.ac.be).
+Loading  Wedderga 4.9.0 (Wedderga)
+by Gurmeet Kaur Bakshi (gkbakshi@pu.ac.in),
+   Osnel Broche Cristo (osnel@ufla.br),
+   Allen Herman (aherman@math.uregina.ca),
+   Alexander Konovalov (https://alexk.host.cs.st-andrews.ac.uk),
+   Sugandha Maheshwary (sugandha@iisermohali.ac.in),
+   Gabriela Olteanu (http://math.ubbcluj.ro/~olteanu),
+   Aurora Olivieri (olivieri@usb.ve),
+   Angel del Rio (http://www.um.es/adelrio), and
+   Inneke Van Gelder (http://homepages.vub.ac.be/~ivgelder).
+Homepage: https://gap-packages.github.io/wedderga
 -----------------------------------------------------------------------------
 true
 ]]>
@@ -112,11 +114,13 @@ to <E>cyclotomic algebras</E> (<Ref Sect="Cyclotomic" />). Recall that the
 Brauer-Witt Theorem ensures that every simple factor of a semisimple group ring
 <M>FG</M> is Brauer equivalent (that is represents the same class in the Brauer
 group of its centre) to a cyclotomic algebra (<Cite Key="Y"/>. In this case the
-algorithm is based in a computational oriented proof of the Brauer-Witt Theorem
+algorithm is based on a computational oriented proof of the Brauer-Witt Theorem
 due to Olteanu <Cite Key="O" /> which uses previous work by Olivieri, del Río
-and Simón <Cite Key="ORS" /> for rational group algebras of <E>strongly
-monomial groups</E> (<Ref Sect="StMon" />). 
-<P/>
+and Simón <Cite Key="ORS" /> (see also <Cite Key="OR" /> ) for rational group 
+algebras of <E>strongly monomial groups</E> (<Ref Sect="StMon" />). The algorithms
+ are also based upon the work of Bakshi and Maheshwary <Cite Key="BM14" /> 
+ (see also <Cite Key="BM16" />) on the rational group algebras of <E>normally
+  monomial groups</E> (<Ref Sect="NorMon" />).<P/>
 
 The Wedderburn components of <M>FG</M> are also matrix algebras over division
 rings which are finite extensions of the field <M>F</M>. If <M>F</M> is finite
@@ -131,7 +135,7 @@ decomposition of group algebras of groups of arbitrary size but in practice if
 the order of the group is greater than 5000 then the program may crash. The
 way the group is given is relevant for the performance. Usually the program
 works better for groups given as permutation groups or pc groups.
-
+<Alt Only="LaTeX">\newpage</Alt>
 <Example>
 <![CDATA[
 gap> QG := GroupRing( Rationals, SymmetricGroup(4) );

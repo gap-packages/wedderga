@@ -98,6 +98,72 @@ false
 <!-- ********************************************************* -->
 
 <Section Label="IdempotShoda">
+
+<Heading>Idempotents from Shoda pairs</Heading>
+
+
+<ManSection>
+   <Attr Name="PrimitiveCentralIdempotentsByESSP" 
+         Arg="QG"  
+         Comm="The PCIs realizable by ESSPs" />
+   <Returns>
+         A list of group algebra elements.
+   </Returns>         
+   <Description>
+         The input <A>QG</A> should be a semisimple rational group algebra 
+         of a finite group <M>G</M>. <P/>
+         
+         The output is the list of primitive central idempotents of the group algebra 
+         <A>QG</A> realizable by extremely strong Shoda pairs (<Ref Sect="ESSPDef" />) 
+         of <M>G</M>. <P/>
+         
+         If the list of primitive central idempotents given by the output is 
+         not complete (i.e. if the group <M>G</M> is not <E> normally monomial</E>
+         (<Ref Sect="NorMon" />)) then a warning is displayed.
+         
+<Example>
+<![CDATA[
+gap> QG:=GroupRing( Rationals, DihedralGroup(16) );;  
+gap> PrimitiveCentralIdempotentsByESSP( QG );
+[ (1/16)*<identity> of ...+(1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(1/
+    16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/
+    16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(1/16)*f1*f3*f4+(1/
+    16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, (1/16)*<identity> of ...+(-1/16)*f1+(-1/
+    16)*f2+(1/16)*f3+(1/16)*f4+(1/16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(-1/
+    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(-1/
+    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, 
+  (1/16)*<identity> of ...+(-1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(-1/
+    16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/
+    16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(-1/16)*f1*f3*f4+(1/
+    16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, (1/16)*<identity> of ...+(1/16)*f1+(-1/
+    16)*f2+(1/16)*f3+(1/16)*f4+(-1/16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(-1/
+    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(1/
+    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, 
+  (1/4)*<identity> of ...+(-1/4)*f3+(1/4)*f4+(-1/4)*f3*f4, 
+  (1/2)*<identity> of ...+(-1/2)*f4 ]
+gap> QG := GroupRing( Rationals, SmallGroup(24,12) );;
+gap> PrimitiveCentralIdempotentsByESSP( QG );
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+[ (1/24)*<identity> of ...+(1/24)*f1+(1/24)*f2+(1/24)*f3+(1/24)*f4+(1/
+    24)*f1*f2+(1/24)*f1*f3+(1/24)*f1*f4+(1/24)*f2^2+(1/24)*f2*f3+(1/
+    24)*f2*f4+(1/24)*f3*f4+(1/24)*f1*f2^2+(1/24)*f1*f2*f3+(1/24)*f1*f2*f4+(1/
+    24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/24)*f2*f3*f4+(1/24)*f1*f2^
+    2*f3+(1/24)*f1*f2^2*f4+(1/24)*f1*f2*f3*f4+(1/24)*f2^2*f3*f4+(1/24)*f1*f2^
+    2*f3*f4, (1/24)*<identity> of ...+(-1/24)*f1+(1/24)*f2+(1/24)*f3+(1/
+    24)*f4+(-1/24)*f1*f2+(-1/24)*f1*f3+(-1/24)*f1*f4+(1/24)*f2^2+(1/
+    24)*f2*f3+(1/24)*f2*f4+(1/24)*f3*f4+(-1/24)*f1*f2^2+(-1/24)*f1*f2*f3+(-1/
+    24)*f1*f2*f4+(-1/24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/
+    24)*f2*f3*f4+(-1/24)*f1*f2^2*f3+(-1/24)*f1*f2^2*f4+(-1/24)*f1*f2*f3*f4+(1/
+    24)*f2^2*f3*f4+(-1/24)*f1*f2^2*f3*f4, (1/6)*<identity> of ...+(-1/12)*f2+(
+    1/6)*f3+(1/6)*f4+(-1/12)*f2^2+(-1/12)*f2*f3+(-1/12)*f2*f4+(1/6)*f3*f4+(-1/
+    12)*f2^2*f3+(-1/12)*f2^2*f4+(-1/12)*f2*f3*f4+(-1/12)*f2^2*f3*f4 ]
+]]>
+</Example>
+         
+   </Description>
+</ManSection>
+
 <Heading>Idempotents from Shoda pairs</Heading>
 
 

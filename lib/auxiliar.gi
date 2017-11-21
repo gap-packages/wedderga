@@ -138,7 +138,7 @@ end);
 ##
 #F IsStrongShodaPair( G, K, H )
 ##
-## The function IsStrongShodaPair verifies if (H,K) is a SSP of G
+## The function IsStrongShodaPair checks if (H,K) is a strong Shoda pair of G
 ##
 InstallMethod( IsStrongShodaPair,
     "for a group and two subgroups", 

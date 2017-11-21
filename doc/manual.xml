@@ -12,6 +12,19 @@
   <Subtitle>Wedderburn Decomposition of Group Algebras</Subtitle>
   <Version>Version &VERSION;</Version>
 
+
+
+     
+      <Author>Gurmeet Kaur Bakshi 
+          <Email>gkbakshi@pu.ac.in</Email>
+          <Address>
+          Center for Advanced Study in Mathematics, <Br/>
+          Panjab University,
+          Chandigarh,
+          PIN-160014, India          
+          </Address>
+  </Author>
+
   <Author>Osnel Broche Cristo 
           <Email>osnel@ufla.br</Email>
           <Address>
@@ -41,6 +54,17 @@
           St Andrews, Fife, KY16 9SX, Scotland
           </Address> 
   </Author>
+    
+    <Author>Sugandha Maheshwary
+          <Email>sugandha@iisermohali.ac.in</Email>
+          <Address>
+          Department of Mathematical Sciences<Br/>
+	      Indian Institute of Science Education and Research <Br/>
+	      Mohali, Knowledge city, Sector 81, SAS Nagar, <Br/>
+	      Manauli, PO 140306, India
+          </Address> 
+  </Author>
+  
 
   <Author>Aurora Olivieri
           <Email>olivieri@usb.ve</Email>
@@ -86,8 +110,8 @@
 <Abstract>
 
 <Index Key="Wedderga package">&Wedderga; package</Index> 
-The title ``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of 
-<B>G</B>roup <B>A</B>lgebras. This is a &GAP; package to compute the simple 
+``&Wedderga;'' stands for ``<B>WEDDER</B>burn decomposition of 
+<B>G</B>roup <B>A</B>lgebras". This is a &GAP; package to compute the simple 
 components of the Wedderburn decomposition of semisimple group algebras of finite 
 groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. 
 It also contains functions that produce the primitive central idempotents 
@@ -100,8 +124,9 @@ multiplication determined by a given action and twisting.
 </Abstract>
 
 <Copyright>
-  &copyright; 2006-&RELEASEYEAR; by Osnel Broche Cristo, Allen Herman, Alexander Konovalov, Aurora
-  Olivieri, Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.<P/>
+  &copyright; 2006-&RELEASEYEAR; by Gurmeet Kaur Bakshi, Osnel Broche Cristo, Allen Herman,
+   Alexander Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu, 
+   Ángel del Río and Inneke Van Gelder.<P/>
 
   &Wedderga; is free software; you can redistribute it and/or modify it 
   under the terms of the GNU General Public License as published by 
@@ -115,11 +140,11 @@ multiplication determined by a given action and twisting.
   If you publish a result which was partially obtained with the usage of
   &Wedderga;, please cite it in the following form:<P/>
 
-  O. Broche Cristo, A. Herman, A. Konovalov, A. Olivieri, G. Olteanu, Á. del Río and I. Van Gelder. 
+  G. K. Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A. Olivieri,
+   G. Olteanu, Á. del Río and I. Van Gelder. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
   Version &VERSION;;</E> &RELEASEYEAR; (<URL>http://www.cs.st-andrews.ac.uk/~alexk/wedderga</URL>).
 </Copyright>
-  
 <Acknowledgements>
 We all are very grateful to Steve Linton for communicating the package and to
 the referee for careful testing &Wedderga; and useful suggestions. Also we 
@@ -127,11 +152,9 @@ acknowledge very much the members of the &GAP; team: Thomas Breuer,
 Alexander Hulpke, Frank L&#252;beck and many other colleagues 
 for helpful comments and advise. We would like also to thank Thomas Breuer 
 for the code of <C>PrimitiveCentralIdempotentsByCharacterTable</C> for 
-rational group algebras.
-<P/> 
-
-On various stages the development of the Wedderga package was supported by 
-the following institutions:
+rational group algebras.<P/> 
+<P/>
+We gratefully acknowledge the support of Wedderga development by the following institutions:
 <List>
   <Item>University of Murcia;</Item>
   <Item>Francqui Stichting grant ADSI107;</Item>
@@ -139,9 +162,10 @@ the following institutions:
   <Item>D.G.I. of Spain;</Item>
   <Item>Fundación Séneca of Murcia;</Item>
   <Item>CAPES and FAPESP of Brazil;</Item>
-  <Item>Research Foundation Flanders (FWO - Vlaanderen).</Item>
+  <Item>Research Foundation Flanders (FWO - Vlaanderen);</Item>
+  <Item>CCP CoDiMa (EP/M022641/1);</Item>
+  <Item>Department of Science and Technology (DST), India.</Item>
 </List>
-We acknowledge with gratitude this support.
 </Acknowledgements>
 
 </TitlePage>

@@ -30,7 +30,45 @@ true
 gap> IsCompleteSetOfOrthogonalIdempotents( QS5, [ One( QS5 ), One( QS5 ) ] );
 false
 
-# wedderga/doc/idempot.xml:130-154
+# wedderga/doc/idempot.xml:124-162
+
+gap> QG:=GroupRing( Rationals, DihedralGroup(16) );;  
+gap> PrimitiveCentralIdempotentsByESSP( QG );
+[ (1/16)*<identity> of ...+(1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(1/
+    16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/
+    16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(1/16)*f1*f3*f4+(1/
+    16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, (1/16)*<identity> of ...+(-1/16)*f1+(-1/
+    16)*f2+(1/16)*f3+(1/16)*f4+(1/16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(-1/
+    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(-1/
+    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, 
+  (1/16)*<identity> of ...+(-1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(-1/
+    16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/
+    16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(-1/16)*f1*f3*f4+(1/
+    16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, (1/16)*<identity> of ...+(1/16)*f1+(-1/
+    16)*f2+(1/16)*f3+(1/16)*f4+(-1/16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(-1/
+    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(1/
+    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, 
+  (1/4)*<identity> of ...+(-1/4)*f3+(1/4)*f4+(-1/4)*f3*f4, 
+  (1/2)*<identity> of ...+(-1/2)*f4 ]
+gap> QG := GroupRing( Rationals, SmallGroup(24,12) );;
+gap> PrimitiveCentralIdempotentsByESSP( QG );
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+[ (1/24)*<identity> of ...+(1/24)*f1+(1/24)*f2+(1/24)*f3+(1/24)*f4+(1/
+    24)*f1*f2+(1/24)*f1*f3+(1/24)*f1*f4+(1/24)*f2^2+(1/24)*f2*f3+(1/
+    24)*f2*f4+(1/24)*f3*f4+(1/24)*f1*f2^2+(1/24)*f1*f2*f3+(1/24)*f1*f2*f4+(1/
+    24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/24)*f2*f3*f4+(1/24)*f1*f2^
+    2*f3+(1/24)*f1*f2^2*f4+(1/24)*f1*f2*f3*f4+(1/24)*f2^2*f3*f4+(1/24)*f1*f2^
+    2*f3*f4, (1/24)*<identity> of ...+(-1/24)*f1+(1/24)*f2+(1/24)*f3+(1/
+    24)*f4+(-1/24)*f1*f2+(-1/24)*f1*f3+(-1/24)*f1*f4+(1/24)*f2^2+(1/
+    24)*f2*f3+(1/24)*f2*f4+(1/24)*f3*f4+(-1/24)*f1*f2^2+(-1/24)*f1*f2*f3+(-1/
+    24)*f1*f2*f4+(-1/24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/
+    24)*f2*f3*f4+(-1/24)*f1*f2^2*f3+(-1/24)*f1*f2^2*f4+(-1/24)*f1*f2*f3*f4+(1/
+    24)*f2^2*f3*f4+(-1/24)*f1*f2^2*f3*f4, (1/6)*<identity> of ...+(-1/12)*f2+(
+    1/6)*f3+(1/6)*f4+(-1/12)*f2^2+(-1/12)*f2*f3+(-1/12)*f2*f4+(1/6)*f3*f4+(-1/
+    12)*f2^2*f3+(-1/12)*f2^2*f4+(-1/12)*f2*f3*f4+(-1/12)*f2^2*f3*f4 ]
+
+# wedderga/doc/idempot.xml:196-220
 
 gap> QG:=GroupRing( Rationals, AlternatingGroup(4) );;           
 gap> PrimitiveCentralIdempotentsByStrongSP( QG );
@@ -54,7 +92,7 @@ gap> PrimitiveCentralIdempotentsByStrongSP( FG );;
 Wedderga: Warning!!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
 
-# wedderga/doc/idempot.xml:177-211
+# wedderga/doc/idempot.xml:243-277
 
 gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
 <algebra-with-one over Rationals, with 2 generators>
@@ -88,7 +126,7 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 gap> IsCompleteSetOfPCIs( QS5 , pci );
 false
 
-# wedderga/doc/idempot.xml:217-241
+# wedderga/doc/idempot.xml:283-307
 
 gap> QG := GroupRing( Rationals, SmallGroup(48,28) );;
 gap> pci:=PrimitiveCentralIdempotentsBySP( QG );;
@@ -112,7 +150,7 @@ Wedderga: Warning!!!
 The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 false
 
-# wedderga/doc/idempot.xml:272-295
+# wedderga/doc/idempot.xml:338-361
 
 gap> G:=DihedralGroup(8);; 
 gap> F:=GF(3);;                     
@@ -135,7 +173,7 @@ gap> PrimitiveIdempotentsNilpotent(FG,H,K,C,[epi,gq]);
 [ (Z(3)^0)*<identity> of ...+(Z(3))*f3+(Z(3)^0)*f1*f2+(Z(3))*f1*f2*f3, 
   (Z(3)^0)*<identity> of ...+(Z(3))*f3+(Z(3))*f1*f2+(Z(3)^0)*f1*f2*f3 ]
 
-# wedderga/doc/idempot.xml:322-345
+# wedderga/doc/idempot.xml:388-411
 
 gap> G:=DihedralGroup(8);; 
 gap> F:=GF(3);;                     
