@@ -72,13 +72,17 @@ If the package is installed correctly, it should be loaded as follows:
 <![CDATA[
 gap> LoadPackage("wedderga");
 -----------------------------------------------------------------------------
-Loading  Wedderga 4.4.4 (Wedderga)
-by Osnel Broche Cristo (osnel@ufla.br),
-   Alexander Konovalov (http://www.cs.st-andrews.ac.uk/~alexk/),
-   Gabriela Olteanu (golteanu@um.es, olteanu@math.ubbcluj.ro),
-   Aurora Olivieri (olivieri@usb.ve), 
-   Angel del Rio (http://www.um.es/adelrio) and
-   Inneke Van Gelder (ivgelder@vub.ac.be).
+Loading  Wedderga 4.9.0 (Wedderga)
+by Gurmeet Kaur Bakshi (gkbakshi@pu.ac.in),
+   Osnel Broche Cristo (osnel@ufla.br),
+   Allen Herman (aherman@math.uregina.ca),
+   Alexander Konovalov (https://alexk.host.cs.st-andrews.ac.uk),
+   Sugandha Maheshwary (sugandha@iisermohali.ac.in),
+   Gabriela Olteanu (http://math.ubbcluj.ro/~olteanu),
+   Aurora Olivieri (olivieri@usb.ve),
+   Angel del Rio (http://www.um.es/adelrio), and
+   Inneke Van Gelder (http://homepages.vub.ac.be/~ivgelder).
+Homepage: https://gap-packages.github.io/wedderga
 -----------------------------------------------------------------------------
 true
 ]]>
