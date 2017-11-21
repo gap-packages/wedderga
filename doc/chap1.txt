@@ -38,10 +38,8 @@
   site or from [7Xhttp://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/[107X.[133X
   
   [33X[0;0Y[5XWedderga[105X  is distributed in standard formats ([11Xtar.gz[111X, [11Xtar.bz2[111X, [11X-win.zip[111X) and
-  can  be  obtained  from  [7Xhttp://www.um.es/adelrio/wedderga.htm[107X,  its  mirror
-  [7Xhttp://www.cs.st-andrews.ac.uk/~alexk/wedderga/[107X       or       the      page
-  [7Xhttp://www.gap-system.org/Packages/wedderga.html[107X  at  the  [5XGAP[105X  web site. To
-  install  [5XWedderga[105X,  unpack its archive into the [11Xpkg[111X subdirectory of your [5XGAP[105X
+  can  be  obtained  from [7Xhttps://gap-packages.github.io/wedderga/[107X. To install
+  [5XWedderga[105X,  unpack  its  archive  into  the  [11Xpkg[111X  subdirectory  of  your  [5XGAP[105X
   installation.[133X
   
   [33X[0;0YWhen  you  don't have access to the directory of your main [5XGAP[105X installation,
@@ -57,13 +55,17 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XLoadPackage("wedderga");[127X[104X
     [4X[28X-----------------------------------------------------------------------------[128X[104X
-    [4X[28XLoading  Wedderga 4.4.4 (Wedderga)[128X[104X
-    [4X[28Xby Osnel Broche Cristo (osnel@ufla.br),[128X[104X
-    [4X[28X   Alexander Konovalov (http://www.cs.st-andrews.ac.uk/~alexk/),[128X[104X
-    [4X[28X   Gabriela Olteanu (golteanu@um.es, olteanu@math.ubbcluj.ro),[128X[104X
-    [4X[28X   Aurora Olivieri (olivieri@usb.ve), [128X[104X
-    [4X[28X   Angel del Rio (http://www.um.es/adelrio) and[128X[104X
-    [4X[28X   Inneke Van Gelder (ivgelder@vub.ac.be).[128X[104X
+    [4X[28XLoading  Wedderga 4.9.0 (Wedderga)[128X[104X
+    [4X[28Xby Gurmeet Kaur Bakshi (gkbakshi@pu.ac.in),[128X[104X
+    [4X[28X   Osnel Broche Cristo (osnel@ufla.br),[128X[104X
+    [4X[28X   Allen Herman (aherman@math.uregina.ca),[128X[104X
+    [4X[28X   Alexander Konovalov (https://alexk.host.cs.st-andrews.ac.uk),[128X[104X
+    [4X[28X   Sugandha Maheshwary (sugandha@iisermohali.ac.in),[128X[104X
+    [4X[28X   Gabriela Olteanu (http://math.ubbcluj.ro/~olteanu),[128X[104X
+    [4X[28X   Aurora Olivieri (olivieri@usb.ve),[128X[104X
+    [4X[28X   Angel del Rio (http://www.um.es/adelrio), and[128X[104X
+    [4X[28X   Inneke Van Gelder (http://homepages.vub.ac.be/~ivgelder).[128X[104X
+    [4X[28XHomepage: https://gap-packages.github.io/wedderga[128X[104X
     [4X[28X-----------------------------------------------------------------------------[128X[104X
     [4X[28Xtrue[128X[104X
     [4X[28X[128X[104X
@@ -88,9 +90,12 @@
   ensures  that  every  simple  factor of a semisimple group ring [22XFG[122X is Brauer
   equivalent  (that  is  represents  the same class in the Brauer group of its
   centre)  to  a  cyclotomic  algebra  ([Yam74]. In this case the algorithm is
-  based  in  a  computational oriented proof of the Brauer-Witt Theorem due to
+  based  on  a  computational oriented proof of the Brauer-Witt Theorem due to
   Olteanu  [Olt07]  which  uses  previous  work by Olivieri, del Río and Simón
-  [OdRS04] for rational group algebras of [13Xstrongly monomial groups[113X ([14X9.16[114X).[133X
+  [OdRS04]  (see  also  [OdR03]  )  for  rational  group  algebras of [13Xstrongly
+  monomial  groups[113X  ([14X9.17[114X).  The  algorithms  are  also based upon the work of
+  Bakshi  and  Maheshwary  [BM14]  (see  also  [BM16])  on  the rational group
+  algebras of [13Xnormally monomial groups[113X ([14X9.18[114X).[133X
   
   [33X[0;0YThe Wedderburn components of [22XFG[122X are also matrix algebras over division rings
   which  are  finite  extensions  of  the  field [22XF[122X. If [22XF[122X is finite then by the
@@ -109,14 +114,13 @@
     [4X[25Xgap>[125X [27XQG := GroupRing( Rationals, SymmetricGroup(4) );[127X[104X
     [4X[28X<algebra-with-one over Rationals, with 2 generators>[128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecomposition(QG);[127X[104X
-    [4X[28X[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),[128X[104X
-    [4X[28X  <crossed product with center Rationals over CF(3) of a group of size 2> ][128X[104X
+    [4X[28X[ Rationals, Rationals, <crossed product with center Rationals over CF([128X[104X
+    [4X[28X    3) of a group of size 2>, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ) ][128X[104X
     [4X[25Xgap>[125X [27XFG := GroupRing( CF(5), SymmetricGroup(4) );[127X[104X
     [4X[28X<algebra-with-one over CF(5), with 2 generators>[128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecomposition( FG );[127X[104X
-    [4X[28X[ CF(5), CF(5), ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ),[128X[104X
-    [4X[28X  <crossed product with center CF(5) over AsField( CF(5), CF([128X[104X
-    [4X[28X    15) ) of a group of size 2> ][128X[104X
+    [4X[28X[ CF(5), CF(5), <crossed product with center CF(5) over AsField( CF(5), CF([128X[104X
+    [4X[28X    15) ) of a group of size 2>, ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ) ][128X[104X
     [4X[25Xgap>[125X [27XFG := GroupRing( GF(5), SymmetricGroup(4) ); [127X[104X
     [4X[28X<algebra-with-one over GF(5), with 2 generators>[128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecomposition( FG );[127X[104X

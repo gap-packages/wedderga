@@ -8,6 +8,12 @@
   [[20XBen76[120X]  [16XBenard,  M.[116X,  [17XSchur indices and cyclic defect groups[117X, [18XAnn. of Math.
   (2) [118X, [19X103[119X, 2 (1976), 283–304.
   
+  [[20XBM14[120X]  [16XBakshi,  G.  K.  and Maheshwary, S.[116X, [17XThe rational group algebra of a
+  normally monomial group[117X, [18XJ. Pure Appl. Algebra[118X, [19X218[119X, 9 (2014), 1583–1593.
+  
+  [[20XBM16[120X]  [16XBakshi,  G. K. and Maheshwary, S.[116X, [17XExtremely strong Shoda pairs with
+  GAP[117X, [18XJ. Symbolic Comput.[118X, [19X76[119X, 9 (2016), 97–106.
+  
   [[20XBS72[120X] [16XBenard, M. and Schacher, M.[116X, [17XThe Schur subgroup. II.[117X, [18XJ. Algebra[118X, [19X22[119X,
   1 (1972), 378–385.
   

@@ -165,7 +165,7 @@ false
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=DihedralGroup(8);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H:=StrongShodaPairs(G)[5][1];</span>
-Group([ f1*f2, f3, f3 ])
+Group([ f1*f2*f3, f3 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:=StrongShodaPairs(G)[5][2]; </span>
 Group([ f1*f2 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsTwistingTrivial(G,H,K);</span>
@@ -232,7 +232,8 @@ Group([ f1, f2 ])
 <div class="example"><pre>
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(D16,x-&gt;a^x=a);</span>
-[ true, true, false, false, true, false, false, true, false, false, false,
+[ true, true, false, false, false, false, false, false, true, \
+true, false, 
   false, false, false, false, false ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(D16,x-&gt;e^x=e);</span>
 [ true, true, true, true, true, true, true, true, true, true, true, true,
@@ -293,7 +294,7 @@ false
 
 <p>The input should be formed by two relatively prime positive integers.</p>
 
-<p>Returns the list <var class="Arg">q</var>-<em>cyclotomic classes </em> (<a href="chap9.html#X800D8C5087D79DC8"><span class="RefLink">9.17</span></a>) modulo <var class="Arg">n</var>.</p>
+<p>Returns the list <var class="Arg">q</var>-<em>cyclotomic classes </em> (<a href="chap9.html#X800D8C5087D79DC8"><span class="RefLink">9.19</span></a>) modulo <var class="Arg">n</var>.</p>
 
 
 <div class="example"><pre>
@@ -314,7 +315,7 @@ false
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsCyclotomicClass</code>( <var class="Arg">q</var>, <var class="Arg">n</var>, <var class="Arg">C</var> )</td><td class="tdright">( operation )</td></tr></table></div>
 <p>The input should be formed by two relatively prime positive integers <var class="Arg">q</var> and <var class="Arg">n</var> and a sublist <var class="Arg">C</var> of <span class="SimpleMath">[ 0 .. n ]</span>.</p>
 
-<p>Returns <code class="keyw">true</code> if <var class="Arg">C</var> is a <var class="Arg">q</var>-<em>cyclotomic class</em> (<a href="chap9.html#X800D8C5087D79DC8"><span class="RefLink">9.17</span></a>) modulo <var class="Arg">n</var> and <code class="keyw">false</code> otherwise.</p>
+<p>Returns <code class="keyw">true</code> if <var class="Arg">C</var> is a <var class="Arg">q</var>-<em>cyclotomic class</em> (<a href="chap9.html#X800D8C5087D79DC8"><span class="RefLink">9.19</span></a>) modulo <var class="Arg">n</var> and <code class="keyw">false</code> otherwise.</p>
 
 
 <div class="example"><pre>

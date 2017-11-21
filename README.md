@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/gap-packages/wedderga.svg?branch=master)](https://travis-ci.org/gap-packages/wedderga)
+[![Code Coverage](https://codecov.io/github/gap-packages/wedderga/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/wedderga)
+
 # GAP package Wedderga
 
 The title "Wedderga" stands for "Wedderburn decomposition of group algebras". 
@@ -30,5 +33,6 @@ to load it using the following command:
     gap> LoadPackage("wedderga");
 
 
-Osnel Broche Cristo, Allen Herman, Alexander Konovalov, Aurora Olivieri,
-Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.
+Gurmeet Kaur Bakshi, Osnel Broche Cristo, Allen Herman, Alexander Konovalov, 
+Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu, Ángel del Río and 
+Inneke Van Gelder.

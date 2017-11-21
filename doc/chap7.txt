@@ -29,17 +29,25 @@
     [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);       [127X[104X
     [4X[28X<algebra-with-one over Rationals, with 5 generators>[128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionInfo(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [128X[104X
-    [4X[28X  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], [128X[104X
-    [4X[28X  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], [128X[104X
-    [4X[28X  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ][128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\[128X[104X
+    [4X[28Xationals ], [128X[104X
+    [4X[28X  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\[128X[104X
+    [4X[28X 0 ] ], [128X[104X
+    [4X[28X  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \[128X[104X
+    [4X[28X2, 7, 0 ] ], [128X[104X
+    [4X[28X  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\[128X[104X
+    [4X[28X ], [ [ 3 ] ] ] [128X[104X
+    [4X[28X ][128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionWithDivAlgParts(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [128X[104X
-    [4X[28X  [ 2, Rationals ], [ 2, Rationals ], [ 2, CF(3) ], [ 2, Rationals ], [128X[104X
-    [4X[28X  [ 2, NF(8,[ 1, 7 ]) ], [128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\[128X[104X
+    [4X[28Xationals ], [128X[104X
+    [4X[28X  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, N\[128X[104X
+    [4X[28XF(8,[ 1, 7 ]) ],[128X[104X
+    [4X[28X  [ 2, CF(3) ], [128X[104X
     [4X[28X  [ 2, [128X[104X
     [4X[28X      rec( Center := Rationals, DivAlg := true, [128X[104X
-    [4X[28X          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ][128X[104X
+    [4X[28X          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex :\[128X[104X
+    [4X[28X= 2 ) ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -420,7 +428,7 @@
     [4X[25Xgap>[125X [27XDefiningCharacterOfCyclotomicAlgebra(A);[127X[104X
     [4X[28X12[128X[104X
     [4X[25Xgap>[125X [27XSimpleComponentOfGroupRingByCharacter(Rationals,G,12);[127X[104X
-    [4X[28X[ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ][128X[104X
+    [4X[28X[ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -560,7 +568,7 @@
     [4X[28X<pc group of size 72 with 5 generators>[128X[104X
     [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[11],3);[127X[104X
     [4X[28X[ 2, "DGnotCyclic" ][128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[13],2);[127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,First(Irr(G),x->Degree(x)=4),2);[127X[104X
     [4X[28X1[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -760,7 +768,7 @@
     [4X[25Xgap>[125X [27XSize(W);[127X[104X
     [4X[28X12[128X[104X
     [4X[25Xgap>[125X [27XA:=W[12];[127X[104X
-    [4X[28X[ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 3 ] ], [ [ 9 ] ] ][128X[104X
+    [4X[28X[ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 9 ] ], [ [ 3 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XDecomposeCyclotomicAlgebra(A);[127X[104X
     [4X[28X[ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], [128X[104X
     [4X[28X  [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ][128X[104X

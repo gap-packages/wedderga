@@ -1,16 +1,20 @@
 name: Wedderga
-version: 4.8.0
-date: 23/09/2017
+version: 4.9.0
+date: 21/11/2017
 description: |
     Wedderburn Decomposition of Group Algebras
 
 authors:
+    - name: Gurmeet Kaur Bakshi
+      url: mailto:gkbakshi@pu.ac.in
     - name: Osnel Broche Cristo
       url: mailto:osnel@ufla.br
     - name: Allen Herman
       url: mailto:aherman@math.uregina.ca
     - name: Alexander Konovalov
       url: https://alexk.host.cs.st-andrews.ac.uk
+    - name: Sugandha Maheshwary
+      url: mailto:sugandha@iisermohali.ac.in
     - name: Gabriela Olteanu
       url: http://math.ubbcluj.ro/~olteanu
     - name: Aurora Olivieri
@@ -21,12 +25,16 @@ authors:
       url: http://homepages.vub.ac.be/~ivgelder
 
 maintainers:
+    - name: Gurmeet Kaur Bakshi
+      url: mailto:gkbakshi@pu.ac.in
     - name: Osnel Broche Cristo
       url: mailto:osnel@ufla.br
     - name: Allen Herman
       url: mailto:aherman@math.uregina.ca
     - name: Alexander Konovalov
       url: https://alexk.host.cs.st-andrews.ac.uk
+    - name: Sugandha Maheshwary
+      url: mailto:sugandha@iisermohali.ac.in
     - name: Gabriela Olteanu
       url: http://math.ubbcluj.ro/~olteanu
     - name: Aurora Olivieri
@@ -46,7 +54,7 @@ needed-pkgs:
 suggested-pkgs:
     - name: "laguna"
       version: ">= 3.4"
-      url: "http://www.cs.st-andrews.ac.uk/~alexk/laguna/"
+      url: "https://gap-packages.github.io/laguna"
     - name: "GUAVA"
       version: ">= 3.12"
       url: "http://osj1961.github.io/guava/"
@@ -57,7 +65,7 @@ packageinfo: https://gap-packages.github.io/wedderga/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/wedderga/releases/download/v4.8.0/wedderga-4.8.0.tar.gz
+      url: https://github.com/gap-packages/wedderga/releases/download/v4.9.0/wedderga-4.9.0.tar.gz
 
 abstract: |
     <span class="pkgname">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class="pkgname">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.

@@ -45,7 +45,7 @@
 
 <p>The input <var class="Arg">F</var> should be a finite field. The input <var class="Arg">S</var> is a fixed ordering of a group <span class="SimpleMath">G</span> and <var class="Arg">a</var> is an element in the group algebra <span class="SimpleMath">FG</span>.</p>
 
-<p>Each element <span class="SimpleMath">c</span> in <span class="SimpleMath">FG</span> is of the form <span class="SimpleMath">c=∑_i=1^n f_i g_i</span>, where we fix an ordering <span class="SimpleMath">{g_1,g_2,...,g_n }</span> of the group elements of <span class="SimpleMath">G</span> and <span class="SimpleMath">f_i∈ F</span>. If we look at <span class="SimpleMath">c</span> as a codeword, we will write <span class="SimpleMath">[f_1 f_2 ... f_n]</span>. (<a href="chap9.html#X856D7975810BF987"><span class="RefLink">9.21</span></a>).</p>
+<p>Each element <span class="SimpleMath">c</span> in <span class="SimpleMath">FG</span> is of the form <span class="SimpleMath">c=∑_i=1^n f_i g_i</span>, where we fix an ordering <span class="SimpleMath">{g_1,g_2,...,g_n }</span> of the group elements of <span class="SimpleMath">G</span> and <span class="SimpleMath">f_i∈ F</span>. If we look at <span class="SimpleMath">c</span> as a codeword, we will write <span class="SimpleMath">[f_1 f_2 ... f_n]</span>. (<a href="chap9.html#X856D7975810BF987"><span class="RefLink">9.23</span></a>).</p>
 
 
 <div class="example"><pre>
@@ -72,7 +72,7 @@
 
 <p>The input <var class="Arg">F</var> should be a finite field. The input <var class="Arg">S</var> is a fixed ordering of a group <span class="SimpleMath">G</span> and <var class="Arg">I</var> is a left ideal of the group algebra <span class="SimpleMath">FG</span>.</p>
 
-<p>Each element <span class="SimpleMath">c</span> in <span class="SimpleMath">FG</span> is of the form <span class="SimpleMath">c=∑_i=1^n f_i g_i</span>, where we fix an ordering <span class="SimpleMath">{g_1,g_2,...,g_n }</span> of the group elements of <span class="SimpleMath">G</span> and <span class="SimpleMath">f_i∈ F</span>. If we look at <span class="SimpleMath">c</span> as a codeword, we will write <span class="SimpleMath">[f_1 f_2 ... f_n]</span>. (<a href="chap9.html#X856D7975810BF987"><span class="RefLink">9.21</span></a>).</p>
+<p>Each element <span class="SimpleMath">c</span> in <span class="SimpleMath">FG</span> is of the form <span class="SimpleMath">c=∑_i=1^n f_i g_i</span>, where we fix an ordering <span class="SimpleMath">{g_1,g_2,...,g_n }</span> of the group elements of <span class="SimpleMath">G</span> and <span class="SimpleMath">f_i∈ F</span>. If we look at <span class="SimpleMath">c</span> as a codeword, we will write <span class="SimpleMath">[f_1 f_2 ... f_n]</span>. (<a href="chap9.html#X856D7975810BF987"><span class="RefLink">9.23</span></a>).</p>
 
 
 <div class="example"><pre>
@@ -83,7 +83,7 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">S:=AsSet(G);</span>
 [ &lt;identity&gt; of ..., f1, f2, f3, f1*f2, f1*f3, f2*f3, f1*f2*f3 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H:=StrongShodaPairs(G)[5][1];</span>
-Group([ f1*f2, f3, f3 ])
+Group([ f1*f2*f3, f3 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:=StrongShodaPairs(G)[5][2];</span>
 Group([ f1*f2 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N:=Normalizer(G,K);</span>
@@ -91,7 +91,7 @@ Group([ f1*f2*f3, f3 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">epi:=NaturalHomomorphismByNormalSubgroup(N,K);</span>
 [ f1*f2*f3, f3 ] -&gt; [ f1, f1 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">QHK:=Image(epi,H);</span>
-Group([ &lt;identity&gt; of ..., f1, f1 ])
+Group([ f1, f1 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gq:=MinimalGeneratingSet(QHK)[1];</span>
 f1
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C:=CyclotomicClasses(Size(F),Index(H,K))[2];</span>

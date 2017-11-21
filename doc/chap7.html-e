@@ -94,17 +94,25 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R:=GroupRing(Rationals,G);       </span>
 &lt;algebra-with-one over Rationals, with 5 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionInfo(R);</span>
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
-  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
+ationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\
+ 0 ] ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \
+2, 7, 0 ] ], 
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\
+ ], [ [ 3 ] ] ] 
+ ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionWithDivAlgParts(R);</span>
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 2, Rationals ], [ 2, Rationals ], [ 2, CF(3) ], [ 2, Rationals ], 
-  [ 2, NF(8,[ 1, 7 ]) ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
+ationals ], 
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, N\
+F(8,[ 1, 7 ]) ],
+  [ 2, CF(3) ], 
   [ 2, 
       rec( Center := Rationals, DivAlg := true, 
-          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ]
+          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex :\
+= 2 ) ] ]
 
 </pre></div>
 
@@ -426,7 +434,7 @@ Group([ f3*f4*f5, f1, f2 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DefiningCharacterOfCyclotomicAlgebra(A);</span>
 12
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SimpleComponentOfGroupRingByCharacter(Rationals,G,12);</span>
-[ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ]
+[ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 
 </pre></div>
 
@@ -538,7 +546,7 @@ BrauerTable( &lt;pc group of size 80 with 5 generators&gt;, 5 )
 &lt;pc group of size 72 with 5 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[11],3);</span>
 [ 2, "DGnotCyclic" ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[13],2);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,First(Irr(G),x-&gt;Degree(x)=4),2);</span>
 1
 
 </pre></div>
@@ -673,7 +681,7 @@ false
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(W);</span>
 12
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">A:=W[12];</span>
-[ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 3 ] ], [ [ 9 ] ] ]
+[ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 9 ] ], [ [ 3 ] ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DecomposeCyclotomicAlgebra(A);</span>
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], 
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ]

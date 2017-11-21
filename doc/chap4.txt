@@ -76,7 +76,62 @@
   
   [1X4.3 [33X[0;0YIdempotents from Shoda pairs[133X[101X
   
-  [1X4.3-1 PrimitiveCentralIdempotentsByStrongSP[101X
+  [1X4.3-1 PrimitiveCentralIdempotentsByESSP[101X
+  
+  [29X[2XPrimitiveCentralIdempotentsByESSP[102X( [3XQG[103X ) [32X attribute
+  [6XReturns:[106X  [33X[0;10YA list of group algebra elements.[133X
+  
+  [33X[0;0YThe input [3XQG[103X should be a semisimple rational group algebra of a finite group
+  [22XG[122X.[133X
+  
+  [33X[0;0YThe output is the list of primitive central idempotents of the group algebra
+  [3XQG[103X realizable by extremely strong Shoda pairs ([14X9.16[114X) of [22XG[122X.[133X
+  
+  [33X[0;0YIf  the  list  of  primitive  central idempotents given by the output is not
+  complete  (i.e.  if  the  group  [22XG[122X  is not [13X normally monomial[113X ([14X9.18[114X)) then a
+  warning is displayed.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XQG:=GroupRing( Rationals, DihedralGroup(16) );;  [127X[104X
+    [4X[25Xgap>[125X [27XPrimitiveCentralIdempotentsByESSP( QG );[127X[104X
+    [4X[28X[ (1/16)*<identity> of ...+(1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(1/[128X[104X
+    [4X[28X    16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/[128X[104X
+    [4X[28X    16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(1/16)*f1*f3*f4+(1/[128X[104X
+    [4X[28X    16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, (1/16)*<identity> of ...+(-1/16)*f1+(-1/[128X[104X
+    [4X[28X    16)*f2+(1/16)*f3+(1/16)*f4+(1/16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(-1/[128X[104X
+    [4X[28X    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(-1/[128X[104X
+    [4X[28X    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, [128X[104X
+    [4X[28X  (1/16)*<identity> of ...+(-1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(-1/[128X[104X
+    [4X[28X    16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/[128X[104X
+    [4X[28X    16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(-1/16)*f1*f3*f4+(1/[128X[104X
+    [4X[28X    16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, (1/16)*<identity> of ...+(1/16)*f1+(-1/[128X[104X
+    [4X[28X    16)*f2+(1/16)*f3+(1/16)*f4+(-1/16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(-1/[128X[104X
+    [4X[28X    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(1/[128X[104X
+    [4X[28X    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, [128X[104X
+    [4X[28X  (1/4)*<identity> of ...+(-1/4)*f3+(1/4)*f4+(-1/4)*f3*f4, [128X[104X
+    [4X[28X  (1/2)*<identity> of ...+(-1/2)*f4 ][128X[104X
+    [4X[25Xgap>[125X [27XQG := GroupRing( Rationals, SmallGroup(24,12) );;[127X[104X
+    [4X[25Xgap>[125X [27XPrimitiveCentralIdempotentsByESSP( QG );[127X[104X
+    [4X[28XWedderga: Warning!!![128X[104X
+    [4X[28XThe output is a NON-COMPLETE list of prim. central idemp.s of the input! [128X[104X
+    [4X[28X[ (1/24)*<identity> of ...+(1/24)*f1+(1/24)*f2+(1/24)*f3+(1/24)*f4+(1/[128X[104X
+    [4X[28X    24)*f1*f2+(1/24)*f1*f3+(1/24)*f1*f4+(1/24)*f2^2+(1/24)*f2*f3+(1/[128X[104X
+    [4X[28X    24)*f2*f4+(1/24)*f3*f4+(1/24)*f1*f2^2+(1/24)*f1*f2*f3+(1/24)*f1*f2*f4+(1/[128X[104X
+    [4X[28X    24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/24)*f2*f3*f4+(1/24)*f1*f2^[128X[104X
+    [4X[28X    2*f3+(1/24)*f1*f2^2*f4+(1/24)*f1*f2*f3*f4+(1/24)*f2^2*f3*f4+(1/24)*f1*f2^[128X[104X
+    [4X[28X    2*f3*f4, (1/24)*<identity> of ...+(-1/24)*f1+(1/24)*f2+(1/24)*f3+(1/[128X[104X
+    [4X[28X    24)*f4+(-1/24)*f1*f2+(-1/24)*f1*f3+(-1/24)*f1*f4+(1/24)*f2^2+(1/[128X[104X
+    [4X[28X    24)*f2*f3+(1/24)*f2*f4+(1/24)*f3*f4+(-1/24)*f1*f2^2+(-1/24)*f1*f2*f3+(-1/[128X[104X
+    [4X[28X    24)*f1*f2*f4+(-1/24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/[128X[104X
+    [4X[28X    24)*f2*f3*f4+(-1/24)*f1*f2^2*f3+(-1/24)*f1*f2^2*f4+(-1/24)*f1*f2*f3*f4+(1/[128X[104X
+    [4X[28X    24)*f2^2*f3*f4+(-1/24)*f1*f2^2*f3*f4, (1/6)*<identity> of ...+(-1/12)*f2+([128X[104X
+    [4X[28X    1/6)*f3+(1/6)*f4+(-1/12)*f2^2+(-1/12)*f2*f3+(-1/12)*f2*f4+(1/6)*f3*f4+(-1/[128X[104X
+    [4X[28X    12)*f2^2*f3+(-1/12)*f2^2*f4+(-1/12)*f2*f3*f4+(-1/12)*f2^2*f3*f4 ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X4.3-2 PrimitiveCentralIdempotentsByStrongSP[101X
   
   [29X[2XPrimitiveCentralIdempotentsByStrongSP[102X( [3XFG[103X ) [32X attribute
   [6XReturns:[106X  [33X[0;10YA list of group algebra elements.[133X
@@ -89,10 +144,10 @@
   
   [33X[0;0YIf  [22XF[122X  is  a  finite  field then the output is the list of primitive central
   idempotents  of  [3XFG[103X  realizable  by  strong  Shoda  pairs  [22X(K,H)[122X  of  [22XG[122X  and
-  [22Xq[122X-cyclotomic classes modulo the index of [22XH[122X in [22XK[122X ([14X9.17[114X).[133X
+  [22Xq[122X-cyclotomic classes modulo the index of [22XH[122X in [22XK[122X ([14X9.19[114X).[133X
   
   [33X[0;0YIf  the  list  of  primitive  central idempotents given by the output is not
-  complete  (i.e.  if  the  group  [22XG[122X  is  not [13Xstrongly monomial[113X ([14X9.16[114X)) then a
+  complete  (i.e.  if  the  group  [22XG[122X  is  not [13Xstrongly monomial[113X ([14X9.17[114X)) then a
   warning is displayed.[133X
   
   [4X[32X  Example  [32X[104X
@@ -121,7 +176,7 @@
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X4.3-2 PrimitiveCentralIdempotentsBySP[101X
+  [1X4.3-3 PrimitiveCentralIdempotentsBySP[101X
   
   [29X[2XPrimitiveCentralIdempotentsBySP[102X( [3XQG[103X ) [32X function
   [6XReturns:[106X  [33X[0;10YA list of group algebra elements.[133X
@@ -172,7 +227,7 @@
   [4X[32X[104X
   
   [33X[0;0YThe   output  of  [2XPrimitiveCentralIdempotentsBySP[102X  contains  the  output  of
-  [2XPrimitiveCentralIdempotentsByStrongSP[102X ([14X4.3-1[114X), possibly properly.[133X
+  [2XPrimitiveCentralIdempotentsByStrongSP[102X ([14X4.3-2[114X), possibly properly.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -216,7 +271,7 @@
   [22X|F|[122X-cyclotomic class modulo [22X[H:K][122X (w.r.t. the generator [22Xgq[122X of [22XH/K[122X)[133X
   
   [33X[0;0YThe  output  is  a  complete  set of orthogonal primitive idempotents of the
-  simple algebra [22XFGe_C(G,H,K)[122X ([14X9.20[114X).[133X
+  simple algebra [22XFGe_C(G,H,K)[122X ([14X9.22[114X).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -224,7 +279,7 @@
     [4X[25Xgap>[125X [27XF:=GF(3);;                     [127X[104X
     [4X[25Xgap>[125X [27XFG:=GroupRing(F,G);;[127X[104X
     [4X[25Xgap>[125X [27XH:=StrongShodaPairs(G)[5][1];[127X[104X
-    [4X[28XGroup([ f1*f2, f3, f3 ])[128X[104X
+    [4X[28XGroup([ f1*f2*f3, f3 ])[128X[104X
     [4X[25Xgap>[125X [27XK:=StrongShodaPairs(G)[5][2];[127X[104X
     [4X[28XGroup([ f1*f2 ])[128X[104X
     [4X[25Xgap>[125X [27XN:=Normalizer(G,K); [127X[104X
@@ -232,7 +287,7 @@
     [4X[25Xgap>[125X [27Xepi:=NaturalHomomorphismByNormalSubgroup(N,K);[127X[104X
     [4X[28X[ f1*f2*f3, f3 ] -> [ f1, f1 ][128X[104X
     [4X[25Xgap>[125X [27XQHK:=Image(epi,H); [127X[104X
-    [4X[28XGroup([ <identity> of ..., f1, f1 ])[128X[104X
+    [4X[28XGroup([ f1, f1 ])[128X[104X
     [4X[25Xgap>[125X [27Xgq:=MinimalGeneratingSet(QHK)[1]; [127X[104X
     [4X[28Xf1[128X[104X
     [4X[25Xgap>[125X [27XC:=CyclotomicClasses(Size(F),Index(H,K))[2];[127X[104X
@@ -256,7 +311,7 @@
   be such that the simple component [22XFGe_C(G,H,K)[122X has a trivial twisting.[133X
   
   [33X[0;0YThe  output  is  a  complete  set of orthogonal primitive idempotents of the
-  simple algebra [22XFGe_C(G,H,K)[122X ([14X9.20[114X).[133X
+  simple algebra [22XFGe_C(G,H,K)[122X ([14X9.22[114X).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -264,7 +319,7 @@
     [4X[25Xgap>[125X [27XF:=GF(3);;                     [127X[104X
     [4X[25Xgap>[125X [27XFG:=GroupRing(F,G);;[127X[104X
     [4X[25Xgap>[125X [27XH:=StrongShodaPairs(G)[5][1];[127X[104X
-    [4X[28XGroup([ f1*f2, f3, f3 ])[128X[104X
+    [4X[28XGroup([ f1*f2*f3, f3 ])[128X[104X
     [4X[25Xgap>[125X [27XK:=StrongShodaPairs(G)[5][2];[127X[104X
     [4X[28XGroup([ f1*f2 ])[128X[104X
     [4X[25Xgap>[125X [27XN:=Normalizer(G,K); [127X[104X
@@ -272,7 +327,7 @@
     [4X[25Xgap>[125X [27Xepi:=NaturalHomomorphismByNormalSubgroup(N,K);[127X[104X
     [4X[28X[ f1*f2*f3, f3 ] -> [ f1, f1 ][128X[104X
     [4X[25Xgap>[125X [27XQHK:=Image(epi,H); [127X[104X
-    [4X[28XGroup([ <identity> of ..., f1, f1 ])[128X[104X
+    [4X[28XGroup([ f1, f1 ])[128X[104X
     [4X[25Xgap>[125X [27Xgq:=MinimalGeneratingSet(QHK)[1]; [127X[104X
     [4X[28Xf1[128X[104X
     [4X[25Xgap>[125X [27XC:=CyclotomicClasses(Size(F),Index(H,K))[2];[127X[104X

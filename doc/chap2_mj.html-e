@@ -99,19 +99,21 @@
 <div class="example"><pre>
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,15) ) );</span>
-[ Rationals, Rationals, Rationals, Rationals, ( Rationals^[ 2, 2 ] ),
-  &lt;crossed product with center Rationals over CF(3) of a group of size 2&gt;,
-  ( CF(3)^[ 2, 2 ] ), &lt;crossed product with center Rationals over CF(
-    3) of a group of size 2&gt;, &lt;crossed product with center NF(8,
-    [ 1, 7 ]) over AsField( NF(8,[ 1, 7 ]), CF(8) ) of a group of size 2&gt;,
+[ Rationals, Rationals, Rationals, Rationals, 
+  &lt;crossed product with center Rationals over CF(3) of a group of size 2&gt;, 
+  &lt;crossed product with center Rationals over GaussianRationals of a group of \
+size 2&gt;, &lt;crossed product with center Rationals over CF(3) of a group of size 
+    2&gt;, &lt;crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
+    [ 1, 7 ]), CF(8) ) of a group of size 2&gt;, ( CF(3)^[ 2, 2 ] ), 
   &lt;crossed product with center Rationals over CF(12) of a group of size 4&gt; ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,15) ) );</span>
-[ CF(3), CF(3), CF(3), CF(3), ( CF(3)^[ 2, 2 ] ), ( CF(3)^[ 2, 2 ] ),
-  ( CF(3)^[ 2, 2 ] ), ( CF(3)^[ 2, 2 ] ), ( CF(3)^[ 2, 2 ] ),
+[ CF(3), CF(3), CF(3), CF(3), ( CF(3)^[ 2, 2 ] ), 
+  &lt;crossed product with center CF(3) over AsField( CF(3), CF(
+    12) ) of a group of size 2&gt;, ( CF(3)^[ 2, 2 ] ), 
   &lt;crossed product with center NF(24,[ 1, 7 ]) over AsField( NF(24,
-    [ 1, 7 ]), CF(24) ) of a group of size 2&gt;,
-  ( &lt;crossed product with center CF(3) over AsField( CF(3), CF(
-    12) ) of a group of size 2&gt;^[ 2, 2 ] ) ]
+    [ 1, 7 ]), CF(24) ) of a group of size 2&gt;, ( CF(3)^[ 2, 2 ] ), 
+  ( CF(3)^[ 2, 2 ] ), ( &lt;crossed product with center CF(3) over AsField( CF(
+    3), CF(12) ) of a group of size 2&gt;^[ 2, 2 ] ) ]
 
 </pre></div>
 
@@ -222,14 +224,14 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   &lt;crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
     [ 1, 7 ]), CF(8) ) of a group of size 2&gt; ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecomposition( QS4 );</span>
-[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),
-  &lt;crossed product with center Rationals over CF(3) of a group of size 2&gt; ]
+[ Rationals, Rationals, &lt;crossed product with center Rationals over CF(
+    3) of a group of size 2&gt;, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ) ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionInfo(QQ16);</span>
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
   [ 2, Rationals ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionInfo(QS4);  </span>
-[ [ 1, Rationals ], [ 1, Rationals ], [ 3, Rationals ], [ 3, Rationals ], 
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], 
+  [ 3, Rationals ], [ 3, Rationals ] ]
 
 </pre></div>
 
@@ -274,14 +276,15 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,15) ) );</span>
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 2, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 2, CF(3) ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], 
   [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
-  [ 1, Rationals, 12, [ [ 2, 5, 9 ], [ 2, 7, 0 ] ], [ [ 9 ] ] ] ]
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] 
+ ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );</span>
-[ [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 2, CF(3) ],
-  [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 2, CF(3) ], [ 2, CF(3) ],
-  [ 2, CF(3), 6, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 0 ] ],
-  [ 2, CF(3), 12, [ 2, 7, 0 ] ] ]
+[ [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], 
+  [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 1, CF(3), 4, [ 2, 3, 0 ] ], 
+  [ 2, CF(3), 6, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
+  [ 2, CF(3) ], [ 2, CF(3) ], [ 2, CF(3), 12, [ 2, 7, 0 ] ] ]
 
 </pre></div>
 
@@ -358,11 +361,18 @@ Alt( [ 1 .. 5 ] )
 ( NF(5,[ 1, 4 ])^[ 3, 3 ] )
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SimpleAlgebraByCharacter( GroupRing( GF(7) , A5 ) , Irr( A5 ) [3] );</span>
 ( GF(7^2)^[ 3, 3 ] )
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(128,100);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(128,100);               </span>
 &lt;pc group of size 128 with 7 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SimpleAlgebraByCharacter( GroupRing( Rationals , G ) , Irr(G)[19] );</span>
-&lt;crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,[ 1, 3 ]), CF(
-8) ) of a group of size 2&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">chi4:=Filtered(Irr(G),x-&gt;Degree(x)=4);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(chi4,x-&gt;SimpleAlgebraByCharacter(GroupRing(Rationals,G),x));</span>
+[ ( &lt;crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2&gt;^[ 2, 2 ] ), 
+  ( &lt;crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2&gt;^[ 2, 2 ] ), 
+  ( &lt;crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2&gt;^[ 2, 2 ] ), 
+  ( &lt;crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
+    [ 1, 3 ]), CF(8) ) of a group of size 2&gt;^[ 2, 2 ] ) ]
 
 </pre></div>
 
@@ -382,15 +392,14 @@ Alt( [ 1 .. 5 ] )
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(144,11);</span>
-&lt;pc group of size 144 with 6 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(128,100);</span>
+&lt;pc group of size 128 with 7 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">QG:=GroupRing(Rationals,G);</span>
-&lt;algebra-with-one over Rationals, with 6 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SimpleAlgebraByCharacter( QG , Irr(G)[40] );</span>
-&lt;crossed product with center NF(36,[ 1, 17 ]) over AsField( NF(36,
-[ 1, 17 ]), CF(36) ) of a group of size 2&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SimpleAlgebraByCharacterInfo( QG , Irr(G)[48] );</span>
-[ 1, NF(9,[ 1, 8 ]), 18, [ 2, 17, 9 ] ]
+&lt;algebra-with-one over Rationals, with 7 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">chi4:=Filtered(Irr(G),x-&gt;Degree(x)=4);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(chi4,x-&gt;SimpleAlgebraByCharacterInfo(QG,x));</span>
+[ [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], 
+  [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ] ]
 
 </pre></div>
 
@@ -408,7 +417,7 @@ Alt( [ 1 .. 5 ] )
 
 <p>The three-argument version returns the Wedderburn component (<a href="chap9_mj.html#X84BB4A6081EAE905"><span class="RefLink">9.3</span></a>) of the rational group algebra <var class="Arg">QG</var> realized by the strong Shoda pair (<var class="Arg">K</var>,<var class="Arg">H</var>).</p>
 
-<p>In the four-argument version the first argument is a semisimple finite group algebra <var class="Arg">FG</var>, <var class="Arg">(K,H)</var> is a strong Shoda pair of <span class="SimpleMath">\(G\)</span> and the fourth input data is either a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> or a representative of a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> (see <a href="chap9_mj.html#X800D8C5087D79DC8"><span class="RefLink">9.17</span></a>).</p>
+<p>In the four-argument version the first argument is a semisimple finite group algebra <var class="Arg">FG</var>, <var class="Arg">(K,H)</var> is a strong Shoda pair of <span class="SimpleMath">\(G\)</span> and the fourth input data is either a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> or a representative of a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> (see <a href="chap9_mj.html#X800D8C5087D79DC8"><span class="RefLink">9.19</span></a>).</p>
 
 <p>The four-argument version returns the Wedderburn component (<a href="chap9_mj.html#X84BB4A6081EAE905"><span class="RefLink">9.3</span></a>) of the finite group algebra <var class="Arg">FG</var> realized by the strong Shoda pair (<var class="Arg">K</var>,<var class="Arg">H</var>) and the cyclotomic class <var class="Arg">C</var> (or the cyclotomic class containing <var class="Arg">C</var>).</p>
 
@@ -443,7 +452,7 @@ Alt( [ 1 .. 5 ] )
 
 <p>In the three-argument version the input must be formed by a <em>semisimple rational group algebra</em> (<a href="chap9_mj.html#X7FDD93FB79ADCC91"><span class="RefLink">9.2</span></a>) <var class="Arg">QG</var> and two subgroups <var class="Arg">K</var> and <var class="Arg">H</var> of <span class="SimpleMath">\(G\)</span> which form a <em>strong Shoda pair</em> (<a href="chap9_mj.html#X7E3479527BAE5B9E"><span class="RefLink">9.15</span></a>) of <span class="SimpleMath">\(G\)</span>. It returns the numerical information describing the Wedderburn component (<a href="chap9_mj.html#X84A142407B7565E0"><span class="RefLink">9.12</span></a>) of the rational group algebra <var class="Arg">QG</var> realized by a the strong Shoda pair (<var class="Arg">K</var>,<var class="Arg">H</var>).</p>
 
-<p>In the four-argument version the first input is a semisimple finite group algebra <var class="Arg">FG</var>, <var class="Arg">(K,H)</var> is a strong Shoda pair of <span class="SimpleMath">\(G\)</span> and the fourth input data is either a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> or a representative of a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> (<a href="chap9_mj.html#X800D8C5087D79DC8"><span class="RefLink">9.17</span></a>). It returns a pair of positive integers <span class="SimpleMath">\([n,r]\)</span> which represent the <span class="SimpleMath">\(n\times n\)</span> matrix algebra over the field of order <span class="SimpleMath">\(r\)</span> which is isomorphic to the Wedderburn component of <var class="Arg">FG</var> realized by a the strong Shoda pair (<var class="Arg">K</var>,<var class="Arg">H</var>) and the cyclotomic class <var class="Arg">C</var> (or the cyclotomic class containing the integer <var class="Arg">C</var>).</p>
+<p>In the four-argument version the first input is a semisimple finite group algebra <var class="Arg">FG</var>, <var class="Arg">(K,H)</var> is a strong Shoda pair of <span class="SimpleMath">\(G\)</span> and the fourth input data is either a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> or a representative of a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> (<a href="chap9_mj.html#X800D8C5087D79DC8"><span class="RefLink">9.19</span></a>). It returns a pair of positive integers <span class="SimpleMath">\([n,r]\)</span> which represent the <span class="SimpleMath">\(n\times n\)</span> matrix algebra over the field of order <span class="SimpleMath">\(r\)</span> which is isomorphic to the Wedderburn component of <var class="Arg">FG</var> realized by a the strong Shoda pair (<var class="Arg">K</var>,<var class="Arg">H</var>) and the cyclotomic class <var class="Arg">C</var> (or the cyclotomic class containing the integer <var class="Arg">C</var>).</p>
 
 <p>The versions ending in NC do not check if (<var class="Arg">K</var>,<var class="Arg">H</var>) is a strong Shoda pair of <span class="SimpleMath">\(G\)</span>. In the four-argument version it is also not checked whether <var class="Arg">C</var> is either a generating <span class="SimpleMath">\(q\)</span>-cyclotomic class modulo the index of <var class="Arg">H</var> in <var class="Arg">K</var> or an integer coprime with the index of <var class="Arg">H</var> in <var class="Arg">K</var>.</p>
 

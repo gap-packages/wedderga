@@ -15,7 +15,7 @@
   
   [33X[0;0YEach  element  [22Xc[122X  in  [22XFG[122X  is  of the form [22Xc=∑_i=1^n f_i g_i[122X, where we fix an
   ordering  [22X{g_1,g_2,...,g_n  }[122X  of  the group elements of [22XG[122X and [22Xf_i∈ F[122X. If we
-  look at [22Xc[122X as a codeword, we will write [22X[f_1 f_2 ... f_n][122X. ([14X9.21[114X).[133X
+  look at [22Xc[122X as a codeword, we will write [22X[f_1 f_2 ... f_n][122X. ([14X9.23[114X).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -43,7 +43,7 @@
   
   [33X[0;0YEach  element  [22Xc[122X  in  [22XFG[122X  is  of the form [22Xc=∑_i=1^n f_i g_i[122X, where we fix an
   ordering  [22X{g_1,g_2,...,g_n  }[122X  of  the group elements of [22XG[122X and [22Xf_i∈ F[122X. If we
-  look at [22Xc[122X as a codeword, we will write [22X[f_1 f_2 ... f_n][122X. ([14X9.21[114X).[133X
+  look at [22Xc[122X as a codeword, we will write [22X[f_1 f_2 ... f_n][122X. ([14X9.23[114X).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -53,7 +53,7 @@
     [4X[25Xgap>[125X [27XS:=AsSet(G);[127X[104X
     [4X[28X[ <identity> of ..., f1, f2, f3, f1*f2, f1*f3, f2*f3, f1*f2*f3 ][128X[104X
     [4X[25Xgap>[125X [27XH:=StrongShodaPairs(G)[5][1];[127X[104X
-    [4X[28XGroup([ f1*f2, f3, f3 ])[128X[104X
+    [4X[28XGroup([ f1*f2*f3, f3 ])[128X[104X
     [4X[25Xgap>[125X [27XK:=StrongShodaPairs(G)[5][2];[127X[104X
     [4X[28XGroup([ f1*f2 ])[128X[104X
     [4X[25Xgap>[125X [27XN:=Normalizer(G,K);[127X[104X
@@ -61,7 +61,7 @@
     [4X[25Xgap>[125X [27Xepi:=NaturalHomomorphismByNormalSubgroup(N,K);[127X[104X
     [4X[28X[ f1*f2*f3, f3 ] -> [ f1, f1 ][128X[104X
     [4X[25Xgap>[125X [27XQHK:=Image(epi,H);[127X[104X
-    [4X[28XGroup([ <identity> of ..., f1, f1 ])[128X[104X
+    [4X[28XGroup([ f1, f1 ])[128X[104X
     [4X[25Xgap>[125X [27Xgq:=MinimalGeneratingSet(QHK)[1];[127X[104X
     [4X[28Xf1[128X[104X
     [4X[25Xgap>[125X [27XC:=CyclotomicClasses(Size(F),Index(H,K))[2];[127X[104X

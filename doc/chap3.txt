@@ -1,10 +1,53 @@
   
-  [1X3 [33X[0;0YStrong Shoda pairs[133X[101X
+  [1X3 [33X[0;0YShoda pairs[133X[101X
   
   
-  [1X3.1 [33X[0;0YComputing strong Shoda pairs[133X[101X
+  [1X3.1 [33X[0;0YComputing extremely strong Shoda pairs[133X[101X
   
-  [1X3.1-1 StrongShodaPairs[101X
+  [1X3.1-1 ExtremelyStrongShodaPairs[101X
+  
+  [29X[2XExtremelyStrongShodaPairs[102X( [3XG[103X ) [32X attribute
+  [6XReturns:[106X  [33X[0;10YA list of pairs of subgroups of the input group.[133X
+  
+  [33X[0;0YThe input should be a finite group [3XG[103X.[133X
+  
+  [33X[0;0YComputes  a  list of representatives of the equivalence classes of [13Xextremely
+  strong Shoda pairs[113X ([14X9.16[114X) of a finite group [3XG[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XExtremelyStrongShodaPairs(DihedralGroup(32));[127X[104X
+    [4X[28X[ [ <pc group of size 32 with 5 generators>, [128X[104X
+    [4X[28X      <pc group of size 32 with 5 generators> ], [128X[104X
+    [4X[28X  [ <pc group of size 32 with 5 generators>, [128X[104X
+    [4X[28X      Group([ f1*f2*f3*f4*f5, f3, f4, f5 ]) ], [128X[104X
+    [4X[28X  [ <pc group of size 32 with 5 generators>, Group([ f2, f3, f4, f5 ]) ], [128X[104X
+    [4X[28X  [ <pc group of size 32 with 5 generators>, Group([ f1, f3, f4, f5 ]) ], [128X[104X
+    [4X[28X  [ Group([ f1*f2*f3*f4*f5, f3, f4, f5 ]), Group([ f1*f2*f4*f5, f4, f5 ]) ], [128X[104X
+    [4X[28X  [ Group([ f2, f3, f4, f5 ]), Group([ f5 ]) ], [128X[104X
+    [4X[28X  [ Group([ f2, f3, f4, f5 ]), Group([  ]) ] ][128X[104X
+    [4X[25Xgap>[125X [27XExtremelyStrongShodaPairs(SL(2,3));          [127X[104X
+    [4X[28X[ [ SL(2,3), SL(2,3) ], [128X[104X
+    [4X[28X  [ SL(2,3), [128X[104X
+    [4X[28X      Group([ [ [ Z(3)^0, Z(3)^0 ], [ Z(3)^0, Z(3) ] ], [128X[104X
+    [4X[28X          [ [ Z(3), Z(3)^0 ], [ Z(3)^0, Z(3)^0 ] ], [128X[104X
+    [4X[28X          [ [ Z(3), 0*Z(3) ], [ 0*Z(3), Z(3) ] ] ]) ], [128X[104X
+    [4X[28X  [ [128X[104X
+    [4X[28X      Group([ [ [ Z(3)^0, Z(3)^0 ], [ Z(3)^0, Z(3) ] ], [128X[104X
+    [4X[28X          [ [ Z(3), Z(3)^0 ], [ Z(3)^0, Z(3)^0 ] ], [128X[104X
+    [4X[28X          [ [ Z(3), 0*Z(3) ], [ 0*Z(3), Z(3) ] ] ]), [128X[104X
+    [4X[28X      Group([ [ [ 0*Z(3), Z(3) ], [ Z(3)^0, 0*Z(3) ] ], [128X[104X
+    [4X[28X          [ [ Z(3), 0*Z(3) ], [ 0*Z(3), Z(3) ] ] ]) ] ][128X[104X
+    [4X[25Xgap>[125X [27XExtremelyStrongShodaPairs(SymmetricGroup(5));[127X[104X
+    [4X[28X[ [ Sym( [ 1 .. 5 ] ), Sym( [ 1 .. 5 ] ) ], [128X[104X
+    [4X[28X  [ Sym( [ 1 .. 5 ] ), Alt( [ 1 .. 5 ] ) ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.2 [33X[0;0YComputing strong Shoda pairs[133X[101X
+  
+  [1X3.2-1 StrongShodaPairs[101X
   
   [29X[2XStrongShodaPairs[102X( [3XG[103X ) [32X attribute
   [6XReturns:[106X  [33X[0;10YA list of pairs of subgroups of the input group.[133X
@@ -17,30 +60,56 @@
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XStrongShodaPairs( SymmetricGroup(4) );[127X[104X
-    [4X[28X[ [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3), (3,4) ]) ],[128X[104X
-    [4X[28X  [ Sym( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4), (2,4,3) ]) ],[128X[104X
-    [4X[28X  [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ],[128X[104X
-    [4X[28X  [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) ],[128X[104X
-    [4X[28X  [ Group([ (2,4,3), (1,4)(2,3) ]), Group([ (1,4)(2,3), (1,3)(2,4) ]) ] ][128X[104X
+    [4X[28X[ [ Sym( [ 1 .. 4 ] ), Sym( [ 1 .. 4 ] ) ], [128X[104X
+    [4X[28X  [ Sym( [ 1 .. 4 ] ), Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4) ]) ], [128X[104X
+    [4X[28X  [ Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4) ]), Group([ (1,4)(2,3), (1,3)[128X[104X
+    [4X[28X      (2,4) ]) ], [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) [128X[104X
+    [4X[28X     ], [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ] ][128X[104X
     [4X[25Xgap>[125X [27XStrongShodaPairs( DihedralGroup(64) );[127X[104X
-    [4X[28X[ [ <pc group of size 64 with 6 generators>,[128X[104X
-    [4X[28X      Group([ f6, f5, f4, f3, f1, f2 ]) ],[128X[104X
-    [4X[28X  [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f1*f2 ])[128X[104X
-    [4X[28X     ],[128X[104X
-    [4X[28X  [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f2 ]) ],[128X[104X
-    [4X[28X  [ <pc group of size 64 with 6 generators>, Group([ f6, f5, f4, f3, f1 ]) ],[128X[104X
-    [4X[28X  [ Group([ f1*f2, f4*f5*f6, f5*f6, f6, f3, f3 ]),[128X[104X
-    [4X[28X      Group([ f6, f5, f4, f1*f2 ]) ],[128X[104X
-    [4X[28X  [ Group([ f6, f5, f2, f3, f4 ]), Group([ f6, f5 ]) ],[128X[104X
-    [4X[28X  [ Group([ f6, f2, f3, f4, f5 ]), Group([ f6 ]) ],[128X[104X
+    [4X[28X[ [ <pc group of size 64 with 6 generators>, [128X[104X
+    [4X[28X      <pc group of size 64 with 6 generators> ], [128X[104X
+    [4X[28X  [ <pc group of size 64 with 6 generators>, [128X[104X
+    [4X[28X      Group([ f1*f2*f3*f4*f5*f6, f3, f4, f5, f6 ]) ], [128X[104X
+    [4X[28X  [ <pc group of size 64 with 6 generators>, Group([ f2, f3, f4, f5, f6 ]) ], [128X[104X
+    [4X[28X  [ <pc group of size 64 with 6 generators>, Group([ f1, f3, f4, f5, f6 ]) ], [128X[104X
+    [4X[28X  [ Group([ f1*f2*f3*f4*f5*f6, f3, f4, f5, f6 ]), [128X[104X
+    [4X[28X      Group([ f1*f2*f4*f5*f6, f4, f5, f6 ]) ], [128X[104X
+    [4X[28X  [ Group([ f2, f3, f4, f5, f6 ]), Group([ f5, f6 ]) ], [128X[104X
+    [4X[28X  [ Group([ f2, f3, f4, f5, f6 ]), Group([ f6 ]) ], [128X[104X
     [4X[28X  [ Group([ f2, f3, f4, f5, f6 ]), Group([  ]) ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
   
-  [1X3.2 [33X[0;0YProperties related with Shoda pairs[133X[101X
+  [1X3.3 [33X[0;0YProperties related with Shoda pairs[133X[101X
   
-  [1X3.2-1 IsStrongShodaPair[101X
+  [1X3.3-1 IsExtremelyStrongShodaPair[101X
+  
+  [29X[2XIsExtremelyStrongShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation
+  
+  [33X[0;0YThe  first  argument  should  be  a  finite group [3XG[103X, the second one a normal
+  sugroup [3XK[103X of [3XG[103X and the third one a subgroup of [3XK[103X.[133X
+  
+  [33X[0;0YReturns  [9Xtrue[109X  if  ([3XK[103X,[3XH[103X)  is an [13Xextremely strong Shoda pair[113X ([14X9.16[114X) of [3XG[103X, and
+  [9Xfalse[109X otherwise.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XG:=SymmetricGroup(4);; K:=Group( (1,3,2,4), (3,4) );;[127X[104X
+    [4X[25Xgap>[125X [27XH1:=Group( (2,4,3), (1,4)(2,3), (1,3)(2,4) );;[127X[104X
+    [4X[25Xgap>[125X [27XH2:=Group( (3,4), (1,2)(3,4) );;[127X[104X
+    [4X[25Xgap>[125X [27XIsExtremelyStrongShodaPair( G, G, H1 );[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIsExtremelyStrongShodaPair( G, K, H2 );[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XIsExtremelyStrongShodaPair( G, G, H2 );[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XIsExtremelyStrongShodaPair( G, G, K );[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X3.3-2 IsStrongShodaPair[101X
   
   [29X[2XIsStrongShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation
   
@@ -50,21 +119,26 @@
   [33X[0;0YReturns  [9Xtrue[109X  if  ([3XK[103X,[3XH[103X)  is  a  [13Xstrong  Shoda  pair[113X  ([14X9.15[114X) of [3XG[103X, and [9Xfalse[109X
   otherwise.[133X
   
+  [33X[0;0YNote  that every extremely strong Shoda pair is a strong Shoda pair, but the
+  converse is not true.[133X
+  
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XG:=SymmetricGroup(3);; K:=Group([(1,2,3)]);; H:=Group( () );;[127X[104X
-    [4X[25Xgap>[125X [27XIsStrongShodaPair( G, K, H );[127X[104X
+    [4X[25Xgap>[125X [27XG:=SymmetricGroup(4);; K:=Group( (1,3,2,4), (3,4) );;[127X[104X
+    [4X[25Xgap>[125X [27XH1:=Group( (2,4,3), (1,4)(2,3), (1,3)(2,4) );;[127X[104X
+    [4X[25Xgap>[125X [27XH2:=Group( (3,4), (1,2)(3,4) );;[127X[104X
+    [4X[25Xgap>[125X [27XIsStrongShodaPair( G, G, H1 );[127X[104X
     [4X[28Xtrue[128X[104X
-    [4X[25Xgap>[125X [27XIsStrongShodaPair( G, G, H );[127X[104X
+    [4X[25Xgap>[125X [27XIsExtremelyStrongShodaPair( G, K, H2 );[127X[104X
     [4X[28Xfalse[128X[104X
-    [4X[25Xgap>[125X [27XIsStrongShodaPair( G, K, K );[127X[104X
-    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XIsStrongShodaPair( G, K, H2 );[127X[104X
+    [4X[28Xtrue[128X[104X
     [4X[25Xgap>[125X [27XIsStrongShodaPair( G, G, K );[127X[104X
-    [4X[28Xtrue[128X[104X
+    [4X[28Xfalse[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X3.2-2 IsShodaPair[101X
+  [1X3.3-3 IsShodaPair[101X
   
   [29X[2XIsShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation
   
@@ -88,13 +162,13 @@
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X3.2-3 IsStronglyMonomial[101X
+  [1X3.3-4 IsStronglyMonomial[101X
   
   [29X[2XIsStronglyMonomial[102X( [3XG[103X ) [32X operation
   
   [33X[0;0YThe input [3XG[103X should be a finite group.[133X
   
-  [33X[0;0YReturns [9Xtrue[109X if [3XG[103X is a [13Xstrongly monomial[113X ([14X9.16[114X) finite group.[133X
+  [33X[0;0YReturns [9Xtrue[109X if [3XG[103X is a [13Xstrongly monomial[113X ([14X9.17[114X) finite group.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -109,6 +183,39 @@
     [4X[25Xgap>[125X [27XG:=SmallGroup(1000,86);;[127X[104X
     [4X[25Xgap>[125X [27XIsMonomial(G);[127X[104X
     [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIsStronglyMonomial(G);[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X3.3-5 IsNormallyMonomial[101X
+  
+  [29X[2XIsNormallyMonomial[102X( [3XG[103X ) [32X operation
+  
+  [33X[0;0YThe input [3XG[103X should be a finite group.[133X
+  
+  [33X[0;0YReturns [9Xtrue[109X if [3XG[103X is a finite [13Xnormally monomial[113X ([14X9.18[114X) group.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27X D24:=DihedralGroup(24);[127X[104X
+    [4X[28X<pc group of size 24 with 4 generators>[128X[104X
+    [4X[25Xgap>[125X [27XIsNormallyMonomial(D24);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(192,1023);[127X[104X
+    [4X[28X<pc group of size 192 with 7 generators>[128X[104X
+    [4X[25Xgap>[125X [27XIsNormallyMonomial(G);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(1029,12); [127X[104X
+    [4X[28X<pc group of size 1029 with 4 generators>[128X[104X
+    [4X[25Xgap>[125X [27XIsNormallyMonomial(G);[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XIsStronglyMonomial(G);  [127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XG:=SL(2,3);            [127X[104X
+    [4X[28XSL(2,3)[128X[104X
+    [4X[25Xgap>[125X [27XIsNormallyMonomial(G);[127X[104X
+    [4X[28Xfalse[128X[104X
     [4X[25Xgap>[125X [27XIsStronglyMonomial(G);[127X[104X
     [4X[28Xfalse[128X[104X
     [4X[28X[128X[104X

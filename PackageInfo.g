@@ -1,10 +1,13 @@
 #############################################################################
 ##
-#W  PackageInfo.g         The Wedderga package            Osnel Broche Cristo
+#W  PackageInfo.g         The Wedderga package            Gurmeet Kaur Bakshi
+#W                                                        Osnel Broche Cristo
+#W                                                               Allen Herman
 #W                                                        Alexander Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
+#W                                                        Sugandha Maheshwary
 #W                                                          Inneke Van Gelder
 ##
 #############################################################################
@@ -14,11 +17,11 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.8.0",
-Date           := "23/09/2017",
+Version        := "4.9.0",
+Date           := "21/11/2017",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "4.8.0">
-##  <!ENTITY RELEASEDATE "23 September 2017">
+##  <!ENTITY VERSION "4.9.0">
+##  <!ENTITY RELEASEDATE "21 November 2017">
 ##  <!ENTITY RELEASEYEAR "2017">
 ##  <#/GAPDoc>
 
@@ -38,6 +41,21 @@ ArchiveFormats := ".tar.gz",
 
 Persons :=
  [
+      
+  rec(
+       LastName      := "Bakshi",
+       FirstNames    := "Gurmeet Kaur",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "gkbakshi@pu.ac.in",
+       PostalAddress := Concatenation( [
+                        "Center for Advanced Study in Mathematics,\n",
+                        "Panjab University,\n",
+                        "Chandigarh,  \n",
+                        "160014, India " ] ),
+       Place         := "Chandigarh",
+       Institution   := "Panjab University"
+     ),
      rec(
        LastName      := "Broche Cristo",
        FirstNames    := "Osnel",
@@ -81,6 +99,24 @@ rec(
        Place         := "St Andrews",
        Institution   := "University of St Andrews"
     ),
+    
+    rec(
+       LastName      := "Maheshwary",
+       FirstNames    := "Sugandha",
+       IsAuthor      := true,
+       IsMaintainer  := true,
+       Email         := "sugandha@iisermohali.ac.in",
+       PostalAddress := Concatenation( [
+                        "Department of Mathematical Sciences\n",
+                        "IISER Mohali\n",
+                        "Knowledge city, \n",
+                        "Sector 81, \n",
+                        " SAS Nagar, Manauli, \n",
+                        " PO 140306, India" ] ),
+       Place         := "Mohali",
+       Institution   := "Indian Institute of Science Education and Research Mohali"
+     ),
+    
     rec(
        LastName      := "Olteanu",
        FirstNames    := "Gabriela",

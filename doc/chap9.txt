@@ -107,8 +107,10 @@
   
   [33X[0;0YThe main algorithm of [5XWedderga[105X is based on a computational oriented proof of
   the  Brauer-Witt  Theorem due to Olteanu [Olt07] which uses previous work by
-  Olivieri, del Río and Simón [OdRS04] for rational group algebras of [13Xstrongly
-  monomial groups[113X ([14X9.16[114X).[133X
+  Olivieri,  del Río and Simón [OdRS04] (see also [OdR03] ) for rational group
+  algebras  of  [13Xstrongly monomial groups[113X ([14X9.17[114X). The algorithms are also based
+  upon  the  work  of  Bakshi  and  Maheshwary [BM14] (see also [BM16]) on the
+  rational group algebras of [13Xnormally monomial groups[113X ([14X9.18[114X).[133X
   
   
   [1X9.4 [33X[0;0YCharacters and primitive central idempotents[133X[101X
@@ -495,7 +497,7 @@
   
   [33X[0;0YAssume now that [22XF[122X is a finite field of order [22Xq[122X, [22X(K,H)[122X is a strong Shoda pair
   of  [22XG[122X and [22XC[122X is a cyclotomic class of [22XK/H[122X containing a generator of [22XK/H[122X. Then
-  [22Xe_C(G,K,H)[122X is a primitive central idempotent of [22XFG[122X (see [14X9.17[114X).[133X
+  [22Xe_C(G,K,H)[122X is a primitive central idempotent of [22XFG[122X (see [14X9.19[114X).[133X
   
   
   [1X9.14 [33X[0;0YShoda pairs of a group[133X[101X
@@ -543,7 +545,9 @@
   
   [33X[0;0YTwo  [13Xstrong  Shoda  pairs[113X ([14X9.15[114X) [22X(K_1,H_1)[122X and [22X(K_2,H_2)[122X of [22XG[122X are said to be
   [13Xequivalent[113X  if  the  characters  [22Xχ(G,K_1,H_1)[122X  and  [22Xχ(G,K_2,H_2)[122X  are Galois
-  conjugate, or equivalently if [22Xe(G,K_1,H_1)=e(G,K_2,H_2)[122X.[133X
+  conjugate,   or   equivalently   if   [22Xe(G,K_1,H_1)=e(G,K_2,H_2)[122X.  A  set  of
+  representatives  of  strong  Shoda  pairs  of  [22XG[122X  is  termed  as  a complete
+  irredundant set of strong Shoda pairs of [22XG[122X.[133X
   
   [33X[0;0YThe  advantage  of  strong  Shoda  pairs  over  Shoda  pairs is that one can
   describe  the  simple  algebra  [22XFGe_F(χ)[122X as a matrix algebra of a [13Xcyclotomic
@@ -589,7 +593,34 @@
   cocycle of [22XN/K = Gal(ℚ (ξ)/ℚ (χ))[122X).[133X
   
   
-  [1X9.16 [33X[0;0YStrongly monomial characters and strongly monomial groups[133X[101X
+  [1X9.16 [33X[0;0YExtremely strong Shoda pairs of a group[133X[101X
+  
+  [33X[0;0YAn  [13X  extremely  strong  Shoda  pair[113X  of [22XG[122X is a pair [22X(K,H)[122X of subgroups of [22XG[122X
+  satisfying the following conditions:[133X
+  
+  [33X[0;0Y* [22XK[122X is normal in [22XG[122X,[133X
+  
+  [33X[0;0Y*  [22XK/H[122X  is  cyclic  and  a  maximal  abelian subgroup of [22XN/H[122X, where [22XN[122X is the
+  normalizer of [22XH[122X in [22XG[122X.[133X
+  
+  [33X[0;0YLet  [22X(K,H)[122X  be  an  extremely strong Shoda pair of [22XG[122X. Then [22X(K,H)[122X is a strong
+  Shoda pair ([14X9.15[114X) of [22XG[122X, with [22XK[122X normal in [22XG[122X [BM14], so that there is a linear
+  character   [22Xθ[122X   of   [22XK[122X  with  kernel  [22XH[122X  such  that  the  induced  character
+  [22Xχ=χ(G,K,H)=θ^G[122X  is  irreducible.  Moreover, the [13Xprimitive central idempotent[113X
+  [22Xe_ℚ  (χ)[122X of [22Xℚ G[122X realized by [22X(K,H)[122X is [22Xe(G,K,H)[122X ([14X9.4[114X) and one can describe the
+  associated  simple algebra ([14X9.15[114X). Two [13Xextremely strong Shoda pairs[113X of [22XG[122X are
+  said to be [13Xequivalent[113X if they are equivalent as strong Shoda pairs ([14X9.15[114X). A
+  set  of  representatives  of  extremely  strong Shoda pairs of [22XG[122X is called a
+  [13Xcomplete irredundant set[113X of extremely strong Shoda pairs of [22XG[122X [BM14].[133X
+  
+  [33X[0;0YIf  [22XG[122X is a normally monomial group ([14X9.18[114X), then the set of primitive central
+  idempotents  of the rational group algebra realized by strong Shoda pairs of
+  [22XG[122X  is  same as the one realized by extremely strong Shoda pairs of [22XG[122X [BM14].
+  The  algorithm  to  compute  a  complete irredundant set of extremely strong
+  Shoda pairs of [22XG[122X has been explained in [BM16].[133X
+  
+  
+  [1X9.17 [33X[0;0YStrongly monomial characters and strongly monomial groups[133X[101X
   
   [33X[0;0YLet [22XG[122X be a finite group an [22Xχ[122X an irreducible character of [22XG[122X.[133X
   
@@ -604,15 +635,29 @@
   [OdRS04].  The algorithm to compute the Wedderburn decomposition of rational
   group  algebras  for strongly monomial groups was explained in [OdR03]. This
   method  was  extended  for semisimple finite group algebras by Broche Cristo
-  and  del  Río  in [BdR07] (see Section [14X9.17[114X). Finally, Olteanu [Olt07] shows
+  and  del  Río  in [BdR07] (see Section [14X9.19[114X). Finally, Olteanu [Olt07] shows
   how to compute the [13XWedderburn decomposition[113X ([14X9.3[114X) of an arbitrary semisimple
   group  ring  by  making use of not only the strong Shoda pairs of [22XG[122X but also
   the strong Shoda pairs of the subgroups of [22XG[122X.[133X
   
+  
+  [1X9.18 [33X[0;0YNormally monomial characters and normally monomial groups[133X[101X
+  
+  [33X[0;0YLet [22XG[122X be a finite group and [22Xχ[122X be an irreducible character of [22XG[122X.[133X
+  
+  [33X[0;0YOne  says  that  [22Xχ[122X is [13Xnormally monomial[113X if there is a normal subgroup [22XK[122X of [22XG[122X
+  such that [22Xχ[122X is induced from a linear character of [22XK[122X.[133X
+  
+  [33X[0;0YThe  group  [22XG[122X  is  [13Xnormally  monomial[113X if every irreducible character of [22XG[122X is
+  normally  monomial.  Bakshi  and  Maheshwary  proved that if [22XG[122X is a normally
+  monomial group, then for every irreducible character [22Xχ[122X of [22XG[122X, there exists an
+  extremely  strong Shoda pair [22X(K,H)[122X of [22XG[122X ([14X9.16[114X) such that [22Xχ=θ^G[122X, where [22Xθ[122X is a
+  linear character of [22XK[122X with kernel [22XH[122X [BM14].[133X
+  
   [33X[0;0Y.[133X
   
   
-  [1X9.17 [33X[0;0YCyclotomic Classes and Strong Shoda Pairs[133X[101X
+  [1X9.19 [33X[0;0YCyclotomic Classes and Strong Shoda Pairs[133X[101X
   
   [33X[0;0YLet  [22XG[122X  be  a  finite  group and [22XF[122X a finite field of order [22Xq[122X, coprime to the
   order of [22XG[122X.[133X
@@ -652,7 +697,7 @@
   [BdR07]. We say that [22Xe_C(G,K,H)[122X is the primitive central idempotent realized
   by the strong Shoda pair [22X(K,H)[122X of the group [22XG[122X and the cyclotomic class [22XC[122X.[133X
   
-  [33X[0;0YIf  [22XG[122X is [13Xstrongly monomial[113X ([14X9.16[114X) then every primitive central idempotent of
+  [33X[0;0YIf  [22XG[122X is [13Xstrongly monomial[113X ([14X9.17[114X) then every primitive central idempotent of
   [22XFG[122X  is  realizable by some [13Xstrong Shoda pair[113X ([14X9.15[114X) of [22XG[122X and some cyclotomic
   class  [22XC[122X  [BdR07].  As  in the zero characteristic case, this explain how to
   compute  the  [13XWedderburn  decomposition[113X  ([14X9.3[114X) of [22XFG[122X for a finite semisimple
@@ -663,7 +708,7 @@
   [33X[0;0Y.[133X
   
   
-  [1X9.18 [33X[0;0YTheory for Local Schur Index and Division Algebra Part Calculations[133X[101X
+  [1X9.20 [33X[0;0YTheory for Local Schur Index and Division Algebra Part Calculations[133X[101X
   
   [33X[0;0Y(By Allen Herman, May 2013. Updated October 2014.)[133X
   
@@ -771,7 +816,7 @@
   based on an approach suggested by Ladisch.[133X
   
   
-  [1X9.19  [33X[0;0YObtaining Algebras with structure constants as terms of the Wedderburn[101X
+  [1X9.21  [33X[0;0YObtaining Algebras with structure constants as terms of the Wedderburn[101X
   [1Xdecomposition[133X[101X
   
   [33X[0;0YSome  users may find it desirable to have an alternative description for the
@@ -790,7 +835,7 @@
   IsomorphismSCAlgebra w.r.t. a given basis[114X) to this algebra.[133X
   
   
-  [1X9.20 [33X[0;0YA complete set of orthogonal primitive idempotents[133X[101X
+  [1X9.22 [33X[0;0YA complete set of orthogonal primitive idempotents[133X[101X
   
   [33X[0;0YWhen  [22XR[122X  is  a  semisimple ring, then every left ideal [22XL[122X of [22XR[122X is of the form
   [22XL=Re[122X,  where  [22Xe[122X is an idempotent of [22XR[122X. Therefore, we can use the idempotents
@@ -813,7 +858,7 @@
   the  2-parts  (respectively  2'-parts)  of  [22XE/K[122X  and  [22XH/K[122X respectively. Then
   [22X⟨overlinea_2'}⟩[122X has a cyclic complement [22X⟨overlineb_2'}⟩[122X in [22XE_2'/K[122X. Using the
   description   of  the  primitive  central  idempotents  and  the  Wedderburn
-  components  of  a semisimple finite group algebra [22XF G[122X ([14X9.17[114X), a complete set
+  components  of  a semisimple finite group algebra [22XF G[122X ([14X9.19[114X), a complete set
   of  orthogonal primitive idempotents of [22XF Ge_C[122X is described (see [OVG11]) as
   the  set  of  conjugates  of  [22Xβ_e_C=widetildeb_2'}β_2ε_C[122X  by the elements of
   [22XT_e_C=T_2'T_2T_E[122X,  where  [22XT_2'={1,a_2',a_2'^2,dots,a_2'^[E_2':H_2']-1}[122X,  [22XT_E[122X
@@ -883,7 +928,7 @@
   specific cases. Let [22XG[122X be a finite group and [22XF[122X a finite field of order [22Xs[122X such
   that  [22Xs[122X  is coprime to the order of [22XG[122X. Let [22X(H,K)[122X be a strong Shoda pair of [22XG[122X
   such that [22Xτ(gH,g'H)=1[122X for all [22Xg,g'∈ E=E_G(H/K)[122X, and let [22XC∈mathcalC(H/K)[122X. Let
-  [22Xε=ε_C(H,K)[122X  and  [22Xe=e_C(G,H,K)[122X  ([14X9.17[114X).  Let  [22Xw[122X be a normal element of [22XF_s^o/
+  [22Xε=ε_C(H,K)[122X  and  [22Xe=e_C(G,H,K)[122X  ([14X9.19[114X).  Let  [22Xw[122X be a normal element of [22XF_s^o/
   F_s^o/[E:H]}[122X  (with  [22Xo[122X the multiplicative order of [22Xs[122X modulo [22X[H:K][122X) and [22XB[122X the
   normal basis determined by [22Xw[122X. Let [22Xψ[122X be the isomorphism between [22XF E ε[122X and the
   matrix  algebra [22XM_[E:H]( F_s^o/[E:H]})[122X with respect to the basis [22XB[122X as stated
@@ -914,7 +959,7 @@
   [22Xfrac1|T_1|∑_t∈ T_1t[122X in [22XF G[122X.[133X
   
   
-  [1X9.21 [33X[0;0YApplications to coding theory[133X[101X
+  [1X9.23 [33X[0;0YApplications to coding theory[133X[101X
   
   [33X[0;0YA [13Xlinear code[113X of length [22Xn[122X and rank [22Xk[122X is a linear subspace [22XC[122X with dimension [22Xk[122X
   of  the  vector  space  [22XF_q^n[122X.  The  standard  basis  of [22XF_q^n[122X is denoted by

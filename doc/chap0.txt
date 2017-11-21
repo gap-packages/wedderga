@@ -6,17 +6,21 @@
                    [1XWedderburn Decomposition of Group Algebras[101X
   
   
-                                 Version 4.8.0
+                                 Version 4.9.0
   
   
-                               23 September 2017
+                                21 November 2017
   
+  
+                              Gurmeet Kaur Bakshi
   
                               Osnel Broche Cristo
   
                                   Allen Herman
   
                               Alexander Konovalov
+  
+                              Sugandha Maheshwary
   
                                 Aurora Olivieri
   
@@ -26,6 +30,12 @@
   
                                Inneke Van Gelder
   
+  
+  
+  Gurmeet Kaur Bakshi
+      Email:    [7Xmailto:gkbakshi@pu.ac.in[107X
+      Address:  [33X[0;14YCenter for Advanced Study in Mathematics,[133X
+                [33X[0;14YPanjab University, Chandigarh, PIN-160014, India[133X
   
   
   Osnel Broche Cristo
@@ -50,6 +60,14 @@
       Address:  [33X[0;14YSchool of Computer Science, University of St Andrews[133X
                 [33X[0;14YJack Cole Building, North Haugh,[133X
                 [33X[0;14YSt Andrews, Fife, KY16 9SX, Scotland[133X
+  
+  
+  Sugandha Maheshwary
+      Email:    [7Xmailto:sugandha@iisermohali.ac.in[107X
+      Address:  [33X[0;14YDepartment of Mathematical Sciences[133X
+                [33X[0;14YIndian Institute of Science Education and Research[133X
+                [33X[0;14YMohali, Knowledge city, Sector 81, SAS Nagar,[133X
+                [33X[0;14YManauli, PO 140306, India[133X
   
   
   Aurora Olivieri
@@ -86,21 +104,22 @@
   
   -------------------------------------------------------
   [1XAbstract[101X
-  [33X[0;0YThe  title  ``[5XWedderga[105X''  stands  for  ``[12XWEDDER[112Xburn  decomposition  of [12XG[112Xroup
-  [12XA[112Xlgebras.  This  is  a  [5XGAP[105X  package to compute the simple components of the
-  Wedderburn  decomposition of semisimple group algebras of finite groups over
-  finite  fields  and  over  subfields  of finite cyclotomic extensions of the
-  rationals.  It  also  contains  functions that produce the primitive central
-  idempotents  of  semisimple  group algebras and a complete set of orthogonal
-  primitive  idempotents.  Other  functions  of  [5XWedderga[105X  allow  to construct
-  crossed  products over a group with coefficients in an associative ring with
-  identity and the multiplication determined by a given action and twisting.[133X
+  [33X[0;0Y``[5XWedderga[105X''  stands for ``[12XWEDDER[112Xburn decomposition of [12XG[112Xroup [12XA[112Xlgebras". This
+  is  a  [5XGAP[105X  package  to  compute  the  simple  components  of the Wedderburn
+  decomposition  of  semisimple  group  algebras  of finite groups over finite
+  fields  and over subfields of finite cyclotomic extensions of the rationals.
+  It also contains functions that produce the primitive central idempotents of
+  semisimple  group  algebras  and  a  complete  set  of  orthogonal primitive
+  idempotents. Other functions of [5XWedderga[105X allow to construct crossed products
+  over  a group with coefficients in an associative ring with identity and the
+  multiplication determined by a given action and twisting.[133X
   
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y©  2006-2017  by  Osnel  Broche  Cristo,  Allen Herman, Alexander Konovalov,
-  Aurora Olivieri, Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.[133X
+  [33X[0;0Y©  2006-2017  by  Gurmeet  Kaur  Bakshi,  Osnel Broche Cristo, Allen Herman,
+  Alexander Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu,
+  Ángel del Río and Inneke Van Gelder.[133X
   
   [33X[0;0Y[5XWedderga[105X  is  free  software; you can redistribute it and/or modify it under
   the  terms  of  the  GNU  General  Public  License  as published by the Free
@@ -112,9 +131,9 @@
   to  one of the authors. If you publish a result which was partially obtained
   with the usage of [5XWedderga[105X, please cite it in the following form:[133X
   
-  [33X[0;0YO.  Broche  Cristo, A. Herman, A. Konovalov, A. Olivieri, G. Olteanu, Á. del
-  Río  and  I.  Van  Gelder.  [13XWedderga  ---  Wedderburn Decomposition of Group
-  Algebras,                 Version                 4.8.0;[113X                2017
+  [33X[0;0YG.  K.  Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A.
+  Olivieri,  G. Olteanu, Á. del Río and I. Van Gelder. [13XWedderga --- Wedderburn
+  Decomposition     of     Group     Algebras,     Version     4.9.0;[113X     2017
   ([7Xhttp://www.cs.st-andrews.ac.uk/~alexk/wedderga[107X).[133X
   
   
@@ -127,8 +146,8 @@
   advise.  We  would  like  also  to  thank  Thomas  Breuer  for  the  code of
   [10XPrimitiveCentralIdempotentsByCharacterTable[110X for rational group algebras.[133X
   
-  [33X[0;0YOn  various  stages the development of the Wedderga package was supported by
-  the following institutions:[133X
+  [33X[0;0YWe  gratefully  acknowledge  the  support  of  Wedderga  development  by the
+  following institutions:[133X
   
   [30X    [33X[0;6YUniversity of Murcia;[133X
   
@@ -142,9 +161,11 @@
   
   [30X    [33X[0;6YCAPES and FAPESP of Brazil;[133X
   
-  [30X    [33X[0;6YResearch Foundation Flanders (FWO - Vlaanderen).[133X
+  [30X    [33X[0;6YResearch Foundation Flanders (FWO - Vlaanderen);[133X
   
-  [33X[0;0YWe acknowledge with gratitude this support.[133X
+  [30X    [33X[0;6YCCP CoDiMa (EP/M022641/1);[133X
+  
+  [30X    [33X[0;6YDepartment of Science and Technology (DST), India.[133X
   
   
   -------------------------------------------------------
@@ -165,21 +186,26 @@
       2.2-2 SimpleAlgebraByCharacterInfo
       2.2-3 SimpleAlgebraByStrongSP
       2.2-4 SimpleAlgebraByStrongSPInfo
-  3 [33X[0;0YStrong Shoda pairs[133X
-    3.1 [33X[0;0YComputing strong Shoda pairs[133X
-      3.1-1 StrongShodaPairs
-    3.2 [33X[0;0YProperties related with Shoda pairs[133X
-      3.2-1 IsStrongShodaPair
-      3.2-2 IsShodaPair
-      3.2-3 IsStronglyMonomial
+  3 [33X[0;0YShoda pairs[133X
+    3.1 [33X[0;0YComputing extremely strong Shoda pairs[133X
+      3.1-1 ExtremelyStrongShodaPairs
+    3.2 [33X[0;0YComputing strong Shoda pairs[133X
+      3.2-1 StrongShodaPairs
+    3.3 [33X[0;0YProperties related with Shoda pairs[133X
+      3.3-1 IsExtremelyStrongShodaPair
+      3.3-2 IsStrongShodaPair
+      3.3-3 IsShodaPair
+      3.3-4 IsStronglyMonomial
+      3.3-5 IsNormallyMonomial
   4 [33X[0;0YIdempotents[133X
     4.1 [33X[0;0YComputing idempotents from character table[133X
       4.1-1 PrimitiveCentralIdempotentsByCharacterTable
     4.2 [33X[0;0YTesting lists of idempotents for completeness[133X
       4.2-1 IsCompleteSetOfOrthogonalIdempotents
     4.3 [33X[0;0YIdempotents from Shoda pairs[133X
-      4.3-1 PrimitiveCentralIdempotentsByStrongSP
-      4.3-2 PrimitiveCentralIdempotentsBySP
+      4.3-1 PrimitiveCentralIdempotentsByESSP
+      4.3-2 PrimitiveCentralIdempotentsByStrongSP
+      4.3-3 PrimitiveCentralIdempotentsBySP
     4.4 [33X[0;0YComplete set of orthogonal primitive idempotents from Shoda pairs and
     cyclotomic classes[133X
       4.4-1 PrimitiveIdempotentsNilpotent
@@ -253,13 +279,15 @@
     9.13 [33X[0;0YIdempotents given by subgroups[133X
     9.14 [33X[0;0YShoda pairs of a group[133X
     9.15 [33X[0;0YStrong Shoda pairs of a group[133X
-    9.16 [33X[0;0YStrongly monomial characters and strongly monomial groups[133X
-    9.17 [33X[0;0YCyclotomic Classes and Strong Shoda Pairs[133X
-    9.18 [33X[0;0YTheory for Local Schur Index and Division Algebra Part Calculations[133X
-    9.19 [33X[0;0YObtaining Algebras with structure constants as terms of the
+    9.16 [33X[0;0YExtremely strong Shoda pairs of a group[133X
+    9.17 [33X[0;0YStrongly monomial characters and strongly monomial groups[133X
+    9.18 [33X[0;0YNormally monomial characters and normally monomial groups[133X
+    9.19 [33X[0;0YCyclotomic Classes and Strong Shoda Pairs[133X
+    9.20 [33X[0;0YTheory for Local Schur Index and Division Algebra Part Calculations[133X
+    9.21 [33X[0;0YObtaining Algebras with structure constants as terms of the
     Wedderburn decomposition[133X
-    9.20 [33X[0;0YA complete set of orthogonal primitive idempotents[133X
-    9.21 [33X[0;0YApplications to coding theory[133X
+    9.22 [33X[0;0YA complete set of orthogonal primitive idempotents[133X
+    9.23 [33X[0;0YApplications to coding theory[133X
   
   
   [32X

@@ -35,8 +35,9 @@
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X7C66102485AF5F80">4.3 <span class="Heading">Idempotents from Shoda pairs</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7B48EE1A7ECAB151">4.3-1 PrimitiveCentralIdempotentsByStrongSP</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X82460B1285A0A7D7">4.3-2 PrimitiveCentralIdempotentsBySP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X78D597207D3030EA">4.3-1 PrimitiveCentralIdempotentsByESSP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7B48EE1A7ECAB151">4.3-2 PrimitiveCentralIdempotentsByStrongSP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X82460B1285A0A7D7">4.3-3 PrimitiveCentralIdempotentsBySP</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X8577F9547FC58C4C">4.4 <span class="Heading">Complete set of orthogonal primitive idempotents from Shoda pairs and cyclotomic classes</span></a>
 </span>
@@ -125,9 +126,63 @@ false
 
 <h4>4.3 <span class="Heading">Idempotents from Shoda pairs</span></h4>
 
+<p><a id="X78D597207D3030EA" name="X78D597207D3030EA"></a></p>
+
+<h5>4.3-1 PrimitiveCentralIdempotentsByESSP</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PrimitiveCentralIdempotentsByESSP</code>( <var class="Arg">QG</var> )</td><td class="tdright">( attribute )</td></tr></table></div>
+<p>Returns: A list of group algebra elements.</p>
+
+<p>The input <var class="Arg">QG</var> should be a semisimple rational group algebra of a finite group <span class="SimpleMath">G</span>.</p>
+
+<p>The output is the list of primitive central idempotents of the group algebra <var class="Arg">QG</var> realizable by extremely strong Shoda pairs (<a href="chap9.html#X81B5CE0378DC4913"><span class="RefLink">9.16</span></a>) of <span class="SimpleMath">G</span>.</p>
+
+<p>If the list of primitive central idempotents given by the output is not complete (i.e. if the group <span class="SimpleMath">G</span> is not <em> normally monomial</em> (<a href="chap9.html#X7C8D47C180E0ACAD"><span class="RefLink">9.18</span></a>)) then a warning is displayed.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">QG:=GroupRing( Rationals, DihedralGroup(16) );;  </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrimitiveCentralIdempotentsByESSP( QG );</span>
+[ (1/16)*&lt;identity&gt; of ...+(1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(1/
+    16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/
+    16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(1/16)*f1*f3*f4+(1/
+    16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, (1/16)*&lt;identity&gt; of ...+(-1/16)*f1+(-1/
+    16)*f2+(1/16)*f3+(1/16)*f4+(1/16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(-1/
+    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(1/16)*f1*f2*f3+(1/16)*f1*f2*f4+(-1/
+    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(1/16)*f1*f2*f3*f4, 
+  (1/16)*&lt;identity&gt; of ...+(-1/16)*f1+(1/16)*f2+(1/16)*f3+(1/16)*f4+(-1/
+    16)*f1*f2+(-1/16)*f1*f3+(-1/16)*f1*f4+(1/16)*f2*f3+(1/16)*f2*f4+(1/
+    16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(-1/16)*f1*f3*f4+(1/
+    16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, (1/16)*&lt;identity&gt; of ...+(1/16)*f1+(-1/
+    16)*f2+(1/16)*f3+(1/16)*f4+(-1/16)*f1*f2+(1/16)*f1*f3+(1/16)*f1*f4+(-1/
+    16)*f2*f3+(-1/16)*f2*f4+(1/16)*f3*f4+(-1/16)*f1*f2*f3+(-1/16)*f1*f2*f4+(1/
+    16)*f1*f3*f4+(-1/16)*f2*f3*f4+(-1/16)*f1*f2*f3*f4, 
+  (1/4)*&lt;identity&gt; of ...+(-1/4)*f3+(1/4)*f4+(-1/4)*f3*f4, 
+  (1/2)*&lt;identity&gt; of ...+(-1/2)*f4 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">QG := GroupRing( Rationals, SmallGroup(24,12) );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrimitiveCentralIdempotentsByESSP( QG );</span>
+Wedderga: Warning!!!
+The output is a NON-COMPLETE list of prim. central idemp.s of the input! 
+[ (1/24)*&lt;identity&gt; of ...+(1/24)*f1+(1/24)*f2+(1/24)*f3+(1/24)*f4+(1/
+    24)*f1*f2+(1/24)*f1*f3+(1/24)*f1*f4+(1/24)*f2^2+(1/24)*f2*f3+(1/
+    24)*f2*f4+(1/24)*f3*f4+(1/24)*f1*f2^2+(1/24)*f1*f2*f3+(1/24)*f1*f2*f4+(1/
+    24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/24)*f2*f3*f4+(1/24)*f1*f2^
+    2*f3+(1/24)*f1*f2^2*f4+(1/24)*f1*f2*f3*f4+(1/24)*f2^2*f3*f4+(1/24)*f1*f2^
+    2*f3*f4, (1/24)*&lt;identity&gt; of ...+(-1/24)*f1+(1/24)*f2+(1/24)*f3+(1/
+    24)*f4+(-1/24)*f1*f2+(-1/24)*f1*f3+(-1/24)*f1*f4+(1/24)*f2^2+(1/
+    24)*f2*f3+(1/24)*f2*f4+(1/24)*f3*f4+(-1/24)*f1*f2^2+(-1/24)*f1*f2*f3+(-1/
+    24)*f1*f2*f4+(-1/24)*f1*f3*f4+(1/24)*f2^2*f3+(1/24)*f2^2*f4+(1/
+    24)*f2*f3*f4+(-1/24)*f1*f2^2*f3+(-1/24)*f1*f2^2*f4+(-1/24)*f1*f2*f3*f4+(1/
+    24)*f2^2*f3*f4+(-1/24)*f1*f2^2*f3*f4, (1/6)*&lt;identity&gt; of ...+(-1/12)*f2+(
+    1/6)*f3+(1/6)*f4+(-1/12)*f2^2+(-1/12)*f2*f3+(-1/12)*f2*f4+(1/6)*f3*f4+(-1/
+    12)*f2^2*f3+(-1/12)*f2^2*f4+(-1/12)*f2*f3*f4+(-1/12)*f2^2*f3*f4 ]
+
+</pre></div>
+
 <p><a id="X7B48EE1A7ECAB151" name="X7B48EE1A7ECAB151"></a></p>
 
-<h5>4.3-1 PrimitiveCentralIdempotentsByStrongSP</h5>
+<h5>4.3-2 PrimitiveCentralIdempotentsByStrongSP</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PrimitiveCentralIdempotentsByStrongSP</code>( <var class="Arg">FG</var> )</td><td class="tdright">( attribute )</td></tr></table></div>
 <p>Returns: A list of group algebra elements.</p>
@@ -136,9 +191,9 @@ false
 
 <p>If <span class="SimpleMath">F = ℚ</span> then the output is the list of primitive central idempotents of the group algebra <var class="Arg">FG</var> realizable by strong Shoda pairs (<a href="chap9.html#X7E3479527BAE5B9E"><span class="RefLink">9.15</span></a>) of <span class="SimpleMath">G</span>.</p>
 
-<p>If <span class="SimpleMath">F</span> is a finite field then the output is the list of primitive central idempotents of <var class="Arg">FG</var> realizable by strong Shoda pairs <span class="SimpleMath">(K,H)</span> of <span class="SimpleMath">G</span> and <span class="SimpleMath">q</span>-cyclotomic classes modulo the index of <span class="SimpleMath">H</span> in <span class="SimpleMath">K</span> (<a href="chap9.html#X800D8C5087D79DC8"><span class="RefLink">9.17</span></a>).</p>
+<p>If <span class="SimpleMath">F</span> is a finite field then the output is the list of primitive central idempotents of <var class="Arg">FG</var> realizable by strong Shoda pairs <span class="SimpleMath">(K,H)</span> of <span class="SimpleMath">G</span> and <span class="SimpleMath">q</span>-cyclotomic classes modulo the index of <span class="SimpleMath">H</span> in <span class="SimpleMath">K</span> (<a href="chap9.html#X800D8C5087D79DC8"><span class="RefLink">9.19</span></a>).</p>
 
-<p>If the list of primitive central idempotents given by the output is not complete (i.e. if the group <span class="SimpleMath">G</span> is not <em>strongly monomial</em> (<a href="chap9.html#X84C694978557EFE5"><span class="RefLink">9.16</span></a>)) then a warning is displayed.</p>
+<p>If the list of primitive central idempotents given by the output is not complete (i.e. if the group <span class="SimpleMath">G</span> is not <em>strongly monomial</em> (<a href="chap9.html#X84C694978557EFE5"><span class="RefLink">9.17</span></a>)) then a warning is displayed.</p>
 
 
 <div class="example"><pre>
@@ -169,7 +224,7 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 
 <p><a id="X82460B1285A0A7D7" name="X82460B1285A0A7D7"></a></p>
 
-<h5>4.3-2 PrimitiveCentralIdempotentsBySP</h5>
+<h5>4.3-3 PrimitiveCentralIdempotentsBySP</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PrimitiveCentralIdempotentsBySP</code>( <var class="Arg">QG</var> )</td><td class="tdright">( function )</td></tr></table></div>
 <p>Returns: A list of group algebra elements.</p>
@@ -217,7 +272,7 @@ false
 
 </pre></div>
 
-<p>The output of <code class="func">PrimitiveCentralIdempotentsBySP</code> contains the output of <code class="func">PrimitiveCentralIdempotentsByStrongSP</code> (<a href="chap4.html#X7B48EE1A7ECAB151"><span class="RefLink">4.3-1</span></a>), possibly properly.</p>
+<p>The output of <code class="func">PrimitiveCentralIdempotentsBySP</code> contains the output of <code class="func">PrimitiveCentralIdempotentsByStrongSP</code> (<a href="chap4.html#X7B48EE1A7ECAB151"><span class="RefLink">4.3-2</span></a>), possibly properly.</p>
 
 
 <div class="example"><pre>
@@ -259,7 +314,7 @@ false
 
 <p>The input <var class="Arg">FG</var> should be a semisimple group algebra of a finite nilpotent group <span class="SimpleMath">G</span> whose coefficient field <span class="SimpleMath">F</span> is a finite field. <var class="Arg">H</var> and <var class="Arg">K</var> should form a strong Shoda pair <span class="SimpleMath">(H,K)</span> of <span class="SimpleMath">G</span>. <var class="Arg">args</var> is a list containing an epimorphism map <var class="Arg">epi</var> from <span class="SimpleMath">N_G(K)</span> to <span class="SimpleMath">N_G(K)/K</span> and a generator <var class="Arg">gq</var> of <span class="SimpleMath">H/K</span>. <span class="SimpleMath">C</span> is the <span class="SimpleMath">|F|</span>-cyclotomic class modulo <span class="SimpleMath">[H:K]</span> (w.r.t. the generator <span class="SimpleMath">gq</span> of <span class="SimpleMath">H/K</span>)</p>
 
-<p>The output is a complete set of orthogonal primitive idempotents of the simple algebra <span class="SimpleMath">FGe_C(G,H,K)</span> (<a href="chap9.html#X8472ACCF802EC188"><span class="RefLink">9.20</span></a>).</p>
+<p>The output is a complete set of orthogonal primitive idempotents of the simple algebra <span class="SimpleMath">FGe_C(G,H,K)</span> (<a href="chap9.html#X8472ACCF802EC188"><span class="RefLink">9.22</span></a>).</p>
 
 
 <div class="example"><pre>
@@ -268,7 +323,7 @@ false
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F:=GF(3);;                     </span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FG:=GroupRing(F,G);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H:=StrongShodaPairs(G)[5][1];</span>
-Group([ f1*f2, f3, f3 ])
+Group([ f1*f2*f3, f3 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:=StrongShodaPairs(G)[5][2];</span>
 Group([ f1*f2 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N:=Normalizer(G,K); </span>
@@ -276,7 +331,7 @@ Group([ f1*f2*f3, f3 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">epi:=NaturalHomomorphismByNormalSubgroup(N,K);</span>
 [ f1*f2*f3, f3 ] -&gt; [ f1, f1 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">QHK:=Image(epi,H); </span>
-Group([ &lt;identity&gt; of ..., f1, f1 ])
+Group([ f1, f1 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gq:=MinimalGeneratingSet(QHK)[1]; </span>
 f1
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C:=CyclotomicClasses(Size(F),Index(H,K))[2];</span>
@@ -296,7 +351,7 @@ f1
 
 <p>The input <var class="Arg">FG</var> should be a semisimple group algebra of a finite group <span class="SimpleMath">G</span> whose coefficient field <span class="SimpleMath">F</span> is a finite field. <var class="Arg">H</var> and <var class="Arg">K</var> should form a strong Shoda pair <span class="SimpleMath">(H,K)</span> of <span class="SimpleMath">G</span>. <var class="Arg">args</var> is a list containing an epimorphism map <var class="Arg">epi</var> from <span class="SimpleMath">N_G(K)</span> to <span class="SimpleMath">N_G(K)/K</span> and a generator <var class="Arg">gq</var> of <span class="SimpleMath">H/K</span>. <span class="SimpleMath">C</span> is the <span class="SimpleMath">|F|</span>-cyclotomic class modulo <span class="SimpleMath">[H:K]</span> (w.r.t. the generator <span class="SimpleMath">gq</span> of <span class="SimpleMath">H/K</span>). The input parameters should be such that the simple component <span class="SimpleMath">FGe_C(G,H,K)</span> has a trivial twisting.</p>
 
-<p>The output is a complete set of orthogonal primitive idempotents of the simple algebra <span class="SimpleMath">FGe_C(G,H,K)</span> (<a href="chap9.html#X8472ACCF802EC188"><span class="RefLink">9.20</span></a>).</p>
+<p>The output is a complete set of orthogonal primitive idempotents of the simple algebra <span class="SimpleMath">FGe_C(G,H,K)</span> (<a href="chap9.html#X8472ACCF802EC188"><span class="RefLink">9.22</span></a>).</p>
 
 
 <div class="example"><pre>
@@ -305,7 +360,7 @@ f1
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F:=GF(3);;                     </span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FG:=GroupRing(F,G);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H:=StrongShodaPairs(G)[5][1];</span>
-Group([ f1*f2, f3, f3 ])
+Group([ f1*f2*f3, f3 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:=StrongShodaPairs(G)[5][2];</span>
 Group([ f1*f2 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N:=Normalizer(G,K); </span>
@@ -313,7 +368,7 @@ Group([ f1*f2*f3, f3 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">epi:=NaturalHomomorphismByNormalSubgroup(N,K);</span>
 [ f1*f2*f3, f3 ] -&gt; [ f1, f1 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">QHK:=Image(epi,H); </span>
-Group([ &lt;identity&gt; of ..., f1, f1 ])
+Group([ f1, f1 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gq:=MinimalGeneratingSet(QHK)[1]; </span>
 f1
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C:=CyclotomicClasses(Size(F),Index(H,K))[2];</span>

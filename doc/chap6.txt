@@ -108,7 +108,7 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=DihedralGroup(8);;[127X[104X
     [4X[25Xgap>[125X [27XH:=StrongShodaPairs(G)[5][1];[127X[104X
-    [4X[28XGroup([ f1*f2, f3, f3 ])[128X[104X
+    [4X[28XGroup([ f1*f2*f3, f3 ])[128X[104X
     [4X[25Xgap>[125X [27XK:=StrongShodaPairs(G)[5][2]; [127X[104X
     [4X[28XGroup([ f1*f2 ])[128X[104X
     [4X[25Xgap>[125X [27XIsTwistingTrivial(G,H,K);[127X[104X
@@ -174,7 +174,8 @@
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XList(D16,x->a^x=a);[127X[104X
-    [4X[28X[ true, true, false, false, true, false, false, true, false, false, false,[128X[104X
+    [4X[28X[ true, true, false, false, false, false, false, false, true, \[128X[104X
+    [4X[28Xtrue, false, [128X[104X
     [4X[28X  false, false, false, false, false ][128X[104X
     [4X[25Xgap>[125X [27XList(D16,x->e^x=e);[127X[104X
     [4X[28X[ true, true, true, true, true, true, true, true, true, true, true, true,[128X[104X
@@ -233,7 +234,7 @@
   
   [33X[0;0YThe input should be formed by two relatively prime positive integers.[133X
   
-  [33X[0;0YReturns the list [3Xq[103X-[13Xcyclotomic classes [113X ([14X9.17[114X) modulo [3Xn[103X.[133X
+  [33X[0;0YReturns the list [3Xq[103X-[13Xcyclotomic classes [113X ([14X9.19[114X) modulo [3Xn[103X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -253,7 +254,7 @@
   [33X[0;0YThe input should be formed by two relatively prime positive integers [3Xq[103X and [3Xn[103X
   and a sublist [3XC[103X of [22X[ 0 .. n ][122X.[133X
   
-  [33X[0;0YReturns  [9Xtrue[109X  if  [3XC[103X  is  a  [3Xq[103X-[13Xcyclotomic  class[113X  ([14X9.17[114X)  modulo [3Xn[103X and [9Xfalse[109X
+  [33X[0;0YReturns  [9Xtrue[109X  if  [3XC[103X  is  a  [3Xq[103X-[13Xcyclotomic  class[113X  ([14X9.19[114X)  modulo [3Xn[103X and [9Xfalse[109X
   otherwise.[133X
   
   [4X[32X  Example  [32X[104X

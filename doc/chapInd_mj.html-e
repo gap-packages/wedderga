@@ -43,7 +43,7 @@ Classical Crossed Product  <a href="chap9_mj.html#X80BABE5078A29793">9.9</a>  <b
 <code class="func">CodeByLeftIdeal</code>  <a href="chap8_mj.html#X7C8BBBDB78A1678E">8.1-2</a>  <br />
 <code class="func">CodeWordByGroupRingElement</code>  <a href="chap8_mj.html#X7AE55D3C7BFCF3A9">8.1-1</a>  <br />
 CoefficientsAndMagmaElements  <a href="chap5_mj.html#X7D2313AA82F1D5CC">5.2-1</a>  <br />
-Complete set of orthogonal primitive idempotents  <a href="chap9_mj.html#X8472ACCF802EC188">9.20</a>  <br />
+Complete set of orthogonal primitive idempotents  <a href="chap9_mj.html#X8472ACCF802EC188">9.22</a>  <br />
 <code class="func">ConvertCyclicAlgToCyclicCyclotomicAlg</code>  <a href="chap7_mj.html#X8129F9307969D473">7.6-2</a>  <br />
 <code class="func">ConvertCyclicCyclotomicAlgToCyclicAlg</code>  <a href="chap7_mj.html#X81FAC27A829D5FF9">7.6-3</a>  <br />
 <code class="func">ConvertQuadraticAlgToQuaternionAlg</code>  <a href="chap7_mj.html#X8129F9307969D473">7.6-2</a>  <br />
@@ -53,7 +53,7 @@ Crossed Product  <a href="chap9_mj.html#X7FB21779832CE1CB">9.6</a>  <br />
 Cyclic Algebra  <a href="chap9_mj.html#X84C98BB8859BBEE2">9.10</a>  <br />
 Cyclic Crossed Product  <a href="chap9_mj.html#X828C42CD86AF605F">9.7</a>  <br />
 Cyclotomic algebra  <a href="chap9_mj.html#X8099A8C784255672">9.11</a>  <br />
-cyclotomic class  <a href="chap9_mj.html#X800D8C5087D79DC8">9.17</a>  <br />
+cyclotomic class  <a href="chap9_mj.html#X800D8C5087D79DC8">9.19</a>  <br />
 <code class="func">CyclotomicAlgebraAsSCAlgebra</code>  <a href="chap7_mj.html#X860975A4792E119D">7.1-4</a>  <br />
 <code class="func">CyclotomicAlgebraWithDivAlgPart</code>  <a href="chap7_mj.html#X83BC82867BE66A0B">7.1-2</a>  <br />
 <code class="func">CyclotomicClasses</code>  <a href="chap6_mj.html#X7D7BDF5087C8F4C6">6.3-1</a>  <br />
@@ -66,13 +66,16 @@ cyclotomic class  <a href="chap9_mj.html#X800D8C5087D79DC8">9.17</a>  <br />
 <code class="func">ElementOfCrossedProduct</code>  <a href="chap5_mj.html#X7D2313AA82F1D5CC">5.2-1</a>  <br />
 <code class="code">Embedding</code>  <a href="chap5_mj.html#X7D2313AA82F1D5CC">5.2-1</a>  <br />
 equivalence (Brauer)  <a href="chap9_mj.html#X7A24D5407F72C633">9.5</a>  <br />
+equivalent extremely strong Shoda pairs  <a href="chap9_mj.html#X81B5CE0378DC4913">9.16</a>  <br />
 equivalent strong Shoda pairs  <a href="chap9_mj.html#X7E3479527BAE5B9E">9.15</a>  <br />
+extremely strong Shoda pair  <a href="chap9_mj.html#X81B5CE0378DC4913">9.16</a>  <br />
+<code class="func">ExtremelyStrongShodaPairs</code>  <a href="chap3_mj.html#X86B2AFF87D26FC75">3.1-1</a>  <br />
 field of character values  <a href="chap9_mj.html#X87B6505C7C2EE054">9.4</a>  <br />
 <code class="func">FinFieldExt</code>  <a href="chap7_mj.html#X80D1046284577B32">7.4-6</a>  <br />
-generating cyclotomic class  <a href="chap9_mj.html#X800D8C5087D79DC8">9.17</a>  <br />
+generating cyclotomic class  <a href="chap9_mj.html#X800D8C5087D79DC8">9.19</a>  <br />
 <code class="func">GlobalSchurIndexFromLocalIndices</code>  <a href="chap7_mj.html#X78E6B3807EDDE82E">7.5-1</a>  <br />
 group algebra  <a href="chap9_mj.html#X815ECCD97B18314B">9.1</a>  <br />
-group code  <a href="chap9_mj.html#X856D7975810BF987">9.21</a>  <br />
+group code  <a href="chap9_mj.html#X856D7975810BF987">9.23</a>  <br />
 group ring  <a href="chap9_mj.html#X815ECCD97B18314B">9.1</a>  <br />
 <code class="func">InfoWedderga</code>  <a href="chap6_mj.html#X872510997A7AF31D">6.4-1</a>  <br />
 <code class="func">IsCompleteSetOfOrthogonalIdempotents</code>  <a href="chap4_mj.html#X81FCD27E812078F0">4.2-1</a>  <br />
@@ -81,17 +84,19 @@ group ring  <a href="chap9_mj.html#X815ECCD97B18314B">9.1</a>  <br />
 <code class="func">IsCyclotomicClass</code>  <a href="chap6_mj.html#X7FA101AE7BC33671">6.3-2</a>  <br />
 <code class="func">IsDyadicSchurGroup</code>  <a href="chap7_mj.html#X82A979548619CB85">7.4-7</a>  <br />
 <code class="code">IsElementOfCrossedProduct</code>  <a href="chap5_mj.html#X7D2313AA82F1D5CC">5.2-1</a>  <br />
+<code class="func">IsExtremelyStrongShodaPair</code>  <a href="chap3_mj.html#X7A851A00809B4C92">3.3-1</a>  <br />
+<code class="func">IsNormallyMonomial</code>  <a href="chap3_mj.html#X8485C39787CF0797">3.3-5</a>  <br />
 <code class="func">IsRationalQuaternionAlgebraADivisionRing</code>  <a href="chap7_mj.html#X79071DD8853678C0">7.5-2</a>  <br />
 <code class="func">IsSemisimpleANFGroupAlgebra</code>  <a href="chap6_mj.html#X79289F7F7FC04846">6.1-3</a>  <br />
 <code class="func">IsSemisimpleFiniteGroupAlgebra</code>  <a href="chap6_mj.html#X7B546E2D7FB561BA">6.1-4</a>  <br />
 <code class="func">IsSemisimpleRationalGroupAlgebra</code>  <a href="chap6_mj.html#X85999B6A7C52E305">6.1-2</a>  <br />
 <code class="func">IsSemisimpleZeroCharacteristicGroupAlgebra</code>  <a href="chap6_mj.html#X7EF856E880722311">6.1-1</a>  <br />
-<code class="func">IsShodaPair</code>  <a href="chap3_mj.html#X823B8DEC7ECC3326">3.2-2</a>  <br />
-<code class="func">IsStronglyMonomial</code>  <a href="chap3_mj.html#X80C4ED17809FC547">3.2-3</a>  <br />
-<code class="func">IsStrongShodaPair</code>  <a href="chap3_mj.html#X7C17476F854F1E34">3.2-1</a>  <br />
+<code class="func">IsShodaPair</code>  <a href="chap3_mj.html#X823B8DEC7ECC3326">3.3-3</a>  <br />
+<code class="func">IsStronglyMonomial</code>  <a href="chap3_mj.html#X80C4ED17809FC547">3.3-4</a>  <br />
+<code class="func">IsStrongShodaPair</code>  <a href="chap3_mj.html#X7C17476F854F1E34">3.3-2</a>  <br />
 <code class="func">IsTwistingTrivial</code>  <a href="chap6_mj.html#X8337F25387C53B02">6.1-5</a>  <br />
 <code class="code">LeftActingDomain</code>  <a href="chap5_mj.html#X797F31EF7B51A4DF">5.1-1</a>  <br />
-linear code  <a href="chap9_mj.html#X856D7975810BF987">9.21</a>  <br />
+linear code  <a href="chap9_mj.html#X856D7975810BF987">9.23</a>  <br />
 <code class="func">LocalIndexAtInfty</code>  <a href="chap7_mj.html#X78588B587AEDD22F">7.3-2</a>  <br />
 <code class="func">LocalIndexAtInftyByCharacter</code>  <a href="chap7_mj.html#X8656B34387EC74EF">7.4-4</a>  <br />
 <code class="func">LocalIndexAtOddP</code>  <a href="chap7_mj.html#X78588B587AEDD22F">7.3-2</a>  <br />
@@ -104,15 +109,18 @@ linear code  <a href="chap9_mj.html#X856D7975810BF987">9.21</a>  <br />
 <code class="func">LocalIndicesOfRationalQuaternionAlgebra</code>  <a href="chap7_mj.html#X78E6B3807EDDE82E">7.5-1</a>  <br />
 <code class="func">LocalIndicesOfRationalSymbolAlgebra</code>  <a href="chap7_mj.html#X78E6B3807EDDE82E">7.5-1</a>  <br />
 <code class="func">LocalIndicesOfTensorProductOfQuadraticAlgs</code>  <a href="chap7_mj.html#X78E6B3807EDDE82E">7.5-1</a>  <br />
+normally monomial character  <a href="chap9_mj.html#X7C8D47C180E0ACAD">9.18</a>  <br />
+normally monomial group  <a href="chap9_mj.html#X7C8D47C180E0ACAD">9.18</a>  <br />
 <code class="func">OnPoints</code>  <a href="chap6_mj.html#X7FE417DD837987B4">6.2-2</a>  <br />
 <code class="func">PDashPartOfN</code>  <a href="chap7_mj.html#X78482C2B7959526E">7.2-1</a>  <br />
 <code class="func">PPartOfN</code>  <a href="chap7_mj.html#X78482C2B7959526E">7.2-1</a>  <br />
 primitive central idempotent  <a href="chap9_mj.html#X87B6505C7C2EE054">9.4</a>  <br />
 primitive central idempotent realized by a Shoda pair  <a href="chap9_mj.html#X7D518BAB80EDE190">9.14</a>  <br />
-primitive central idempotent realized by a strong Shoda pair and a cyclotomic class  <a href="chap9_mj.html#X800D8C5087D79DC8">9.17</a>  <br />
+primitive central idempotent realized by a strong Shoda pair and a cyclotomic class  <a href="chap9_mj.html#X800D8C5087D79DC8">9.19</a>  <br />
 <code class="func">PrimitiveCentralIdempotentsByCharacterTable</code>  <a href="chap4_mj.html#X7BBEB4A084DBF0D6">4.1-1</a>  <br />
-<code class="func">PrimitiveCentralIdempotentsBySP</code>  <a href="chap4_mj.html#X82460B1285A0A7D7">4.3-2</a>  <br />
-<code class="func">PrimitiveCentralIdempotentsByStrongSP</code>  <a href="chap4_mj.html#X7B48EE1A7ECAB151">4.3-1</a>  <br />
+<code class="func">PrimitiveCentralIdempotentsByESSP</code>  <a href="chap4_mj.html#X78D597207D3030EA">4.3-1</a>  <br />
+<code class="func">PrimitiveCentralIdempotentsBySP</code>  <a href="chap4_mj.html#X82460B1285A0A7D7">4.3-3</a>  <br />
+<code class="func">PrimitiveCentralIdempotentsByStrongSP</code>  <a href="chap4_mj.html#X7B48EE1A7ECAB151">4.3-2</a>  <br />
 <code class="func">PrimitiveIdempotentsNilpotent</code>  <a href="chap4_mj.html#X7E95CDF17C4D54DB">4.4-1</a>  <br />
 <code class="func">PrimitiveIdempotentsTrivialTwisting</code>  <a href="chap4_mj.html#X8784570980B9B750">4.4-2</a>  <br />
 <code class="func">PSplitSubextension</code>  <a href="chap7_mj.html#X7F4F73E887C96737">7.2-2</a>  <br />
@@ -136,11 +144,11 @@ Shoda pair  <a href="chap9_mj.html#X7D518BAB80EDE190">9.14</a>  <br />
 &nbsp;&nbsp;&nbsp;&nbsp;for semisimple finite group algebra  <a href="chap2_mj.html#X812D667D7D913EB5">2.2-3</a>  <br />
 <code class="func">SimpleComponentByCharacterAsSCAlgebra</code>  <a href="chap7_mj.html#X860975A4792E119D">7.1-4</a>  <br />
 <code class="func">SimpleComponentOfGroupRingByCharacter</code>  <a href="chap7_mj.html#X7F33FE4F7E029BF7">7.4-3</a>  <br />
-strongly monomial character  <a href="chap9_mj.html#X84C694978557EFE5">9.16</a>  <br />
-strongly monomial group  <a href="chap9_mj.html#X84C694978557EFE5">9.16</a>  <br />
+strongly monomial character  <a href="chap9_mj.html#X84C694978557EFE5">9.17</a>  <br />
+strongly monomial group  <a href="chap9_mj.html#X84C694978557EFE5">9.17</a>  <br />
 <code class="func">SplittingDegreeAtP</code>  <a href="chap7_mj.html#X7845830082B7C723">7.2-3</a>  <br />
 strong Shoda pair  <a href="chap9_mj.html#X7E3479527BAE5B9E">9.15</a>  <br />
-<code class="func">StrongShodaPairs</code>  <a href="chap3_mj.html#X820A398687A79B9D">3.1-1</a>  <br />
+<code class="func">StrongShodaPairs</code>  <a href="chap3_mj.html#X820A398687A79B9D">3.2-1</a>  <br />
 <code class="code">TwistingForCrossedProduct</code>  <a href="chap5_mj.html#X797F31EF7B51A4DF">5.1-1</a>  <br />
 <code class="code">UnderlyingMagma</code>  <a href="chap5_mj.html#X797F31EF7B51A4DF">5.1-1</a>  <br />
 Wedderburn components  <a href="chap9_mj.html#X84BB4A6081EAE905">9.3</a>  <br />

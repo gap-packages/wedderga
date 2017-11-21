@@ -57,7 +57,7 @@
 
 <p>To use the <strong class="pkg">Wedderga</strong> online help it is necessary to install the <strong class="pkg">GAP</strong>4 package <strong class="pkg">GAPDoc</strong> by Frank Lübeck and Max Neunhöffer, which is available from the <strong class="pkg">GAP</strong> site or from <span class="URL"><a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/">http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/</a></span>.</p>
 
-<p><strong class="pkg">Wedderga</strong> is distributed in standard formats (<code class="file">tar.gz</code>, <code class="file">tar.bz2</code>, <code class="file">-win.zip</code>) and can be obtained from <span class="URL"><a href="http://www.um.es/adelrio/wedderga.htm">http://www.um.es/adelrio/wedderga.htm</a></span>, its mirror <span class="URL"><a href="http://www.cs.st-andrews.ac.uk/~alexk/wedderga/">http://www.cs.st-andrews.ac.uk/~alexk/wedderga/</a></span> or the page <span class="URL"><a href="http://www.gap-system.org/Packages/wedderga.html">http://www.gap-system.org/Packages/wedderga.html</a></span> at the <strong class="pkg">GAP</strong> web site. To install <strong class="pkg">Wedderga</strong>, unpack its archive into the <code class="file">pkg</code> subdirectory of your <strong class="pkg">GAP</strong> installation.</p>
+<p><strong class="pkg">Wedderga</strong> is distributed in standard formats (<code class="file">tar.gz</code>, <code class="file">tar.bz2</code>, <code class="file">-win.zip</code>) and can be obtained from <span class="URL"><a href="https://gap-packages.github.io/wedderga/">https://gap-packages.github.io/wedderga/</a></span>. To install <strong class="pkg">Wedderga</strong>, unpack its archive into the <code class="file">pkg</code> subdirectory of your <strong class="pkg">GAP</strong> installation.</p>
 
 <p>When you don't have access to the directory of your main <strong class="pkg">GAP</strong> installation, you can also install the package <em>outside the <strong class="pkg">GAP</strong> main directory</em> by unpacking it inside a directory <code class="file">MYGAPDIR/pkg</code>. Then to be able to load Wedderga you need to call GAP with the <code class="code">-l ";MYGAPDIR"</code> option.</p>
 
@@ -70,13 +70,17 @@
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("wedderga");</span>
 -----------------------------------------------------------------------------
-Loading  Wedderga 4.4.4 (Wedderga)
-by Osnel Broche Cristo (osnel@ufla.br),
-   Alexander Konovalov (http://www.cs.st-andrews.ac.uk/~alexk/),
-   Gabriela Olteanu (golteanu@um.es, olteanu@math.ubbcluj.ro),
-   Aurora Olivieri (olivieri@usb.ve), 
-   Angel del Rio (http://www.um.es/adelrio) and
-   Inneke Van Gelder (ivgelder@vub.ac.be).
+Loading  Wedderga 4.9.0 (Wedderga)
+by Gurmeet Kaur Bakshi (gkbakshi@pu.ac.in),
+   Osnel Broche Cristo (osnel@ufla.br),
+   Allen Herman (aherman@math.uregina.ca),
+   Alexander Konovalov (https://alexk.host.cs.st-andrews.ac.uk),
+   Sugandha Maheshwary (sugandha@iisermohali.ac.in),
+   Gabriela Olteanu (http://math.ubbcluj.ro/~olteanu),
+   Aurora Olivieri (olivieri@usb.ve),
+   Angel del Rio (http://www.um.es/adelrio), and
+   Inneke Van Gelder (http://homepages.vub.ac.be/~ivgelder).
+Homepage: https://gap-packages.github.io/wedderga
 -----------------------------------------------------------------------------
 true
 
@@ -90,7 +94,7 @@ true
 
 <p><code class="func">WedderburnDecomposition</code> (<a href="chap2.html#X7F1779ED8777F3E7"><span class="RefLink">2.1-1</span></a>) computes a list of simple algebras such that their direct product is isomorphic to the group algebra <span class="SimpleMath">FG</span>, given as input. Thus, the direct product of the entries of the output is the <em>Wedderburn decomposition</em> (<a href="chap9.html#X84BB4A6081EAE905"><span class="RefLink">9.3</span></a>) of <span class="SimpleMath">FG</span>.</p>
 
-<p>If <span class="SimpleMath">F</span> is an abelian number field then the entries of the output are given as matrix algebras over cyclotomic algebras (see <a href="chap9.html#X8099A8C784255672"><span class="RefLink">9.11</span></a>), thus, the entries of the output of <code class="func">WedderburnDecomposition</code> (<a href="chap2.html#X7F1779ED8777F3E7"><span class="RefLink">2.1-1</span></a>) are realizations of the <em>Wedderburn components</em> (<a href="chap9.html#X84BB4A6081EAE905"><span class="RefLink">9.3</span></a>) of <span class="SimpleMath">FG</span> as algebras which are <em>Brauer equivalent</em> (<a href="chap9.html#X7A24D5407F72C633"><span class="RefLink">9.5</span></a>) to <em>cyclotomic algebras</em> (<a href="chap9.html#X8099A8C784255672"><span class="RefLink">9.11</span></a>). Recall that the Brauer-Witt Theorem ensures that every simple factor of a semisimple group ring <span class="SimpleMath">FG</span> is Brauer equivalent (that is represents the same class in the Brauer group of its centre) to a cyclotomic algebra (<a href="chapBib.html#biBY">[Yam74]</a>. In this case the algorithm is based in a computational oriented proof of the Brauer-Witt Theorem due to Olteanu <a href="chapBib.html#biBO">[Olt07]</a> which uses previous work by Olivieri, del Río and Simón <a href="chapBib.html#biBORS">[OdRS04]</a> for rational group algebras of <em>strongly monomial groups</em> (<a href="chap9.html#X84C694978557EFE5"><span class="RefLink">9.16</span></a>).</p>
+<p>If <span class="SimpleMath">F</span> is an abelian number field then the entries of the output are given as matrix algebras over cyclotomic algebras (see <a href="chap9.html#X8099A8C784255672"><span class="RefLink">9.11</span></a>), thus, the entries of the output of <code class="func">WedderburnDecomposition</code> (<a href="chap2.html#X7F1779ED8777F3E7"><span class="RefLink">2.1-1</span></a>) are realizations of the <em>Wedderburn components</em> (<a href="chap9.html#X84BB4A6081EAE905"><span class="RefLink">9.3</span></a>) of <span class="SimpleMath">FG</span> as algebras which are <em>Brauer equivalent</em> (<a href="chap9.html#X7A24D5407F72C633"><span class="RefLink">9.5</span></a>) to <em>cyclotomic algebras</em> (<a href="chap9.html#X8099A8C784255672"><span class="RefLink">9.11</span></a>). Recall that the Brauer-Witt Theorem ensures that every simple factor of a semisimple group ring <span class="SimpleMath">FG</span> is Brauer equivalent (that is represents the same class in the Brauer group of its centre) to a cyclotomic algebra (<a href="chapBib.html#biBY">[Yam74]</a>. In this case the algorithm is based on a computational oriented proof of the Brauer-Witt Theorem due to Olteanu <a href="chapBib.html#biBO">[Olt07]</a> which uses previous work by Olivieri, del Río and Simón <a href="chapBib.html#biBORS">[OdRS04]</a> (see also <a href="chapBib.html#biBOR">[OdR03]</a> ) for rational group algebras of <em>strongly monomial groups</em> (<a href="chap9.html#X84C694978557EFE5"><span class="RefLink">9.17</span></a>). The algorithms are also based upon the work of Bakshi and Maheshwary <a href="chapBib.html#biBBM14">[BM14]</a> (see also <a href="chapBib.html#biBBM16">[BM16]</a>) on the rational group algebras of <em>normally monomial groups</em> (<a href="chap9.html#X7C8D47C180E0ACAD"><span class="RefLink">9.18</span></a>).</p>
 
 <p>The Wedderburn components of <span class="SimpleMath">FG</span> are also matrix algebras over division rings which are finite extensions of the field <span class="SimpleMath">F</span>. If <span class="SimpleMath">F</span> is finite then by the Wedderburn theorem these division rings are finite fields. In this case the output of <code class="func">WedderburnDecomposition</code> (<a href="chap2.html#X7F1779ED8777F3E7"><span class="RefLink">2.1-1</span></a>) represents the factors of <span class="SimpleMath">FG</span> as matrix algebras over finite extensions of the field <span class="SimpleMath">F</span>.</p>
 
@@ -102,14 +106,13 @@ true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">QG := GroupRing( Rationals, SymmetricGroup(4) );</span>
 &lt;algebra-with-one over Rationals, with 2 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecomposition(QG);</span>
-[ Rationals, Rationals, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ),
-  &lt;crossed product with center Rationals over CF(3) of a group of size 2&gt; ]
+[ Rationals, Rationals, &lt;crossed product with center Rationals over CF(
+    3) of a group of size 2&gt;, ( Rationals^[ 3, 3 ] ), ( Rationals^[ 3, 3 ] ) ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FG := GroupRing( CF(5), SymmetricGroup(4) );</span>
 &lt;algebra-with-one over CF(5), with 2 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecomposition( FG );</span>
-[ CF(5), CF(5), ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ),
-  &lt;crossed product with center CF(5) over AsField( CF(5), CF(
-    15) ) of a group of size 2&gt; ]
+[ CF(5), CF(5), &lt;crossed product with center CF(5) over AsField( CF(5), CF(
+    15) ) of a group of size 2&gt;, ( CF(5)^[ 3, 3 ] ), ( CF(5)^[ 3, 3 ] ) ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FG := GroupRing( GF(5), SymmetricGroup(4) ); </span>
 &lt;algebra-with-one over GF(5), with 2 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecomposition( FG );</span>
