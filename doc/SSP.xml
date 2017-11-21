@@ -1,6 +1,62 @@
-<!-- ********************SSP******************** -->
+<!-- ********************ESSP******************** -->
 
-<Chapter Label="SSP">
+<Chapter Label="ESSP">
+
+<Heading>Shoda pairs</Heading>
+
+<Section Label="ESSPESSP">
+<Heading>Computing extremely strong Shoda pairs</Heading>
+
+<ManSection>
+   <Attr Name="ExtremelyStrongShodaPairs" 
+         Arg="G"  
+         Comm="A list of ESSPs representatives realizing Wedderburn components of QG" />
+   <Returns>
+         A list of pairs of subgroups of the input group.
+   </Returns>
+   <Description>
+        The input should be a finite group <A>G</A>. 
+        <P/>
+        Computes a list of representatives of the equivalence classes of 
+        <E>extremely strong Shoda pairs</E> 
+        (<Ref Sect="ESSPDef" />) of a finite group <A>G</A>. 
+        <P/>
+
+<Example>
+<![CDATA[
+gap> ExtremelyStrongShodaPairs(DihedralGroup(32));
+[ [ <pc group of size 32 with 5 generators>, 
+      <pc group of size 32 with 5 generators> ], 
+  [ <pc group of size 32 with 5 generators>, 
+      Group([ f1*f2*f3*f4*f5, f3, f4, f5 ]) ], 
+  [ <pc group of size 32 with 5 generators>, Group([ f2, f3, f4, f5 ]) ], 
+  [ <pc group of size 32 with 5 generators>, Group([ f1, f3, f4, f5 ]) ], 
+  [ Group([ f1*f2*f3*f4*f5, f3, f4, f5 ]), Group([ f1*f2*f4*f5, f4, f5 ]) ], 
+  [ Group([ f2, f3, f4, f5 ]), Group([ f5 ]) ], 
+  [ Group([ f2, f3, f4, f5 ]), Group([  ]) ] ]
+gap> ExtremelyStrongShodaPairs(SL(2,3));          
+[ [ SL(2,3), SL(2,3) ], 
+  [ SL(2,3), 
+      Group([ [ [ Z(3)^0, Z(3)^0 ], [ Z(3)^0, Z(3) ] ], 
+          [ [ Z(3), Z(3)^0 ], [ Z(3)^0, Z(3)^0 ] ], 
+          [ [ Z(3), 0*Z(3) ], [ 0*Z(3), Z(3) ] ] ]) ], 
+  [ 
+      Group([ [ [ Z(3)^0, Z(3)^0 ], [ Z(3)^0, Z(3) ] ], 
+          [ [ Z(3), Z(3)^0 ], [ Z(3)^0, Z(3)^0 ] ], 
+          [ [ Z(3), 0*Z(3) ], [ 0*Z(3), Z(3) ] ] ]), 
+      Group([ [ [ 0*Z(3), Z(3) ], [ Z(3)^0, 0*Z(3) ] ], 
+          [ [ Z(3), 0*Z(3) ], [ 0*Z(3), Z(3) ] ] ]) ] ]
+gap> ExtremelyStrongShodaPairs(SymmetricGroup(5));
+[ [ Sym( [ 1 .. 5 ] ), Sym( [ 1 .. 5 ] ) ], 
+  [ Sym( [ 1 .. 5 ] ), Alt( [ 1 .. 5 ] ) ] ]
+]]>
+</Example>
+
+   </Description>
+</ManSection>
+
+</Section>
+
 <Heading>Strong Shoda pairs</Heading>
 
 <Section Label="SSPSSP">
@@ -25,24 +81,17 @@
 <![CDATA[
 gap> StrongShodaPairs( SymmetricGroup(4) );
 [ [ Sym( [ 1 .. 4 ] ), Sym( [ 1 .. 4 ] ) ], 
-  [ Sym( [ 1 .. 4 ] ), Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4)\
- ]) ], 
-  [ Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4) ]), Group([ (1,4)(\
-2,3), (1,3)
-      (2,4) ]) ], [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4)\
-, (1,2)(3,4) ]) 
-     ], [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2\
-)(3,4) ]) ] ]
-
+  [ Sym( [ 1 .. 4 ] ), Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4) ]) ], 
+  [ Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4) ]), Group([ (1,4)(2,3), (1,3)
+      (2,4) ]) ], [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) 
+     ], [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ] ]
 gap> StrongShodaPairs( DihedralGroup(64) );
 [ [ <pc group of size 64 with 6 generators>, 
       <pc group of size 64 with 6 generators> ], 
   [ <pc group of size 64 with 6 generators>, 
       Group([ f1*f2*f3*f4*f5*f6, f3, f4, f5, f6 ]) ], 
-  [ <pc group of size 64 with 6 generators>, Group([ f2, f3, f\
-4, f5, f6 ]) ], 
-  [ <pc group of size 64 with 6 generators>, Group([ f1, f3, f\
-4, f5, f6 ]) ], 
+  [ <pc group of size 64 with 6 generators>, Group([ f2, f3, f4, f5, f6 ]) ], 
+  [ <pc group of size 64 with 6 generators>, Group([ f1, f3, f4, f5, f6 ]) ], 
   [ Group([ f1*f2*f3*f4*f5*f6, f3, f4, f5, f6 ]), 
       Group([ f1*f2*f4*f5*f6, f4, f5, f6 ]) ], 
   [ Group([ f2, f3, f4, f5, f6 ]), Group([ f5, f6 ]) ], 
@@ -155,9 +204,7 @@ true
          
    </Description>
 </ManSection>
-
 <Alt Only="LaTeX">\newpage</Alt>
-
 <ManSection>
    <Oper Name="IsStronglyMonomial" 
          Arg="G"  
@@ -181,6 +228,44 @@ false
 gap> G:=SmallGroup(1000,86);;
 gap> IsMonomial(G);
 true
+gap> IsStronglyMonomial(G);
+false
+]]>
+</Example>
+        
+   </Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="IsNormallyMonomial" 
+         Arg="G"  
+         Comm="Is every irreducible character normally monomial" />
+   <Description>
+        The input <A>G</A> should be a finite group. <P/>
+   
+        Returns <K>true</K> if <A>G</A> is a finite <E>normally monomial</E> 
+        (<Ref Sect="NorMon" />) group.
+        
+<Example>
+<![CDATA[
+gap>  D24:=DihedralGroup(24);
+<pc group of size 24 with 4 generators>
+gap> IsNormallyMonomial(D24);
+true
+gap> G:=SmallGroup(192,1023);
+<pc group of size 192 with 7 generators>
+gap> IsNormallyMonomial(G);
+true
+gap> G:=SmallGroup(1029,12); 
+<pc group of size 1029 with 4 generators>
+gap> IsNormallyMonomial(G);
+false
+gap> IsStronglyMonomial(G);  
+true
+gap> G:=SL(2,3);            
+SL(2,3)
+gap> IsNormallyMonomial(G);
+false
 gap> IsStronglyMonomial(G);
 false
 ]]>

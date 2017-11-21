@@ -128,11 +128,13 @@ algebra <M>C</M> for some <M>n</M> and therefore <M>D</M> can be described
 as <M>M_{1/n}(C)</M> (see last Example in <Ref Attr="WedderburnDecomposition" />).
 <P/> 
 
-The main algorithm of &Wedderga; is based on a computational oriented proof of the Brauer-Witt Theorem
-due to Olteanu <Cite Key="O" /> which uses previous work by Olivieri, del Río and Simón <Cite Key="ORS" /> 
-for rational group algebras of <E>strongly monomial groups</E> 
-(<Ref Sect="StMon" />). 
-
+The main algorithm of &Wedderga; is based on a computational oriented proof of the 
+Brauer-Witt Theorem due to Olteanu <Cite Key="O" /> which uses previous work by Olivieri, 
+del Río and Simón <Cite Key="ORS" /> (see also <Cite Key="OR" /> ) for rational group 
+algebras of <E>strongly monomial groups</E> (<Ref Sect="StMon" />). The algorithms
+ are also based upon the work of Bakshi and Maheshwary <Cite Key="BM14" /> 
+ (see also <Cite Key="BM16" />) on the rational group algebras of <E>normally
+  monomial groups</E> (<Ref Sect="NorMon" />).
 </Section>
 
 <!-- ********************************************************* -->
