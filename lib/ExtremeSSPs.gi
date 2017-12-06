@@ -19,10 +19,11 @@ RTAD:=RightTransversal(A,D);
 RTAD0:=Filtered(RTAD,x->not x in D);
 for x in RTND0 do
   if ForAll(RTAD0,y->Comm(x,y) in D) then
-     return false;
+    return false;
   fi;
 od; 
 return true;
+
 end);
 
 
@@ -32,12 +33,12 @@ end);
 ## The attribute ExtSSPAndDim of G returns a record with components 
 ## ExtremelyStrongShodaPairs and SumDimension where
 ## 
-##  ExtremelyStrongShodaPairs = list of extremely strong Shoda pairs of G 
-##  that cover the complete set of primitive central idempotents of QG 
-##  realizable by extremely strong Shoda pairs, 
+## ExtremelyStrongShodaPairs = list of extremely strong Shoda pairs of G 
+## that cover the complete set of primitive central idempotents of QG 
+## realizable by extremely strong Shoda pairs, 
 ##
-##  SumDimension = Sum of the Q-SumDimensions of simple components corresponding
-##  to extremely strong Shoda pairs of G.
+## SumDimension= Sum of Q-dimensions of the simple components corresponding
+## to extremely strong Shoda pairs of G.
 ##
 InstallMethod( ExtSSPAndDim,
     "for a finite group",
@@ -82,12 +83,14 @@ for N in ND do
       Add(ESSP,[G,N]);
       SumDim:=SumDim+Phi(Size(G)/Size(N));
       if SumDim=Size(G) then
-    ###Set    SetIsNormallyMonomial( G , true );
+        SetIsNormallyMonomial( G , true );
         SetIsStronglyMonomial( G , true );
+        # if G is normally monomial, then clearly G is strongly monomial
         return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
       fi;  
     fi;
-  elif IsCyclic(Centre(G/N)) then   
+  elif IsCyclic(Centre(G/N)) then 
+  # the essps of the form (AN,N) are then collected  
     cont:=true;
     i:=0;
     while cont do
@@ -102,19 +105,23 @@ for N in ND do
             Add(ESSP,[AN,N]); 
             SumDim:=SumDim+Phi(Size(AN)/Size(N))*(Size(G)/Size(AN));
             if SumDim=Size(G) then
-            ###Set    SetIsNormallyMonomial( G , true );
-            SetIsStronglyMonomial( G , true );
+              SetIsNormallyMonomial( G , true );
+              SetIsStronglyMonomial( G , true );
               return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
             fi;    
           fi;  
-        elif not AN in ANs then
-          Add(ANs,AN);
-          NA:=NormalSubgroups(AN);
+        elif not AN in ANs then # no repetition of AN
+          Add(ANs,AN); # AN for which AN/N is not cyclic are collected in ANs
+          NA:=NormalSubgroups(AN); 
+          # for AN in ANs, we now find possible subgroups D, so that (AN,D) is an 
+          # essp and Core(D)=N. Moreover, for every AN in ANs, corresponding set of 
+          # possible choices of D is saved in RNACs in the same position.  
           NAC:=Filtered(NA,x->IsCyclic(FactorGroupNC(AN,x))); # x is normal in AN
           RNAC:=[];
           while NAC<>[] do
             D:=NAC[1]; 
-            NAC:=Difference(NAC,ConjugateSubgroups(G,D));  
+            NAC:=Difference(NAC,ConjugateSubgroups(G,D)); 
+            # conjugate subgroups will yield equivalent essps 
             if not Core(G,D)=N then
               Add(RNAC,D);
             else  
@@ -123,8 +130,8 @@ for N in ND do
                 Add(ESSP,[AN,D]); 
                 SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
                 if SumDim=Size(G) then
-                ###Set    SetIsNormallyMonomial( G , true );
-                SetIsStronglyMonomial( G , true );
+                  SetIsNormallyMonomial( G , true );
+                  SetIsStronglyMonomial( G , true );
                   return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
                 fi;  
               fi;
@@ -142,8 +149,8 @@ for N in ND do
                 Add(ESSP,[AN,D]); 
                 SumDim:=SumDim+((Size(G)/Size(NzD))^2)*((Phi(Size(AN)/Size(D)))*(Size(NzD)/Size(AN)));
                 if SumDim=Size(G) then
-                ###Set    SetIsNormallyMonomial( G , true );
-                SetIsStronglyMonomial( G , true );
+                  SetIsNormallyMonomial( G , true );
+                  SetIsStronglyMonomial( G , true );
                   return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
                 fi;  
               fi;
@@ -154,7 +161,7 @@ for N in ND do
     od;
   fi;          
 od;
-###Set    SetIsNormallyMonomial( G , false );
+SetIsNormallyMonomial( G , false );
 return rec(ExtremelyStrongShodaPairs:=ESSP, SumDimension:=SumDim);
 
 end);              
@@ -169,6 +176,7 @@ end);
 ##
 InstallGlobalFunction( ExtremelyStrongShodaPairs, function(G)
 return ExtSSPAndDim(G).ExtremelyStrongShodaPairs;
+
 end);
 
 
@@ -192,6 +200,7 @@ elif ExtSSPAndDim(G).SumDimension=Size(G) then
 else   
   return false;
 fi;
+
 end);
 
 InstallTrueMethod( IsStronglyMonomial, IsNormallyMonomial );
@@ -320,21 +329,21 @@ InstallMethod( SSPNonESSPAndTheirIdempotents,
     [ IsSemisimpleRationalGroupAlgebra ], 
     0,
 function(QG)
-local  G,      # underlying group of QG
-       ESSPD,  # output of the function ExtSSPAndDim(G)
-       SumDim, # sum of the dimensions of simple algebras covered by strong Shoda pairs
+local  G,       # underlying group of QG
+       ESSPD,   # output of the function ExtSSPAndDim(G)
+       SumDim,  # sum of the dimensions of simple algebras covered by strong Shoda pairs
        IdsESSP, # set of idempotents associated to extremely strong Shoda pairs of G
        IdsNESSP,# set of idempotents associated to other strong Shoda pairs of G
-       NESSPs, # set of representatives of strong Shoda pairs of G which are not 
-               # extremely strong
-       Con,    # conjugacy classes of G;
-       Con1,   # conjugacy classes of G of Size greater than 1;
-       C,      # C in Con1 
-       H,      # representative of C
-       HKId,   # strong Shoda pair (H,K) and its idempotent 
-       SSP,    # SSP in NESSPs      
-       IdSSP,  # the primitive central idempotents of QG associated toSSPP 
-       Nz;     # normalizer of K in G 
+       NESSPs,  # set of representatives of strong Shoda pairs of G which are not 
+                # extremely strong
+       Con,     # conjugacy classes of G;
+       Con1,    # conjugacy classes of G of Size greater than 1;
+       C,       # C in Con1 
+       H,       # representative of C
+       HKId,    # strong Shoda pair (H,K) and its idempotent 
+       SSP,     # SSP in NESSPs      
+       IdSSP,   # the primitive central idempotents of QG associated toSSPP 
+       Nz;      # normalizer of K in G 
 
 #Initialization
 G:=UnderlyingMagma(QG); 
@@ -344,6 +353,8 @@ SumDim:=ESSPD.SumDimension;
 if SumDim=Size(G) then 
   SetIsStronglyMonomial( G , true );
   return rec(NonExtremelyStrongShodaPairs:=[], PCIsByNonESSPs:=[]);
+  # if G is normally monomial, then every strong Shoda pair of G is an
+  # extremely strong Shoda pair
 fi;  
 
 IdsESSP:=PrimitiveCentralIdempotentsByExtSSP(QG);
@@ -352,31 +363,30 @@ NESSPs:=[];
 Con:=ConjugacyClassesSubgroups(G);
 Con1:=Filtered(Con,x->Size(x)>1);
 #here, we pick a non-abelian subgroup from different conjugacy class
-     for C in Con1 do
-      H:=Representative(C);
-       if IsCyclic(Centre(G/Core(G,H))) then
-        HKId:=SearchingNNKForSSP(QG,H);
-         if not HKId=fail then
-          SSP:=HKId[1]; 
-          IdSSP:=HKId[2];
-           if not IdSSP in Union(IdsESSP,IdsNESSP) then 
-            Add(IdsNESSP,IdSSP); 
-            Add(NESSPs,SSP);
-            Nz:=Normalizer(G,SSP[2]);
-            SumDim:=SumDim+
-            ((Size(G)/Size(Nz))^2)*((Phi(Size(SSP[1])/Size(SSP[2])))*(Size(Nz)/Size(SSP[1])));
-             if SumDim=Size(G) then 
-               SetIsStronglyMonomial( G , true );
-               return rec(NonExtremelyStrongShodaPairs:=NESSPs, PCIsByNonESSPs:=IdsNESSP);         
-             fi;
-           fi;  
-         fi;
-       fi; 
-     od;  
+for C in Con1 do
+  H:=Representative(C);
+  if IsCyclic(Centre(G/Core(G,H))) then
+    HKId:=SearchingNNKForSSP(QG,H);
+    if not HKId=fail then
+      SSP:=HKId[1]; 
+      IdSSP:=HKId[2];
+      if not IdSSP in Union(IdsESSP,IdsNESSP) then 
+        Add(IdsNESSP,IdSSP); 
+        Add(NESSPs,SSP);
+        Nz:=Normalizer(G,SSP[2]);
+        SumDim:=SumDim+((Size(G)/Size(Nz))^2)*((Phi(Size(SSP[1])/Size(SSP[2])))*(Size(Nz)/Size(SSP[1])));
+        if SumDim=Size(G) then 
+          SetIsStronglyMonomial( G , true );
+          return rec(NonExtremelyStrongShodaPairs:=NESSPs, PCIsByNonESSPs:=IdsNESSP);         
+        fi;
+      fi;  
+    fi;
+  fi; 
+od;  
 SetIsStronglyMonomial( G , false );      
- return rec(NonExtremelyStrongShodaPairs:=NESSPs, PCIsByNonESSPs:=IdsNESSP); 
+return rec(NonExtremelyStrongShodaPairs:=NESSPs, PCIsByNonESSPs:=IdsNESSP); 
       
- end);
+end);
 
 
 #############################################################################
@@ -402,14 +412,14 @@ G:=UnderlyingMagma(QG);
 if not IsStronglyMonomial(G) then 
   Print("Wedderga: Warning!!!\nThe output is a NON-COMPLETE list of prim. central idemp.s of the input! \n");
 fi;
-
 return Concatenation(IdsESSP,IdsSSP);  
+
 end);
 
 
 #############################################################################
 ##
-#F IsExtremelyStrongShodaPair( G, H, K )
+## IsExtremelyStrongShodaPair( G, H, K )
 ##
 ## The function IsExtremelyStrongShodaPair verifies if (H,K) is an extremely
 ## strong Shoda pair of G
@@ -426,8 +436,7 @@ else
   Info(InfoWedderga, 2, "Wedderga: IsSSP: <H> is not normal in <G>");
   return false;
 fi;
+
 end);
 
-###########################################################################
-## E
-###########################################################################
+#############################################################################
