@@ -104,4 +104,4 @@ The output is a NON-COMPLETE list of prim. central idemp.s of the input!
 # too long - leave for extended test:
 # [128,2328], [256,56090], [640,21540], [640,21541], [768,7667],
 # [896,19348],[896,19349],[972,875],[1000,86],[2000,399], [5^6,643]
-gap> STOP_TEST( "ExtremeSSPs.tst");
+gap> STOP_TEST( "ExtremeSSPs.tst", 1 );

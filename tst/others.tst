@@ -13,6 +13,4 @@ gap> ShodaPairsAndIdempotents(QG).ShodaPairs;
   [ Group([ f4^4*f5*f6^4, f6^4, f5 ]), Group([ f6, f4*f5^4 ]) ], 
   [ Group([ f3, f4^4*f5*f6^2, f6 ]), Group([ f3, f4*f5^4*f6^2 ]) ], 
   [ Group([ f4^4*f5*f6^4, f3*f5^4, f3*f5^4*f6 ]), Group([ f4*f5^4 ]) ] ]
-gap> STOP_TEST("idempot.tst");
-
- 
+gap> STOP_TEST( "idempot.tst", 1 );
