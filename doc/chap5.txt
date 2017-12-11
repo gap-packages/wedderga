@@ -20,7 +20,7 @@
   
   [1X5.1-1 CrossedProduct[101X
   
-  [29X[2XCrossedProduct[102X( [3XR[103X, [3XG[103X, [3Xact[103X, [3Xtwist[103X ) [32X attribute
+  [33X[1;0Y[29X[2XCrossedProduct[102X( [3XR[103X, [3XG[103X, [3Xact[103X, [3Xtwist[103X ) [32X attribute[133X
   [6XReturns:[106X  [33X[0;10YRing in the category [10XIsCrossedProduct[110X.[133X
   
   [33X[0;0YThe input should be formed by:[133X
@@ -392,7 +392,7 @@
   
   [1X5.2-1 ElementOfCrossedProduct[101X
   
-  [29X[2XElementOfCrossedProduct[102X( [3XFam[103X, [3Xzerocoeff[103X, [3Xcoeffs[103X, [3Xelts[103X ) [32X property
+  [33X[1;0Y[29X[2XElementOfCrossedProduct[102X( [3XFam[103X, [3Xzerocoeff[103X, [3Xcoeffs[103X, [3Xelts[103X ) [32X property[133X
   
   [33X[0;0YReturns the element [22Xm_1*c_1 + ... + m_n*c_n[122X of a crossed product, where [3Xelts[103X
   [22X=  [  m_1, m_2, ..., m_n ][122X is a list of magma elements, [3Xcoeffs[103X [22X= [ c_1, c_2,

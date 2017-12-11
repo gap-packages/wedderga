@@ -6,7 +6,7 @@
   
   [1X4.1-1 PrimitiveCentralIdempotentsByCharacterTable[101X
   
-  [29X[2XPrimitiveCentralIdempotentsByCharacterTable[102X( [3XFG[103X ) [32X operation
+  [33X[1;0Y[29X[2XPrimitiveCentralIdempotentsByCharacterTable[102X( [3XFG[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA list of group algebra elements.[133X
   
   [33X[0;0YThe input [3XFG[103X should be a semisimple group algebra.[133X
@@ -39,7 +39,7 @@
   
   [1X4.2-1 IsCompleteSetOfOrthogonalIdempotents[101X
   
-  [29X[2XIsCompleteSetOfOrthogonalIdempotents[102X( [3XR[103X, [3Xlist[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsCompleteSetOfOrthogonalIdempotents[102X( [3XR[103X, [3Xlist[103X ) [32X operation[133X
   
   [33X[0;0YThe input should be formed by a unital ring [3XR[103X and a list [3Xlist[103X of elements of
   [3XR[103X.[133X
@@ -78,7 +78,7 @@
   
   [1X4.3-1 PrimitiveCentralIdempotentsByESSP[101X
   
-  [29X[2XPrimitiveCentralIdempotentsByESSP[102X( [3XQG[103X ) [32X attribute
+  [33X[1;0Y[29X[2XPrimitiveCentralIdempotentsByESSP[102X( [3XQG[103X ) [32X attribute[133X
   [6XReturns:[106X  [33X[0;10YA list of group algebra elements.[133X
   
   [33X[0;0YThe input [3XQG[103X should be a semisimple rational group algebra of a finite group
@@ -133,7 +133,7 @@
   
   [1X4.3-2 PrimitiveCentralIdempotentsByStrongSP[101X
   
-  [29X[2XPrimitiveCentralIdempotentsByStrongSP[102X( [3XFG[103X ) [32X attribute
+  [33X[1;0Y[29X[2XPrimitiveCentralIdempotentsByStrongSP[102X( [3XFG[103X ) [32X attribute[133X
   [6XReturns:[106X  [33X[0;10YA list of group algebra elements.[133X
   
   [33X[0;0YThe  input [3XFG[103X should be a semisimple group algebra of a finite group [22XG[122X whose
@@ -178,7 +178,7 @@
   
   [1X4.3-3 PrimitiveCentralIdempotentsBySP[101X
   
-  [29X[2XPrimitiveCentralIdempotentsBySP[102X( [3XQG[103X ) [32X function
+  [33X[1;0Y[29X[2XPrimitiveCentralIdempotentsBySP[102X( [3XQG[103X ) [32X function[133X
   [6XReturns:[106X  [33X[0;10YA list of group algebra elements.[133X
   
   [33X[0;0YThe input should be a rational group algebra of a finite group [22XG[122X.[133X
@@ -261,7 +261,7 @@
   
   [1X4.4-1 PrimitiveIdempotentsNilpotent[101X
   
-  [29X[2XPrimitiveIdempotentsNilpotent[102X( [3XFG[103X, [3XH[103X, [3XK[103X, [3XC[103X, [3Xargs[103X ) [32X operation
+  [33X[1;0Y[29X[2XPrimitiveIdempotentsNilpotent[102X( [3XFG[103X, [3XH[103X, [3XK[103X, [3XC[103X, [3Xargs[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA list of orthogonal primitive idempotents.[133X
   
   [33X[0;0YThe  input  [3XFG[103X  should  be  a semisimple group algebra of a finite nilpotent
@@ -300,7 +300,7 @@
   
   [1X4.4-2 PrimitiveIdempotentsTrivialTwisting[101X
   
-  [29X[2XPrimitiveIdempotentsTrivialTwisting[102X( [3XFG[103X, [3XH[103X, [3XK[103X, [3XC[103X, [3Xargs[103X ) [32X operation
+  [33X[1;0Y[29X[2XPrimitiveIdempotentsTrivialTwisting[102X( [3XFG[103X, [3XH[103X, [3XK[103X, [3XC[103X, [3Xargs[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA list of orthogonal primitive idempotents.[133X
   
   [33X[0;0YThe  input [3XFG[103X should be a semisimple group algebra of a finite group [22XG[122X whose

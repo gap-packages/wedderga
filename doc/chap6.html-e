@@ -61,7 +61,7 @@
 
 <h5>6.1-1 IsSemisimpleZeroCharacteristicGroupAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleZeroCharacteristicGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleZeroCharacteristicGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>The input must be a group ring.</p>
 
 <p>Returns <code class="keyw">true</code> if the input <var class="Arg">KG</var> is a <em>semisimple group algebra</em> (<a href="chap9.html#X7FDD93FB79ADCC91"><span class="RefLink">9.2</span></a>) over a field of characteristic zero (that is if <span class="SimpleMath">G</span> is finite), and <code class="keyw">false</code> otherwise.</p>
@@ -88,7 +88,7 @@ false
 
 <h5>6.1-2 IsSemisimpleRationalGroupAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleRationalGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleRationalGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>The input must be a group ring.</p>
 
 <p>Returns <code class="keyw">true</code> if <var class="Arg">KG</var> is a <em>semisimple rational group algebra</em> (<a href="chap9.html#X7FDD93FB79ADCC91"><span class="RefLink">9.2</span></a>) and <code class="keyw">false</code> otherwise.</p>
@@ -112,7 +112,7 @@ false
 
 <h5>6.1-3 IsSemisimpleANFGroupAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleANFGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleANFGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>The input must be a group ring.</p>
 
 <p>Returns <code class="keyw">true</code> if <var class="Arg">KG</var> is the group algebra of a finite group over a subfield of a cyclotomic extension of the rationals and <code class="keyw">false</code> otherwise.</p>
@@ -131,7 +131,7 @@ false
 
 <h5>6.1-4 IsSemisimpleFiniteGroupAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleFiniteGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSemisimpleFiniteGroupAlgebra</code>( <var class="Arg">KG</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>The input must be a group ring.</p>
 
 <p>Returns <code class="keyw">true</code> if <var class="Arg">KG</var> is a <em>semisimple finite group algebra</em> (<a href="chap9.html#X7FDD93FB79ADCC91"><span class="RefLink">9.2</span></a>), that is a group algebra of a finite group <span class="SimpleMath">G</span> over a field <span class="SimpleMath">K</span> of order coprime to the order of <span class="SimpleMath">G</span>, and <code class="keyw">false</code> otherwise.</p>
@@ -155,7 +155,7 @@ false
 
 <h5>6.1-5 IsTwistingTrivial</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsTwistingTrivial</code>( <var class="Arg">G</var>, <var class="Arg">H</var>, <var class="Arg">K</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsTwistingTrivial</code>( <var class="Arg">G</var>, <var class="Arg">H</var>, <var class="Arg">K</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>The input must be a group and a strong Shoda pair of the group.</p>
 
 <p>Returns <code class="keyw">true</code> if the simple algebra <span class="SimpleMath">ℚGe(G,H,K)</span> has a <em>trivial twisting</em> (<a href="chap9.html#X7E3479527BAE5B9E"><span class="RefLink">9.15</span></a>), and <code class="keyw">false</code> otherwise.</p>
@@ -181,7 +181,7 @@ true
 
 <h5>6.2-1 Centralizer</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Centralizer</code>( <var class="Arg">G</var>, <var class="Arg">x</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Centralizer</code>( <var class="Arg">G</var>, <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A subgroup of a group <var class="Arg">G</var>.</p>
 
 <p>The input should be formed by a finite group <var class="Arg">G</var> and an element <var class="Arg">x</var> of a group ring <span class="SimpleMath">FH</span> whose underlying group <span class="SimpleMath">H</span> contains <var class="Arg">G</var> as a subgroup.</p>
@@ -216,8 +216,8 @@ Group([ f1, f2 ])
 
 <h5>6.2-2 OnPoints</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; OnPoints</code>( <var class="Arg">x</var>, <var class="Arg">g</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; \^</code>( <var class="Arg">x</var>, <var class="Arg">g</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; OnPoints</code>( <var class="Arg">x</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; \^</code>( <var class="Arg">x</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: An element of a group ring.</p>
 
 <p>The input should be formed by an element <var class="Arg">x</var> of a group ring <span class="SimpleMath">FG</span> and an element <var class="Arg">g</var> in the underlying group <span class="SimpleMath">G</span> of <span class="SimpleMath">FG</span>.</p>
@@ -249,7 +249,7 @@ true
 
 <h5>6.2-3 AverageSum</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AverageSum</code>( <var class="Arg">RG</var>, <var class="Arg">X</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AverageSum</code>( <var class="Arg">RG</var>, <var class="Arg">X</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: An element of a group ring.</p>
 
 <p>The input must be composed of a group ring <var class="Arg">RG</var> and a finite subset <var class="Arg">X</var> of the underlying group <span class="SimpleMath">G</span> of <var class="Arg">RG</var>. The order of <var class="Arg">X</var> must be invertible in the coefficient ring <span class="SimpleMath">R</span> of <var class="Arg">RG</var>.</p>
@@ -289,7 +289,7 @@ false
 
 <h5>6.3-1 CyclotomicClasses</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CyclotomicClasses</code>( <var class="Arg">q</var>, <var class="Arg">n</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CyclotomicClasses</code>( <var class="Arg">q</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A partition of <span class="SimpleMath">[ 0 .. n ]</span>.</p>
 
 <p>The input should be formed by two relatively prime positive integers.</p>
@@ -312,7 +312,7 @@ false
 
 <h5>6.3-2 IsCyclotomicClass</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsCyclotomicClass</code>( <var class="Arg">q</var>, <var class="Arg">n</var>, <var class="Arg">C</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsCyclotomicClass</code>( <var class="Arg">q</var>, <var class="Arg">n</var>, <var class="Arg">C</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>The input should be formed by two relatively prime positive integers <var class="Arg">q</var> and <var class="Arg">n</var> and a sublist <var class="Arg">C</var> of <span class="SimpleMath">[ 0 .. n ]</span>.</p>
 
 <p>Returns <code class="keyw">true</code> if <var class="Arg">C</var> is a <var class="Arg">q</var>-<em>cyclotomic class</em> (<a href="chap9.html#X800D8C5087D79DC8"><span class="RefLink">9.19</span></a>) modulo <var class="Arg">n</var> and <code class="keyw">false</code> otherwise.</p>
@@ -337,7 +337,7 @@ true
 
 <h5>6.4-1 InfoWedderga</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; InfoWedderga</code></td><td class="tdright">( info class )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; InfoWedderga</code></td><td class="tdright">(&nbsp;info class&nbsp;)</td></tr></table></div>
 <p><code class="code">InfoWedderga</code> is a special Info class for <strong class="pkg">Wedderga</strong> algorithms. It has 3 levels: 0, 1 (default) and 2. To change the info level to <code class="code">k</code>, use the command <code class="code">SetInfoLevel(InfoWedderga, k)</code>.</p>
 
 <p>In the example below we use this mechanism to see more details about the Wedderburn components each time when we call <code class="code">WedderburnDecomposition</code>.</p>

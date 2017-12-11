@@ -6,7 +6,7 @@
   
   [1X3.1-1 ExtremelyStrongShodaPairs[101X
   
-  [29X[2XExtremelyStrongShodaPairs[102X( [3XG[103X ) [32X attribute
+  [33X[1;0Y[29X[2XExtremelyStrongShodaPairs[102X( [3XG[103X ) [32X attribute[133X
   [6XReturns:[106X  [33X[0;10YA list of pairs of subgroups of the input group.[133X
   
   [33X[0;0YThe input should be a finite group [3XG[103X.[133X
@@ -49,7 +49,7 @@
   
   [1X3.2-1 StrongShodaPairs[101X
   
-  [29X[2XStrongShodaPairs[102X( [3XG[103X ) [32X attribute
+  [33X[1;0Y[29X[2XStrongShodaPairs[102X( [3XG[103X ) [32X attribute[133X
   [6XReturns:[106X  [33X[0;10YA list of pairs of subgroups of the input group.[133X
   
   [33X[0;0YThe input should be a finite group [3XG[103X.[133X
@@ -85,7 +85,7 @@
   
   [1X3.3-1 IsExtremelyStrongShodaPair[101X
   
-  [29X[2XIsExtremelyStrongShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsExtremelyStrongShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation[133X
   
   [33X[0;0YThe  first  argument  should  be  a  finite group [3XG[103X, the second one a normal
   sugroup [3XK[103X of [3XG[103X and the third one a subgroup of [3XK[103X.[133X
@@ -111,7 +111,7 @@
   
   [1X3.3-2 IsStrongShodaPair[101X
   
-  [29X[2XIsStrongShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsStrongShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation[133X
   
   [33X[0;0YThe first argument should be a finite group [3XG[103X, the second one a sugroup [3XK[103X of
   [3XG[103X and the third one a subgroup of [3XK[103X.[133X
@@ -140,7 +140,7 @@
   
   [1X3.3-3 IsShodaPair[101X
   
-  [29X[2XIsShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsShodaPair[102X( [3XG[103X, [3XK[103X, [3XH[103X ) [32X operation[133X
   
   [33X[0;0YThe  first argument should be a finite group [3XG[103X, the second a subgroup [3XK[103X of [3XG[103X
   and the third one a subgroup of [3XK[103X.[133X
@@ -164,7 +164,7 @@
   
   [1X3.3-4 IsStronglyMonomial[101X
   
-  [29X[2XIsStronglyMonomial[102X( [3XG[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsStronglyMonomial[102X( [3XG[103X ) [32X operation[133X
   
   [33X[0;0YThe input [3XG[103X should be a finite group.[133X
   
@@ -190,7 +190,7 @@
   
   [1X3.3-5 IsNormallyMonomial[101X
   
-  [29X[2XIsNormallyMonomial[102X( [3XG[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsNormallyMonomial[102X( [3XG[103X ) [32X operation[133X
   
   [33X[0;0YThe input [3XG[103X should be a finite group.[133X
   

@@ -6,7 +6,7 @@
   
   [1X2.1-1 WedderburnDecomposition[101X
   
-  [29X[2XWedderburnDecomposition[102X( [3XFG[103X ) [32X attribute
+  [33X[1;0Y[29X[2XWedderburnDecomposition[102X( [3XFG[103X ) [32X attribute[133X
   [6XReturns:[106X  [33X[0;10YA list of simple algebras.[133X
   
   [33X[0;0YThe input [3XFG[103X should be a group algebra of a finite group [22XG[122X over the field [22XF[122X,
@@ -114,7 +114,7 @@
   
   [1X2.1-2 WedderburnDecompositionInfo[101X
   
-  [29X[2XWedderburnDecompositionInfo[102X( [3XFG[103X ) [32X attribute
+  [33X[1;0Y[29X[2XWedderburnDecompositionInfo[102X( [3XFG[103X ) [32X attribute[133X
   [6XReturns:[106X  [33X[0;10YA  list  with  each  entry a numerical description of a [13Xcyclotomic
             algebra[113X ([14X9.11[114X).[133X
   
@@ -357,7 +357,7 @@
   
   [1X2.2-1 SimpleAlgebraByCharacter[101X
   
-  [29X[2XSimpleAlgebraByCharacter[102X( [3XFG[103X, [3Xchi[103X ) [32X operation
+  [33X[1;0Y[29X[2XSimpleAlgebraByCharacter[102X( [3XFG[103X, [3Xchi[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA simple algebra.[133X
   
   [33X[0;0YThe  first input [3XFG[103X should be a [13Xsemisimple group algebra[113X ([14X9.2[114X) over a finite
@@ -392,7 +392,7 @@
   
   [1X2.2-2 SimpleAlgebraByCharacterInfo[101X
   
-  [29X[2XSimpleAlgebraByCharacterInfo[102X( [3XFG[103X, [3Xchi[103X ) [32X operation
+  [33X[1;0Y[29X[2XSimpleAlgebraByCharacterInfo[102X( [3XFG[103X, [3Xchi[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe     numerical     description     of     the     output     of
             [2XSimpleAlgebraByCharacter[102X ([14X2.2-1[114X).[133X
   
@@ -421,10 +421,10 @@
   
   [1X2.2-3 SimpleAlgebraByStrongSP[101X
   
-  [29X[2XSimpleAlgebraByStrongSP[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation
-  [29X[2XSimpleAlgebraByStrongSPNC[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation
-  [29X[2XSimpleAlgebraByStrongSP[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation
-  [29X[2XSimpleAlgebraByStrongSPNC[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSP[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSPNC[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSP[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSPNC[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA simple algebra.[133X
   
   [33X[0;0YIn  the  three-argument  version  the  input  must be formed by a [13Xsemisimple
@@ -467,10 +467,10 @@
   
   [1X2.2-4 SimpleAlgebraByStrongSPInfo[101X
   
-  [29X[2XSimpleAlgebraByStrongSPInfo[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation
-  [29X[2XSimpleAlgebraByStrongSPInfoNC[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation
-  [29X[2XSimpleAlgebraByStrongSPInfo[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation
-  [29X[2XSimpleAlgebraByStrongSPInfoNC[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSPInfo[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSPInfoNC[102X( [3XQG[103X, [3XK[103X, [3XH[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSPInfo[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleAlgebraByStrongSPInfoNC[102X( [3XFG[103X, [3XK[103X, [3XH[103X, [3XC[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA numerical description of one simple algebra.[133X
   
   [33X[0;0YIn  the  three-argument  version  the  input  must be formed by a [13Xsemisimple

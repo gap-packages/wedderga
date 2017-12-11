@@ -6,7 +6,7 @@
   
   [1X7.1-1 WedderburnDecompositionWithDivAlgParts[101X
   
-  [29X[2XWedderburnDecompositionWithDivAlgParts[102X( [3XA[103X ) [32X property
+  [33X[1;0Y[29X[2XWedderburnDecompositionWithDivAlgParts[102X( [3XA[103X ) [32X property[133X
   [6XReturns:[106X  [33X[0;10YA  list of lists [10X[r,D][110X, each representing a ring of [22Xr × r[122X matrices
             over a field or division algebra [9XD[109X.[133X
   
@@ -53,7 +53,7 @@
   
   [1X7.1-2 CyclotomicAlgebraWithDivAlgPart[101X
   
-  [29X[2XCyclotomicAlgebraWithDivAlgPart[102X( [3XA[103X ) [32X property
+  [33X[1;0Y[29X[2XCyclotomicAlgebraWithDivAlgPart[102X( [3XA[103X ) [32X property[133X
   [6XReturns:[106X  [33X[0;10YA list of length two indicating a matrix ring of a given size over
             a field or a noncommutative division algebra.[133X
   
@@ -92,8 +92,8 @@
   
   [1X7.1-3 SchurIndex[101X
   
-  [29X[2XSchurIndex[102X( [3XA[103X ) [32X property
-  [29X[2XSchurIndexByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation
+  [33X[1;0Y[29X[2XSchurIndex[102X( [3XA[103X ) [32X property[133X
+  [33X[1;0Y[29X[2XSchurIndexByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  first  of these returns the Schur index of the simple algebra
             [3XA[103X.  The  second returns the Schur index of the simple component of
             the  group  ring  [3XFG[103X  corresponding  to  the irreducible character
@@ -145,9 +145,9 @@
   
   [1X7.1-4 WedderburnDecompositionAsSCAlgebras[101X
   
-  [29X[2XWedderburnDecompositionAsSCAlgebras[102X( [3XR[103X ) [32X operation
-  [29X[2XCyclotomicAlgebraAsSCAlgebra[102X( [3XA[103X ) [32X operation
-  [29X[2XSimpleComponentByCharacterAsSCAlgebra[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation
+  [33X[1;0Y[29X[2XWedderburnDecompositionAsSCAlgebras[102X( [3XR[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XCyclotomicAlgebraAsSCAlgebra[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleComponentByCharacterAsSCAlgebra[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  first  of  these  returns the Wedderburn decomposition of the
             group  ring  [10XR[110X  with each simple component presented as an algebra
             with  structure  constants  in  [5XGAP[105X  (see [14X'Reference: Constructing
@@ -197,8 +197,8 @@
   
   [1X7.2-1 PPartOfN[101X
   
-  [29X[2XPPartOfN[102X( [3Xn[103X, [3Xp[103X ) [32X operation
-  [29X[2XPDashPartOfN[102X( [3Xn[103X, [3Xp[103X ) [32X operation
+  [33X[1;0Y[29X[2XPPartOfN[102X( [3Xn[103X, [3Xp[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XPDashPartOfN[102X( [3Xn[103X, [3Xp[103X ) [32X operation[133X
   
   [33X[0;0YThese  are standard arithmetic functions required by several subroutines for
   the cyclotomic reciprocity and Schur index functions in [5XWedderga[105X.[133X
@@ -214,7 +214,7 @@
   
   [1X7.2-2 PSplitSubextension[101X
   
-  [29X[2XPSplitSubextension[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation
+  [33X[1;0Y[29X[2XPSplitSubextension[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  maximal  subextension [10XK[110X of the cyclotomic extension [10XF(E(n))/F[110X
             for which [22XK/F[122X splits completely at the prime [22Xp[122X.[133X
   
@@ -235,9 +235,9 @@
   
   [1X7.2-3 SplittingDegreeAtP[101X
   
-  [29X[2XSplittingDegreeAtP[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation
-  [29X[2XResidueDegreeAtP[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation
-  [29X[2XRamificationIndexAtP[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation
+  [33X[1;0Y[29X[2XSplittingDegreeAtP[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XResidueDegreeAtP[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XRamificationIndexAtP[102X( [3XF[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  splitting  degree,  residue degree, and ramification index of
             the extension [10XF(E(n))/F[110X at the prime [22Xp[122X.[133X
   
@@ -276,7 +276,7 @@
   
   [1X7.3-1 LocalIndicesOfCyclicCyclotomicAlgebra[101X
   
-  [29X[2XLocalIndicesOfCyclicCyclotomicAlgebra[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XLocalIndicesOfCyclicCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list of the pairs [10X[p,m][110X indicating the nontrivial local indices
             [10Xm[110X at the primes [10Xp[110X of the cyclic cyclotomic algebra indicated by [10XA[110X.[133X
   
@@ -297,9 +297,9 @@
   
   [1X7.3-2 LocalIndexAtInfty[101X
   
-  [29X[2XLocalIndexAtInfty[102X( [3XA[103X ) [32X operation
-  [29X[2XLocalIndexAtTwo[102X( [3XA[103X ) [32X operation
-  [29X[2XLocalIndexAtOddP[102X( [3XA[103X, [3Xp[103X ) [32X operation
+  [33X[1;0Y[29X[2XLocalIndexAtInfty[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XLocalIndexAtTwo[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XLocalIndexAtOddP[102X( [3XA[103X, [3Xp[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThese return the local index of the cyclic cyclotomic algebra [3XA[103X at
             the indicated rational prime.[133X
   
@@ -340,7 +340,7 @@
   
   [1X7.4-1 LocalIndicesOfCyclotomicAlgebra[101X
   
-  [29X[2XLocalIndicesOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XLocalIndicesOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA list of pairs [10X[p,m][110X indicating the nontrivial local indices [10Xm[110X at
             the primes [10Xp[110X of the cyclic cyclotomic algebra indicated by [10XA[110X.[133X
   
@@ -380,7 +380,7 @@
   
   [1X7.4-2 RootOfDimensionOfCyclotomicAlgebra[101X
   
-  [29X[2XRootOfDimensionOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XRootOfDimensionOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  positive  integer representing the square root of the dimension
             of the cyclotomic algebra over its center.[133X
   
@@ -395,14 +395,14 @@
   
   [1X7.4-3 DefiningGroupOfCyclotomicAlgebra[101X
   
-  [29X[2XDefiningGroupOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation
-  [29X[2XDefiningCharacterOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XDefiningGroupOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XDefiningCharacterOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThese  functions  return a finite group [10XG[110X and a positive integer [10Xn[110X
             for  which the simple component of a group algebra over [10XG[110X over the
             center  of the cyclotomic algebra [10XA[110X corresponding to the character
             [10XIrr(G)[n][110X will be isomorphic to [10XA[110X.[133X
   
-  [29X[2XSimpleComponentOfGroupRingByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation
+  [33X[1;0Y[29X[2XSimpleComponentOfGroupRingByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list  that  describes  the  algebraic  structure  of the simple
             component  of  the  group  algebra  [10XFG[110X  which  corresponds  to the
             irreducible character Irr(G)[n].[133X
@@ -434,7 +434,7 @@
   
   [1X7.4-4 LocalIndexAtInftyByCharacter[101X
   
-  [29X[2XLocalIndexAtInftyByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation
+  [33X[1;0Y[29X[2XLocalIndexAtInftyByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  local  index  at  an  infinite  prime  of  the field [3XF[103X of the
             irreducible character [10XIrr(G)[n][110X of the finite group [3XG[103X.[133X
   
@@ -457,9 +457,9 @@
   
   [1X7.4-5 DefectGroupOfConjugacyClassAtP[101X
   
-  [29X[2XDefectGroupOfConjugacyClassAtP[102X( [3XG[103X, [3Xc[103X, [3Xp[103X ) [32X operation
-  [29X[2XDefectGroupsOfPBlock[102X( [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation
-  [29X[2XDefectOfCharacterAtP[102X( [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation
+  [33X[1;0Y[29X[2XDefectGroupOfConjugacyClassAtP[102X( [3XG[103X, [3Xc[103X, [3Xp[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XDefectGroupsOfPBlock[102X( [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XDefectOfCharacterAtP[102X( [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  first  of  these functions returns a defect group of the [10Xc[110X-th
             conjugacy  class  of the finite group [10XG[110X at the prime [10Xp[110X. The second
             returns  the  conjugacy class of [10Xp[110X-subgroups of [10XG[110X that consists of
@@ -498,8 +498,8 @@
   
   [1X7.4-6 LocalIndexAtPByBrauerCharacter[101X
   
-  [29X[2XLocalIndexAtPByBrauerCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation
-  [29X[2XFinFieldExt[102X( [3XF[103X, [3XG[103X, [3Xp[103X, [3Xn[103X, [3Xm[103X ) [32X operation
+  [33X[1;0Y[29X[2XLocalIndexAtPByBrauerCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XFinFieldExt[102X( [3XF[103X, [3XG[103X, [3Xp[103X, [3Xn[103X, [3Xm[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  first  returns the local index at the rational prime [22Xp[122X of the
             simple  component  of  the  group  ring  [10XFG[110X  that  corresponds  to
             [10XIrr(G)[n][110X. The second returns the degree of a certain extension of
@@ -575,9 +575,9 @@
   
   [1X7.4-7 LocalIndexAtOddPByCharacter[101X
   
-  [29X[2XLocalIndexAtOddPByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation
-  [29X[2XLocalIndexAtTwoByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation
-  [29X[2XIsDyadicSchurGroup[102X( [3XG[103X ) [32X operation
+  [33X[1;0Y[29X[2XLocalIndexAtOddPByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XLocalIndexAtTwoByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XIsDyadicSchurGroup[102X( [3XG[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  first  two  function  determines the local index at the given
             prime  [22Xp[122X  of  the  simple  component  of  [3XFG[103X  corresponding to the
             irreducible character [10XIrr(G)[n][110X. The third one returns [10X'true'[110X if [10XG[110X
@@ -625,10 +625,10 @@
   
   [1X7.5-1 LocalIndicesOfRationalQuaternionAlgebra[101X
   
-  [29X[2XLocalIndicesOfRationalQuaternionAlgebra[102X( [3XA[103X ) [32X operation
-  [29X[2XLocalIndicesOfRationalSymbolAlgebra[102X( [3Xa[103X, [3Xb[103X ) [32X operation
-  [29X[2XLocalIndicesOfTensorProductOfQuadraticAlgs[102X( [3XL[103X, [3XM[103X ) [32X operation
-  [29X[2XGlobalSchurIndexFromLocalIndices[102X( [3XL[103X ) [32X operation
+  [33X[1;0Y[29X[2XLocalIndicesOfRationalQuaternionAlgebra[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XLocalIndicesOfRationalSymbolAlgebra[102X( [3Xa[103X, [3Xb[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XLocalIndicesOfTensorProductOfQuadraticAlgs[102X( [3XL[103X, [3XM[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XGlobalSchurIndexFromLocalIndices[102X( [3XL[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  first  of  these  functions  return  a  list  of  pairs [10X[p,m][110X
             indicating  that [10Xm[110X is the local index at the prime [22Xp[122X for the given
             quaternion    algebra.    The    second    does   the   same   for
@@ -683,7 +683,7 @@
   
   [1X7.5-2 IsRationalQuaternionAlgebraADivisionRing[101X
   
-  [29X[2XIsRationalQuaternionAlgebraADivisionRing[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsRationalQuaternionAlgebraADivisionRing[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YIf  the  rational  quaternion algebra is a noncommutative division
             ring, [9Xtrue[109X is returned, and if otherwise, [9Xfalse[109X.[133X
   
@@ -740,7 +740,7 @@
   
   [1X7.6-1 DecomposeCyclotomicAlgebra[101X
   
-  [29X[2XDecomposeCyclotomicAlgebra[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XDecomposeCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YTwo  lists,  each representing a cyclic algebra over the center of
             [22XA[122X,  whose  tensor  product is isomorphic to the cyclotomic algebra
             described by [22XA[122X.[133X
@@ -777,7 +777,7 @@
   
   [1X7.6-2 ConvertCyclicAlgToCyclicCyclotomicAlg[101X
   
-  [29X[2XConvertCyclicAlgToCyclicCyclotomicAlg[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XConvertCyclicAlgToCyclicCyclotomicAlg[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list  of  the  form  [10X[1,F,n,[a,b,c]][110X  which represents a cyclic
             cyclotomic algebra.[133X
   
@@ -785,7 +785,7 @@
   to   an  isomorphic  cyclic  cyclotomic  algebra  represented  as  the  list
   [10X[1,F,n,[a,b,c]][110X.[133X
   
-  [29X[2XConvertQuadraticAlgToQuaternionAlg[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XConvertQuadraticAlgToQuaternionAlg[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA generalized quaternion algebra.[133X
   
   [33X[0;0YThe  input  should be a list of the form [10X[F,K,[c]][110X where the field [10XK[110X must be
@@ -817,7 +817,7 @@
   
   [1X7.6-3 ConvertQuaternionAlgToQuadraticAlg[101X
   
-  [29X[2XConvertQuaternionAlgToQuadraticAlg[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XConvertQuaternionAlgToQuadraticAlg[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list  of  the  form [10X[F,K,[c]][110X representing a cyclic algebra for
             which the degree of the extension [10XK/F[110X is [10X2[110X.[133X
   
@@ -826,7 +826,7 @@
   [22Xa[122X,  [22Xb[122X  in  [22XF[122X.  It  returns  a  list [10X[F,F(ER(a)),[b]][110X representing the cyclic
   algebra isomorphic to [22XA[122X.[133X
   
-  [29X[2XConvertCyclicCyclotomicAlgToCyclicAlg[102X( [3XA[103X ) [32X operation
+  [33X[1;0Y[29X[2XConvertCyclicCyclotomicAlgToCyclicAlg[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA list of the form [10X[F,K,[c]][110X.[133X
   
   [33X[0;0YThe input should be a list [10X[r,F,n,[a,b,c]][110X representing a matrix ring over a

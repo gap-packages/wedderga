@@ -6,7 +6,7 @@
   
   [1X8.1-1 CodeWordByGroupRingElement[101X
   
-  [29X[2XCodeWordByGroupRingElement[102X( [3XF[103X, [3XS[103X, [3Xa[103X ) [32X operation
+  [33X[1;0Y[29X[2XCodeWordByGroupRingElement[102X( [3XF[103X, [3XS[103X, [3Xa[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  code  word  of length the length of [3XS[103X associated to the group
             ring element [3Xa[103X.[133X
   
@@ -34,7 +34,7 @@
   
   [1X8.1-2 CodeByLeftIdeal[101X
   
-  [29X[2XCodeByLeftIdeal[102X( [3XF[103X, [3XG[103X, [3XS[103X, [3XI[103X ) [32X operation
+  [33X[1;0Y[29X[2XCodeByLeftIdeal[102X( [3XF[103X, [3XG[103X, [3XS[103X, [3XI[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YAll  code  words of length the length of [3XS[103X associated to the group
             ring elements in the ideal [3XI[103X of [3XFG[103X.[133X
   

@@ -79,7 +79,7 @@
 
 <h5>7.1-1 WedderburnDecompositionWithDivAlgParts</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WedderburnDecompositionWithDivAlgParts</code>( <var class="Arg">A</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WedderburnDecompositionWithDivAlgParts</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>Returns: A list of lists <code class="code">[r,D]</code>, each representing a ring of <span class="SimpleMath">r × r</span> matrices over a field or division algebra <code class="keyw">D</code>.</p>
 
 <p>The input <var class="Arg">A</var> should be a group ring of a finite group over an abelian number field. The function will give the same result as <code class="func">WedderburnDecompositionInfo</code> (<a href="chap2.html#X8710F98A85F0DD29"><span class="RefLink">2.1-2</span></a>) if the field of coefficients for the group ring is finite. The output is a list of pairs <code class="code">[r,D]</code>, each of which indicates a simple component isomorphic to the ring of <span class="SimpleMath">r × r</span> matrices over a division algebra described using the information in the record <code class="code">D</code>. This record contains information on the center, Schur index, and local indices of the division algebra.</p>
@@ -120,7 +120,7 @@ F(8,[ 1, 7 ]) ],
 
 <h5>7.1-2 CyclotomicAlgebraWithDivAlgPart</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CyclotomicAlgebraWithDivAlgPart</code>( <var class="Arg">A</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CyclotomicAlgebraWithDivAlgPart</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>Returns: A list of length two indicating a matrix ring of a given size over a field or a noncommutative division algebra.</p>
 
 <p>The input <var class="Arg">A</var> should be a cyclotomic algebra; i.e. a crossed product in the same form as in the output of <code class="func">WedderburnDecompositionInfo</code> (<a href="chap2.html#X8710F98A85F0DD29"><span class="RefLink">2.1-2</span></a>). The output is in the form <code class="code">[r,D]</code>, which indicates an <span class="SimpleMath">r × r</span> matrix ring over the division algebra described by <code class="code">D</code>. <code class="code">D</code> is either a field or a noncommutative division algebra described using a record giving information on the center, Schur index, and local indices of the division algebra.</p>
@@ -156,8 +156,8 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 <h5>7.1-3 SchurIndex</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SchurIndex</code>( <var class="Arg">A</var> )</td><td class="tdright">( property )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SchurIndexByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SchurIndex</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SchurIndexByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The first of these returns the Schur index of the simple algebra <var class="Arg">A</var>. The second returns the Schur index of the simple component of the group ring <var class="Arg">FG</var> corresponding to the irreducible character <code class="code">Irr(G)[n]</code> of <var class="Arg">G</var>.</p>
 
 <p>These are the main functions for computing Schur indices. The first can be used to find the rational Schur index of a simple component of the group ring of a finite group over an abelian number field, or a quaternion algebra in <strong class="pkg">GAP</strong> (see <code class="func">QuaternionAlgebra</code> (<a href="../../../doc/ref/chap62.html#X83DF4BCC7CE494FC"><span class="RefLink">Reference: QuaternionAlgebra</span></a>)) whose center is the field of rational numbers. If <var class="Arg">A</var> is a quaternion algebra over a number field other than the Rationals, <code class="code">fail</code> is returned. In these cases, the quaternion algebra can be converted to a cyclic algebra and the Schur index of the cyclic algebra can be determined through the solution of norm equations. Currently this functionality is not implemented in <strong class="pkg">GAP</strong>, but available in number theory packages such as <strong class="pkg">PARI/GP</strong>.</p>
@@ -193,9 +193,9 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 <h5>7.1-4 WedderburnDecompositionAsSCAlgebras</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WedderburnDecompositionAsSCAlgebras</code>( <var class="Arg">R</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CyclotomicAlgebraAsSCAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SimpleComponentByCharacterAsSCAlgebra</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WedderburnDecompositionAsSCAlgebras</code>( <var class="Arg">R</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CyclotomicAlgebraAsSCAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SimpleComponentByCharacterAsSCAlgebra</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The first of these returns the Wedderburn decomposition of the group ring <code class="code">R</code> with each simple component presented as an algebra with structure constants in <strong class="pkg">GAP</strong> (see <a href="../../../doc/ref/chap62.html#X7E8F45547CC07CE5"><span class="RefLink">Reference: Constructing Algebras by Structure Constants</span></a> in the main <strong class="pkg">GAP</strong> manual). The second converts a list <code class="code">A</code> that is output from <code class="func">WedderburnDecompositionInfo</code> (<a href="chap2.html#X8710F98A85F0DD29"><span class="RefLink">2.1-2</span></a>) into an algebra with structure constants in <strong class="pkg">GAP</strong>. The third determines an algebra with structure constants that is isomorphic to the simple component of the group ring of the finite group <code class="code">G</code> over the field <code class="code">F</code> that corresponds to the irreducible character <code class="code">Irr(G)[n]</code>.</p>
 
 <p>These functions are an option for obtaining a Wedderburn decomposition or simple component of the group ring <code class="code">FG</code> in which the output is in the form of an algebra with structure constants, which is more compatible with GAP's built-in operations for finite-dimensional algebras.</p>
@@ -237,8 +237,8 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 <h5>7.2-1 PPartOfN</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PPartOfN</code>( <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PDashPartOfN</code>( <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PPartOfN</code>( <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PDashPartOfN</code>( <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>These are standard arithmetic functions required by several subroutines for the cyclotomic reciprocity and Schur index functions in <strong class="pkg">Wedderga</strong>.</p>
 
 
@@ -255,7 +255,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
 <h5>7.2-2 PSplitSubextension</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PSplitSubextension</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PSplitSubextension</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The maximal subextension <code class="code">K</code> of the cyclotomic extension <code class="code">F(E(n))/F</code> for which <span class="SimpleMath">K/F</span> splits completely at the prime <span class="SimpleMath">p</span>.</p>
 
 <p>This function finds the maximal subextension <code class="code">K</code> of the cyclotomic extension <code class="code">F(E(n))</code> of an abelian number field <code class="code">F</code> for which both the ramification index and residue degree of <code class="code">K/F</code> over any prime lying over <var class="Arg">p</var> are <span class="SimpleMath">1</span>. To do this, it finds the field fixed by an appropriate power of the field automorphism inducing the local Frobenius automorphism.</p>
@@ -274,9 +274,9 @@ NF(35,[ 1, 4, 9, 11, 16, 29 ])
 
 <h5>7.2-3 SplittingDegreeAtP</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SplittingDegreeAtP</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ResidueDegreeAtP</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RamificationIndexAtP</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SplittingDegreeAtP</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ResidueDegreeAtP</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RamificationIndexAtP</code>( <var class="Arg">F</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The splitting degree, residue degree, and ramification index of the extension <code class="code">F(E(n))/F</code> at the prime <span class="SimpleMath">p</span>.</p>
 
 <p>These functions calculate the cyclotomic reciprocity parameters <code class="code">g</code>, <code class="code">f</code>, and <code class="code">e</code> for the extension <code class="code">F(E(n))/F</code> at the prime <span class="SimpleMath">p</span> for an abelian number field <code class="code">F</code>. To do this, it finds the <code class="code">p</code>-split subextension <code class="code">K</code> and the <span class="SimpleMath">p</span>-dash part <span class="SimpleMath">n'</span> of <span class="SimpleMath">n</span>, then calculates <code class="code">g = [K:F]</code>, <code class="code">f = [K(E(n'):K]</code>, and <code class="code">e = [K(E(n)):K(E(n'))]</code>. These functions enable the user to calculate cyclotomic reciprocity parameters for any extension of abelian number fields, as the example illustrates.</p>
@@ -312,7 +312,7 @@ NF(120,[ 1, 49 ])
 
 <h5>7.3-1 LocalIndicesOfCyclicCyclotomicAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfCyclicCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfCyclicCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A list of the pairs <code class="code">[p,m]</code> indicating the nontrivial local indices <code class="code">m</code> at the primes <code class="code">p</code> of the cyclic cyclotomic algebra indicated by <code class="code">A</code>.</p>
 
 <p>The input <code class="code">A</code> must be a list representing a cyclic cyclotomic algebra in the same form as in the output of <code class="func">WedderburnDecompositionInfo</code> (<a href="chap2.html#X8710F98A85F0DD29"><span class="RefLink">2.1-2</span></a>) or <code class="func">SimpleAlgebraByCharacterInfo</code> (<a href="chap2.html#X876FD2367E64462D"><span class="RefLink">2.2-2</span></a>). This function computes the local Schur indices at rational primes <span class="SimpleMath">p</span> using the specialized functions for cyclic cyclotomic algebras described in this section.</p>
@@ -331,9 +331,9 @@ NF(120,[ 1, 49 ])
 
 <h5>7.3-2 LocalIndexAtInfty</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtInfty</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtTwo</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtOddP</code>( <var class="Arg">A</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtInfty</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtTwo</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtOddP</code>( <var class="Arg">A</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: These return the local index of the cyclic cyclotomic algebra <var class="Arg">A</var> at the indicated rational prime.</p>
 
 <p>The input <code class="code">A</code> must be a cyclic cyclotomic algebra; that is, a list of the form <code class="code">[r,F,n,[a,b,c]]</code> that indicates a cyclic cyclotomic crossed product algebra. This is a special case of the output of <strong class="pkg">wedderga</strong>'s <code class="func">WedderburnDecompositionInfo</code> (<a href="chap2.html#X8710F98A85F0DD29"><span class="RefLink">2.1-2</span></a>) or <code class="func">SimpleAlgebraByCharacterInfo</code> (<a href="chap2.html#X876FD2367E64462D"><span class="RefLink">2.2-2</span></a>). For the <code class="func">LocalIndexAtOddP</code> function, <var class="Arg">p</var> must be an odd prime. The functions <code class="func">PPartOfN</code> (<a href="chap7.html#X78482C2B7959526E"><span class="RefLink">7.2-1</span></a>) and <code class="func">PDashPartOfN</code> (<a href="chap7.html#X78482C2B7959526E"><span class="RefLink">7.2-1</span></a>) are standard (and self-explanatory) arithmetic functions for a positive integer <span class="SimpleMath">n</span> and prime <span class="SimpleMath">p</span>.</p>
@@ -366,7 +366,7 @@ NF(120,[ 1, 49 ])
 
 <h5>7.4-1 LocalIndicesOfCyclotomicAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A list of pairs <code class="code">[p,m]</code> indicating the nontrivial local indices <code class="code">m</code> at the primes <code class="code">p</code> of the cyclic cyclotomic algebra indicated by <code class="code">A</code>.</p>
 
 <p>The input <code class="code">A</code> should be a cyclotomic algebra; i.e. a list of length 2, 4, or 5 in the form of the output by <strong class="pkg">Wedderga</strong>'s "-Info" functions. If the cyclotomic algebra <var class="Arg">A</var> is represented by a list of length 2, the local indices are all <span class="SimpleMath">1</span>, so the function will return an empty list. If the cyclotomic algebra <var class="Arg">A</var> is given by a list of length 4, then it represents a cyclic cyclotomic algebra, so the function <code class="func">LocalIndicesOfCyclicCyclotomicAlgebra</code> (<a href="chap7.html#X8780F8E87B6EC023"><span class="RefLink">7.3-1</span></a>) is utilized. If the cyclotomic algebra <code class="code">A</code> is presented as a list of length 5, the function determines the group and character <code class="code">chi</code> that faithfully represent the algebra using <code class="func">DefiningGroupOfCyclotomicAlgebra</code> (<a href="chap7.html#X7F33FE4F7E029BF7"><span class="RefLink">7.4-3</span></a>) and <code class="func">DefiningCharacterOfCyclotomicAlgebra</code> (<a href="chap7.html#X7F33FE4F7E029BF7"><span class="RefLink">7.4-3</span></a>). It uses the Frobenius-Schur indicator of <code class="code">chi</code> to determine the local index at infinity (see <code class="func">LocalIndexAtInftyByCharacter</code> (<a href="chap7.html#X8656B34387EC74EF"><span class="RefLink">7.4-4</span></a>)). For local indices at odd primes and sometimes for the prime <span class="SimpleMath">2</span>, the defect group of the block containing <code class="code">chi</code> will be cyclic, so the local index can be found using the values of a Brauer character by a theorem of Benard (see <code class="func">LocalIndexAtPByBrauerCharacter</code> (<a href="chap7.html#X80D1046284577B32"><span class="RefLink">7.4-6</span></a>).) Sometimes for the prime 2 the defect group is not necessarily cyclic, so in these cases we appeal to the classification of dyadic Schur groups by Schmid and Riese (see <code class="func">LocalIndexAtTwoByCharacter</code> (<a href="chap7.html#X82A979548619CB85"><span class="RefLink">7.4-7</span></a>)).</p>
@@ -391,7 +391,7 @@ NF(120,[ 1, 49 ])
 
 <h5>7.4-2 RootOfDimensionOfCyclotomicAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RootOfDimensionOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RootOfDimensionOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A positive integer representing the square root of the dimension of the cyclotomic algebra over its center.</p>
 
 
@@ -408,11 +408,11 @@ NF(120,[ 1, 49 ])
 
 <h5>7.4-3 DefiningGroupOfCyclotomicAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefiningGroupOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefiningCharacterOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefiningGroupOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefiningCharacterOfCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: These functions return a finite group <code class="code">G</code> and a positive integer <code class="code">n</code> for which the simple component of a group algebra over <code class="code">G</code> over the center of the cyclotomic algebra <code class="code">A</code> corresponding to the character <code class="code">Irr(G)[n]</code> will be isomorphic to <code class="code">A</code>.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SimpleComponentOfGroupRingByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SimpleComponentOfGroupRingByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A list that describes the algebraic structure of the simple component of the group algebra <code class="code">FG</code> which corresponds to the irreducible character Irr(G)[n].</p>
 
 <p>This function is an alternative to <code class="code">SimpleAlgebraByCharacterInfo(GroupRing(F,G),</code> <code class="code">Irr(G)[n]);</code>. It is used in subroutines of local index functions when we need to work over a field larger than the field of character values.</p>
@@ -442,7 +442,7 @@ Group([ f3*f4*f5, f1, f2 ])
 
 <h5>7.4-4 LocalIndexAtInftyByCharacter</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtInftyByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtInftyByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The local index at an infinite prime of the field <var class="Arg">F</var> of the irreducible character <code class="code">Irr(G)[n]</code> of the finite group <var class="Arg">G</var>.</p>
 
 <p>This function computes the Frobenius-Schur indicator of the irreducible character <code class="code">Irr(G)[n]</code>, and uses it to calculate the local index at <code class="code">infinity</code> of the corresponding simple component of <var class="Arg">FG</var>.</p>
@@ -465,9 +465,9 @@ Group([ f3*f4*f5, f1, f2 ])
 
 <h5>7.4-5 DefectGroupOfConjugacyClassAtP</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefectGroupOfConjugacyClassAtP</code>( <var class="Arg">G</var>, <var class="Arg">c</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefectGroupsOfPBlock</code>( <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefectOfCharacterAtP</code>( <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefectGroupOfConjugacyClassAtP</code>( <var class="Arg">G</var>, <var class="Arg">c</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefectGroupsOfPBlock</code>( <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefectOfCharacterAtP</code>( <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The first of these functions returns a defect group of the <code class="code">c</code>-th conjugacy class of the finite group <code class="code">G</code> at the prime <code class="code">p</code>. The second returns the conjugacy class of <code class="code">p</code>-subgroups of <code class="code">G</code> that consists of defect groups for the <code class="code">p</code>-block containing the ordinary irreducible character <code class="code">Irr(G)[n]</code>. The last of these functions returns the nonnegative integer <code class="code">d</code> for which <code class="code">p^d</code> is the order of a <code class="code">p</code>-defect group for <code class="code">Irr(G)[n]</code>.</p>
 
 <p>The <code class="code">p</code>-defect group of a given conjugacy class of <code class="code">G</code> is a <code class="code">p</code>-Sylow subgroup of the centralizer in <code class="code">G</code> of any representative of the class. A defect group for a <code class="code">p</code>-block of <code class="code">G</code> is a minimal <code class="code">p</code>-subgroup that is a defect group for a defect class of the block. By Brauer's Min-Max theorem, this will occur for at least one <code class="code">p</code>-regular class of <code class="code">G</code>. The function <code class="func">DefectGroupsOfPBlock</code> identifies the defect classes for the block containing <code class="code">Irr(G)[n]</code>, finds the one whose defect group has minimal order, and returns the conjugacy class of the defect group of this class. The function <code class="func">DefectOfCharacterAtP</code> gives the logarithm base <code class="code">p</code> of the order of a defect group of the <code class="code">p</code>-block containing the character <code class="code">Irr(G)[n]</code>.</p>
@@ -494,8 +494,8 @@ false
 
 <h5>7.4-6 LocalIndexAtPByBrauerCharacter</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtPByBrauerCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FinFieldExt</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">p</var>, <var class="Arg">n</var>, <var class="Arg">m</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtPByBrauerCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FinFieldExt</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">p</var>, <var class="Arg">n</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The first returns the local index at the rational prime <span class="SimpleMath">p</span> of the simple component of the group ring <code class="code">FG</code> that corresponds to <code class="code">Irr(G)[n]</code>. The second returns the degree of a certain extension of finite fields of <code class="code">p</code>-power order.</p>
 
 <p>The input of <code class="func">LocalIndexAtPByBrauerCharacter</code> must be an abelian number field <var class="Arg">F</var>, a finite group <var class="Arg">G</var>, and the number <var class="Arg">n</var> of an ordinary irreducible character <code class="code">Irr(G)[n]</code>, and <var class="Arg">p</var> a prime divisor of the order of <var class="Arg">G</var>. Since this function is intended to be used for faithful characters of groups that are the defining groups of non-cyclic cyclotomic algebras that result from <strong class="pkg">Wedderga</strong>'s Info functions, it is expected that <code class="code">G</code> is a non-nilpotent cyclic-by-abelian group, and <code class="code">Irr(G)[n]</code> is a faithful character. The Brauer character table records of such groups can be accessed in <code class="keyw">GAP</code> (provided <code class="code">G</code> is sufficiently small).</p>
@@ -555,9 +555,9 @@ BrauerTable( &lt;pc group of size 80 with 5 generators&gt;, 5 )
 
 <h5>7.4-7 LocalIndexAtOddPByCharacter</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtOddPByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtTwoByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsDyadicSchurGroup</code>( <var class="Arg">G</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtOddPByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtTwoByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsDyadicSchurGroup</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The first two function determines the local index at the given prime <span class="SimpleMath">p</span> of the simple component of <var class="Arg">FG</var> corresponding to the irreducible character <code class="code">Irr(G)[n]</code>. The third one returns <code class="code">'true'</code> if <code class="code">G</code> is a dyadic Schur group, and otherwise <code class="code">'false'</code> .</p>
 
 <p><code class="func">LocalIndexAtOddPByCharacter</code> and <code class="func">LocalIndexAtTwoByCharacter</code> first determine a cyclotomic algebra representing the simple component of <var class="Arg">FG</var> corresponding to the character <code class="code">Irr(G)[n]</code>. They then extend the field <span class="SimpleMath">F</span> to <span class="SimpleMath">K</span>, where <span class="SimpleMath">K</span> is the maximal <span class="SimpleMath">p</span>-split subextension of <code class="code">F(E(n))/F</code>, and recalculates the simple component of <code class="code">KG</code> corresponding to <code class="code">Irr(G)[n]</code>. It then uses the <code class="code">DefiningGroup...</code> functions to reduce to a faithful character of a possibly smaller cyclic-by-abelian group. If the simple component for this character is given in <strong class="pkg">Wedderga</strong> as a list of length 2 or 4, they make use of <code class="func">LocalIndexAtOddP</code> (<a href="chap7.html#X78588B587AEDD22F"><span class="RefLink">7.3-2</span></a>) or <code class="func">LocalIndexAtTwo</code> (<a href="chap7.html#X78588B587AEDD22F"><span class="RefLink">7.3-2</span></a>) as appropriate. If the simple component over <span class="SimpleMath">F</span> has length 5, it checks if the defect group of the <span class="SimpleMath">p</span>-block containing <code class="code">Irr(G)[n]</code> is cyclic. If this is definitely so, they use <code class="func">LocalIndexAtPByBrauerCharacter</code> (<a href="chap7.html#X80D1046284577B32"><span class="RefLink">7.4-6</span></a>) to calculate the <span class="SimpleMath">p</span>-local index. Exceptions can occur when <span class="SimpleMath">p</span> is <span class="SimpleMath">2</span>. When the defect group is not necessarily cyclic, <code class="func">LocalIndexAtTwoByCharacter</code> makes use of <code class="func">IsDyadicSchurGroup</code>, which checks if a quasi-elementary group has a faithful irreducible character <code class="code">2</code>-local index <code class="code">2</code>, then verifies that <span class="SimpleMath">K</span> does not split the simple component generated by this character.</p>
@@ -588,10 +588,10 @@ BrauerTable( &lt;pc group of size 80 with 5 generators&gt;, 5 )
 
 <h5>7.5-1 LocalIndicesOfRationalQuaternionAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfRationalQuaternionAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfRationalSymbolAlgebra</code>( <var class="Arg">a</var>, <var class="Arg">b</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfTensorProductOfQuadraticAlgs</code>( <var class="Arg">L</var>, <var class="Arg">M</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GlobalSchurIndexFromLocalIndices</code>( <var class="Arg">L</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfRationalQuaternionAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfRationalSymbolAlgebra</code>( <var class="Arg">a</var>, <var class="Arg">b</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndicesOfTensorProductOfQuadraticAlgs</code>( <var class="Arg">L</var>, <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GlobalSchurIndexFromLocalIndices</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: The first of these functions return a list of pairs <code class="code">[p,m]</code> indicating that <code class="code">m</code> is the local index at the prime <span class="SimpleMath">p</span> for the given quaternion algebra. The second does the same for <code class="code">QuaternionAlgebra(Rationals,a,b)</code>. The third returns a list of local indices computed from two given lists of local indices, and the fourth returns the least common multiple of the local indices in the given list of local indices.</p>
 
 <p>For the first function, the input must be a quaternion algebra over the rationals, output from <code class="code">QuaternionAlgebra(Rationals,a,b)</code>. For the first function, <span class="SimpleMath">a</span> and <span class="SimpleMath">b</span> can be any pair of integers, and for the second rational symbol algebra version, <span class="SimpleMath">a</span> and <span class="SimpleMath">b</span> should be either -1 or positive prime integers. The input of the third function is a pair of lists of <span class="SimpleMath">p</span>-local indices in which the maximum local index at any prime is at most 2. The input of the fourth function is a list of pairs <code class="code">[p,m]</code> in which each prime that appears only appears in one of the pairs, and the <code class="code">m</code>'s that appear are all positive integers.</p>
@@ -626,7 +626,7 @@ fail
 
 <h5>7.5-2 IsRationalQuaternionAlgebraADivisionRing</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsRationalQuaternionAlgebraADivisionRing</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsRationalQuaternionAlgebraADivisionRing</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: If the rational quaternion algebra is a noncommutative division ring, <code class="keyw">true</code> is returned, and if otherwise, <code class="keyw">false</code>.</p>
 
 <p>The input <span class="SimpleMath">A</span> must be a quaternion algebra over the rationals, as output from <code class="code">QuaternionAlgebra(Rationals,a,b)</code>. <span class="SimpleMath">a</span> and <span class="SimpleMath">b</span> must be rational integers. When applied to other algebras, it returns <code class="keyw">fail</code>.</p>
@@ -665,7 +665,7 @@ false
 
 <h5>7.6-1 DecomposeCyclotomicAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DecomposeCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DecomposeCyclotomicAlgebra</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: Two lists, each representing a cyclic algebra over the center of <span class="SimpleMath">A</span>, whose tensor product is isomorphic to the cyclotomic algebra described by <span class="SimpleMath">A</span>.</p>
 
 <p>The input must be list representing a cyclotomic algebra of length 5 whose Galois group has <code class="code">2</code> generators. This is represented in <strong class="pkg">Wedderga</strong> as a list of the form <code class="code">[r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]</code>. (Longer presentations of cyclotomic algebras do occur in <strong class="pkg">Wedderga</strong> output. Currently we do not have a general decomposition algorithm for them.)</p>
@@ -692,12 +692,12 @@ false
 
 <h5>7.6-2 ConvertCyclicAlgToCyclicCyclotomicAlg</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertCyclicAlgToCyclicCyclotomicAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertCyclicAlgToCyclicCyclotomicAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A list of the form <code class="code">[1,F,n,[a,b,c]]</code> which represents a cyclic cyclotomic algebra.</p>
 
 <p>This function converts a cyclic algebra given by a list <code class="code">[F,F(E(n)),[E(n)^c]]</code> to an isomorphic cyclic cyclotomic algebra represented as the list <code class="code">[1,F,n,[a,b,c]]</code>.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertQuadraticAlgToQuaternionAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertQuadraticAlgToQuaternionAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A generalized quaternion algebra.</p>
 
 <p>The input should be a list of the form <code class="code">[F,K,[c]]</code> where the field <code class="code">K</code> must be obtained by adjoining the square root of a nonsquare element <code class="code">d</code> of <code class="code">F</code>. The function then returns the quaternion algebra given in <code class="keyw">GAP</code> by <code class="code">QuaternionAlgebra(F,d,c);</code>.</p>
@@ -729,12 +729,12 @@ e
 
 <h5>7.6-3 ConvertQuaternionAlgToQuadraticAlg</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertQuaternionAlgToQuadraticAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertQuaternionAlgToQuadraticAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A list of the form <code class="code">[F,K,[c]]</code> representing a cyclic algebra for which the degree of the extension <code class="code">K/F</code> is <code class="code">2</code>.</p>
 
 <p>The input must be a quaternion algebra whose center is an abelian number field <span class="SimpleMath">F</span>, presented as in the output from <code class="code">QuaternionAlgebra( F, a, b )</code>, with <span class="SimpleMath">a</span>, <span class="SimpleMath">b</span> in <span class="SimpleMath">F</span>. It returns a list <code class="code">[F,F(ER(a)),[b]]</code> representing the cyclic algebra isomorphic to <span class="SimpleMath">A</span>.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertCyclicCyclotomicAlgToCyclicAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConvertCyclicCyclotomicAlgToCyclicAlg</code>( <var class="Arg">A</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Returns: A list of the form <code class="code">[F,K,[c]]</code>.</p>
 
 <p>The input should be a list <code class="code">[r,F,n,[a,b,c]]</code> representing a matrix ring over a cyclic cyclotomic algebra. The function returns the list <code class="code">[F,F(E(n)),[E(n)^c]]</code>, which represents a cyclic algebra that is Morita equivalent to the given cyclic cyclotomic algebra.</p>

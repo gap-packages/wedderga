@@ -51,7 +51,7 @@
 
 <h5>5.1-1 CrossedProduct</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CrossedProduct</code>( <var class="Arg">R</var>, <var class="Arg">G</var>, <var class="Arg">act</var>, <var class="Arg">twist</var> )</td><td class="tdright">( attribute )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CrossedProduct</code>( <var class="Arg">R</var>, <var class="Arg">G</var>, <var class="Arg">act</var>, <var class="Arg">twist</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
 <p>Returns: Ring in the category <code class="code">IsCrossedProduct</code>.</p>
 
 <p>The input should be formed by:</p>
@@ -417,7 +417,7 @@ function( RG, g, h ) ... end
 
 <h5>5.2-1 ElementOfCrossedProduct</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ElementOfCrossedProduct</code>( <var class="Arg">Fam</var>, <var class="Arg">zerocoeff</var>, <var class="Arg">coeffs</var>, <var class="Arg">elts</var> )</td><td class="tdright">( property )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ElementOfCrossedProduct</code>( <var class="Arg">Fam</var>, <var class="Arg">zerocoeff</var>, <var class="Arg">coeffs</var>, <var class="Arg">elts</var> )</td><td class="tdright">(&nbsp;property&nbsp;)</td></tr></table></div>
 <p>Returns the element <span class="SimpleMath">\(m_1*c_1 + ... + m_n*c_n\)</span> of a crossed product, where <var class="Arg">elts</var> <span class="SimpleMath">\( = [ m_1, m_2, ..., m_n ]\)</span> is a list of magma elements, <var class="Arg">coeffs</var> <span class="SimpleMath">\( = [ c_1, c_2, ..., c_n ]\)</span> is a list of coefficients. The output belongs to the crossed product whose elements lie in the family <var class="Arg">Fam</var>. The second argument <var class="Arg">zerocoeff</var> must be the zero element of the coefficient ring containing coefficients <span class="SimpleMath">\(c_i\)</span>, and will be stored in the attribute <code class="code">ZeroCoefficient</code> of the crossed product element.</p>
 
 <p>The output will be in the category <code class="code">IsElementOfCrossedProduct</code>, which is a subcategory of <code class="code">IsRingElementWithInverse</code>. It will have the presentation <code class="code">IsCrossedProductObjDefaultRep</code>.</p>
