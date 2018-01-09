@@ -33,25 +33,18 @@ gap> G:=SmallGroup(48,15);
 gap> R:=GroupRing(Rationals,G);       
 <algebra-with-one over Rationals, with 5 generators>
 gap> WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
-ationals ], 
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\
- 0 ] ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \
-2, 7, 0 ] ], 
-  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\
- ], [ [ 3 ] ] ] 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] 
  ]
 gap> WedderburnDecompositionWithDivAlgParts(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
-ationals ], 
-  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, N\
-F(8,[ 1, 7 ]) ],
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],
   [ 2, CF(3) ], 
   [ 2, 
       rec( Center := Rationals, DivAlg := true, 
-          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex :\
-= 2 ) ] ]
+          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ]
 ]]>
 </Example>
 
@@ -152,14 +145,12 @@ gap> W:=WedderburnDecompositionInfo(R);
   [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
 gap> SchurIndex(W[5]);
 3
-
-gap> G:=SmallGroup(40,1);              
+gap> G:=SmallGroup(40,3);              
 <pc group of size 40 with 4 generators>
-gap> Size(Irr(G));                          
-16
-gap> SchurIndexByCharacter(GaussianRationals,G,16);
+gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
+gap> SchurIndexByCharacter(GaussianRationals,G,Irr(G)[i]);
 2
-gap> SchurIndexByCharacter(CF(5),G,16);         
+gap> SchurIndexByCharacter(CF(3),G,i);         
 1
 ]]>
 </Example>
@@ -496,7 +487,7 @@ gap> RootOfDimensionOfCyclotomicAlgebra(A);
          Arg="F,G,n" />
 <Returns> 
 A list that describes the algebraic structure of the simple component of the group 
-algebra <C>FG</C> which corresponds to the irreducible character Irr(G)[n]. </Returns>
+algebra <C>FG</C> which corresponds to the irreducible character <C>Irr(G)[n]</C> (or <C>n</C>). </Returns>
 
    <Description> This function is an alternative to 
 <C>SimpleAlgebraByCharacterInfo(GroupRing(F,G),</C> <C>Irr(G)[n]);</C>. 
@@ -516,9 +507,10 @@ gap> g:=DefiningGroupOfCyclotomicAlgebra(A);
 Group([ f3*f4*f5, f1, f2 ])
 gap> IdSmallGroup(g);
 [ 48, 15 ]
-gap> DefiningCharacterOfCyclotomicAlgebra(A);
+gap> n:=DefiningCharacterOfCyclotomicAlgebra(A);
 12
-gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,12);
+gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,n)
+> ;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis. 
 [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 ]]>
 </Example>
@@ -529,7 +521,7 @@ gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,12);
    <Oper Name="LocalIndexAtInftyByCharacter"
          Arg="F G n"  />
 <Returns> The local index at an infinite prime of the field <A>F</A> of the irreducible 
-character <C>Irr(G)[n]</C> of the finite group <A>G</A>.
+character <C>Irr(G)[n]</C> (or <C>n</C>) of the finite group <A>G</A>.
 </Returns>
 
 <Description> This function computes the Frobenius-Schur indicator of the irreducible 
@@ -540,12 +532,12 @@ of the corresponding simple component of <A>FG</A>.
 <![CDATA[
 gap> G:=SmallGroup(48,16);
 <pc group of size 48 with 5 generators>
-gap> Size(Irr(G));                          
-12
-gap> LocalIndexAtInftyByCharacter(Rationals,G,12);
+gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
+gap> LocalIndexAtInftyByCharacter(Rationals,G,i);
 2
-gap> LocalIndexAtInftyByCharacter(CF(3),G,12);    
+gap> LocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);    
 1
+
 ]]>
 </Example>
 
@@ -584,15 +576,16 @@ containing the character <C>Irr(G)[n]</C>.
 <![CDATA[
 gap> G:=SmallGroup(72,21);
 <pc group of size 72 with 5 generators>
-gap> D:=DefectGroupOfConjugacyClassAtP(G,18,3);
+gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
+gap> D:=DefectGroupOfConjugacyClassAtP(G,i,3);
 Group([ f4, f5 ])
 gap> IsCyclic(last);
 false
-gap> D:=DefectGroupsOfPBlock(G,Irr(G)[18],3);
+gap> D:=DefectGroupsOfPBlock(G,Irr(G)[i],3);
 Group( [ f4, f5 ] )^G
 gap> IsCyclic(Representative(D));    
 false
-gap> DefectOfCharacterAtP(G,Irr(G)[18],3);
+gap> DefectOfCharacterAtP(G,Irr(G)[i],3);
 2
 ]]>
 </Example>
@@ -641,7 +634,8 @@ determied using a theorem of Yamada. <P/>
 <![CDATA[
 gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
-gap> T:=CharacterTable(G);;                                         
+gap> T:=CharacterTable(G);; 
+gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> S:=T mod 5;
 BrauerTable( <pc group of size 80 with 5 generators>, 5 )
 gap> BlocksInfo(S);
@@ -653,32 +647,21 @@ gap> BlocksInfo(S);
       ordchars := [ 9, 12, 14, 15, 19 ] ), 
   rec( defect := 1, modchars := [ 10, 11, 13, 16 ], 
       ordchars := [ 10, 11, 13, 16, 20 ] ) ]
-gap> LocalIndexAtPByBrauerCharacter(Rationals,G,20,5);
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,5);
 2
-gap> LocalIndexAtPByBrauerCharacter(Rationals,G,10,5);
-1
-gap> FinFieldExt(Rationals,G,5,20,10);
+gap> FinFieldExt(Rationals,G,5,i,9);
 2
-gap> FinFieldExt(Rationals,G,5,10,10);                
-1
-gap> ValuesOfClassFunction(Irr(G)[20]);  
-[ 4, 0, 4*E(4), 0, -4, -1, 0, 0, 0, 0, -4*E(4), -E(4), 0, 1, 0, 0, 0, 0, 
-  E(4), 0 ]
-gap> ValuesOfClassFunction(Irr(G)[10]);  
-[ 1, -E(8)^3, E(4), -E(4), -1, 1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), E(4), 
-  -1, -E(8)^3, -E(8), E(8), -1, -E(4), E(8)^3 ]
-gap> ValuesOfClassFunction(IBr(G,5)[10]);
-[ 1, -E(8)^3, E(4), -E(4), -1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), -E(8)^3, 
-  -E(8), E(8), -1, E(8)^3 ]
 ]]>
 </Example>
+
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
-gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[11],3);
+gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[i],3);
 [ 2, "DGnotCyclic" ]
-gap> LocalIndexAtPByBrauerCharacter(Rationals,G,First(Irr(G),x->Degree(x)=4),2);
+gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,2);
 1
 ]]>
 </Example>
@@ -729,13 +712,12 @@ caution in other situations.
 <![CDATA[
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
-gap> Size(Irr(G));
-12
-gap> LocalIndexAtOddPByCharacter(Rationals,G,12,3);
+gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
+gap> LocalIndexAtOddPByCharacter(Rationals,G,Irr(G)[i],3);
 2
-gap> LocalIndexAtTwoByCharacter(Rationals,G,12);  
+gap> LocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);  
 2
-gap> LocalIndexAtTwoByCharacter(CF(3),G,12);    
+gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);    
 1
 ]]>
 </Example>
