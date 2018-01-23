@@ -1,3 +1,4 @@
+LoadPackage( "guava" : OnlyNeeded ); # to avoid loading SONATA
 LoadPackage( "wedderga" );
 
 TestDirectory(DirectoriesPackageLibrary( "wedderga", "tst" ),
