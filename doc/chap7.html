@@ -94,25 +94,18 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R:=GroupRing(Rationals,G);       </span>
 &lt;algebra-with-one over Rationals, with 5 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionInfo(R);</span>
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
-ationals ], 
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\
- 0 ] ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \
-2, 7, 0 ] ], 
-  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\
- ], [ [ 3 ] ] ] 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], 
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] 
  ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WedderburnDecompositionWithDivAlgParts(R);</span>
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\
-ationals ], 
-  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, N\
-F(8,[ 1, 7 ]) ],
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],
   [ 2, CF(3) ], 
   [ 2, 
       rec( Center := Rationals, DivAlg := true, 
-          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex :\
-= 2 ) ] ]
+          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ]
 
 </pre></div>
 
@@ -177,14 +170,12 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SchurIndex(W[5]);</span>
 3
-
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(40,1);              </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(40,3);              </span>
 &lt;pc group of size 40 with 4 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(Irr(G));                          </span>
-16
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SchurIndexByCharacter(GaussianRationals,G,16);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i:=First([1..Length(Irr(G))],i-&gt;Size(KernelOfCharacter(Irr(G)[i]))=1);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SchurIndexByCharacter(GaussianRationals,G,Irr(G)[i]);</span>
 2
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SchurIndexByCharacter(CF(5),G,16);         </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SchurIndexByCharacter(CF(3),G,i);         </span>
 1
 
 </pre></div>
@@ -413,7 +404,7 @@ NF(120,[ 1, 49 ])
 <p>Returns: These functions return a finite group <code class="code">G</code> and a positive integer <code class="code">n</code> for which the simple component of a group algebra over <code class="code">G</code> over the center of the cyclotomic algebra <code class="code">A</code> corresponding to the character <code class="code">Irr(G)[n]</code> will be isomorphic to <code class="code">A</code>.</p>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SimpleComponentOfGroupRingByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Returns: A list that describes the algebraic structure of the simple component of the group algebra <code class="code">FG</code> which corresponds to the irreducible character Irr(G)[n].</p>
+<p>Returns: A list that describes the algebraic structure of the simple component of the group algebra <code class="code">FG</code> which corresponds to the irreducible character <code class="code">Irr(G)[n]</code> (or <code class="code">n</code>).</p>
 
 <p>This function is an alternative to <code class="code">SimpleAlgebraByCharacterInfo(GroupRing(F,G),</code> <code class="code">Irr(G)[n]);</code>. It is used in subroutines of local index functions when we need to work over a field larger than the field of character values.</p>
 
@@ -431,9 +422,10 @@ NF(120,[ 1, 49 ])
 Group([ f3*f4*f5, f1, f2 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdSmallGroup(g);</span>
 [ 48, 15 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DefiningCharacterOfCyclotomicAlgebra(A);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">n:=DefiningCharacterOfCyclotomicAlgebra(A);</span>
 12
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SimpleComponentOfGroupRingByCharacter(Rationals,G,12);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SimpleComponentOfGroupRingByCharacter(Rationals,G,n)</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis. </span>
 [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 
 </pre></div>
@@ -443,7 +435,7 @@ Group([ f3*f4*f5, f1, f2 ])
 <h5>7.4-4 LocalIndexAtInftyByCharacter</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LocalIndexAtInftyByCharacter</code>( <var class="Arg">F</var>, <var class="Arg">G</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Returns: The local index at an infinite prime of the field <var class="Arg">F</var> of the irreducible character <code class="code">Irr(G)[n]</code> of the finite group <var class="Arg">G</var>.</p>
+<p>Returns: The local index at an infinite prime of the field <var class="Arg">F</var> of the irreducible character <code class="code">Irr(G)[n]</code> (or <code class="code">n</code>) of the finite group <var class="Arg">G</var>.</p>
 
 <p>This function computes the Frobenius-Schur indicator of the irreducible character <code class="code">Irr(G)[n]</code>, and uses it to calculate the local index at <code class="code">infinity</code> of the corresponding simple component of <var class="Arg">FG</var>.</p>
 
@@ -452,12 +444,12 @@ Group([ f3*f4*f5, f1, f2 ])
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(48,16);</span>
 &lt;pc group of size 48 with 5 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(Irr(G));                          </span>
-12
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtInftyByCharacter(Rationals,G,12);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i:=First([1..Length(Irr(G))],i-&gt;Size(KernelOfCharacter(Irr(G)[i]))=1);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtInftyByCharacter(Rationals,G,i);</span>
 2
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtInftyByCharacter(CF(3),G,12);    </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);    </span>
 1
+
 
 </pre></div>
 
@@ -477,15 +469,16 @@ Group([ f3*f4*f5, f1, f2 ])
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(72,21);</span>
 &lt;pc group of size 72 with 5 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D:=DefectGroupOfConjugacyClassAtP(G,18,3);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i:=First([1..Length(Irr(G))],i-&gt;Size(KernelOfCharacter(Irr(G)[i]))=1);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D:=DefectGroupOfConjugacyClassAtP(G,i,3);</span>
 Group([ f4, f5 ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsCyclic(last);</span>
 false
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D:=DefectGroupsOfPBlock(G,Irr(G)[18],3);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D:=DefectGroupsOfPBlock(G,Irr(G)[i],3);</span>
 Group( [ f4, f5 ] )^G
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsCyclic(Representative(D));    </span>
 false
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DefectOfCharacterAtP(G,Irr(G)[18],3);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DefectOfCharacterAtP(G,Irr(G)[i],3);</span>
 2
 
 </pre></div>
@@ -507,7 +500,8 @@ false
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(80,28);</span>
 &lt;pc group of size 80 with 5 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">T:=CharacterTable(G);;                                         </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">T:=CharacterTable(G);; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i:=First([1..Length(Irr(G))],i-&gt;Size(KernelOfCharacter(Irr(G)[i]))=1);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">S:=T mod 5;</span>
 BrauerTable( &lt;pc group of size 80 with 5 generators&gt;, 5 )
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BlocksInfo(S);</span>
@@ -519,23 +513,10 @@ BrauerTable( &lt;pc group of size 80 with 5 generators&gt;, 5 )
       ordchars := [ 9, 12, 14, 15, 19 ] ), 
   rec( defect := 1, modchars := [ 10, 11, 13, 16 ], 
       ordchars := [ 10, 11, 13, 16, 20 ] ) ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,20,5);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,i,5);</span>
 2
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,10,5);</span>
-1
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FinFieldExt(Rationals,G,5,20,10);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FinFieldExt(Rationals,G,5,i,9);</span>
 2
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FinFieldExt(Rationals,G,5,10,10);                </span>
-1
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ValuesOfClassFunction(Irr(G)[20]);  </span>
-[ 4, 0, 4*E(4), 0, -4, -1, 0, 0, 0, 0, -4*E(4), -E(4), 0, 1, 0, 0, 0, 0, 
-  E(4), 0 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ValuesOfClassFunction(Irr(G)[10]);  </span>
-[ 1, -E(8)^3, E(4), -E(4), -1, 1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), E(4), 
-  -1, -E(8)^3, -E(8), E(8), -1, -E(4), E(8)^3 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ValuesOfClassFunction(IBr(G,5)[10]);</span>
-[ 1, -E(8)^3, E(4), -E(4), -1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), -E(8)^3, 
-  -E(8), E(8), -1, E(8)^3 ]
 
 </pre></div>
 
@@ -544,9 +525,10 @@ BrauerTable( &lt;pc group of size 80 with 5 generators&gt;, 5 )
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(72,20);</span>
 &lt;pc group of size 72 with 5 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[11],3);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i:=First([1..Length(Irr(G))],i-&gt;Size(KernelOfCharacter(Irr(G)[i]))=1);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[i],3);</span>
 [ 2, "DGnotCyclic" ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,First(Irr(G),x-&gt;Degree(x)=4),2);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtPByBrauerCharacter(Rationals,G,i,2);</span>
 1
 
 </pre></div>
@@ -569,13 +551,12 @@ BrauerTable( &lt;pc group of size 80 with 5 generators&gt;, 5 )
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G:=SmallGroup(48,15);</span>
 &lt;pc group of size 48 with 5 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(Irr(G));</span>
-12
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtOddPByCharacter(Rationals,G,12,3);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i:=First([1..Length(Irr(G))],i-&gt;Size(KernelOfCharacter(Irr(G)[i]))=1);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtOddPByCharacter(Rationals,G,Irr(G)[i],3);</span>
 2
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtTwoByCharacter(Rationals,G,12);  </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);  </span>
 2
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtTwoByCharacter(CF(3),G,12);    </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);    </span>
 1
 
 </pre></div>

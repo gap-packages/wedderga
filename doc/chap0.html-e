@@ -28,9 +28,9 @@
 
 <h2>Wedderburn Decomposition of Group Algebras</h2>
 
-<p>Version 4.9.1</p>
+<p>Version 4.9.2</p>
 
-<p>11 December 2017</p>
+<p>17 February 2018</p>
 
 </div>
 <p><b>Gurmeet Kaur Bakshi 
@@ -105,13 +105,13 @@
 
 <p><a id="X81488B807F2A1CF1" name="X81488B807F2A1CF1"></a></p>
 <h3>Copyright</h3>
-<p>© 2006-2017 by Gurmeet Kaur Bakshi, Osnel Broche Cristo, Allen Herman, Alexander Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.</p>
+<p>© 2006-2018 by Gurmeet Kaur Bakshi, Osnel Broche Cristo, Allen Herman, Alexander Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu, Ángel del Río and Inneke Van Gelder.</p>
 
 <p><strong class="pkg">Wedderga</strong> is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. For details, see the FSF's own site <span class="URL"><a href="http://www.gnu.org/licenses/gpl.html">http://www.gnu.org/licenses/gpl.html</a></span>.</p>
 
 <p>If you obtained <strong class="pkg">Wedderga</strong>, we would be grateful for a short notification sent to one of the authors. If you publish a result which was partially obtained with the usage of <strong class="pkg">Wedderga</strong>, please cite it in the following form:</p>
 
-<p>G. K. Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A. Olivieri, G. Olteanu, Á. del Río and I. Van Gelder. <em>Wedderga --- Wedderburn Decomposition of Group Algebras, Version 4.9.1;</em> 2017 (<span class="URL"><a href="http://www.cs.st-andrews.ac.uk/~alexk/wedderga">http://www.cs.st-andrews.ac.uk/~alexk/wedderga</a></span>).</p>
+<p>G. K. Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A. Olivieri, G. Olteanu, Á. del Río and I. Van Gelder. <em>Wedderga --- Wedderburn Decomposition of Group Algebras, Version 4.9.2;</em> 2018 (<span class="URL"><a href="http://www.cs.st-andrews.ac.uk/~alexk/wedderga">http://www.cs.st-andrews.ac.uk/~alexk/wedderga</a></span>).</p>
 
 <p><a id="X82A988D47DFAFCFA" name="X82A988D47DFAFCFA"></a></p>
 <h3>Acknowledgements</h3>

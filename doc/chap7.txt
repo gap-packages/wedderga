@@ -29,25 +29,18 @@
     [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);       [127X[104X
     [4X[28X<algebra-with-one over Rationals, with 5 generators>[128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionInfo(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\[128X[104X
-    [4X[28Xationals ], [128X[104X
-    [4X[28X  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3,\[128X[104X
-    [4X[28X 0 ] ], [128X[104X
-    [4X[28X  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ \[128X[104X
-    [4X[28X2, 7, 0 ] ], [128X[104X
-    [4X[28X  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ]\[128X[104X
-    [4X[28X ], [ [ 3 ] ] ] [128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [128X[104X
+    [4X[28X  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], [128X[104X
+    [4X[28X  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], [128X[104X
+    [4X[28X  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] [128X[104X
     [4X[28X ][128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionWithDivAlgParts(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, R\[128X[104X
-    [4X[28Xationals ], [128X[104X
-    [4X[28X  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, N\[128X[104X
-    [4X[28XF(8,[ 1, 7 ]) ],[128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [128X[104X
+    [4X[28X  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],[128X[104X
     [4X[28X  [ 2, CF(3) ], [128X[104X
     [4X[28X  [ 2, [128X[104X
     [4X[28X      rec( Center := Rationals, DivAlg := true, [128X[104X
-    [4X[28X          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex :\[128X[104X
-    [4X[28X= 2 ) ] ][128X[104X
+    [4X[28X          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -131,14 +124,12 @@
     [4X[28X  [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XSchurIndex(W[5]);[127X[104X
     [4X[28X3[128X[104X
-    [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XG:=SmallGroup(40,1);              [127X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(40,3);              [127X[104X
     [4X[28X<pc group of size 40 with 4 generators>[128X[104X
-    [4X[25Xgap>[125X [27XSize(Irr(G));                          [127X[104X
-    [4X[28X16[128X[104X
-    [4X[25Xgap>[125X [27XSchurIndexByCharacter(GaussianRationals,G,16);[127X[104X
+    [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
+    [4X[25Xgap>[125X [27XSchurIndexByCharacter(GaussianRationals,G,Irr(G)[i]);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XSchurIndexByCharacter(CF(5),G,16);         [127X[104X
+    [4X[25Xgap>[125X [27XSchurIndexByCharacter(CF(3),G,i);         [127X[104X
     [4X[28X1[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -405,7 +396,7 @@
   [33X[1;0Y[29X[2XSimpleComponentOfGroupRingByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list  that  describes  the  algebraic  structure  of the simple
             component  of  the  group  algebra  [10XFG[110X  which  corresponds  to the
-            irreducible character Irr(G)[n].[133X
+            irreducible character [10XIrr(G)[n][110X (or [10Xn[110X).[133X
   
   [33X[0;0YThis          function          is         an         alternative         to
   [10XSimpleAlgebraByCharacterInfo(GroupRing(F,G),[110X  [10XIrr(G)[n]);[110X.  It  is  used  in
@@ -425,9 +416,10 @@
     [4X[28XGroup([ f3*f4*f5, f1, f2 ])[128X[104X
     [4X[25Xgap>[125X [27XIdSmallGroup(g);[127X[104X
     [4X[28X[ 48, 15 ][128X[104X
-    [4X[25Xgap>[125X [27XDefiningCharacterOfCyclotomicAlgebra(A);[127X[104X
+    [4X[25Xgap>[125X [27Xn:=DefiningCharacterOfCyclotomicAlgebra(A);[127X[104X
     [4X[28X12[128X[104X
-    [4X[25Xgap>[125X [27XSimpleComponentOfGroupRingByCharacter(Rationals,G,12);[127X[104X
+    [4X[25Xgap>[125X [27XSimpleComponentOfGroupRingByCharacter(Rationals,G,n)[127X[104X
+    [4X[25X>[125X [27X;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis. [127X[104X
     [4X[28X[ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -436,7 +428,7 @@
   
   [33X[1;0Y[29X[2XLocalIndexAtInftyByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  local  index  at  an  infinite  prime  of  the field [3XF[103X of the
-            irreducible character [10XIrr(G)[n][110X of the finite group [3XG[103X.[133X
+            irreducible character [10XIrr(G)[n][110X (or [10Xn[110X) of the finite group [3XG[103X.[133X
   
   [33X[0;0YThis  function  computes  the  Frobenius-Schur  indicator of the irreducible
   character [10XIrr(G)[n][110X, and uses it to calculate the local index at [10Xinfinity[110X of
@@ -446,12 +438,12 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(48,16);[127X[104X
     [4X[28X<pc group of size 48 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XSize(Irr(G));                          [127X[104X
-    [4X[28X12[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtInftyByCharacter(Rationals,G,12);[127X[104X
+    [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtInftyByCharacter(Rationals,G,i);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtInftyByCharacter(CF(3),G,12);    [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);    [127X[104X
     [4X[28X1[128X[104X
+    [4X[28X[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -483,15 +475,16 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(72,21);[127X[104X
     [4X[28X<pc group of size 72 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XD:=DefectGroupOfConjugacyClassAtP(G,18,3);[127X[104X
+    [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
+    [4X[25Xgap>[125X [27XD:=DefectGroupOfConjugacyClassAtP(G,i,3);[127X[104X
     [4X[28XGroup([ f4, f5 ])[128X[104X
     [4X[25Xgap>[125X [27XIsCyclic(last);[127X[104X
     [4X[28Xfalse[128X[104X
-    [4X[25Xgap>[125X [27XD:=DefectGroupsOfPBlock(G,Irr(G)[18],3);[127X[104X
+    [4X[25Xgap>[125X [27XD:=DefectGroupsOfPBlock(G,Irr(G)[i],3);[127X[104X
     [4X[28XGroup( [ f4, f5 ] )^G[128X[104X
     [4X[25Xgap>[125X [27XIsCyclic(Representative(D));    [127X[104X
     [4X[28Xfalse[128X[104X
-    [4X[25Xgap>[125X [27XDefectOfCharacterAtP(G,Irr(G)[18],3);[127X[104X
+    [4X[25Xgap>[125X [27XDefectOfCharacterAtP(G,Irr(G)[i],3);[127X[104X
     [4X[28X2[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -530,7 +523,8 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(80,28);[127X[104X
     [4X[28X<pc group of size 80 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XT:=CharacterTable(G);;                                         [127X[104X
+    [4X[25Xgap>[125X [27XT:=CharacterTable(G);; [127X[104X
+    [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
     [4X[25Xgap>[125X [27XS:=T mod 5;[127X[104X
     [4X[28XBrauerTable( <pc group of size 80 with 5 generators>, 5 )[128X[104X
     [4X[25Xgap>[125X [27XBlocksInfo(S);[127X[104X
@@ -542,23 +536,10 @@
     [4X[28X      ordchars := [ 9, 12, 14, 15, 19 ] ), [128X[104X
     [4X[28X  rec( defect := 1, modchars := [ 10, 11, 13, 16 ], [128X[104X
     [4X[28X      ordchars := [ 10, 11, 13, 16, 20 ] ) ][128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,20,5);[127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,i,5);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,10,5);[127X[104X
-    [4X[28X1[128X[104X
-    [4X[25Xgap>[125X [27XFinFieldExt(Rationals,G,5,20,10);[127X[104X
+    [4X[25Xgap>[125X [27XFinFieldExt(Rationals,G,5,i,9);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XFinFieldExt(Rationals,G,5,10,10);                [127X[104X
-    [4X[28X1[128X[104X
-    [4X[25Xgap>[125X [27XValuesOfClassFunction(Irr(G)[20]);  [127X[104X
-    [4X[28X[ 4, 0, 4*E(4), 0, -4, -1, 0, 0, 0, 0, -4*E(4), -E(4), 0, 1, 0, 0, 0, 0, [128X[104X
-    [4X[28X  E(4), 0 ][128X[104X
-    [4X[25Xgap>[125X [27XValuesOfClassFunction(Irr(G)[10]);  [127X[104X
-    [4X[28X[ 1, -E(8)^3, E(4), -E(4), -1, 1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), E(4), [128X[104X
-    [4X[28X  -1, -E(8)^3, -E(8), E(8), -1, -E(4), E(8)^3 ][128X[104X
-    [4X[25Xgap>[125X [27XValuesOfClassFunction(IBr(G,5)[10]);[127X[104X
-    [4X[28X[ 1, -E(8)^3, E(4), -E(4), -1, E(8), -E(8), E(8)^3, 1, -E(4), E(4), -E(8)^3, [128X[104X
-    [4X[28X  -E(8), E(8), -1, E(8)^3 ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -566,9 +547,10 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(72,20);[127X[104X
     [4X[28X<pc group of size 72 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[11],3);[127X[104X
+    [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[i],3);[127X[104X
     [4X[28X[ 2, "DGnotCyclic" ][128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,First(Irr(G),x->Degree(x)=4),2);[127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,i,2);[127X[104X
     [4X[28X1[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -609,13 +591,12 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(48,15);[127X[104X
     [4X[28X<pc group of size 48 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XSize(Irr(G));[127X[104X
-    [4X[28X12[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtOddPByCharacter(Rationals,G,12,3);[127X[104X
+    [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtOddPByCharacter(Rationals,G,Irr(G)[i],3);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(Rationals,G,12);  [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);  [127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(CF(3),G,12);    [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);    [127X[104X
     [4X[28X1[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
