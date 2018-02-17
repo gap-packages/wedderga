@@ -17,12 +17,12 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.9.1",
-Date           := "11/12/2017",
+Version        := "4.9.2",
+Date           := "17/02/2018",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "4.9.1">
-##  <!ENTITY RELEASEDATE "11 December 2017">
-##  <!ENTITY RELEASEYEAR "2017">
+##  <!ENTITY VERSION "4.9.2">
+##  <!ENTITY RELEASEDATE "17 February 2018">
+##  <!ENTITY RELEASEYEAR "2018">
 ##  <#/GAPDoc>
 
 SourceRepository := rec(
