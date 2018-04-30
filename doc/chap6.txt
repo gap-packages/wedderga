@@ -173,13 +173,6 @@
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XList(D16,x->a^x=a);[127X[104X
-    [4X[28X[ true, true, false, false, false, false, false, false, true, \[128X[104X
-    [4X[28Xtrue, false, [128X[104X
-    [4X[28X  false, false, false, false, false ][128X[104X
-    [4X[25Xgap>[125X [27XList(D16,x->e^x=e);[127X[104X
-    [4X[28X[ true, true, true, true, true, true, true, true, true, true, true, true,[128X[104X
-    [4X[28X  true, true, true, true ][128X[104X
     [4X[25Xgap>[125X [27XForAll(D16,x->a^x=a);[127X[104X
     [4X[28Xfalse[128X[104X
     [4X[25Xgap>[125X [27XForAll(D16,x->e^x=e);[127X[104X
