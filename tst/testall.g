@@ -1,4 +1,5 @@
 LoadPackage( "guava" : OnlyNeeded ); # to avoid loading SONATA
+LoadPackage( "irredsol" ); # to avoid variations in tests with no packages
 LoadPackage( "wedderga" );
 
 TestDirectory(DirectoriesPackageLibrary( "wedderga", "tst" ),
