@@ -83,21 +83,14 @@ Group([ f4 ])
 gap> Centralizer( D16, e);
 Group([ f1, f2 ])
 
-# wedderga/doc/auxiliar.xml:223-237
+# wedderga/doc/auxiliar.xml:223-230
 
-gap> List(D16,x->a^x=a);
-[ true, true, false, false, false, false, false, false, true, \
-true, false, 
-  false, false, false, false, false ]
-gap> List(D16,x->e^x=e);
-[ true, true, true, true, true, true, true, true, true, true, true, true,
-  true, true, true, true ]
 gap> ForAll(D16,x->a^x=a);
 false
 gap> ForAll(D16,x->e^x=e);
 true
 
-# wedderga/doc/auxiliar.xml:262-282
+# wedderga/doc/auxiliar.xml:255-275
 
 gap> G:=DihedralGroup(16);;               
 gap> QG:=GroupRing( Rationals, G );;
@@ -117,7 +110,7 @@ false
 gap> IsNormal(G,H);
 false
 
-# wedderga/doc/auxiliar.xml:306-315
+# wedderga/doc/auxiliar.xml:299-308
 
 gap> CyclotomicClasses( 2, 21 );
 [ [ 0 ], [ 1, 2, 4, 8, 16, 11 ], [ 3, 6, 12 ], [ 5, 10, 20, 19, 17, 13 ],
@@ -126,7 +119,7 @@ gap> CyclotomicClasses( 10, 21 );
 [ [ 0 ], [ 1, 10, 16, 13, 4, 19 ], [ 2, 20, 11, 5, 8, 17 ],
   [ 3, 9, 6, 18, 12, 15 ], [ 7 ], [ 14 ] ]
 
-# wedderga/doc/auxiliar.xml:335-344
+# wedderga/doc/auxiliar.xml:328-337
 
 gap> IsCyclotomicClass( 2, 7, [1,2,4] );
 true
@@ -135,7 +128,7 @@ false
 gap> IsCyclotomicClass( 2, 21, [3,6,12] );
 true
 
-# wedderga/doc/auxiliar.xml:368-378
+# wedderga/doc/auxiliar.xml:361-371
 
 gap> SetInfoLevel(InfoWedderga, 2);   
 gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
