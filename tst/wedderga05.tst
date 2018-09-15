@@ -8,7 +8,7 @@
 #
 gap> START_TEST( "wedderga05.tst");
 
-# wedderga/doc/crossed.xml:91-122
+# doc/crossed.xml:91-122
 
 gap> R := GaussianRationals;
 GaussianRationals
@@ -39,7 +39,7 @@ gap> j^2;
 gap> i*j+j*i;  
 <zero> of ...
 
-# wedderga/doc/crossed.xml:131-154
+# doc/crossed.xml:131-154
 
 gap> twist2:=function(RG,g,h)
 > if IsOne(g) or IsOne(h) then
@@ -62,7 +62,7 @@ gap> j^2;
 gap> i*j+j*i;                       
 <zero> of ...
 
-# wedderga/doc/crossed.xml:160-192
+# doc/crossed.xml:160-192
 
 gap> C2 := CyclicGroup(2);
 <pc group of size 2 with 1 generators>
@@ -94,7 +94,7 @@ function( RG, g, h ) ... end
 gap> HQ := CrossedProduct( Rationals, G, act, twist );
 <crossed product over Rationals of a group of size 4>
 
-# wedderga/doc/crossed.xml:196-211
+# doc/crossed.xml:196-211
 
 gap> HZ := CrossedProduct( Integers, G, act, twist );
 <crossed product over Integers of a group of size 4>
@@ -109,7 +109,7 @@ gap> j^2;
 gap> i*j+j*i;                                      
 <zero> of ...
 
-# wedderga/doc/crossed.xml:224-240
+# doc/crossed.xml:224-240
 
 gap> LeftActingDomain(HZ);
 Integers
@@ -125,7 +125,7 @@ function( RG, g, h ) ... end
 gap> List( G, x -> List( G , y -> tw( HZ, x, y ) ) );
 [ [ 1, 1, 1, 1 ], [ 1, -1, -1, 1 ], [ 1, 1, -1, -1 ], [ 1, -1, 1, -1 ] ]  
 
-# wedderga/doc/crossed.xml:246-284
+# doc/crossed.xml:246-284
 
 gap> G := SmallGroup(32,50);
 <pc group of size 32 with 5 generators>
@@ -163,7 +163,7 @@ gap> List( H , x -> ac( B, x ) );
 gap> List( H , x -> List( H , y -> tw( B, x, y ) ) );
 [ [ 1, 1 ], [ 1, -1 ] ]
 
-# wedderga/doc/crossed.xml:287-342
+# doc/crossed.xml:287-342
 
 gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );;
 gap> WedderburnDecomposition(QG);
@@ -218,7 +218,7 @@ gap> Characteristic(R);
 gap> CenterOfCrossedProduct(R);
 Rationals
 
-# wedderga/doc/crossed.xml:348-402
+# doc/crossed.xml:348-402
 
 gap> Quat := function(R,a,b)
 > local G,act,twist;
@@ -272,7 +272,7 @@ function( RG, g, h ) ... end
 gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
 [ [ 1, 1, 1, 1 ], [ 1, 3, -1, -3 ], [ 1, 1, 2, 2 ], [ 1, 3, -3, -6 ] ]
 
-# wedderga/doc/crossed.xml:448-480
+# doc/crossed.xml:448-480
 
 gap> QG := GroupRing( Rationals, SmallGroup(24,3) );
 <algebra-with-one over Rationals, with 4 generators>

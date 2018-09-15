@@ -8,7 +8,7 @@
 #
 gap> START_TEST( "wedderga02.tst");
 
-# wedderga/doc/decomp.xml:31-45
+# doc/decomp.xml:31-45
 
 gap> WedderburnDecomposition( GroupRing( GF(5), DihedralGroup(16) ) );
 [ ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ), ( GF(5)^[ 1, 1 ] ),
@@ -22,7 +22,7 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup(16) ) );
   <crossed product with center NF(40,[ 1, 31 ]) over AsField( NF(40,
     [ 1, 31 ]), CF(40) ) of a group of size 2> ]
 
-# wedderga/doc/decomp.xml:77-96
+# doc/decomp.xml:77-96
 
 gap> WedderburnDecomposition( GroupRing( Rationals, SmallGroup(48,15) ) );
 [ Rationals, Rationals, Rationals, Rationals, 
@@ -41,7 +41,7 @@ gap> WedderburnDecomposition( GroupRing( CF(3), SmallGroup(48,15) ) );
   ( CF(3)^[ 2, 2 ] ), ( <crossed product with center CF(3) over AsField( CF(
     3), CF(12) ) of a group of size 2>^[ 2, 2 ] ) ]
 
-# wedderga/doc/decomp.xml:108-124
+# doc/decomp.xml:108-124
 
 gap> QG:=GroupRing(Rationals,SmallGroup(240,89));
 <algebra-with-one over Rationals, with 2 generators>
@@ -57,7 +57,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 3/2, <crossed product with center NF(8,[ 1, 7 ]) over AsField( NF(8,
         [ 1, 7 ]), NF(40,[ 1, 31 ]) ) of a group of size 4> ] ]  
 
-# wedderga/doc/decomp.xml:193-202
+# doc/decomp.xml:193-202
 
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, DihedralGroup(16) ) );
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
@@ -66,7 +66,7 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(5), DihedralGroup(16) ) );
 [ [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 2, CF(5) ],
   [ 1, NF(40,[ 1, 31 ]), 8, [ 2, 7, 0 ] ] ]
 
-# wedderga/doc/decomp.xml:220-239
+# doc/decomp.xml:220-239
 
 gap> F:=FreeGroup("a","b");;a:=F.1;;b:=F.2;;rel:=[a^8,a^4*b^2,b^-1*a*b*a];;
 gap> Q16:=F/rel;; QQ16:=GroupRing( Rationals, Q16 );;
@@ -85,7 +85,7 @@ gap> WedderburnDecompositionInfo(QS4);
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], 
   [ 3, Rationals ], [ 3, Rationals ] ]
 
-# wedderga/doc/decomp.xml:293-307
+# doc/decomp.xml:293-307
 
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,15) ) );
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
@@ -99,7 +99,7 @@ gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
   [ 2, CF(3), 6, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
   [ 2, CF(3) ], [ 2, CF(3) ], [ 2, CF(3), 12, [ 2, 7, 0 ] ] ]
 
-# wedderga/doc/decomp.xml:320-333
+# doc/decomp.xml:320-333
 
 gap> QG:=GroupRing(Rationals,SmallGroup(240,89));
 <algebra-with-one over Rationals, with 2 generators>
@@ -112,7 +112,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ],
   [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
 
-# wedderga/doc/decomp.xml:390-411
+# doc/decomp.xml:390-411
 
 gap> A5 := AlternatingGroup(5);
 Alt( [ 1 .. 5 ] )
@@ -133,7 +133,7 @@ gap> List(chi4,x->SimpleAlgebraByCharacter(GroupRing(Rationals,G),x));
   ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
     [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ) ]
 
-# wedderga/doc/decomp.xml:444-455
+# doc/decomp.xml:444-455
 
 gap> G:=SmallGroup(128,100);
 <pc group of size 128 with 7 generators>
@@ -144,7 +144,7 @@ gap> List(chi4,x->SimpleAlgebraByCharacterInfo(QG,x));
 [ [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], 
   [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ] ]
 
-# wedderga/doc/decomp.xml:524-538
+# doc/decomp.xml:524-538
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
@@ -158,7 +158,7 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, [1,7] );
 gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 
-# wedderga/doc/decomp.xml:598-614
+# doc/decomp.xml:598-614
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;

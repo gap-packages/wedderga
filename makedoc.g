@@ -5,7 +5,7 @@
 ###########################################################################
 
 ExtractMyManualExamples:=function( pkgname, main, files )
-local path, tst, i, s, basename, name, output, ch, a, comment;
+local path, tst, i, s, basename, name, output, ch, a, location, pos, comment;
 path:=Directory( 
         Concatenation(PackageInfo(pkgname)[1].InstallationPath, "/doc") );
 Print("Extracting manual examples for ", pkgname, " package ...\n" );
@@ -37,7 +37,14 @@ for i in [ 1 .. Length(tst) ] do
                      "#\n");
     AppendTo(output, "gap> START_TEST( \"", basename, "\");\n\n");
     for a in ch do
-      comment := a[2][1]{[PositionSublist(a[2][1],LowercaseString(pkgname))..Length(a[2][1])]};
+      location := a[2][1];
+      pos := PositionSublist(location,LowercaseString(pkgname));
+      if pos <> fail then
+        comment := location{[ pos+Length(pkgname)+1 .. Length(location) ]};
+      else
+        pos := PositionSublist(location,".//");
+        comment := location{[ pos+3 .. Length(location) ]};
+      fi;
       AppendTo(output, "# ", comment, ":", a[2][2], "-", a[2][3], a[1]);
     od;
     AppendTo(output, "gap> STOP_TEST(\"", basename, "\", 1 );\n");

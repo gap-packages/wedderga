@@ -8,7 +8,7 @@
 #
 gap> START_TEST( "wedderga06.tst");
 
-# wedderga/doc/auxiliar.xml:21-36
+# doc/auxiliar.xml:21-36
 
 gap> CG:=GroupRing( GaussianRationals, DihedralGroup(16) );;
 gap> IsSemisimpleZeroCharacteristicGroupAlgebra( CG );
@@ -23,7 +23,7 @@ gap> Qf:=GroupRing(Rationals,f);
 gap> IsSemisimpleZeroCharacteristicGroupAlgebra(Qf);
 false
 
-# wedderga/doc/auxiliar.xml:53-65
+# doc/auxiliar.xml:53-65
 
 gap> QG:=GroupRing( Rationals, SymmetricGroup(4) );;       
 gap> IsSemisimpleRationalGroupAlgebra( QG );       
@@ -35,14 +35,14 @@ gap> FG:=GroupRing( GF(2), SymmetricGroup(3) );;
 gap> IsSemisimpleRationalGroupAlgebra( FG );
 false
 
-# wedderga/doc/auxiliar.xml:83-90
+# doc/auxiliar.xml:83-90
 
 gap> IsSemisimpleANFGroupAlgebra( GroupRing( NF(5,[4]) , CyclicGroup(28) ) );
 true
 gap> IsSemisimpleANFGroupAlgebra( GroupRing( GF(11) , CyclicGroup(28) ) );
 false
 
-# wedderga/doc/auxiliar.xml:108-120
+# doc/auxiliar.xml:108-120
 
 gap> FG:=GroupRing( GF(5), SymmetricGroup(3) );;
 gap> IsSemisimpleFiniteGroupAlgebra( FG );
@@ -54,7 +54,7 @@ gap> QG:=GroupRing( Rationals, SymmetricGroup(4) );;
 gap> IsSemisimpleFiniteGroupAlgebra( QG );
 false
 
-# wedderga/doc/auxiliar.xml:135-145
+# doc/auxiliar.xml:135-145
 
 gap> G:=DihedralGroup(8);;
 gap> H:=StrongShodaPairs(G)[5][1];
@@ -64,7 +64,7 @@ Group([ f1*f2 ])
 gap> IsTwistingTrivial(G,H,K);
 true
 
-# wedderga/doc/auxiliar.xml:172-191
+# doc/auxiliar.xml:172-191
 
 gap> D16 := DihedralGroup(16);
 <pc group of size 16 with 4 generators>
@@ -83,14 +83,14 @@ Group([ f4 ])
 gap> Centralizer( D16, e);
 Group([ f1, f2 ])
 
-# wedderga/doc/auxiliar.xml:223-230
+# doc/auxiliar.xml:223-230
 
 gap> ForAll(D16,x->a^x=a);
 false
 gap> ForAll(D16,x->e^x=e);
 true
 
-# wedderga/doc/auxiliar.xml:255-275
+# doc/auxiliar.xml:255-275
 
 gap> G:=DihedralGroup(16);;               
 gap> QG:=GroupRing( Rationals, G );;
@@ -110,7 +110,7 @@ false
 gap> IsNormal(G,H);
 false
 
-# wedderga/doc/auxiliar.xml:299-308
+# doc/auxiliar.xml:299-308
 
 gap> CyclotomicClasses( 2, 21 );
 [ [ 0 ], [ 1, 2, 4, 8, 16, 11 ], [ 3, 6, 12 ], [ 5, 10, 20, 19, 17, 13 ],
@@ -119,7 +119,7 @@ gap> CyclotomicClasses( 10, 21 );
 [ [ 0 ], [ 1, 10, 16, 13, 4, 19 ], [ 2, 20, 11, 5, 8, 17 ],
   [ 3, 9, 6, 18, 12, 15 ], [ 7 ], [ 14 ] ]
 
-# wedderga/doc/auxiliar.xml:328-337
+# doc/auxiliar.xml:328-337
 
 gap> IsCyclotomicClass( 2, 7, [1,2,4] );
 true
@@ -128,7 +128,7 @@ false
 gap> IsCyclotomicClass( 2, 21, [3,6,12] );
 true
 
-# wedderga/doc/auxiliar.xml:361-371
+# doc/auxiliar.xml:361-371
 
 gap> SetInfoLevel(InfoWedderga, 2);   
 gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
