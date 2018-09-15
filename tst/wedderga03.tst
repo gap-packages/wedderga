@@ -40,10 +40,10 @@ gap> ExtremelyStrongShodaPairs(SymmetricGroup(5));
 
 gap> StrongShodaPairs( SymmetricGroup(4) );
 [ [ Sym( [ 1 .. 4 ] ), Sym( [ 1 .. 4 ] ) ], 
-  [ Sym( [ 1 .. 4 ] ), Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4) ]) ], 
-  [ Group([ (2,4,3), (1,4)(2,3), (1,3)(2,4) ]), Group([ (1,4)(2,3), (1,3)
-      (2,4) ]) ], [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) 
-     ], [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ] ]
+  [ Sym( [ 1 .. 4 ] ), Alt( [ 1 .. 4 ] ) ], 
+  [ Alt( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4) ]) ], 
+  [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) ], 
+  [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ] ]
 gap> StrongShodaPairs( DihedralGroup(64) );
 [ [ <pc group of size 64 with 6 generators>, 
       <pc group of size 64 with 6 generators> ], 
