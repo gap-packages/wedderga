@@ -59,24 +59,18 @@
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XStrongShodaPairs( SymmetricGroup(4) );[127X[104X
-    [4X[28X[ [ Sym( [ 1 .. 4 ] ), Sym( [ 1 .. 4 ] ) ], [128X[104X
-    [4X[28X  [ Sym( [ 1 .. 4 ] ), Alt( [ 1 .. 4 ] ) ], [128X[104X
-    [4X[28X  [ Alt( [ 1 .. 4 ] ), Group([ (1,4)(2,3), (1,3)(2,4) ]) ], [128X[104X
-    [4X[28X  [ Group([ (1,3,2,4), (3,4) ]), Group([ (3,4), (1,2)(3,4) ]) ], [128X[104X
-    [4X[28X  [ Group([ (3,4), (1,3,2,4) ]), Group([ (1,3,2,4), (1,2)(3,4) ]) ] ][128X[104X
-    [4X[25Xgap>[125X [27XStrongShodaPairs( DihedralGroup(64) );[127X[104X
-    [4X[28X[ [ <pc group of size 64 with 6 generators>, [128X[104X
-    [4X[28X      <pc group of size 64 with 6 generators> ], [128X[104X
-    [4X[28X  [ <pc group of size 64 with 6 generators>, [128X[104X
-    [4X[28X      Group([ f1*f2*f3*f4*f5*f6, f3, f4, f5, f6 ]) ], [128X[104X
-    [4X[28X  [ <pc group of size 64 with 6 generators>, Group([ f2, f3, f4, f5, f6 ]) ], [128X[104X
-    [4X[28X  [ <pc group of size 64 with 6 generators>, Group([ f1, f3, f4, f5, f6 ]) ], [128X[104X
-    [4X[28X  [ Group([ f1*f2*f3*f4*f5*f6, f3, f4, f5, f6 ]), [128X[104X
-    [4X[28X      Group([ f1*f2*f4*f5*f6, f4, f5, f6 ]) ], [128X[104X
-    [4X[28X  [ Group([ f2, f3, f4, f5, f6 ]), Group([ f5, f6 ]) ], [128X[104X
-    [4X[28X  [ Group([ f2, f3, f4, f5, f6 ]), Group([ f6 ]) ], [128X[104X
-    [4X[28X  [ Group([ f2, f3, f4, f5, f6 ]), Group([  ]) ] ][128X[104X
+    [4X[25Xgap>[125X [27Xssp:=StrongShodaPairs( SymmetricGroup(4) );;[127X[104X
+    [4X[25Xgap>[125X [27XLength(ssp);[127X[104X
+    [4X[28X5[128X[104X
+    [4X[25Xgap>[125X [27XList(ssp,x->List(x,StructureDescription));[127X[104X
+    [4X[28X[ [ "S4", "S4" ], [ "S4", "A4" ], [ "A4", "C2 x C2" ], [ "D8", "C2 x C2" ], [128X[104X
+    [4X[28X  [ "D8", "C4" ] ][128X[104X
+    [4X[25Xgap>[125X [27Xssp:=StrongShodaPairs( DihedralGroup(64) );;[127X[104X
+    [4X[25Xgap>[125X [27XLength(ssp);[127X[104X
+    [4X[28X8[128X[104X
+    [4X[25Xgap>[125X [27XList(ssp,x->List(x,StructureDescription));[127X[104X
+    [4X[28X[ [ "D64", "D64" ], [ "D64", "D32" ], [ "D64", "C32" ], [ "D64", "D32" ], [128X[104X
+    [4X[28X  [ "D32", "D16" ], [ "C32", "C4" ], [ "C32", "C2" ], [ "C32", "1" ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   

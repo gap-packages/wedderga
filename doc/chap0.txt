@@ -6,10 +6,10 @@
                    [1XWedderburn Decomposition of Group Algebras[101X
   
   
-                                 Version 4.9.4
+                                 Version 4.9.5
   
   
-                               15 September 2018
+                                30 November 2018
   
   
                               Gurmeet Kaur Bakshi
@@ -133,7 +133,7 @@
   
   [33X[0;0YG.  K.  Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A.
   Olivieri,  G. Olteanu, Á. del Río and I. Van Gelder. [13XWedderga --- Wedderburn
-  Decomposition     of     Group     Algebras,     Version     4.9.4;[113X     2018
+  Decomposition     of     Group     Algebras,     Version     4.9.5;[113X     2018
   ([7Xhttp://www.cs.st-andrews.ac.uk/~alexk/wedderga[107X).[133X
   
   
