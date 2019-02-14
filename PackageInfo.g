@@ -18,7 +18,8 @@ PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
 Version        := "4.9.5",
-Date           := "30/11/2018",
+Date           := "30/11/2018", # dd/mm/yyyy format
+License        := "GPL-2.0-or-later",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
 ##  <!ENTITY VERSION "4.9.5">
 ##  <!ENTITY RELEASEDATE "30 November 2018">
