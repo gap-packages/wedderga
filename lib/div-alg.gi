@@ -134,26 +134,52 @@ end);
 # and 2.    
 ################################
 InstallGlobalFunction( LocalIndexAtOddP, function(A,q)
-local m,F,n,a,b,c,n1,e,f,h,f1,e1,k;
+local m,F,a1,n,a,b,c,m1,m2,m3,g,g1,g2,g3,n1,e,f,h,f1,e1,k;
 
 m:=1; 
 F:=A[2];
+a1:=PrimitiveElement(F);
+m1:=A[3];
 a:=A[4][1];
 b:=A[4][2];
 c:=A[4][3];
-n:=Lcm(Conductor(F),A[3]);
+
+n:=Conductor(F);
+if IsOddInt(n) then n:=2*n; fi;
+for m2 in [1..n] do 
+  if E(n)^m2 in F then 
+     break; 
+  fi;
+od;  
+g:=Order((E(n)^m2)^a);
+
+g1:=E(m1);
+for m2 in [1..(a-1)] do 
+g1:=E(m1)*g1^b; 
+od; 
+g1:=Order(g1);
+
+g2:=Order(E(m1)^c);
+g3:=Lcm(g,g1);
+if (g3/g2 in Integers) then 
+ m:=1;
+else 
+
+n:=Lcm(Conductor(F),m1);   
 n1:=PDashPartOfN(n,q);
 ##########################
 e:=RamificationIndexAtP(F,n,q);
-if e>1 and c>0 and A[3]/q in PositiveIntegers then 
+if e>1 and c>0 and m1/q in PositiveIntegers then 
 f:=ResidueDegreeAtP(Rationals,n,q);
 h:=ResidueDegreeAtP(F,n,q);
 f1:=f/h;
 e1:=Gcd(q^f1-1,e);
 k:=(q^f1-1)/e1;
-while not(k/(Order(E(A[3])^(c*m))) in PositiveIntegers) do 
+while not(k/(Order(E(m1)^(c*m))) in PositiveIntegers) do 
   m:=m+1;
 od; 
+fi;
+
 fi;
 
 return m;
@@ -241,10 +267,37 @@ end);
 # over the 2-adics
 ###############################
 InstallGlobalFunction( LocalIndexAtTwo, function(A)
-local n,m,a,K,b,c,f1,f,e1,e,h,g,n2,n3,n4,i,u,U,U1; 
+local n,m,m1,F,a1,m2,g1,g2,g3,a,K,b,c,f1,f,e1,e,h,g,n2,n3,n4,i,u,U,U1; 
 
-m:=1;
+m:=1; 
+F:=A[2];
+a1:=PrimitiveElement(F);
+m1:=A[3];
 a:=A[4][1];
+b:=A[4][2];
+c:=A[4][3];
+
+n:=Conductor(F);
+if IsOddInt(n) then n:=2*n; fi;
+for m2 in [1..n] do 
+  if E(n)^m2 in F then 
+     break; 
+  fi;
+od;  
+g:=Order((E(n)^m2)^a);
+
+g1:=E(m1);
+for m2 in [1..(a-1)] do 
+g1:=E(m1)*g1^b; 
+od; 
+g1:=Order(g1);
+
+g2:=Order(E(m1)^c);
+g3:=Lcm(g,g1);
+if (g3/g2 in Integers) then 
+ m:=1;
+else 
+
 if A[3]/4 in PositiveIntegers and IsEvenInt(a) then 
 n:=Lcm(Conductor(A[2]),A[3]);
 f1:=ResidueDegreeAtP(A[2],n,2);
@@ -264,8 +317,10 @@ n4:=PPartOfN(A[3],2);
 fi; 
 fi; 
 
+fi;
+
 return m; 
-end); 
+end);
 
 #################################
 #n1:=PDashPartOfN(n,2); 
