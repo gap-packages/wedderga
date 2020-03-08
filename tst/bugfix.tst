@@ -89,3 +89,18 @@ gap> Length(pci);
 6
 gap> Length(pci)=Length(RationalClasses(G));
 true
+
+# Fix the issue with LocalIndexAtOddP and LocalIndexAtTwo (Feb 2020)
+gap> G:=SmallGroup(81,3);
+<pc group of size 81 with 4 generators>
+gap> QG:=GroupRing(Rationals,G);
+<algebra-with-one over Rationals, with 4 generators>
+gap> WedderburnDecompositionWithDivAlgParts(QG);
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ],
+  [ 1, CF(9) ], [ 1, CF(9) ], [ 1, CF(9) ], [ 3, CF(3) ], [ 3, CF(3) ],
+  [ 3, CF(3) ] ]
+gap> A:=[1,CF(7),4,[2,3,2]];
+[ 1, CF(7), 4, [ 2, 3, 2 ] ]
+gap> CyclotomicAlgebraWithDivAlgPart(A);
+[ 1, rec( Center := CF(7), DivAlg := true, LocalIndices := [ [ 2, 2 ] ],
+      SchurIndex := 2 ) ]
