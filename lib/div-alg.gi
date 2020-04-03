@@ -1,4 +1,3 @@
-#Ángel
 #####################################################
 # Given a simple algebra output by WedderburnDecompositionInfo
 # or SimpleAlgebraByCharacterInfo from wedderga, 
