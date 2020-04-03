@@ -6,20 +6,36 @@
 
 ## This file contains declarations for functions installed in div-alg.gi
 
+
+#########################################
+# April 2020 - KillingCocycle and the auxiliar AntiSymMatUpMat added
+DeclareGlobalFunction("AntiSymMatUpMat");
+DeclareGlobalFunction("KillingCocycle");
+##
 DeclareGlobalFunction("PPartOfN");
 DeclareGlobalFunction("PDashPartOfN");
 DeclareGlobalFunction("PSplitSubextension");
 DeclareGlobalFunction("SplittingDegreeAtP");
 DeclareGlobalFunction("ResidueDegreeAtP");
 DeclareGlobalFunction("RamificationIndexAtP");
-DeclareGlobalFunction("LocalIndexAtOddP");
-DeclareGlobalFunction("LocalIndexAtInfty");
-DeclareGlobalFunction("LocalIndexAtTwo");
-DeclareGlobalFunction("LocalIndicesOfCyclicCyclotomicAlgebra");
+## Mar 2020 - Global Spltting Function Added
+DeclareGlobalFunction("GlobalSplittingOfCyclotomicAlgebra");
+##
 DeclareGlobalFunction("DefiningGroupAndCharacterOfCyclotAlg");
 DeclareGlobalFunction("DefiningGroupOfCyclotomicAlgebra");
 DeclareGlobalFunction("DefiningCharacterOfCyclotomicAlgebra");
 DeclareGlobalFunction("SimpleComponentOfGroupRingByCharacter");
+## Mar 2020 - Character Descent Functions Added
+DeclareGlobalFunction("CharacterDescent");
+DeclareGlobalFunction("GlobalCharacterDescent");
+DeclareGlobalFunction("GaloisRepsOfCharacters");
+DeclareGlobalFunction("SimpleComponentByCharacterDescent");
+DeclareGlobalFunction("WedderburnDecompositionByCharacterDescent");
+##
+DeclareGlobalFunction("LocalIndexAtOddP");
+DeclareGlobalFunction("LocalIndexAtInfty");
+DeclareGlobalFunction("LocalIndexAtTwo");
+DeclareGlobalFunction("LocalIndicesOfCyclicCyclotomicAlgebra");
 DeclareGlobalFunction("IsDyadicSchurGroup");
 DeclareGlobalFunction("LocalIndexAtInftyByCharacter");
 #############################
@@ -53,4 +69,5 @@ DeclareGlobalFunction("SchurIndexByCharacter");
 DeclareGlobalFunction("SimpleComponentByCharacterAsSCAlgebra");
 DeclareGlobalFunction("CyclotomicAlgebraAsSCAlgebra");
 DeclareGlobalFunction("WedderburnDecompositionAsSCAlgebras");
+
 
