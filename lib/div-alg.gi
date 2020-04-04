@@ -1,4 +1,3 @@
-# Checking that I know how to make commitments
 #####################################################
 # Given a simple algebra output by WedderburnDecompositionInfo
 # or SimpleAlgebraByCharacterInfo from wedderga, 
