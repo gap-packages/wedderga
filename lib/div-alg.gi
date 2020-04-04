@@ -336,7 +336,10 @@ if l=2 then
 fi;
 
 ########## DEALING WITH ARBITRARY NUMBER OF GENERATORS FOR THE GALOIS GROUP #####################
+<<<<<<< HEAD
 Print("\n Angel");
+=======
+>>>>>>> 29a6da187eca46ee64d9ae174df2fc3453836cda
 
 if l=5 then 
   k:=Length(A[4]);
