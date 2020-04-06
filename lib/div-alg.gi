@@ -171,7 +171,7 @@ fi;
 
 
    if Length(A)=5 and Length(A[4])=2 then
-#
+
 #     A1:=A;
 #     if not(A[5][1][1]=0) then
 #       m:=A[1];
@@ -340,8 +340,7 @@ if l=2 then
   return fail;
 fi;
 
-########## DEALING WITH ARBITRARY NUMBER OF GENERATORS FOR THE GALOIS GROUP #####################<<<<<<< HEAD
-#Print("\n Angel");=======>>>>>>> 29a6da187eca46ee64d9ae174df2fc3453836cda
+########## DEALING WITH ARBITRARY NUMBER OF GENERATORS FOR THE GALOIS GROUP #####################
 
 if l=5 then
   k:=Length(A[4]);
