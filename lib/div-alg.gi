@@ -1,4 +1,3 @@
-#Ángel
 #####################################################
 # Given a simple algebra output by WedderburnDecompositionInfo
 # or SimpleAlgebraByCharacterInfo from wedderga,
@@ -242,7 +241,8 @@ fi;
 
       if OrderMod(b1,Order(g1))= a1 then
         f:=Order(g1);
-        for m2 in [2..a1] do
+#        for m2 in [2..a1] do
+         for m2 in [1..f-1] do
           if g1^m2 = E(m1)^c1 then
             c1:=m2;
             break;
@@ -275,7 +275,8 @@ fi;
 
       if OrderMod(b2,Order(g1))= a2 then
         f:=Order(g1);
-        for m2 in [2..a2] do
+#        for m2 in [2..a2] do
+          for m2 in [1..f-1] do
           if g1^m2 = E(m1)^c2 then
             c2:=m2;
             break;
