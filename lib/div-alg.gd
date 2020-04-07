@@ -1,6 +1,6 @@
 #############################################################################
 ##
-#W  div-alg.gi            The Wedderga package                   Allen Herman
+#W  div-alg.gi         The Wedderga package        Allen Herman+Ángel del Río
 ##
 #############################################################################
 
