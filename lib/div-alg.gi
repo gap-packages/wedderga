@@ -43,7 +43,7 @@ end);
 # abelian number fields.
 #########################################
 InstallGlobalFunction( PSplitSubextension, function(F,n,p)
-local a,L,i,n1,n0,f,L1,b,F1;
+local a,y1,L,i,n1,n0,f,L1,b,F1;
 
 a:=PrimitiveElement(F);
 L:=[];
@@ -76,6 +76,10 @@ fi;
 od;
 
 F1:=NF(n,L1);
+######bugfix-not returning extension of F-04/04/2020#######
+y1:=PrimitiveElement(F1);
+F1:=Field([a,y1]);
+#########################################################
 
 return F1;
 end);
@@ -141,7 +145,7 @@ end);
 #    many zeroes or is globally trivial.
 ################################################
 InstallGlobalFunction( GlobalSplittingOfCyclotomicAlgebra, function(A)
-local A1,m,F,a1,m1,a,b,c,n,m2,g,g1,g2,g3,b1,c1,a2,b2,c2,F1,f,F2,t,d,d1,b11,i,j;
+local A1,m,F,a1,m1,a,b,c,n,m2,g,g1,g2,g3,b1,c1,a2,b2,c2,F1,f,F2,t,d,d1,b11,i,j,cont;
 
 A1:=A;
 if Length(A)=5 then
@@ -158,15 +162,23 @@ if Length(A)=5 then
 # WITH ARBITRARY NUMBER OF GENERATORS FOR THE GALOIS GROUP
 ###########################################################################
 
-if Length(A)=5 then
-  A1:=KillingCocycle(A);
-fi;
+  if Length(A)=5 then
+    A1:=KillingCocycle(A);
+  fi;
+
+
+  while A1<>fail do
+    A:=A1;
+    A1:=ReducingCyclotomicAlgebra(A);
+  od;
+
+
 
 
 ################## OLD CODE ###################
 
 
-   if Length(A)=5 and Length(A[4])=2 then
+#   if Length(A)=5 and Length(A[4])=2 then
 #
 #     A1:=A;
 #     if not(A[5][1][1]=0) then
@@ -213,109 +225,110 @@ fi;
 #
 #     fi;
 
-    A:=A1;
+#    A:=A1;
 
-    if A[4][2][3]=0 and A[5][1][1]=0 then
-      m:=A[1];
-      a1:=A[4][1][1];
-      b1:=A[4][1][2];
-      c1:=A[4][1][3];
-      a2:=A[4][2][1];
-      b2:=A[4][2][2];
-      c2:=A[4][2][3];
-      F:=A[2];
-      a:=PrimitiveElement(F);
-      m1:=A[3];
-      F2:=Field([a,E(m1)]);
+#    if A[4][2][3]=0 and A[5][1][1]=0 then
+#      m:=A[1];
+#      a1:=A[4][1][1];
+#      b1:=A[4][1][2];
+#      c1:=A[4][1][3];
+#      a2:=A[4][2][1];
+#      b2:=A[4][2][2];
+#      c2:=A[4][2][3];
+#      F:=A[2];
+#      a:=PrimitiveElement(F);
+#      m1:=A[3];
+#      F2:=Field([a,E(m1)]);
+#
+#      for m2 in [2..m1-1] do
+#        if GaloisCyc(E(m1)^m2,b2)=E(m1)^m2 then
+#          g1:=E(m1)^m2;
+#          break;
+#        fi;
+#      od;
 
-      for m2 in [2..m1-1] do
-        if GaloisCyc(E(m1)^m2,b2)=E(m1)^m2 then
-          g1:=E(m1)^m2;
-          break;
-        fi;
-      od;
+#      if OrderMod(b1,Order(g1))= a1 then
+#        f:=Order(g1);
+#        for m2 in [2..a1] do
+#          if g1^m2 = E(m1)^c1 then
+#            c1:=m2;
+#            break;
+#          fi;
+#        od;
+#        A1:=[m*a2, F, f, [a1,b1 mod f,c1]];
+#      fi;
 
-      if OrderMod(b1,Order(g1))= a1 then
-        f:=Order(g1);
-        for m2 in [2..a1] do
-          if g1^m2 = E(m1)^c1 then
-            c1:=m2;
-            break;
-          fi;
-        od;
-        A1:=[m*a2, F, f, [a1,b1 mod f,c1]];
-      fi;
+#    fi;
 
+#    if A[4][1][3]=0 and A[5][1][1]=0 then
+#      m:=A[1];
+#      a1:=A[4][1][1];
+#      b1:=A[4][1][2];
+#      c1:=A[4][1][3];
+#      a2:=A[4][2][1];
+#      b2:=A[4][2][2];
+#      c2:=A[4][2][3];
+#      F:=A[2];
+#      a:=PrimitiveElement(F);
+#      m1:=A[3];
+#      F2:=Field([a,E(m1)]);
+
+#      for m2 in [2..m1-1] do
+#        if GaloisCyc(E(m1)^m2,b1)=E(m1)^m2 then
+#          g1:=E(m1)^m2;
+#          break;
+#        fi;
+#      od;
+
+#      if OrderMod(b2,Order(g1))= a2 then
+#        f:=Order(g1);
+#        for m2 in [2..a2] do
+#          if g1^m2 = E(m1)^c2 then
+#            c2:=m2;
+#            break;
+#          fi;
+#        od;
+#        A1:=[m*a1, F, f, [a2,b2 mod f,c2]];
+#      fi;
+
+#    fi;
+
+#  fi;
+#fi;
+
+A1:=A;
+
+  if Length(A) = 4 then
+
+    F:=A[2];
+    a1:=PrimitiveElement(F);
+    m1:=A[3];
+    a:=A[4][1];
+    b:=A[4][2];
+    c:=A[4][3];
+
+    n:=Conductor(F);
+    if IsOddInt(n) then 
+      n:=2*n; 
     fi;
-
-    if A[4][1][3]=0 and A[5][1][1]=0 then
-      m:=A[1];
-      a1:=A[4][1][1];
-      b1:=A[4][1][2];
-      c1:=A[4][1][3];
-      a2:=A[4][2][1];
-      b2:=A[4][2][2];
-      c2:=A[4][2][3];
-      F:=A[2];
-      a:=PrimitiveElement(F);
-      m1:=A[3];
-      F2:=Field([a,E(m1)]);
-
-      for m2 in [2..m1-1] do
-        if GaloisCyc(E(m1)^m2,b1)=E(m1)^m2 then
-          g1:=E(m1)^m2;
-          break;
-        fi;
-      od;
-
-      if OrderMod(b2,Order(g1))= a2 then
-        f:=Order(g1);
-        for m2 in [2..a2] do
-          if g1^m2 = E(m1)^c2 then
-            c2:=m2;
-            break;
-          fi;
-        od;
-        A1:=[m*a1, F, f, [a2,b2 mod f,c2]];
+    for m2 in [1..n] do
+      if E(n)^m2 in F then
+         break;
       fi;
+    od;
+    g:=Order((E(n)^m2)^a);
 
+    g1:=E(m1);
+    for m2 in [1..(a-1)] do
+      g1:=E(m1)*g1^b;
+    od;
+    g1:=Order(g1);
+    g2:=Order(E(m1)^c);
+    g3:=Lcm(g,g1);
+    if (g3/g2 in Integers) then
+     A1:=[A[1]*a,F];
     fi;
-
   fi;
-fi;
-
-A:=A1;
-
-if Length(A) = 4 then
-
-F:=A[2];
-a1:=PrimitiveElement(F);
-m1:=A[3];
-a:=A[4][1];
-b:=A[4][2];
-c:=A[4][3];
-
-n:=Conductor(F);
-if IsOddInt(n) then n:=2*n; fi;
-for m2 in [1..n] do
-  if E(n)^m2 in F then
-     break;
-  fi;
-od;
-g:=Order((E(n)^m2)^a);
-
-g1:=E(m1);
-for m2 in [1..(a-1)] do
-g1:=E(m1)*g1^b;
-od;
-g1:=Order(g1);
-
-g2:=Order(E(m1)^c);
-g3:=Lcm(g,g1);
-if (g3/g2 in Integers) then
- A1:=[A[1]*a,F];
-fi;
-
 fi;
 
 return A1;
@@ -917,7 +930,7 @@ local n,S,s,i,L,l,q,L1;
 
 L:=[];
 if A[4][3]=0 then
-L1:=[];
+  L1:=[];
 else
 S:=AsSet(FactorsInt(A[3]));
 s:=Size(S);
@@ -1433,7 +1446,7 @@ end);
 
 #############################################
 InstallGlobalFunction( LocalIndicesOfCyclotomicAlgebra, function(A)
-local L,F,l,d,G,n,m0,m2,m,P,p,l1,i,L1;
+local L,F,l,d,G,n,m0,m2,m,P,p,l1,l2,i,L1;
 
 ##################
 # bugfix lines (20/03/2020)
@@ -1441,15 +1454,16 @@ local L,F,l,d,G,n,m0,m2,m,P,p,l1,i,L1;
 A:=GlobalSplittingOfCyclotomicAlgebra(A);
 l:=Length(A);
 if l>4 then
-  l:=[Length(A),Length(A[4])];
-  l1:=l-[1,1];
-  while (l1[1]<l[1] or l1[2]<l[2]) and l[1]>4 do
-    l:=[Length(A),Length(A[4])];
-#    Print("\n",l,"  ",A);
+  l2:=Length(A[4]);
+  l1:=l2-1;
+  l:=Length(A);
+  while l>4 and l1<l2 do
+    l2:=Length(A[4]);
     G:=DefiningGroupOfCyclotomicAlgebra(A);
     n:=DefiningCharacterOfCyclotomicAlgebra(A);
     A:=SimpleComponentByCharacterDescent(A[2],G,n);
-    l1:=[Length(A),Length(A[4])];
+    l:=Length(A);
+    if l>4 then l1:=Length(A[4]); fi;
   od;
 fi;
 ##################
@@ -2063,33 +2077,46 @@ InstallGlobalFunction( SchurIndex, function(A)
 
 m:="fail: Unrecognized Algebra";
 if IsAlgebra(A) then
- if IsQuaternionCollection(Basis(A)) then
- if LeftActingDomain(A)=Rationals then
- L:=LocalIndicesOfRationalQuaternionAlgebra(A);
- l:=Length(L);
- m:=1;
- if l>0 then m:=L[1][2]; fi;
- if l>1 then for i in [2..l] do m:=Lcm(m,L[i][2]); od; fi;
- fi;
- else
- m:="fail: Quaternion Algebra Over NonRational Field, use another method.";
- fi;
+  if IsQuaternionCollection(Basis(A)) then
+    if LeftActingDomain(A)=Rationals then
+      L:=LocalIndicesOfRationalQuaternionAlgebra(A);
+      l:=Length(L);
+      m:=1;
+      if l>0 then 
+        m:=L[1][2]; 
+      fi;
+      if l>1 then 
+        for i in [2..l] do 
+          m:=Lcm(m,L[i][2]); 
+        od; 
+      fi;
+    fi;
+  else
+    m:="fail: Quaternion Algebra Over NonRational Field, use another method.";
+  fi;
 fi;
 
-if IsRecord(A) then m:=A.SchurIndex; fi;
+if IsRecord(A) then 
+  m:=A.SchurIndex; 
+fi;
 
 if IsList(A) then
-l:=Length(A);
- if Length(A)=2 and IsField(A[2]) then m:=1; fi;
- if Length(A)=2 and IsRecord(A[2]) then m:=A[2].SchurIndex; fi;
- if Length(A)=3 and IsField(A[1]) and IsField(A[2]) then m:="fail: Cyclic Algebra, use another method.";
- fi;
- if Length(A)=4 then
- L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
- m:=GlobalSchurIndexFromLocalIndices(L);
- fi;
- if Length(A)=5 then
- L:=LocalIndicesOfCyclotomicAlgebra(A);
+  l:=Length(A);
+    if Length(A)=2 and IsField(A[2]) then 
+      m:=1; 
+    fi;
+    if Length(A)=2 and IsRecord(A[2]) then 
+      m:=A[2].SchurIndex; 
+    fi;
+  if Length(A)=3 and IsField(A[1]) and IsField(A[2]) then 
+    m:="fail: Cyclic Algebra, use another method.";
+  fi;
+  if Length(A)=4 then
+    L:=LocalIndicesOfCyclicCyclotomicAlgebra(A);
+    m:=GlobalSchurIndexFromLocalIndices(L);
+  fi;
+  if Length(A)=5 then
+    L:=LocalIndicesOfCyclotomicAlgebra(A);
  m:=GlobalSchurIndexFromLocalIndices(L);
  fi;
 fi;
@@ -2256,3 +2283,496 @@ od;
 return [n,F,m,hrs,c];
 
 end);
+
+################################################
+# IsCyclotomicExtension checks whether the input are two number fields 
+# and the first is a cyclotomic extension of the second
+################################################
+
+InstallGlobalFunction( IsCyclotomicExtension, function(K,F)
+#IsCyclotomicExtension := function(K,F)
+
+local c,pr,i;
+
+if not IsNumberField(K) or not IsNumberField(F) or not IsSubset(K,F) then 
+  return fail;
+fi;
+
+c:=Conductor(K);
+pr := PrimitiveElement(F);
+
+for i in [1..c] do
+  if Field([pr,E(i)])=K then 
+    return true;
+  fi;
+od;
+
+return false;
+
+end);
+
+################################################
+# ReducingCyclotomicAlgebra TRIES TO REDUCE THE NUMBER OF GENERATORS
+################################################
+
+InstallGlobalFunction( ReducingCyclotomicAlgebra, function(A)
+#ReducingCyclotomicAlgebra := function(A)
+
+local m,F,pF,K,con,k,e,i,x,y,F1,F2,c,g,h,n,act,coc1,coc2,l,pos,ex,a,j,A1,split,v,w,d1,cls,gcls,lc,A2,s1,s2;
+
+if Length(A) < 5 then
+  return A;
+fi;
+
+m:=A[3];
+F:=A[2];
+pF := PrimitiveElement(F);
+K := Field([pF,E(m)]);
+con := Lcm(2,Conductor(K));
+e := AntiSymMatUpMat(A[5]);
+k := Length(A[4]);
+
+
+for x in [1..k] do
+  F2:=NF(con,[A[4][x][2]]);
+  if ForAll([1..k],j->e[x][j]=0) and IsCyclotomicExtension(F2,F) then
+    y := Difference([1..k],[x]);
+    F1:=NF(con,List(y,j->A[4][j][2]));
+    c := Lcm(2,Conductor(F1));
+    g := E(c);
+    while not g in F1 do
+      g:=g*E(c);
+    od;
+    h := E(con)^A[4][x][3];
+    n := Order(g);
+    split := false;
+    a := 1;
+    for i in [0..n-1] do
+      split := h=Norm(F1,F,a);
+      if split then
+        break;
+      fi;
+      a:=a*g;
+    od;
+## If not we check whether it is a cyclotomic and compute the Schur index to check whether it is 1
+    if not split and IsCyclotomicExtension(F1,F) then
+      a := 1;
+      ex := 0;
+      for i in [0..n-1] do
+        if a = h then
+          break;
+        else
+          ex:=ex+1;
+          a:=a*g;
+        fi;
+      od;
+      A1 := [1,F,c,[A[4][x][1],A[4][x][2] mod c,ex]];
+      split := SchurIndex(A1)=1;  
+    fi;
+    if split then
+      c := Lcm(2,Conductor(F2));
+      g:=E(c);
+      act := [];
+      l := Length(y);
+      pos := 1;
+      if l>1 then 
+        coc1 := [];    
+      fi;
+      for i in y do
+        a:=1;
+        h:=E(con)^A[4][i][3];
+        for ex in [0..c] do
+          if a = h then
+            break;
+          fi;
+          a:=a*g;
+        od;
+        if ex=c then 
+          Print("\n The algebra is not a genuine cyclotomic algebra \n");
+          return fail;
+        fi;          
+        Add(act,[A[4][i][1],A[4][i][2] mod c,ex]); 
+        if pos < l then
+          coc2 := [];
+          for j in [pos+1..l] do
+            a:=1;
+            h:=E(con)^A[5][i][y[j]-i];
+            for ex in [0..c] do
+              if a = h then
+                break;
+              fi;
+              a:=a*g;
+            od;
+            if ex=c then 
+             Print("\n The algebra is not a genuine cyclotomic algebra \n");
+              return fail;
+            fi;          
+            Add(coc2,ex); 
+          od;
+          Add(coc1,coc2);
+        fi;
+        pos := pos+1;
+      od;
+      if l=1 then 
+        return [A[1]*A[4][x][1],F,c,act[1]];
+      else 
+        return [A[1]*A[4][x][1],F,c,act,coc1];
+      fi;
+    fi;
+  fi;
+od;
+
+v := [1..k];
+d1 := List(v,i->Filtered(v,j->i=j or e[i,j]<>0));
+cls := [];
+
+w:=v;
+
+while w <> [] do
+  i:=w[1];
+  x:=[];
+  y:=[i];
+  while x<>y do
+    x:=y;
+    y:=Union(x,Concatenation(List(x,j->d1[j])));
+    w:=Difference(w,y);
+  od;
+  Add(cls,x);
+od;
+
+lc := Length(cls);
+
+if lc = 1 then 
+  return fail;
+fi;
+
+### WE CALCULATE ALL THE UNIONS OF CLASSES WITH AT LEAST TWO GENERATORS AND AT MOST HALF OF THE NUMBER OF GENERATORS
+
+gcls := Filtered(SSortedList(Arrangements(cls),Union),x->Size(x)>1 and 2*Size(x) <= k);
+SortBy(gcls,Size);
+
+for x in gcls do
+  y := Difference(v,x);
+  F1:=NF(con,List(y,j->A[4][j][2]));
+  F2:=NF(con,List(x,j->A[4][j][2]));
+  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then    
+
+# Construction of the first factor
+    c := Lcm(2,Conductor(F1));
+    g:=E(c);
+    act := [];
+    l := Length(x);
+    pos := 1;
+    if l>1 then 
+      coc1 := [];
+    fi;
+    for i in x do
+      h:=E(con)^A[4][i][3];
+      a := 1;
+      ex := 0;
+      for j in [0..c-1] do
+        if a = h then
+          break;
+        else
+          ex:=ex+1;
+          a:=a*g;
+        fi;
+      od;
+      if ex=c then 
+        Print("\n The algebra is not a genuine cyclotomic algebra \n");
+        return fail;
+      fi;
+      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);                  
+      if pos < l then
+        coc2 := [];
+        for j in [pos+1..l] do
+          a:=1;
+          h:=E(con)^A[5][i][x[j]-i];
+          for ex in [0..c] do
+            if a = h then
+              break;
+            fi;
+            a:=a*g;
+          od;
+          if ex=c then 
+            Print("\n The algebra is not a genuine cyclotomic algebra \n");
+            return fail;
+          fi;          
+          Add(coc2,ex); 
+        od;
+        Add(coc1,coc2);
+      fi;
+      pos := pos+1;
+    od;
+    if l=1 then 
+      A1 := [A[1],F,c,act[1]];
+    else 
+      A1 := [A[1],F,c,act,coc1];
+    fi;
+
+# Construction of the second factor
+    c := Lcm(2,Conductor(F2));
+    g:=E(c);
+    act := [];
+    l := Length(y);
+    pos := 1;
+    if l>1 then 
+      coc1 := [];    
+    fi;
+    for i in y do
+      h:=E(con)^A[4][i][3];
+      a := 1;
+      ex := 0;
+      for j in [0..c-1] do
+        if a = h then
+          break;
+        else
+          ex:=ex+1;
+          a:=a*g;
+        fi;
+      od;
+      if ex=c then 
+        Print("\n The algebra is not a genuine cyclotomic algebra \n");
+        return fail;
+      fi;
+      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
+      
+      if pos < l then
+        coc2 := [];
+        for j in [pos+1..l] do
+          a:=1;
+          h:=E(con)^A[5][i][y[j]-i];
+          for ex in [0..c] do
+            if a = h then
+              break;
+            fi;
+            a:=a*g;
+          od;
+          if ex=c then 
+            Print("\n The algebra is not a genuine cyclotomic algebra \n");
+            return fail;
+          fi;          
+          Add(coc2,ex); 
+        od;
+        Add(coc1,coc2);
+      fi;
+      pos := pos+1;
+    od;
+    
+    if l=1 then 
+      A2 := [A[1],F,c,act[1]];
+    else 
+      A2 := [A[1],F,c,act,coc1];
+    fi;
+#    Print("\n", [A1,A2]);
+    s1 := SchurIndex(A1);
+    s2 := SchurIndex(A2);
+    if s1=1 then
+      if s2 =1 then
+        return [A[1],F];
+      else
+        A2[1] := A2[1]*Product(A1[4],x->x[1]);
+        return A2;
+      fi;
+    elif s2=1 then
+      A1[1] := A1[1]*Product(A2[4],x->x[1]); 
+      return A1;
+    fi;
+  fi;
+od;
+
+return fail;
+
+end);
+
+
+
+################################################
+# FactoringCycAlg TRIES TO WRITE A CYCLOTOMIC ALGEBRA AS
+# A TENSOR PRODUCT OF SMALLER ALGEBRAS
+################################################
+
+FactoringCycAlg := function(A)
+
+local m,F,pF,K,con,c,e,k,d1,i,v,w,cls,x,y,lc,gcls,F1,F2,g,act,coc1,coc2,l,pos,ex,a,j,A1,A2,h,s1,s2;
+
+
+
+if Length(A) < 5 then
+  return A;
+fi;
+
+m:=A[3];
+F:=A[2];
+pF := PrimitiveElement(F);
+K := Field([pF,E(m)]);
+con := Lcm(2,Conductor(K));
+
+### HERE THE GENERATORS OF THE GALOIS GROUP ARE CLASSIFIED INTO CLASSES SO THAT THE GENERATORS IN ONE CLASS COMMUTE
+### WITH THE GENERATORS OF THE OTHER CLASSES
+
+c:=A[5];
+e := AntiSymMatUpMat(c);
+k := Length(A[4]);
+v := [1..k];
+d1 := List(v,i->Filtered(v,j->i=j or e[i,j]<>0));
+cls := [];
+
+w:=v;
+
+while w <> [] do
+  i:=w[1];
+  x:=[];
+  y:=[i];
+  while x<>y do
+    x:=y;
+    y:=Union(x,Concatenation(List(x,j->d1[j])));
+    w:=Difference(w,y);
+  od;
+  Add(cls,x);
+od;
+
+lc := Length(cls);
+
+if lc = 1 then 
+  return fail;
+fi;
+
+### WE CALCULATE ALL THE NON-EMPTY UNIONS OF CLASSES WITH AT MOST HALF OF THE NUMBER OF GENERATORS
+
+gcls := Filtered(SSortedList(Arrangements(cls),Union),x->Size(x)>1 and 2*Size(x) <= k);
+SortBy(gcls,Size);
+
+for x in gcls do
+  y := Difference(v,x);
+  F1:=NF(con,List(y,j->A[4][j][2]));
+  F2:=NF(con,List(x,j->A[4][j][2]));
+  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then    
+
+# Construction of the first factor
+    c := Lcm(2,Conductor(F1));
+    g:=E(c);
+    act := [];
+    l := Length(x);
+    pos := 1;
+    if l>1 then 
+      coc1 := [];
+    fi;
+    for i in x do
+      h:=E(con)^A[4][i][3];
+      a := 1;
+      ex := 0;
+      for j in [0..c-1] do
+        if a = h then
+          break;
+        else
+          ex:=ex+1;
+          a:=a*g;
+        fi;
+      od;
+      if ex=c then 
+        Print("\n The algebra is not a genuine cyclotomic algebra \n");
+        return fail;
+      fi;
+      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);                  
+      if pos < l then
+        coc2 := [];
+        for j in [pos+1..l] do
+          a:=1;
+          h:=E(con)^A[5][i][x[j]-i];
+          for ex in [0..c] do
+            if a = h then
+              break;
+            fi;
+            a:=a*g;
+          od;
+          if ex=c then 
+            Print("\n The algebra is not a genuine cyclotomic algebra \n");
+            return fail;
+          fi;          
+          Add(coc2,ex); 
+        od;
+        Add(coc1,coc2);
+      fi;
+      pos := pos+1;
+    od;
+    if l=1 then 
+      A1 := [A[1],F,c,act[1]];
+    else 
+      A1 := [A[1],F,c,act,coc1];
+    fi;
+
+# Construction of the second factor
+    c := Lcm(2,Conductor(F2));
+    g:=E(c);
+    act := [];
+    l := Length(y);
+    pos := 1;
+    if l>1 then 
+      coc1 := [];    
+    fi;
+    for i in y do
+      h:=E(con)^A[4][i][3];
+      a := 1;
+      ex := 0;
+      for j in [0..c-1] do
+        if a = h then
+          break;
+        else
+          ex:=ex+1;
+          a:=a*g;
+        fi;
+      od;
+      if ex=c then 
+        Print("\n The algebra is not a genuine cyclotomic algebra \n");
+        return fail;
+      fi;
+      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
+      
+      if pos < l then
+        coc2 := [];
+        for j in [pos+1..l] do
+          a:=1;
+          h:=E(con)^A[5][i][y[j]-i];
+          for ex in [0..c] do
+            if a = h then
+              break;
+            fi;
+            a:=a*g;
+          od;
+          if ex=c then 
+            Print("\n The algebra is not a genuine cyclotomic algebra \n");
+            return fail;
+          fi;          
+          Add(coc2,ex); 
+        od;
+        Add(coc1,coc2);
+      fi;
+      pos := pos+1;
+    od;
+    
+    if l=1 then 
+      A2 := [A[1],F,c,act[1]];
+    else 
+      A2 := [A[1],F,c,act,coc1];
+    fi;
+#    Print("\n", [A1,A2]);
+    s1 := SchurIndex(A1);
+    s2 := SchurIndex(A2);
+    if s1=1 then
+      if s2 =1 then
+        return [A[1],F];
+      else
+        A2[1] := A2[1]*Product(A1[4],x->x[1]);
+        return A2;
+      fi;
+    elif s2=1 then
+      A1[1] := A1[1]*Product(A2[4],x->x[1]); 
+      return A1;
+    fi;
+  fi;
+od;
+
+return fail;
+
+end;
