@@ -662,11 +662,11 @@ R:=[r,F1,G,n];
 n1:=Irr(G)[n][1];
 if n1>1 then
 while t=0 do
-M:=MaximalSubgroups(R[3]);
+M:=ConjugacyClassesMaximalSubgroups(R[3]);
 m:=Size(M);
 i:=m;
 for i in [1..m] do
-  H:=M[m-i+1];
+  H:=Representative(M[m-i+1]);
   D:=CharacterDescent(F1,R[3],R[4],e,H);
   if Size(D[3])<Size(R[3]) then
     s:=n1/(Irr(D[3])[D[4]][1]);
@@ -682,19 +682,48 @@ fi;
 return R;
 end);
 ########################################
-InstallGlobalFunction( GaloisRepsOfCharacters, function(G)
-local U,T,n,i,F,m;
+InstallGlobalFunction( GaloisRepsOfCharacters, function(F1,G)
+local U,U1,V,y,y1,T,n,k,i,j,i1,t,F,m;
 
-U:=[];
+U:=[1];
+U1:=[];
+y:=PrimitiveElement(F1);
 T:=Irr(G);
 n:=Size(Irr(G));
 i:=1;
-while i in [1..n] do
- Add(U,i);
- F:=Field(T[i]);
- m:=Trace(F,Rationals,1);
- i:=i+m;
+for i in [2..n] do
+ V:=ValuesOfClassFunction(T[i]);
+ F:=Field(V);
+ y1:=PrimitiveElement(F);
+ if y1 in F1 then
+  Add(U,i);
+ else
+  Add(U1,i);
+ fi;
 od;
+if not(U1=[]) then
+Add(U,U1[1]);
+for i in [2..Length(U1)] do
+ F:=Field(Union(ValuesOfClassFunction(T[U1[i]]),[y]));
+ k:=Conductor(F);
+ t:=1;
+ for j in [2..k-1] do
+   if Gcd(j,k)=1 then
+   if (GaloisCyc(y,j)=y) then
+   for i1 in [1..i-1] do
+    if GaloisCyc(ValuesOfClassFunction(T[U1[i1]]),j)=ValuesOfClassFunction(T[U1[i]]) then
+    t:=0;
+    break;
+    fi;
+   od;
+   fi;
+   fi;
+ od;
+ if t=1 then Add(U,U1[i]); fi;
+od;
+fi;
+
+Sort(U);
 
 return U;
 end);
@@ -724,7 +753,7 @@ InstallGlobalFunction( WedderburnDecompositionByCharacterDescent, function(F,G)
 local R,S,y,n,U,F1,T;
 
 R:=[];
-S:=GaloisRepsOfCharacters(G);
+S:=GaloisRepsOfCharacters(F,G);
 y:=PrimitiveElement(F);
 for n in S do
   U:=Union(ValuesOfClassFunction(Irr(G)[n]),[y]);

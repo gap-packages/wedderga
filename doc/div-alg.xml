@@ -325,14 +325,20 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
 <ManSection>
    <Oper Name="GlobalSplittingOfCyclotomicAlgebra"
          Arg="A" />
+   <Oper Name="KillingCocycle"
+         Arg="A" />
+   <Oper Name="AntiSymMatUpMat"
+         Arg="x" />
 
    <Returns>
 	If the input cyclotomic crossed product algebra <C>A</C> admits a rescaling of
   basis elements by roots of unity that makes it equivalent to one with a trivial
-  factor set, this function returns a full matrix algebra over the same center of
-  the same dimension as <C>A</C>.  In general the function will output a cyclotomic
-  crossed product equivalent to <C>A</C> whose factor set does not admit a partial
-  splitting by a simple rescaling of basis elements by roots of unity.
+  factor set, the first function here returns a full matrix algebra over the same
+  center with the same dimension as <C>A</C>.  In general the function will output
+  a cyclotomic algebra equivalent to <C>A</C> whose factor set does not admit a
+  partial splitting by a simple rescaling of basis elements by roots of unity.
+  The last two functions are subroutines used by the Global Splitting function
+  to produce equivalent factor sets that have more zeroes.
    </Returns>
 
    <Description>
@@ -372,6 +378,143 @@ gap> GlobalSplittingOfCyclotomicAlgebra(W[18]);
 [ 2, Rationals, 10, [ 4, 3, 5 ] ]
 ]]>
 </Example>
+   </Description>
+</ManSection>
+
+<ManSection>
+  <Oper Name="CharacterDescent"
+      Arg="F,G,n,e,H" />
+   <Oper Name="GlobalCharacterDescent"
+         Arg="F,G,n" />
+   <Oper Name="SimpleComponentByCharacterDescent"
+         Arg="F,G,n"
+
+   <Returns>
+  The first function returns <C>[r,F1,H,k]</C> where <C>r</C> is a positive
+  rational, <C>F1</C> is an extension field of <C>F</C>, <C>H</C> is the input
+  subgroup <C>H</C>, and <C>k</C> is the position in <C>Irr(H)</C> of the
+  irreducible character that admits a Global Character Descent reduction; i.e.
+  an irreducible character of <C>H</C> that has the same local indices as
+  <C>Irr(G)[n]</C>.
+
+  The second function returns the limit of the Character Descent reductions,
+  it returns the last <Ref Attr="CharacterDescent"> output obtained before
+  reaching a state where no maximal subgroup of <C>G</C> admits a further
+  reduction by <Ref Attr="CharacterDescent">.
+
+  The third function returns the simple component of <C>FG</C> resulting from
+  <Ref Attr="GlobalCharacterDescent"> that is produced by applying
+  <Ref Attr="SimpleComponentOfGroupRingByCharacter"> and adjusting the matrix
+  degree.
+  </Returns>
+
+   <Description>
+        The <Ref Attr="CharacterDescent"> function tries to find an irreducible
+        character <C>psi</C>=<C>Irr(H)[k]</C> of <C>H</C> for which
+        <C>[F(chi,psi),F(chi)]</C> and <C>(chi_H,psi)</C> are both coprime to
+        <C>|G|</C>.  This character <C>psi</C> will have the same local indices
+        over <C>F</C> as <C>chi</C> by a theorem of Yamada.
+        The <Ref Attr="GlobalCharacterDescent"> function iterates a search for
+        these global character descent reductions over irreducible characters of
+        maximal subgroups of <C>G</C>, and when it finds one it replaces <G>G</C>,
+        <C>F(chi)</C>, and <C>chi</C> by <C>H</C>, <C>F(chi,psi)</C>, and <C>psi</C>,
+        and then begins a search over maximal subgroups of <C>H</C>.  It terminates
+        when no maximal subgroup admits a global reduction, and returns the
+        relevant matrix degree factor along with the last <C>H</C> and <C>psi</C>
+        it found.  <Ref Attr="SimpleComponentByCharacterDescent"> implements an
+        algorithm that returns the simple component of <C>FG</C> associated with
+        <C>Irr(G)[n]</C> obtained using the global character descent algorithm.
+      <P/>
+
+     <Example>
+        <![CDATA[
+        gap> G:=PSU(3,3);
+        <permutation group of size 6048 with 2 generators>
+        gap> SimpleComponentByCharacterDescent(Rationals,G,8);
+        [ 21/2, GaussianRationals, 12, [ 2, 5, 9 ] ]
+        gap> SchurIndex(last);
+        1
+        ]]>
+      </Example>
+   </Description>
+</ManSection>
+
+<ManSection>
+  <Oper Name="GaloisRepsOfCharacters"
+      Arg="F,G" />
+
+   <Returns>
+  A list of positive integers <C>n</C> that indicates the positions in <C>Irr(G)</C>
+  of the Galois conjugacy classes of irreducible characters of <C>G</C> over the
+  field <C>F</C>.
+  </Returns>
+
+   <Description>
+        <Ref Attr="GaloisRepsOfCharacters"> finds a list of representatives of
+        the distinct Galois conjugacy classes of irreducible characters of <C>G</C>
+        over <C>F</C>.  It runs through the irreducible characters and determines
+        if a given irreducible is Galois conjugate over <C>F</C> to any of the
+        previous ones, and if not it adds the position of that character to the
+        list.
+      <P/>
+        <Example>
+           <![CDATA[
+           gap> G:=SmallGroup(63,1);
+           <pc group of size 63 with 3 generators>
+           gap> GaloisRepsOfCharacters(Rationals,G);
+           [ 1, 2, 4, 10, 12 ]
+           gap> GaloisRepsOfCharacters(CF(9),G);
+           [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13 ]
+           gap> GaloisRepsOfCharacters(NF(7,[1,2,4]),G);
+           [ 1, 2, 4, 10, 11, 12, 14 ]
+           gap> GaloisRepsOfCharacters(CF(63),G);
+           [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+           ]]>
+         </Example>
+
+   </Description>
+</ManSection>
+
+
+<ManSection>
+  <Oper Name="WedderburnDecompositionByCharacterDescent"
+      Arg="F,G" />
+
+   <Returns>
+     A Wedderburn decomposition of <C>FG</C> that is obtained by applying the
+    global character descent algorithm to representatives of the Galois
+    conjugacy classes of irreducible characters of <C>G</C> over <C>F</C>.
+  </Returns>
+
+   <Description>
+        <Ref Attr="WedderburnDecompositionByCharacterDescent"> is available as
+        an option to <Ref Attr="WedderburnDecompositionInfo"> that can be more
+        effective for larger groups, especially ones with relatively few
+        irreducible characters.  As long as <C>GAP</C> is able to compute
+        maximal subgroups and restrict irreducible characters of <C>G</C> to
+        them, this function should eventually return a Wedderburn decomposition.
+        As it operates on one irreducible character at a time, it is less
+        effective on Abelian groups, which have far too many irreducible characters,
+        and on most groups in GAP's Small Groups Library, where memory limitations
+        are not a factor and it is possible for the Shoda pair algorithms can
+        deal with many irreducible characters at the same time.
+      <P/>
+        <Example>
+           <![CDATA[
+           gap> G:=GL(3,3);
+           GL(3,3)
+           gap> Size(G);
+           11232
+           gap> WedderburnDecompositionByCharacterDescent(Rationals,G);
+           [ [ 1, Rationals ], [ 1, Rationals ], [ 12, Rationals ], [ 12, Rationals ],
+           [ 13, Rationals ], [ 13, Rationals ], [ 16, NF(13,[ 1, 3, 9 ]) ],
+           [ 16, NF(13,[ 1, 3, 9 ]) ], [ 26, Rationals ], [ 26, Rationals ],
+           [ 26, NF(8,[ 1, 3 ]) ], [ 26, NF(8,[ 1, 3 ]) ], [ 27, Rationals ],
+           [ 27, Rationals ], [ 39, Rationals ], [ 39, Rationals ] ]
+
+           ]]>
+         </Example>
+
    </Description>
 </ManSection>
 
