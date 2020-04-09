@@ -6,44 +6,44 @@
 <Section Label="MainSchurIndexFunctions">
 <Heading>Main Schur Index and Division Algebra Functions</Heading>
 
-<ManSection>  
-   <Prop Name="WedderburnDecompositionWithDivAlgParts" 
+<ManSection>
+   <Prop Name="WedderburnDecompositionWithDivAlgParts"
          Arg="A"/>
    <Returns>
-         A list of lists <C>[r,D]</C>, each representing a ring of 
-         <M> r \times r </M> matrices over a field or division algebra <K>D</K>. 
+         A list of lists <C>[r,D]</C>, each representing a ring of
+         <M> r \times r </M> matrices over a field or division algebra <K>D</K>.
    </Returns>
-   
+
    <Description>
-         The input <A>A</A> should be a group ring of a finite group over an abelian number 
-         field.  The function will give the same result as <Ref Attr="WedderburnDecompositionInfo" /> 
-         if the field of coefficients for the group ring is finite.  The output is a list of 
-         pairs <C>[r,D]</C>, each of which indicates a simple component isomorphic to the 
-         ring of <M> r \times r</M> matrices over a division algebra described using the 
-         information in the record <C>D</C>.  This record contains information on the center, 
+         The input <A>A</A> should be a group ring of a finite group over an abelian number
+         field.  The function will give the same result as <Ref Attr="WedderburnDecompositionInfo" />
+         if the field of coefficients for the group ring is finite.  The output is a list of
+         pairs <C>[r,D]</C>, each of which indicates a simple component isomorphic to the
+         ring of <M> r \times r</M> matrices over a division algebra described using the
+         information in the record <C>D</C>.  This record contains information on the center,
          Schur index, and local indices of the division algebra. <P/>
 
-<C>Local indices</C> is a list of pairs <M>[p,m]</M>, where <M>p</M> is a rational prime 
-(possibly 'infinity') and <M>m</M> is the local index of  the division algebra at the prime <M>p</M>.   
-                  
+<C>Local indices</C> is a list of pairs <M>[p,m]</M>, where <M>p</M> is a rational prime
+(possibly 'infinity') and <M>m</M> is the local index of  the division algebra at the prime <M>p</M>.
+
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
-gap> R:=GroupRing(Rationals,G);       
+gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 5 generators>
 gap> WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
-  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
+  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ],
+  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ],
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
  ]
 gap> WedderburnDecompositionWithDivAlgParts(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
   [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],
-  [ 2, CF(3) ], 
-  [ 2, 
-      rec( Center := Rationals, DivAlg := true, 
+  [ 2, CF(3) ],
+  [ 2,
+      rec( Center := Rationals, DivAlg := true,
           LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ]
 ]]>
 </Example>
@@ -51,23 +51,23 @@ gap> WedderburnDecompositionWithDivAlgParts(R);
    </Description>
 </ManSection>
 
-<ManSection>  
-   <Prop Name="CyclotomicAlgebraWithDivAlgPart" 
+<ManSection>
+   <Prop Name="CyclotomicAlgebraWithDivAlgPart"
          Arg="A"  />
    <Returns>
-         A list of length two indicating a matrix ring of a given size over a field or 
-         a noncommutative division algebra. 
+         A list of length two indicating a matrix ring of a given size over a field or
+         a noncommutative division algebra.
    </Returns>
-   
+
    <Description>
-         The input <A>A</A> should be a cyclotomic algebra; i.e. a crossed 
-         product in the same form as in the output of  
-         <Ref Attr="WedderburnDecompositionInfo" />.  The output is in 
-         the form <C>[r,D]</C>, which indicates an <M> r \times r </M> matrix ring over 
-         the division algebra described by <C>D</C>.  <C>D</C> is either a field or a 
-         noncommutative division algebra described using a record giving information 
+         The input <A>A</A> should be a cyclotomic algebra; i.e. a crossed
+         product in the same form as in the output of
+         <Ref Attr="WedderburnDecompositionInfo" />.  The output is in
+         the form <C>[r,D]</C>, which indicates an <M> r \times r </M> matrix ring over
+         the division algebra described by <C>D</C>.  <C>D</C> is either a field or a
+         noncommutative division algebra described using a record giving information
          on the center, Schur index, and local indices of the division algebra.
-         
+
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(240,89);
@@ -75,21 +75,21 @@ gap> G:=SmallGroup(240,89);
 gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 2 generators>
 gap> W:=WedderburnDecompositionInfo(R);
-Wedderga: Warning!!! 
+Wedderga: Warning!!!
 Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 10, [ 4, 3, 5 ] ], 
-  [ 4, Rationals ], [ 4, Rationals ], [ 5, Rationals ], [ 5, Rationals ], 
-  [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ], 
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 10, [ 4, 3, 5 ] ],
+  [ 4, Rationals ], [ 4, Rationals ], [ 5, Rationals ], [ 5, Rationals ],
+  [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ],
   [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
 gap> CyclotomicAlgebraWithDivAlgPart(W[3]);
-[ 2, rec( Center := Rationals, DivAlg := true, 
+[ 2, rec( Center := Rationals, DivAlg := true,
       LocalIndices := [ [ 5, 2 ], [ infinity, 2 ] ], SchurIndex := 2 ) ]
 gap> CyclotomicAlgebraWithDivAlgPart(W[9]);
-[ 2, rec( Center := NF(12,[ 1, 11 ]), DivAlg := true, 
+[ 2, rec( Center := NF(12,[ 1, 11 ]), DivAlg := true,
       LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ]
 gap> CyclotomicAlgebraWithDivAlgPart(W[10]);
-[ 3, rec( Center := NF(8,[ 1, 7 ]), DivAlg := true, 
+[ 3, rec( Center := NF(8,[ 1, 7 ]), DivAlg := true,
       LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ]
 ]]>
 </Example>
@@ -99,58 +99,58 @@ gap> CyclotomicAlgebraWithDivAlgPart(W[10]);
 
 
 <ManSection>
-   <Prop Name="SchurIndex" 
+   <Prop Name="SchurIndex"
          Arg="A"  />
    <Oper Name="SchurIndexByCharacter"
-         Arg="F G n " /> 
+         Arg="F G n " />
 
    <Returns>
-         The first of these returns the Schur index of the simple algebra <A>A</A>.  The 
-         second returns the Schur index of the simple component of the group ring <A>FG</A> 
-         corresponding to the irreducible character <C>Irr(G)[n]</C> of <A>G</A>.  
-   </Returns> 
+         The first of these returns the Schur index of the simple algebra <A>A</A>.  The
+         second returns the Schur index of the simple component of the group ring <A>FG</A>
+         corresponding to the irreducible character <C>Irr(G)[n]</C> of <A>G</A>.
+   </Returns>
 
-   <Description> 
-These are the main functions for computing Schur indices.  The first can be used to find 
-the rational Schur index of a simple component of the group ring of a finite group over 
-an abelian number field, or a quaternion algebra in &GAP; (see 
-<Ref Func="QuaternionAlgebra" BookName="ref" />) whose center is the field of rational 
-numbers. If <A>A</A> is a quaternion algebra over a number field other than the Rationals, 
-<C>fail</C> is returned.  In these cases, the quaternion algebra can be converted to a 
-cyclic algebra and the Schur index of the cyclic algebra can be determined through the 
-solution of norm equations.  Currently this functionality is not implemented in &GAP;, 
+   <Description>
+These are the main functions for computing Schur indices.  The first can be used to find
+the rational Schur index of a simple component of the group ring of a finite group over
+an abelian number field, or a quaternion algebra in &GAP; (see
+<Ref Func="QuaternionAlgebra" BookName="ref" />) whose center is the field of rational
+numbers. If <A>A</A> is a quaternion algebra over a number field other than the Rationals,
+<C>fail</C> is returned.  In these cases, the quaternion algebra can be converted to a
+cyclic algebra and the Schur index of the cyclic algebra can be determined through the
+solution of norm equations.  Currently this functionality is not implemented in &GAP;,
 but available in number theory packages such as <Package>PARI/GP</Package>.
    <P/>
-   
-The second function computes the Schur index of the cyclotomic algebra 
-that would occur as the simple component of the group ring <A>FG</A> 
-that corresponds to the irreducible character <C>Irr(G)[n]</C>.  
-The function uses <Ref Attr="SimpleComponentOfGroupRingByCharacter" />, 
-which identifies the simple component of <C>GroupRing(F,G)</C> in 
-the output of <Ref Attr="WedderburnDecompositionInfo"/> that 
-corresponds to <C>Irr(G)[n]</C> by a simple dimension count.  
-Because of this, it is important that users use the same presentation 
-of <A>G</A> to identify <C>Irr(G)[n]</C>, the <A>n</A>-th character in the 
-list <C>Irr(G)</C>. 
+
+The second function computes the Schur index of the cyclotomic algebra
+that would occur as the simple component of the group ring <A>FG</A>
+that corresponds to the irreducible character <C>Irr(G)[n]</C>.
+The function uses <Ref Attr="SimpleComponentOfGroupRingByCharacter" />,
+which identifies the simple component of <C>GroupRing(F,G)</C> in
+the output of <Ref Attr="WedderburnDecompositionInfo"/> that
+corresponds to <C>Irr(G)[n]</C> by a simple dimension count.
+Because of this, it is important that users use the same presentation
+of <A>G</A> to identify <C>Irr(G)[n]</C>, the <A>n</A>-th character in the
+list <C>Irr(G)</C>.
 
 <Example>
 <![CDATA[
-gap> G:=SmallGroup(63,1);  
+gap> G:=SmallGroup(63,1);
 <pc group of size 63 with 3 generators>
 gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 3 generators>
 gap> W:=WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], 
-  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ], 
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ],
+  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ],
   [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
 gap> SchurIndex(W[5]);
 3
-gap> G:=SmallGroup(40,3);              
+gap> G:=SmallGroup(40,3);
 <pc group of size 40 with 4 generators>
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> SchurIndexByCharacter(GaussianRationals,G,Irr(G)[i]);
 2
-gap> SchurIndexByCharacter(CF(3),G,i);         
+gap> SchurIndexByCharacter(CF(3),G,i);
 1
 ]]>
 </Example>
@@ -161,50 +161,50 @@ gap> SchurIndexByCharacter(CF(3),G,i);
 
 
 <ManSection>
-   <Oper Name="WedderburnDecompositionAsSCAlgebras" 
+   <Oper Name="WedderburnDecompositionAsSCAlgebras"
          Arg="R"  />
    <Oper Name="CyclotomicAlgebraAsSCAlgebra"
-         Arg="A" /> 
+         Arg="A" />
    <Oper Name="SimpleComponentByCharacterAsSCAlgebra"
-         Arg="F G n " /> 
+         Arg="F G n " />
 
    <Returns>
-         The first of these returns the Wedderburn decomposition of the group ring <C>R</C> 
-         with each simple component presented as an algebra with structure constants in &GAP; 
-         (see <Ref Sect="Constructing Algebras by Structure Constants" BookName="ref"/> in 
-         the main &GAP; manual).  The second converts a list <C>A</C> that is output from 
-         <Ref Attr="WedderburnDecompositionInfo"/> into an algebra with structure constants 
-         in &GAP;.  The third determines an algebra with structure constants that is 
-         isomorphic to the simple component of the group ring of the finite group <C>G</C> 
-         over the field <C>F</C> that corresponds to the irreducible character <C>Irr(G)[n]</C>.   
-   </Returns> 
+         The first of these returns the Wedderburn decomposition of the group ring <C>R</C>
+         with each simple component presented as an algebra with structure constants in &GAP;
+         (see <Ref Sect="Constructing Algebras by Structure Constants" BookName="ref"/> in
+         the main &GAP; manual).  The second converts a list <C>A</C> that is output from
+         <Ref Attr="WedderburnDecompositionInfo"/> into an algebra with structure constants
+         in &GAP;.  The third determines an algebra with structure constants that is
+         isomorphic to the simple component of the group ring of the finite group <C>G</C>
+         over the field <C>F</C> that corresponds to the irreducible character <C>Irr(G)[n]</C>.
+   </Returns>
 
-   <Description> 
-These functions are an option for obtaining a Wedderburn decomposition or simple component 
-of the group ring <C>FG</C> in which the output is in the form of an algebra with structure 
-constants, which is more compatible with GAP's built-in operations for finite-dimensional algebras. 
+   <Description>
+These functions are an option for obtaining a Wedderburn decomposition or simple component
+of the group ring <C>FG</C> in which the output is in the form of an algebra with structure
+constants, which is more compatible with GAP's built-in operations for finite-dimensional algebras.
 
 <Example>
 <![CDATA[
-gap> G:=SmallGroup(63,1);                                  
+gap> G:=SmallGroup(63,1);
 <pc group of size 63 with 3 generators>
 gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 3 generators>
 gap> W:=WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], 
-  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ], 
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ],
+  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ],
   [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
 gap> WedderburnDecompositionWithDivAlgParts(R);
-[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ], 
-  [ 1, 
-      rec( Center := NF(21,[ 1, 4, 16 ]), DivAlg := true, 
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ],
+  [ 1,
+      rec( Center := NF(21,[ 1, 4, 16 ]), DivAlg := true,
           LocalIndices := [ [ 7, 3 ] ], SchurIndex := 3 ) ] ]
 gap> WedderburnDecompositionAsSCAlgebras(R);
-[ Rationals, CF(3), CF(9), <algebra of dimension 9 over NF(7,[ 1, 2, 4 ])>, 
+[ Rationals, CF(3), CF(9), <algebra of dimension 9 over NF(7,[ 1, 2, 4 ])>,
   <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])> ]
 gap> CyclotomicAlgebraAsSCAlgebra(W[5]);
 <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
-gap> Size(Irr(G));                                         
+gap> Size(Irr(G));
 15
 gap> SimpleComponentByCharacterAsSCAlgebra(Rationals,G,15);
 <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
@@ -225,14 +225,14 @@ gap> SimpleComponentByCharacterAsSCAlgebra(Rationals,G,15);
 <Heading>Cyclotomic Reciprocity Functions </Heading>
 
 <ManSection>
-<Oper Name="PPartOfN" 
+<Oper Name="PPartOfN"
          Arg="n p" />
-<Oper Name="PDashPartOfN" 
+<Oper Name="PDashPartOfN"
          Arg="n p" />
    <Description>
- 	These are standard arithmetic functions required by several 
- 	subroutines for the cyclotomic reciprocity and Schur index 
- 	functions in <Package>Wedderga</Package>.  
+ 	These are standard arithmetic functions required by several
+ 	subroutines for the cyclotomic reciprocity and Schur index
+ 	functions in <Package>Wedderga</Package>.
 
 <Example>
 <![CDATA[
@@ -242,32 +242,35 @@ gap> PDashPartOfN(2275,5);
 91
 ]]>
 </Example>
-  
-   </Description> 
+
+   </Description>
 </ManSection>
 
 <ManSection>
 <Oper Name="PSplitSubextension"
          Arg="F,n,p"   />
-   <Returns> The maximal subextension <C>K</C> of the cyclotomic extension <C>F(E(n))/F</C> 
+   <Returns> The maximal subextension <C>K</C> of the cyclotomic extension <C>F(E(n))/F</C>
    for which <M>K/F</M> splits completely at the prime <M>p</M>.
-   </Returns> 
-   <Description> This function finds the maximal subextension <C>K</C> 
-   of the cyclotomic extension <C>F(E(n))</C> of an abelian number field <C>F</C> for 
-   which both the ramification index and residue degree of <C>K/F</C> over any prime 
-   lying over <A>p</A> are <M>1</M>.  To do this, it finds the field fixed by an 
-   appropriate power of the field automorphism inducing the local Frobenius automorphism. 
+   </Returns>
+   <Description> This function finds the maximal subextension <C>K</C>
+   of the cyclotomic extension <C>F(E(n))</C> of an abelian number field <C>F</C> for
+   which both the ramification index and residue degree of <C>K/F</C> over any prime
+   lying over <A>p</A> are <M>1</M>.  To do this, it finds the field fixed by an
+   appropriate power of the field automorphism inducing the local Frobenius automorphism.
 
 <Example>
 <![CDATA[
-gap> PSplitSubextension(Rationals,60,5);  
+gap> PSplitSubextension(Rationals,60,5);
 GaussianRationals
 gap> PSplitSubextension(NF(5,[1,4]),70,2);
 NF(35,[ 1, 4, 9, 11, 16, 29 ])
+gap> PSplitSubextension(NF(40,[1,9,11,19]),20,2);
+NF(40,[ 1, 9, 11, 19])
 ]]>
+
 </Example>
 
-  </Description> 
+  </Description>
 </ManSection>
 
 <ManSection>
@@ -277,23 +280,23 @@ NF(35,[ 1, 4, 9, 11, 16, 29 ])
          Arg="F,n,p"  />
 <Oper Name="RamificationIndexAtP"
          Arg="F,n,p" />
-   <Returns> The splitting degree, residue degree, and ramification index  of the extension 
-   <C>F(E(n))/F</C> at the prime <M>p</M>. 
+   <Returns> The splitting degree, residue degree, and ramification index  of the extension
+   <C>F(E(n))/F</C> at the prime <M>p</M>.
    </Returns>
-   <Description> These functions calculate the cyclotomic reciprocity parameters 
-   <C>g</C>, <C>f</C>, and <C>e</C> for the extension <C>F(E(n))/F</C> at the prime 
-   <M>p</M> for an abelian number field <C>F</C>.  To do this, it finds the <C>p</C>-split 
-   subextension <C>K</C> and the <M>p</M>-dash part <M>n'</M> of <M>n</M>, then calculates 
-   <C>g = [K:F]</C>, <C>f = [K(E(n'):K]</C>, and <C>e = [K(E(n)):K(E(n'))]</C>.  These 
-   functions enable the user to calculate cyclotomic reciprocity parameters for any extension 
-   of abelian number fields, as the example illustrates. 
+   <Description> These functions calculate the cyclotomic reciprocity parameters
+   <C>g</C>, <C>f</C>, and <C>e</C> for the extension <C>F(E(n))/F</C> at the prime
+   <M>p</M> for an abelian number field <C>F</C>.  To do this, it finds the <C>p</C>-split
+   subextension <C>K</C> and the <M>p</M>-dash part <M>n'</M> of <M>n</M>, then calculates
+   <C>g = [K:F]</C>, <C>f = [K(E(n'):K]</C>, and <C>e = [K(E(n)):K(E(n'))]</C>.  These
+   functions enable the user to calculate cyclotomic reciprocity parameters for any extension
+   of abelian number fields, as the example illustrates.
 
 <Example>
 <![CDATA[
 gap> F:=CF(12);
 CF(12)
 gap> K:=NF(120,[1,49]) # Note that F is a subfield of K, with index 4.
-> ; # Then we can find e, f, and g for the extension K/F at the prime 5. 
+> ; # Then we can find e, f, and g for the extension K/F at the prime 5.
 NF(120,[ 1, 49 ])
 gap> RamificationIndexAtP(F,120,5); RamificationIndexAtP(K,120,5); last2/last;
 4
@@ -309,11 +312,214 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
 2
 ]]>
 </Example>
-</Description> 
+</Description>
 </ManSection>
 
 </Section>
 
+<!-- *******Global Splitting and Character Descent Functions -->
+
+<Section Label="GlobalSplittingAndCharacterDescentFunctions">
+<Heading>Global Splitting and Character Descent Functions </Heading>
+
+<ManSection>
+   <Oper Name="GlobalSplittingOfCyclotomicAlgebra"
+         Arg="A" />
+   <Oper Name="KillingCocycle"
+         Arg="A" />
+   <Oper Name="AntiSymMatUpMat"
+         Arg="x" />
+
+   <Returns>
+	If the input cyclotomic crossed product algebra <C>A</C> admits a rescaling of
+  basis elements by roots of unity that makes it equivalent to one with a trivial
+  factor set, the first function here returns a full matrix algebra over the same
+  center with the same dimension as <C>A</C>.  In general the function will output
+  a cyclotomic algebra equivalent to <C>A</C> whose factor set does not admit a
+  partial splitting by a simple rescaling of basis elements by roots of unity.
+  The last two functions are subroutines used by the Global Splitting function
+  to produce equivalent factor sets that have more zeroes.
+   </Returns>
+
+   <Description>
+        The input <C>A</C> must be a list representing a cyclotomic algebra in the
+        same form as in the output of <Ref Attr="WedderburnDecompositionInfo"/> or
+        <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  If the output has length 5,
+        the function will first search using <Ref Attr="KillingCocycle"> and
+        <Ref Attr="AntiSymMatUpMat"> for a rescaling of basis elements that
+        makes the factor set trivial, and in general finds one that produces as
+        many zeroes as possible in the factor set information.  If there is a
+        generator that produces a split tensor factor with a cyclotomic algebra
+        <C>B</C> defined over a root of unity of smaller order, then it
+        reduces to <C>B</C> and the algorithm is repeated until no such tensor
+        factorizations are available.
+      <P/>
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(160,207);
+<pc group of size 160 with 6 generators>
+gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
+gap> W[20];
+[ 1, Rationals, 20, [ [ 2, 11, 0 ], [ 4, 3, 0 ] ], [ [ 0 ] ] ]
+gap> GlobalSplittingOfCyclotomicAlgebra(W[20]);
+[ 8, Rationals ]
+]]>
+</Example>
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(160,206);
+<pc group of size 160 with 6 generators>
+gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
+gap> W[18];
+[ 1, Rationals, 20, [ [ 2, 11, 0 ], [ 4, 3, 10 ] ], [ [ 0 ] ] ]
+gap> GlobalSplittingOfCyclotomicAlgebra(W[18]);
+[ 2, Rationals, 10, [ 4, 3, 5 ] ]
+]]>
+</Example>
+   </Description>
+</ManSection>
+
+<ManSection>
+  <Oper Name="CharacterDescent"
+      Arg="F,G,n,e,H" />
+   <Oper Name="GlobalCharacterDescent"
+         Arg="F,G,n" />
+   <Oper Name="SimpleComponentByCharacterDescent"
+         Arg="F,G,n"
+
+   <Returns>
+  The first function returns <C>[r,F1,H,k]</C> where <C>r</C> is a positive
+  rational, <C>F1</C> is an extension field of <C>F</C>, <C>H</C> is the input
+  subgroup <C>H</C>, and <C>k</C> is the position in <C>Irr(H)</C> of the
+  irreducible character that admits a Global Character Descent reduction; i.e.
+  an irreducible character of <C>H</C> that has the same local indices as
+  <C>Irr(G)[n]</C>.
+
+  The second function returns the limit of the Character Descent reductions,
+  it returns the last <Ref Attr="CharacterDescent"> output obtained before
+  reaching a state where no maximal subgroup of <C>G</C> admits a further
+  reduction by <Ref Attr="CharacterDescent">.
+
+  The third function returns the simple component of <C>FG</C> resulting from
+  <Ref Attr="GlobalCharacterDescent"> that is produced by applying
+  <Ref Attr="SimpleComponentOfGroupRingByCharacter"> and adjusting the matrix
+  degree.
+  </Returns>
+
+   <Description>
+        The <Ref Attr="CharacterDescent"> function tries to find an irreducible
+        character <C>psi</C>=<C>Irr(H)[k]</C> of <C>H</C> for which
+        <C>[F(chi,psi),F(chi)]</C> and <C>(chi_H,psi)</C> are both coprime to
+        <C>|G|</C>.  This character <C>psi</C> will have the same local indices
+        over <C>F</C> as <C>chi</C> by a theorem of Yamada.
+        The <Ref Attr="GlobalCharacterDescent"> function iterates a search for
+        these global character descent reductions over irreducible characters of
+        maximal subgroups of <C>G</C>, and when it finds one it replaces <G>G</C>,
+        <C>F(chi)</C>, and <C>chi</C> by <C>H</C>, <C>F(chi,psi)</C>, and <C>psi</C>,
+        and then begins a search over maximal subgroups of <C>H</C>.  It terminates
+        when no maximal subgroup admits a global reduction, and returns the
+        relevant matrix degree factor along with the last <C>H</C> and <C>psi</C>
+        it found.  <Ref Attr="SimpleComponentByCharacterDescent"> implements an
+        algorithm that returns the simple component of <C>FG</C> associated with
+        <C>Irr(G)[n]</C> obtained using the global character descent algorithm.
+      <P/>
+
+     <Example>
+        <![CDATA[
+        gap> G:=PSU(3,3);
+        <permutation group of size 6048 with 2 generators>
+        gap> SimpleComponentByCharacterDescent(Rationals,G,8);
+        [ 21/2, GaussianRationals, 12, [ 2, 5, 9 ] ]
+        gap> SchurIndex(last);
+        1
+        ]]>
+      </Example>
+   </Description>
+</ManSection>
+
+<ManSection>
+  <Oper Name="GaloisRepsOfCharacters"
+      Arg="F,G" />
+
+   <Returns>
+  A list of positive integers <C>n</C> that indicates the positions in <C>Irr(G)</C>
+  of the Galois conjugacy classes of irreducible characters of <C>G</C> over the
+  field <C>F</C>.
+  </Returns>
+
+   <Description>
+        <Ref Attr="GaloisRepsOfCharacters"> finds a list of representatives of
+        the distinct Galois conjugacy classes of irreducible characters of <C>G</C>
+        over <C>F</C>.  It runs through the irreducible characters and determines
+        if a given irreducible is Galois conjugate over <C>F</C> to any of the
+        previous ones, and if not it adds the position of that character to the
+        list.
+      <P/>
+        <Example>
+           <![CDATA[
+           gap> G:=SmallGroup(63,1);
+           <pc group of size 63 with 3 generators>
+           gap> GaloisRepsOfCharacters(Rationals,G);
+           [ 1, 2, 4, 10, 12 ]
+           gap> GaloisRepsOfCharacters(CF(9),G);
+           [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13 ]
+           gap> GaloisRepsOfCharacters(NF(7,[1,2,4]),G);
+           [ 1, 2, 4, 10, 11, 12, 14 ]
+           gap> GaloisRepsOfCharacters(CF(63),G);
+           [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+           ]]>
+         </Example>
+
+   </Description>
+</ManSection>
+
+
+<ManSection>
+  <Oper Name="WedderburnDecompositionByCharacterDescent"
+      Arg="F,G" />
+
+   <Returns>
+     A Wedderburn decomposition of <C>FG</C> that is obtained by applying the
+    global character descent algorithm to representatives of the Galois
+    conjugacy classes of irreducible characters of <C>G</C> over <C>F</C>.
+  </Returns>
+
+   <Description>
+        <Ref Attr="WedderburnDecompositionByCharacterDescent"> is available as
+        an option to <Ref Attr="WedderburnDecompositionInfo"> that can be more
+        effective for larger groups, especially ones with relatively few
+        irreducible characters.  As long as <C>GAP</C> is able to compute
+        maximal subgroups and restrict irreducible characters of <C>G</C> to
+        them, this function should eventually return a Wedderburn decomposition.
+        As it operates on one irreducible character at a time, it is less
+        effective on Abelian groups, which have far too many irreducible characters,
+        and on most groups in GAP's Small Groups Library, where memory limitations
+        are not a factor and it is possible for the Shoda pair algorithms can
+        deal with many irreducible characters at the same time.
+      <P/>
+        <Example>
+           <![CDATA[
+           gap> G:=GL(3,3);
+           GL(3,3)
+           gap> Size(G);
+           11232
+           gap> WedderburnDecompositionByCharacterDescent(Rationals,G);
+           [ [ 1, Rationals ], [ 1, Rationals ], [ 12, Rationals ], [ 12, Rationals ],
+           [ 13, Rationals ], [ 13, Rationals ], [ 16, NF(13,[ 1, 3, 9 ]) ],
+           [ 16, NF(13,[ 1, 3, 9 ]) ], [ 26, Rationals ], [ 26, Rationals ],
+           [ 26, NF(8,[ 1, 3 ]) ], [ 26, NF(8,[ 1, 3 ]) ], [ 27, Rationals ],
+           [ 27, Rationals ], [ 39, Rationals ], [ 39, Rationals ] ]
+
+           ]]>
+         </Example>
+
+   </Description>
+</ManSection>
+
+
+</Section>
 
 <!-- *******Local Index Functions for Cyclic Cyclotomic Algebras -->
 
@@ -323,15 +529,15 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
 <ManSection>
    <Oper Name="LocalIndicesOfCyclicCyclotomicAlgebra"
          Arg="A" />
-   <Returns> 
-	A list of the pairs <C>[p,m]</C> indicating the nontrivial local indices <C>m</C> at 
-	the primes <C>p</C> of the cyclic cyclotomic algebra indicated by <C>A</C>.    
+   <Returns>
+	A list of the pairs <C>[p,m]</C> indicating the nontrivial local indices <C>m</C> at
+	the primes <C>p</C> of the cyclic cyclotomic algebra indicated by <C>A</C>.
    </Returns>
    <Description>
-        The input <C>A</C> must be a list representing a cyclic cyclotomic algebra in the 
-        same form as in the output of <Ref Attr="WedderburnDecompositionInfo"/> or 
-        <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  This function computes the local 
-        Schur indices at rational primes <M>p</M> using the specialized functions for 
+        The input <C>A</C> must be a list representing a cyclic cyclotomic algebra in the
+        same form as in the output of <Ref Attr="WedderburnDecompositionInfo"/> or
+        <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  This function computes the local
+        Schur indices at rational primes <M>p</M> using the specialized functions for
         cyclic cyclotomic algebras described in this section. <P/>
 
 <Example>
@@ -349,34 +555,34 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(A);
 <ManSection>
    <Oper Name="LocalIndexAtInfty"
          Arg="A"  />
-   <Oper Name="LocalIndexAtTwo" 
+   <Oper Name="LocalIndexAtTwo"
          Arg="A"  />
-   <Oper Name="LocalIndexAtOddP" 
+   <Oper Name="LocalIndexAtOddP"
          Arg="A,p" />
-   
+
    <Returns>
- 	These return the local index of the cyclic cyclotomic algebra <A>A</A> at the indicated 
- 	rational prime. 
-   </Returns> 
+ 	These return the local index of the cyclic cyclotomic algebra <A>A</A> at the indicated
+ 	rational prime.
+   </Returns>
 
    <Description>
-         The input <C>A</C> must be a cyclic cyclotomic algebra; 
-         that is, a list of the form <C>[r,F,n,[a,b,c]]</C> that indicates a cyclic 
-         cyclotomic crossed product algebra.  This is a special case of the output of 
-         <Package>wedderga</Package>'s  
-         <Ref Attr="WedderburnDecompositionInfo"/> or 
-         <Ref Attr="SimpleAlgebraByCharacterInfo"/>.  
-         For the <Ref Oper="LocalIndexAtOddP"/> function, <A>p</A> must be an odd prime.  
-         The functions <Ref Attr="PPartOfN"/> and <Ref Attr="PDashPartOfN"/> are standard 
-         (and self-explanatory) arithmetic functions for a positive integer <M>n</M> and prime <M>p</M>.  
+         The input <C>A</C> must be a cyclic cyclotomic algebra;
+         that is, a list of the form <C>[r,F,n,[a,b,c]]</C> that indicates a cyclic
+         cyclotomic crossed product algebra.  This is a special case of the output of
+         <Package>wedderga</Package>'s
+         <Ref Attr="WedderburnDecompositionInfo"/> or
+         <Ref Attr="SimpleAlgebraByCharacterInfo"/>.
+         For the <Ref Oper="LocalIndexAtOddP"/> function, <A>p</A> must be an odd prime.
+         The functions <Ref Attr="PPartOfN"/> and <Ref Attr="PDashPartOfN"/> are standard
+         (and self-explanatory) arithmetic functions for a positive integer <M>n</M> and prime <M>p</M>.
          <P/>
-         
-         These functions determine the local index of a cyclic cyclotomic algebra at the 
-         rational primes <C>'infinity'</C>, <M>2</M>, or odd primes <M>p</M>, respectively. 
-         The first two functions check for a relationship of <M>A</M> to a nonsplit real 
-         or 2-adic quaternion algebra. 
-<Ref Attr="LocalIndexAtOddP"/> calculates the local index at <M>p</M> by counting the number 
-of roots of unity coprime to <M>p</M> found in the <M>p</M>-adic completion, and using a 
+
+         These functions determine the local index of a cyclic cyclotomic algebra at the
+         rational primes <C>'infinity'</C>, <M>2</M>, or odd primes <M>p</M>, respectively.
+         The first two functions check for a relationship of <M>A</M> to a nonsplit real
+         or 2-adic quaternion algebra.
+<Ref Attr="LocalIndexAtOddP"/> calculates the local index at <M>p</M> by counting the number
+of roots of unity coprime to <M>p</M> found in the <M>p</M>-adic completion, and using a
 formula due to Janusz.  <P/>
 
 <Example>
@@ -389,9 +595,9 @@ gap> A:=[1,NF(8,[1,7]),8,[2,7,4]];
 [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ]
 gap> LocalIndexAtInfty(A);
 2
-gap> A:=[1,CF(7),28,[2,15,14]];                        
+gap> A:=[1,CF(7),28,[2,15,14]];
 [ 1, CF(7), 28, [ 2, 15, 14 ] ]
-gap> LocalIndexAtTwo(A);     
+gap> LocalIndexAtTwo(A);
 2
 ]]>
 </Example>
@@ -409,54 +615,79 @@ gap> LocalIndexAtTwo(A);
 <ManSection>
    <Oper Name="LocalIndicesOfCyclotomicAlgebra"
          Arg="A" />
-  <Returns> A list of pairs <C>[p,m]</C> indicating the nontrivial local indices <C>m</C> 
-  at the primes <C>p</C> of the cyclic cyclotomic algebra indicated by <C>A</C>.    
-  </Returns> 
+  <Returns> A list of pairs <C>[p,m]</C> indicating the nontrivial local indices <C>m</C>
+  at the primes <C>p</C> of the cyclic cyclotomic algebra indicated by <C>A</C>.
+  </Returns>
 
-  <Description> The input <C>A</C> should be a cyclotomic algebra; i.e. a list of length 
-  2, 4, or 5 in the form of the output by <Package>Wedderga</Package>'s <Q>-Info</Q> 
-  functions.  If the cyclotomic algebra <A>A</A> is represented by a list of length 2, 
-  the local indices are all <M>1</M>, so the function will return an empty list.  If the 
-  cyclotomic algebra <A>A</A> is given by a list of length 4, then it represents a cyclic 
-  cyclotomic algebra, so the function <Ref Oper="LocalIndicesOfCyclicCyclotomicAlgebra"/> 
-  is utilized.  
+  <Description> The input <C>A</C> should be a cyclotomic algebra; i.e. a list of length
+  2, 4, or 5 in the form of the output by <Package>Wedderga</Package>'s <Q>-Info</Q>
+  functions.  If the cyclotomic algebra <A>A</A> is represented by a list of length 2,
+  the local indices are all <M>1</M>, so the function will return an empty list.  If the
+  cyclotomic algebra <A>A</A> is given by a list of length 4, then it represents a cyclic
+  cyclotomic algebra, so the function <Ref Oper="LocalIndicesOfCyclicCyclotomicAlgebra"/>
+  is utilized.
 
-If the cyclotomic algebra <C>A</C> is presented as a list of length 5, the function 
-determines the group and character <C>chi</C> that faithfully represent the algebra 
-using <Ref Oper="DefiningGroupOfCyclotomicAlgebra"/> and 
-<Ref Oper="DefiningCharacterOfCyclotomicAlgebra"/>. It uses the Frobenius-Schur 
-indicator of <C>chi</C> to determine the local index at infinity (see 
-<Ref Oper="LocalIndexAtInftyByCharacter"/>).  For local indices at odd primes and 
-sometimes for the prime <M>2</M>, the defect group of the block containing <C>chi</C> 
-will be cyclic, so the local index can be found using the values of a Brauer character 
-by a theorem of Benard (see <Ref Oper="LocalIndexAtPByBrauerCharacter"/>.)   
-Sometimes for the prime 2 the defect group is not necessarily cyclic, so in these 
-cases we appeal to the classification of dyadic Schur groups by Schmid and Riese 
-(see <Ref Oper="LocalIndexAtTwoByCharacter"/>).  
+If the cyclotomic algebra <C>A</C> is presented as a list of length 5 or more,
+the function first applies <Ref Oper="GlobalSplittingOfCyclotomicAlgebra"/> to
+reduce the length as much as possible.  If this does not reduce the length to 4 or
+less, it applies the character descent algorithm to try to reduce it again with
+Clifford theory: it determines the group and character <C>chi</C> that faithfully
+represent the algebra using <Ref Oper="DefiningGroupOfCyclotomicAlgebra"/> and
+<Ref Oper="DefiningCharacterOfCyclotomicAlgebra"/>, then applies
+<Ref Oper="SimpleComponentByCharacterDescent">.  It repeats this until it cannot
+reduce the length of cyclotomic algebra any longer.  If the length is 4 it will
+apply the local index functions for cyclic cyclotomic algebras to compute the
+local indices at each prime dividing the order of the group.  If the length
+is 5 or more, it applies the character-theoretic local Schur index functions to
+the output <C>[G,chi]</C> of <Ref Oper="DefiningGroupAndCharacterOfCyclotAlg">.
+It uses the Frobenius-Schur indicator of <C>chi</C> to determine the local index
+at infinity (see <Ref Oper="LocalIndexAtInftyByCharacter"/>).  For local indices
+at odd primes and sometimes for the prime <M>2</M>, the defect group of the block
+containing <C>chi</C> will be cyclic, so the local index can be found using the
+values of a Brauer character by a theorem of Benard (see
+<Ref Oper="LocalIndexAtPByBrauerCharacter"/>.)   Sometimes for the prime 2 the
+defect group is not necessarily cyclic, so in these cases we appeal to the
+classification of dyadic Schur groups by Schmid and Riese
+(see <Ref Oper="LocalIndexAtTwoByCharacter"/>).
 
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(480,600);
 <pc group of size 480 with 7 generators>
 gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
-gap> Size(W); 
+gap> Size(W);
 27
-gap> W[27]; 
-[ 1, NF(5,[ 1, 4 ]), 60, [ [ 2, 11, 0 ], [ 2, 19, 30 ], [ 2, 31, 30 ] ], 
+gap> W[27];
+[ 1, NF(5,[ 1, 4 ]), 60, [ [ 2, 11, 0 ], [ 2, 19, 30 ], [ 2, 31, 30 ] ],
   [ [ 0, 45 ], [ 15 ] ] ]
 gap> LocalIndicesOfCyclotomicAlgebra(W[27]);
 [ [ infinity, 2 ] ]
 ]]>
 </Example>
-  </Description> 
+
+<Example>
+<![CDATA[
+gap> G:=SmallGroup(160,82);
+<pc group of size 160 with 6 generators>
+gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
+gap> Size(W);
+14
+gap> W[14];
+[ 1, Rationals, 20, [ [ 2, 11, 0 ], [ 4, 3, 0 ] ], [ [ 5 ] ] ]
+gap> LocalIndicesOfCyclotomicAlgebra(W[14]);
+[ [ 2, 2 ], [ 5, 2 ] ]
+]]>
+</Example>
+
+  </Description>
 </ManSection>
 
 
 <ManSection>
    <Oper Name="RootOfDimensionOfCyclotomicAlgebra"
          Arg="A" />
-   <Returns> A positive integer representing the square root of the dimension of the 
-   cyclotomic algebra over its center. </Returns> 
+   <Returns> A positive integer representing the square root of the dimension of the
+   cyclotomic algebra over its center. </Returns>
    <Description>
 
 
@@ -464,7 +695,7 @@ gap> LocalIndicesOfCyclotomicAlgebra(W[27]);
 <![CDATA[
 gap> A:=[3,Rationals,12,[[2,5,3],[2,7,0]],[[3]]];
 [ 3, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
-gap> RootOfDimensionOfCyclotomicAlgebra(A);      
+gap> RootOfDimensionOfCyclotomicAlgebra(A);
 12
 ]]>
 </Example>
@@ -477,30 +708,33 @@ gap> RootOfDimensionOfCyclotomicAlgebra(A);
          Arg="A"  />
    <Oper Name="DefiningCharacterOfCyclotomicAlgebra"
          Arg="A"  />
-   <Returns> These functions return a finite group <C>G</C> and a positive integer 
-   <C>n</C> for which the simple component of a group algebra over <C>G</C> over the 
-   center of the cyclotomic algebra <C>A</C> corresponding to the character 
-   <C>Irr(G)[n]</C> will be isomorphic to <C>A</C>. 
-  </Returns>  
+   <Oper Name="DefiningGroupAndCharacterOfCyclotAlg"
+         Arg="A"  />
+   <Returns> These functions return a finite group <C>G</C> and a positive integer
+   <C>n</C> (or, in the case to the third function, an irreducible character <C>n</C>
+   of <C>G</C> for which the simple component of a group algebra over <C>G</C> over
+   the center of the cyclotomic algebra <C>A</C> corresponding to the character
+   <C>Irr(G)[n]</C> (resp. <C>n</C>) will be (rationally) isomorphic to <C>A</C>.
+  </Returns>
 
 <Oper Name="SimpleComponentOfGroupRingByCharacter"
          Arg="F,G,n" />
-<Returns> 
-A list that describes the algebraic structure of the simple component of the group 
+<Returns>
+A list that describes the algebraic structure of the simple component of the group
 algebra <C>FG</C> which corresponds to the irreducible character <C>Irr(G)[n]</C> (or <C>n</C>). </Returns>
 
-   <Description> This function is an alternative to 
-<C>SimpleAlgebraByCharacterInfo(GroupRing(F,G),</C> <C>Irr(G)[n]);</C>. 
-It is used in subroutines of local index functions when we need to work over a field 
-larger than the field of character values.   
+   <Description> This function is an alternative to
+<C>SimpleAlgebraByCharacterInfo(GroupRing(F,G),</C> <C>Irr(G)[n]);</C>.
+It is used in subroutines of local index functions when we need to work over a field
+larger than the field of character values.
 
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
-gap> R:=GroupRing(Rationals,G);                
+gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 5 generators>
-gap> W:=WedderburnDecompositionInfo(R);;  
+gap> W:=WedderburnDecompositionInfo(R);;
 gap> A:=W[10];
 [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 gap> g:=DefiningGroupOfCyclotomicAlgebra(A);
@@ -510,7 +744,7 @@ gap> IdSmallGroup(g);
 gap> n:=DefiningCharacterOfCyclotomicAlgebra(A);
 12
 gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,n)
-> ;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis. 
+> ;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis.
 [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 ]]>
 </Example>
@@ -520,13 +754,13 @@ gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,n)
 <ManSection>
    <Oper Name="LocalIndexAtInftyByCharacter"
          Arg="F G n"  />
-<Returns> The local index at an infinite prime of the field <A>F</A> of the irreducible 
+<Returns> The local index at an infinite prime of the field <A>F</A> of the irreducible
 character <C>Irr(G)[n]</C> (or <C>n</C>) of the finite group <A>G</A>.
 </Returns>
 
-<Description> This function computes the Frobenius-Schur indicator of the irreducible 
-character <C>Irr(G)[n]</C>, and uses it to calculate the local index at <C>infinity</C> 
-of the corresponding simple component of <A>FG</A>. 
+<Description> This function computes the Frobenius-Schur indicator of the irreducible
+character <C>Irr(G)[n]</C>, and uses it to calculate the local index at <C>infinity</C>
+of the corresponding simple component of <A>FG</A>.
 
 <Example>
 <![CDATA[
@@ -535,7 +769,7 @@ gap> G:=SmallGroup(48,16);
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> LocalIndexAtInftyByCharacter(Rationals,G,i);
 2
-gap> LocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);    
+gap> LocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);
 1
 
 ]]>
@@ -548,29 +782,29 @@ gap> LocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);
 <ManSection>
    <Oper Name="DefectGroupOfConjugacyClassAtP"
          Arg="G c p" />
-   <Oper Name="DefectGroupsOfPBlock" 
+   <Oper Name="DefectGroupsOfPBlock"
          Arg="G n p"  />
    <Oper Name="DefectOfCharacterAtP"
          Arg="G n p" />
 <Returns>
-      The first of these functions returns a defect group of the <C>c</C>-th conjugacy 
-      class of the finite group <C>G</C> at the prime <C>p</C>.  The second returns the 
-      conjugacy class of <C>p</C>-subgroups of <C>G</C> that consists of defect groups 
-      for the <C>p</C>-block containing the ordinary irreducible character <C>Irr(G)[n]</C>.  
-      The last of these functions returns the nonnegative integer <C>d</C> for which 
-      <C>p^d</C> is the order of a <C>p</C>-defect group for <C>Irr(G)[n]</C>. 
+      The first of these functions returns a defect group of the <C>c</C>-th conjugacy
+      class of the finite group <C>G</C> at the prime <C>p</C>.  The second returns the
+      conjugacy class of <C>p</C>-subgroups of <C>G</C> that consists of defect groups
+      for the <C>p</C>-block containing the ordinary irreducible character <C>Irr(G)[n]</C>.
+      The last of these functions returns the nonnegative integer <C>d</C> for which
+      <C>p^d</C> is the order of a <C>p</C>-defect group for <C>Irr(G)[n]</C>.
 </Returns>
 <Description>
-	The <C>p</C>-defect group of a given conjugacy class of <C>G</C> is a <C>p</C>-Sylow 
-	subgroup of the centralizer in <C>G</C> of any representative of the class.  
+	The <C>p</C>-defect group of a given conjugacy class of <C>G</C> is a <C>p</C>-Sylow
+	subgroup of the centralizer in <C>G</C> of any representative of the class.
 A defect group for a <C>p</C>-block of <C>G</C> is a minimal <C>p</C>-subgroup that is a
-defect group for a defect class of the block.  By Brauer's Min-Max theorem, this will 
-occur for at least one <C>p</C>-regular class of <C>G</C>.  The function 
-<Ref Attr="DefectGroupsOfPBlock"/> identifies the defect classes for the block containing 
-<C>Irr(G)[n]</C>, finds the one whose defect group has minimal order, and returns the 
-conjugacy class of the defect group of this class.  The function <Ref Attr="DefectOfCharacterAtP"/> 
-gives the logarithm base <C>p</C> of the order of a defect group of the <C>p</C>-block 
-containing the character <C>Irr(G)[n]</C>. 
+defect group for a defect class of the block.  By Brauer's Min-Max theorem, this will
+occur for at least one <C>p</C>-regular class of <C>G</C>.  The function
+<Ref Attr="DefectGroupsOfPBlock"/> identifies the defect classes for the block containing
+<C>Irr(G)[n]</C>, finds the one whose defect group has minimal order, and returns the
+conjugacy class of the defect group of this class.  The function <Ref Attr="DefectOfCharacterAtP"/>
+gives the logarithm base <C>p</C> of the order of a defect group of the <C>p</C>-block
+containing the character <C>Irr(G)[n]</C>.
 
 <Example>
 <![CDATA[
@@ -583,7 +817,7 @@ gap> IsCyclic(last);
 false
 gap> D:=DefectGroupsOfPBlock(G,Irr(G)[i],3);
 Group( [ f4, f5 ] )^G
-gap> IsCyclic(Representative(D));    
+gap> IsCyclic(Representative(D));
 false
 gap> DefectOfCharacterAtP(G,Irr(G)[i],3);
 2
@@ -597,55 +831,55 @@ gap> DefectOfCharacterAtP(G,Irr(G)[i],3);
 <ManSection>
    <Oper Name="LocalIndexAtPByBrauerCharacter"
          Arg="F G n p"  />
-   <Oper Name="FinFieldExt" 
+   <Oper Name="FinFieldExt"
          Arg="F G p n m"  />
-   
+
    <Returns>
-      The first returns the local index at the rational prime <M>p</M> of the simple 
-      component of the group ring <C>FG</C> that corresponds to <C>Irr(G)[n]</C>. 
-      The second returns the degree of a certain extension of finite fields of 
-      <C>p</C>-power order. 
-    </Returns> 
+      The first returns the local index at the rational prime <M>p</M> of the simple
+      component of the group ring <C>FG</C> that corresponds to <C>Irr(G)[n]</C>.
+      The second returns the degree of a certain extension of finite fields of
+      <C>p</C>-power order.
+    </Returns>
 
    <Description>
-         The input of <Ref Attr="LocalIndexAtPByBrauerCharacter"/> must be an abelian 
-         number field <A>F</A>, a finite group <A>G</A>, and the number <A>n</A> of an 
-         ordinary irreducible character <C>Irr(G)[n]</C>, and <A>p</A> a prime divisor 
-         of the order of <A>G</A>. Since this function is intended to be used for faithful 
-         characters of groups that are the defining groups of non-cyclic cyclotomic algebras 
-         that result from <Package>Wedderga</Package>'s Info functions, it is expected that 
-         <C>G</C> is a non-nilpotent cyclic-by-abelian group, and <C>Irr(G)[n]</C> is a 
-         faithful character.  The Brauer character table records of such groups can be 
+         The input of <Ref Attr="LocalIndexAtPByBrauerCharacter"/> must be an abelian
+         number field <A>F</A>, a finite group <A>G</A>, and the number <A>n</A> of an
+         ordinary irreducible character <C>Irr(G)[n]</C>, and <A>p</A> a prime divisor
+         of the order of <A>G</A>. Since this function is intended to be used for faithful
+         characters of groups that are the defining groups of non-cyclic cyclotomic algebras
+         that result from <Package>Wedderga</Package>'s Info functions, it is expected that
+         <C>G</C> is a non-nilpotent cyclic-by-abelian group, and <C>Irr(G)[n]</C> is a
+         faithful character.  The Brauer character table records of such groups can be
          accessed in <K>GAP</K> (provided <C>G</C> is sufficiently small).   <P/>
 
-The local index calculation uses Benard's theorem, which shows that the local index at 
-<A>p</A> of the simple component of the rational group algebra <A>QG</A> corresponding 
-to the character <C>Irr(G)[n]</C> is the degree of the extension of the residue field 
-of the center given by adjoining an irreducible <A>p</A>-Brauer character 
-<C>IBr(G,p)[m]</C> lying in the same block, provided the defect group of the block 
-is cyclic.  If the defect group of the block is not cyclic, the resulting calculation 
-is unreliable, and the function will output a list whose second term is the warning 
-label <C>"DGnotCyclic"</C>.  The degree of this finite field extension is calculated 
-by <Ref Attr="FinFieldExt"/>.  It determines the local index relative to the field 
-<C>F</C> by dividing the local index at <M>p</M> over the rationals by a constant 
+The local index calculation uses Benard's theorem, which shows that the local index at
+<A>p</A> of the simple component of the rational group algebra <A>QG</A> corresponding
+to the character <C>Irr(G)[n]</C> is the degree of the extension of the residue field
+of the center given by adjoining an irreducible <A>p</A>-Brauer character
+<C>IBr(G,p)[m]</C> lying in the same block, provided the defect group of the block
+is cyclic.  If the defect group of the block is not cyclic, the resulting calculation
+is unreliable, and the function will output a list whose second term is the warning
+label <C>"DGnotCyclic"</C>.  The degree of this finite field extension is calculated
+by <Ref Attr="FinFieldExt"/>.  It determines the local index relative to the field
+<C>F</C> by dividing the local index at <M>p</M> over the rationals by a constant
 determied using a theorem of Yamada. <P/>
 
 <Example>
 <![CDATA[
 gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
-gap> T:=CharacterTable(G);; 
+gap> T:=CharacterTable(G);;
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> S:=T mod 5;
 BrauerTable( <pc group of size 80 with 5 generators>, 5 )
 gap> BlocksInfo(S);
-[ rec( defect := 1, modchars := [ 1, 3, 7, 8 ], 
-      ordchars := [ 1, 3, 7, 8, 18 ] ), 
-  rec( defect := 1, modchars := [ 2, 4, 5, 6 ], 
-      ordchars := [ 2, 4, 5, 6, 17 ] ), 
-  rec( defect := 1, modchars := [ 9, 12, 14, 15 ], 
-      ordchars := [ 9, 12, 14, 15, 19 ] ), 
-  rec( defect := 1, modchars := [ 10, 11, 13, 16 ], 
+[ rec( defect := 1, modchars := [ 1, 3, 7, 8 ],
+      ordchars := [ 1, 3, 7, 8, 18 ] ),
+  rec( defect := 1, modchars := [ 2, 4, 5, 6 ],
+      ordchars := [ 2, 4, 5, 6, 17 ] ),
+  rec( defect := 1, modchars := [ 9, 12, 14, 15 ],
+      ordchars := [ 9, 12, 14, 15, 19 ] ),
+  rec( defect := 1, modchars := [ 10, 11, 13, 16 ],
       ordchars := [ 10, 11, 13, 16, 20 ] ) ]
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,5);
 2
@@ -673,39 +907,39 @@ gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,2);
          Arg="F G n p" />
    <Oper Name="LocalIndexAtTwoByCharacter"
          Arg="F G n"  />
-   <Oper Name="IsDyadicSchurGroup" 
+   <Oper Name="IsDyadicSchurGroup"
          Arg="G"   />
 
-<Returns> 
-The first two function determines the local index at the given prime <M>p</M> of 
-the simple component of <A>FG</A> corresponding to the irreducible character 
-<C>Irr(G)[n]</C>.  The third one returns <C>'true'</C> if <C>G</C> is a dyadic 
-Schur group, and otherwise <C>'false'</C> . 
+<Returns>
+The first two function determines the local index at the given prime <M>p</M> of
+the simple component of <A>FG</A> corresponding to the irreducible character
+<C>Irr(G)[n]</C>.  The third one returns <C>'true'</C> if <C>G</C> is a dyadic
+Schur group, and otherwise <C>'false'</C> .
 </Returns>
 
-<Description> 
-<Ref Oper="LocalIndexAtOddPByCharacter"/> and 
-<Ref Oper="LocalIndexAtTwoByCharacter"/> first determine a cyclotomic algebra representing 
-the simple component of <A>FG</A> corresponding to the character <C>Irr(G)[n]</C>.  They 
-then extend the field <M>F</M> to <M>K</M>, where <M>K</M> is the maximal <M>p</M>-split 
-subextension of <C>F(E(n))/F</C>, and recalculates the simple component of <C>KG</C> 
-corresponding to <C>Irr(G)[n]</C>.  It then uses the <C>DefiningGroup...</C> functions 
-to reduce to a faithful character of a possibly smaller cyclic-by-abelian group.  If the 
-simple component for this character is given in <Package>Wedderga</Package> as a list of 
-length 2 or 4, they make use of <Ref Oper="LocalIndexAtOddP"/> or <Ref Oper="LocalIndexAtTwo"/> 
-as appropriate.  If the simple component over <M>F</M> has length 5, it checks if the 
-defect group of the <M>p</M>-block containing <C>Irr(G)[n]</C> is cyclic.  If this is 
-definitely so, they use <Ref Oper="LocalIndexAtPByBrauerCharacter"/> to calculate the 
-<M>p</M>-local index.  Exceptions can occur when <M>p</M> is <M>2</M>.  When the defect 
-group is not necessarily cyclic, <Ref Oper="LocalIndexAtTwoByCharacter"/> makes use of 
-<Ref Oper="IsDyadicSchurGroup"/>, which checks if a quasi-elementary group has a faithful 
-irreducible character <C>2</C>-local index <C>2</C>, then verifies that <M>K</M> does not 
-split the simple component generated by this character.  
+<Description>
+<Ref Oper="LocalIndexAtOddPByCharacter"/> and
+<Ref Oper="LocalIndexAtTwoByCharacter"/> first determine a cyclotomic algebra representing
+the simple component of <A>FG</A> corresponding to the character <C>Irr(G)[n]</C>.  They
+then extend the field <M>F</M> to <M>K</M>, where <M>K</M> is the maximal <M>p</M>-split
+subextension of <C>F(E(n))/F</C>, and recalculates the simple component of <C>KG</C>
+corresponding to <C>Irr(G)[n]</C>.  It then uses the <C>DefiningGroup...</C> functions
+to reduce to a faithful character of a possibly smaller cyclic-by-abelian group.  If the
+simple component for this character is given in <Package>Wedderga</Package> as a list of
+length 2 or 4, they make use of <Ref Oper="LocalIndexAtOddP"/> or <Ref Oper="LocalIndexAtTwo"/>
+as appropriate.  If the simple component over <M>F</M> has length 5, it checks if the
+defect group of the <M>p</M>-block containing <C>Irr(G)[n]</C> is cyclic.  If this is
+definitely so, they use <Ref Oper="LocalIndexAtPByBrauerCharacter"/> to calculate the
+<M>p</M>-local index.  Exceptions can occur when <M>p</M> is <M>2</M>.  When the defect
+group is not necessarily cyclic, <Ref Oper="LocalIndexAtTwoByCharacter"/> makes use of
+<Ref Oper="IsDyadicSchurGroup"/>, which checks if a quasi-elementary group has a faithful
+irreducible character <C>2</C>-local index <C>2</C>, then verifies that <M>K</M> does not
+split the simple component generated by this character.
 <P/>
 
-These functions are designed for faithful characters of groups that 
-faithfully represent cyclotomic algebras, and so should be used with 
-caution in other situations.   
+These functions are designed for faithful characters of groups that
+faithfully represent cyclotomic algebras, and so should be used with
+caution in other situations.
 
 
 <Example>
@@ -715,14 +949,14 @@ gap> G:=SmallGroup(48,15);
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> LocalIndexAtOddPByCharacter(Rationals,G,Irr(G)[i],3);
 2
-gap> LocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);  
+gap> LocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);
 2
-gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);    
+gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);
 1
 ]]>
 </Example>
 
-</Description> 
+</Description>
 </ManSection>
 
 </Section>
@@ -735,61 +969,61 @@ gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);
 <ManSection>
    <Oper Name="LocalIndicesOfRationalQuaternionAlgebra"
          Arg="A"  />
-   <Oper Name="LocalIndicesOfRationalSymbolAlgebra" 
+   <Oper Name="LocalIndicesOfRationalSymbolAlgebra"
          Arg="a b" />
-   <Oper Name="LocalIndicesOfTensorProductOfQuadraticAlgs" 
+   <Oper Name="LocalIndicesOfTensorProductOfQuadraticAlgs"
          Arg="L M" />
 	<Oper Name="GlobalSchurIndexFromLocalIndices"
          Arg="L"  />
 
-   <Returns> 
-    	The first of these functions return a list of pairs <C>[p,m]</C> indicating that 
-    	<C>m</C> is the local index at the prime <M>p</M> for the given quaternion algebra.  
-    	The second does the same for <C>QuaternionAlgebra(Rationals,a,b)</C>.  The third 
-    	returns a list of local indices computed from two given lists of local indices, 
-    	and the fourth returns the least common multiple of the local indices in the 
-    	given list of local indices.  
+   <Returns>
+    	The first of these functions return a list of pairs <C>[p,m]</C> indicating that
+    	<C>m</C> is the local index at the prime <M>p</M> for the given quaternion algebra.
+    	The second does the same for <C>QuaternionAlgebra(Rationals,a,b)</C>.  The third
+    	returns a list of local indices computed from two given lists of local indices,
+    	and the fourth returns the least common multiple of the local indices in the
+    	given list of local indices.
    </Returns>
 
    <Description>
-         For the first function, the input must be a quaternion algebra over the rationals, 
-         output from <C>QuaternionAlgebra(Rationals,a,b)</C>.  For the first function, 
-         <M>a</M> and <M>b</M> can be any pair of integers, and for the second rational 
-         symbol algebra version, <M>a</M> and <M>b</M>  should be either -1 or positive 
-         prime integers. The input of the third function is a pair of lists of 
-         <M>p</M>-local indices in which the maximum local index at any prime is at most 2.  
-         The input of the fourth function is a list of pairs <C>[p,m]</C> in which each 
-         prime that appears only appears in one of the pairs, and the <C>m</C>'s that 
-         appear are all positive integers. 	 <P/>  
+         For the first function, the input must be a quaternion algebra over the rationals,
+         output from <C>QuaternionAlgebra(Rationals,a,b)</C>.  For the first function,
+         <M>a</M> and <M>b</M> can be any pair of integers, and for the second rational
+         symbol algebra version, <M>a</M> and <M>b</M>  should be either -1 or positive
+         prime integers. The input of the third function is a pair of lists of
+         <M>p</M>-local indices in which the maximum local index at any prime is at most 2.
+         The input of the fourth function is a list of pairs <C>[p,m]</C> in which each
+         prime that appears only appears in one of the pairs, and the <C>m</C>'s that
+         appear are all positive integers. 	 <P/>
 
-	 <Ref Oper="LocalIndicesOfRationalQuaternionAlgebra"/> first factors the algebra as a 
-	 tensor product of rational quaternion algebras, obtaining suitable pairs <C>a</C> and 
-	 <C>b</C> to which  <Ref Oper="LocalIndicesOfRationalSymbolAlgebra"/> can be applied.  
-	 The local indices are calculated using well-known formulas involving the Legendre Symbol.  
-	 The local indices of the original algebra are then determined  using 
-	 <Ref Oper="LocalIndicesOfTensorProductOfQuadraticAlgs"/>, which takes a pair of lists 
-	 of local indices of quadratic algebras - for which the maximum local index at any 
-	 prime <M>p</M> is 2, and finds the list of local indices of the tensor product of 
-	 two algebras with these local indices. 
+	 <Ref Oper="LocalIndicesOfRationalQuaternionAlgebra"/> first factors the algebra as a
+	 tensor product of rational quaternion algebras, obtaining suitable pairs <C>a</C> and
+	 <C>b</C> to which  <Ref Oper="LocalIndicesOfRationalSymbolAlgebra"/> can be applied.
+	 The local indices are calculated using well-known formulas involving the Legendre Symbol.
+	 The local indices of the original algebra are then determined  using
+	 <Ref Oper="LocalIndicesOfTensorProductOfQuadraticAlgs"/>, which takes a pair of lists
+	 of local indices of quadratic algebras - for which the maximum local index at any
+	 prime <M>p</M> is 2, and finds the list of local indices of the tensor product of
+	 two algebras with these local indices.
 <P/>
-   <Ref Oper="GlobalSchurIndexFromLocalIndices"/> simply computes the least common multiple 
-   of the local indices at each prime that occurs in the list. 
+   <Ref Oper="GlobalSchurIndexFromLocalIndices"/> simply computes the least common multiple
+   of the local indices at each prime that occurs in the list.
 
 <Example>
 <![CDATA[
 gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
 [ [ infinity, 2 ], [ 2, 2 ] ]
-gap> LocalIndicesOfRationalSymbolAlgebra(3,-1); 
+gap> LocalIndicesOfRationalSymbolAlgebra(3,-1);
 [ [ 2, 2 ], [ 3, 2 ] ]
 gap> LocalIndicesOfRationalSymbolAlgebra(-3,2);
 [  ]
-gap> LocalIndicesOfRationalSymbolAlgebra(3,7); 
+gap> LocalIndicesOfRationalSymbolAlgebra(3,7);
 [ [ 2, 2 ], [ 7, 2 ] ]
-gap> A:=QuaternionAlgebra(Rationals,-30,-15);   
+gap> A:=QuaternionAlgebra(Rationals,-30,-15);
 <algebra-with-one of dimension 4 over Rationals>
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [ [ 5, 2 ], [ infinity, 2 ] ]
-gap> A:=QuaternionAlgebra(CF(5),3,-2);          
+gap> A:=QuaternionAlgebra(CF(5),3,-2);
 <algebra-with-one of dimension 4 over CF(5)>
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 fail
@@ -802,33 +1036,33 @@ fail
 <ManSection>
    <Oper Name="IsRationalQuaternionAlgebraADivisionRing"
          Arg="A" />
-   <Returns> If the rational quaternion algebra is a noncommutative division ring, 
+   <Returns> If the rational quaternion algebra is a noncommutative division ring,
    <K>true</K> is returned, and if otherwise, <K>false</K>.
-   </Returns> 
+   </Returns>
 
-   <Description> The input <M>A</M> must be a quaternion algebra over the rationals, 
-   as output from <C>QuaternionAlgebra(Rationals,a,b)</C>. <M>a</M> and <M>b</M> must 
+   <Description> The input <M>A</M> must be a quaternion algebra over the rationals,
+   as output from <C>QuaternionAlgebra(Rationals,a,b)</C>. <M>a</M> and <M>b</M> must
    be rational integers.  When applied to other algebras, it returns <K>fail</K>.  <P/>
 
-The function calculates the rational Schur index of the algebra using 
-<Ref Oper="LocalIndicesOfRationalQuaternionAlgebra" />, and returns <K>true</K> if 
-the rational Schur index of the algebra is <C>2</C>, and <K>false</K> if the rational 
-Schur index is <C>1</C>. <P/> 
+The function calculates the rational Schur index of the algebra using
+<Ref Oper="LocalIndicesOfRationalQuaternionAlgebra" />, and returns <K>true</K> if
+the rational Schur index of the algebra is <C>2</C>, and <K>false</K> if the rational
+Schur index is <C>1</C>. <P/>
 
-This function should be preferred over <K>GAP</K>'s <Ref Filt="IsDivisionRing" BookName="ref"/> 
-when dealing with rational quaternion algebras, since the result of latter function only 
-depends on the local index at infinity for quaternion algebras, and makes no use of the 
-local indices at the finite primes.  
+This function should be preferred over <K>GAP</K>'s <Ref Filt="IsDivisionRing" BookName="ref"/>
+when dealing with rational quaternion algebras, since the result of latter function only
+depends on the local index at infinity for quaternion algebras, and makes no use of the
+local indices at the finite primes.
 
 <Example>
 <![CDATA[
-gap> A:=QuaternionAlgebra(Rationals,-30,-15);           
+gap> A:=QuaternionAlgebra(Rationals,-30,-15);
 <algebra-with-one of dimension 4 over Rationals>
 gap> IsRationalQuaternionAlgebraADivisionRing(A);
 true
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [ [ 5, 2 ], [ infinity, 2 ] ]
-gap> A:=QuaternionAlgebra(Rationals,3,-2);       
+gap> A:=QuaternionAlgebra(Rationals,3,-2);
 <algebra-with-one of dimension 4 over Rationals>
 gap> IsRationalQuaternionAlgebraADivisionRing(A);
 false
@@ -847,44 +1081,44 @@ gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 <Section Label="Cyclic">
 <Heading>Functions involving Cyclic Algebras</Heading>
 
-	 Cyclic algebras are represented in <Package>Wedderga</Package> as lists of length 3, 
-	 in the form <C>[F,K,[c]]</C>, which stands for a cyclic crossed product algebra of 
-	 the form <C>(K/F,c)</C>, with <C>K/F</C> a cyclic galois extension of abelian number 
-	 fields, and <C>c</C> an element of <C>F</C> determining the factor set.  Schur 
-	 indices of cyclic algebras can be determined through the solution of inverse norm 
-	 equations in general.  Though currently algorithms for this are not available in 
-	 &GAP;, algorithms have been implemented in some computational number theory software 
-	 systems such as <Package>PARI/GP</Package>.  
+	 Cyclic algebras are represented in <Package>Wedderga</Package> as lists of length 3,
+	 in the form <C>[F,K,[c]]</C>, which stands for a cyclic crossed product algebra of
+	 the form <C>(K/F,c)</C>, with <C>K/F</C> a cyclic galois extension of abelian number
+	 fields, and <C>c</C> an element of <C>F</C> determining the factor set.  Schur
+	 indices of cyclic algebras can be determined through the solution of inverse norm
+	 equations in general.  Though currently algorithms for this are not available in
+	 &GAP;, algorithms have been implemented in some computational number theory software
+	 systems such as <Package>PARI/GP</Package>.
 	 <P/>
 
-	The functions in this section allow one to convert cyclotomic algebras into cyclic 
+	The functions in this section allow one to convert cyclotomic algebras into cyclic
 	algebras (or possibly as tensor products of two cyclic algebras), to convert
-	generalized quaternion algebras into quadratic algebras (i.e. cyclic algebras for 
-	a Galois extension of degree 2), to convert quadratic algebras into generalized 
-	quaternion algebras, and to convert cyclic algebras into cyclic cyclotomic algebras, 
-	whenever possible.  
+	generalized quaternion algebras into quadratic algebras (i.e. cyclic algebras for
+	a Galois extension of degree 2), to convert quadratic algebras into generalized
+	quaternion algebras, and to convert cyclic algebras into cyclic cyclotomic algebras,
+	whenever possible.
 
 <ManSection>
    <Oper Name="DecomposeCyclotomicAlgebra"
          Arg="A"   />
-   <Returns> Two lists, each representing a cyclic algebra over the center of <M>A</M>, 
-   whose tensor product is isomorphic to the cyclotomic algebra described by <M>A</M>. 
+   <Returns> Two lists, each representing a cyclic algebra over the center of <M>A</M>,
+   whose tensor product is isomorphic to the cyclotomic algebra described by <M>A</M>.
    </Returns>
    <Description>
-         The input must be list representing a cyclotomic algebra of length 5 whose Galois 
-         group has <C>2</C> generators.  This is represented in <Package>Wedderga</Package> 
-         as a list of the form <C>[r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]</C>.  
-         (Longer presentations of cyclotomic algebras do occur in <Package>Wedderga</Package> 
+         The input must be list representing a cyclotomic algebra of length 5 whose Galois
+         group has <C>2</C> generators.  This is represented in <Package>Wedderga</Package>
+         as a list of the form <C>[r,F,n,[[m1,k1,l1],[m2,k2,l2]],[[d]]]</C>.
+         (Longer presentations of cyclotomic algebras do occur in <Package>Wedderga</Package>
          output.  Currently we do not have a general decomposition algorithm for them.)  <P/>
-         
-	 For these algebras, the extension <C>F(E(n))/F</C> is the tensor product of two 
-	 disjoint extensions <C>K1</C> and <C>K2</C> of <C>F</C>, and the program adjusts 
-	 one of the factor sets (corresponding to <M>l1</M> or <M>l2</M>) so that <M>d</M> 
-	 becomes <C>0</C>. After this adjustment, the algebra is then the tensor product 
-	 of cyclic algebras of the form <C>[F,K1,[c1]]</C> and <C>[F,K2,[c2]]</C> provided 
-	 <C>c1</C> and <C>c2</C> lie in <C>F</C>.  If the latter condition is not satisfied, 
-	 the string <Q>fails</Q> is appended to the output.  (We have not encountered this 
-	 problem among the group algebras of small groups we have tested so far.) 
+
+	 For these algebras, the extension <C>F(E(n))/F</C> is the tensor product of two
+	 disjoint extensions <C>K1</C> and <C>K2</C> of <C>F</C>, and the program adjusts
+	 one of the factor sets (corresponding to <M>l1</M> or <M>l2</M>) so that <M>d</M>
+	 becomes <C>0</C>. After this adjustment, the algebra is then the tensor product
+	 of cyclic algebras of the form <C>[F,K1,[c1]]</C> and <C>[F,K2,[c2]]</C> provided
+	 <C>c1</C> and <C>c2</C> lie in <C>F</C>.  If the latter condition is not satisfied,
+	 the string <Q>fails</Q> is appended to the output.  (We have not encountered this
+	 problem among the group algebras of small groups we have tested so far.)
 
 <Example>
 <![CDATA[
@@ -896,7 +1130,7 @@ gap> Size(W);
 gap> A:=W[12];
 [ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 9 ] ], [ [ 3 ] ] ]
 gap> DecomposeCyclotomicAlgebra(A);
-[ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], 
+[ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ],
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ]
 ]]>
 </Example>
@@ -906,21 +1140,21 @@ gap> DecomposeCyclotomicAlgebra(A);
 <ManSection>
    <Oper Name="ConvertCyclicAlgToCyclicCyclotomicAlg"
          Arg="A" />
-   <Returns> A list of the form <C>[1,F,n,[a,b,c]]</C> which represents a cyclic 
+   <Returns> A list of the form <C>[1,F,n,[a,b,c]]</C> which represents a cyclic
    cyclotomic algebra. </Returns>
-   <Description> This function converts a cyclic algebra given by a list 
-   <C>[F,F(E(n)),[E(n)^c]]</C> to an isomorphic cyclic cyclotomic algebra represented 
-   as the list <C>[1,F,n,[a,b,c]]</C>.   
+   <Description> This function converts a cyclic algebra given by a list
+   <C>[F,F(E(n)),[E(n)^c]]</C> to an isomorphic cyclic cyclotomic algebra represented
+   as the list <C>[1,F,n,[a,b,c]]</C>.
    </Description>
 
-   <Oper Name="ConvertQuadraticAlgToQuaternionAlg" 
+   <Oper Name="ConvertQuadraticAlgToQuaternionAlg"
          Arg="A" />
-   <Returns> A generalized quaternion algebra. 
+   <Returns> A generalized quaternion algebra.
    </Returns>
    <Description>
-     The input should be a list of the form <C>[F,K,[c]]</C> where the field <C>K</C> 
-     must be obtained by adjoining the square root of a nonsquare element <C>d</C> 
-     of <C>F</C>.  The function then returns the quaternion algebra given in <K>GAP</K> 
+     The input should be a list of the form <C>[F,K,[c]]</C> where the field <C>K</C>
+     must be obtained by adjoining the square root of a nonsquare element <C>d</C>
+     of <C>F</C>.  The function then returns the quaternion algebra given in <K>GAP</K>
      by <C>QuaternionAlgebra(F,d,c);</C>.
 
 <Example>
@@ -951,24 +1185,24 @@ gap> b[2]*b[3]+b[3]*b[2];
 <ManSection>
    <Oper Name="ConvertQuaternionAlgToQuadraticAlg"
          Arg="A" />
-   <Returns> A list of the form <C>[F,K,[c]]</C> representing a cyclic algebra for which 
-   the degree of the extension <C>K/F</C> is <C>2</C>. 
+   <Returns> A list of the form <C>[F,K,[c]]</C> representing a cyclic algebra for which
+   the degree of the extension <C>K/F</C> is <C>2</C>.
    </Returns>
    <Description>
-   The input must be a quaternion algebra whose center is an abelian number field <M>F</M>, 
-   presented as in the output from <C>QuaternionAlgebra( F, a, b )</C>, with <M>a</M>, 
-   <M>b</M> in <M>F</M>. It returns a list <C>[F,F(ER(a)),[b]]</C> representing the cyclic 
-   algebra isomorphic to <M>A</M>. 
+   The input must be a quaternion algebra whose center is an abelian number field <M>F</M>,
+   presented as in the output from <C>QuaternionAlgebra( F, a, b )</C>, with <M>a</M>,
+   <M>b</M> in <M>F</M>. It returns a list <C>[F,F(ER(a)),[b]]</C> representing the cyclic
+   algebra isomorphic to <M>A</M>.
    </Description>
 
 <Oper Name="ConvertCyclicCyclotomicAlgToCyclicAlg"
          Arg="A" />
-   <Returns> A list of the form <C>[F,K,[c]]</C>.  
+   <Returns> A list of the form <C>[F,K,[c]]</C>.
    </Returns>
-   <Description>The input should be a list <C>[r,F,n,[a,b,c]]</C> representing a matrix 
-   ring over a cyclic cyclotomic algebra.  The function returns the list 
-   <C>[F,F(E(n)),[E(n)^c]]</C>, which represents a cyclic algebra that is Morita equivalent 
-   to the given cyclic cyclotomic algebra. 
+   <Description>The input should be a list <C>[r,F,n,[a,b,c]]</C> representing a matrix
+   ring over a cyclic cyclotomic algebra.  The function returns the list
+   <C>[F,F(E(n)),[E(n)^c]]</C>, which represents a cyclic algebra that is Morita equivalent
+   to the given cyclic cyclotomic algebra.
 
 <Example>
 <![CDATA[
