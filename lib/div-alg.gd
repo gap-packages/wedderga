@@ -8,9 +8,11 @@
 
 
 #########################################
-# April 2020 - KillingCocycle and the auxiliar AntiSymMatUpMat added
+# April 2020 - KillingCocycle, AntiSymMatUpMat,  added
 DeclareGlobalFunction("AntiSymMatUpMat");
 DeclareGlobalFunction("KillingCocycle");
+DeclareGlobalFunction("IsCyclotomicExtension");
+DeclareGlobalFunction("ReducingCyclotomicAlgebra");
 ##
 DeclareGlobalFunction("PPartOfN");
 DeclareGlobalFunction("PDashPartOfN");
