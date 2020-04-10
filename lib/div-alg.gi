@@ -2350,7 +2350,7 @@ InstallGlobalFunction( ReducingCyclotomicAlgebra, function(A)
 local m,F,pF,K,con,k,e,i,x,y,F1,F2,c,g,h,n,act,coc1,coc2,l,pos,ex,a,j,A1,split,v,w,d1,cls,gcls,lc,A2,s1,s2;
 
 if Length(A) < 5 then
-  return A;
+  return fail;
 fi;
 
 m:=A[3];
