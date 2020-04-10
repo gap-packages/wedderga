@@ -172,7 +172,7 @@ if Length(A)=5 then
     A1:=ReducingCyclotomicAlgebra(A);
   od;
 
-
+fi;
 
 
 ################## OLD CODE ###################
