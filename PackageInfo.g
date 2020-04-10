@@ -17,11 +17,7 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-<<<<<<< HEAD
-Version        := "4.dev.divalg",
-=======
 Version        := "4.9.5-divalg-dev",
->>>>>>> 6f41aa413363aa12f2116a3bfdf8d124e8e633fc
 Date           := "30/11/2018", # dd/mm/yyyy format
 License        := "GPL-2.0-or-later",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
@@ -46,7 +42,6 @@ ArchiveFormats := ".tar.gz",
 
 Persons :=
  [
-      
 
   rec(
        LastName      := "Bakshi",
@@ -105,7 +100,6 @@ rec(
        Place         := "St Andrews",
        Institution   := "University of St Andrews"
     ),
-    
 
     rec(
        LastName      := "Maheshwary",
