@@ -172,7 +172,7 @@ if Length(A)=5 then
     A1:=ReducingCyclotomicAlgebra(A);
   od;
 
-
+fi;
 
 
 ################## OLD CODE ###################
@@ -298,7 +298,7 @@ if Length(A)=5 then
 
 A1:=A;
 
-  if Length(A) = 4 then
+if Length(A) = 4 then
 
     F:=A[2];
     a1:=PrimitiveElement(F);
@@ -308,8 +308,8 @@ A1:=A;
     c:=A[4][3];
 
     n:=Conductor(F);
-    if IsOddInt(n) then 
-      n:=2*n; 
+    if IsOddInt(n) then
+      n:=2*n;
     fi;
     for m2 in [1..n] do
       if E(n)^m2 in F then
@@ -328,8 +328,8 @@ A1:=A;
     if (g3/g2 in Integers) then
      A1:=[A[1]*a,F];
     fi;
-  fi;
 fi;
+
 
 return A1;
 end);
@@ -2111,13 +2111,13 @@ if IsAlgebra(A) then
       L:=LocalIndicesOfRationalQuaternionAlgebra(A);
       l:=Length(L);
       m:=1;
-      if l>0 then 
-        m:=L[1][2]; 
+      if l>0 then
+        m:=L[1][2];
       fi;
-      if l>1 then 
-        for i in [2..l] do 
-          m:=Lcm(m,L[i][2]); 
-        od; 
+      if l>1 then
+        for i in [2..l] do
+          m:=Lcm(m,L[i][2]);
+        od;
       fi;
     fi;
   else
@@ -2125,19 +2125,19 @@ if IsAlgebra(A) then
   fi;
 fi;
 
-if IsRecord(A) then 
-  m:=A.SchurIndex; 
+if IsRecord(A) then
+  m:=A.SchurIndex;
 fi;
 
 if IsList(A) then
   l:=Length(A);
-    if Length(A)=2 and IsField(A[2]) then 
-      m:=1; 
+    if Length(A)=2 and IsField(A[2]) then
+      m:=1;
     fi;
-    if Length(A)=2 and IsRecord(A[2]) then 
-      m:=A[2].SchurIndex; 
+    if Length(A)=2 and IsRecord(A[2]) then
+      m:=A[2].SchurIndex;
     fi;
-  if Length(A)=3 and IsField(A[1]) and IsField(A[2]) then 
+  if Length(A)=3 and IsField(A[1]) and IsField(A[2]) then
     m:="fail: Cyclic Algebra, use another method.";
   fi;
   if Length(A)=4 then
@@ -2314,7 +2314,7 @@ return [n,F,m,hrs,c];
 end);
 
 ################################################
-# IsCyclotomicExtension checks whether the input are two number fields 
+# IsCyclotomicExtension checks whether the input are two number fields
 # and the first is a cyclotomic extension of the second
 ################################################
 
@@ -2323,7 +2323,7 @@ InstallGlobalFunction( IsCyclotomicExtension, function(K,F)
 
 local c,pr,i;
 
-if not IsNumberField(K) or not IsNumberField(F) or not IsSubset(K,F) then 
+if not IsNumberField(K) or not IsNumberField(F) or not IsSubset(K,F) then
   return fail;
 fi;
 
@@ -2331,7 +2331,7 @@ c:=Conductor(K);
 pr := PrimitiveElement(F);
 
 for i in [1..c] do
-  if Field([pr,E(i)])=K then 
+  if Field([pr,E(i)])=K then
     return true;
   fi;
 od;
@@ -2396,7 +2396,7 @@ for x in [1..k] do
         fi;
       od;
       A1 := [1,F,c,[A[4][x][1],A[4][x][2] mod c,ex]];
-      split := SchurIndex(A1)=1;  
+      split := SchurIndex(A1)=1;
     fi;
     if split then
       c := Lcm(2,Conductor(F2));
@@ -2404,8 +2404,8 @@ for x in [1..k] do
       act := [];
       l := Length(y);
       pos := 1;
-      if l>1 then 
-        coc1 := [];    
+      if l>1 then
+        coc1 := [];
       fi;
       for i in y do
         a:=1;
@@ -2416,11 +2416,11 @@ for x in [1..k] do
           fi;
           a:=a*g;
         od;
-        if ex=c then 
+        if ex=c then
           Print("\n The algebra is not a genuine cyclotomic algebra \n");
           return fail;
-        fi;          
-        Add(act,[A[4][i][1],A[4][i][2] mod c,ex]); 
+        fi;
+        Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
         if pos < l then
           coc2 := [];
           for j in [pos+1..l] do
@@ -2432,19 +2432,19 @@ for x in [1..k] do
               fi;
               a:=a*g;
             od;
-            if ex=c then 
+            if ex=c then
              Print("\n The algebra is not a genuine cyclotomic algebra \n");
               return fail;
-            fi;          
-            Add(coc2,ex); 
+            fi;
+            Add(coc2,ex);
           od;
           Add(coc1,coc2);
         fi;
         pos := pos+1;
       od;
-      if l=1 then 
+      if l=1 then
         return [A[1]*A[4][x][1],F,c,act[1]];
-      else 
+      else
         return [A[1]*A[4][x][1],F,c,act,coc1];
       fi;
     fi;
@@ -2471,7 +2471,7 @@ od;
 
 lc := Length(cls);
 
-if lc = 1 then 
+if lc = 1 then
   return fail;
 fi;
 
@@ -2484,7 +2484,7 @@ for x in gcls do
   y := Difference(v,x);
   F1:=NF(con,List(y,j->A[4][j][2]));
   F2:=NF(con,List(x,j->A[4][j][2]));
-  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then    
+  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then
 
 # Construction of the first factor
     c := Lcm(2,Conductor(F1));
@@ -2492,7 +2492,7 @@ for x in gcls do
     act := [];
     l := Length(x);
     pos := 1;
-    if l>1 then 
+    if l>1 then
       coc1 := [];
     fi;
     for i in x do
@@ -2507,11 +2507,11 @@ for x in gcls do
           a:=a*g;
         fi;
       od;
-      if ex=c then 
+      if ex=c then
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
-      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);                  
+      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
       if pos < l then
         coc2 := [];
         for j in [pos+1..l] do
@@ -2523,19 +2523,19 @@ for x in gcls do
             fi;
             a:=a*g;
           od;
-          if ex=c then 
+          if ex=c then
             Print("\n The algebra is not a genuine cyclotomic algebra \n");
             return fail;
-          fi;          
-          Add(coc2,ex); 
+          fi;
+          Add(coc2,ex);
         od;
         Add(coc1,coc2);
       fi;
       pos := pos+1;
     od;
-    if l=1 then 
+    if l=1 then
       A1 := [A[1],F,c,act[1]];
-    else 
+    else
       A1 := [A[1],F,c,act,coc1];
     fi;
 
@@ -2545,8 +2545,8 @@ for x in gcls do
     act := [];
     l := Length(y);
     pos := 1;
-    if l>1 then 
-      coc1 := [];    
+    if l>1 then
+      coc1 := [];
     fi;
     for i in y do
       h:=E(con)^A[4][i][3];
@@ -2560,12 +2560,12 @@ for x in gcls do
           a:=a*g;
         fi;
       od;
-      if ex=c then 
+      if ex=c then
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
       Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
-      
+
       if pos < l then
         coc2 := [];
         for j in [pos+1..l] do
@@ -2577,20 +2577,20 @@ for x in gcls do
             fi;
             a:=a*g;
           od;
-          if ex=c then 
+          if ex=c then
             Print("\n The algebra is not a genuine cyclotomic algebra \n");
             return fail;
-          fi;          
-          Add(coc2,ex); 
+          fi;
+          Add(coc2,ex);
         od;
         Add(coc1,coc2);
       fi;
       pos := pos+1;
     od;
-    
-    if l=1 then 
+
+    if l=1 then
       A2 := [A[1],F,c,act[1]];
-    else 
+    else
       A2 := [A[1],F,c,act,coc1];
     fi;
 #    Print("\n", [A1,A2]);
@@ -2604,7 +2604,7 @@ for x in gcls do
         return A2;
       fi;
     elif s2=1 then
-      A1[1] := A1[1]*Product(A2[4],x->x[1]); 
+      A1[1] := A1[1]*Product(A2[4],x->x[1]);
       return A1;
     fi;
   fi;
@@ -2663,7 +2663,7 @@ od;
 
 lc := Length(cls);
 
-if lc = 1 then 
+if lc = 1 then
   return fail;
 fi;
 
@@ -2676,7 +2676,7 @@ for x in gcls do
   y := Difference(v,x);
   F1:=NF(con,List(y,j->A[4][j][2]));
   F2:=NF(con,List(x,j->A[4][j][2]));
-  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then    
+  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then
 
 # Construction of the first factor
     c := Lcm(2,Conductor(F1));
@@ -2684,7 +2684,7 @@ for x in gcls do
     act := [];
     l := Length(x);
     pos := 1;
-    if l>1 then 
+    if l>1 then
       coc1 := [];
     fi;
     for i in x do
@@ -2699,11 +2699,11 @@ for x in gcls do
           a:=a*g;
         fi;
       od;
-      if ex=c then 
+      if ex=c then
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
-      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);                  
+      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
       if pos < l then
         coc2 := [];
         for j in [pos+1..l] do
@@ -2715,19 +2715,19 @@ for x in gcls do
             fi;
             a:=a*g;
           od;
-          if ex=c then 
+          if ex=c then
             Print("\n The algebra is not a genuine cyclotomic algebra \n");
             return fail;
-          fi;          
-          Add(coc2,ex); 
+          fi;
+          Add(coc2,ex);
         od;
         Add(coc1,coc2);
       fi;
       pos := pos+1;
     od;
-    if l=1 then 
+    if l=1 then
       A1 := [A[1],F,c,act[1]];
-    else 
+    else
       A1 := [A[1],F,c,act,coc1];
     fi;
 
@@ -2737,8 +2737,8 @@ for x in gcls do
     act := [];
     l := Length(y);
     pos := 1;
-    if l>1 then 
-      coc1 := [];    
+    if l>1 then
+      coc1 := [];
     fi;
     for i in y do
       h:=E(con)^A[4][i][3];
@@ -2752,12 +2752,12 @@ for x in gcls do
           a:=a*g;
         fi;
       od;
-      if ex=c then 
+      if ex=c then
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
       Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
-      
+
       if pos < l then
         coc2 := [];
         for j in [pos+1..l] do
@@ -2769,20 +2769,20 @@ for x in gcls do
             fi;
             a:=a*g;
           od;
-          if ex=c then 
+          if ex=c then
             Print("\n The algebra is not a genuine cyclotomic algebra \n");
             return fail;
-          fi;          
-          Add(coc2,ex); 
+          fi;
+          Add(coc2,ex);
         od;
         Add(coc1,coc2);
       fi;
       pos := pos+1;
     od;
-    
-    if l=1 then 
+
+    if l=1 then
       A2 := [A[1],F,c,act[1]];
-    else 
+    else
       A2 := [A[1],F,c,act,coc1];
     fi;
 #    Print("\n", [A1,A2]);
@@ -2796,7 +2796,7 @@ for x in gcls do
         return A2;
       fi;
     elif s2=1 then
-      A1[1] := A1[1]*Product(A2[4],x->x[1]); 
+      A1[1] := A1[1]*Product(A2[4],x->x[1]);
       return A1;
     fi;
   fi;
