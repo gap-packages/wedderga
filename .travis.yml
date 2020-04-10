@@ -24,6 +24,7 @@ matrix:
 branches:
   only:
     - master
+    - divalg
 
 before_script:
   - export GAPROOT="$HOME/gap"
