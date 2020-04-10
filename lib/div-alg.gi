@@ -2484,7 +2484,7 @@ for x in gcls do
   y := Difference(v,x);
   F1:=NF(con,List(y,j->A[4][j][2]));
   F2:=NF(con,List(x,j->A[4][j][2]));
-  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then    
+  if IsCyclotomicExtension(F1,F) and IsCyclotomicExtension(F2,F) then    
 
 # Construction of the first factor
     c := Lcm(2,Conductor(F1));
