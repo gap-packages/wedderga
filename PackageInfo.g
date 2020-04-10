@@ -47,6 +47,7 @@ ArchiveFormats := ".tar.gz",
 Persons :=
  [
       
+
   rec(
        LastName      := "Bakshi",
        FirstNames    := "Gurmeet Kaur",
@@ -105,6 +106,7 @@ rec(
        Institution   := "University of St Andrews"
     ),
     
+
     rec(
        LastName      := "Maheshwary",
        FirstNames    := "Sugandha",
@@ -121,7 +123,7 @@ rec(
        Place         := "Mohali",
        Institution   := "Indian Institute of Science Education and Research Mohali"
      ),
-    
+
     rec(
        LastName      := "Olteanu",
        FirstNames    := "Gabriela",
@@ -146,11 +148,11 @@ rec(
        PostalAddress := Concatenation( [
                         "Departamento de Matemáticas\n",
                         "Universidad Simón Bolívar\n",
-                        "Apartado Postal 89000\n", 
+                        "Apartado Postal 89000\n",
                         "Caracas 1080-A, Venezuela" ] ),
        Place         := "Caracas",
        Institution   := "Universidad Simón Bolívar"
-     ),     
+     ),
      rec(
        LastName      := "del Rio",
        FirstNames    := "Angel",
@@ -160,11 +162,11 @@ rec(
        WWWHome       := "http://www.um.es/adelrio",
        PostalAddress := Concatenation( [
                         "Departamento de Matemáticas\n",
-                        "Universidad de Murcia\n", 
+                        "Universidad de Murcia\n",
                         "30100 Murcia, Spain" ] ),
        Place         := "Murcia",
        Institution   := "Universidad de Murcia"
-     ),     
+     ),
      rec(
        LastName      := "Van Gelder",
        FirstNames    := "Inneke",
@@ -175,7 +177,7 @@ rec(
        PostalAddress := Concatenation( [
                         "Vrije Universiteit Brussel\n",
                         "Departement Wiskunde\n",
-                        "Pleinlaan 2\n", 
+                        "Pleinlaan 2\n",
                         "1050 Brussels , Belgium" ] ),
        Place         := "Brussels",
        Institution   := "Vrije Universiteit Brussel"
@@ -187,7 +189,7 @@ CommunicatedBy := "Gerhard Hiss (Aachen)",
 AcceptDate := "01/2008",
 
 AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class=\"pkgname\">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.",
-                  
+
 PackageDoc := rec(
   BookName := "Wedderga",
   ArchiveURLSubset := ["doc"],
@@ -208,7 +210,7 @@ Dependencies := rec(
 AvailabilityTest := ReturnTrue,
 TestFile        := "tst/testall.g",
 
-Keywords := ["Wedderburn decomposition", "simple components", 
+Keywords := ["Wedderburn decomposition", "simple components",
              "central idempotents", "group algebras"]
 
 ));
