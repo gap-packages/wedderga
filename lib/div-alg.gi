@@ -171,8 +171,8 @@ if Length(A)=5 then
     A:=A1;
     A1:=ReducingCyclotomicAlgebra(A);
   od;
-
 fi;
+
 
 
 ################## OLD CODE ###################
@@ -300,34 +300,34 @@ A1:=A;
 
 if Length(A) = 4 then
 
-    F:=A[2];
-    a1:=PrimitiveElement(F);
-    m1:=A[3];
-    a:=A[4][1];
-    b:=A[4][2];
-    c:=A[4][3];
+  F:=A[2];
+  a1:=PrimitiveElement(F);
+  m1:=A[3];
+  a:=A[4][1];
+  b:=A[4][2];
+  c:=A[4][3];
 
-    n:=Conductor(F);
-    if IsOddInt(n) then
-      n:=2*n;
+  n:=Conductor(F);
+  if IsOddInt(n) then
+    n:=2*n;
+  fi;
+  for m2 in [1..n] do
+    if E(n)^m2 in F then
+       break;
     fi;
-    for m2 in [1..n] do
-      if E(n)^m2 in F then
-         break;
-      fi;
-    od;
-    g:=Order((E(n)^m2)^a);
+  od;
+  g:=Order((E(n)^m2)^a);
 
-    g1:=E(m1);
-    for m2 in [1..(a-1)] do
-      g1:=E(m1)*g1^b;
-    od;
-    g1:=Order(g1);
-    g2:=Order(E(m1)^c);
-    g3:=Lcm(g,g1);
-    if (g3/g2 in Integers) then
-     A1:=[A[1]*a,F];
-    fi;
+  g1:=E(m1);
+  for m2 in [1..(a-1)] do
+    g1:=E(m1)*g1^b;
+  od;
+  g1:=Order(g1);
+  g2:=Order(E(m1)^c);
+  g3:=Lcm(g,g1);
+  if (g3/g2 in Integers) then
+   A1:=[A[1]*a,F];
+  fi;
 fi;
 
 

@@ -431,7 +431,7 @@ gap> GlobalSplittingOfCyclotomicAlgebra(W[18]);
 gap> G:=PSU(3,3);
 <permutation group of size 6048 with 2 generators>
 gap> SimpleComponentByCharacterDescent(Rationals,G,8);
-[ 21/2, GaussianRationals, 12, [ 2, 5, 9 ] ]
+[ 21/2, GaussianRationals, 12, [ 2, 5, 3 ] ]
 gap> SchurIndex(last);
 1
 ]]>
