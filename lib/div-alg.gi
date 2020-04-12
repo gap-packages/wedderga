@@ -2337,7 +2337,6 @@ for i in [1..k] do
 od;
 
 return [n,F,m,hrs,c];
-
 end);
 
 
@@ -2462,7 +2461,7 @@ for x in [1..k] do
           Print("\n The algebra is not a genuine cyclotomic algebra \n");
           return fail;
         fi;          
-        Add(act,[A[4][i][1] , acon[i] mod c , ex]); 
+        Add(act,[A[4][i][1], acon[i] mod c, ex]); 
         if pos < l then
           coc2 := [];
           for j in [pos+1..l] do
@@ -2606,7 +2605,7 @@ for x in gcls do
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
-      Add(act,[A[4][i][1] , acon[i] mod c , ex]);
+      Add(act,[A[4][i][1], acon[i] mod c, ex]);
       
       if pos < l then
         coc2 := [];
@@ -2845,5 +2844,4 @@ for x in gcls do
 od;
 
 return fail;
-
 end;
