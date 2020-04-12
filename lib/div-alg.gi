@@ -2374,32 +2374,38 @@ end);
 InstallGlobalFunction( ReducingCyclotomicAlgebra, function(A)
 #ReducingCyclotomicAlgebra := function(A)
 
-local m,F,pF,K,con,k,e,i,x,y,F1,F2,c,g,h,n,act,coc1,coc2,l,pos,ex,a,j,A1,split,v,w,d1,cls,gcls,lc,A2,s1,s2;
+local m,e,F,pF,K,gal,con,Ucon,k,acA,acon,i,x,y,F1,F2,c,g,h,n,act,coc1,coc2,l,pos,ex,a,j,A1,split,v,w,d1,cls,gcls,lc,A2,s1,s2;
 
 if Length(A) < 5 then
   return fail;
 fi;
 
 m:=A[3];
+e := AntiSymMatUpMat(A[5]);
 F:=A[2];
 pF := PrimitiveElement(F);
 K := Field([pF,E(m)]);
+gal := GaloisGroup(AsField(F,K));
 con := Lcm(2,Conductor(K));
-e := AntiSymMatUpMat(A[5]);
+Ucon := List(Units(ZmodnZ(con)),Int);
 k := Length(A[4]);
+acA := List([1..k],i->Filtered(gal,x->E(m)^x=E(m)^A[4][i][2])[1]);
+acon := List(acA,x->Filtered(Ucon,i->E(con)^i=E(con)^x)[1]);
 
 
 for x in [1..k] do
-  F2:=NF(con,[A[4][x][2]]);
+  F2:=NF(con,[acon[x]]);
   if ForAll([1..k],j->e[x][j]=0) and IsCyclotomicExtension(F2,F) then
     y := Difference([1..k],[x]);
-    F1:=NF(con,List(y,j->A[4][j][2]));
+    F1:=NF(con,List(y,j->acon[j]));
+## A is a tensor product of a cyclic algebra A1=(F1/F,a1) and a cyclotomic algebra A2=F2*H.
+## We check whether a1 is the norm of a root of unity in F, so that A1 is split.
     c := Lcm(2,Conductor(F1));
     g := E(c);
     while not g in F1 do
       g:=g*E(c);
     od;
-    h := E(con)^A[4][x][3];
+    h := E(m)^A[4][x][3];
     n := Order(g);
     split := false;
     a := 1;
@@ -2410,7 +2416,7 @@ for x in [1..k] do
       fi;
       a:=a*g;
     od;
-## If not we check whether it is a cyclotomic and compute the Schur index to check whether it is 1
+## If not we check whether A1 is cyclotomic and compute the Schur index of A1. 
     if not split and IsCyclotomicExtension(F1,F) then
       a := 1;
       ex := 0;
@@ -2422,7 +2428,7 @@ for x in [1..k] do
           a:=a*g;
         fi;
       od;
-      A1 := [1,F,c,[A[4][x][1],A[4][x][2] mod c,ex]];
+      A1 := [1,F,c,[A[4][x][1],acon[x] mod c,ex]];
       split := SchurIndex(A1)=1;  
     fi;
     if split then
@@ -2447,7 +2453,7 @@ for x in [1..k] do
           Print("\n The algebra is not a genuine cyclotomic algebra \n");
           return fail;
         fi;          
-        Add(act,[A[4][i][1],A[4][i][2] mod c,ex]); 
+        Add(act,[A[4][i][1], acon[i] mod c, ex]); 
         if pos < l then
           coc2 := [];
           for j in [pos+1..l] do
@@ -2509,8 +2515,8 @@ SortBy(gcls,Size);
 
 for x in gcls do
   y := Difference(v,x);
-  F1:=NF(con,List(y,j->A[4][j][2]));
-  F2:=NF(con,List(x,j->A[4][j][2]));
+  F1:=NF(con,List(y,j->acon[j]));
+  F2:=NF(con,List(x,j->acon[j]));
   if IsCyclotomicExtension(F1,F) and IsCyclotomicExtension(F2,F) then    
 
 # Construction of the first factor
@@ -2538,7 +2544,7 @@ for x in gcls do
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
-      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);                  
+      Add(act,[A[4][i][1],acon[i] mod c,ex]);                  
       if pos < l then
         coc2 := [];
         for j in [pos+1..l] do
@@ -2591,7 +2597,7 @@ for x in gcls do
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
-      Add(act,[A[4][i][1],A[4][i][2] mod c,ex]);
+      Add(act,[A[4][i][1], acon[i] mod c, ex]);
       
       if pos < l then
         coc2 := [];
@@ -2625,7 +2631,7 @@ for x in gcls do
     s2 := SchurIndex(A2);
     if s1=1 then
       if s2 =1 then
-        return [A[1],F];
+        return [A[1]*Product(A1[4],x->x[1]),F];
       else
         A2[1] := A2[1]*Product(A1[4],x->x[1]);
         return A2;
