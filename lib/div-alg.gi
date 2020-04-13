@@ -512,13 +512,20 @@ if Length(A)=2 then u:=1; else
 if Length(A)>2 then
 g1:=DefiningGroupOfCyclotomicAlgebra(A);
 if Length(A)=4 then d:=A[4][1]; F1:=NF(A[3],[A[4][2]]); fi;
-if (Length(A)=5 and Length(A[4])=2) then
-   d:=A[4][1][1]*A[4][2][1];
-   F1:=NF(A[3],[A[4][1][2],A[4][2][2]]);
-fi;
-if (Length(A)=5 and Length(A[4])=3) then
-   d:=A[4][1][1]*A[4][2][1]*A[4][3][1];
-   F1:=NF(A[3],[A[4][1][2],A[4][2][2],A[4][3][2]]);
+###Adjust to arbitrary number of generators ###
+#if (Length(A)=5 and Length(A[4])=2) then
+#   d:=A[4][1][1]*A[4][2][1];
+#   F1:=NF(A[3],[A[4][1][2],A[4][2][2]]);
+#fi;
+#if (Length(A)=5 and Length(A[4])=3) then
+#   d:=A[4][1][1]*A[4][2][1]*A[4][3][1];
+#   F1:=NF(A[3],[A[4][1][2],A[4][2][2],A[4][3][2]]);
+#fi;
+if Length(A)=5 then
+  V:=[];
+  d:=1;
+  for i in [1..Length(A[4])] do Add(V,A[4][i][2]); od;
+  for i in [1..Length(A[4])] do d:=d*A[4][i][1]; od;
 fi;
 
 n:=Size(Irr(g1)) ;
@@ -2154,9 +2161,16 @@ end);
 
 ############################################
 InstallGlobalFunction( SchurIndexByCharacter, function(F,G,n)
-local m,A;
+local m,A,B,n1;
 
-A:=SimpleComponentOfGroupRingByCharacter(F,G,n);
+#A:=SimpleComponentOfGroupRingByCharacter(F,G,n);
+B:=Irr(G);
+if IsOrdinaryCharacter(n) then
+  n1:=Position(Irr(G),n);
+else
+  n1:=n;
+fi;
+A:=SimpleComponentByCharacterDescent(F,G,n1);
 m:=SchurIndex(A);
 
 return m;
