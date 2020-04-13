@@ -2165,10 +2165,12 @@ local m,A,B,n1;
 
 #A:=SimpleComponentOfGroupRingByCharacter(F,G,n);
 B:=Irr(G);
-if IsOrdinaryCharacter(n) then
-  n1:=Position(Irr(G),n);
-else
+if IsPosInt(n) then
   n1:=n;
+else
+  if IsCharacter(n) then
+    n1:=Position(Irr(G),n);
+  fi;
 fi;
 A:=SimpleComponentByCharacterDescent(F,G,n1);
 m:=SchurIndex(A);
