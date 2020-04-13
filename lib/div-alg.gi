@@ -2166,7 +2166,7 @@ local m,A,B,n1;
 
 #A:=SimpleComponentOfGroupRingByCharacter(F,G,n);
 B:=Irr(G);
-if IsOrdinaryCharacter(n) then
+if IsCharacter(n) then
   n1:=Position(Irr(G),n);
 else
   n1:=n;
