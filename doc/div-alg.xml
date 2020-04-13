@@ -329,6 +329,8 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
          Arg="A" />
    <Oper Name="AntiSymMatUpMat"
          Arg="x" />
+   <Oper Name="ReducingCyclotomicAlgebra"
+         Arg="A" />
 
    <Returns>
 	If the input cyclotomic crossed product algebra <C>A</C> admits a rescaling of
@@ -337,8 +339,15 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
   center with the same dimension as <C>A</C>.  In general the function will output
   a cyclotomic algebra equivalent to <C>A</C> whose factor set does not admit a
   partial splitting by a simple rescaling of basis elements by roots of unity.
-  The last two functions are subroutines used by the Global Splitting function
-  to produce equivalent factor sets that have more zeroes.
+  <Ref Attr="KillingCocycle"/> is a subroutine used by
+  <Ref Attr="GlobalSplittingOfCyclotomicAlgebra"/> function
+  to produce equivalent factor sets that have more zeroes,
+  <Ref Attr="AntiSymMatUpMat"/> is a subroutine it uses to manipulate the factor
+  set information in anti-symmetric matrix form.
+  <Ref Attr="ReducingCyclotomicAlgebra"/> is another subroutine used by the
+  <Ref Attr="GlobalSplittingOfCyclotomicAlgebra"/> that either returns an isomorphic
+  cyclotomic algebra whose associated Galois group has fewer generators than
+  the input, or returns fail.
    </Returns>
 
    <Description>
@@ -350,9 +359,10 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
         makes the factor set trivial, and in general finds one that produces as
         many zeroes as possible in the factor set information.  If there is a
         generator that produces a split tensor factor with a cyclotomic algebra
-        <C>B</C> defined over a root of unity of smaller order, then it
-        reduces to <C>B</C> and the algorithm is repeated until no such tensor
-        factorizations are available.
+        <C>B</C> defined over a root of unity of smaller order, then
+        <Ref Attr="ReducingCyclotomicAlgebra"/> reduces to <C>B</C>.  These
+        steps are repeated until such tensor factorizations are no longer
+        available.
       <P/>
 
 <Example>
