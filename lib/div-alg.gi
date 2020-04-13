@@ -2341,11 +2341,11 @@ return [n,F,m,hrs,c];
 end);
 
 ################################################
-# IsCyclotomicExtension checks whether the input are two number fields 
+# CyclotomicExtensionGenerator checks whether the input are two number fields 
 # and the first is a cyclotomic extension of the second
 ################################################
 
-InstallGlobalFunction( IsCyclotomicExtension, function(K,F)
+InstallGlobalFunction( CyclotomicExtensionGenerator, function(K,F)
 
 local c,pr,e;
 
@@ -2397,7 +2397,7 @@ acon := List(acA,x->Filtered(Ucon,i->E(con)^i=E(con)^x)[1]);
 
 for x in [1..k] do
   F2:=NF(con,[acon[x]]);
-  c2:=IsCyclotomicExtension(F2,F);
+  c2:=CyclotomicExtensionGenerator(F2,F);
   if ForAll([1..k],j->e[x][j]=0) and c2<>0 then
     y := Difference([1..k],[x]);
     F1:=NF(con,List(y,j->acon[j]));
@@ -2522,9 +2522,9 @@ SortBy(gcls,Size);
 for x in gcls do
   y := Difference(v,x);
   F1:=NF(con,List(y,j->acon[j]));
-  c1 := IsCyclotomicExtension(F1,F);
+  c1 := CyclotomicExtensionGenerator(F1,F);
   F2:=NF(con,List(x,j->acon[j]));
-  c2 := IsCyclotomicExtension(F2,F);
+  c2 := CyclotomicExtensionGenerator(F2,F);
   if c1<>0 and c2<>0 then    
 
 # Construction of the first factor
@@ -2551,7 +2551,7 @@ for x in gcls do
         Print("\n The algebra is not a genuine cyclotomic algebra \n");
         return fail;
       fi;
-      Add(act,[A[4][i][1],acon[i] mod c1,ex]);                  
+      Add(act,[A[4][i][1],acon[i] mod c1,ex]);
       if pos < l then
         coc2 := [];
         for j in [pos+1..l] do
@@ -2588,7 +2588,7 @@ for x in gcls do
       coc1 := [];    
     fi;
     for i in y do
-      h:=E(con)^A[4][i][3];
+      h:=E(m)^A[4][i][3];
       a := 1;
       ex := 0;
       for j in [0..c2-1] do
@@ -2715,7 +2715,7 @@ for x in gcls do
   y := Difference(v,x);
   F1:=NF(con,List(y,j->A[4][j][2]));
   F2:=NF(con,List(x,j->A[4][j][2]));
-  if IsCyclotomicExtension(F2,F) and IsCyclotomicExtension(F2,F) then    
+  if CyclotomicExtensionGenerator(F2,F)<>0 and CyclotomicExtensionGenerator(F2,F)<>0 then    
 
 # Construction of the first factor
     c := Lcm(2,Conductor(F1));
