@@ -125,13 +125,12 @@ but available in number theory packages such as <Package>PARI/GP</Package>.
 The second function computes the Schur index of the cyclotomic algebra
 that would occur as the simple component of the group ring <A>FG</A>
 that corresponds to the irreducible character <C>Irr(G)[n]</C>.
-The function uses <Ref Attr="SimpleComponentOfGroupRingByCharacter" />,
-which identifies the simple component of <C>GroupRing(F,G)</C> in
-the output of <Ref Attr="WedderburnDecompositionInfo"/> that
-corresponds to <C>Irr(G)[n]</C> by a simple dimension count.
-Because of this, it is important that users use the same presentation
-of <A>G</A> to identify <C>Irr(G)[n]</C>, the <A>n</A>-th character in the
-list <C>Irr(G)</C>.
+The function uses <Ref Attr="SimpleComponentByCharacterDescent" />, which uses
+the character descent algorithm to reduce to as small a group as possible. For
+larger groups this is preferrable as it is less demanding on memory.  The Schur
+index of the resulting cyclotomic algebra is then computed with the
+<Ref Attr="SchurIndex" /> function.
+   <P/>
 
 <Example>
 <![CDATA[
@@ -151,6 +150,14 @@ gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> SchurIndexByCharacter(GaussianRationals,G,Irr(G)[i]);
 2
 gap> SchurIndexByCharacter(CF(3),G,i);
+1
+gap> G:=AtlasGroup("J2");
+<permutation group of size 604800 with 2 generators>
+gap> Irr(G)[20];
+Character( CharacterTable( <permutation group of size 604800 with 2 generators\
+> ), [ 300, -1, -20, -15, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+] )
+gap> SchurIndexByCharacter(Rationals,G,Irr(G)[20]);
 1
 ]]>
 </Example>
