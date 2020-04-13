@@ -511,7 +511,10 @@ local g1,d,m,n,i,chi,F,u,V,U,F1;
 if Length(A)=2 then u:=1; else
 if Length(A)>2 then
 g1:=DefiningGroupOfCyclotomicAlgebra(A);
-if Length(A)=4 then d:=A[4][1]; F1:=NF(A[3],[A[4][2]]); fi;
+if Length(A)=4 then
+  d:=A[4][1];
+  F1:=NF(A[3],[A[4][2]]);
+fi;
 ###Adjust to arbitrary number of generators ###
 #if (Length(A)=5 and Length(A[4])=2) then
 #   d:=A[4][1][1]*A[4][2][1];
@@ -526,6 +529,7 @@ if Length(A)=5 then
   d:=1;
   for i in [1..Length(A[4])] do Add(V,A[4][i][2]); od;
   for i in [1..Length(A[4])] do d:=d*A[4][i][1]; od;
+  F1:=NF(A[3],V);
 fi;
 
 n:=Size(Irr(g1)) ;
