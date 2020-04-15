@@ -60,11 +60,11 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
 # doc/decomp.xml:193-202
 
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, DihedralGroup(16) ) );
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
-  [ 2, Rationals ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ] ]
 gap> WedderburnDecompositionInfo( GroupRing( CF(5), DihedralGroup(16) ) );
-[ [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 2, CF(5) ],
-  [ 1, NF(40,[ 1, 31 ]), 8, [ 2, 7, 0 ] ] ]
+[ [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], [ 2, CF(5) ], 
+  [ 2, NF(40,[ 1, 31 ]) ] ]
 
 # doc/decomp.xml:220-239
 
@@ -82,24 +82,21 @@ gap> WedderburnDecompositionInfo(QQ16);
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
   [ 2, Rationals ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ] ]
 gap> WedderburnDecompositionInfo(QS4);  
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 3, [ 2, 2, 0 ] ], 
-  [ 3, Rationals ], [ 3, Rationals ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 2, Rationals ], [ 3, Rationals ], 
+  [ 3, Rationals ] ]
 
-# doc/decomp.xml:293-307
+# doc/decomp.xml:293-304
 
 gap> WedderburnDecompositionInfo( GroupRing( Rationals, SmallGroup(48,15) ) );
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], 
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
-  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] 
- ]
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] ]
 gap> WedderburnDecompositionInfo( GroupRing( CF(3), SmallGroup(48,15) ) );
-[ [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], 
-  [ 2, CF(3), 3, [ 1, 1, 0 ] ], [ 1, CF(3), 4, [ 2, 3, 0 ] ], 
-  [ 2, CF(3), 6, [ 1, 1, 0 ] ], [ 1, NF(24,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], 
-  [ 2, CF(3) ], [ 2, CF(3) ], [ 2, CF(3), 12, [ 2, 7, 0 ] ] ]
+[ [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 1, CF(3) ], [ 2, CF(3) ], 
+  [ 2, CF(3) ], [ 2, CF(3) ], [ 2, NF(24,[ 1, 7 ]) ], [ 2, CF(3) ], 
+  [ 2, CF(3) ], [ 4, CF(3) ] ]
 
-# doc/decomp.xml:320-333
+# doc/decomp.xml:317-330
 
 gap> QG:=GroupRing(Rationals,SmallGroup(240,89));
 <algebra-with-one over Rationals, with 2 generators>
@@ -112,7 +109,7 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ],
   [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
 
-# doc/decomp.xml:390-411
+# doc/decomp.xml:387-408
 
 gap> A5 := AlternatingGroup(5);
 Alt( [ 1 .. 5 ] )
@@ -133,7 +130,7 @@ gap> List(chi4,x->SimpleAlgebraByCharacter(GroupRing(Rationals,G),x));
   ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
     [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ) ]
 
-# doc/decomp.xml:444-455
+# doc/decomp.xml:441-452
 
 gap> G:=SmallGroup(128,100);
 <pc group of size 128 with 7 generators>
@@ -141,10 +138,10 @@ gap> QG:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 7 generators>
 gap> chi4:=Filtered(Irr(G),x->Degree(x)=4);;
 gap> List(chi4,x->SimpleAlgebraByCharacterInfo(QG,x));
-[ [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 0 ] ], 
-  [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ], [ 2, NF(8,[ 1, 3 ]), 8, [ 2, 3, 4 ] ] ]
+[ [ 4, NF(8,[ 1, 3 ]) ], [ 4, NF(8,[ 1, 3 ]) ], [ 4, NF(8,[ 1, 3 ]) ], 
+  [ 4, NF(8,[ 1, 3 ]) ] ]
 
-# doc/decomp.xml:524-538
+# doc/decomp.xml:521-535
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
@@ -158,7 +155,7 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, [1,7] );
 gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 
-# doc/decomp.xml:598-614
+# doc/decomp.xml:595-611
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
