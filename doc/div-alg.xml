@@ -33,10 +33,9 @@ gap> G:=SmallGroup(48,15);
 gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 5 generators>
 gap> WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
-  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ],
-  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ],
-  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
+[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], 
+  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],
+  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] 
  ]
 gap> WedderburnDecompositionWithDivAlgParts(R);
 [ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],
@@ -139,8 +138,7 @@ gap> G:=SmallGroup(63,1);
 gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 3 generators>
 gap> W:=WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ],
-  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ],
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ], 
   [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
 gap> SchurIndex(W[5]);
 3
@@ -195,8 +193,7 @@ gap> G:=SmallGroup(63,1);
 gap> R:=GroupRing(Rationals,G);
 <algebra-with-one over Rationals, with 3 generators>
 gap> W:=WedderburnDecompositionInfo(R);
-[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ],
-  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ],
+[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ], 
   [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ]
 gap> WedderburnDecompositionWithDivAlgParts(R);
 [ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ],
@@ -204,7 +201,7 @@ gap> WedderburnDecompositionWithDivAlgParts(R);
       rec( Center := NF(21,[ 1, 4, 16 ]), DivAlg := true,
           LocalIndices := [ [ 7, 3 ] ], SchurIndex := 3 ) ] ]
 gap> WedderburnDecompositionAsSCAlgebras(R);
-[ Rationals, CF(3), CF(9), <algebra of dimension 9 over NF(7,[ 1, 2, 4 ])>,
+[ Rationals, CF(3), CF(9), ( NF(7,[ 1, 2, 4 ])^[ 3, 3 ] ), 
   <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])> ]
 gap> CyclotomicAlgebraAsSCAlgebra(W[5]);
 <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
