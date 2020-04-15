@@ -173,129 +173,6 @@ if Length(A)=5 then
   od;
 fi;
 
-
-
-################## OLD CODE ###################
-
-
-#   if Length(A)=5 and Length(A[4])=2 then
-#
-#     A1:=A;
-#     if not(A[5][1][1]=0) then
-#       m:=A[1];
-#       a1:=A[4][1][1];
-#       b1:=A[4][1][2];
-#       c1:=A[4][1][3];
-#       a2:=A[4][2][1];
-#       b2:=A[4][2][2];
-#       c2:=A[4][2][3];
-#       d:=A[5][1][1];
-#       F:=A[2];
-#       a:=PrimitiveElement(F);
-#       m1:=A[3];
-#       F2:=Field([a,E(m1)]);
-#
-#       t:=0;
-#       for i in [1..m1-1] do
-#         if ((((1-b2)*i+d) mod m1) = (0 mod m1)) then
-#           d1:=1;
-#           for j in [1..(a1-1)] do
-#             d1:=1+b1*d1;
-#           od;
-#           A1:=[m,F,m1,[[a1,b1,((c1+i*d1) mod m1)],[a2,b2,c2]],[[0]]];
-#           t:=1;
-#           break;
-#         fi;
-#       od;
-#
-#       if t=0 then
-#         b11:=PowerMod(b1,-1,m1);
-#         for i in [1..m1-1] do
-#           if ((((b11-1)*i+d) mod m1) = (0 mod m1)) then
-#             d1:=1;
-#             for j in [1..(a2-1)] do
-#               d1:=1+b2*d1;
-#             od;
-#             A1:=[m,F,m1,[[a1,b1,c1],[a2,b2,((c2+i*d1) mod m1)]],[[0]]];
-#             t:=1;
-#             break;
-#           fi;
-#         od;
-#       fi;
-#
-#     fi;
-
-#    A:=A1;
-
-#    if A[4][2][3]=0 and A[5][1][1]=0 then
-#      m:=A[1];
-#      a1:=A[4][1][1];
-#      b1:=A[4][1][2];
-#      c1:=A[4][1][3];
-#      a2:=A[4][2][1];
-#      b2:=A[4][2][2];
-#      c2:=A[4][2][3];
-#      F:=A[2];
-#      a:=PrimitiveElement(F);
-#      m1:=A[3];
-#      F2:=Field([a,E(m1)]);
-#
-#      for m2 in [2..m1-1] do
-#        if GaloisCyc(E(m1)^m2,b2)=E(m1)^m2 then
-#          g1:=E(m1)^m2;
-#          break;
-#        fi;
-#      od;
-
-#      if OrderMod(b1,Order(g1))= a1 then
-#        f:=Order(g1);
-#        for m2 in [2..a1] do
-#          if g1^m2 = E(m1)^c1 then
-#            c1:=m2;
-#            break;
-#          fi;
-#        od;
-#        A1:=[m*a2, F, f, [a1,b1 mod f,c1]];
-#      fi;
-
-#    fi;
-
-#    if A[4][1][3]=0 and A[5][1][1]=0 then
-#      m:=A[1];
-#      a1:=A[4][1][1];
-#      b1:=A[4][1][2];
-#      c1:=A[4][1][3];
-#      a2:=A[4][2][1];
-#      b2:=A[4][2][2];
-#      c2:=A[4][2][3];
-#      F:=A[2];
-#      a:=PrimitiveElement(F);
-#      m1:=A[3];
-#      F2:=Field([a,E(m1)]);
-
-#      for m2 in [2..m1-1] do
-#        if GaloisCyc(E(m1)^m2,b1)=E(m1)^m2 then
-#          g1:=E(m1)^m2;
-#          break;
-#        fi;
-#      od;
-
-#      if OrderMod(b2,Order(g1))= a2 then
-#        f:=Order(g1);
-#        for m2 in [2..a2] do
-#          if g1^m2 = E(m1)^c2 then
-#            c2:=m2;
-#            break;
-#          fi;
-#        od;
-#        A1:=[m*a1, F, f, [a2,b2 mod f,c2]];
-#      fi;
-
-#    fi;
-
-#  fi;
-#fi;
-
 A1:=A;
 
 if Length(A) = 4 then
@@ -337,11 +214,9 @@ end);
 # is faithfully represented.
 #######################################################
 InstallGlobalFunction( DefiningGroupAndCharacterOfCyclotAlg, function(A)
-#local l,f,a,b,c,d,g,I,g1,S,m,n,i,chi,F,u,V,U,F1;;
 local l,f,a,b,c,d,g,I,g1,S,m,n,i,chi,F,u,V,U,F1,k,gen,ord,hs,rs,ss,cs,relact,relpow,relcom,rel;
 
 l:=Length(A);
-# g1:="fail";
 if l=2 then
   return fail;
 fi;
@@ -364,28 +239,6 @@ if l=5 then
   g := f/rel;
 fi;
 
-################ OLD CODE ######################
-
-# if (l=5 and Length(A[4])=2) then
-#   f:=FreeGroup("a","b","c");
-#   a:=f.1;
-#   b:=f.2;
-#   c:=f.3;
-#   g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),b^(-1)*a*b*a^(-A[4][1][2]),
-#        c^(-1)*a*c*a^(-A[4][2][2]),c^(-1)*b^(-1)*c*b*a^(-A[5][1][1])];
-# fi;
-
-# if (l=5 and Length(A[4])=3) then
-#   f:=FreeGroup("a","b","c","d");
-#   a:=f.1;
-#   b:=f.2;
-#   c:=f.3;
-#   d:=f.4;
-#   g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),d^A[4][3][1]*a^(-A[4][3][3]),
-#     b^(-1)*a*b*a^(-A[4][1][2]),c^(-1)*a*c*a^(-A[4][2][2]), d^(-1)*a*d*a^(-A[4][3][2]),    c^(-1)*b^(-1)*c*b*a^(-A[5][1][1]),
-#     d^(-1)*b^(-1)*d*b*a^(-A[5][1][2]),d^(-1)*c^(-1)*d*c*a^(-A[5][2][1])];
-# fi;
-
 ########## END OF DEALING WITH ARBITRARY NUMBER OF GENERATORS FOR THE GALOIS GROUP #####################
 if (l=4) then
   f:=FreeGroup("a","b");
@@ -402,15 +255,6 @@ S[1]:=g1;
 
 if Length(A)=2 then d:=1; fi;
 if Length(A)=4 then d:=A[4][1]; F1:=NF(A[3],[A[4][2]]); fi;
-#if (Length(A)=5 and Length(A[4])=2) then
-#   d:=A[4][1][1]*A[4][2][1];
-#   F1:=NF(A[3],[A[4][1][2],A[4][2][2]]);
-#fi;
-#if (Length(A)=5 and Length(A[4])=3) then
-#   d:=A[4][1][1]*A[4][2][1]*A[4][3][1];
-#   F1:=NF(A[3],[A[4][1][2],A[4][2][2],A[4][3][2]]);
-#fi;
-### Adjust to arbitrary number of generators
 if Length(A)=5 then
   V:=[];
   d:=1;
@@ -473,28 +317,6 @@ if l=5 then
   g := f/rel;
 fi;
 
-################ OLD CODE ######################
-
-# if (l=5 and Length(A[4])=2) then
-# f:=FreeGroup("a","b","c");
-# a:=f.1;
-# b:=f.2;
-# c:=f.3;
-# g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),b^(-1)*a*b*a^(-A[4][1][2]),
-#  c^(-1)*a*c*a^(-A[4][2][2]),c^(-1)*b^(-1)*c*b*a^(-A[5][1][1])];
-# fi;
-
-# if (l=5 and Length(A[4])=3) then
-# f:=FreeGroup("a","b","c","d");
-# a:=f.1;
-# b:=f.2;
-# c:=f.3;
-# d:=f.4;
-# g:=f/[a^A[3],b^A[4][1][1]*a^(-A[4][1][3]),c^A[4][2][1]*a^(-A[4][2][3]),d^A[4][3][1]*a^(-A[4][3][3]),
-#  b^(-1)*a*b*a^(-A[4][1][2]),c^(-1)*a*c*a^(-A[4][2][2]), d^(-1)*a*d*a^(-A[4][3][2]),    c^(-1)*b^(-1)*c*b*a^(-A[5][1][1]),
-# d^(-1)*b^(-1)*d*b*a^(-A[5][1][2]),d^(-1)*c^(-1)*d*c*a^(-A[5][2][1])];
-# fi;
-
 ########## END OF DEALING WITH ARBITRARY NUMBER OF GENERATORS FOR THE GALOIS GROUP #####################
 
 if (l=4) then
@@ -523,15 +345,6 @@ if Length(A)=4 then
   d:=A[4][1];
   F1:=NF(A[3],[A[4][2]]);
 fi;
-###Adjust to arbitrary number of generators ###
-#if (Length(A)=5 and Length(A[4])=2) then
-#   d:=A[4][1][1]*A[4][2][1];
-#   F1:=NF(A[3],[A[4][1][2],A[4][2][2]]);
-#fi;
-#if (Length(A)=5 and Length(A[4])=3) then
-#   d:=A[4][1][1]*A[4][2][1]*A[4][3][1];
-#   F1:=NF(A[3],[A[4][1][2],A[4][2][2],A[4][3][2]]);
-#fi;
 if Length(A)=5 then
   V:=[];
   d:=1;
@@ -807,7 +620,6 @@ b:=A[4][2];
 c:=A[4][3];
 n:=Lcm(Conductor(F),A[3]);
 n1:=PDashPartOfN(n,q);
-##########################
 e:=RamificationIndexAtP(F,n,q);
 if e>1 and c>0 and A[3]/q in PositiveIntegers then
 f:=ResidueDegreeAtP(Rationals,n,q);
@@ -822,59 +634,6 @@ fi;
 
 return m;
 end);
-
-
-
-
-####################################
-# Cyclotomic reciprocity calculation:
-#U:=[1];
-#if n1 > 1 then
-#i:=1;
-#while not(PowerMod(q,i,n1)=1) do
-#Add(U,PowerMod(q,i,n1));
-#i:=i+1;
-#od;
-#fi;
-#U1:=[];
-#n2:=PDashPartOfN(A[3],q);
-#for u in U do
-#Add(U1,u mod n2);
-#od;
-#g:=1;
-#while not(PowerMod(b,g,n2) in U1) do
-#g:=g+1;
-#od;
-#h:=OrderMod(b^g,n2);
-#e:=OrderMod(b^g,A[3])/h;
-#####################################
-# Now g, h, and e are the splitting,
-# residue degree and ramification of
-# Q(E(n))/F at q.
-#####################################
-#if e>1 and c>0 and A[3]/q in PositiveIntegers then
-#####################################
-# Compute residue degree f of CF(n) at q
-#f:=1;
-#while not(n1=1 or PowerMod(q,f,n1)=1) do
-#f:=f+1;
-#od;
-#########################
-# Now F_q contains E(q^(f/h)-1).  We find the least
-# power m of E(A[3])^c that lies in the group generated
-# by E(q^(f/h)-1)^e.
-#########################
-#f1:=f/h;
-#e1:=Gcd(q^f1-1,e);
-#k:=(q^f1-1)/e1;
-#while not(k/(Order(E(A[3])^(c*m))) in PositiveIntegers) do
-#  m:=m+1;
-#od;
-#fi;
-
-#return m;
-#end);
-
 
 ###############################
 # For the computation of the index of a cyclic
@@ -931,41 +690,6 @@ fi;
 return m;
 end);
 
-#################################
-#n1:=PDashPartOfN(n,2);
-#f:=OrderMod(2,n1);
-#n2:=PPartOfN(n,2);
-#e:=Phi(n2);
-
-#U:=[1];
-#i:=1;
-#while not(PowerMod(2,i,n1) in U) do
-#Add(U,PowerMod(2,i,n1));
-#i:=i+1;
-#od;
-#U1:=[];
-#n3:=PDashPartOfN(A[3],2);
-#n4:=PPartOfN(A[3],2);
-#for u in U do
-#Add(U1,u mod n3);
-#od;
-
-#g:=1;
-#while not(PowerMod(b,g,n3) in U1) do
-#g:=g+1;
-#od;
-#h:=OrderMod(b^g,n3);
-#e1:=OrderMod(b^g,A[3])/OrderMod(b^g,n3);
-# if e1>1 and IsOddInt(e*f/e1*h) then
-# n2:=PPartOfN(n,2);
-#  if E(n2)^(b^g)=E(n2)^(-1) and E(n4)^c=-1 then
-#   m:=2;
-#  fi;
-# fi;
-#fi;
-#
-#return m;
-#end);
 ##############################
 # Given a group G and a simple component A whose
 # WedderburnDecompositionInfo in wedderga has length 4,
@@ -1013,9 +737,6 @@ fi;
 
 return L1;
 end);
-
-
-
 
 ##########################################
 InstallGlobalFunction( IsDyadicSchurGroup, function(G)
@@ -1269,47 +990,6 @@ d:=LogInt(q,p);
 return d;
 end);
 
-###################################################
-#InstallGlobalFunction( PossibleDefectGroups, function(G,n,p)
-#local S,U,U0,U1,Q,Q1,Q2,i,j,I,T,b,k,d,H,a;
-#
-#T:=CharacterTable(G);
-#S:=T mod p;
-#b:=BlocksInfo(S);
-#for j in [1..Size(b)] do
-#if n in b[j].ordchars then
-#  k:=b[j].modchars[1];
-#  d:=b[j].defect;
-#  break;
-#fi;
-#od;
-#Q:=SylowSubgroup(G,p);
-#U:=[];
-#U0:=[];
-#U1:=[];
-#if Size(Q)>p^d then
-#H:=ConjugacyClasses(G);
-#for j in [2..Size(H)] do
-#  if Gcd(OrdersClassRepresentatives(T)[j],p)=1 then
-#     a:=Elements(H[j])[1];
-#     Q1:=Intersection(Q,Q^a);
-#     if Size(Q1)=p^d then
-#        AddSet(U0,ConjugacyClassSubgroups(G,Q1));
-#     fi;
-#     Q2:=SylowSubgroup(Centralizer(G,a),p);
-#     if Size(Q2)=p^d then
-#        AddSet(U1,ConjugacyClassSubgroups(G,Q2));
-#     fi;
-#  fi;
-#od;
-#U:=Intersection(U0,U1);
-#else
-#AddSet(U,ConjugacyClassSubgroups(G,Q));
-#fi;
-#
-#return U;
-#end);
-
 ##########################################
 InstallGlobalFunction( LocalIndexAtPByBrauerCharacter, function(F,G,n,p)
 local chi,n1,V,a,V1,C,m1,b,j,k,u,t,T,S,U,f,m2,n0,K0,d0,F1,K1,d1;
@@ -1348,25 +1028,10 @@ od;
 #####################
 # Adapted to new defect group function
 #####################
-#U:=PossibleDefectGroups(G,n,p);
-#f:=0;
-#for u in [1..Size(U)] do
-# if not(IsCyclic(Elements(U[u])[1])) then
-#   f:=f+1;
-# fi;
-#od;
-#if not(f=0) then
-#  if f<Size(U) then
-#   m1[2]:="DGmaybeCyclic";
-#  else
-#   m1[2]:="DGnotCyclic";
-#  fi;
-#fi;
 U:=DefectGroupsOfPBlock(G,n,p);
 if not(IsCyclic(Representative(U))) then
   m1[2]:="DGnotCyclic";
 fi;
-
 ####################################
 
 t:=FinFieldExt(C,G,p,n,k);
@@ -1526,8 +1191,6 @@ if l=5 then
   d:=DefiningGroupAndCharacterOfCyclotAlg(A);
   G:=d[1];
   n:=d[2];
-  #G:=DefiningGroupOfCyclotomicAlgebra(A);
-  #n:=DefiningCharacterOfCyclotomicAlgebra(A);
   m0:=LocalIndexAtInftyByCharacter(F,G,n);
   Add(L1,[infinity,m0]);
 
@@ -1736,18 +1399,6 @@ for i in [1,2] do
   B[i][2]:=FieldByGenerators([c,d]);
   fi;
 od;
-
-#  c:=[];
-#  for j in [1,2] do
-#  d:=Conductor(B[i][j]);
-#  F:=CF(d);
-#  if not(IsCyclotomicField(B[i][j])) then
-#    c[j]:=Trace(F,B[i][1],E(d));
-#  else
-#    c[j]:=E(d);
-#  fi;
-#  od;
-#  B[i][2]:=FieldByGenerators(c);
 
   B1:=B;
 
@@ -2177,7 +1828,6 @@ end);
 InstallGlobalFunction( SchurIndexByCharacter, function(F,G,n)
 local m,A,B,n1;
 
-#A:=SimpleComponentOfGroupRingByCharacter(F,G,n);
 B:=Irr(G);
 if IsPosInt(n) then
   n1:=n;
@@ -2223,11 +1873,8 @@ InstallGlobalFunction( CyclotomicAlgebraAsSCAlgebra, function(A)
 local g,m,F,a;
 
 g:=DefiningGroupAndCharacterOfCyclotAlg(A);
-#g:=DefiningGroupOfCyclotomicAlgebra(A);
-#m:=DefiningCharacterOfCyclotomicAlgebra(A);
 F:=A[2];
 a:=SimpleComponentByCharacterAsSCAlgebra(F,g[1],g[2]);
-#a:=SimpleComponentByCharacterAsSCAlgebra(F,g,m);
 
 return a;
 end);
@@ -2269,7 +1916,6 @@ end);
 ################################################
 
 InstallGlobalFunction( AntiSymMatUpMat, function(x)
-#AntiSymMatUpMat := function(x)
 local k,y,i;
 k := Length(x)+1;
 y:=List([1..k],i->[]);
@@ -2290,8 +1936,6 @@ end);
 ################################################
 
 InstallGlobalFunction( KillingCocycle, function(A)
-#KillingCocycle := function(A)
-
 local n,F,m,hrs,k,c,d,e,i,h,r,s,md,x,a,as,j,r1;
 
 if Length(A) < 5 then
@@ -2395,7 +2039,6 @@ Ucon := List(Units(ZmodnZ(con)),Int);
 k := Length(A[4]);
 acA := List([1..k],i->Filtered(gal,x->E(m)^x=E(m)^A[4][i][2])[1]);
 acon := List(acA,x->Filtered(Ucon,i->E(con)^i=E(con)^x)[1]);
-
 
 for x in [1..k] do
   F2:=NF(con,[acon[x]]);
