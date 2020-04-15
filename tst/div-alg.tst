@@ -36,6 +36,8 @@ gap> B:=ReducingCyclotomicAlgebra(A);
 [ 4, Rationals, 30, [ [ 2, 11, 0 ], [ 4, 7, 0 ] ], [ [ 15 ] ] ]
 gap> LocalIndicesOfCyclotomicAlgebra(B);
 [ [ 3, 2 ], [ 5, 2 ] ]
+gap> SchurIndex(A);
+2
 
 #
 gap> STOP_TEST( "div-alg.tst", 1 );
