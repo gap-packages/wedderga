@@ -1399,20 +1399,21 @@ m:=1;
 B:=SimpleComponentOfGroupRingByCharacter(F,G,n);
 
 if Length(B)=2 then
-m:=1;
+  m:=1;
 fi;
 if Length(B)=4 then
-m:=LocalIndexAtOddP(B,p);
+  m:=LocalIndexAtOddP(B,p);
 fi;
 
 if Length(B)=5 then
-K:=PSplitSubextension(F,B[3],p);
-B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
-g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
-m:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],p);
-#g:=DefiningGroupOfCyclotomicAlgebra(B1);
-#n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
-#m:=LocalIndexAtPByBrauerCharacter(K,g,n1,p);
+  K:=PSplitSubextension(F,B[3],p);
+  B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
+  g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
+  if g=fail then
+    m:=1;
+  else
+    m:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],p);
+  fi;
 fi;
 
 return m;
@@ -1446,44 +1447,45 @@ m2:=LocalIndexAtTwo(B);
 fi;
 
 if Length(B)=5 then
-K:=PSplitSubextension(F,B[3],2);
-B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
-g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
-m2:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],2);
-#g:=DefiningGroupOfCyclotomicAlgebra(B1);
-#n1:=DefiningCharacterOfCyclotomicAlgebra(B1);
-#m2:=LocalIndexAtPByBrauerCharacter(F,g,n1,2);
-if not(m2 in Integers) then
-m:=1;
-  if IsDyadicSchurGroup(g[1]) then
-  m:=2;
-  V:=ValuesOfClassFunction(chi);
-  F0:=FieldByGenerators(V);
-  F1:=B1[2];
-    if not(F0=F1) then
-      if E(4) in F1 then
-        m:=1;
-      else
-        n0:=Conductor(F0);
-        n02:=PPartOfN(n0,2);
-        n1:=Conductor(F1);
-        n12:=PPartOfN(n1,2);
-          if not(n02=n12) then
-            m:=1;
-          else
-            n11:=PDashPartOfN(n1,2);
-            f1:=OrderMod(2,n1);
-            n01:=PDashPartOfN(n0,2);
-            f0:=OrderMod(2,n0);
-            f:=f1/f0;
-              if (f/2 in PositiveIntegers) then
-                m:=1;
-              fi;
-          fi;
-       fi;
+  K:=PSplitSubextension(F,B[3],2);
+  B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
+  g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
+  if g=fail then
+    m2:=1;
+  else
+    m2:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],2);
+  fi;
+  if not(m2 in Integers) then
+    m:=1;
+    if IsDyadicSchurGroup(g[1]) then
+    m:=2;
+    V:=ValuesOfClassFunction(chi);
+    F0:=FieldByGenerators(V);
+    F1:=B1[2];
+      if not(F0=F1) then
+        if E(4) in F1 then
+          m:=1;
+        else
+          n0:=Conductor(F0);
+          n02:=PPartOfN(n0,2);
+          n1:=Conductor(F1);
+          n12:=PPartOfN(n1,2);
+            if not(n02=n12) then
+              m:=1;
+            else
+              n11:=PDashPartOfN(n1,2);
+              f1:=OrderMod(2,n1);
+              n01:=PDashPartOfN(n0,2);
+              f0:=OrderMod(2,n0);
+              f:=f1/f0;
+                if (f/2 in PositiveIntegers) then
+                  m:=1;
+                fi;
+            fi;
+         fi;
+      fi;
     fi;
   fi;
-fi;
 fi;
 
 if m>0 then m2:=m; fi;
