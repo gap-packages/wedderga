@@ -394,7 +394,9 @@ if (l=4) then
   g:=f/[a^A[3],b^A[4][1]*a^(-A[4][3]),b^(-1)*a*b*a^(-A[4][2])];
 fi;
 
-I:=IsomorphismSpecialPcGroup(g);
+##### Change to Permutation Group for performance ####
+##I:=IsomorphismSpecialPcGroup(g);
+I:=IsomorphismPermGroup(g);
 g1:=Image(I);
 
 S:=[];
@@ -504,7 +506,9 @@ b:=f.2;
 g:=f/[a^A[3],b^A[4][1]*a^(-A[4][3]),b^(-1)*a*b*a^(-A[4][2])];
 fi;
 
-I:=IsomorphismSpecialPcGroup(g);
+### Change to Permutation Group for performance ###
+# I:=IsomorphismSpecialPcGroup(g);
+I:=IsomorphismPermGroup(g);
 g1:=Image(I);
 
 fi;
