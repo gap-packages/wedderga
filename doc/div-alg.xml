@@ -330,6 +330,8 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
          Arg="A" />
    <Oper Name="AntiSymMatUpMat"
          Arg="x" />
+   <Oper Name="CyclotomicExtensionGenerator"
+         Arg="K,F"/>
    <Oper Name="ReducingCyclotomicAlgebra"
          Arg="A" />
 
@@ -348,7 +350,11 @@ gap> SplittingDegreeAtP(F,120,5); SplittingDegreeAtP(K,120,5); last2/last;
   <Ref Attr="ReducingCyclotomicAlgebra"/> is another subroutine used by the
   <Ref Attr="GlobalSplittingOfCyclotomicAlgebra"/> that either returns an isomorphic
   cyclotomic algebra whose associated Galois group has fewer generators than
-  the input, or returns fail.
+  the input, or returns fail.  <Ref Attr="CyclotomicExtensionGenerator"/> is a
+  subroutine called by <Ref Attr="ReducingCyclotomicAlgebra"/> which returns a
+  positive integer <C>m</C> if the field <C>K</C> is the cyclotomic extension of
+  <C>F</C> obtained by adjoining a primitive <C>m</C>-th root of <C>1</C>, and
+  returns fail otherwise.
    </Returns>
 
    <Description>
