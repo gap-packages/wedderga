@@ -1967,7 +1967,7 @@ for i in [1..k] do
         else
           a := 0;
         fi;
-        Add(as,List([0..d-1],y->a+y*md mod m));
+        Add(as,List([0..d-1],y->(a+y*md) mod m));
       od;
       as:=Intersection(as);
       if Size(as)>1 then
