@@ -2058,7 +2058,7 @@ for x in [1..k] do
       g:=g*E(c1);
     od;
     split := IsInt(Order(Norm(F1,F,g))*Gcd(m,A[4][x][3])/m);
-#    h := E(m)^A[4][x][3];
+    h := E(m)^A[4][x][3];
 #    c1 := Order(g);
 #    split := false;
 #    a := 1;
