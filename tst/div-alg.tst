@@ -39,6 +39,16 @@ gap> LocalIndicesOfCyclotomicAlgebra(B);
 gap> SchurIndex(A);
 2
 
+# Example from PR #78
+gap> QG:=GroupRing(Rationals,SmallGroup(672,622));
+<algebra-with-one over Rationals, with 7 generators>
+gap> wd:=WedderburnDecompositionInfo(QG);;
+gap> A:=wd[28];;
+gap> A = KillingCocycle(A);
+true
+gap> LocalIndicesOfCyclotomicAlgebra(A);
+[ [ 7, 2 ] ]
+
 # Some special cases in DecomposeCyclotomicAlgebra (PR #81)
 gap> QG:=GroupRing(Rationals,SmallGroup(240,96));;
 gap> W:=WedderburnDecompositionInfo(QG);;
