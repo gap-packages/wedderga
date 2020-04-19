@@ -1958,11 +1958,15 @@ for i in [1..k] do
     x:=Filtered([1..k],j-> e[i,j] mod Gcd(m,hrs[j][2]-1) = 0);
     if Length(x) > 0 then
       as:=[];
-      for j in x do
+      for j in [1..k] do
         r1 := hrs[j][2];
         d := Gcd(m,r1-1);
         md := m/d;
-        a := Int(ZmodnZObj(e[i,j]/d,md)*ZmodnZObj((r1-1)/d,md)^-1 );
+        if j in x then
+          a := Int(ZmodnZObj(e[i,j]/d,md)*ZmodnZObj((r1-1)/d,md)^-1 );
+        else
+          a := 0;
+        fi;
         Add(as,List([0..d-1],y->a+y*md mod m));
       od;
       as:=Intersection(as);
@@ -2053,17 +2057,8 @@ for x in [1..k] do
     while not g in F1 do
       g:=g*E(c1);
     od;
+    split := IsInt(Order(Norm(F1,F,g))*Gcd(m,A[4][x][3])/m);
     h := E(m)^A[4][x][3];
-    c1 := Order(g);
-    split := false;
-    a := 1;
-    for i in [0..c1-1] do
-      split := h=Norm(F1,F,a);
-      if split then
-        break;
-      fi;
-      a:=a*g;
-    od;
 ## If not we check whether A1 is cyclotomic and in that case 
 ## we check whether A1 it is split by verifying if its Schur index is 1 
     if not split and F1=Field([g,pF]) then
