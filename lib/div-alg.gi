@@ -1314,173 +1314,115 @@ end);
 # tensor decomposition.
 # #############################
 InstallGlobalFunction( DecomposeCyclotomicAlgebra, function(A)
-local B,B1,m1,n,m,d,c,z,r,s,t,u,v,u1,i,j,b,F,w;
+local B,B1,m1,n,m,d,c,z,r,s,t,u,v,u1,i,j,b,F,w,A1,V,y,y1,y2,y3,y31,y32,F1,F2,F3,k,c1;
 
-B:=[];
-B[1]:=[];
-B[2]:=[];
-n:=A[3];
+if not(Length(A)>2) then return fail; fi;
 
-if (Length(A)=5 and A[4][1][1]=2 and A[4][2][1]=2) then
+if Length(A)=4 then
+  F:=A[2];
+  m:=A[3];
+  c:=A[4][3];
+  y:=PrimitiveElement(F);
+  F1:=Field([y,E(m)]);
+  d:=E(m)^c;
+  B:=[F,F1,[d]];
+  return B;
+fi;
 
-if not(A[5][1][1]=0) then
-  d:=A[5][1][1];
+if Length(A)=5 then
+  A1:=KillingCocycle(A);
+  B:=[];
+  k:=Length(A1[4]);
+  if ForAll(A1[5],x->ForAll(x,y->y=0)) then
+  F:=A1[2];
+  y:=PrimitiveElement(F);
+  m:=A1[3];
+  F1:=Field([y,E(m)]);
+  c:=Conductor(F1);
+  for i in [1..k] do
+    V:=[];
+    for j in [1..k] do
+      if i<>j then Add(V,A1[4][j][2]); fi;
+    od;
+  F2:=NF(m,V);
+  c:=PrimitiveElement(F2);
+  F1:=Field([y,c]);
+  c1:=E(m)^A1[4][i][3];
+  Add(B,[F,F1,[c1]]);
+  od;
+  fi;
+  if Length(B)=k then return B; fi;
+fi;
+
+if Length(A1)=5 and B=[] then
+n:=A1[3];
+F:=A1[2];
+y:=PrimitiveElement(F);
+c:=Conductor(Field([y,E(n)]));
+
+if (Length(A1)=5 and Length(A1[4])=2 and IsInt(c/4)) then
+if not(A1[5][1][1]=0) then
+  d:=A1[5][1][1];
   z:=E(n)^d;
+  y1:=PrimitiveElement(NF(n,[A[4][2][2]]));
+  y2:=PrimitiveElement(NF(n,[A[4][1][2]]));
+  F1:=Field([y,y1]);
+  F2:=Field([y,y2]);
+  F3:=Field([y,y1,y2]);
+  y3:=PrimitiveElement(F3);
+m1:=0;
+while E(2^(m1+1)) in F3 do m1:=m1+1; od;
+  y31:=Trace(F3,F2,E(2^m1));
+  y32:=Trace(F3,F1,E(2^m1));
 
-if z=-1 and not(E(4) in A[2]) then
-  if E(4)^A[4][2][2]=E(4) then
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[E(n)^A[4][1][3]] ];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[E(4)^2*E(n)^A[4][2][3]]];
-  else
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[E(4)*GaloisCyc(E(4),A[4][1][2])*E(n)^A[4][1][3]]];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[E(n)^A[4][2][3]] ];
-  fi;
+for i in [1..2^m1-1] do
+if B=[] and GaloisCyc(E(2^m1)^i*z,A1[4][1][2])=E(2^m1)^i then
+  B[1]:=[F,F1,[E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[Norm(F3,F1,E(2^m1)^i)*E(n)^A1[4][2][3]]];
 fi;
-
-if z=-E(4) and not(E(4) in A[2]) then
-  if E(4)^A[4][2][2]=E(4) then
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[E(n)^A[4][1][3]] ];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[(1-E(4))^2*E(n)^A[4][2][3]]];
-  else
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[(1+E(4))*GaloisCyc((1+E(4)),A[4][1][2])*E(n)^A[4][1][3]]];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[ E(n)^A[4][2][3]] ];
-  fi;
+if B=[] and GaloisCyc(E(2^m1)^i,A1[4][2][2])*z=E(2^m1)^i then
+  B[1]:=[F,F1,[Norm(F3,F2,E(2^m1)^i)*E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[E(n)^A1[4][2][3]]];
 fi;
-
-if z=E(4) and not(E(4) in A[2]) then
-  if E(4)^A[4][2][2]=E(4) then
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[E(n)^A[4][1][3]] ];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[(1+E(4))^2*E(n)^A[4][2][3]]];
-  else
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[(1-E(4))*GaloisCyc((1-E(4)),A[4][1][2])*E(n)^A[4][1][3]]];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[ E(n)^A[4][2][3]] ];
-  fi;
+if B=[] and GaloisCyc((1-E(2^m1)^i)*z,A1[4][1][2])=(1-E(2^m1)^i) then
+  B[1]:=[F,F1,[E(n)^A1[4][1][3]] ];
+  B[2]:=[F,F2,[Norm(F3,F1,(1-E(2^m1)^i))*E(n)^A1[4][2][3]]];
 fi;
-
-if not(z^4=1) and not(z in A[2]) then
-m:=Order(z);
-u:=E(m);
-
-if E(m)^A[4][2][2]=E(m) then
-r:=A[4][1][2]^-1 mod n;
-w:=z^-1;
+if B=[] and GaloisCyc((1+E(2^m1)^i)*z,A1[4][1][2])=(1+E(2^m1)^i) then
+  B[1]:=[F,F1,[E(n)^A1[4][1][3]] ];
+  B[2]:=[F,F2,[Norm(F3,F1,(1+E(2^m1)^i))*E(n)^A1[4][2][3]]];
 fi;
-
-if E(m)^A[4][1][2]=E(m) then
-r:=A[4][2][2]^-1 mod n;
-w:=GaloisCyc(z,A[4][2][2])^-1;
+if B=[] and GaloisCyc(1+E(2^m1)^i,A1[4][2][2])*z=(1+E(2^m1)^i) then
+  B[1]:=[F,F1,[Norm(F3,F2,(1+E(2^m1)^i))*E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[ E(n)^A1[4][2][3]] ];
 fi;
-t:=DescriptionOfRootOfUnity(w)[2];
-v:=w*u;
-
-for i in [1..n] do
-v:=v^r;
-if v=E(m) then
-   break;
-else
-u:=u+v;
-v:=E(m)^t*v;
+if B=[] and GaloisCyc(1-E(2^m1)^i,A1[4][2][2])*z=(1-E(2^m1)^i) then
+  B[1]:=[F,F1,[Norm(F3,F2,(1-E(2^m1)^i))*E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[ E(n)^A1[4][2][3]] ];
 fi;
 od;
-
-  if E(m)^A[4][2][2]=E(m) then
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[E(n)^A[4][1][3]] ];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[u*GaloisCyc(u,A[4][2][2])*E(n)^A[4][2][3]]];
-  else
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[u*GaloisCyc(u,A[4][1][2])*E(n)^A[4][1][3]]];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[ E(n)^A[4][2][3]] ];
-  fi;
+if GaloisCyc(y3*z,A1[4][1][2])=y3 then
+  B[1]:=[F,F1,[E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[Norm(F3,F1,y3)*E(n)^A1[4][2][3]]];
 fi;
-
-for i in [1,2] do
-  if not(IsSubset(B[i][2],B[i][1])) then
-  c:=PrimitiveElement(B[i][1]);
-  d:=PrimitiveElement(B[i][2]);
-  B[i][2]:=FieldByGenerators([c,d]);
-  fi;
-od;
-
-  B1:=B;
-
-else
-  B[1][1]:=A[2];
-  B[1][2]:=NF(n,[1,A[4][2][2]]);
-  B[1][3]:=[E(n)^A[4][1][3]];
-  B[2][1]:=A[2];
-  B[2][2]:=NF(n,[1,A[4][1][2]]);
-  B[2][3]:=[E(n)^A[4][2][3]];
-  B1:=B;
+if B=[] and GaloisCyc(y3,A[4][2][2])*z=y3 then
+  B[1]:=[F,F1,[Norm(F3,F2,y3)*E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[E(n)^A1[4][2][3]]];
+fi;
+if GaloisCyc(y31*z,A1[4][1][2])=y31 and y31<>0 then
+  B[1]:=[F,F1,[E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[Norm(F3,F1,y31)*E(n)^A1[4][2][3]]];
+fi;
+if B=[] and GaloisCyc(y32,A[4][2][2])*z=y32 and y32<>0 then
+  B[1]:=[F,F1,[Norm(F3,F2,y32)*E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[E(n)^A1[4][2][3]]];
 fi;
 fi;
-
-if Length(A)=5 and (A[4][1][1]>2 or A[4][2][1]>2) then
-
-  if not(A[5][1][1]=0) then
-  d:=A[5][1][1];
-  z:=E(n)^d;
-  m:=Order(z);
-  u:=E(m);
-
-if E(m)^A[4][2][2]=E(m) then
-r:=A[4][1][2]^-1 mod n;
-w:=z^-1;
-else
-r:=A[4][2][2]^-1 mod n;
-w:=GaloisCyc(z,A[4][2][2])^-1;
 fi;
-t:=DescriptionOfRootOfUnity(w)[2];
-v:=w*u;
-
-for i in [1..n] do
-v:=v^r;
-if v=E(m) then
-   break;
-else
-u:=u+v;
-v:=E(m)^t*v;
-fi;
-od;
-
-if E(m)^A[4][2][2]=E(m) then
-u1:=u;
-for i in [1..(A[4][2][1]-1)] do
-  u1:=u1*GaloisCyc(u1,A[4][2][2]);
-od;
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[E(n)^A[4][1][3]] ];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[u1*E(n)^A[4][2][3]]];
-  if not(B[2][3][1] in A[2]) then B[2][4]:="fail"; fi;
-else
-u1:=u;
-for i in [1..(A[4][1][1]-1)] do
-  u1:=u1*GaloisCyc(u1,A[4][1][2]);
-od;
-  B[1]:=[A[2],NF(n,[1,A[4][2][2]]),[u1*E(n)^A[4][1][3]]];
-  B[2]:=[A[2],NF(n,[1,A[4][1][2]]),[ E(n)^A[4][2][3]] ];
-  if not(B[1][3][1] in A[2]) then B[1][4]:="fail"; fi;
+if B=[] then return fail; fi;
 fi;
 
-for i in [1,2] do
-  if not(IsSubset(B[i][2],B[i][1])) then
-  c:=PrimitiveElement(B[i][1]);
-  d:=PrimitiveElement(B[i][2]);
-  B[i][2]:=FieldByGenerators([c,d]);
-  fi;
-od;
-
-B1:=B;
-
-else
-  B[1][1]:=A[2];
-  B[1][2]:=NF(n,[1,A[4][2][2]]);
-  B[1][3]:=[E(n)^A[4][1][3]];
-  B[2][1]:=A[2];
-  B[2][2]:=NF(n,[1,A[4][1][2]]);
-  B[2][3]:=[E(n)^A[4][2][3]];
-  B1:=B;
-fi;
-fi;
-
-return B1;
+return B;
 end);
 
 ################################################
@@ -1936,7 +1878,7 @@ end);
 ################################################
 
 InstallGlobalFunction( KillingCocycle, function(A)
-local n,F,m,hrs,k,c,d,e,i,h,r,s,md,x,a,as,j,r1;
+local n,F,m,hrs,k,c,d,e,i,h,r,s,md,x,a,as,j,r1,a1,i1;
 
 if Length(A) < 5 then
   return A;
@@ -1958,7 +1900,7 @@ for i in [1..k] do
     x:=Filtered([1..k],j-> e[i,j] mod Gcd(m,hrs[j][2]-1) = 0);
     if Length(x) > 0 then
       as:=[];
-      for j in [1..k] do
+      for j in Difference([1..k],[i]) do
         r1 := hrs[j][2];
         d := Gcd(m,r1-1);
         md := m/d;
@@ -1972,12 +1914,22 @@ for i in [1..k] do
       as:=Intersection(as);
       if Size(as)>1 then
         a:=as[1];
+        for a1 in [1..Length(as)] do
+          if Gcd(as[a1],m)>Gcd(a,m) then a:=as[a1]; fi;
+        od;
         hrs[i][3]:=(s+a*(r^h-1)/(r-1)) mod m;
         for j in Difference(x,[i]) do
           if j>i then
             c[i][j-i]:=0;
           else
             c[j][i-j]:=0;
+          fi;
+        od;
+        for j in Difference([1..k],x) do
+          if j>i then
+            c[i][j-i]:=((hrs[j][2]-1)*a+e[i,j]) mod m;
+          else
+            c[j][i-j]:=((-hrs[j][2]+1)*a-e[i,j]) mod m;
           fi;
         od;
         e := AntiSymMatUpMat(c);
