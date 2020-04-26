@@ -1388,11 +1388,11 @@ if B=[] and GaloisCyc((1-E(2^m1)^i)*z,A1[4][1][2])=(1-E(2^m1)^i) then
   B[1]:=[F,F1,[E(n)^A1[4][1][3]] ];
   B[2]:=[F,F2,[Norm(F3,F1,(1-E(2^m1)^i))*E(n)^A1[4][2][3]]];
 fi;
-if B=[] and GaloisCyc((1+E(2^m1)^i)*z,A1[4][1][2])=(1+E(2^m1)^i) then
+if B=[] and not(E(2^m1)^i=-1) and GaloisCyc((1+E(2^m1)^i)*z,A1[4][1][2])=(1+E(2^m1)^i) then
   B[1]:=[F,F1,[E(n)^A1[4][1][3]] ];
   B[2]:=[F,F2,[Norm(F3,F1,(1+E(2^m1)^i))*E(n)^A1[4][2][3]]];
 fi;
-if B=[] and GaloisCyc(1+E(2^m1)^i,A1[4][2][2])*z=(1+E(2^m1)^i) then
+if B=[] and not(E(2^m1)^i=-1) and GaloisCyc(1+E(2^m1)^i,A1[4][2][2])*z=(1+E(2^m1)^i) then
   B[1]:=[F,F1,[Norm(F3,F2,(1+E(2^m1)^i))*E(n)^A1[4][1][3]]];
   B[2]:=[F,F2,[ E(n)^A1[4][2][3]] ];
 fi;
