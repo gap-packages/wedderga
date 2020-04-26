@@ -1360,7 +1360,7 @@ F:=A1[2];
 y:=PrimitiveElement(F);
 c:=Conductor(Field([y,E(n)]));
 
-if (Length(A1)=5 and Length(A1[4])=2 and IsInt(c/4)) then
+if Length(A1)=5 and Length(A1[4])=2 then
 if not(A1[5][1][1]=0) then
   d:=A1[5][1][1];
   z:=E(n)^d;
@@ -1401,6 +1401,37 @@ if B=[] and GaloisCyc(1-E(2^m1)^i,A1[4][2][2])*z=(1-E(2^m1)^i) then
   B[2]:=[F,F2,[ E(n)^A1[4][2][3]] ];
 fi;
 od;
+
+if B=[] then
+t:=0;
+for i in [1..n-1] do
+for j in [1..n-1] do
+  if E(n)^j<>-E(n)^i and z*GaloisCyc(E(n)^i+E(n)^j,A[4][2][2])=E(n)^i+E(n)^j then t:=1; fi;
+  if t=1 then break; fi;
+od;
+if t=1 then break; fi;
+od;
+if t=1 then
+  B[1]:=[F,F1,[Norm(F3,F2,E(n)^i+E(n)^j)*E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[E(n)^A1[4][2][3]]];
+fi;
+fi;
+
+if B=[] then
+t:=0;
+for i in [1..n-1] do
+for j in [1..n-1] do
+  if E(n)^j<>-E(n)^i and GaloisCyc(z*(E(n)^i+E(n)^j),A[4][1][2])=E(n)^i+E(n)^j then t:=1; fi;
+  if t=1 then break; fi;
+od;
+if t=1 then break; fi;
+od;
+if t=1 then
+  B[1]:=[F,F1,[E(n)^A1[4][1][3]]];
+  B[2]:=[F,F2,[Norm(F3,F1,E(n)^i+E(n)^j)*E(n)^A1[4][2][3]]];
+fi;
+fi;
+
 if GaloisCyc(y3*z,A1[4][1][2])=y3 then
   B[1]:=[F,F1,[E(n)^A1[4][1][3]]];
   B[2]:=[F,F2,[Norm(F3,F1,y3)*E(n)^A1[4][2][3]]];
