@@ -1876,9 +1876,8 @@ end);
 # which is also the numerical information of a cyclotomic
 # algebra, trying to put as zeroes in the fifth entry as possible.
 ################################################
-
 InstallGlobalFunction( KillingCocycle, function(A)
-local n,F,m,hrs,k,c,d,e,i,h,r,s,md,x,a,as,j,r1,a1,i1;
+local n,F,m,hrs,k,c,d,e,i,h,r,s,md,x,a,as,j,r1;
 
 if Length(A) < 5 then
   return A;
@@ -1914,22 +1913,12 @@ for i in [1..k] do
       as:=Intersection(as);
       if Size(as)>1 then
         a:=as[1];
-        for a1 in [1..Length(as)] do
-          if Gcd(as[a1],m)>Gcd(a,m) then a:=as[a1]; fi;
-        od;
         hrs[i][3]:=(s+a*(r^h-1)/(r-1)) mod m;
         for j in Difference(x,[i]) do
           if j>i then
             c[i][j-i]:=0;
           else
             c[j][i-j]:=0;
-          fi;
-        od;
-        for j in Difference([1..k],x) do
-          if j>i then
-            c[i][j-i]:=((hrs[j][2]-1)*a+e[i,j]) mod m;
-          else
-            c[j][i-j]:=((-hrs[j][2]+1)*a-e[i,j]) mod m;
           fi;
         od;
         e := AntiSymMatUpMat(c);
