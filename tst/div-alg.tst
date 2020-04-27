@@ -39,5 +39,15 @@ gap> LocalIndicesOfCyclotomicAlgebra(B);
 gap> SchurIndex(A);
 2
 
+# Some special cases in DecomposeCyclotomicAlgebra (PR #81)
+gap> QG:=GroupRing(Rationals,SmallGroup(240,96));;
+gap> W:=WedderburnDecompositionInfo(QG);;
+gap> Length(W);
+18
+gap> A:=W[Length(W)];
+[ 1, Rationals, 30, [ [ 2, 11, 0 ], [ 4, 7, 0 ] ], [ [ 15 ] ] ]
+gap> DecomposeCyclotomicAlgebra(A);
+[ [ Rationals, CF(3), [ 1 ] ], [ Rationals, CF(5), [ 0 ] ] ]
+
 #
 gap> STOP_TEST( "div-alg.tst", 1 );
