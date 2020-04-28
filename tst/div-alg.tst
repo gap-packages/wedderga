@@ -57,7 +57,7 @@ gap> Length(W);
 gap> A:=W[Length(W)];
 [ 1, Rationals, 30, [ [ 2, 11, 0 ], [ 4, 7, 0 ] ], [ [ 15 ] ] ]
 gap> DecomposeCyclotomicAlgebra(A);
-[ [ Rationals, CF(3), [ 1 ] ], [ Rationals, CF(5), [ 0 ] ] ]
+[ [ Rationals, CF(3), [ 1 ] ], [ Rationals, CF(5), [ 9 ] ] ]
 
 #
 gap> STOP_TEST( "div-alg.tst", 1 );
