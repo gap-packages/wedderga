@@ -49,6 +49,18 @@ true
 gap> LocalIndicesOfCyclotomicAlgebra(A);
 [ [ 7, 2 ] ]
 
+# Length 4 example from PR #80
+gap> DecomposeCyclotomicAlgebra([1,NF(7,[1,2,4]),6,[3,2,3]]);
+[ NF(7,[ 1, 2, 4 ]),NF(21,[ 1, 4, 16 ]),[ -1 ] ]
+
+# Length 5 example from PR #80 with all zeroes in A[5]
+gap> A:=[1,NF(7,[1,6]),84,[[2,13,42],[2,29,63],[2,43,0]],[[0,0],[0]]];
+[ 1, NF(7,[ 1, 6 ]), 84, [ [ 2, 13, 42 ], [ 2, 29, 63 ], [ 2, 43, 0 ] ], [ [ 0, 0 ], [ 0 ] ] ]
+gap> DecomposeCyclotomicAlgebra(A);
+[ [ NF(7,[ 1, 6 ]), CF(7), [ -1 ] ],
+[ NF(7,[ 1, 6 ]), NF(21,[ 1, 13 ]), [ -E(4) ] ],
+[ NF(7,[ 1, 6 ]), NF(28,[ 1, 13 ]), [ 1 ] ] ]
+
 # Some special cases in DecomposeCyclotomicAlgebra (PR #81)
 gap> QG:=GroupRing(Rationals,SmallGroup(240,96));;
 gap> W:=WedderburnDecompositionInfo(QG);;
