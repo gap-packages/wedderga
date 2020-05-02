@@ -1631,6 +1631,10 @@ if p < q then
   q:=a;
 fi;
 
+if q<-1 or not(IsPrimeInt(q)) or not(IsPrimeInt(p)) then
+return "Invalid, both inputs must be -1 or positive prime integers.";
+fi;
+
 if p=-1 then L:=[[infinity,2],[2,2]]; fi;
 if p=2 then L:=[]; fi;
 if p>2 then
