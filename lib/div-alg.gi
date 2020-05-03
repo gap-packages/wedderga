@@ -1631,7 +1631,7 @@ if p < q then
   q:=a;
 fi;
 
-if q<-1 or (q=-1 and not(p=-1 or IsPrimeInt(p)) or (q>-1 and not(IsPrimeInt(q))) or (q>-1 and IsPrimeInt(q) and not(IsPrimeInt(p))) then
+if q<-1 or (q=-1 and not(p=-1 or IsPrimeInt(p))) or (q>-1 and not(IsPrimeInt(q))) or (q>-1 and IsPrimeInt(q) and not(IsPrimeInt(p))) then
 return "Invalid, both inputs must be -1 or positive prime integers.";
 fi;
 
