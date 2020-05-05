@@ -333,7 +333,7 @@ gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
 gap> LocalIndicesOfRationalSymbolAlgebra(3,-1);
 [ [ 2, 2 ], [ 3, 2 ] ]
 gap> LocalIndicesOfRationalSymbolAlgebra(-3,2);
-"Invalid, both inputs must be -1 or positive prime integers."
+"Invalid, both inputs must be -1 or positive prime integers"
 gap> LocalIndicesOfRationalSymbolAlgebra(3,7);
 [ [ 2, 2 ], [ 7, 2 ] ]
 gap> A:=QuaternionAlgebra(Rationals,-30,-15);

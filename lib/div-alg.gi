@@ -1621,7 +1621,7 @@ end);
 # q are other integers, and it does not check this fact.
 ##########################################
 InstallGlobalFunction( LocalIndicesOfRationalSymbolAlgebra, function(a,b)
-local p,q,L;
+local p,q,L,t;
 
 p:=a;
 q:=b;
@@ -1631,8 +1631,8 @@ if p < q then
   q:=a;
 fi;
 
-if q<-1 or (q=-1 and not(p=-1 or IsPrimeInt(p))) or (q>-1 and not(IsPrimeInt(q))) or (q>-1 and IsPrimeInt(q) and not(IsPrimeInt(p))) then
-return "Invalid, both inputs must be -1 or positive prime integers.";
+if not(ForAll([p,q],t -> t=-1 or (IsPosInt(t) and IsPrimeInt(t)))) then
+return "Invalid, both inputs must be -1 or positive prime integers";
 fi;
 
 if p=-1 then L:=[[infinity,2],[2,2]]; fi;
