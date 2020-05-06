@@ -1632,7 +1632,7 @@ if p < q then
 fi;
 
 if not(ForAll([p,q],t -> t=-1 or (IsPosInt(t) and IsPrimeInt(t)))) then
-return "Invalid, both inputs must be -1 or positive prime integers";
+return fail;
 fi;
 
 if p=-1 then L:=[[infinity,2],[2,2]]; fi;
