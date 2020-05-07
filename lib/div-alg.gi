@@ -1594,7 +1594,7 @@ end);
 # q are other integers, and it does not check this fact.
 ##########################################
 InstallGlobalFunction( LocalIndicesOfRationalSymbolAlgebra, function(a,b)
-local p,q,L;
+local p,q,L,t;
 
 p:=a;
 q:=b;
@@ -1602,6 +1602,10 @@ L:=[];
 if p < q then
   p:=b;
   q:=a;
+fi;
+
+if not(ForAll([p,q],t -> t=-1 or (IsPosInt(t) and IsPrimeInt(t)))) then
+return fail;
 fi;
 
 if p=-1 then L:=[[infinity,2],[2,2]]; fi;
