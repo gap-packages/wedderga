@@ -1596,36 +1596,53 @@ end);
 InstallGlobalFunction( LocalIndicesOfRationalSymbolAlgebra, function(a,b)
 local p,q,L,t;
 
-p:=a;
-q:=b;
 L:=[];
-if p < q then
+
+if a < b then
   p:=b;
   q:=a;
+else
+  p:=a;
+  q:=b;
 fi;
 
 if not(ForAll([p,q],t -> t=-1 or (IsPosInt(t) and IsPrimeInt(t)))) then
-return fail;
+  return fail;
 fi;
 
-if p=-1 then L:=[[infinity,2],[2,2]]; fi;
-if p=2 then L:=[]; fi;
-if p>2 then
+if p=-1 then 
+  L:=[[infinity,2],[2,2]];
+elif p=2 then 
+  L:=[];
+elif p>2 then
   if q=-1 then
-    if Legendre(q,p)=-1 then L:=[[2,2],[p,2]]; else L:=[]; fi;
-  fi;
-  if q=2 then
-    if Legendre(2,p)=-1 then L:=[[2,2],[p,2]]; else L:=[]; fi;
-  fi;
-  if p>q and q>2 then
     if Legendre(q,p)=-1 then
-       if Legendre(p,q)=-1 then L:=[[q,2],[p,2]]; else L:=[[2,2],[p,2]]; fi;
+      L:=[[2,2],[p,2]];
     else
-       if Legendre(p,q)=-1 then L:=[[2,2],[q,2]]; fi;
+      L:=[];
     fi;
-  fi;
-  if p=q then
-    if Legendre(-1,p)=-1 then L:=[[2,2],[p,2]]; fi;
+  elif q=2 then
+    if Legendre(2,p)=-1 then
+      L:=[[2,2],[p,2]];
+    else
+      L:=[];
+    fi;
+  elif p>q and q>2 then
+    if Legendre(q,p)=-1 then
+       if Legendre(p,q)=-1 then
+         L:=[[q,2],[p,2]];
+       else
+         L:=[[2,2],[p,2]];
+       fi;
+    else
+       if Legendre(p,q)=-1 then
+         L:=[[2,2],[q,2]];
+       fi;
+    fi;
+  elif p=q then
+    if Legendre(-1,p)=-1 then
+      L:=[[2,2],[p,2]];
+    fi;
   fi;
 fi;
 return L;

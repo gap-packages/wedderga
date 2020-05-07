@@ -71,5 +71,21 @@ gap> A:=W[Length(W)];
 gap> DecomposeCyclotomicAlgebra(A);
 [ [ Rationals, CF(3), [ 1 ] ], [ Rationals, CF(5), [ 9 ] ] ]
 
+# LocalIndicesOfRationalSymbolAlgebra (PR #83)
+gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,-2));
+[ fail, fail, fail, fail, fail, fail ]
+gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,-1));
+[ fail, [ [ infinity, 2 ], [ 2, 2 ] ], fail, fail, [  ], [ [ 2, 2 ], [ 3, 2 ] ] ]
+gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,2));
+[ fail, [  ], fail, fail, [  ], [ [ 2, 2 ], [ 3, 2 ] ] ]
+gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,3));
+[ fail, [ [ 2, 2 ], [ 3, 2 ] ], fail, fail, [ [ 2, 2 ], [ 3, 2 ] ], [ [ 2, 2 ], [ 3, 2 ] ] ]
+gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,5));
+[ fail, [  ], fail, fail, [ [ 2, 2 ], [ 5, 2 ] ], [ [ 3, 2 ], [ 5, 2 ] ] ]
+gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,7));
+[ fail, [ [ 2, 2 ], [ 7, 2 ] ], fail, fail, [  ], [ [ 2, 2 ], [ 7, 2 ] ] ]
+gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,11));
+[ fail, [ [ 2, 2 ], [ 11, 2 ] ], fail, fail, [ [ 2, 2 ], [ 11, 2 ] ], [ [ 2, 2 ], [ 3, 2 ] ] ]
+
 #
 gap> STOP_TEST( "div-alg.tst", 1 );
