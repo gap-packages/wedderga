@@ -993,11 +993,11 @@ gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);
          output from <C>QuaternionAlgebra(Rationals,a,b)</C>.  For the first function,
          <M>a</M> and <M>b</M> can be any pair of integers, and for the second rational
          symbol algebra version, <M>a</M> and <M>b</M> are restricted to be either -1 or
-         positive prime integers. The input of the third function is a pair of lists of
-         <M>p</M>-local indices in which the maximum local index at any prime is at most 2.
-         The input of the fourth function is a list of pairs <C>[p,m]</C> in which each
-         prime that appears only appears in one of the pairs, and the <C>m</C>'s that
-         appear are all positive integers. 	 <P/>
+         positive prime integers, otherwise it will return <K>fail</K>. The input of the
+         third function is a pair of lists of <M>p</M>-local indices in which the maximum
+         local index at any prime is at most 2.  The input of the fourth function is a list
+         of pairs <C>[p,m]</C> in which each prime that appears only appears in one of the
+         pairs, and the <C>m</C>'s that appear are all positive integers. 	 <P/>
 
 	 <Ref Oper="LocalIndicesOfRationalQuaternionAlgebra"/> first factors the algebra as a
 	 tensor product of rational quaternion algebras, obtaining suitable pairs <C>a</C> and
