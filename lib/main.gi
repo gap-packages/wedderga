@@ -1290,7 +1290,7 @@ end);
 ## 4th position = Galois group of a crossed product
 ## 5th position = the cocycle
 ##
-## The output is list of 2, 3, 4 or 5 elements:
+## The output is list of 2, 4 or 5 elements:
 ## 1st position = the size of the matrices
 ## 2nd position = the centre of the simple component
 ## 3rd position = integer that is the order of the root of unity
@@ -1322,7 +1322,8 @@ genF,           # E(Cond)
 powgenF,        # Powers of genF
 beta,           # numerical value of cyclic cocycle 
 h,              # Group element
-c;              # Value of cocycle 
+c,              # Value of cocycle 
+A;              # Info of the algebra before using GlobalSplittingOfCyclotomicAlgebra and SchurIndex
 
 if Length(x) = 2 then 
     return x;
@@ -1374,14 +1375,14 @@ else
     od;
          
     if Size(Gen)=1 then
-        return [ x[1],                          # the size of matrices
+        A:= [ x[1],                          # the size of matrices
                  x[2],                          # the centre of the simple component
                  Cond,                          # the order of the root of unity
                  [ o[1], Int(Gen[1]) , beta[1]] #
                ]; 
                    
     else
-        return [ x[1],
+        A:= [ x[1],
                  x[2],
                  Cond,
                  List([1..Length(Gen)], i -> [ o[i], Int(Gen[i]) , beta[i] ] ),
@@ -1392,7 +1393,17 @@ else
                      )
                 ];        
     fi;       
-
+  return GlobalSplittingOfCyclotomicAlgebra(A);
+  if Length(A) = 2 or SchurIndex(A)<>1 then 
+    return A;
+  else
+    if Length(A)=4 then 
+      A[1]:=A[1]*A[4][1];
+    else 
+      A[1]:=A[1]*Product(List(A[4],x->x[1]));
+    fi;
+    return [A[1],A[2]];
+  fi;
 fi;
 
 end);
