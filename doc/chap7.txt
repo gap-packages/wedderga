@@ -26,20 +26,19 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(48,15);[127X[104X
     [4X[28X<pc group of size 48 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);       [127X[104X
+    [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);[127X[104X
     [4X[28X<algebra-with-one over Rationals, with 5 generators>[128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionInfo(R);[127X[104X
     [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [128X[104X
-    [4X[28X  [ 1, Rationals, 3, [ 2, 2, 0 ] ], [ 1, Rationals, 4, [ 2, 3, 0 ] ], [128X[104X
-    [4X[28X  [ 1, Rationals, 6, [ 2, 5, 0 ] ], [ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 0 ] ], [128X[104X
+    [4X[28X  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],[128X[104X
     [4X[28X  [ 2, CF(3) ], [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ] [128X[104X
     [4X[28X ][128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionWithDivAlgParts(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals ],[128X[104X
     [4X[28X  [ 2, Rationals ], [ 2, Rationals ], [ 2, Rationals ], [ 2, NF(8,[ 1, 7 ]) ],[128X[104X
-    [4X[28X  [ 2, CF(3) ], [128X[104X
-    [4X[28X  [ 2, [128X[104X
-    [4X[28X      rec( Center := Rationals, DivAlg := true, [128X[104X
+    [4X[28X  [ 2, CF(3) ],[128X[104X
+    [4X[28X  [ 2,[128X[104X
+    [4X[28X      rec( Center := Rationals, DivAlg := true,[128X[104X
     [4X[28X          LocalIndices := [ [ 2, 2 ], [ 3, 2 ] ], SchurIndex := 2 ) ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -64,21 +63,21 @@
     [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);[127X[104X
     [4X[28X<algebra-with-one over Rationals, with 2 generators>[128X[104X
     [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(R);[127X[104X
-    [4X[28XWedderga: Warning!!! [128X[104X
+    [4X[28XWedderga: Warning!!![128X[104X
     [4X[28XSome of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!![128X[104X
     [4X[28X[128X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 10, [ 4, 3, 5 ] ], [128X[104X
-    [4X[28X  [ 4, Rationals ], [ 4, Rationals ], [ 5, Rationals ], [ 5, Rationals ], [128X[104X
-    [4X[28X  [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ], [128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 1, Rationals, 10, [ 4, 3, 5 ] ],[128X[104X
+    [4X[28X  [ 4, Rationals ], [ 4, Rationals ], [ 5, Rationals ], [ 5, Rationals ],[128X[104X
+    [4X[28X  [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ],[128X[104X
     [4X[28X  [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XCyclotomicAlgebraWithDivAlgPart(W[3]);[127X[104X
-    [4X[28X[ 2, rec( Center := Rationals, DivAlg := true, [128X[104X
+    [4X[28X[ 2, rec( Center := Rationals, DivAlg := true,[128X[104X
     [4X[28X      LocalIndices := [ [ 5, 2 ], [ infinity, 2 ] ], SchurIndex := 2 ) ][128X[104X
     [4X[25Xgap>[125X [27XCyclotomicAlgebraWithDivAlgPart(W[9]);[127X[104X
-    [4X[28X[ 2, rec( Center := NF(12,[ 1, 11 ]), DivAlg := true, [128X[104X
+    [4X[28X[ 2, rec( Center := NF(12,[ 1, 11 ]), DivAlg := true,[128X[104X
     [4X[28X      LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ][128X[104X
     [4X[25Xgap>[125X [27XCyclotomicAlgebraWithDivAlgPart(W[10]);[127X[104X
-    [4X[28X[ 3, rec( Center := NF(8,[ 1, 7 ]), DivAlg := true, [128X[104X
+    [4X[28X[ 3, rec( Center := NF(8,[ 1, 7 ]), DivAlg := true,[128X[104X
     [4X[28X      LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -106,30 +105,33 @@
   [33X[0;0YThe  second function computes the Schur index of the cyclotomic algebra that
   would occur as the simple component of the group ring [3XFG[103X that corresponds to
   the     irreducible     character     [10XIrr(G)[n][110X.     The    function    uses
-  [2XSimpleComponentOfGroupRingByCharacter[102X  ([14X7.4-3[114X),  which identifies the simple
-  component  of  [10XGroupRing(F,G)[110X  in  the output of [2XWedderburnDecompositionInfo[102X
-  ([14X2.1-2[114X)  that  corresponds to [10XIrr(G)[n][110X by a simple dimension count. Because
-  of  this,  it  is  important  that  users  use the same presentation of [3XG[103X to
-  identify [10XIrr(G)[n][110X, the [3Xn[103X-th character in the list [10XIrr(G)[110X.[133X
+  [2XSimpleComponentByCharacterDescent[102X  ([14X7.3-2[114X), which uses the character descent
+  algorithm  to reduce to as small a group as possible. For larger groups this
+  is  preferrable  as  it  is less demanding on memory. The Schur index of the
+  resulting cyclotomic algebra is then computed with the [2XSchurIndex[102X function.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XG:=SmallGroup(63,1);  [127X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(63,1);[127X[104X
     [4X[28X<pc group of size 63 with 3 generators>[128X[104X
     [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);[127X[104X
     [4X[28X<algebra-with-one over Rationals, with 3 generators>[128X[104X
     [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [128X[104X
-    [4X[28X  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ], [128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ], [128X[104X
     [4X[28X  [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XSchurIndex(W[5]);[127X[104X
     [4X[28X3[128X[104X
-    [4X[25Xgap>[125X [27XG:=SmallGroup(40,3);              [127X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(40,3);[127X[104X
     [4X[28X<pc group of size 40 with 4 generators>[128X[104X
     [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
     [4X[25Xgap>[125X [27XSchurIndexByCharacter(GaussianRationals,G,Irr(G)[i]);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XSchurIndexByCharacter(CF(3),G,i);         [127X[104X
+    [4X[25Xgap>[125X [27XSchurIndexByCharacter(CF(3),G,i);[127X[104X
+    [4X[28X1[128X[104X
+    [4X[25Xgap>[125X [27XG:=AtlasGroup("J2");[127X[104X
+    [4X[28X<permutation group of size 604800 with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27XIrr(G)[20];;[127X[104X
+    [4X[25Xgap>[125X [27XSchurIndexByCharacter(Rationals,G,Irr(G)[20]);[127X[104X
     [4X[28X1[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
@@ -157,25 +159,24 @@
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XG:=SmallGroup(63,1);                                  [127X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(63,1);[127X[104X
     [4X[28X<pc group of size 63 with 3 generators>[128X[104X
     [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);[127X[104X
     [4X[28X<algebra-with-one over Rationals, with 3 generators>[128X[104X
     [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [128X[104X
-    [4X[28X  [ 1, NF(7,[ 1, 2, 4 ]), 7, [ 3, 2, 0 ] ], [128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ], [128X[104X
     [4X[28X  [ 1, NF(21,[ 1, 4, 16 ]), 21, [ 3, 4, 7 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionWithDivAlgParts(R);[127X[104X
-    [4X[28X[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ], [128X[104X
-    [4X[28X  [ 1, [128X[104X
-    [4X[28X      rec( Center := NF(21,[ 1, 4, 16 ]), DivAlg := true, [128X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, CF(3) ], [ 1, CF(9) ], [ 3, NF(7,[ 1, 2, 4 ]) ],[128X[104X
+    [4X[28X  [ 1,[128X[104X
+    [4X[28X      rec( Center := NF(21,[ 1, 4, 16 ]), DivAlg := true,[128X[104X
     [4X[28X          LocalIndices := [ [ 7, 3 ] ], SchurIndex := 3 ) ] ][128X[104X
     [4X[25Xgap>[125X [27XWedderburnDecompositionAsSCAlgebras(R);[127X[104X
-    [4X[28X[ Rationals, CF(3), CF(9), <algebra of dimension 9 over NF(7,[ 1, 2, 4 ])>, [128X[104X
+    [4X[28X[ Rationals, CF(3), CF(9), ( NF(7,[ 1, 2, 4 ])^[ 3, 3 ] ), [128X[104X
     [4X[28X  <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])> ][128X[104X
     [4X[25Xgap>[125X [27XCyclotomicAlgebraAsSCAlgebra(W[5]);[127X[104X
     [4X[28X<algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>[128X[104X
-    [4X[25Xgap>[125X [27XSize(Irr(G));                                         [127X[104X
+    [4X[25Xgap>[125X [27XSize(Irr(G));[127X[104X
     [4X[28X15[128X[104X
     [4X[25Xgap>[125X [27XSimpleComponentByCharacterAsSCAlgebra(Rationals,G,15);[127X[104X
     [4X[28X<algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>[128X[104X
@@ -217,10 +218,13 @@
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XPSplitSubextension(Rationals,60,5);  [127X[104X
+    [4X[25Xgap>[125X [27XPSplitSubextension(Rationals,60,5);[127X[104X
     [4X[28XGaussianRationals[128X[104X
     [4X[25Xgap>[125X [27XPSplitSubextension(NF(5,[1,4]),70,2);[127X[104X
     [4X[28XNF(35,[ 1, 4, 9, 11, 16, 29 ])[128X[104X
+    [4X[25Xgap>[125X [27XPSplitSubextension(NF(40,[1,9,11,19]),20,2);[127X[104X
+    [4X[28XNF(40,[ 1, 9, 11, 19])[128X[104X
+    [4X[28X[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -245,7 +249,7 @@
     [4X[25Xgap>[125X [27XF:=CF(12);[127X[104X
     [4X[28XCF(12)[128X[104X
     [4X[25Xgap>[125X [27XK:=NF(120,[1,49]) # Note that F is a subfield of K, with index 4.[127X[104X
-    [4X[25X>[125X [27X; # Then we can find e, f, and g for the extension K/F at the prime 5. [127X[104X
+    [4X[25X>[125X [27X; # Then we can find e, f, and g for the extension K/F at the prime 5.[127X[104X
     [4X[28XNF(120,[ 1, 49 ])[128X[104X
     [4X[25Xgap>[125X [27XRamificationIndexAtP(F,120,5); RamificationIndexAtP(K,120,5); last2/last;[127X[104X
     [4X[28X4[128X[104X
@@ -263,9 +267,166 @@
   [4X[32X[104X
   
   
-  [1X7.3 [33X[0;0YLocal index functions for Cyclic Cyclotomic Algebras[133X[101X
+  [1X7.3 [33X[0;0YGlobal Splitting and Character Descent Functions[133X[101X
   
-  [1X7.3-1 LocalIndicesOfCyclicCyclotomicAlgebra[101X
+  [1X7.3-1 GlobalSplittingOfCyclotomicAlgebra[101X
+  
+  [33X[1;0Y[29X[2XGlobalSplittingOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XKillingCocycle[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XAntiSymMatUpMat[102X( [3Xx[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XCyclotomicExtensionGenerator[102X( [3XK[103X, [3XF[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XReducingCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
+  [6XReturns:[106X  [33X[0;10YIf  the  input  cyclotomic  crossed  product  algebra  [10XA[110X  admits a
+            rescaling  of  basis  elements  by  roots  of  unity that makes it
+            equivalent  to  one  with a trivial factor set, the first function
+            here  returns  a full matrix algebra over the same center with the
+            same  dimension  as  [10XA[110X.  In  general  the  function  will output a
+            cyclotomic algebra equivalent to [10XA[110X whose factor set does not admit
+            a  partial  splitting  by  a simple rescaling of basis elements by
+            roots   of   unity.   [2XKillingCocycle[102X   is  a  subroutine  used  by
+            [2XGlobalSplittingOfCyclotomicAlgebra[102X  function to produce equivalent
+            factor sets that have more zeroes, [2XAntiSymMatUpMat[102X is a subroutine
+            it uses to manipulate the factor set information in anti-symmetric
+            matrix  form. [2XReducingCyclotomicAlgebra[102X is another subroutine used
+            by  the  [2XGlobalSplittingOfCyclotomicAlgebra[102X that either returns an
+            isomorphic  cyclotomic  algebra  whose associated Galois group has
+            fewer    generators    than    the   input,   or   returns   fail.
+            [2XCyclotomicExtensionGenerator[102X    is    a   subroutine   called   by
+            [2XReducingCyclotomicAlgebra[102X  which  returns  a positive integer [10Xm[110X if
+            the field [10XK[110X is the cyclotomic extension of [10XF[110X obtained by adjoining
+            a primitive [10Xm[110X-th root of [10X1[110X, and returns fail otherwise.[133X
+  
+  [33X[0;0YThe  input  [10XA[110X  must  be a list representing a cyclotomic algebra in the same
+  form   as   in   the   output   of  [2XWedderburnDecompositionInfo[102X  ([14X2.1-2[114X)  or
+  [2XSimpleAlgebraByCharacterInfo[102X  ([14X2.2-2[114X).  If  the  output  has  length  5, the
+  function  will  first  search using [2XKillingCocycle[102X and [2XAntiSymMatUpMat[102X for a
+  rescaling  of  basis  elements  that  makes  the  factor set trivial, and in
+  general finds one that produces as many zeroes as possible in the factor set
+  information.  If  there  is  a generator that produces a split tensor factor
+  with  a  cyclotomic algebra [10XB[110X defined over a root of unity of smaller order,
+  then  [2XReducingCyclotomicAlgebra[102X reduces to [10XB[110X. These steps are repeated until
+  such tensor factorizations are no longer available.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XA := [ 1, Rationals, 20, [ [ 2, 11, 0 ], [ 4, 3, 0 ] ], [ [ 0 ] ] ];;[127X[104X
+    [4X[25Xgap>[125X [27XGlobalSplittingOfCyclotomicAlgebra(A);[127X[104X
+    [4X[28X[ 8, Rationals ][128X[104X
+    [4X[25Xgap>[125X [27XA := [ 1, Rationals, 20, [ [ 2, 11, 0 ], [ 4, 3, 10 ] ], [ [ 0 ] ] ];;[127X[104X
+    [4X[25Xgap>[125X [27XGlobalSplittingOfCyclotomicAlgebra(A);[127X[104X
+    [4X[28X[ 2, Rationals, 10, [ 4, 3, 5 ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X7.3-2 CharacterDescent[101X
+  
+  [33X[1;0Y[29X[2XCharacterDescent[102X( [3XF[103X, [3XG[103X, [3Xn[103X, [3Xe[103X, [3XH[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XGlobalCharacterDescent[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSimpleComponentByCharacterDescent[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
+  [6XReturns:[106X  [33X[0;10YThe  first  function  returns  [10X[r,F1,H,k][110X  where  [10Xr[110X  is a positive
+            rational,  [10XF1[110X  is an extension field of [10XF[110X, [10XH[110X is the input subgroup
+            [10XH[110X,  and  [10Xk[110X  is the position in [10XIrr(H)[110X of the irreducible character
+            that   admits  a  Global  Character  Descent  reduction;  i.e.  an
+            irreducible  character  of  [10XH[110X  that  has the same local indices as
+            [10XIrr(G)[n][110X.  The second function returns the limit of the Character
+            Descent  reductions,  it  returns the last [2XCharacterDescent[102X output
+            obtained  before  reaching  a state where no maximal subgroup of [10XG[110X
+            admits a further reduction by [2XCharacterDescent[102X. The third function
+            returns    the    simple    component   of   [10XFG[110X   resulting   from
+            [2XGlobalCharacterDescent[102X    that    is    produced    by    applying
+            [2XSimpleComponentOfGroupRingByCharacter[102X  ([14X7.5-3[114X)  and  adjusting the
+            matrix degree.[133X
+  
+  [33X[0;0YThe  [2XCharacterDescent[102X  function  tries  to  find  an  irreducible  character
+  [10Xpsi[110X=[10XIrr(H)[k][110X  of  [10XH[110X  for which [10X[F(chi,psi),F(chi)][110X and [10X(chi_H,psi)[110X are both
+  coprime  to  [10X|G|[110X. This character [10Xpsi[110X will have the same local indices over [10XF[110X
+  as  [10Xchi[110X by a theorem of Yamada. The [2XGlobalCharacterDescent[102X function iterates
+  a  search  for  these  global  character descent reductions over irreducible
+  characters  of  maximal subgroups of [10XG[110X, and when it finds one it replaces [10XG[110X,
+  [10XF(chi)[110X,  and  [10Xchi[110X  by  [10XH[110X, [10XF(chi,psi)[110X, and [10Xpsi[110X, and then begins a search over
+  maximal  subgroups  of  [10XH[110X.  It  terminates when no maximal subgroup admits a
+  global  reduction,  and returns the relevant matrix degree factor along with
+  the last [10XH[110X and [10Xpsi[110X it found. [2XSimpleComponentByCharacterDescent[102X implements an
+  algorithm  that returns the simple component of [10XFG[110X associated with [10XIrr(G)[n][110X
+  obtained using the global character descent algorithm.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XG:=PSU(3,3);[127X[104X
+    [4X[28X<permutation group of size 6048 with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27Xsc := SimpleComponentByCharacterDescent(Rationals,G,8);;[127X[104X
+    [4X[25Xgap>[125X [27Xsc{[1..3]}; # the 4th entry is [ 2, 5, 3 ] or [ 2, 5, 9 ][127X[104X
+    [4X[28X[ 21/2, GaussianRationals, 12 ][128X[104X
+    [4X[25Xgap>[125X [27XSchurIndex(sc);[127X[104X
+    [4X[28X1[128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X7.3-3 GaloisRepsOfCharacters[101X
+  
+  [33X[1;0Y[29X[2XGaloisRepsOfCharacters[102X( [3XF[103X, [3XG[103X ) [32X operation[133X
+  [6XReturns:[106X  [33X[0;10YA  list  of  positive  integers  [10Xn[110X that indicates the positions in
+            [10XIrr(G)[110X  of  the Galois conjugacy classes of irreducible characters
+            of [10XG[110X over the field [10XF[110X.[133X
+  
+  [33X[0;0Y[2XGaloisRepsOfCharacters[102X  finds  a  list  of  representatives  of the distinct
+  Galois  conjugacy  classes  of  irreducible  characters of [10XG[110X over [10XF[110X. It runs
+  through  the irreducible characters and determines if a given irreducible is
+  Galois  conjugate over [10XF[110X to any of the previous ones, and if not it adds the
+  position of that character to the list.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(63,1);[127X[104X
+    [4X[28X<pc group of size 63 with 3 generators>[128X[104X
+    [4X[25Xgap>[125X [27XGaloisRepsOfCharacters(Rationals,G);[127X[104X
+    [4X[28X[ 1, 2, 4, 10, 12 ][128X[104X
+    [4X[25Xgap>[125X [27XGaloisRepsOfCharacters(CF(9),G);[127X[104X
+    [4X[28X[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13 ][128X[104X
+    [4X[25Xgap>[125X [27XGaloisRepsOfCharacters(NF(7,[1,2,4]),G);[127X[104X
+    [4X[28X[ 1, 2, 4, 10, 11, 12, 14 ][128X[104X
+    [4X[25Xgap>[125X [27XGaloisRepsOfCharacters(CF(63),G);[127X[104X
+    [4X[28X[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X7.3-4 WedderburnDecompositionByCharacterDescent[101X
+  
+  [33X[1;0Y[29X[2XWedderburnDecompositionByCharacterDescent[102X( [3XF[103X, [3XG[103X ) [32X operation[133X
+  [6XReturns:[106X  [33X[0;10YA  Wedderburn decomposition of [10XFG[110X that is obtained by applying the
+            global  character  descent  algorithm  to  representatives  of the
+            Galois conjugacy classes of irreducible characters of [10XG[110X over [10XF[110X.[133X
+  
+  [33X[0;0Y[2XWedderburnDecompositionByCharacterDescent[102X  is  available  as  an  option  to
+  [2XWedderburnDecompositionInfo[102X  ([14X2.1-2[114X)  that  can be more effective for larger
+  groups,  especially ones with relatively few irreducible characters. As long
+  as  [10XGAP[110X  is  able  to  compute  maximal  subgroups  and restrict irreducible
+  characters of [10XG[110X to them, this function should eventually return a Wedderburn
+  decomposition.  As it operates on one irreducible character at a time, it is
+  less  effective  on  Abelian  groups,  which  have  far too many irreducible
+  characters,  and  on most groups in GAP's Small Groups Library, where memory
+  limitations  are  not  a  factor  and  it  is  possible  for  the Shoda pair
+  algorithms can deal with many irreducible characters at the same time.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XG:=GL(3,3);[127X[104X
+    [4X[28XGL(3,3)[128X[104X
+    [4X[25Xgap>[125X [27XSize(G);[127X[104X
+    [4X[28X11232[128X[104X
+    [4X[25Xgap>[125X [27XWedderburnDecompositionByCharacterDescent(Rationals,G);[127X[104X
+    [4X[28X[ [ 1, Rationals ], [ 1, Rationals ], [ 12, Rationals ], [ 12, Rationals ],[128X[104X
+    [4X[28X[ 13, Rationals ], [ 13, Rationals ], [ 16, NF(13,[ 1, 3, 9 ]) ],[128X[104X
+    [4X[28X[ 16, NF(13,[ 1, 3, 9 ]) ], [ 26, Rationals ], [ 26, Rationals ],[128X[104X
+    [4X[28X[ 26, NF(8,[ 1, 3 ]) ], [ 26, NF(8,[ 1, 3 ]) ], [ 27, Rationals ],[128X[104X
+    [4X[28X[ 27, Rationals ], [ 39, Rationals ], [ 39, Rationals ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X7.4 [33X[0;0YLocal index functions for Cyclic Cyclotomic Algebras[133X[101X
+  
+  [1X7.4-1 LocalIndicesOfCyclicCyclotomicAlgebra[101X
   
   [33X[1;0Y[29X[2XLocalIndicesOfCyclicCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list of the pairs [10X[p,m][110X indicating the nontrivial local indices
@@ -286,7 +447,7 @@
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.3-2 LocalIndexAtInfty[101X
+  [1X7.4-2 LocalIndexAtInfty[101X
   
   [33X[1;0Y[29X[2XLocalIndexAtInfty[102X( [3XA[103X ) [32X operation[133X
   [33X[1;0Y[29X[2XLocalIndexAtTwo[102X( [3XA[103X ) [32X operation[133X
@@ -319,17 +480,17 @@
     [4X[28X[ 1, NF(8,[ 1, 7 ]), 8, [ 2, 7, 4 ] ][128X[104X
     [4X[25Xgap>[125X [27XLocalIndexAtInfty(A);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XA:=[1,CF(7),28,[2,15,14]];                        [127X[104X
+    [4X[25Xgap>[125X [27XA:=[1,CF(7),28,[2,15,14]];[127X[104X
     [4X[28X[ 1, CF(7), 28, [ 2, 15, 14 ] ][128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtTwo(A);     [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtTwo(A);[127X[104X
     [4X[28X2[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
   
-  [1X7.4 [33X[0;0YLocal index functions for Non-Cyclic Cyclotomic Algebras[133X[101X
+  [1X7.5 [33X[0;0YLocal index functions for Non-Cyclic Cyclotomic Algebras[133X[101X
   
-  [1X7.4-1 LocalIndicesOfCyclotomicAlgebra[101X
+  [1X7.5-1 LocalIndicesOfCyclotomicAlgebra[101X
   
   [33X[1;0Y[29X[2XLocalIndicesOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA list of pairs [10X[p,m][110X indicating the nontrivial local indices [10Xm[110X at
@@ -340,36 +501,60 @@
   algebra [3XA[103X is represented by a list of length 2, the local indices are all [22X1[122X,
   so  the  function  will return an empty list. If the cyclotomic algebra [3XA[103X is
   given by a list of length 4, then it represents a cyclic cyclotomic algebra,
-  so  the  function [2XLocalIndicesOfCyclicCyclotomicAlgebra[102X ([14X7.3-1[114X) is utilized.
-  If the cyclotomic algebra [10XA[110X is presented as a list of length 5, the function
-  determines the group and character [10Xchi[110X that faithfully represent the algebra
-  using          [2XDefiningGroupOfCyclotomicAlgebra[102X          ([14X7.4-3[114X)         and
-  [2XDefiningCharacterOfCyclotomicAlgebra[102X  ([14X7.4-3[114X).  It  uses the Frobenius-Schur
+  so  the  function [2XLocalIndicesOfCyclicCyclotomicAlgebra[102X ([14X7.4-1[114X) is utilized.
+  If  the cyclotomic algebra [10XA[110X is presented as a list of length 5 or more, the
+  function  first applies [2XGlobalSplittingOfCyclotomicAlgebra[102X ([14X7.3-1[114X) to reduce
+  the  length  as much as possible. If this does not reduce the length to 4 or
+  less,  it  applies the character descent algorithm to try to reduce it again
+  with  Clifford  theory:  it  determines  the  group  and  character [10Xchi[110X that
+  faithfully  represent  the  algebra  using  [2XDefiningGroupOfCyclotomicAlgebra[102X
+  ([14X7.5-3[114X)   and  [2XDefiningCharacterOfCyclotomicAlgebra[102X  ([14X7.5-3[114X),  then  applies
+  [2XSimpleComponentByCharacterDescent[102X  ([14X7.3-2[114X).  It repeats this until it cannot
+  reduce  the  length  of cyclotomic algebra any longer. If the length is 4 it
+  will  apply  the  local  index  functions  for cyclic cyclotomic algebras to
+  compute  the local indices at each prime dividing the order of the group. If
+  the  length  is  5  or  more, it applies the character-theoretic local Schur
+  index       functions       to       the       output       [10X[G,chi][110X       of
+  [2XDefiningGroupAndCharacterOfCyclotAlg[102X  ([14X7.5-3[114X).  It  uses the Frobenius-Schur
   indicator   of   [10Xchi[110X   to   determine  the  local  index  at  infinity  (see
-  [2XLocalIndexAtInftyByCharacter[102X  ([14X7.4-4[114X)).  For local indices at odd primes and
+  [2XLocalIndexAtInftyByCharacter[102X  ([14X7.5-4[114X)).  For local indices at odd primes and
   sometimes for the prime [22X2[122X, the defect group of the block containing [10Xchi[110X will
   be  cyclic,  so  the  local  index can be found using the values of a Brauer
   character   by  a  theorem  of  Benard  (see  [2XLocalIndexAtPByBrauerCharacter[102X
-  ([14X7.4-6[114X).)  Sometimes  for  the  prime  2 the defect group is not necessarily
+  ([14X7.5-6[114X).)  Sometimes  for  the  prime  2 the defect group is not necessarily
   cyclic,  so  in  these cases we appeal to the classification of dyadic Schur
-  groups by Schmid and Riese (see [2XLocalIndexAtTwoByCharacter[102X ([14X7.4-7[114X)).[133X
+  groups by Schmid and Riese (see [2XLocalIndexAtTwoByCharacter[102X ([14X7.5-7[114X)).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(480,600);[127X[104X
     [4X[28X<pc group of size 480 with 7 generators>[128X[104X
     [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;[127X[104X
-    [4X[25Xgap>[125X [27XSize(W); [127X[104X
+    [4X[25Xgap>[125X [27XSize(W);[127X[104X
     [4X[28X27[128X[104X
-    [4X[25Xgap>[125X [27XW[27]; [127X[104X
-    [4X[28X[ 1, NF(5,[ 1, 4 ]), 60, [ [ 2, 11, 0 ], [ 2, 19, 30 ], [ 2, 31, 30 ] ], [128X[104X
+    [4X[25Xgap>[125X [27XW[27];[127X[104X
+    [4X[28X[ 1, NF(5,[ 1, 4 ]), 60, [ [ 2, 11, 0 ], [ 2, 19, 30 ], [ 2, 31, 30 ] ],[128X[104X
     [4X[28X  [ [ 0, 45 ], [ 15 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XLocalIndicesOfCyclotomicAlgebra(W[27]);[127X[104X
     [4X[28X[ [ infinity, 2 ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.4-2 RootOfDimensionOfCyclotomicAlgebra[101X
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XG:=SmallGroup(160,82);[127X[104X
+    [4X[28X<pc group of size 160 with 6 generators>[128X[104X
+    [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(W);[127X[104X
+    [4X[28X14[128X[104X
+    [4X[25Xgap>[125X [27XW[14];[127X[104X
+    [4X[28X[ 1, Rationals, 20, [ [ 2, 11, 0 ], [ 4, 3, 0 ] ], [ [ 5 ] ] ][128X[104X
+    [4X[25Xgap>[125X [27XLocalIndicesOfCyclotomicAlgebra(W[14]);[127X[104X
+    [4X[28X[ [ 2, 2 ], [ 5, 2 ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [1X7.5-2 RootOfDimensionOfCyclotomicAlgebra[101X
   
   [33X[1;0Y[29X[2XRootOfDimensionOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  positive  integer representing the square root of the dimension
@@ -379,19 +564,22 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XA:=[3,Rationals,12,[[2,5,3],[2,7,0]],[[3]]];[127X[104X
     [4X[28X[ 3, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ][128X[104X
-    [4X[25Xgap>[125X [27XRootOfDimensionOfCyclotomicAlgebra(A);      [127X[104X
+    [4X[25Xgap>[125X [27XRootOfDimensionOfCyclotomicAlgebra(A);[127X[104X
     [4X[28X12[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.4-3 DefiningGroupOfCyclotomicAlgebra[101X
+  [1X7.5-3 DefiningGroupOfCyclotomicAlgebra[101X
   
   [33X[1;0Y[29X[2XDefiningGroupOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [33X[1;0Y[29X[2XDefiningCharacterOfCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XDefiningGroupAndCharacterOfCyclotAlg[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThese  functions  return a finite group [10XG[110X and a positive integer [10Xn[110X
-            for  which the simple component of a group algebra over [10XG[110X over the
-            center  of the cyclotomic algebra [10XA[110X corresponding to the character
-            [10XIrr(G)[n][110X will be isomorphic to [10XA[110X.[133X
+            (or, in the case to the third function, an irreducible character [10Xn[110X
+            of [10XG[110X for which the simple component of a group algebra over [10XG[110X over
+            the  center  of  the  cyclotomic  algebra  [10XA[110X  corresponding to the
+            character  [10XIrr(G)[n][110X  (resp. [10Xn[110X) will be (rationally) isomorphic to
+            [10XA[110X.[133X
   
   [33X[1;0Y[29X[2XSimpleComponentOfGroupRingByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list  that  describes  the  algebraic  structure  of the simple
@@ -407,9 +595,9 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(48,15);[127X[104X
     [4X[28X<pc group of size 48 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);                [127X[104X
+    [4X[25Xgap>[125X [27XR:=GroupRing(Rationals,G);[127X[104X
     [4X[28X<algebra-with-one over Rationals, with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(R);;  [127X[104X
+    [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(R);;[127X[104X
     [4X[25Xgap>[125X [27XA:=W[10];[127X[104X
     [4X[28X[ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ][128X[104X
     [4X[25Xgap>[125X [27Xg:=DefiningGroupOfCyclotomicAlgebra(A);[127X[104X
@@ -419,12 +607,12 @@
     [4X[25Xgap>[125X [27Xn:=DefiningCharacterOfCyclotomicAlgebra(A);[127X[104X
     [4X[28X12[128X[104X
     [4X[25Xgap>[125X [27XSimpleComponentOfGroupRingByCharacter(Rationals,G,n)[127X[104X
-    [4X[25X>[125X [27X;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis. [127X[104X
+    [4X[25X>[125X [27X;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis.[127X[104X
     [4X[28X[ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.4-4 LocalIndexAtInftyByCharacter[101X
+  [1X7.5-4 LocalIndexAtInftyByCharacter[101X
   
   [33X[1;0Y[29X[2XLocalIndexAtInftyByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YThe  local  index  at  an  infinite  prime  of  the field [3XF[103X of the
@@ -441,13 +629,13 @@
     [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
     [4X[25Xgap>[125X [27XLocalIndexAtInftyByCharacter(Rationals,G,i);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);    [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);[127X[104X
     [4X[28X1[128X[104X
     [4X[28X[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.4-5 DefectGroupOfConjugacyClassAtP[101X
+  [1X7.5-5 DefectGroupOfConjugacyClassAtP[101X
   
   [33X[1;0Y[29X[2XDefectGroupOfConjugacyClassAtP[102X( [3XG[103X, [3Xc[103X, [3Xp[103X ) [32X operation[133X
   [33X[1;0Y[29X[2XDefectGroupsOfPBlock[102X( [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
@@ -482,14 +670,14 @@
     [4X[28Xfalse[128X[104X
     [4X[25Xgap>[125X [27XD:=DefectGroupsOfPBlock(G,Irr(G)[i],3);[127X[104X
     [4X[28XGroup( [ f4, f5 ] )^G[128X[104X
-    [4X[25Xgap>[125X [27XIsCyclic(Representative(D));    [127X[104X
+    [4X[25Xgap>[125X [27XIsCyclic(Representative(D));[127X[104X
     [4X[28Xfalse[128X[104X
     [4X[25Xgap>[125X [27XDefectOfCharacterAtP(G,Irr(G)[i],3);[127X[104X
     [4X[28X2[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.4-6 LocalIndexAtPByBrauerCharacter[101X
+  [1X7.5-6 LocalIndexAtPByBrauerCharacter[101X
   
   [33X[1;0Y[29X[2XLocalIndexAtPByBrauerCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
   [33X[1;0Y[29X[2XFinFieldExt[102X( [3XF[103X, [3XG[103X, [3Xp[103X, [3Xn[103X, [3Xm[103X ) [32X operation[133X
@@ -523,18 +711,18 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(80,28);[127X[104X
     [4X[28X<pc group of size 80 with 5 generators>[128X[104X
-    [4X[25Xgap>[125X [27XT:=CharacterTable(G);; [127X[104X
+    [4X[25Xgap>[125X [27XT:=CharacterTable(G);;[127X[104X
     [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
     [4X[25Xgap>[125X [27XS:=T mod 5;[127X[104X
     [4X[28XBrauerTable( <pc group of size 80 with 5 generators>, 5 )[128X[104X
     [4X[25Xgap>[125X [27XBlocksInfo(S);[127X[104X
-    [4X[28X[ rec( defect := 1, modchars := [ 1, 3, 7, 8 ], [128X[104X
-    [4X[28X      ordchars := [ 1, 3, 7, 8, 18 ] ), [128X[104X
-    [4X[28X  rec( defect := 1, modchars := [ 2, 4, 5, 6 ], [128X[104X
-    [4X[28X      ordchars := [ 2, 4, 5, 6, 17 ] ), [128X[104X
-    [4X[28X  rec( defect := 1, modchars := [ 9, 12, 14, 15 ], [128X[104X
-    [4X[28X      ordchars := [ 9, 12, 14, 15, 19 ] ), [128X[104X
-    [4X[28X  rec( defect := 1, modchars := [ 10, 11, 13, 16 ], [128X[104X
+    [4X[28X[ rec( defect := 1, modchars := [ 1, 3, 7, 8 ],[128X[104X
+    [4X[28X      ordchars := [ 1, 3, 7, 8, 18 ] ),[128X[104X
+    [4X[28X  rec( defect := 1, modchars := [ 2, 4, 5, 6 ],[128X[104X
+    [4X[28X      ordchars := [ 2, 4, 5, 6, 17 ] ),[128X[104X
+    [4X[28X  rec( defect := 1, modchars := [ 9, 12, 14, 15 ],[128X[104X
+    [4X[28X      ordchars := [ 9, 12, 14, 15, 19 ] ),[128X[104X
+    [4X[28X  rec( defect := 1, modchars := [ 10, 11, 13, 16 ],[128X[104X
     [4X[28X      ordchars := [ 10, 11, 13, 16, 20 ] ) ][128X[104X
     [4X[25Xgap>[125X [27XLocalIndexAtPByBrauerCharacter(Rationals,G,i,5);[127X[104X
     [4X[28X2[128X[104X
@@ -555,7 +743,7 @@
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.4-7 LocalIndexAtOddPByCharacter[101X
+  [1X7.5-7 LocalIndexAtOddPByCharacter[101X
   
   [33X[1;0Y[29X[2XLocalIndexAtOddPByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X, [3Xp[103X ) [32X operation[133X
   [33X[1;0Y[29X[2XLocalIndexAtTwoByCharacter[102X( [3XF[103X, [3XG[103X, [3Xn[103X ) [32X operation[133X
@@ -573,10 +761,10 @@
   [10XDefiningGroup...[110X  functions  to reduce to a faithful character of a possibly
   smaller  cyclic-by-abelian group. If the simple component for this character
   is  given  in  [5XWedderga[105X  as  a  list  of  length  2  or  4, they make use of
-  [2XLocalIndexAtOddP[102X  ([14X7.3-2[114X)  or [2XLocalIndexAtTwo[102X ([14X7.3-2[114X) as appropriate. If the
+  [2XLocalIndexAtOddP[102X  ([14X7.4-2[114X)  or [2XLocalIndexAtTwo[102X ([14X7.4-2[114X) as appropriate. If the
   simple  component  over [22XF[122X has length 5, it checks if the defect group of the
   [22Xp[122X-block  containing  [10XIrr(G)[n][110X is cyclic. If this is definitely so, they use
-  [2XLocalIndexAtPByBrauerCharacter[102X  ([14X7.4-6[114X)  to  calculate  the  [22Xp[122X-local  index.
+  [2XLocalIndexAtPByBrauerCharacter[102X  ([14X7.5-6[114X)  to  calculate  the  [22Xp[122X-local  index.
   Exceptions  can  occur when [22Xp[122X is [22X2[122X. When the defect group is not necessarily
   cyclic,  [2XLocalIndexAtTwoByCharacter[102X  makes  use of [2XIsDyadicSchurGroup[102X, which
   checks  if  a  quasi-elementary  group  has a faithful irreducible character
@@ -594,17 +782,17 @@
     [4X[25Xgap>[125X [27Xi:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;[127X[104X
     [4X[25Xgap>[125X [27XLocalIndexAtOddPByCharacter(Rationals,G,Irr(G)[i],3);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);  [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);[127X[104X
     [4X[28X2[128X[104X
-    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);    [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);[127X[104X
     [4X[28X1[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
   
-  [1X7.5 [33X[0;0YLocal index functions for Rational Quaternion Algebras[133X[101X
+  [1X7.6 [33X[0;0YLocal index functions for Rational Quaternion Algebras[133X[101X
   
-  [1X7.5-1 LocalIndicesOfRationalQuaternionAlgebra[101X
+  [1X7.6-1 LocalIndicesOfRationalQuaternionAlgebra[101X
   
   [33X[1;0Y[29X[2XLocalIndicesOfRationalQuaternionAlgebra[102X( [3XA[103X ) [32X operation[133X
   [33X[1;0Y[29X[2XLocalIndicesOfRationalSymbolAlgebra[102X( [3Xa[103X, [3Xb[103X ) [32X operation[133X
@@ -621,12 +809,12 @@
   [33X[0;0YFor  the  first  function,  the  input must be a quaternion algebra over the
   rationals,  output  from  [10XQuaternionAlgebra(Rationals,a,b)[110X.  For  the  first
   function,  [22Xa[122X  and [22Xb[122X can be any pair of integers, and for the second rational
-  symbol  algebra  version,  [22Xa[122X  and  [22Xb[122X  should  be either -1 or positive prime
-  integers.  The  input  of  the  third function is a pair of lists of [22Xp[122X-local
-  indices  in  which  the  maximum  local index at any prime is at most 2. The
-  input  of  the  fourth function is a list of pairs [10X[p,m][110X in which each prime
-  that  appears  only appears in one of the pairs, and the [10Xm[110X's that appear are
-  all positive integers.[133X
+  symbol  algebra  version, [22Xa[122X and [22Xb[122X are restricted to be either -1 or positive
+  prime  integers,  otherwise  it  will  return  [9Xfail[109X.  The input of the third
+  function  is  a  pair of lists of [22Xp[122X-local indices in which the maximum local
+  index  at any prime is at most 2. The input of the fourth function is a list
+  of  pairs  [10X[p,m][110X in which each prime that appears only appears in one of the
+  pairs, and the [10Xm[110X's that appear are all positive integers.[133X
   
   [33X[0;0Y[2XLocalIndicesOfRationalQuaternionAlgebra[102X  first  factors  the  algebra  as  a
   tensor  product  of rational quaternion algebras, obtaining suitable pairs [10Xa[110X
@@ -645,24 +833,24 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XLocalIndicesOfRationalSymbolAlgebra(-1,-1);[127X[104X
     [4X[28X[ [ infinity, 2 ], [ 2, 2 ] ][128X[104X
-    [4X[25Xgap>[125X [27XLocalIndicesOfRationalSymbolAlgebra(3,-1); [127X[104X
+    [4X[25Xgap>[125X [27XLocalIndicesOfRationalSymbolAlgebra(3,-1);[127X[104X
     [4X[28X[ [ 2, 2 ], [ 3, 2 ] ][128X[104X
     [4X[25Xgap>[125X [27XLocalIndicesOfRationalSymbolAlgebra(-3,2);[127X[104X
-    [4X[28X[  ][128X[104X
-    [4X[25Xgap>[125X [27XLocalIndicesOfRationalSymbolAlgebra(3,7); [127X[104X
+    [4X[28Xfail[128X[104X
+    [4X[25Xgap>[125X [27XLocalIndicesOfRationalSymbolAlgebra(3,7);[127X[104X
     [4X[28X[ [ 2, 2 ], [ 7, 2 ] ][128X[104X
-    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(Rationals,-30,-15);   [127X[104X
+    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(Rationals,-30,-15);[127X[104X
     [4X[28X<algebra-with-one of dimension 4 over Rationals>[128X[104X
     [4X[25Xgap>[125X [27XLocalIndicesOfRationalQuaternionAlgebra(A);[127X[104X
     [4X[28X[ [ 5, 2 ], [ infinity, 2 ] ][128X[104X
-    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(CF(5),3,-2);          [127X[104X
+    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(CF(5),3,-2);[127X[104X
     [4X[28X<algebra-with-one of dimension 4 over CF(5)>[128X[104X
     [4X[25Xgap>[125X [27XLocalIndicesOfRationalQuaternionAlgebra(A);[127X[104X
     [4X[28Xfail[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.5-2 IsRationalQuaternionAlgebraADivisionRing[101X
+  [1X7.6-2 IsRationalQuaternionAlgebraADivisionRing[101X
   
   [33X[1;0Y[29X[2XIsRationalQuaternionAlgebraADivisionRing[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YIf  the  rational  quaternion algebra is a noncommutative division
@@ -673,7 +861,7 @@
   applied to other algebras, it returns [9Xfail[109X.[133X
   
   [33X[0;0YThe  function  calculates  the  rational  Schur  index  of the algebra using
-  [2XLocalIndicesOfRationalQuaternionAlgebra[102X  ([14X7.5-1[114X),  and  returns  [9Xtrue[109X if the
+  [2XLocalIndicesOfRationalQuaternionAlgebra[102X  ([14X7.6-1[114X),  and  returns  [9Xtrue[109X if the
   rational  Schur  index  of the algebra is [10X2[110X, and [9Xfalse[109X if the rational Schur
   index is [10X1[110X.[133X
   
@@ -685,13 +873,13 @@
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(Rationals,-30,-15);           [127X[104X
+    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(Rationals,-30,-15);[127X[104X
     [4X[28X<algebra-with-one of dimension 4 over Rationals>[128X[104X
     [4X[25Xgap>[125X [27XIsRationalQuaternionAlgebraADivisionRing(A);[127X[104X
     [4X[28Xtrue[128X[104X
     [4X[25Xgap>[125X [27XLocalIndicesOfRationalQuaternionAlgebra(A);[127X[104X
     [4X[28X[ [ 5, 2 ], [ infinity, 2 ] ][128X[104X
-    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(Rationals,3,-2);       [127X[104X
+    [4X[25Xgap>[125X [27XA:=QuaternionAlgebra(Rationals,3,-2);[127X[104X
     [4X[28X<algebra-with-one of dimension 4 over Rationals>[128X[104X
     [4X[25Xgap>[125X [27XIsRationalQuaternionAlgebraADivisionRing(A);[127X[104X
     [4X[28Xfalse[128X[104X
@@ -701,7 +889,7 @@
   [4X[32X[104X
   
   
-  [1X7.6 [33X[0;0YFunctions involving Cyclic Algebras[133X[101X
+  [1X7.7 [33X[0;0YFunctions involving Cyclic Algebras[133X[101X
   
   [33X[0;0YCyclic  algebras  are  represented  in [5XWedderga[105X as lists of length 3, in the
   form  [10X[F,K,[c]][110X,  which  stands  for a cyclic crossed product algebra of the
@@ -719,7 +907,7 @@
   into  generalized  quaternion  algebras, and to convert cyclic algebras into
   cyclic cyclotomic algebras, whenever possible.[133X
   
-  [1X7.6-1 DecomposeCyclotomicAlgebra[101X
+  [1X7.7-1 DecomposeCyclotomicAlgebra[101X
   
   [33X[1;0Y[29X[2XDecomposeCyclotomicAlgebra[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YTwo  lists,  each representing a cyclic algebra over the center of
@@ -751,12 +939,12 @@
     [4X[25Xgap>[125X [27XA:=W[12];[127X[104X
     [4X[28X[ 1, NF(8,[ 1, 7 ]), 24, [ [ 2, 7, 12 ], [ 2, 17, 9 ] ], [ [ 3 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XDecomposeCyclotomicAlgebra(A);[127X[104X
-    [4X[28X[ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ], [128X[104X
-    [4X[28X  [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ -2-E(8)+E(8)^3 ] ] ][128X[104X
+    [4X[28X[ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ],[128X[104X
+    [4X[28X  [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ E(8)+2*E(8)^2+E(8)^3 ] ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.6-2 ConvertCyclicAlgToCyclicCyclotomicAlg[101X
+  [1X7.7-2 ConvertCyclicAlgToCyclicCyclotomicAlg[101X
   
   [33X[1;0Y[29X[2XConvertCyclicAlgToCyclicCyclotomicAlg[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list  of  the  form  [10X[1,F,n,[a,b,c]][110X  which represents a cyclic
@@ -785,7 +973,7 @@
     [4X[25Xgap>[125X [27XConvertQuadraticAlgToQuaternionAlg(A);[127X[104X
     [4X[28X<algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>[128X[104X
     [4X[25Xgap>[125X [27Xb:=Basis(last);[127X[104X
-    [4X[28XCanonicalBasis( <algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])> )[128X[104X
+    [4X[28XBasis( <algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>, ... )[128X[104X
     [4X[25Xgap>[125X [27Xb[1]^2; b[2]^2; b[3]^2; b[4]^2;[127X[104X
     [4X[28Xe[128X[104X
     [4X[28X(-1)*e[128X[104X
@@ -796,7 +984,7 @@
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [1X7.6-3 ConvertQuaternionAlgToQuadraticAlg[101X
+  [1X7.7-3 ConvertQuaternionAlgToQuadraticAlg[101X
   
   [33X[1;0Y[29X[2XConvertQuaternionAlgToQuadraticAlg[102X( [3XA[103X ) [32X operation[133X
   [6XReturns:[106X  [33X[0;10YA  list  of  the  form [10X[F,K,[c]][110X representing a cyclic algebra for

@@ -6,10 +6,10 @@
                    [1XWedderburn Decomposition of Group Algebras[101X
   
   
-                                 Version 4.9.5
+                                 Version 4.10.0
   
   
-                                30 November 2018
+                                  14 May 2020
   
   
                               Gurmeet Kaur Bakshi
@@ -117,7 +117,7 @@
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y©  2006-2018  by  Gurmeet  Kaur  Bakshi,  Osnel Broche Cristo, Allen Herman,
+  [33X[0;0Y©  2006-2020  by  Gurmeet  Kaur  Bakshi,  Osnel Broche Cristo, Allen Herman,
   Alexander Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu,
   Ángel del Río and Inneke Van Gelder.[133X
   
@@ -133,7 +133,7 @@
   
   [33X[0;0YG.  K.  Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A.
   Olivieri,  G. Olteanu, Á. del Río and I. Van Gelder. [13XWedderga --- Wedderburn
-  Decomposition     of     Group     Algebras,     Version     4.9.5;[113X     2018
+  Decomposition     of     Group     Algebras,     Version     4.10.0;[113X    2020
   ([7Xhttp://www.cs.st-andrews.ac.uk/~alexk/wedderga[107X).[133X
   
   
@@ -241,24 +241,29 @@
       7.2-1 PPartOfN
       7.2-2 PSplitSubextension
       7.2-3 SplittingDegreeAtP
-    7.3 [33X[0;0YLocal index functions for Cyclic Cyclotomic Algebras[133X
-      7.3-1 LocalIndicesOfCyclicCyclotomicAlgebra
-      7.3-2 LocalIndexAtInfty
-    7.4 [33X[0;0YLocal index functions for Non-Cyclic Cyclotomic Algebras[133X
-      7.4-1 LocalIndicesOfCyclotomicAlgebra
-      7.4-2 RootOfDimensionOfCyclotomicAlgebra
-      7.4-3 DefiningGroupOfCyclotomicAlgebra
-      7.4-4 LocalIndexAtInftyByCharacter
-      7.4-5 DefectGroupOfConjugacyClassAtP
-      7.4-6 LocalIndexAtPByBrauerCharacter
-      7.4-7 LocalIndexAtOddPByCharacter
-    7.5 [33X[0;0YLocal index functions for Rational Quaternion Algebras[133X
-      7.5-1 LocalIndicesOfRationalQuaternionAlgebra
-      7.5-2 IsRationalQuaternionAlgebraADivisionRing
-    7.6 [33X[0;0YFunctions involving Cyclic Algebras[133X
-      7.6-1 DecomposeCyclotomicAlgebra
-      7.6-2 ConvertCyclicAlgToCyclicCyclotomicAlg
-      7.6-3 ConvertQuaternionAlgToQuadraticAlg
+    7.3 [33X[0;0YGlobal Splitting and Character Descent Functions[133X
+      7.3-1 GlobalSplittingOfCyclotomicAlgebra
+      7.3-2 CharacterDescent
+      7.3-3 GaloisRepsOfCharacters
+      7.3-4 WedderburnDecompositionByCharacterDescent
+    7.4 [33X[0;0YLocal index functions for Cyclic Cyclotomic Algebras[133X
+      7.4-1 LocalIndicesOfCyclicCyclotomicAlgebra
+      7.4-2 LocalIndexAtInfty
+    7.5 [33X[0;0YLocal index functions for Non-Cyclic Cyclotomic Algebras[133X
+      7.5-1 LocalIndicesOfCyclotomicAlgebra
+      7.5-2 RootOfDimensionOfCyclotomicAlgebra
+      7.5-3 DefiningGroupOfCyclotomicAlgebra
+      7.5-4 LocalIndexAtInftyByCharacter
+      7.5-5 DefectGroupOfConjugacyClassAtP
+      7.5-6 LocalIndexAtPByBrauerCharacter
+      7.5-7 LocalIndexAtOddPByCharacter
+    7.6 [33X[0;0YLocal index functions for Rational Quaternion Algebras[133X
+      7.6-1 LocalIndicesOfRationalQuaternionAlgebra
+      7.6-2 IsRationalQuaternionAlgebraADivisionRing
+    7.7 [33X[0;0YFunctions involving Cyclic Algebras[133X
+      7.7-1 DecomposeCyclotomicAlgebra
+      7.7-2 ConvertCyclicAlgToCyclicCyclotomicAlg
+      7.7-3 ConvertQuaternionAlgToQuadraticAlg
   8 [33X[0;0YApplications of the Wedderga package[133X
     8.1 [33X[0;0YCoding theory applications[133X
       8.1-1 CodeWordByGroupRingElement
