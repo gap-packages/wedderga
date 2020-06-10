@@ -92,8 +92,8 @@ to describe the action.
 <![CDATA[
 gap> R := GaussianRationals;
 GaussianRationals
-gap> G := Units( ZmodnZ(4) );
-<group of size 2 with 1 generators>
+gap> G := Units( ZmodnZ(4) );; Size( G );
+2
 gap> act := function(RG,g)
 > return ANFAutomorphism( LeftActingDomain(RG), Int(g) );
 > end;
@@ -159,8 +159,7 @@ using the rationals as coefficient ring and the Klein group as the underlying gr
 
 <Example>
 <![CDATA[
-gap> C2 := CyclicGroup(2);
-<pc group of size 2 with 1 generators>
+gap> C2 := CyclicGroup(2);;
 gap> G := DirectProduct(C2,C2);
 <pc group of size 4 with 2 generators>
 gap> act := function(RG,a)
