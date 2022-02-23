@@ -1170,9 +1170,7 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(last);
 [  ]
 gap> ConvertQuadraticAlgToQuaternionAlg(A);
 <algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>
-gap> b:=Basis(last);
-Basis( <algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>, ... )
-gap> b[1]^2; b[2]^2; b[3]^2; b[4]^2;
+gap> b:=Basis(last);; b[1]^2; b[2]^2; b[3]^2; b[4]^2;
 e
 (-1)*e
 (-1)*e
@@ -1221,8 +1219,7 @@ gap> ConvertCyclicCyclotomicAlgToCyclicAlg(last2);
 [ 1, [ CF(5), CF(15), [ -1 ] ] ]
 gap> ConvertQuadraticAlgToQuaternionAlg(last[2]);
 <algebra-with-one of dimension 4 over CF(5)>
-gap> b:=Basis(last); b[1]^2; b[2]^2; b[3]^2; b[4]^2;
-Basis( <algebra-with-one of dimension 4 over CF(5)>, ... )
+gap> b:=Basis(last);; b[1]^2; b[2]^2; b[3]^2; b[4]^2;
 e
 (-3)*e
 (-1)*e
