@@ -373,7 +373,7 @@ gap> DecomposeCyclotomicAlgebra(A);
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ],
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ E(8)+2*E(8)^2+E(8)^3 ] ] ]
 
-# doc/div-alg.xml:1163-1183
+# doc/div-alg.xml:1163-1181
 
 gap> A:=[NF(24,[1,11]),CF(24),[-1]];
 [ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ]
@@ -383,9 +383,7 @@ gap> LocalIndicesOfCyclicCyclotomicAlgebra(last);
 [  ]
 gap> ConvertQuadraticAlgToQuaternionAlg(A);
 <algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>
-gap> b:=Basis(last);
-Basis( <algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>, ... )
-gap> b[1]^2; b[2]^2; b[3]^2; b[4]^2;
+gap> b:=Basis(last);; b[1]^2; b[2]^2; b[3]^2; b[4]^2;
 e
 (-1)*e
 (-1)*e
@@ -393,7 +391,7 @@ e
 gap> b[2]*b[3]+b[3]*b[2];
 0*e
 
-# doc/div-alg.xml:1210-1231
+# doc/div-alg.xml:1208-1228
 
 gap> A:=QuaternionAlgebra(CF(5),-3,-1);
 <algebra-with-one of dimension 4 over CF(5)>
@@ -407,8 +405,7 @@ gap> ConvertCyclicCyclotomicAlgToCyclicAlg(last2);
 [ 1, [ CF(5), CF(15), [ -1 ] ] ]
 gap> ConvertQuadraticAlgToQuaternionAlg(last[2]);
 <algebra-with-one of dimension 4 over CF(5)>
-gap> b:=Basis(last); b[1]^2; b[2]^2; b[3]^2; b[4]^2;
-Basis( <algebra-with-one of dimension 4 over CF(5)>, ... )
+gap> b:=Basis(last);; b[1]^2; b[2]^2; b[3]^2; b[4]^2;
 e
 (-3)*e
 (-1)*e
