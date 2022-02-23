@@ -99,8 +99,8 @@ end;
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R := GaussianRationals;</span>
 GaussianRationals
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := Units( ZmodnZ(4) );</span>
-&lt;group of size 2 with 1 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := Units( ZmodnZ(4) );; Size( G );</span>
+2
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">act := function(RG,g)</span>
 <span class="GAPprompt">&gt;</span> <span class="GAPinput">return ANFAutomorphism( LeftActingDomain(RG), Int(g) );</span>
 <span class="GAPprompt">&gt;</span> <span class="GAPinput">end;</span>
@@ -165,8 +165,7 @@ function( RG, g, h ) ... end
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C2 := CyclicGroup(2);</span>
-&lt;pc group of size 2 with 1 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C2 := CyclicGroup(2);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := DirectProduct(C2,C2);</span>
 &lt;pc group of size 4 with 2 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">act := function(RG,a)</span>

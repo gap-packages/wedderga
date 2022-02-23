@@ -972,9 +972,7 @@
     [4X[28X[  ][128X[104X
     [4X[25Xgap>[125X [27XConvertQuadraticAlgToQuaternionAlg(A);[127X[104X
     [4X[28X<algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>[128X[104X
-    [4X[25Xgap>[125X [27Xb:=Basis(last);[127X[104X
-    [4X[28XBasis( <algebra-with-one of dimension 4 over NF(24,[ 1, 11 ])>, ... )[128X[104X
-    [4X[25Xgap>[125X [27Xb[1]^2; b[2]^2; b[3]^2; b[4]^2;[127X[104X
+    [4X[25Xgap>[125X [27Xb:=Basis(last);; b[1]^2; b[2]^2; b[3]^2; b[4]^2;[127X[104X
     [4X[28Xe[128X[104X
     [4X[28X(-1)*e[128X[104X
     [4X[28X(-1)*e[128X[104X
@@ -1017,8 +1015,7 @@
     [4X[28X[ 1, [ CF(5), CF(15), [ -1 ] ] ][128X[104X
     [4X[25Xgap>[125X [27XConvertQuadraticAlgToQuaternionAlg(last[2]);[127X[104X
     [4X[28X<algebra-with-one of dimension 4 over CF(5)>[128X[104X
-    [4X[25Xgap>[125X [27Xb:=Basis(last); b[1]^2; b[2]^2; b[3]^2; b[4]^2;[127X[104X
-    [4X[28XBasis( <algebra-with-one of dimension 4 over CF(5)>, ... )[128X[104X
+    [4X[25Xgap>[125X [27Xb:=Basis(last);; b[1]^2; b[2]^2; b[3]^2; b[4]^2;[127X[104X
     [4X[28Xe[128X[104X
     [4X[28X(-3)*e[128X[104X
     [4X[28X(-1)*e[128X[104X

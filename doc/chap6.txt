@@ -266,7 +266,7 @@
   
   [1X6.4-1 InfoWedderga[101X
   
-  [33X[1;0Y[29X[2XInfoWedderga[102X[32X info class[133X
+  [33X[1;0Y[29X[2XInfoWedderga[102X [32X info class[133X
   
   [33X[0;0Y[10XInfoWedderga[110X  is  a  special  Info  class  for [5XWedderga[105X algorithms. It has 3
   levels: 0, 1 (default) and 2. To change the info level to [10Xk[110X, use the command
