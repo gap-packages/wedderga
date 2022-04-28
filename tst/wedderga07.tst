@@ -282,7 +282,7 @@ false
 gap> DefectOfCharacterAtP(G,Irr(G)[i],3);
 2
 
-# doc/div-alg.xml:870-892
+# doc/div-alg.xml:870-883
 
 gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
@@ -290,21 +290,12 @@ gap> T:=CharacterTable(G);;
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> S:=T mod 5;
 BrauerTable( <pc group of size 80 with 5 generators>, 5 )
-gap> BlocksInfo(S);
-[ rec( defect := 1, modchars := [ 1, 3, 7, 8 ],
-      ordchars := [ 1, 3, 7, 8, 18 ] ),
-  rec( defect := 1, modchars := [ 2, 4, 5, 6 ],
-      ordchars := [ 2, 4, 5, 6, 17 ] ),
-  rec( defect := 1, modchars := [ 9, 12, 14, 15 ],
-      ordchars := [ 9, 12, 14, 15, 19 ] ),
-  rec( defect := 1, modchars := [ 10, 11, 13, 16 ],
-      ordchars := [ 10, 11, 13, 16, 20 ] ) ]
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,5);
 2
 gap> FinFieldExt(Rationals,G,5,i,9);
 2
 
-# doc/div-alg.xml:894-904
+# doc/div-alg.xml:885-895
 
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
@@ -314,7 +305,7 @@ gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[i],3);
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,2);
 1
 
-# doc/div-alg.xml:948-960
+# doc/div-alg.xml:939-951
 
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
@@ -326,7 +317,7 @@ gap> LocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);
 gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);
 1
 
-# doc/div-alg.xml:1015-1034
+# doc/div-alg.xml:1006-1025
 
 gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
 [ [ infinity, 2 ], [ 2, 2 ] ]
@@ -345,7 +336,7 @@ gap> A:=QuaternionAlgebra(CF(5),3,-2);
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 fail
 
-# doc/div-alg.xml:1060-1075
+# doc/div-alg.xml:1051-1066
 
 gap> A:=QuaternionAlgebra(Rationals,-30,-15);
 <algebra-with-one of dimension 4 over Rationals>
@@ -360,7 +351,7 @@ false
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [  ]
 
-# doc/div-alg.xml:1126-1139
+# doc/div-alg.xml:1117-1130
 
 gap> G:=SmallGroup(96,35);
 <pc group of size 96 with 6 generators>
@@ -373,7 +364,7 @@ gap> DecomposeCyclotomicAlgebra(A);
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ],
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ E(8)+2*E(8)^2+E(8)^3 ] ] ]
 
-# doc/div-alg.xml:1163-1181
+# doc/div-alg.xml:1154-1172
 
 gap> A:=[NF(24,[1,11]),CF(24),[-1]];
 [ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ]
@@ -391,7 +382,7 @@ e
 gap> b[2]*b[3]+b[3]*b[2];
 0*e
 
-# doc/div-alg.xml:1208-1228
+# doc/div-alg.xml:1199-1219
 
 gap> A:=QuaternionAlgebra(CF(5),-3,-1);
 <algebra-with-one of dimension 4 over CF(5)>
