@@ -875,15 +875,6 @@ gap> T:=CharacterTable(G);;
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
 gap> S:=T mod 5;
 BrauerTable( <pc group of size 80 with 5 generators>, 5 )
-gap> BlocksInfo(S);
-[ rec( defect := 1, modchars := [ 1, 3, 7, 8 ],
-      ordchars := [ 1, 3, 7, 8, 18 ] ),
-  rec( defect := 1, modchars := [ 2, 4, 5, 6 ],
-      ordchars := [ 2, 4, 5, 6, 17 ] ),
-  rec( defect := 1, modchars := [ 9, 12, 14, 15 ],
-      ordchars := [ 9, 12, 14, 15, 19 ] ),
-  rec( defect := 1, modchars := [ 10, 11, 13, 16 ],
-      ordchars := [ 10, 11, 13, 16, 20 ] ) ]
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,5);
 2
 gap> FinFieldExt(Rationals,G,5,i,9);
