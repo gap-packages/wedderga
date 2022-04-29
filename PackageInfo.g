@@ -3,7 +3,7 @@
 #W  PackageInfo.g         The Wedderga package            Gurmeet Kaur Bakshi
 #W                                                        Osnel Broche Cristo
 #W                                                               Allen Herman
-#W                                                        Alexander Konovalov
+#W                                                         Olexandr Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río
@@ -17,12 +17,12 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.10.1",
-Date           := "23/02/2022", # dd/mm/yyyy format
+Version        := "4.10.2",
+Date           := "29/04/2022", # dd/mm/yyyy format
 License        := "GPL-2.0-or-later",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "4.10.1">
-##  <!ENTITY RELEASEDATE "23 February 2022">
+##  <!ENTITY VERSION "4.10.2">
+##  <!ENTITY RELEASEDATE "29 April 2022">
 ##  <!ENTITY RELEASEYEAR "2022">
 ##  <#/GAPDoc>
 
@@ -87,11 +87,11 @@ rec(
      ),
      rec(
        LastName      := "Konovalov",
-       FirstNames    := "Alexander",
+       FirstNames    := "Olexandr",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "alexander.konovalov@st-andrews.ac.uk",
-       WWWHome       := "https://alexk.host.cs.st-andrews.ac.uk",
+       Email         := "obk1@st-andrews.ac.uk",
+       WWWHome       := "https://alex-konovalov.github.io/",
        PostalAddress := Concatenation( [
                         "School of Computer Science\n",
                         "University of St Andrews\n",

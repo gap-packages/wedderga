@@ -6,10 +6,10 @@
                    [1XWedderburn Decomposition of Group Algebras[101X
   
   
-                                 Version 4.10.1
+                                 Version 4.10.2
   
   
-                                23 February 2022
+                                 29 April 2022
   
   
                               Gurmeet Kaur Bakshi
@@ -18,7 +18,7 @@
   
                                   Allen Herman
   
-                              Alexander Konovalov
+                               Olexandr Konovalov
   
                               Sugandha Maheshwary
   
@@ -54,9 +54,9 @@
                 [33X[0;14YRegina, SK, S0G 0E0, Canada[133X
   
   
-  Alexander Konovalov
-      Email:    [7Xmailto:alexk@mcs.st-andrews.ac.uk[107X
-      Homepage: [7Xhttp://www.cs.st-andrews.ac.uk/~alexk/[107X
+  Olexandr Konovalov
+      Email:    [7Xmailto:obk1@st-andrews.ac.uk[107X
+      Homepage: [7Xhttps://alex-konovalov.github.io/[107X
       Address:  [33X[0;14YSchool of Computer Science, University of St Andrews[133X
                 [33X[0;14YJack Cole Building, North Haugh,[133X
                 [33X[0;14YSt Andrews, Fife, KY16 9SX, Scotland[133X
@@ -118,23 +118,23 @@
   -------------------------------------------------------
   [1XCopyright[101X
   [33X[0;0Y©  2006-2022  by  Gurmeet  Kaur  Bakshi,  Osnel Broche Cristo, Allen Herman,
-  Alexander Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu,
+  Olexandr  Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu,
   Ángel del Río and Inneke Van Gelder.[133X
   
   [33X[0;0Y[5XWedderga[105X  is  free  software; you can redistribute it and/or modify it under
   the  terms  of  the  GNU  General  Public  License  as published by the Free
   Software  Foundation;  either  version 2 of the License, or (at your option)
   any    later    version.    For    details,   see   the   FSF's   own   site
-  [7Xhttp://www.gnu.org/licenses/gpl.html[107X.[133X
+  [7Xhttps://www.gnu.org/licenses/gpl.html[107X.[133X
   
   [33X[0;0YIf you obtained [5XWedderga[105X, we would be grateful for a short notification sent
   to  one of the authors. If you publish a result which was partially obtained
   with the usage of [5XWedderga[105X, please cite it in the following form:[133X
   
-  [33X[0;0YG.  K.  Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A.
+  [33X[0;0YG.  K.  Bakshi, O. Broche Cristo, A. Herman, O. Konovalov, S. Maheshwary, A.
   Olivieri,  G. Olteanu, Á. del Río and I. Van Gelder. [13XWedderga --- Wedderburn
-  Decomposition     of     Group     Algebras,     Version     4.10.1;[113X    2022
-  ([7Xhttp://www.cs.st-andrews.ac.uk/~alexk/wedderga[107X).[133X
+  Decomposition     of     Group     Algebras,     Version     4.10.2;[113X    2022
+  ([7Xhttps://gap-packages.github.io/wedderga/[107X).[133X
   
   
   -------------------------------------------------------

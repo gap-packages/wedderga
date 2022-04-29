@@ -33,6 +33,6 @@ to load it using the following command:
     gap> LoadPackage("wedderga");
 
 
-Gurmeet Kaur Bakshi, Osnel Broche Cristo, Allen Herman, Alexander Konovalov, 
+Gurmeet Kaur Bakshi, Osnel Broche Cristo, Allen Herman,  Olexandr Konovalov, 
 Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu, Ángel del Río and 
 Inneke Van Gelder.
