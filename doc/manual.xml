@@ -45,9 +45,9 @@
          </Address> 
   </Author>
 
-  <Author>Alexander Konovalov
-          <Email>alexk@mcs.st-andrews.ac.uk</Email>
-	      <Homepage>http://www.cs.st-andrews.ac.uk/&tilde;alexk/</Homepage>
+  <Author>Olexandr Konovalov
+          <Email>obk1@st-andrews.ac.uk</Email>
+	      <Homepage>https://alex-konovalov.github.io/</Homepage>
           <Address>
           School of Computer Science, University of St Andrews<Br/>
           Jack Cole Building, North Haugh,<Br/>
@@ -125,7 +125,7 @@ multiplication determined by a given action and twisting.
 
 <Copyright>
   &copyright; 2006-&RELEASEYEAR; by Gurmeet Kaur Bakshi, Osnel Broche Cristo, Allen Herman,
-   Alexander Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu, 
+   Olexandr Konovalov, Sugandha Maheshwary, Aurora Olivieri, Gabriela Olteanu, 
    Ángel del Río and Inneke Van Gelder.<P/>
 
   &Wedderga; is free software; you can redistribute it and/or modify it 
@@ -140,7 +140,7 @@ multiplication determined by a given action and twisting.
   If you publish a result which was partially obtained with the usage of
   &Wedderga;, please cite it in the following form:<P/>
 
-  G. K. Bakshi, O. Broche Cristo, A. Herman, A. Konovalov, S. Maheshwary, A. Olivieri,
+  G. K. Bakshi, O. Broche Cristo, A. Herman, O. Konovalov, S. Maheshwary, A. Olivieri,
    G. Olteanu, Á. del Río and I. Van Gelder. 
   <E>Wedderga --- Wedderburn Decomposition of Group Algebras, 
   Version &VERSION;;</E> &RELEASEYEAR; (<URL>https://gap-packages.github.io/wedderga/</URL>).

@@ -1,7 +1,7 @@
 #############################################################################
 ##
 #W  main.gi               The Wedderga package            Osnel Broche Cristo
-#W                                                        Alexander Konovalov
+#W                                                         Olexandr Konovalov
 #W                                                            Aurora Olivieri
 #W                                                           Gabriela Olteanu
 #W                                                              Ángel del Río

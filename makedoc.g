@@ -1,6 +1,6 @@
 ###########################################################################
 ##
-#W makedocrel.g            The Wedderga package         Alexander Konovalov
+#W makedocrel.g            The Wedderga package          Olexandr Konovalov
 ##
 ###########################################################################
 
