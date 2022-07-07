@@ -187,7 +187,7 @@ AbstractHTML := "<span class=\"pkgname\">Wedderga</span> is the package to compu
 PackageDoc := rec(
   BookName := "Wedderga",
   ArchiveURLSubset := ["doc"],
-  HTMLStart := "doc/chap0.html",
+  HTMLStart := "doc/chap0_mj.html",
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
   LongTitle := "Wedderga",
