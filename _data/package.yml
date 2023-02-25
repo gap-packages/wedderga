@@ -1,6 +1,6 @@
 name: Wedderga
-version: 4.10.2
-date: 2022-04-29
+version: 4.10.3
+date: 2023-02-25
 description: |
     Wedderburn Decomposition of Group Algebras
 
@@ -12,7 +12,7 @@ authors:
     - name: Allen Herman
       url: mailto:aherman@math.uregina.ca
     - name: Olexandr Konovalov
-      url: https://alex-konovalov.github.io/
+      url: https://olexandr-konovalov.github.io/
     - name: Sugandha Maheshwary
       url: mailto:sugandha@iisermohali.ac.in
     - name: Gabriela Olteanu
@@ -32,7 +32,7 @@ maintainers:
     - name: Allen Herman
       url: mailto:aherman@math.uregina.ca
     - name: Olexandr Konovalov
-      url: https://alex-konovalov.github.io/
+      url: https://olexandr-konovalov.github.io/
     - name: Sugandha Maheshwary
       url: mailto:sugandha@iisermohali.ac.in
     - name: Gabriela Olteanu
@@ -65,11 +65,11 @@ packageinfo: https://gap-packages.github.io/wedderga/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/wedderga/releases/download/v4.10.2/wedderga-4.10.2.tar.gz
+      url: https://github.com/gap-packages/wedderga/releases/download/v4.10.3/wedderga-4.10.3.tar.gz
 
 abstract: |
     <span class="pkgname">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class="pkgname">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.
 
 status: accepted
-doc-html: doc/chap0.html
+doc-html: doc/chap0_mj.html
 doc-pdf: doc/manual.pdf

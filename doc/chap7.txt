@@ -128,6 +128,11 @@
     [4X[28X2[128X[104X
     [4X[25Xgap>[125X [27XSchurIndexByCharacter(CF(3),G,i);[127X[104X
     [4X[28X1[128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XG:=AtlasGroup("J2");[127X[104X
     [4X[28X<permutation group of size 604800 with 2 generators>[128X[104X
     [4X[25Xgap>[125X [27XIrr(G)[20];;[127X[104X

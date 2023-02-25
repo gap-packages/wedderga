@@ -51,8 +51,8 @@
   
   [[20XRei03[120X]  [16XReiner,  I.[116X,  [17XMaximal orders[117X, The Clarendon Press Oxford University
   Press,  London  Mathematical  Society  Monographs.  New  Series,  [19X28[119X, Oxford
-  (2003),  xiv+395  pages,  ((Corrected  reprint  of the 1975 original, With a
-  foreword by M. J. Taylor)).
+  (2003),  xiv+395  pages,  (Corrected  reprint  of  the 1975 original, With a
+  foreword by M. J. Taylor).
   
   [[20XRS96[120X]  [16XRiese,  U.  and  Schmid, P.[116X, [17XSchur indices and Schur groups, II [117X, [18XJ.
   Algebra[118X, [19X182[119X, 1 (1996), 183–200.
@@ -64,7 +64,7 @@
   [18XProc. Phys.-Math. Soc. Japan[118X, [19XIII[119X, 15 (1933), 249–257.
   
   [[20XYam74[120X] [16XYamada, T.[116X, [17XThe Schur subgroup of the Brauer group[117X, Springer-Verlag,
-  Berlin (1974), v+159 pages, ((Lecture Notes in Mathematics, Vol. 397)).
+  Berlin (1974), v+159 pages, (Lecture Notes in Mathematics, Vol. 397).
   
   
   
