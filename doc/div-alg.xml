@@ -149,13 +149,18 @@ gap> SchurIndexByCharacter(GaussianRationals,G,Irr(G)[i]);
 2
 gap> SchurIndexByCharacter(CF(3),G,i);
 1
+]]>
+</Example>
+
+<Log>
+<![CDATA[
 gap> G:=AtlasGroup("J2");
 <permutation group of size 604800 with 2 generators>
 gap> Irr(G)[20];;
 gap> SchurIndexByCharacter(Rationals,G,Irr(G)[20]);
 1
 ]]>
-</Example>
+</Log>
 
    </Description>
 </ManSection>
