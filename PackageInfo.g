@@ -106,18 +106,14 @@ rec(
        FirstNames    := "Sugandha",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "sugandha@iisermohali.ac.in",
+       Email         := "msugandha@ma.iitr.ac.in",
        PostalAddress := Concatenation( [
-                        "Department of Mathematical Sciences\n",
-                        "IISER Mohali\n",
-                        "Knowledge city, \n",
-                        "Sector 81, \n",
-                        " SAS Nagar, Manauli, \n",
-                        " PO 140306, India" ] ),
-       Place         := "Mohali",
-       Institution   := "Indian Institute of Science Education and Research Mohali"
+                        "Department of Mathematics\n",
+                        "Indian Institute of Technology Roorkee\n",
+                        "Roorkee, Uttarakhand 247667, India" ] ),
+       Place         := "Roorkee",
+       Institution   := "Indian Institute of Technology Roorkee"
      ),
-    
     rec(
        LastName      := "Olteanu",
        FirstNames    := "Gabriela",
