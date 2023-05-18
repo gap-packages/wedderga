@@ -17,12 +17,12 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.10.3",
-Date           := "25/02/2023", # dd/mm/yyyy format
+Version        := "4.10.4",
+Date           := "18/05/2023", # dd/mm/yyyy format
 License        := "GPL-2.0-or-later",
 ##  <#GAPDoc Label="PKGVERSIONDATA">
-##  <!ENTITY VERSION "4.10.3">
-##  <!ENTITY RELEASEDATE "25 February 2023">
+##  <!ENTITY VERSION "4.10.4">
+##  <!ENTITY RELEASEDATE "18 May 2023">
 ##  <!ENTITY RELEASEYEAR "2023">
 ##  <#/GAPDoc>
 
@@ -106,18 +106,14 @@ rec(
        FirstNames    := "Sugandha",
        IsAuthor      := true,
        IsMaintainer  := true,
-       Email         := "sugandha@iisermohali.ac.in",
+       Email         := "msugandha@ma.iitr.ac.in",
        PostalAddress := Concatenation( [
-                        "Department of Mathematical Sciences\n",
-                        "IISER Mohali\n",
-                        "Knowledge city, \n",
-                        "Sector 81, \n",
-                        " SAS Nagar, Manauli, \n",
-                        " PO 140306, India" ] ),
-       Place         := "Mohali",
-       Institution   := "Indian Institute of Science Education and Research Mohali"
+                        "Department of Mathematics\n",
+                        "Indian Institute of Technology Roorkee\n",
+                        "Roorkee, Uttarakhand 247667, India" ] ),
+       Place         := "Roorkee",
+       Institution   := "Indian Institute of Technology Roorkee"
      ),
-    
     rec(
        LastName      := "Olteanu",
        FirstNames    := "Gabriela",
