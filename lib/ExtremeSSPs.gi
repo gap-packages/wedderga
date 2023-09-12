@@ -284,7 +284,7 @@ if IsCyclic(L) then
  Cen:=Centralizer(NHH,L);
   if IsAbelian(Cen) then
     if IsCyclic(Cen) and Centralizer(NHH,Cen)=Cen then
-     K:=PreImages(Epi,Cen);
+     K:=PreImagesNC(Epi,Cen);
       if IsNormal(G,K)=false then
         return Idempotent_eGsum(QG,K,H);
       fi;
@@ -296,7 +296,7 @@ if IsCyclic(L) then
     while X<>[] do
      KH:=ClosureGroup(L,[X[1]]);
       if IsCyclic(KH) and Centralizer(NHH,KH)=KH then
-       K:=PreImages(Epi,KH);
+       K:=PreImagesNC(Epi,KH);
         if IsNormal(G,K)=false then
           return Idempotent_eGsum(QG,K,H);
         fi;

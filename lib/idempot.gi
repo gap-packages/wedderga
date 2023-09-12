@@ -365,7 +365,7 @@ if IsCyclic(KH) then
     else
         n := Size( KH );
         y := Product( IndependentGeneratorsOfAbelianGroup( KH ) );
-        x := PreImagesRepresentative( Epi, y );
+        x := PreImagesRepresentativeNC( Epi, y );
         p := Set( FactorsInt( n ) );
         Lp := Length( p );
         #
@@ -442,7 +442,7 @@ supp := [];
 coeff := [];
 for d in cc do
     tr := ltrace[ 1+(-c[1]*d[1] mod n) ];
-    Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
+    Append( supp, PreImagesNC( epi, List( d, x -> gq^x ) ) );
     Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
 od;
 coeff:=Inverse(Size(K)*One(Fq))*coeff;
@@ -493,7 +493,7 @@ supp := [];
 coeff := [];
 for d in cc do
     tr := ltrace[ 1+(-c[1]*d[1] mod n) ];
-    Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
+    Append( supp, PreImagesNC( epi, List( d, x -> gq^x ) ) );
     Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
 od;
 coeff:=Inverse(Size(K)*One(Fq))*coeff;
@@ -568,7 +568,7 @@ supp := [];
 coeff := []; 
 for d in cc do
     tr := BigTrace(o, Fq, a^(-C[1]*d[1]) );
-    Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
+    Append( supp, PreImagesNC( epi, List( d, x -> gq^x ) ) );
     Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
 od;
 coeff:=Inverse(Size(K)*One(Fq))*coeff;
@@ -651,7 +651,7 @@ supp := [];
 coeff := []; 
 for d in cc do
     tr := BigTrace(o, Fq, a^(-C[1]*d[1]) );
-    Append( supp, PreImages( epi, List( d, x -> gq^x ) ) );
+    Append( supp, PreImagesNC( epi, List( d, x -> gq^x ) ) );
     Append( coeff, List( [ 1 .. Size( H ) * Size( d ) ], x -> tr ) );    
 od;
 coeff:=Inverse(Size(K)*One(Fq))*coeff;

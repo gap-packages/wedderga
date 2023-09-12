@@ -72,7 +72,7 @@ local   G,          #The group
             X:=Difference(Elements(NHH),Elements(L));
             while X<>[] do
                 KH:=Subgroup(NHH,Union(L,[X[1]]));
-                K:=PreImages(Epi,KH);
+                K:=PreImagesNC(Epi,KH);
                 e:=PrimitiveCentralIdempotentBySP( QG, K, H ); 
                 if e<>fail then
                     return [[K,H],e];

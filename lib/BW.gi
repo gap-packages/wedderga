@@ -338,10 +338,10 @@ else # if N_M(H) <> K
     
        
     coc := function(a,b)
-       return PreImagesRepresentative(bij,
-                              PreImagesRepresentative(Epi2,a*b)^-1 *
-                              PreImagesRepresentative(Epi2,a) *
-                              PreImagesRepresentative(Epi2,b) );
+       return PreImagesRepresentativeNC(bij,
+                              PreImagesRepresentativeNC(Epi2,a*b)^-1 *
+                              PreImagesRepresentativeNC(Epi2,a) *
+                              PreImagesRepresentativeNC(Epi2,b) );
        end;   
           
 #########################################################################
@@ -353,16 +353,16 @@ else # if N_M(H) <> K
 
     funNdK := MappingByFunction(NdK,Uok,
         function(n) 
-            return PreImagesRepresentative(bij,
-                                 k^PreImagesRepresentative( Epi2 , n ) );
+            return PreImagesRepresentativeNC(bij,
+                                 k^PreImagesRepresentativeNC( Epi2 , n ) );
               end
               );
                       
     GalSSP := Subgroup(Uok,Image(funNdK));
 
     cocSSP := function(a,b)
-                return 
-coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
+                return coc(PreImagesRepresentativeNC(funNdK,a),
+                           PreImagesRepresentativeNC(funNdK,b));
                 end;
     
 #########################################################################

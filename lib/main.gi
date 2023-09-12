@@ -356,7 +356,7 @@ else
                             Size(
                                 Intersection(
                                     GaloisStabilizer(K),
-                                    List(PreImages(redmok,y),w->Int(w^redmcondK))
+                                    List(PreImagesNC(redmok,y),w->Int(w^redmcondK))
                                             )
                                 )<>0
                             )
@@ -698,7 +698,7 @@ else # if N_G(H) <> K
              Potk := OperationRecord(RG).Potk;
              Epi2 := OperationRecord(RG).Epi2;
              return MappingByFunction( CF(ok), CF(ok), x -> 
-               GaloisCyc(x, Position(Potk,k^PreImagesRepresentative(Epi2,a))));
+               GaloisCyc(x, Position(Potk,k^PreImagesRepresentativeNC(Epi2,a))));
              end;
                
       coc := function( RG, a, b )
@@ -707,9 +707,9 @@ else # if N_G(H) <> K
              Potk := OperationRecord(RG).Potk;
              Epi2 := OperationRecord(RG).Epi2;     
              return E(ok)^Position( Potk,
-                                    PreImagesRepresentative( Epi2, a*b )^-1 *
-                                    PreImagesRepresentative( Epi2, a ) *
-                                    PreImagesRepresentative( Epi2, b ) );
+                                    PreImagesRepresentativeNC( Epi2, a*b )^-1 *
+                                    PreImagesRepresentativeNC( Epi2, a ) *
+                                    PreImagesRepresentativeNC( Epi2, b ) );
              end;   
       
     R := CrossedProduct(CF(ok), NdK, act, coc);       
@@ -799,10 +799,10 @@ else # if N_G(H) <> K
     
     # The cocycle in Z^2(NdK,<E(ok)>)
     coc := function(a,b)
-       return PreImagesRepresentative(bij,
-                              PreImagesRepresentative(Epi2,a*b)^-1 *
-                              PreImagesRepresentative(Epi2,a) *
-                              PreImagesRepresentative(Epi2,b) );
+       return PreImagesRepresentativeNC(bij,
+                              PreImagesRepresentativeNC(Epi2,a*b)^-1 *
+                              PreImagesRepresentativeNC(Epi2,a) *
+                              PreImagesRepresentativeNC(Epi2,b) );
        end;   
 
     # The cocycle in Z^2(GalSSP,<E(ok)>)
@@ -811,14 +811,14 @@ else # if N_G(H) <> K
 
     funNdK := MappingByFunction(NdK,Uok,
         function(n) 
-            return PreImagesRepresentative(bijunit,
-                                 k^PreImagesRepresentative( Epi2 , n ) );
+            return PreImagesRepresentativeNC(bijunit,
+                                 k^PreImagesRepresentativeNC( Epi2 , n ) );
               end
               );
     GalSSP := Subgroup(Uok,Image(funNdK));
     cocSSP := function(a,b)
                 return 
-        coc(PreImagesRepresentative(funNdK,a),PreImagesRepresentative(funNdK,b));
+        coc(PreImagesRepresentativeNC(funNdK,a),PreImagesRepresentativeNC(funNdK,b));
                 end;
     
     chi := LinCharByKernel(K,H)^G;
@@ -875,7 +875,7 @@ else
              local cond, redu;
              cond := OperationRecord(RG).cond;
              redu := OperationRecord(RG).redu;
-             return ANFAutomorphism(CF(cond),Int(PreImagesRepresentative(redu,a)));
+             return ANFAutomorphism(CF(cond),Int(PreImagesRepresentativeNC(redu,a)));
              end;
              
     coc := function( RG, a, b )
@@ -1081,7 +1081,7 @@ function( FG, chi )
                             Size(
                                 Intersection(
                                     GaloisStabilizer(F2),
-                                    List(PreImages(redmok,y),w->Int(w^redmcondK))
+                                    List(PreImagesNC(redmok,y),w->Int(w^redmcondK))
                                             )
                                 )<>0
                             )
@@ -1587,7 +1587,7 @@ local G,               # underlying group
                             Size(
                                 Intersection(
                                     GaloisStabilizer(F2),
-                                    List(PreImages(redmok,y),w->Int(w^redmcondK))
+                                    List(PreImagesNC(redmok,y),w->Int(w^redmcondK))
                                             )
                                 )<>0
                             )
@@ -1800,7 +1800,7 @@ local   G,          # Group
             ll:=ll+Length(next);
             plus:=plus+1;
         od;
-        gen:=List( [ 1 .. Length(Gen) ], i -> PreImagesRepresentative(Epi2,Gen[i]) );
+        gen:=List( [ 1 .. Length(Gen) ], i -> PreImagesRepresentativeNC(Epi2,Gen[i]) );
         return [ Index(G,N), 
                  NF(ok, List( [1..Length(Gen)],i->RemInt(Position(Potk,k^gen[i]),ok))),
                  ok, 
@@ -2328,7 +2328,7 @@ if IsEmpty(Compl) then
 	# we search for generators b_even and c_even of QEH_even
 	if IsCyclic(QEH_even) then
 		b_even := a_even^0;
-		c_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,MinimalGeneratingSet(QEH_even)[1]));				
+		c_even := PreImagesRepresentativeNC(epi,PreImagesRepresentativeNC(epi2,MinimalGeneratingSet(QEH_even)[1]));				
 		counter := 1;
 		while Image(epi,c_even)^2 <> Image(epi,a_even)^(2^(n-1)*counter) do
 			counter := counter+2;
@@ -2338,11 +2338,11 @@ if IsEmpty(Compl) then
 		I := IndependentGeneratorsOfAbelianGroup(QEH_even);
 		if Order(I[1]) = 2
 			then 
-				c_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[1]));
-				b_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[2]));
+				c_even := PreImagesRepresentativeNC(epi,PreImagesRepresentativeNC(epi2,I[1]));
+				b_even := PreImagesRepresentativeNC(epi,PreImagesRepresentativeNC(epi2,I[2]));
 		else
-			c_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[2]));
-			b_even := PreImagesRepresentative(epi,PreImagesRepresentative(epi2,I[1]));
+			c_even := PreImagesRepresentativeNC(epi,PreImagesRepresentativeNC(epi2,I[2]));
+			b_even := PreImagesRepresentativeNC(epi,PreImagesRepresentativeNC(epi2,I[1]));
 		fi;
 
 		# replace b_even and c_even if needed in order to obtain the desired presentation
@@ -2370,13 +2370,13 @@ if IsEmpty(Compl) then
 		while (counter1 * sum + s) mod 2^n = 0 do
 			counter1 := counter1+1;
 		od;		
-		b_even := PreImagesRepresentative(epi,Image(epi,b_even)*Image(epi,a_even)^counter1);
+		b_even := PreImagesRepresentativeNC(epi,Image(epi,b_even)*Image(epi,a_even)^counter1);
 
 		counter2 := 0;
 		while counter2*(r-1)+i*r mod 2^n = 0 do 
 			counter2 := counter2+1;
 		od;	
-		c_even := PreImagesRepresentative(epi,Image(epi,a_even)^counter2*Image(epi,c_even));
+		c_even := PreImagesRepresentativeNC(epi,Image(epi,a_even)^counter2*Image(epi,c_even));
 		
 	fi;
 
@@ -2538,7 +2538,7 @@ B := Basis(AsField(F_2,F_1),NormalBase(AsField(F_2,F_1)));
 # define FHeps being the image of F_1
 FH := Subalgebra(FG,AsList(Image(Embedding(G,FG),H)));
 FHeps := Subalgebra(FH,Set(Basis(FH),b->b*eps));    
-m := AlgebraHomomorphismByImages(F_1,FHeps,[xi^C[1]],[PreImagesRepresentative(epi,gq)*eps]);
+m := AlgebraHomomorphismByImages(F_1,FHeps,[xi^C[1]],[PreImagesRepresentativeNC(epi,gq)*eps]);
 
 # define the needed matrices A and P
 A := [];
@@ -2562,7 +2562,7 @@ od;
 
 # define the crossed product F_1 * E/H
 twist := function(RG,g,h) return One(LeftActingDomain(RG)); end;
-act := function(RG,g) return ReturnGalElement(PreImagesRepresentative(epi2,g),E_,H,K,F_1,xi); end;
+act := function(RG,g) return ReturnGalElement(PreImagesRepresentativeNC(epi2,g),E_,H,K,F_1,xi); end;
 D := CrossedProduct(F_1,QEH,act,twist);
 B1 := Basis(D); # basis over F_1
 B2 := []; # basis over F_2
@@ -2576,7 +2576,7 @@ od;
 # Map the F_2-basis of F_1 * E/H to a F_2-basis of the matrix algebra over F_2
 B3 := List(B2, b-> MakeMatrixByBasis(CompositionMapping(
 						LeftMultiplicationBy(CoefficientsAndMagmaElements(b)[2],F_1),
-						ReturnGalElement(PreImagesRepresentative(epi2,CoefficientsAndMagmaElements(b)[1]),E_,H,K,F_1,xi)),B));
+						ReturnGalElement(PreImagesRepresentativeNC(epi2,CoefficientsAndMagmaElements(b)[1]),E_,H,K,F_1,xi)),B));
 B3 := Basis(MatrixAlgebra(F_2,Index(E_,H)),B3); 
 
 
@@ -2592,7 +2592,7 @@ x_e := Zero(FG);
 c := Coefficients(B3,P*A*P^(-1));
 for i in [1..Size(c)] do
 	coef := CoefficientsAndMagmaElements(B2[i]); # we assume that the ordering of B_2 is the same as B_3
-	x_e := x_e + MakeLinearCombination(FG, [PreImagesRepresentative(epi2,coef[1])], [Image(m,coef[2])*Image(m,c[i])]); 
+	x_e := x_e + MakeLinearCombination(FG, [PreImagesRepresentativeNC(epi2,coef[1])], [Image(m,coef[2])*Image(m,c[i])]); 
 od;
 
 L := Flat(List( T_2, i -> List(List([0..Index(E_,H)-1],i->x_e^i*(AverageSum(FG,T_1)*eps)*x_e^(Index(E_,H)-i)),j->j^i)));
