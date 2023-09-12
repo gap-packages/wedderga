@@ -189,7 +189,7 @@ function ( RG, a )
     cond := OperationRecord( RG ).cond;
     redu := OperationRecord( RG ).redu;
     return
-     ANFAutomorphism( CF( cond ), Int( PreImagesRepresentative( redu, a ) ) );
+     ANFAutomorphism( CF( cond ), Int( PreImagesRepresentativeNC( redu, a ) ) );
 end
 gap> Print( TwistingForCrossedProduct( R ) ); Print("\n");                     
 function ( RG, a, b )

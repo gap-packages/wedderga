@@ -9,6 +9,17 @@
 ##
 #############################################################################
 
+#I introducing globally the NC versions of PreImages...  
+if not IsBound( PreImagesNC ) then 
+    BindGlobal( "PreImagesNC", PreImages ); 
+fi; 
+if not IsBound( PreImagesElmNC ) then 
+    BindGlobal( "PreImagesElmNC", PreImagesElm ); 
+fi; 
+if not IsBound( PreImagesRepresentativeNC ) then 
+    BindGlobal( "PreImagesRepresentativeNC", PreImagesRepresentative ); 
+fi; 
+
 # read Wedderga declarations
 ReadPackage( "wedderga", "lib/wedderga.gd" );
 ReadPackage( "wedderga", "lib/crossed.gd" );

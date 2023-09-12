@@ -860,7 +860,7 @@ InstallMethod( ImagesRepresentative,
     end );
 
 
-InstallMethod( PreImagesElm,
+InstallMethod( PreImagesElmNC,
     "for embedding of ring into crossed product, and crossed product element",
     FamRangeEqFamElm,
     [ IsEmbeddingRingCrossedProduct, IsElementOfCrossedProduct ],
@@ -876,7 +876,7 @@ InstallMethod( PreImagesElm,
     fi;
     end );
 
-InstallMethod( PreImagesRepresentative,
+InstallMethod( PreImagesRepresentativeNC,
     "for embedding of ring into crossed product, and crossed product element",
     FamRangeEqFamElm,
     [ IsEmbeddingRingCrossedProduct, IsElementOfCrossedProduct ],
@@ -963,7 +963,7 @@ InstallMethod( ImagesRepresentative,
     end );
 
 
-InstallMethod( PreImagesElm,
+InstallMethod( PreImagesElmNC,
     "for embedding of magma into crossed product, and crossed product element",
     FamRangeEqFamElm,
     [ IsEmbeddingMagmaCrossedProduct, IsElementOfCrossedProduct ],
@@ -979,7 +979,7 @@ InstallMethod( PreImagesElm,
     fi;
     end );
 
-InstallMethod( PreImagesRepresentative,
+InstallMethod( PreImagesRepresentativeNC,
     "for embedding of magma into crossed product, and crossed product element",
     FamRangeEqFamElm,
     [ IsEmbeddingMagmaCrossedProduct, IsElementOfCrossedProduct ],
