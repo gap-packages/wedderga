@@ -745,8 +745,7 @@ gap> R:=GroupRing(Rationals,G);
 gap> W:=WedderburnDecompositionInfo(R);;
 gap> A:=W[10];
 [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
-gap> g:=DefiningGroupOfCyclotomicAlgebra(A);
-Group([ f3*f4*f5, f1, f2 ])
+gap> g:=DefiningGroupOfCyclotomicAlgebra(A);;
 gap> IdSmallGroup(g);
 [ 48, 15 ]
 gap> n:=DefiningCharacterOfCyclotomicAlgebra(A);
