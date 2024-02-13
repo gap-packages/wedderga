@@ -12,7 +12,7 @@ local i,a,b;
 
 b:=n;
 a:=0;
-while b/p in PositiveIntegers do
+while IsPosInt(b/p) do
 b:=b/p;
 a:=a+1;
 od;
@@ -25,7 +25,7 @@ InstallGlobalFunction( PDashPartOfN, function(n,p)
 local m;
 
 m:=n;
-while m/p in PositiveIntegers do
+while IsPosInt(m/p) do
 m:=m/p;
 od;
 
@@ -270,7 +270,7 @@ for i in [1..n] do
 chi:=Irr(g1)[n-i+1];
 V:=ValuesOfClassFunction(chi);
 F:=FieldByGenerators(V);
-if V[1]/d in PositiveIntegers then
+if IsPosInt(V[1]/d) then
 if Size(KernelOfCharacter(chi))=1 then
 if FieldByGenerators(V)=F1 then
 	Add(U,n-i+1);
@@ -360,7 +360,7 @@ for i in [1..n] do
 chi:=Irr(g1)[n-i+1];
 V:=ValuesOfClassFunction(chi);
 F:=FieldByGenerators(V);
-if V[1]/d in PositiveIntegers then
+if IsPosInt(V[1]/d) then
 if Size(KernelOfCharacter(chi))=1 then
 if FieldByGenerators(V)=F1 then
 	Add(U,n-i+1);
@@ -621,13 +621,13 @@ c:=A[4][3];
 n:=Lcm(Conductor(F),A[3]);
 n1:=PDashPartOfN(n,q);
 e:=RamificationIndexAtP(F,n,q);
-if e>1 and c>0 and A[3]/q in PositiveIntegers then
+if e>1 and c>0 and IsPosInt(A[3]/q) then
 f:=ResidueDegreeAtP(Rationals,n,q);
 h:=ResidueDegreeAtP(F,n,q);
 f1:=f/h;
 e1:=Gcd(q^f1-1,e);
 k:=(q^f1-1)/e1;
-while not(k/(Order(E(A[3])^(c*m))) in PositiveIntegers) do
+while not IsPosInt(k/(Order(E(A[3])^(c*m)))) do
   m:=m+1;
 od;
 fi;
@@ -668,7 +668,7 @@ local n,m,a,K,b,c,f1,f,e1,e,h,g,n2,n3,n4,i,u,U,U1;
 
 m:=1;
 a:=A[4][1];
-if A[3]/4 in PositiveIntegers and IsEvenInt(a) then
+if IsPosInt(A[3]/4) and IsEvenInt(a) then
 n:=Lcm(Conductor(A[2]),A[3]);
 f1:=ResidueDegreeAtP(A[2],n,2);
 f:=ResidueDegreeAtP(Rationals,n,2);
@@ -1143,7 +1143,7 @@ if Length(B)=5 then
               n01:=PDashPartOfN(n0,2);
               f0:=OrderMod(2,n0);
               f:=f1/f0;
-                if (f/2 in PositiveIntegers) then
+                if IsPosInt(f/2) then
                   m:=1;
                 fi;
             fi;
