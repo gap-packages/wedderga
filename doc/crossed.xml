@@ -29,24 +29,24 @@ is correct.
          Ring in the category <C>IsCrossedProduct</C>.
    </Returns>
    <Description>
-         The input should be formed by: <P/>
+         The input should be formed by:
+         <List>
+         <Item>an associative ring <A>R</A>, </Item>
          
-         * an associative ring <A>R</A>, <P/> 
+         <Item>a group <A>G</A>, </Item>
          
-         * a group <A>G</A>, <P/>
-         
-         * a function <A>act(RG,g)</A> of two arguments: 
+         <Item>a function <A>act(RG,g)</A> of two arguments: 
            the crossed product <A>RG</A> and an element 
            <A>g</A> in <M>G</M>.
            It must return a mapping from <A>R</A> to <A>R</A> 
            which can be applied via the "<C>\^</C>" operation, 
-           and <P/>
+           and </Item>
             
-         * a function <A>twist(RG,g,h)</A> of three arguments: 
+         <Item>a function <A>twist(RG,g,h)</A> of three arguments: 
            the crossed product <A>RG</A> and a pair of elements 
            of <A>G</A>. 
-           It must return an invertible element of <A>R</A>. <P/> <P/>
-         
+           It must return an invertible element of <A>R</A>. </Item>
+         </List>
          Returns the crossed product of <A>G</A> over the ring <A>R</A> 
          with action <A>act</A> and twisting <A>twist</A>. <P/>
          
