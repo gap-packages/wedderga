@@ -70,12 +70,12 @@ If the package is installed correctly, it should be loaded as follows:
 <![CDATA[
 gap> LoadPackage("wedderga");
 -----------------------------------------------------------------------------
-Loading  Wedderga 4.10.2 (Wedderga)
+Loading Wedderga 4.10.5 (Wedderga)
 by Gurmeet Kaur Bakshi (gkbakshi@pu.ac.in),
    Osnel Broche Cristo (osnel@ufla.br),
    Allen Herman (aherman@math.uregina.ca),
-   Olexandr Konovalov (https://alex-konovalov.github.io/),
-   Sugandha Maheshwary (sugandha@iisermohali.ac.in),
+   Olexandr Konovalov (https://olexandr-konovalov.github.io/),
+   Sugandha Maheshwary (msugandha@ma.iitr.ac.in),
    Gabriela Olteanu (http://math.ubbcluj.ro/~olteanu),
    Aurora Olivieri (olivieri@usb.ve),
    Angel del Rio (http://www.um.es/adelrio), and
