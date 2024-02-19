@@ -231,7 +231,7 @@ gap> A:=[3,Rationals,12,[[2,5,3],[2,7,0]],[[3]]];
 gap> RootOfDimensionOfCyclotomicAlgebra(A);
 12
 
-# doc/div-alg.xml:739-758
+# doc/div-alg.xml:739-757
 
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
@@ -249,7 +249,7 @@ gap> SimpleComponentOfGroupRingByCharacter(Rationals,G,n)
 > ;#Note:this cyclotomic algebra is isomorphic to the other by a change of basis.
 [ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ]
 
-# doc/div-alg.xml:773-784
+# doc/div-alg.xml:772-783
 
 gap> G:=SmallGroup(48,16);
 <pc group of size 48 with 5 generators>
@@ -260,7 +260,7 @@ gap> LocalIndexAtInftyByCharacter(CF(3),G,Irr(G)[i]);
 1
 
 
-# doc/div-alg.xml:817-833
+# doc/div-alg.xml:816-832
 
 gap> G:=SmallGroup(72,21);
 <pc group of size 72 with 5 generators>
@@ -276,7 +276,7 @@ false
 gap> DefectOfCharacterAtP(G,Irr(G)[i],3);
 2
 
-# doc/div-alg.xml:875-888
+# doc/div-alg.xml:874-887
 
 gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
@@ -289,7 +289,7 @@ gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,5);
 gap> FinFieldExt(Rationals,G,5,i,9);
 2
 
-# doc/div-alg.xml:890-900
+# doc/div-alg.xml:889-899
 
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
@@ -299,7 +299,7 @@ gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[i],3);
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,2);
 1
 
-# doc/div-alg.xml:944-956
+# doc/div-alg.xml:943-955
 
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
@@ -311,7 +311,7 @@ gap> LocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);
 gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);
 1
 
-# doc/div-alg.xml:1011-1030
+# doc/div-alg.xml:1010-1029
 
 gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
 [ [ infinity, 2 ], [ 2, 2 ] ]
@@ -330,7 +330,7 @@ gap> A:=QuaternionAlgebra(CF(5),3,-2);
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 fail
 
-# doc/div-alg.xml:1056-1071
+# doc/div-alg.xml:1055-1070
 
 gap> A:=QuaternionAlgebra(Rationals,-30,-15);
 <algebra-with-one of dimension 4 over Rationals>
@@ -345,7 +345,7 @@ false
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [  ]
 
-# doc/div-alg.xml:1122-1135
+# doc/div-alg.xml:1121-1134
 
 gap> G:=SmallGroup(96,35);
 <pc group of size 96 with 6 generators>
@@ -358,7 +358,7 @@ gap> DecomposeCyclotomicAlgebra(A);
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ],
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ E(8)+2*E(8)^2+E(8)^3 ] ] ]
 
-# doc/div-alg.xml:1159-1177
+# doc/div-alg.xml:1158-1176
 
 gap> A:=[NF(24,[1,11]),CF(24),[-1]];
 [ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ]
@@ -376,7 +376,7 @@ e
 gap> b[2]*b[3]+b[3]*b[2];
 0*e
 
-# doc/div-alg.xml:1204-1224
+# doc/div-alg.xml:1203-1223
 
 gap> A:=QuaternionAlgebra(CF(5),-3,-1);
 <algebra-with-one of dimension 4 over CF(5)>
