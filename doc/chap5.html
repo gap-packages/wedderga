@@ -53,14 +53,21 @@
 
 <p>The input should be formed by:</p>
 
-<p>* an associative ring <var class="Arg">R</var>,</p>
 
-<p>* a group <var class="Arg">G</var>,</p>
+<ul>
+<li><p>an associative ring <var class="Arg">R</var>,</p>
 
-<p>* a function <var class="Arg">act(RG,g)</var> of two arguments: the crossed product <var class="Arg">RG</var> and an element <var class="Arg">g</var> in <span class="SimpleMath">G</span>. It must return a mapping from <var class="Arg">R</var> to <var class="Arg">R</var> which can be applied via the "<code class="code">\^</code>" operation, and</p>
+</li>
+<li><p>a group <var class="Arg">G</var>,</p>
 
-<p>* a function <var class="Arg">twist(RG,g,h)</var> of three arguments: the crossed product <var class="Arg">RG</var> and a pair of elements of <var class="Arg">G</var>. It must return an invertible element of <var class="Arg">R</var>.</p>
+</li>
+<li><p>a function <var class="Arg">act(RG,g)</var> of two arguments: the crossed product <var class="Arg">RG</var> and an element <var class="Arg">g</var> in <span class="SimpleMath">G</span>. It must return a mapping from <var class="Arg">R</var> to <var class="Arg">R</var> which can be applied via the "<code class="code">\^</code>" operation, and</p>
 
+</li>
+<li><p>a function <var class="Arg">twist(RG,g,h)</var> of three arguments: the crossed product <var class="Arg">RG</var> and a pair of elements of <var class="Arg">G</var>. It must return an invertible element of <var class="Arg">R</var>.</p>
+
+</li>
+</ul>
 <p>Returns the crossed product of <var class="Arg">G</var> over the ring <var class="Arg">R</var> with action <var class="Arg">act</var> and twisting <var class="Arg">twist</var>.</p>
 
 <p>The resulting crossed product belongs to the category <code class="code">IsCrossedProduct</code>, which is defined as a subcategory of <code class="code">IsFLMLORWithOne</code>.</p>
@@ -316,7 +323,7 @@ function ( RG, a )
     cond := OperationRecord( RG ).cond;
     redu := OperationRecord( RG ).redu;
     return
-     ANFAutomorphism( CF( cond ), Int( PreImagesRepresentative( redu, a ) ) );
+     ANFAutomorphism( CF( cond ), Int( PreImagesRepresentativeNC( redu, a ) ) );
 end
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print( TwistingForCrossedProduct( R ) ); Print("\n");                     </span>
 function ( RG, a, b )

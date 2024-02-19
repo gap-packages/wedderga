@@ -605,8 +605,7 @@
     [4X[25Xgap>[125X [27XW:=WedderburnDecompositionInfo(R);;[127X[104X
     [4X[25Xgap>[125X [27XA:=W[10];[127X[104X
     [4X[28X[ 1, Rationals, 12, [ [ 2, 5, 3 ], [ 2, 7, 0 ] ], [ [ 3 ] ] ][128X[104X
-    [4X[25Xgap>[125X [27Xg:=DefiningGroupOfCyclotomicAlgebra(A);[127X[104X
-    [4X[28XGroup([ f3*f4*f5, f1, f2 ])[128X[104X
+    [4X[25Xgap>[125X [27Xg:=DefiningGroupOfCyclotomicAlgebra(A);;[127X[104X
     [4X[25Xgap>[125X [27XIdSmallGroup(g);[127X[104X
     [4X[28X[ 48, 15 ][128X[104X
     [4X[25Xgap>[125X [27Xn:=DefiningCharacterOfCyclotomicAlgebra(A);[127X[104X

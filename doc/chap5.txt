@@ -25,16 +25,17 @@
   
   [33X[0;0YThe input should be formed by:[133X
   
-  [33X[0;0Y* an associative ring [3XR[103X,[133X
+  [30X    [33X[0;6Yan associative ring [3XR[103X,[133X
   
-  [33X[0;0Y* a group [3XG[103X,[133X
+  [30X    [33X[0;6Ya group [3XG[103X,[133X
   
-  [33X[0;0Y*  a  function  [3Xact(RG,g)[103X  of  two  arguments: the crossed product [3XRG[103X and an
-  element  [3Xg[103X  in  [22XG[122X. It must return a mapping from [3XR[103X to [3XR[103X which can be applied
-  via the "[10X\^[110X" operation, and[133X
+  [30X    [33X[0;6Ya  function  [3Xact(RG,g)[103X of two arguments: the crossed product [3XRG[103X and an
+        element  [3Xg[103X  in  [22XG[122X.  It  must return a mapping from [3XR[103X to [3XR[103X which can be
+        applied via the "[10X\^[110X" operation, and[133X
   
-  [33X[0;0Y*  a function [3Xtwist(RG,g,h)[103X of three arguments: the crossed product [3XRG[103X and a
-  pair of elements of [3XG[103X. It must return an invertible element of [3XR[103X.[133X
+  [30X    [33X[0;6Ya  function  [3Xtwist(RG,g,h)[103X  of three arguments: the crossed product [3XRG[103X
+        and  a  pair of elements of [3XG[103X. It must return an invertible element of
+        [3XR[103X.[133X
   
   [33X[0;0YReturns  the  crossed  product  of  [3XG[103X  over  the  ring [3XR[103X with action [3Xact[103X and
   twisting [3Xtwist[103X.[133X
@@ -296,7 +297,7 @@
     [4X[28X    cond := OperationRecord( RG ).cond;[128X[104X
     [4X[28X    redu := OperationRecord( RG ).redu;[128X[104X
     [4X[28X    return[128X[104X
-    [4X[28X     ANFAutomorphism( CF( cond ), Int( PreImagesRepresentative( redu, a ) ) );[128X[104X
+    [4X[28X     ANFAutomorphism( CF( cond ), Int( PreImagesRepresentativeNC( redu, a ) ) );[128X[104X
     [4X[28Xend[128X[104X
     [4X[25Xgap>[125X [27XPrint( TwistingForCrossedProduct( R ) ); Print("\n");                     [127X[104X
     [4X[28Xfunction ( RG, a, b )[128X[104X

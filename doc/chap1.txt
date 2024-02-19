@@ -55,12 +55,12 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XLoadPackage("wedderga");[127X[104X
     [4X[28X-----------------------------------------------------------------------------[128X[104X
-    [4X[28XLoading  Wedderga 4.10.2 (Wedderga)[128X[104X
+    [4X[28XLoading Wedderga 4.10.5 (Wedderga)[128X[104X
     [4X[28Xby Gurmeet Kaur Bakshi (gkbakshi@pu.ac.in),[128X[104X
     [4X[28X   Osnel Broche Cristo (osnel@ufla.br),[128X[104X
     [4X[28X   Allen Herman (aherman@math.uregina.ca),[128X[104X
-    [4X[28X   Olexandr Konovalov (https://alex-konovalov.github.io/),[128X[104X
-    [4X[28X   Sugandha Maheshwary (sugandha@iisermohali.ac.in),[128X[104X
+    [4X[28X   Olexandr Konovalov (https://olexandr-konovalov.github.io/),[128X[104X
+    [4X[28X   Sugandha Maheshwary (msugandha@ma.iitr.ac.in),[128X[104X
     [4X[28X   Gabriela Olteanu (http://math.ubbcluj.ro/~olteanu),[128X[104X
     [4X[28X   Aurora Olivieri (olivieri@usb.ve),[128X[104X
     [4X[28X   Angel del Rio (http://www.um.es/adelrio), and[128X[104X
