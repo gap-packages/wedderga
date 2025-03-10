@@ -87,5 +87,13 @@ gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,7));
 gap> List([-2..3],a->LocalIndicesOfRationalSymbolAlgebra(a,11));
 [ fail, [ [ 2, 2 ], [ 11, 2 ] ], fail, fail, [ [ 2, 2 ], [ 11, 2 ] ], [ [ 2, 2 ], [ 3, 2 ] ] ]
 
+# IsDyadicSchurGroup (PR #104)
+gap> IsDyadicSchurGroup(SmallGroup(8,4));
+true
+gap> IsDyadicSchurGroup(SmallGroup(160,208));
+true
+gap> IsDyadicSchurGroup(SmallGroup(160,84));
+false
+
 #
 gap> STOP_TEST( "div-alg.tst", 1 );

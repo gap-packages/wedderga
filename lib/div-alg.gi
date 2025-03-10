@@ -740,38 +740,78 @@ end);
 
 ##########################################
 InstallGlobalFunction( IsDyadicSchurGroup, function(G)
-local d,j,P,P1,V0,c,g,g1,z,V1,v1,V2,q,s,n1,r,i,y,p1,x,U,V,P2,L;
+local t,d,P,l,P1,l1,p1,i,Y,q,U,V,V1,L,P2,l2;
 
 d:=false;
-j:=0;
 P:=SylowSubgroup(G,2);
-q:=Size(G)/Size(P);
-if IsPrimeInt(q) then
-U:=SylowSubgroup(G,q);
-V:=Centralizer(P,U);
 
-# First look for G of type (Q_8,q)
-if IdSmallGroup(V)=[8,4] then
- V1:=Centralizer(P,V);
- L:=UnionSet(Elements(V),Elements(V1));
- P2:=GroupByGenerators(L);
- if P=P2 then
-  d:=true;
-  j:=1;
- fi;
-else
-# Checks if P is of type (QD,q)
-P1:=DerivedSubgroup(P);
- s:=LogInt(Size(P)/Size(P1),2)-1;
- if s=LogInt(PPartOfN(OrderMod(2,q),2),2) then
- if not(IsAbelian(V)) then
- if Size(P)/Size(V)=2^s then
- d:=true;
- fi;
- fi;
- fi;
+#### Check that G = Q8 ######
+if G=P then
+  if IdSmallGroup(G)=[8,4] then
+    d:=true;
+  fi;
 fi;
 
+#### Check G is semidirect product of C_q by P, q odd prime ####
+if d=false then
+  q:=Size(G)/Size(P);
+  if IsPrimeInt(q) then
+    U:=SylowSubgroup(G,q);
+    V:=Centralizer(P,U);
+    if not(V=P) then
+
+### Check if G is of type (Q8,q) ####
+      if IdSmallGroup(V)=[8,4] then
+        V1:=Centralizer(P,V);
+        L:=UnionSet(Elements(V),Elements(V1));
+        P2:=GroupByGenerators(L);
+        if P=P2 then
+          if PPartOfN(OrderMod(2,q),2)=Size(P/V) then
+            d:=true;
+          fi;
+        fi;
+      fi;
+
+#### Check that P is a dyadic 2-group #####
+      if d=false then
+        t:=false;
+        l:=Size(P);
+        P1:=DerivedSubgroup(P);
+        l1:=Size(P1);
+        if l>l1 and IsInt(l1/4) and IsCyclic(P1) then
+          p1:=GeneratorsOfGroup(P1);
+          for i in [1..Length(p1)] do
+          if Order(p1[i])=l1 then
+            break;
+          fi;
+          od;
+          Y:=Centralizer(P,p1[i]^(l1/4));
+          if IsCyclic(Y/P1) then
+            t:=true;
+          fi;
+          if IdSmallGroup(V)=[8,4] then
+            if not(PPartOfN(OrderMod(2,q),2)>Size(P/V)) then
+              t:=false;
+            fi;
+          fi;
+
+#### Check if G is of type (QD,q) ###
+          if t=true then
+            if not(IsAbelian(V)) then
+              l2:=Size(V);
+              if l2/l1=2 then
+                if not(PPartOfN(OrderMod(2,q),2)<Size(P/V)) then
+                  d:=true;
+                fi;
+              fi;
+            fi;
+          fi;
+####
+        fi;
+      fi;
+    fi;
+####
+  fi;
 fi;
 
 return d;
