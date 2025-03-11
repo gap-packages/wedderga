@@ -187,7 +187,6 @@ PackageDoc := rec(
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
   LongTitle := "Wedderga",
-  Autoload := true
 ),
 
 Dependencies := rec(
