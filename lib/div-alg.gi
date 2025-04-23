@@ -1114,6 +1114,10 @@ fi;
 if Length(B)=5 then
   K:=PSplitSubextension(F,B[3],2);
   B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
+  if Length(B1)<5 then
+     if Length(B1)=2 then m2:=1; fi;
+     if Length(B1)=4 then m2:=LocalIndexAtTwo(B1); fi;
+  else
   g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
   if g=fail then
     m2:=1;
@@ -1150,6 +1154,7 @@ if Length(B)=5 then
          fi;
       fi;
     fi;
+  fi;
   fi;
 fi;
 
