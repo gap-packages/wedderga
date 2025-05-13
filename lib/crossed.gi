@@ -754,6 +754,17 @@ InstallMethod( IsFinite,
 
 #############################################################################
 ##
+#M  IsFinite( <RG> )  . . . . . . . . . . . . . . . . . for a crossed product
+##
+InstallMethod( IsCommutative,
+    "for a crossed product",
+    [ IsCrossedProduct ],
+    RG -> LeftActingDomain(RG) = Center(RG) );
+
+
+
+#############################################################################
+##
 #M  Representative( <RG> )  . . . . . . . . . . . . . . for a crossed product
 ##
 ##  this is a quick-hack solution, should be replaced
