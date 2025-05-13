@@ -81,7 +81,7 @@ gap> WedderburnDecompositionWithDivAlgParts(GroupRing(Rationals, SmallGroup(432,
       rec( Center := NF(27,[ 1, 26 ]), DivAlg := true, 
           LocalIndices := [ [ infinity, 2 ] ], SchurIndex := 2 ) ] ]
 
-# Fix for a bug reported by �ngel del Rio on 14/11/2014
+# Fix for a bug reported by Ángel del Río on 14/11/2014
 gap> G:=SmallGroup(16,7);;
 gap> QG:=GroupRing(Rationals,G);;
 gap> pci := PrimitiveCentralIdempotentsByCharacterTable(QG);;
@@ -104,3 +104,7 @@ gap> A:=[1,CF(7),4,[2,3,2]];
 gap> CyclotomicAlgebraWithDivAlgPart(A);
 [ 1, rec( Center := CF(7), DivAlg := true, LocalIndices := [ [ 2, 2 ] ],
       SchurIndex := 2 ) ]
+
+# Fix returning wrong result determining commutativity of a crossed product (issue #96)
+gap> IsCommutative(WedderburnDecomposition(GroupRing(Rationals, QuaternionGroup(8)))[5]);
+Error, no method found to check commutativity of a crossed product
