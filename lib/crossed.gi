@@ -600,10 +600,7 @@ function( R, G, act, twist )
       SetIsFiniteDimensional( RG, IsFinite( G ) );
     fi;
     
-    # What about IsCommutative ? In MagmaRings it is as below:   
-    # if HasIsCommutative( R ) and HasIsCommutative( G ) then
-    #   SetIsCommutative( RG, IsCommutative( R ) and IsCommutative( G ) );
-    # fi;
+    SetIsCommutative( RG, LeftActingDomaing(RG) = Center(G) );
     
     if HasIsWholeFamily( R ) and HasIsWholeFamily( G ) then
       SetIsWholeFamily( RG, IsWholeFamily( R ) and IsWholeFamily( G ) );
@@ -750,17 +747,6 @@ InstallMethod( IsFinite,
     [ IsCrossedProduct ],
     RG -> IsFinite( LeftActingDomain( RG ) ) and 
           IsFinite( UnderlyingMagma( RG ) ) );
-
-
-#############################################################################
-##
-#M  IsFinite( <RG> )  . . . . . . . . . . . . . . . . . for a crossed product
-##
-InstallMethod( IsCommutative,
-    "for a crossed product",
-    [ IsCrossedProduct ],
-    RG -> LeftActingDomain(RG) = Center(RG) );
-
 
 
 #############################################################################
