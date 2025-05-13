@@ -760,7 +760,7 @@ if d=false then
     V:=Centralizer(P,U);
     if not(V=P) then
 
-### Check if G is of type (Q8,q) ####
+      ### Check if G is of type (Q8,q) ####
       if IdSmallGroup(V)=[8,4] then
         V1:=Centralizer(P,V);
         L:=UnionSet(Elements(V),Elements(V1));
@@ -772,7 +772,7 @@ if d=false then
         fi;
       fi;
 
-#### Check that P is a dyadic 2-group #####
+      #### Check that P is a dyadic 2-group #####
       if d=false then
         t:=false;
         l:=Size(P);
@@ -781,9 +781,9 @@ if d=false then
         if l>l1 and IsInt(l1/4) and IsCyclic(P1) then
           p1:=GeneratorsOfGroup(P1);
           for i in [1..Length(p1)] do
-          if Order(p1[i])=l1 then
-            break;
-          fi;
+            if Order(p1[i])=l1 then
+              break;
+            fi;
           od;
           Y:=Centralizer(P,p1[i]^(l1/4));
           if IsCyclic(Y/P1) then
@@ -795,7 +795,7 @@ if d=false then
             fi;
           fi;
 
-#### Check if G is of type (QD,q) ###
+          #### Check if G is of type (QD,q) ###
           if t=true then
             if not(IsAbelian(V)) then
               l2:=Size(V);
@@ -806,11 +806,11 @@ if d=false then
               fi;
             fi;
           fi;
-####
+          ####
         fi;
       fi;
     fi;
-####
+    ####
   fi;
 fi;
 
@@ -1145,40 +1145,40 @@ m:=0;
 B:=SimpleComponentOfGroupRingByCharacter(F,G,n);
 
 if Length(B)=2 then
-m2:=1;
+  m2:=1;
 fi;
 if Length(B)=4 then
-m2:=LocalIndexAtTwo(B);
+  m2:=LocalIndexAtTwo(B);
 fi;
 
 if Length(B)=5 then
   K:=PSplitSubextension(F,B[3],2);
   B1:=SimpleComponentOfGroupRingByCharacter(K,G,n);
   if Length(B1)<5 then
-     if Length(B1)=2 then m2:=1; fi;
-     if Length(B1)=4 then m2:=LocalIndexAtTwo(B1); fi;
+    if Length(B1)=2 then m2:=1; fi;
+    if Length(B1)=4 then m2:=LocalIndexAtTwo(B1); fi;
   else
-  g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
-  if g=fail then
-    m2:=1;
-  else
-    m2:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],2);
-  fi;
-  if not(m2 in Integers) then
-    m:=1;
-    if IsDyadicSchurGroup(g[1]) then
-    m:=2;
-    V:=ValuesOfClassFunction(chi);
-    F0:=FieldByGenerators(V);
-    F1:=B1[2];
-      if not(F0=F1) then
-        if E(4) in F1 then
-          m:=1;
-        else
-          n0:=Conductor(F0);
-          n02:=PPartOfN(n0,2);
-          n1:=Conductor(F1);
-          n12:=PPartOfN(n1,2);
+    g:=DefiningGroupAndCharacterOfCyclotAlg(B1);
+    if g=fail then
+      m2:=1;
+    else
+      m2:=LocalIndexAtPByBrauerCharacter(K,g[1],g[2],2);
+    fi;
+    if not(m2 in Integers) then
+      m:=1;
+      if IsDyadicSchurGroup(g[1]) then
+        m:=2;
+        V:=ValuesOfClassFunction(chi);
+        F0:=FieldByGenerators(V);
+        F1:=B1[2];
+        if not(F0=F1) then
+          if E(4) in F1 then
+            m:=1;
+          else
+            n0:=Conductor(F0);
+            n02:=PPartOfN(n0,2);
+            n1:=Conductor(F1);
+            n12:=PPartOfN(n1,2);
             if not(n02=n12) then
               m:=1;
             else
@@ -1187,14 +1187,14 @@ if Length(B)=5 then
               n01:=PDashPartOfN(n0,2);
               f0:=OrderMod(2,n0);
               f:=f1/f0;
-                if IsPosInt(f/2) then
-                  m:=1;
-                fi;
+              if IsPosInt(f/2) then
+                m:=1;
+              fi;
             fi;
-         fi;
+          fi;
+        fi;
       fi;
     fi;
-  fi;
   fi;
 fi;
 
