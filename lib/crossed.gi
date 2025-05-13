@@ -600,7 +600,7 @@ function( R, G, act, twist )
       SetIsFiniteDimensional( RG, IsFinite( G ) );
     fi;
     
-    SetIsCommutative( RG, LeftActingDomaing(RG) = Center(G) );
+    SetIsCommutative( RG, LeftActingDomain(RG) = Center(G) );
     
     if HasIsWholeFamily( R ) and HasIsWholeFamily( G ) then
       SetIsWholeFamily( RG, IsWholeFamily( R ) and IsWholeFamily( G ) );
