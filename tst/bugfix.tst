@@ -104,3 +104,6 @@ gap> A:=[1,CF(7),4,[2,3,2]];
 gap> CyclotomicAlgebraWithDivAlgPart(A);
 [ 1, rec( Center := CF(7), DivAlg := true, LocalIndices := [ [ 2, 2 ] ],
       SchurIndex := 2 ) ]
+
+gap> IsCommutative(WedderburnDecomposition(GroupRing(Rationals, QuaternionGroup(8)))[5]);
+false
