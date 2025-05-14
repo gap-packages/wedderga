@@ -1,5 +1,6 @@
 [![Build Status](https://github.com/gap-packages/wedderga/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/wedderga/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/wedderga/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/wedderga)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3827913.svg)](https://doi.org/10.5281/zenodo.3827913)
 
 # GAP package Wedderga
 
