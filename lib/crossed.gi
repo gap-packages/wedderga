@@ -600,10 +600,7 @@ function( R, G, act, twist )
       SetIsFiniteDimensional( RG, IsFinite( G ) );
     fi;
     
-    # What about IsCommutative ? In MagmaRings it is as below:   
-    # if HasIsCommutative( R ) and HasIsCommutative( G ) then
-    #   SetIsCommutative( RG, IsCommutative( R ) and IsCommutative( G ) );
-    # fi;
+    SetIsCommutative( RG, LeftActingDomain(RG) = Center(RG) );
     
     if HasIsWholeFamily( R ) and HasIsWholeFamily( G ) then
       SetIsWholeFamily( RG, IsWholeFamily( R ) and IsWholeFamily( G ) );
