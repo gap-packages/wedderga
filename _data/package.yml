@@ -1,7 +1,7 @@
 name: Wedderga
-version: "4.10.5"
+version: "4.11.0"
 license: "GPL-2.0-or-later"
-date: 2024-02-19
+date: 2025-06-16
 description: |
     Wedderburn Decomposition of Group Algebras
 
@@ -50,7 +50,7 @@ GAP: ">=4.8"
 needed-pkgs:
     - name: "GAPDoc"
       version: ">= 1.5.1"
-      url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
+      url: "https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
 
 suggested-pkgs:
     - name: "laguna"
@@ -66,7 +66,7 @@ packageinfo: https://gap-packages.github.io/wedderga/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/wedderga/releases/download/v4.10.5/wedderga-4.10.5.tar.gz
+      url: https://github.com/gap-packages/wedderga/releases/download/v4.11.0/wedderga-4.11.0.tar.gz
 
 abstract: |
     <span class="pkgname">Wedderga</span> is the package to compute the simple components of the Wedderburn decomposition of semisimple group algebras of finite groups over finite fields and over subfields of finite cyclotomic extensions of the rationals. It also contains functions that produce the primitive central idempotents of semisimple group algebras and functions for computing Schur indices. Other functions of <span class="pkgname">Wedderga</span> allow one to construct crossed products over a group with coefficients in an associative ring with identity and the multiplication determined by a given action and twisting.
@@ -78,30 +78,30 @@ keywords: |
     Wedderburn decomposition, simple components, central idempotents, group algebras.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>BCHKMOORG24</span>]   <b class='BibAuthor'>Bakshi, G. K., Broche Cristo, O., Herman, A., Konovalov, O., Maheshwary, S., Olteanu, G., Olivieri, A., del Rio, A. and Van Gelder, I.</b>,
+    [<span class='BibKey'>BCHKMOORG25</span>]   <b class='BibAuthor'>Bakshi, G. K., Broche Cristo, O., Herman, A., Konovalov, O., Maheshwary, S., Olteanu, G., Olivieri, A., del Rio, A. and Van Gelder, I.</b>,
      <i class='BibTitle'>Wedderga, Wedderburn Decomposition of Group Algebras,
-             Version 4.10.5</i>
-     (<span class='BibYear'>2024</span>)<br />
-    (<span class='BibNote'>Refereed GAP package</span>),
+             Version 4.11.0</i>
+     (<span class='BibYear'>2025</span>)<br />
+    (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://gap-packages.github.io/wedderga">https://gap-packages.github.io/wedderga</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ Wedderga4.10.5,
+    @misc{ Wedderga,
       author =           {Bakshi, G. K. and Broche Cristo, O. and Herman, A. and
                           Konovalov,  O.  and Maheshwary, S. and Olteanu, G. and
                           Olivieri, A. and del Rio, A. and Van Gelder, I.},
-      title =            {{Wedderga},    Wedderburn   Decomposition   of   Group
-                          Algebras, {V}ersion 4.10.5},
-      month =            {Feb},
-      year =             {2024},
-      note =             {Refereed GAP package},
+      title =            {{Wedderga},   {Wedderburn   Decomposition   of   Group
+                          Algebras}, {V}ersion 4.11.0},
+      month =            {Jun},
+      year =             {2025},
+      note =             {GAP package},
       howpublished =     {\href        {https://gap-packages.github.io/wedderga}
-                          {\texttt{https://gap-packages.github.io/}\discretionary
+                          {\texttt{https://gap\texttt{\symbol{45}}packages.github.io/}\discretionary
                           {}{}{}\texttt{wedderga}}},
       keywords =         {Wedderburn  decomposition;  simple components; central
                           idempotents; group algebras},
-      printedkey =       {BCHKMOORG24}
+      printedkey =       {BCHKMOORG25}
     }
 

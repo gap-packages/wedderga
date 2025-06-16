@@ -141,7 +141,7 @@
   [2XWedderburnDecompositionByCharacterDescent[102X 7.3-4 
   [2XWedderburnDecompositionInfo[102X 2.1-2 
   [2XWedderburnDecompositionWithDivAlgParts[102X 7.1-1 
-  [5XWedderga[105X package .-1 
+  [5XWedderga[105X package 0.0-1 
   [10XZeroCoefficient[110X 5.2-1 
   [22Xε(K,H)[122X 9.13 
   

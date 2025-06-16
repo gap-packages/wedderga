@@ -955,7 +955,7 @@
   
   [33X[0;0Yis  a  complete  set  of  orthogonal  primitive  idempotents  of [22XF G e[122X where
   [22Xx_e=ψ^-1(PAP^-1)[122X,  [22XT_1[122X  is  a  transversal  of  [22XH[122X  in  [22XE[122X  and [22XT_2[122X is a right
-  transversal  of  [22XE[122X  in  [22XG[122X  ([OVGnt]).  By  [22XwidehatT_1[122X  we denote the element
+  transversal  of  [22XE[122X  in  [22XG[122X  ([OVG15]).  By  [22XwidehatT_1[122X  we denote the element
   [22Xfrac1|T_1|∑_t∈ T_1t[122X in [22XF G[122X.[133X
   
   

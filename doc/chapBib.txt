@@ -40,8 +40,8 @@
   groups:  A  complete  set of orthogonal primitive idempotents[117X, [18XFinite Fields
   Appl.[118X, [19X17[119X, 2 (2011), 157–165.
   
-  [[20XOVGnt[120X]  [16XOlteanu, G. and Van Gelder, I.[116X, [17XConstruction of minimal non-abelian
-  left group codes[117X (preprint).
+  [[20XOVG15[120X]  [16XOlteanu, G. and Van Gelder, I.[116X, [17XConstruction of minimal non-abelian
+  left group codes[117X, [18XDes. Codes Cryptography[118X, [19X75[119X, 3 (2015), 359–373.
   
   [[20XPas89[120X] [16XPassman, D. S.[116X, [17XInfinite crossed products[117X, Academic Press Inc., Pure
   and Applied Mathematics, [19X135[119X, Boston, MA (1989), xii+468 pages.
