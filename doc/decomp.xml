@@ -388,9 +388,10 @@ the usage of "ad hoc" arguments.
 <![CDATA[
 gap> A5 := AlternatingGroup(5);
 Alt( [ 1 .. 5 ] )
-gap> SimpleAlgebraByCharacter( GroupRing( Rationals , A5 ) , Irr( A5 ) [3] );
+gap> chi := First(Irr( A5 ), chi -> Degree(chi) = 3);;
+gap> SimpleAlgebraByCharacter( GroupRing( Rationals, A5 ), chi );
 ( NF(5,[ 1, 4 ])^[ 3, 3 ] )
-gap> SimpleAlgebraByCharacter( GroupRing( GF(7) , A5 ) , Irr( A5 ) [3] );
+gap> SimpleAlgebraByCharacter( GroupRing( GF(7), A5 ), chi );
 ( GF(7^2)^[ 3, 3 ] )
 gap> G:=SmallGroup(128,100);               
 <pc group of size 128 with 7 generators>
