@@ -109,13 +109,14 @@ Some of the Wedderburn components displayed are FRACTIONAL MATRIX ALGEBRAS!!!
   [ 6, Rationals ], [ 1, NF(12,[ 1, 11 ]), 10, [ 4, 3, 5 ] ],
   [ 3/2, NF(8,[ 1, 7 ]), 10, [ 4, 3, 5 ] ] ]
 
-# doc/decomp.xml:387-408
+# doc/decomp.xml:387-409
 
 gap> A5 := AlternatingGroup(5);
 Alt( [ 1 .. 5 ] )
-gap> SimpleAlgebraByCharacter( GroupRing( Rationals , A5 ) , Irr( A5 ) [3] );
+gap> chi := First(Irr( A5 ), chi -> Degree(chi) = 3);;
+gap> SimpleAlgebraByCharacter( GroupRing( Rationals, A5 ), chi );
 ( NF(5,[ 1, 4 ])^[ 3, 3 ] )
-gap> SimpleAlgebraByCharacter( GroupRing( GF(7) , A5 ) , Irr( A5 ) [3] );
+gap> SimpleAlgebraByCharacter( GroupRing( GF(7), A5 ), chi );
 ( GF(7^2)^[ 3, 3 ] )
 gap> G:=SmallGroup(128,100);               
 <pc group of size 128 with 7 generators>
@@ -130,7 +131,7 @@ gap> List(chi4,x->SimpleAlgebraByCharacter(GroupRing(Rationals,G),x));
   ( <crossed product with center NF(8,[ 1, 3 ]) over AsField( NF(8,
     [ 1, 3 ]), CF(8) ) of a group of size 2>^[ 2, 2 ] ) ]
 
-# doc/decomp.xml:441-452
+# doc/decomp.xml:442-453
 
 gap> G:=SmallGroup(128,100);
 <pc group of size 128 with 7 generators>
@@ -141,7 +142,7 @@ gap> List(chi4,x->SimpleAlgebraByCharacterInfo(QG,x));
 [ [ 4, NF(8,[ 1, 3 ]) ], [ 4, NF(8,[ 1, 3 ]) ], [ 4, NF(8,[ 1, 3 ]) ], 
   [ 4, NF(8,[ 1, 3 ]) ] ]
 
-# doc/decomp.xml:521-535
+# doc/decomp.xml:522-536
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
@@ -155,7 +156,7 @@ gap> SimpleAlgebraByStrongSP( FG, K, H, [1,7] );
 gap> SimpleAlgebraByStrongSP( FG, K, H, 1 );
 ( GF(7)^[ 2, 2 ] )
 
-# doc/decomp.xml:595-611
+# doc/decomp.xml:596-612
 
 gap> F:=FreeGroup("a","b");; a:=F.1;; b:=F.2;;
 gap> G:=F/[ a^16, b^2*a^8, b^-1*a*b*a^9 ];; a:=G.1;; b:=G.2;;
