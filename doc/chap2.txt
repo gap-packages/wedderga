@@ -368,9 +368,10 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XA5 := AlternatingGroup(5);[127X[104X
     [4X[28XAlt( [ 1 .. 5 ] )[128X[104X
-    [4X[25Xgap>[125X [27XSimpleAlgebraByCharacter( GroupRing( Rationals , A5 ) , Irr( A5 ) [3] );[127X[104X
+    [4X[25Xgap>[125X [27Xchi := First(Irr( A5 ), chi -> Degree(chi) = 3);;[127X[104X
+    [4X[25Xgap>[125X [27XSimpleAlgebraByCharacter( GroupRing( Rationals, A5 ), chi );[127X[104X
     [4X[28X( NF(5,[ 1, 4 ])^[ 3, 3 ] )[128X[104X
-    [4X[25Xgap>[125X [27XSimpleAlgebraByCharacter( GroupRing( GF(7) , A5 ) , Irr( A5 ) [3] );[127X[104X
+    [4X[25Xgap>[125X [27XSimpleAlgebraByCharacter( GroupRing( GF(7), A5 ), chi );[127X[104X
     [4X[28X( GF(7^2)^[ 3, 3 ] )[128X[104X
     [4X[25Xgap>[125X [27XG:=SmallGroup(128,100);               [127X[104X
     [4X[28X<pc group of size 128 with 7 generators>[128X[104X
