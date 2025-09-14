@@ -2380,7 +2380,7 @@ if IsEmpty(Compl) then
 		
 	fi;
 
-	S := SolveEquation@(F);
+	S := Wedderga_SolveEquation(F);
 	x := S[1];
 	y := S[2];
 	beta := AverageSum(FG,[b_even])*1/2*ElementOfMagmaRing(FamilyObj(Zero(FG)), 
