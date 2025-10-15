@@ -66,8 +66,7 @@ Then to be able to load Wedderga you need to call GAP with the
 Installation using other archive formats is performed in a similar way.
 <P/>
 If the package is installed correctly, it should be loaded as follows:
-<Log>
-<![CDATA[
+<Log><![CDATA[
 gap> LoadPackage("wedderga");
 -----------------------------------------------------------------------------
 Loading Wedderga 4.10.5 (Wedderga)
@@ -84,8 +83,7 @@ Homepage: https://gap-packages.github.io/wedderga
 Report issues at https://github.com/gap-packages/wedderga/issues
 -----------------------------------------------------------------------------
 true
-]]>
-</Log>
+]]></Log>
 
 </Section>
 
@@ -137,8 +135,7 @@ the order of the group is greater than 5000 then the program may crash. The
 way the group is given is relevant for the performance. Usually the program
 works better for groups given as permutation groups or pc groups.
 <Alt Only="LaTeX">\newpage</Alt>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> QG := GroupRing( Rationals, SymmetricGroup(4) );
 <algebra-with-one over Rationals, with 2 generators>
 gap> WedderburnDecomposition(QG);
@@ -159,8 +156,7 @@ gap> FG := GroupRing( GF(5), SmallGroup(24,3) );
 gap> WedderburnDecomposition( FG );
 [ ( GF(5)^[ 1, 1 ] ), ( GF(5^2)^[ 1, 1 ] ), ( GF(5)^[ 2, 2 ] ), 
   ( GF(5^2)^[ 2, 2 ] ), ( GF(5)^[ 3, 3 ] ) ]
-]]>
-</Example>
+]]></Example>
 
 Instead of <Ref Attr="WedderburnDecomposition" />, that returns a list of 
 &GAP; objects, <Ref Attr="WedderburnDecompositionInfo" /> returns the numerical 
