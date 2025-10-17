@@ -23,8 +23,7 @@
    		and <M>f_i\in F</M>. If we look at <M>c</M> as a codeword, we will write <M>[f_1 f_2 ... f_n]</M>.
          (<Ref Sect="codes" />). 
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> G:=DihedralGroup(8);;
 gap> F:=GF(3);;          
 gap> FG:=GroupRing(F,G);;
@@ -35,8 +34,7 @@ gap> S:=AsSet(G);
 [ <identity> of ..., f1, f2, f3, f1*f2, f1*f3, f2*f3, f1*f2*f3 ]
 gap> CodeWordByGroupRingElement(F,S,a);
 [ Z(3)^0, Z(3)^0, Z(3)^0, Z(3)^0, Z(3)^0, 0*Z(3), Z(3)^0, Z(3) ]
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -58,8 +56,7 @@ gap> CodeWordByGroupRingElement(F,S,a);
    	and <M>f_i\in F</M>. If we look at <M>c</M> as a codeword, we will write <M>[f_1 f_2 ... f_n]</M>.
         (<Ref Sect="codes" />). 
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> G:=DihedralGroup(8);;
 gap> F:=GF(3);;          
 gap> FG:=GroupRing(F,G);;
@@ -90,8 +87,7 @@ gap> code := GeneratorMatCode(B,F);
 a linear [8,2,1..4]4..5 code defined by generator matrix over GF(3)
 gap> MinimumDistance(code);
 4
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>

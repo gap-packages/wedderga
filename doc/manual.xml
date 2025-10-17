@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE Book SYSTEM "gapdoc.dtd"
-    [ <!ENTITY Wedderga "<Package>Wedderga</Package>">
-      <#Include Label="PKGVERSIONDATA">      
-    ] >
-    
+<!DOCTYPE Book SYSTEM "gapdoc.dtd" [
+  <#Include SYSTEM "_entities.xml">
+] >
+
 <Book Name="Wedderga">
 
 <TitlePage>

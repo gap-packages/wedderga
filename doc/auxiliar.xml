@@ -18,8 +18,7 @@
          over a field of characteristic zero (that is if <M>G</M> is finite), 
          and <K>false</K> otherwise.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> CG:=GroupRing( GaussianRationals, DihedralGroup(16) );;
 gap> IsSemisimpleZeroCharacteristicGroupAlgebra( CG );
 true
@@ -32,8 +31,7 @@ gap> Qf:=GroupRing(Rationals,f);
 <algebra-with-one over Rationals, with 2 generators>
 gap> IsSemisimpleZeroCharacteristicGroupAlgebra(Qf);
 false
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -50,8 +48,7 @@ false
     <E>semisimple rational group algebra</E> (<Ref Sect="Semisimple" />) 
     and <K>false</K> otherwise.
     
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> QG:=GroupRing( Rationals, SymmetricGroup(4) );;       
 gap> IsSemisimpleRationalGroupAlgebra( QG );       
 true
@@ -61,8 +58,7 @@ false
 gap> FG:=GroupRing( GF(2), SymmetricGroup(3) );;
 gap> IsSemisimpleRationalGroupAlgebra( FG );
 false
-]]>
-</Example>
+]]></Example>
     
    </Description>
 </ManSection>
@@ -80,14 +76,12 @@ false
          group over a subfield of a cyclotomic extension of the rationals and <K>false</K> 
          otherwise.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> IsSemisimpleANFGroupAlgebra( GroupRing( NF(5,[4]) , CyclicGroup(28) ) );
 true
 gap> IsSemisimpleANFGroupAlgebra( GroupRing( GF(11) , CyclicGroup(28) ) );
 false
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -105,8 +99,7 @@ false
          that is a group algebra of a finite group <M>G</M> over a field <M>K</M> 
          of order coprime to the order of <M>G</M>, and <K>false</K> otherwise.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FG:=GroupRing( GF(5), SymmetricGroup(3) );;
 gap> IsSemisimpleFiniteGroupAlgebra( FG );
 true
@@ -116,8 +109,7 @@ false
 gap> QG:=GroupRing( Rationals, SymmetricGroup(4) );;
 gap> IsSemisimpleFiniteGroupAlgebra( QG );
 false
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -132,8 +124,7 @@ false
          Returns <K>true</K> if the simple algebra <M>&QQ;Ge(G,H,K)</M> has a <E>trivial twisting</E> 
          (<Ref Sect="SSPDef" />), and <K>false</K> otherwise.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> G:=DihedralGroup(8);;
 gap> H:=StrongShodaPairs(G)[5][1];
 Group([ f1*f2*f3, f3 ])
@@ -141,8 +132,7 @@ gap> K:=StrongShodaPairs(G)[5][2];
 Group([ f1*f2 ])
 gap> IsTwistingTrivial(G,H,K);
 true
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -169,8 +159,7 @@ true
          This operation adds a new method to the operation that already 
          exists in &GAP;.
          
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> D16 := DihedralGroup(16);
 <pc group of size 16 with 4 generators>
 gap> QD16 := GroupRing( Rationals, D16 );
@@ -187,8 +176,7 @@ gap> Centralizer( D16, a+b);
 Group([ f4 ])
 gap> Centralizer( D16, e);
 Group([ f1, f2 ])
-]]>
-</Example>
+]]></Example>
          
    </Description>
 </ManSection>
@@ -220,14 +208,12 @@ Group([ f1, f2 ])
 The following example is a continuation of the example from the 
 description of <Ref Oper="Centralizer" />.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> ForAll(D16,x->a^x=a);
 false
 gap> ForAll(D16,x->e^x=e);
 true
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -252,8 +238,7 @@ true
 If <A>X</A> is a subgroup of <M>G</M> then the output is an idempotent 
 of <M>RG</M> which is central if and only if <A>X</A> is normal in <M>G</M>. 
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> G:=DihedralGroup(16);;               
 gap> QG:=GroupRing( Rationals, G );;
 gap> FG:=GroupRing( GF(5), G );;
@@ -271,8 +256,7 @@ gap> G=Centralizer(G,e);
 false
 gap> IsNormal(G,H);
 false
-]]>
-</Example>
+]]></Example>
     
    </Description>
 </ManSection>
@@ -296,16 +280,14 @@ false
    Returns the list <A>q</A>-<E>cyclotomic classes </E> 
    (<Ref Sect="CyclotomicClass" />) modulo <A>n</A>.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> CyclotomicClasses( 2, 21 );
 [ [ 0 ], [ 1, 2, 4, 8, 16, 11 ], [ 3, 6, 12 ], [ 5, 10, 20, 19, 17, 13 ],
   [ 7, 14 ], [ 9, 18, 15 ] ]
 gap> CyclotomicClasses( 10, 21 );
 [ [ 0 ], [ 1, 10, 16, 13, 4, 19 ], [ 2, 20, 11, 5, 8, 17 ],
   [ 3, 9, 6, 18, 12, 15 ], [ 7 ], [ 14 ] ]
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -325,16 +307,14 @@ gap> CyclotomicClasses( 10, 21 );
          (<Ref Sect="CyclotomicClass" />) modulo <A>n</A> and 
          <K>false</K> otherwise.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> IsCyclotomicClass( 2, 7, [1,2,4] );
 true
 gap> IsCyclotomicClass( 2, 21, [1,2,4] );
 false
 gap> IsCyclotomicClass( 2, 21, [3,6,12] );
 true
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
@@ -358,8 +338,7 @@ true
       the Wedderburn components each time when we call 
       <C>WedderburnDecomposition</C>.
 
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> SetInfoLevel(InfoWedderga, 2);   
 gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
 #I  Info version : [ [ 1, CF(5) ], [ 1, CF(5) ], [ 1, CF(5) ], 
@@ -367,8 +346,7 @@ gap> WedderburnDecomposition( GroupRing( CF(5), DihedralGroup( 16 ) ) );
 [ CF(5), CF(5), CF(5), CF(5), ( CF(5)^[ 2, 2 ] ), 
   <crossed product with center NF(40,[ 1, 31 ]) over AsField( NF(40,
     [ 1, 31 ]), CF(40) ) of a group of size 2> ]
-]]>
-</Example>
+]]></Example>
 
    </Description>
 </ManSection>
