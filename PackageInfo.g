@@ -17,8 +17,8 @@ SetPackageInfo( rec(
 PackageName    := "Wedderga",
 Subtitle       := Concatenation( [
                   "Wedderburn Decomposition of Group Algebras" ] ),
-Version        := "4.11.1",
-Date           := "07/07/2025", # dd/mm/yyyy format
+Version        := "4.11.2",
+Date           := "03/11/2025", # dd/mm/yyyy format
 License        := "GPL-2.0-or-later",
 
 SourceRepository := rec(
