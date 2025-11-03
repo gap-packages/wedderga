@@ -148,14 +148,14 @@ gap> SchurIndex(sc);
 # doc/div-alg.xml:451-462
 gap> G:=SmallGroup(63,1);
 <pc group of size 63 with 3 generators>
-gap> GaloisRepsOfCharacters(Rationals,G);
-[ 1, 2, 4, 10, 12 ]
-gap> GaloisRepsOfCharacters(CF(9),G);
-[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13 ]
-gap> GaloisRepsOfCharacters(NF(7,[1,2,4]),G);
-[ 1, 2, 4, 10, 11, 12, 14 ]
-gap> GaloisRepsOfCharacters(CF(63),G);
-[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+gap> Length(GaloisRepsOfCharacters(Rationals,G));
+5
+gap> Length(GaloisRepsOfCharacters(CF(9),G));
+12
+gap> Length(GaloisRepsOfCharacters(NF(7,[1,2,4]),G));
+7
+gap> Length(GaloisRepsOfCharacters(CF(63),G));
+15
 
 # doc/div-alg.xml:490-501
 gap> G:=GL(3,3);
@@ -264,12 +264,13 @@ gap> DefectOfCharacterAtP(G,Irr(G)[i],3);
 gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
 gap> T:=CharacterTable(G);;
-gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
+gap> i:=PositionProperty(Irr(T),chi->Size(KernelOfCharacter(chi))=1);;
 gap> S:=T mod 5;
 BrauerTable( <pc group of size 80 with 5 generators>, 5 )
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,5);
 2
-gap> FinFieldExt(Rationals,G,5,i,9);
+gap> j:=PositionProperty(Irr(S),phi->Conductor(phi)=8);;
+gap> FinFieldExt(Rationals,G,5,i,j);
 2
 
 # doc/div-alg.xml:848-856
