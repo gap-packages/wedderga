@@ -102,11 +102,7 @@ DeclareOperation( "IsCyclotomicClass", [ IsPosInt, IsPosInt, IsList ] );
 DeclareAttribute( "IsCyclGroupAlgebra", IsGroupRing );
 DeclareOperation( "SizeOfSplittingField", [IsCharacter, IsPosInt] ); 
 
-DeclareOperation( "SquareRootMod", [ IsPosInt, IsPosInt ]); 
-DeclareOperation( "SquaresMod", [IsPosInt] );
-DeclareOperation( "SolveEquation2@", [IsPosInt] );
-DeclareOperation( "SolveEquation3@", [IsPosInt] );
-DeclareOperation( "SolveEquation@", [IsField] );
+DeclareOperation( "Wedderga_SolveEquation", [IsField] );
 DeclareOperation( "PrimRootOfUnity", [IsField, IsPosInt] );
 DeclareOperation( "MakeMatrixByBasis", [ IsMapping, IsBasis] );
 DeclareOperation( "ReturnGalElement", [ IsObject , IsGroup, IsGroup, IsGroup, IsField, IsObject] );

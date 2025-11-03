@@ -553,227 +553,52 @@ end);
 
 #############################################################################
 ##
-## SquareRootMod( a, q )  
+## Wedderga_SolveEquation( F )  
 ##
-## The function SquareRootMod solves the equation x^2 = a (mod q) 
-## using the algorithm of Tonelli-Shanks
+## This function returns x and y<>0 in a finite field F of odd characteristic
+## satisfying x^2+y^2 = -1
 ##
-InstallMethod( SquareRootMod,
-    "for positive integers", 
-    true, 
-    [ IsPosInt, IsPosInt ], 
-    0,
-function( a, q )
-
-local x,Q,z,bool,c,i,t,M,b;
-
-# Initialization  
-if not IsPrimePowerInt(q)
-	then Error("Wedderga: The input needs to be a prime power integer","\n");
-fi;   
-if IsEvenInt(q) 
-	then Error("Wedderga: The input needs to be an odd integer","\n"); 
-fi;
-if Legendre(a,q)<1
-	then Error("Wedderga: The input needs to be a square mod q","\n"); 
-fi;
-
-# Program
-if (q mod 4) = 3
-	then x := a^((q+1)/4) mod q;
-else
-	Q:=Product(Filtered(Factors(q-1),IsOddInt)); #take the odd part of q-1
-	
-	# take integer z such that Jacobi(z,q)=-1
-	bool := false;
-	while bool = false do
-		z:=Random([1..q-1]);
-		if Jacobi(z,q)=-1 then bool:=true; fi;
-	od;
-	c := z^Q mod q;
-
-	x := a^((Q+1)/2) mod q;
-	t := a^Q mod q;
-	M := LogInt((q-1)/Q,2);
-
-	while (t mod q) <> 1 do
-		# find lowest o<i<M such that t^(2^i) moq q = 1
-		i := 1;
-		while (t^(2^i) mod q) <> 1 do
-			i := i+1;			
-		od;
-
-		b := c^(2^(M-i-1)) mod q;
-		x := x*b mod q;
-		t := t*b^2 mod q;
-		c := b^2 mod q;
-		M := i;
-	od;	
-fi;
-
-return x;
-end);
-
-
-#############################################################################
-##
-## SquaresMod( q )  
-##
-## The function SquaresMod returns an integer a such that both a and -1-a 
-## are squares modulo q (odd prime power)
-##
-InstallMethod( SquaresMod,
-    "for a positive integer", 
-    true, 
-    [ IsPosInt], 
-    0,
-function( q )
-
-local a,bool;
-
-# Initialization
-if not IsPrimePowerInt(q)
-	then Error("Wedderga: input needs to be a prime power integer","\n");
-fi;
-if IsEvenInt(q) 
-	then Error("Wedderga: input needs to be odd","\n");
-fi;
-
-# Program 
-bool := false;
-
-while bool = false do
-	a:=Random([1..q-1]);
-	if Jacobi(a,q)=1 and Jacobi(-1-a,q)=1 then bool:=true; fi;
-od;
-
-return a;
-end);
-
- 
-#############################################################################
-##
-## SolveEquation2@wedderga ( q )  
-##
-## The function SolveEquation2@wedderga returns a in GF(q) satisfying 
-## a^((q-1)/2)=-1=-Z(q)^0 when q is odd
-##
-InstallMethod( SolveEquation2@,
-    "for a positive integer", 
-    true, 
-    [ IsPosInt], 
-    0,
-function( q )
-
-local a,F,bool;
-
-# Initialization
-
-if not IsPrimePowerInt(q) 
-	then Error("Wedderga: input needs to be a prime power integer","\n");
-fi;
-if IsEvenInt(q) 
-	then Error("Wedderga: input needs to be odd","\n"); 
-fi;
-
-# Program
-
-bool := false;
-F:=GF(q);
-
-while bool = false do
-	a:=Random(F);
-	if a^((q-1)/2) = -Z(q)^0 then bool:=true; fi;
-od;
-
-return a;
-end);
-
-
-#############################################################################
-##
-## SolveEquation3@wedderga( q )  
-##
-## The function SolveEquation3@wedderga returns b in GF(q^2) satisfying 
-## b^((q^2-1)/2)=-1=-Z(q^2)^0 when q is odd
-##
-InstallMethod( SolveEquation3@,
-    "for a positive integer", 
-    true, 
-    [ IsPosInt], 
-    0,
-function( q )
-
-local b,F,bool;
-
-# Initialization
-if not IsPrimePowerInt(q)
-	then Error("Wedderga: input needs to be a prime power integer","\n");
-fi;
-if IsEvenInt(q) 
-	then Error("Wedderga: input needs to be odd","\n"); 
-fi;
-
-# Program
-bool := false;
-F:=GF(q^2);
-
-while bool = false do
-	b:=Random(F);
-	if b^((q^2-1)/2) = -Z(q^2)^0 then bool:=true; fi;
-od;
-
-return b;
-end);
-
-
-#############################################################################
-##
-## SolveEquation@wedderga( F )  
-##
-## The function SolveEquation@wedderga returns x and y<>0 in a finite field 
-## (of odd characteristic q) F satisfying x^2+y^2=-1=-Z(q^m)^0 
-##
-InstallMethod( SolveEquation@,
+InstallMethod( Wedderga_SolveEquation,
     "for a field", 
     true, 
     [ IsField], 
     0,
 function( F )
 
-local q,m,x,y,a,b;
+    local q,p,x,y,a;
 
-# Initialization
-if not IsFinite(F) 
-	then Error("Wedderga: input needs to be finite","\n"); 
-fi;
+    # Initialization
+    if not IsFinite(F) then
+        Error("Wedderga: input needs to be finite"); 
+    fi;
 
-q := Characteristic(F);
-m := LogInt(Size(F),q);
-# F is finite field GF(q^m)
+    q := Size(F);
 
-if IsEvenInt(q) 
-	then Error("Wedderga: input needs to be of odd characteristic","\n"); 
-fi;
+    if IsEvenInt(q) then
+        Error("Wedderga: input needs to be of odd characteristic"); 
+    fi;
 
-# Program
-if (q mod 4) = 1
-	then 
-			x := 0*Z(q^m); 
-			a := SolveEquation2@(q);
-			y := a^((q-1)/4);
-elif (m mod 2) = 0
-	then 
-			x := 0*Z(q^m); 
-			b := SolveEquation3@(q);			
-			y := b^((q^2-1)/4);
-else
-			a := SquaresMod(q);
-			x := (Z(q^m)^0)*SquareRootMod(a,q);
-			y := (Z(q^m)^0)*SquareRootMod((-1-a) mod q,q);
-fi;
+    # Program
+    if (q-1) mod 4 = 0 then
+        x := Zero(F);
+        repeat
+            # Guess a square root of -1 with probability 50%
+            a:=Random(F);
+            y := a^((q-1)/4);
+        until y^2 = -One(F);
+    else
+        p := Characteristic(F);
+        # Find an integer a such that both a and -1-a are squares modulo p
+        repeat
+            a:=Random(1,p-1);
+        until Jacobi(a,p)=1 and Jacobi(-1-a,p)=1;
+        a := a * One(F);
+        # Compute square roots of a and -1-a: easy here since p mod 4 = 3
+        x := a^((p+1)/4);
+        y := (-1-a)^((p+1)/4);
+    fi;
 
-return [x,y];
+    return [x,y];
 
 end);
 
