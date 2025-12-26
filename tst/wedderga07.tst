@@ -260,7 +260,7 @@ false
 gap> DefectOfCharacterAtP(G,Irr(G)[i],3);
 2
 
-# doc/div-alg.xml:835-846
+# doc/div-alg.xml:835-847
 gap> G:=SmallGroup(80,28);
 <pc group of size 80 with 5 generators>
 gap> T:=CharacterTable(G);;
@@ -273,7 +273,7 @@ gap> j:=PositionProperty(Irr(S),phi->Conductor(phi)=8);;
 gap> FinFieldExt(Rationals,G,5,i,j);
 2
 
-# doc/div-alg.xml:848-856
+# doc/div-alg.xml:849-857
 gap> G:=SmallGroup(72,20);
 <pc group of size 72 with 5 generators>
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
@@ -282,7 +282,7 @@ gap> LocalIndexAtPByBrauerCharacter(Rationals,G,Irr(G)[i],3);
 gap> LocalIndexAtPByBrauerCharacter(Rationals,G,i,2);
 1
 
-# doc/div-alg.xml:900-910
+# doc/div-alg.xml:901-911
 gap> G:=SmallGroup(48,15);
 <pc group of size 48 with 5 generators>
 gap> i:=First([1..Length(Irr(G))],i->Size(KernelOfCharacter(Irr(G)[i]))=1);;
@@ -293,7 +293,7 @@ gap> LocalIndexAtTwoByCharacter(Rationals,G,Irr(G)[i]);
 gap> LocalIndexAtTwoByCharacter(CF(3),G,Irr(G)[i]);
 1
 
-# doc/div-alg.xml:965-982
+# doc/div-alg.xml:966-983
 gap> LocalIndicesOfRationalSymbolAlgebra(-1,-1);
 [ [ infinity, 2 ], [ 2, 2 ] ]
 gap> LocalIndicesOfRationalSymbolAlgebra(3,-1);
@@ -311,7 +311,7 @@ gap> A:=QuaternionAlgebra(CF(5),3,-2);
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 fail
 
-# doc/div-alg.xml:1008-1021
+# doc/div-alg.xml:1009-1022
 gap> A:=QuaternionAlgebra(Rationals,-30,-15);
 <algebra-with-one of dimension 4 over Rationals>
 gap> IsRationalQuaternionAlgebraADivisionRing(A);
@@ -325,7 +325,7 @@ false
 gap> LocalIndicesOfRationalQuaternionAlgebra(A);
 [  ]
 
-# doc/div-alg.xml:1072-1083
+# doc/div-alg.xml:1073-1084
 gap> G:=SmallGroup(96,35);
 <pc group of size 96 with 6 generators>
 gap> W:=WedderburnDecompositionInfo(GroupRing(Rationals,G));;
@@ -337,7 +337,7 @@ gap> DecomposeCyclotomicAlgebra(A);
 [ [ NF(8,[ 1, 7 ]), CF(8), [ -1 ] ],
   [ NF(8,[ 1, 7 ]), NF(24,[ 1, 7 ]), [ E(8)+2*E(8)^2+E(8)^3 ] ] ]
 
-# doc/div-alg.xml:1107-1123
+# doc/div-alg.xml:1108-1124
 gap> A:=[NF(24,[1,11]),CF(24),[-1]];
 [ NF(24,[ 1, 11 ]), CF(24), [ -1 ] ]
 gap> ConvertCyclicAlgToCyclicCyclotomicAlg(A);
@@ -354,7 +354,7 @@ e
 gap> b[2]*b[3]+b[3]*b[2];
 0*e
 
-# doc/div-alg.xml:1150-1168
+# doc/div-alg.xml:1151-1169
 gap> A:=QuaternionAlgebra(CF(5),-3,-1);
 <algebra-with-one of dimension 4 over CF(5)>
 gap> ConvertQuaternionAlgToQuadraticAlg(A);
