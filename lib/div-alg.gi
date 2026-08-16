@@ -295,7 +295,7 @@ InstallGlobalFunction( DefiningGroupOfCyclotomicAlgebra, function(A)
 local l,f,a,b,c,d,g,I,g1,k,gen,ord,hs,rs,ss,cs,relact,relpow,relcom,rel;
 
 l:=Length(A);
-if l=2 then g1:=SmallGroup(1,1);
+if l=2 then g1:=TrivialGroup();
 else
 g1:="fail";
 
