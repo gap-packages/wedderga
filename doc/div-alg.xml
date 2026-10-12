@@ -201,9 +201,8 @@ gap> WedderburnDecompositionAsSCAlgebras(R);
   <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])> ]
 gap> CyclotomicAlgebraAsSCAlgebra(W[5]);
 <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
-gap> Size(Irr(G));
-15
-gap> SimpleComponentByCharacterAsSCAlgebra(Rationals,G,15);
+gap> n:=PositionProperty(Irr(G),chi->Size(KernelOfCharacter(chi))=1);;
+gap> SimpleComponentByCharacterAsSCAlgebra(Rationals,G,n);
 <algebra of dimension 9 over NF(21,[ 1, 4, 16 ])>
 
 ]]></Example>
@@ -421,7 +420,8 @@ gap> GlobalSplittingOfCyclotomicAlgebra(A);
 <Example><![CDATA[
 gap> G:=PSU(3,3);
 <permutation group of size 6048 with 2 generators>
-gap> sc := SimpleComponentByCharacterDescent(Rationals,G,8);;
+gap> n:=PositionProperty(Irr(G),chi->chi[1]=21 and Conductor(chi)=4);;
+gap> sc := SimpleComponentByCharacterDescent(Rationals,G,n);;
 gap> sc{[1..3]}; # the 4th entry is [ 2, 5, 3 ] or [ 2, 5, 9 ]
 [ 21/2, GaussianRationals, 12 ]
 gap> SchurIndex(sc);
@@ -492,7 +492,8 @@ gap> G:=GL(3,3);
 GL(3,3)
 gap> Size(G);
 11232
-gap> WedderburnDecompositionByCharacterDescent(Rationals,G);
+gap> W:=WedderburnDecompositionByCharacterDescent(Rationals,G);;
+gap> SortedList(W); # W lists the components in the order of Irr(G)
 [ [ 1, Rationals ], [ 1, Rationals ], [ 12, Rationals ], [ 12, Rationals ],
 [ 13, Rationals ], [ 13, Rationals ], [ 16, NF(13,[ 1, 3, 9 ]) ],
 [ 16, NF(13,[ 1, 3, 9 ]) ], [ 26, Rationals ], [ 26, Rationals ],

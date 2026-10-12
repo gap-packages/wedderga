@@ -30,7 +30,8 @@ function(K,H)
 local 
 cc, Epi, KH, ok, k, elKH, exp, chi;
 
-cc := ConjugacyClasses( K );
+# ClassFunction expects the class order of the table, not that of K
+cc := ConjugacyClasses( OrdinaryCharacterTable( K ) );
 Epi := NaturalHomomorphismByNormalSubgroup( K, H ) ;
 KH := Image(Epi,K);
 ok := Index(K,H);
