@@ -121,13 +121,14 @@ function( RG, g, h ) ... end
 gap> List( G, x -> List( G , y -> tw( HZ, x, y ) ) );
 [ [ 1, 1, 1, 1 ], [ 1, -1, -1, 1 ], [ 1, 1, -1, -1 ], [ 1, -1, 1, -1 ] ]  
 
-# doc/crossed.xml:235-271
+# doc/crossed.xml:235-272
 gap> G := SmallGroup(32,50);
 <pc group of size 32 with 5 generators>
-gap> A := SimpleAlgebraByCharacter( GroupRing(Rationals,G), Irr(G)[17]) ;
+gap> chi := First( Irr(G), x -> x[1] = 4 );;
+gap> A := SimpleAlgebraByCharacter( GroupRing(Rationals,G), chi ) ;
 ( <crossed product with center Rationals over GaussianRationals of a group of \
 size 2>^[ 2, 2 ] )
-gap> SimpleAlgebraByCharacterInfo( GroupRing(Rationals,G), Irr(G)[17]) ;
+gap> SimpleAlgebraByCharacterInfo( GroupRing(Rationals,G), chi ) ;
 [ 2, Rationals, 4, [ 2, 3, 2 ] ]
 gap> B := LeftActingDomain(A);
 <crossed product with center Rationals over GaussianRationals of a group of si\
@@ -158,7 +159,7 @@ gap> List( H , x -> ac( B, x ) );
 gap> List( H , x -> List( H , y -> tw( B, x, y ) ) );
 [ [ 1, 1 ], [ 1, -1 ] ]
 
-# doc/crossed.xml:274-327
+# doc/crossed.xml:275-328
 gap> QG:=GroupRing( Rationals, SmallGroup(24,3) );;
 gap> WedderburnDecomposition(QG);
 [ Rationals, CF(3), ( Rationals^[ 3, 3 ] ),
@@ -212,7 +213,7 @@ gap> Characteristic(R);
 gap> CenterOfCrossedProduct(R);
 Rationals
 
-# doc/crossed.xml:333-385
+# doc/crossed.xml:334-386
 gap> Quat := function(R,a,b)
 > local G,act,twist;
 > if not(a in R and b in R and a <> Zero(R) and b <> Zero(R) ) then
@@ -265,7 +266,7 @@ function( RG, g, h ) ... end
 gap> List( G, x -> List( G, y -> tw( HQ, x, y ) ) );
 [ [ 1, 1, 1, 1 ], [ 1, 3, -1, -3 ], [ 1, 1, 2, 2 ], [ 1, 3, -3, -6 ] ]
 
-# doc/crossed.xml:431-461
+# doc/crossed.xml:432-462
 gap> QG := GroupRing( Rationals, SmallGroup(24,3) );
 <algebra-with-one over Rationals, with 4 generators>
 gap> R := WedderburnDecomposition( QG )[4];

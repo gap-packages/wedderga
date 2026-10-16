@@ -523,13 +523,13 @@ end);
 InstallGlobalFunction( GaloisRepsOfCharacters, function(F1,G)
 local U,U1,V,y,y1,T,n,k,i,j,i1,t,F,m;
 
-U:=[1];
+U:=[];
 U1:=[];
 y:=PrimitiveElement(F1);
 T:=Irr(G);
 n:=Size(Irr(G));
 i:=1;
-for i in [2..n] do
+for i in [1..n] do
  V:=ValuesOfClassFunction(T[i]);
  F:=Field(V);
  y1:=PrimitiveElement(F);
@@ -958,7 +958,7 @@ return D;
 end);
 #############################
 InstallGlobalFunction( DefectGroupsOfPBlock, function(G,n,p)
-local D1,D2,r,U,U1,T,chi,C,c,i,m,h1,a1,a2,b1,A1,D;
+local D1,D2,r,U,U1,T,chi,C,c,i,m,h1,a1,a2,b1,A1,D,ident;
 
 if IsPosInt(n) then
   if HasOrdinaryCharacterTable(G) then
@@ -972,8 +972,10 @@ else
   Error("The third argument must be a character or its number\n");
 fi;
 
+# chi[i] is the value on class i of T, which need not be class i of G
 T:=CharacterTable(G);
-C:=ConjugacyClasses(G);
+C:=ConjugacyClasses(T);
+ident:=IdentificationOfConjugacyClasses(T);
 c:=Size(C);
 U:=[];
 U1:=[];
@@ -999,7 +1001,7 @@ od;
 
 D2:=[];
 for i in U do
-  D:=DefectGroupOfConjugacyClassAtP(G,i,p);
+  D:=DefectGroupOfConjugacyClassAtP(G,ident[i],p);
   AddSet(D2,D);
 od;
 
@@ -1218,8 +1220,10 @@ if l>4 then
   l:=Length(A);
   while l>4 and l1<l2 do
     l2:=Length(A[4]);
-    G:=DefiningGroupOfCyclotomicAlgebra(A);
-    n:=DefiningCharacterOfCyclotomicAlgebra(A);
+    # a position in Irr is meaningful only for the group object it came from
+    d:=DefiningGroupAndCharacterOfCyclotAlg(A);
+    G:=d[1];
+    n:=Position(Irr(G),d[2]);
     A:=SimpleComponentByCharacterDescent(A[2],G,n);
     l:=Length(A);
     if l>4 then l1:=Length(A[4]); fi;
